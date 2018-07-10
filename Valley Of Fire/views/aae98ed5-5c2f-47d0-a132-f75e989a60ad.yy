@@ -1,0 +1,31 @@
+{
+    "id": "aae98ed5-5c2f-47d0-a132-f75e989a60ad",
+    "modelName": "GMFolder",
+    "mvc": "1.1",
+    "name": "aae98ed5-5c2f-47d0-a132-f75e989a60ad",
+    "children": [
+        "51914b46-7aa4-4f4b-8bc7-d7c26c0ca2fe",
+        "6678fd8b-2c43-4271-b2f4-a002f286b305",
+        "83490084-51f8-4a6f-8c07-de1c6bf6dea6",
+        "e4d0a29c-5264-4120-9e99-d5c242188bea",
+        "fe402791-2dfe-4807-9188-6d2416666383",
+        "fb5f948a-1bca-4b17-9679-3b19e27f068e",
+        "32ac9a24-c516-417f-9128-101eadf6a795",
+        "88c97821-9f5e-4d23-a19c-dbce352750ec",
+        "57c2bb69-4178-435a-9d62-29291db2a997",
+        "f91e992c-26bc-4a6d-abb0-7c985c23d519",
+        "200cc651-5855-4b24-a335-de15cd2d5217",
+        "823cc89a-e1ec-4013-ad22-1eb3dda28ba9",
+        "aaa21b38-d0da-49a7-b38e-bb34dec11db7",
+        "96f5a586-0b75-4f10-b503-969054407e0b",
+        "4914d1fa-2952-4398-913f-f1f750a027c1",
+        "84643c88-167d-40df-aee0-be1de87a3acb",
+        "4b0c6a4e-6ee0-4456-aec3-6ac53f320ec5",
+        "5110e91e-da66-45fd-8a25-c82db03b5c2d",
+        "c3c74207-a1b2-4766-852c-becc2dad5566"
+    ],
+    "filterType": "GMSprite",
+    "folderName": "Train",
+    "isDefaultView": false,
+    "localisedFolderName": ""
+}

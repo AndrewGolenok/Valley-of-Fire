@@ -1,0 +1,104 @@
+
+diego.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+diego/Layer_5_copy
+  rotate: false
+  xy: 846, 831
+  size: 90, 180
+  orig: 90, 180
+  offset: 0, 0
+  index: -1
+diego/Layer_3
+  rotate: false
+  xy: 872, 1
+  size: 110, 203
+  orig: 110, 203
+  offset: 0, 0
+  index: -1
+diego/Layer_9
+  rotate: false
+  xy: 1, 1
+  size: 418, 656
+  orig: 418, 656
+  offset: 0, 0
+  index: -1
+diego/tntbelt
+  rotate: false
+  xy: 1, 941
+  size: 168, 76
+  orig: 168, 76
+  offset: 0, 0
+  index: -1
+diego/Layer_4
+  rotate: false
+  xy: 754, 299
+  size: 197, 341
+  orig: 197, 341
+  offset: 0, 0
+  index: -1
+diego/Layer_5
+  rotate: false
+  xy: 754, 831
+  size: 90, 191
+  orig: 90, 191
+  offset: 0, 0
+  index: -1
+diego/Layer_14
+  rotate: false
+  xy: 1, 659
+  size: 751, 205
+  orig: 751, 205
+  offset: 0, 0
+  index: -1
+diego/Layer_10
+  rotate: false
+  xy: 186, 866
+  size: 117, 72
+  orig: 117, 72
+  offset: 0, 0
+  index: -1
+diego/Layer_6
+  rotate: false
+  xy: 754, 642
+  size: 251, 187
+  orig: 251, 187
+  offset: 0, 0
+  index: -1
+diego/Layer_2
+  rotate: false
+  xy: 421, 1
+  size: 449, 296
+  orig: 449, 296
+  offset: 0, 0
+  index: -1
+diego/3
+  rotate: false
+  xy: 316, 941
+  size: 127, 71
+  orig: 183, 73
+  offset: 28, 1
+  index: -1
+diego/1
+  rotate: false
+  xy: 1, 866
+  size: 183, 73
+  orig: 183, 73
+  offset: 0, 0
+  index: -1
+diego/4
+  rotate: false
+  xy: 171, 941
+  size: 143, 71
+  orig: 183, 73
+  offset: 20, 1
+  index: -1
+diego/2
+  rotate: false
+  xy: 872, 206
+  size: 142, 72
+  orig: 183, 73
+  offset: 20, 1
+  index: -1
