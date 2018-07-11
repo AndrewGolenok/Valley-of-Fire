@@ -1,7 +1,4 @@
 #region Пуши
-//ZHOPA
-if 2 = 3
-	{ image_speed = 3; }
 //randomize();
 //fizra  = choose("miachik", "ganbol", "roketka", "fizcultura");
 //fizra1 = choose("skakalka", "gira", "espander", "lizha");

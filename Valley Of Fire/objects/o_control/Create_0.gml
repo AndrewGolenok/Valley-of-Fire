@@ -1,5 +1,4 @@
 #region Переменные игроков
-	//global.hero = choose(1, 2, 3);
 	global.enemy_hero = choose(1, 2, 3);
 #endregion
 #region Камера

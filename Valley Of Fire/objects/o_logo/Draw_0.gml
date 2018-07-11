@@ -30,18 +30,18 @@ if stage = 1
 if stage = 2
 	{
 	if heroes2_x > 0
-		{ heroes2_x -= 60; }
+		{ heroes2_x -= 40; }
 	if chief_x > 0
-		{ chief_x -= 20 + 40 * (chief_x / 550);; }
+		{ chief_x -= 10 + 30 * (chief_x / 550); }
 		else
 		{ stage = 3; }
 	}
 if stage = 3
 	{
 	if heroes1_x > 0
-		{ heroes1_x -= 60; }
+		{ heroes1_x -= 40; }
 	if sherif_x > 0
-		{ sherif_x -= 20 + 40 * (sherif_x / 550); }
+		{ sherif_x -= 10 + 30 * (sherif_x / 550); }
 		else
 		{ stage = 4; }
 	smart_y       = 0;
@@ -87,7 +87,7 @@ if stage = 4
 	if cowboys_y > - 1040
 		{
 		cowboys_scale += 0.014;
-		cowboys_y -= 50;
+		cowboys_y -= 52;
 		if cowboys_y < -300
 			{
 			if cowboys_y < -500
@@ -150,6 +150,7 @@ if stage = 5
 		}
 		else
 		{
+		cowboys_y = 610 * back_scale - all_y - 150 ;
 		if view_yport < 20
 			{ view_yport += 10; }
 			else
@@ -175,7 +176,7 @@ if stage = 8
 	if smart_y < 610 * back_scale - all_y - 150 - 270 * back_scale
 		{ smart_y += 80; }
 		else
-		{ stage = 9; }
+		{ stage = 9; smart_y = 610 * back_scale - all_y - 150 - 270 * back_scale; }
 	}
 if stage = 9
 	{
@@ -223,21 +224,23 @@ if stage = 13
 if stage = 14
 	{
 	if word_y > - 100
-		{ word_y -= 5; }
+		{ word_y -= 15; }
 		else
 		{
-		if load_alpha < 0.5
-			{ load_alpha += 0.025; }
-			else
-			{ stage = 15; }
+		stage = 15;
+		load_alpha = 0.5;
+		//if load_alpha < 0.5
+		//	{ load_alpha += 0.025; }
+		//	else
+		//	{ stage = 15; }
 		}
 	}
 if stage = 15
 	{
 	if of_scale > 1
-		{ of_scale -= 0.5; }
+		{ of_scale -= 0.75; }
 		else
-		{ stage = 16; }
+		{ stage = 16; of_scale = 1; }
 	
 	of_y = cowboys_y - 270 * back_scale / 2;
 
@@ -247,7 +250,7 @@ if stage = 15
 if stage = 16
 	{
 	if fire_dist < 17
-		{ fire_dist += 4; }
+		{ fire_dist += 5; }
 		else
 		{ stage = 17; }
 	}
@@ -262,7 +265,7 @@ if stage = 17
 		else
 		{ fire_dir1 = - fire_dir1; }
 	if fire_alpha < 0.75
-		{ fire_alpha += 0.01; }
+		{ fire_alpha += 0.015; }
 		else
 		{ stage = 18; }
 	}
@@ -270,7 +273,7 @@ if stage = 18
 	{
 	fire_angle = 0;
 	fire_angle1 = 0;
-	load_go += 10//choose(0, 0, random(3), random(10), 0, 0, 0);
+	load_go += 2.5//choose(0, 0, random(3), random(10), 0, 0, 0);
 	//if fire_alpha > 0.65
 	//	{ fire_alpha -= 0.02; }
 	if load_go >= 100
