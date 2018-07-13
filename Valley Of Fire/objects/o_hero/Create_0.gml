@@ -35,7 +35,7 @@ if !enemy
 	}
 
 //weapon = "";
-hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "_idle"/* + weapon*/);
+hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + ""/* + weapon*/);
 hero_code_name = global.hero_code_name[hero];
 //if weapon = "standard"
 //	{ hero_bullet = asset_get_index("s_bullet_" + global.hero_code_weapon[hero]); }

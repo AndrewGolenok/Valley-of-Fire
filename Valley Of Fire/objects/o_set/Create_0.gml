@@ -151,6 +151,7 @@
 #region Персонажи
 	//global.hero = 1;
 	global.player_rank = 15;
+	global.heroes_val  = 11;
 	global.weapon = "standard";
 	
 	ini_open("Language/" + string(global.lang) + "/heroes_"+string(global.lang) + ".ini");

@@ -409,7 +409,7 @@ if stage >= 14
 		draw_sprite_ext(hero_left[i], 0, xx1, yy1, -scale, scale, 0, c_white, 1);
 		
 		if i = 2
-			{ hero_right[i] = s_huntress_idle; }
+			{ hero_right[i] = s_huntress; }
 		n += 0.25;
 		draw_sprite_ext(hero_right[i], n, xx2, yy2 - 30 * scale, scale, -scale * 0.6, 0, c_black, alp / 4);
 		draw_sprite_ext(hero_right[i], n, xx2, yy2, scale, scale, 0, c_white, 1);

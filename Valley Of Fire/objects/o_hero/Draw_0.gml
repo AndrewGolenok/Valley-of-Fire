@@ -347,7 +347,7 @@ if !enemy
 	//	{
 	//	if global.super_ability = 1 && change = 3
 	//		{ global.super_ability = 0; }
-	//	hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "_idle2");
+	//	hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "2");
 	//	}
 	if diego_dynamit = 2 && image_index = 19
 		{ diego_dynamit = 3; }

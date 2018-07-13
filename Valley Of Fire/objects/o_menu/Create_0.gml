@@ -2,7 +2,8 @@ surf_blur_pass = surface_create(display_get_width(), display_get_height());//sur
 application_surface_draw_enable(false);
 uscale = shader_get_uniform (glsl_gaussian_blur, "u_Scale");
 
-menu_stage = "dificult";
+menu_stage = "heroes1"; //"dificult";
+global.player_rank = 15;
 
 s0 = 0;
 s1 = 0;
@@ -70,3 +71,47 @@ hold_start = 0;
 hold_true  = 0;
 hold_time  = 0;
 hold_go    = 0;
+
+#region Переменные персонажей
+	must_x    = 1280 / 2;
+	hero_y    = global.size - 50;
+	now_hero  = 1;
+	now_rege  = 1;
+	hero_size = 0.7;
+	
+	hero_g[1]  = 1;
+	hero_g[7]  = 2;
+	hero_g[6]  = 3;
+	hero_g[10] = 4;
+	hero_g[2]  = 5;
+	hero_g[5]  = 6;
+	hero_g[3]  = 7;
+	hero_g[8]  = 8;
+	hero_g[11] = 9;
+	hero_g[9]  = 10;
+	hero_g[4]  = 11;
+	
+	hero_x[1]  = 0;
+	hero_x[7]  = 0;
+	hero_x[6]  = 0;
+	hero_x[10] = 0;
+	hero_x[2]  = 0;
+	hero_x[5]  = 0;
+	hero_x[3]  = 0;
+	hero_x[8]  = 0;
+	hero_x[11] = 0;
+	hero_x[9]  = 0;
+	hero_x[4]  = 0;
+	
+	rege_x[1]  = 0;
+	rege_x[2]  = 0;
+	rege_x[3]  = 0;
+	rege_x[4]  = 0;
+#endregion
+#region Переменные VS
+	vs_hero = irandom_range(1, 11);
+	vs_x1   = 0;
+	vs_x2   = 0;
+	vs_y1   = 0;
+	vs_y2   = 0;
+#endregion

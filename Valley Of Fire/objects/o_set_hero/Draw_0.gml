@@ -19,7 +19,7 @@ if load_go=0
 				
 				//
 				var hero_sprite, hero_code_name;
-				hero_sprite = asset_get_index("s_" + global.hero_code_name[global.hero] + "_idle");
+				hero_sprite = asset_get_index("s_" + global.hero_code_name[global.hero] + "");
 				hero_code_name = global.hero_code_name[global.hero];
 	
 				sprite_index = hero_sprite;
@@ -37,13 +37,13 @@ if load_go=0
 		sc = -1;
 	
 		var hero_sprite, hero_code_name;
-		hero_sprite    = asset_get_index("s_" + global.hero_code_name[global.hero] + "_idle");
+		hero_sprite    = asset_get_index("s_" + global.hero_code_name[global.hero] + "");
 		hero_code_name = global.hero_code_name[global.hero];
 	
 		draw_set_alpha(0.5);
 		draw_ellipse_color(x - sprite_get_width(hero_sprite) * scale / 2, y - 40, x + sprite_get_width(hero_sprite) * scale / 2 + 15, y + 15, c_black, c_black, 0);
 		draw_set_alpha(1);
-		draw_sprite_ext(sprite_index, image_index, x - 28 * (sprite_index == s_huntress_idle), y - 15 * (sprite_index==s_huntress_idle), sc * imgx * scale, scale, 0, c_white, 1);
+		draw_sprite_ext(sprite_index, image_index, x - 28 * (sprite_index == s_huntress), y - 15 * (sprite_index==s_huntress), sc * imgx * scale, scale, 0, c_white, 1);
 	#endregion
 	#region Описание и Характеристики
 		var yp, xp, xh, hh;
@@ -301,7 +301,7 @@ if load_go=0
 				//	{
 				//	go_anim = 0;
 				//	load_enemy_name   = global.enemy_name;
-				//	load_enemy_sprite = asset_get_index("s_" + global.hero_code_name[global.enemy_hero] + "_idle_" + global.enemy_weapon);
+				//	load_enemy_sprite = asset_get_index("s_" + global.hero_code_name[global.enemy_hero] + "_" + global.enemy_weapon);
 				//	}
 				if go_anim = 1
 					{
@@ -313,13 +313,13 @@ if load_go=0
 						if load_time <= 1
 							{
 							load_enemy_name   = global.enemy_name;
-							load_enemy_sprite = asset_get_index("s_" + global.hero_code_name[global.enemy_hero] + "_idle_" + global.enemy_weapon);
+							load_enemy_sprite = asset_get_index("s_" + global.hero_code_name[global.enemy_hero] + "_" + global.enemy_weapon);
 							//show_message(string(sprite_get_name(load_enemy_sprite)));
 							}
 							else
 							{
 							load_enemy_name   = generate_name();
-							load_enemy_sprite = asset_get_index("s_" + global.hero_code_name[irandom_range(1, 11)] + "_idle_" + global.weapon);
+							load_enemy_sprite = asset_get_index("s_" + global.hero_code_name[irandom_range(1, 11)] + "_" + global.weapon);
 							}
 						}
 					}
@@ -353,21 +353,21 @@ if load_go=0
 				image_speed = 1.4;
 				load_image_index += image_speed;
 				var sprite;
-				sprite = asset_get_index("s_" + global.hero_code_name[global.hero] + "_idle_" + global.weapon);
+				sprite = asset_get_index("s_" + global.hero_code_name[global.hero] + "_" + global.weapon);
 				sprite_index = sprite;
-				draw_sprite_ext(sprite_index, load_image_index, x - 28 * (sprite_index == s_huntress_idle), y - 15 * (sprite_index == s_huntress_idle), sc * scale, scale, 0, c_white, 1);
+				draw_sprite_ext(sprite_index, load_image_index, x - 28 * (sprite_index == s_huntress), y - 15 * (sprite_index == s_huntress), sc * scale, scale, 0, c_white, 1);
 				
-				//load_enemy_sprite = s_huntress_idle;
+				//load_enemy_sprite = s_huntress;
 				sprite_index = load_enemy_sprite;
 				
-				draw_sprite_ext(load_enemy_sprite, load_image_index, 1280 - x + 28 * (load_enemy_sprite == s_huntress_idle), y - 15 * (load_enemy_sprite == s_huntress_idle), load_enemy_scale * scale, scale, 0, c_white, 1);
+				draw_sprite_ext(load_enemy_sprite, load_image_index, 1280 - x + 28 * (load_enemy_sprite == s_huntress), y - 15 * (load_enemy_sprite == s_huntress), load_enemy_scale * scale, scale, 0, c_white, 1);
 				
-				//if sprite_index = s_sherif_idle or sprite_index = s_huntress_idle
+				//if sprite_index = s_sherif or sprite_index = s_huntress
 				//	{ draw_skeleton(sprite_index, "idle", global.hero_code_name[global.hero], image_index, x, y, sc * scale, scale, 0, c_white, 1); }
 				//	else
 				//	{ draw_sprite_ext(sprite_index, image_index, x, y, sc * scale, scale, 0, c_white, 1); }
 					
-				//if load_enemy_sprite = s_sherif_idle or sprite_index = s_huntress_idle
+				//if load_enemy_sprite = s_sherif or sprite_index = s_huntress
 				//	{ draw_skeleton(load_enemy_sprite, "idle", global.hero_code_name[global.enemy_hero], image_index, 1280 - x, y, load_enemy_scale * scale, scale, 0, c_white, 1); }
 				//	else
 				//	{ draw_sprite_ext(load_enemy_sprite, image_index, 1280 - x, y, load_enemy_scale * scale, scale, 0, c_white, 1); }

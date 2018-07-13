@@ -262,7 +262,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_thief_idle\/s_thief_idle.yy",
+                "resourcePath": "sprites\/s_thief\/s_thief.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -376,7 +376,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_huntress_idle\/s_huntress_idle.yy",
+                "resourcePath": "sprites\/s_huntress\/s_huntress.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -661,7 +661,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_sherif_idle\/s_sherif_idle.yy",
+                "resourcePath": "sprites\/s_sherif\/s_sherif.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -777,25 +777,6 @@
                 ],
                 "resourcePath": "sprites\/s_bullet_revolver\/s_bullet_revolver.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "235065c5-1b47-4cab-a22c-a129d6a6588e",
-            "Value": {
-                "id": "701dd2cb-bcbe-4d16-8165-5d4a1892b95d",
-                "modelName": "GMResourceInfo",
-                "mvc": "1.0",
-                "configDeltaFiles": [
-                    
-                ],
-                "configDeltas": [
-                    
-                ],
-                "resourceCreationConfigs": [
-                    "default"
-                ],
-                "resourcePath": "extensions\/GooglePlayServicesExtension\/GooglePlayServicesExtension.yy",
-                "resourceType": "GMExtension"
             }
         },
         {
@@ -1288,7 +1269,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_chief_idle\/s_chief_idle.yy",
+                "resourcePath": "sprites\/s_chief\/s_chief.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -1345,7 +1326,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_doctor_idle\/s_doctor_idle.yy",
+                "resourcePath": "sprites\/s_doctor\/s_doctor.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -1385,6 +1366,25 @@
                 ],
                 "resourcePath": "sounds\/sd_rifle\/sd_rifle.yy",
                 "resourceType": "GMSound"
+            }
+        },
+        {
+            "Key": "48b0f6bc-96b3-4971-bbcd-a1b12c719581",
+            "Value": {
+                "id": "e85d2997-84d9-48d2-b229-3cc68adaffdb",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/draw_text_transformed_a\/draw_text_transformed_a.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -1858,7 +1858,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_sbill_idle\/s_sbill_idle.yy",
+                "resourcePath": "sprites\/s_sbill\/s_sbill.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -2447,7 +2447,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_undertaker_idle\/s_undertaker_idle.yy",
+                "resourcePath": "sprites\/s_undertaker\/s_undertaker.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -2960,7 +2960,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_diego_idle\/s_diego_idle.yy",
+                "resourcePath": "sprites\/s_diego\/s_diego.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -3264,7 +3264,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_drunk_idle\/s_drunk_idle.yy",
+                "resourcePath": "sprites\/s_drunk\/s_drunk.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -4328,7 +4328,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_gangster_idle\/s_gangster_idle.yy",
+                "resourcePath": "sprites\/s_gangster\/s_gangster.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -4385,7 +4385,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_shaman_idle\/s_shaman_idle.yy",
+                "resourcePath": "sprites\/s_shaman\/s_shaman.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -4974,7 +4974,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_diego_idle2\/s_diego_idle2.yy",
+                "resourcePath": "sprites\/s_diego2\/s_diego2.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -5193,6 +5193,7 @@
         "012c84df-6210-4847-bb1b-50e546d3762a",
         "e2a74e1c-afb5-4d06-83f2-6fccec02ad33",
         "b10dc867-72be-414f-9afd-a6b7fdd1539f",
+        "48b0f6bc-96b3-4971-bbcd-a1b12c719581",
         "786a1f0c-6cd8-431c-94d2-80983b07e250",
         "f707e551-566a-4faf-bf59-b55b39ff4545",
         "a404ec58-63e2-420a-82df-52aa36ad2aa8",

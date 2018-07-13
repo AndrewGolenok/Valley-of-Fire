@@ -2,11 +2,11 @@ if diego_dynamit = 1
 	{
 	if global.super_ability = 1 && change = 3
 		{ global.super_ability = 0; }
-	hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "_idle2");
+	hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "2");
 	}
 	
 if diego_dynamit = 3
-	{ hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "_idle"); }
+	{ hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + ""); }
 
 if change = 1
 	{

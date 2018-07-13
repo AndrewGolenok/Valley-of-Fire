@@ -40,7 +40,7 @@ y += global.more_size / 2; // Автоподстройка
 n = 0; // Анимация
 
 var hero_sprite, hero_code_name;
-hero_sprite    = asset_get_index("s_" + global.hero_code_name[global.hero] + "_idle");
+hero_sprite    = asset_get_index("s_" + global.hero_code_name[global.hero] + "");
 hero_code_name = global.hero_code_name[global.hero];
 	
 sprite_index = hero_sprite;
@@ -59,7 +59,7 @@ load_text    = "Поиск соперника";
 load_point   = "";
 load_enemy_name   = "";
 load_enemy_name   = generate_name();
-load_enemy_sprite = asset_get_index("s_" + global.hero_code_name[irandom_range(1,11)] + "_idle_" + global.weapon);
+load_enemy_sprite = asset_get_index("s_" + global.hero_code_name[irandom_range(1,11)] + "_" + global.weapon);
 load_enemy_scale  = 1;
 
 load_image_index = 0;
