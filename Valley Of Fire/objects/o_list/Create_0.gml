@@ -106,9 +106,6 @@
 				}
 			}
 		}
-	theme_real_theme[0] = 1;
-	theme_real_theme[1] = 3;
-	theme_real_theme[2] = 2;
 	//if theme_real_theme[0] != -1
 	//	{
 	//	if global.hero != global.enemy_hero
@@ -334,6 +331,8 @@
 	dop_text[7] = "";
 	dop_text[8] = "";
 	ini_close();
+	
+	
 #endregion
 #region Выбор победителя
 	win_x  = 350;
@@ -537,4 +536,9 @@
 	restart_time2  = 0;
 	restart_angle = 0;
 	restart_angle2 = 0;
+#endregion
+#region Верно или нет
+	answer_rec = 0;
+	answer_col = 0;
+	answer_alp = 0;
 #endregion

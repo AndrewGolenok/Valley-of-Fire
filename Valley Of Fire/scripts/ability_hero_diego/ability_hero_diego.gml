@@ -26,7 +26,8 @@ if image_index = 20 && skeleton_animation_get() = "shoot"
 	sy = y;
 	
 	shoot = 1;
-	audio_play_sound(sd_rifle, 1, 0);
+	if global.music
+		{ audio_play_sound(sd_rifle, 1, 0); }
 	}
 if shoot = 2 or shoot = 3
 	{

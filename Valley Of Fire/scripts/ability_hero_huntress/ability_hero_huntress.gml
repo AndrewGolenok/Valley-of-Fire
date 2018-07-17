@@ -18,7 +18,7 @@ if image_index = hero_abindex && skeleton_animation_get() = "super"
 	sy = y;
 	
 	shoot = 1//2;
-	audio_play_sound(sd_bow, 1, 0); 
+	if global.music { audio_play_sound(sd_bow, 1, 0); }
 	}
 
 if image_index = 20 && skeleton_animation_get() = "shoot"
@@ -27,7 +27,7 @@ if image_index = 20 && skeleton_animation_get() = "shoot"
 	sy = y;
 	
 	shoot = 1;
-	audio_play_sound(sd_bow, 1, 0); 
+	if global.music { audio_play_sound(sd_bow, 1, 0); }
 	}
 if shoot = 2 or shoot = 3
 	{

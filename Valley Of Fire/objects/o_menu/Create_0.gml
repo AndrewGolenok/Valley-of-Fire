@@ -110,8 +110,20 @@ hold_go    = 0;
 #endregion
 #region Переменные VS
 	vs_hero = irandom_range(1, 11);
-	vs_x1   = 0;
-	vs_x2   = 0;
-	vs_y1   = 0;
-	vs_y2   = 0;
+	vs_x1 = 640 - 500 + 5;
+	vs_y1 = global.size + 1000;
+	vs_x2 = 640 + 500 - 5;
+	vs_y2 = global.size - 1000;
+	vs_go = 0;
+	sherif_x  = 0;
+	sherif_x1 = 0;
+	
+	vs_vx = 640; // - 500;
+	vs_vy = global.size / 2 + 1000;
+	vs_sx = 640 + 100; // + 500;
+	vs_sy = global.size / 2 - 1000;
+	
+	vs_ts    = 0.5;
+	vs_time  = 0;
+	vs_alpha = 1;
 #endregion

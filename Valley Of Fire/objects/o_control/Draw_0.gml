@@ -29,10 +29,20 @@
 #endregion
 #region Зданий фон
 	
-	if !audio_is_playing(sd_back_train)
-		{ audio_play_sound(sd_back_train, 0, 1);  }
-	if !audio_is_playing(sd_music)
-		{ audio_play_sound(sd_music, 1, 1);  }
+	if global.music
+		{
+		if !audio_is_playing(sd_back_train)
+			{ audio_play_sound(sd_back_train, 0, 1);  }
+		if !audio_is_playing(sd_music)
+			{ audio_play_sound(sd_music, 1, 1);  }
+		}
+		else
+		{
+		if audio_is_playing(sd_back_train)
+			{ audio_stop_sound(sd_back_train);  }
+		if audio_is_playing(sd_music)
+			{ audio_stop_sound(sd_music);  }
+		}
 		
 	if day_hour = 24
 		{ day_hour = 0; }
@@ -285,6 +295,10 @@ draw_sprite_ext(s_train_wagon, 0, 640 + back_x, global.size + back_y + back_trai
 		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
 		}
+#endregion
+#region Поверх
+	draw_sprite_ext(s_train_back1, o_control.back_time[1], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[1]] * o_control.back_alpha[1]);
+	draw_sprite_ext(s_train_back1, o_control.back_time[2], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[2]] * o_control.back_alpha[2]);
 #endregion
 #region Старый код
 /*

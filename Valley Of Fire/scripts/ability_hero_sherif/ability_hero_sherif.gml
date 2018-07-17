@@ -19,7 +19,7 @@ if image_index = 32 && skeleton_animation_get() = "super"
 	
 	shoot = 2; 
 	global.critical = 3;
-	audio_play_sound(sd_revolver, 1, 0);
+	if global.music { audio_play_sound(sd_revolver, 1, 0); }
 	}
 
 if image_index = 20 && skeleton_animation_get() = "shoot"
@@ -29,7 +29,7 @@ if image_index = 20 && skeleton_animation_get() = "shoot"
 	
 	shoot = 1;
 	
-	audio_play_sound(sd_revolver, 1, 0);
+	if global.music { audio_play_sound(sd_revolver, 1, 0); }
 	//if enemy
 		//{ audio_play_sound(sd_revolver, 1, 0); }
 	}

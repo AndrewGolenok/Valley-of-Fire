@@ -1,6 +1,6 @@
 #region Фон песка
-	draw_sprite_ext(s_train_back1, o_control.back_time[1], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[1]] * o_control.back_alpha[1]);
-	draw_sprite_ext(s_train_back1, o_control.back_time[2], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[2]] * o_control.back_alpha[2]);
+	//draw_sprite_ext(s_train_back1, o_control.back_time[1], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[1]] * o_control.back_alpha[1]);
+	//draw_sprite_ext(s_train_back1, o_control.back_time[2], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[2]] * o_control.back_alpha[2]);
 #endregion
 #region Листовка
 	#region Появление
@@ -148,7 +148,8 @@
 											{ b_pressed_s[1] = 1; }
 										if mouse_check_button_released(mb_left)
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music
+												{ audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if vtrue[1] = 1
 												{ global.answer = 1; }
@@ -169,7 +170,8 @@
 											{ b_pressed_s[2] = 1; }
 										if mouse_check_button_released(mb_left)
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music
+												{ audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if vtrue[2] = 1
 												{ global.answer = 1; }
@@ -190,7 +192,7 @@
 											{ b_pressed_s[3] = 1; }
 										if mouse_check_button_released(mb_left)
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music { audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if vtrue[3] = 1
 												{ global.answer = 1; }
@@ -211,7 +213,7 @@
 											{ b_pressed_s[4] = 1; }
 										if mouse_check_button_released(mb_left)
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music { audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if vtrue[4] = 1
 												{ global.answer = 1; }
@@ -350,7 +352,7 @@
 											{ b_pressed_s[1] = 1; }
 										if mouse_check_button_released(mb_left)
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music { audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if vtrue[1] = 1
 												{ global.answer = 1; }
@@ -371,7 +373,7 @@
 											{ b_pressed_s[2] = 1; }
 										if mouse_check_button_released(mb_left)
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music { audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if vtrue[2] = 1
 												{ global.answer = 1; }
@@ -392,7 +394,7 @@
 											{ b_pressed_s[3] = 1; }
 										if mouse_check_button_released(mb_left)
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music { audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if vtrue[3] = 1
 												{ global.answer = 1; }
@@ -413,7 +415,7 @@
 											{ b_pressed_s[4] = 1; }
 										if mouse_check_button_released(mb_left)
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music { audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if vtrue[4] = 1
 												{ global.answer = 1; }
@@ -505,7 +507,7 @@
 											{ b_pressed_s[2] = 1; }
 										if mouse_check_button_released(mb_left)
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music { audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if vtrue[2] = 1
 												{ global.answer = 1; }
@@ -526,7 +528,7 @@
 											{ b_pressed_s[3] = 1; }
 										if mouse_check_button_released(mb_left)
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music { audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if vtrue[3] = 1
 												{ global.answer = 1; }
@@ -606,7 +608,7 @@
 											{ b_pressed_s[2] = 1; }
 										if mouse_check_button_released(mb_left)
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music { audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if vtrue[2] = 1
 												{ global.answer = 1; }
@@ -627,7 +629,7 @@
 											{ b_pressed_s[3] = 1; }
 										if mouse_check_button_released(mb_left)
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music { audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if vtrue[3] = 1
 												{ global.answer = 1; }
@@ -715,7 +717,7 @@
 											{
 											if botle_destroy[i] = 0
 												{
-												audio_play_sound(sd_text, 2, 0);
+												if global.music { audio_play_sound(sd_text, 2, 0); }
 												botle_destroy[i] = 1;
 												if botle_s + 1 = botle_n[i]
 													{
@@ -791,7 +793,7 @@
 											{
 											if botle_destroy[i] = 0
 												{
-												audio_play_sound(sd_text, 2, 0);
+												if global.music { audio_play_sound(sd_text, 2, 0); }
 												botle_destroy[i] = 1;
 												if botle_s + 1 = botle_n[i]
 													{
@@ -874,7 +876,7 @@
 											{
 											if botle_destroy[i] = 0
 												{
-												audio_play_sound(sd_text, 2, 0);
+												if global.music { audio_play_sound(sd_text, 2, 0); }
 												botle_destroy[i] = 1;
 												if botle_s + 1 = botle_n[i]
 													{
@@ -957,7 +959,7 @@
 									{
 									if mouse_check_button_pressed(mb_left)
 										{
-										audio_play_sound(sd_text, 2, 0);
+										if global.music { audio_play_sound(sd_text, 2, 0); }
 										/*audio_play_sound(sd_revolver, 1, 0);*/
 										if abs(hand_true - hand_angle) < 30 or abs(hand_true - hand_angle) > 329
 											{ global.answer = 1; }
@@ -1023,7 +1025,7 @@
 									{
 									if mouse_check_button_pressed(mb_left)
 										{
-										audio_play_sound(sd_text, 2, 0);
+										if global.music { audio_play_sound(sd_text, 2, 0); }
 									
 										var dir;
 										if mouse_x < 640
@@ -1167,7 +1169,7 @@
 										{
 										if hand_s_t > 0
 											{
-											audio_play_sound(sd_text, 2, 0);
+											if global.music { audio_play_sound(sd_text, 2, 0); }
 											/*audio_play_sound(sd_revolver, 1, 0);*/
 											if abs(hand_true - point_direction(hand_s_x, hand_s_y, mouse_x, mouse_y)) < 30 or abs(hand_true - point_direction(hand_s_x, hand_s_y, mouse_x, mouse_y)) > 329
 												{ global.answer = 1; }
@@ -1223,7 +1225,7 @@
 									{
 									if mouse_check_button_pressed(mb_left)
 										{
-										audio_play_sound(sd_text, 2, 0);
+										if global.music { audio_play_sound(sd_text, 2, 0); }
 										/*audio_play_sound(sd_revolver, 1, 0);*/
 										if abs(hand_true - hand_angle) < 30 or abs(hand_true - hand_angle) > 329
 											{ global.answer = 1; }
@@ -1279,15 +1281,24 @@
 			#region Игрок
 			if global.answer != -1
 				{
+				//if bot_question <= global.question && (bot_task <= global.task) && bot_time2 > 3 * room_speed
+				//	{ bot_time = random(1) * room_speed; bot_time2 = 3 * room_speed; }
 				if global.answer = 1
 					{
+					answer_rec = 1;
+					answer_col = make_color_rgb(60, 179, 113);
+					
 					if super_now != super_need
 						{ super_now  += 1; }
 					if global.critical < 3
 						{ global.critical += 1; }
 					}
 					else
-					{ global.critical = 0; }
+					{
+					answer_rec = 1;
+					answer_col = make_color_rgb(178, 34, 34);
+					global.critical = 0;
+					}
 				accuracy_true += global.answer;
 				accuracy_all  += 1;
 				
@@ -1384,13 +1395,13 @@
 						if bot_time = -1
 							{
 							if bot_type = 0
-								{ bot_time = random_range(1, 7) * room_speed; }
+								{ bot_time = random_range(1, 3) * room_speed; }
 							if bot_type = 1
 								{ bot_time = random_range(1, 3) * room_speed; }
 							if bot_type = 2
-								{ bot_time = random_range(3, 8) * room_speed; }
+								{ bot_time = random_range(3, 5) * room_speed; }
 							if bot_type = 3
-								{ bot_time = random_range(2, 6) * room_speed; }
+								{ bot_time = random_range(2, 4) * room_speed; }
 							bot_time2  = 6 * room_speed;
 							}
 							else
@@ -1438,6 +1449,8 @@
 			#region Враг
 			if global.bot_answer != -1 && bot_go != 0
 				{
+				//if bot_question >= global.question && (bot_task >= global.task) && timer > 2 * room_speed
+				//	{ timer = 2 * room_speed; timer_x = 2 * room_speed; }
 				if global.bot_answer = 1
 					{
 					if global.e_critical < 3
@@ -1984,1057 +1997,1066 @@
 			}
 	#endregion
 #endregion
-#region Выбор Первого игрока
-	if global.game_stage = 1 //keyboard_check_pressed(ord("H")) 
-		{
-		if enemy_smile = -1
-			{
-			enemy_smile_chance = choose(0,1);
-			if enemy_smile_chance = 1
-				{
-				//show_message("POPKA");
-				enemy_smile = choose(1,3,3,3,3,3);
-				enemy_smile_time = round(room_speed * random_range(1, 3));
-				}
-			}
-		
-		global.game_stage = 2;
-		if hand_choose > 0
-			{ hand_choose = 0; }
-			else
-			{ hand_choose = 1; }
-		hand_x = 640;
-		hand_y = global.size + 100;
-		hand_a = 0;
-		hand_s = 0.7;
-		hand_t = 0;
-	
-		first_player = -1;
-	
-		hand_text_n = 0;
-	
-		hand_text_x = 1280 + 300;
-		hand_dir    = 1;
-	
-		hand_alpha  = 1;
-		hand_text_y = 0;
-		}
-	
-	if hand_choose > 0
-		{
-		draw_set_alpha(0.65);
-		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-		draw_set_alpha(1);
-		
-		draw_set_font(global.game_font);
-		//draw_set_font(f_wanted_bold);
-		draw_text_transformed_t(640, 200 - hand_y + global.size / 2 - hand_text_y - 50, hand_text[2], 0.35, 0.35, 0, c_white, c_black);
-		
-		draw_sprite_ext(s_hand, 0, hand_x, hand_y, hand_s, hand_s, hand_a, c_white, 1);
-		}
-	if hand_choose = 1
-		{
-		if hand_y > global.size / 2
-			{ hand_y -= 33; }
-			else
-			{ hand_y = global.size / 2; hand_choose = 2; }
-		}
-	if hand_choose = 2
-		{
-		if hand_t < 15//30
-			{ hand_t += 1; }
-			else
-			{ hand_t = 1; hand_choose = 3; }
-		}
-	if hand_choose = 3
-		{
-		hand_a -= 10 / hand_t;
-		if hand_t < 20
-			{ hand_t += 1; }
-			else
-			{ hand_t = 0; hand_choose = 4; }
-		}
-	if hand_choose = 4
-		{
-		hand_a += 50;
-		if hand_t < 20
-			{ hand_t += 1; }
-			else
-			{
-			hand_t = 0;
-			hand_choose = 5;
-			
-			while(hand_a > 360)
-				{ hand_a -= 360; }
-			
-			first_player = irandom(1);
-			
-			if first_player = 1
-				{
-				hand_text_x = 1280 + 300;
-				hand_dir    = 1;
-				}
-				else
-				{
-				hand_text_x = -300;
-				hand_dir    = -1;
-				}
-			}
-		}
-	if hand_choose = 5
-		{
-		if first_player = 1
-			{
-			if abs(hand_a - 90) < 30
-				{ hand_a += sign(90 - hand_a) * 30; }
-				else
-				{ hand_a = 90; hand_choose = 6; }
-			}
-			else
-			{
-			if hand_a > 90
-				{
-				if hand_a < 270
-					{ hand_a += 30; }
-					else
-					{ hand_a = 270; hand_choose = 6; }
-				}
-				else
-				{
-				if hand_a > -90
-					{ hand_a -= 30; }
-					else
-					{ hand_a = -90; hand_choose = 6; }
-				}
-			}
-		}
-	if hand_choose = 6
-		{
-		if hand_s < 1
-			{ hand_s += 0.05; }
-			else
-			{ hand_choose = 7; }
-		}
-	if hand_choose = 7
-		{
-		if hand_s > 0.9
-			{ hand_s -= 0.025; }
-			else
-			{ hand_t = 0; hand_choose = 8; }
-		}
-	
-	if hand_choose = 8
-		{
-		if hand_t < 20
-			{ hand_t += 1; }
-			else
-			{ hand_t = 0; hand_choose = 9; }
-		}
-	if hand_choose = 9
-		{
-		if hand_alpha > 0
-			{ hand_alpha -= 0.05; }
-		hand_x += 70 * hand_dir;
-		}
-		
-	if hand_choose > 6
-		{
-		//hand_alpha = 1 / abs(hand_x - 640) * 100;
-		if first_player = 0
-			{ draw_sprite_ext((global.enemy_object).sprite_index, (global.enemy_object).image_index, (global.enemy_object).x + 28, (global.enemy_object).y - 15 + o_control.back_train_y1, (global.enemy_object).sc * (global.enemy_object).scale, (global.enemy_object).scale, 0, c_white, hand_alpha); }
-			else
-			{ draw_sprite_ext((global.player_object).sprite_index, (global.player_object).image_index, (global.player_object).x - 28, (global.player_object).y - 15 + o_control.back_train_y2, (global.player_object).sc * (global.player_object).scale, (global.player_object).scale, 0, c_white, hand_alpha); }
-		}
-	if hand_choose > 5 && hand_choose < 10
-		{
-		if hand_text_y < 400
-			{ hand_text_y += 40; }
-		draw_set_font(global.game_font);//draw_set_font(f_wanted_bold);
-		if ((hand_text_x > 640 && hand_dir = 1) or (hand_text_x < 640 && hand_dir = -1)) or hand_choose = 9
-			{ hand_text_x -= 70 * hand_dir; }
-			else
-			{ hand_text_x -= 0.5 * hand_dir; hand_x += 0.5 * hand_dir; }
-		if hand_text_x < -300 or hand_text_x > 1580
-			{ hand_choose = 10; }
-		if first_player = 1
-			{ draw_text_transformed_t(hand_text_x, 200, hand_text[0], 0.3, 0.3, 0, c_white, c_black); }
-			else
-			{ draw_text_transformed_t(hand_text_x, 200, string_upper(global.enemy_name) + " " + hand_text[1], 0.3, 0.3, 0, c_white, c_black); }
-		}
-	
-	if hand_choose = 10
-		{ hand_alpha = 0; /*hand_choose = 0;*/ theme_choose = 1; theme_b_mv[0] = 1; }
-#endregion
-#region Выбор Темы
-	#region Выбор Темы 1
-	if theme_choose = 1
-		{
-		if global.game_stage = 2
+if 0
+	{
+	#region Выбор Первого игрока
+		if global.game_stage = 1 //keyboard_check_pressed(ord("H")) 
 			{
 			if enemy_smile = -1
 				{
-				enemy_smile_chance = choose(0,1,1);
+				enemy_smile_chance = choose(0,1);
 				if enemy_smile_chance = 1
 					{
-					enemy_smile = 2;
-					enemy_smile_time = room_speed * random_range(1, 3);
+					//show_message("POPKA");
+					enemy_smile = choose(1,3,3,3,3,3);
+					enemy_smile_time = round(room_speed * random_range(1, 3));
 					}
 				}
-			global.game_stage = 3;
+		
+			global.game_stage = 2;
+			if hand_choose > 0
+				{ hand_choose = 0; }
+				else
+				{ hand_choose = 1; }
+			hand_x = 640;
+			hand_y = global.size + 100;
+			hand_a = 0;
+			hand_s = 0.7;
+			hand_t = 0;
+	
+			first_player = -1;
+	
+			hand_text_n = 0;
+	
+			hand_text_x = 1280 + 300;
+			hand_dir    = 1;
+	
+			hand_alpha  = 1;
+			hand_text_y = 0;
 			}
-		#region Нажатие на V
-		if 0//keyboard_check_pressed(ord("V"))
+	
+		if hand_choose > 0
 			{
-			theme_c      = -1;
-			theme_c_true = 0;
-			for(i=0; i<=2; i++)
+			draw_set_alpha(0.45);
+			draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+			draw_set_alpha(1);
+		
+			draw_set_font(global.game_font);
+			//draw_set_font(f_wanted_bold);
+			draw_text_transformed_t(640, 200 - hand_y + global.size / 2 - hand_text_y - 50, hand_text[2], 0.35, 0.35, 0, c_white, c_black);
+		
+			draw_sprite_ext(s_hand, 0, hand_x, hand_y, hand_s, hand_s, hand_a, c_white, 1);
+			}
+		if hand_choose = 1
+			{
+			if hand_y > global.size / 2
+				{ hand_y -= 33; }
+				else
+				{ hand_y = global.size / 2; hand_choose = 2; }
+			}
+		if hand_choose = 2
+			{
+			if hand_t < 15//30
+				{ hand_t += 1; }
+				else
+				{ hand_t = 1; hand_choose = 3; }
+			}
+		if hand_choose = 3
+			{
+			hand_a -= 10 / hand_t;
+			if hand_t < 20
+				{ hand_t += 1; }
+				else
+				{ hand_t = 0; hand_choose = 4; }
+			}
+		if hand_choose = 4
+			{
+			hand_a += 50;
+			if hand_t < 20
+				{ hand_t += 1; }
+				else
 				{
-				theme_text_y  = -600;
-				theme_b_im[i] = irandom(2);
-				theme_b_sx[i] = 0;
+				hand_t = 0;
+				hand_choose = 5;
 			
-				theme_b_x[i]  = 640 - 300 + 300 * i;
-				theme_b_y[i]  = 300 + global.more_size / 2;
+				while(hand_a > 360)
+					{ hand_a -= 360; }
 			
-				theme_b_c[i]   = 0;
-				theme_b_cn[i]  = 60;
-				theme_b_dir[i] = 1;
+				first_player = irandom(1);
 			
-				theme_n[i]   = 0;
-			
-				theme_go[i]  = 0;
-				theme_sc[i]  = 0;
-				theme_end[i] = 0;
-			
-				theme_l[i]  = 0;
-				theme_ps[i] = 0;
-			
-				if theme_b_im[i] != 0
-					{ theme_b_th[i] = global.theme_name[i]; }
+				if first_player = 1
+					{
+					hand_text_x = 1280 + 300;
+					hand_dir    = 1;
+					}
 					else
-					{ theme_b_th[i] = "--"; }
+					{
+					hand_text_x = -300;
+					hand_dir    = -1;
+					}
 				}
-			theme_b_mv[0] = !theme_b_mv[0];
-			theme_b_mv[1] = 0;
-			theme_b_mv[2] = 0;
 			}
-		#endregion	
-		for(i=0;i<=2;i++)
+		if hand_choose = 5
 			{
-			if theme_b_mv[i] = 1
+			if first_player = 1
 				{
-				if theme_c = i
-					{
-					if theme_lo = 0
-						{
-						if theme_yy[i] > - 60
-							{ theme_yy[i] -= 15; }
-							else
-							{ theme_lo = 1; }
-						}
-						else
-						{
-						if theme_yy[i] < 0
-							{ theme_yy[i] += 15; }
-							else
-							{
-							if i = 0
-								{
-								if theme_xx[0] < 300
-									{ theme_xx[0] += 50; }
-								if theme_xx[1] < 2000
-									{ theme_xx[1] += 50; }
-								if theme_xx[2] < 2000
-									{ theme_xx[2] += 50; }
-									else
-									{
-									if theme_goto_y > - 400 - global.size / 1.5
-										{ theme_goto_y -= 40; }
-										else
-										{
-										if theme_real_open[i] = 1
-											{ theme_real_open[i] = 2; }
-										theme_choose = 2;
-										}
-									}
-								}
-							if i = 1
-								{
-								if theme_xx[0] > -2000
-									{ theme_xx[0] -= 50; }
-								if theme_xx[2] < 2000
-									{ theme_xx[2] += 50; }
-									else
-									{
-									if theme_goto_y > - 400 - global.size / 1.5
-										{ theme_goto_y -= 40; }
-										else
-										{
-										if theme_real_open[i] = 1
-											{ theme_real_open[i] = 2; }
-										theme_choose = 2;
-										}
-									}
-								}
-							if i = 2
-								{
-								if theme_xx[0] > -2000
-									{ theme_xx[0] -= 50; }
-									else
-									{
-									if theme_goto_y > - 400 - global.size / 1.5
-										{ theme_goto_y -= 40; }
-										else
-										{
-										if theme_real_open[i] = 1
-											{ theme_real_open[i] = 2; }
-										theme_choose = 2;
-										}
-									}
-								if theme_xx[1] > -2000
-									{ theme_xx[1] -= 50; }
-								if theme_xx[2] > - 300
-									{ theme_xx[2] -= 50; }
-								}
-							}
-						}
-					if theme_c_true = 0
-						{
-						if (theme_b_sx[i] < 1 && theme_b_dir[i] = 1) or (theme_b_sx[i] > 0 && theme_b_dir[i] = -1)
-							{ theme_b_sx[i] += 0.25 * theme_b_dir[i]; }
-							else
-							{
-							if theme_b_dir[i] = 1
-								{ theme_c_true = 1; }
-								else
-								{ theme_b_im[i] = theme_real_theme[i]; theme_b_dir[i] = 1; }
-							}
-						}
-					}
-			
-				if hand_choose = 0
-					{
-					if i = 0
-						{
-						draw_set_alpha(0.65);
-						draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-						draw_set_alpha(1);
-					
-						theme_points_time += 1;
-						if theme_points_time = 20
-							{
-							if theme_points != "..."
-								{ theme_points += "."; }
-								else
-								{ theme_points = ""; }
-							theme_points_time = 0;
-							}
-					
-						draw_set_font(global.game_font); //draw_set_font(f_wanted_bold);
-						if first_player = 1//(first_player = 1 && global.rounds = 1) or (first_player = 2 && global.rounds = 2)
-							{ draw_text_transformed_t(640, theme_text_y + theme_goto_y, theme_text[0], 0.3, 0.3, 0, c_white, c_black); }
-							else
-							{ draw_text_transformed_t(640, theme_text_y + theme_goto_y - 25, string_upper(global.enemy_name) + "\n" + theme_text[1] + theme_points, 0.3, 0.3, 0, c_white, c_black); }
-						}
-					}
+				if abs(hand_a - 90) < 30
+					{ hand_a += sign(90 - hand_a) * 30; }
 					else
-					{ hand_choose = 0; }
-			
-				if (theme_b_sx[i] < 1 && theme_b_dir[i] = 1) or (theme_b_sx[i] > 0 && theme_b_dir[i] = -1)
+					{ hand_a = 90; hand_choose = 6; }
+				}
+				else
+				{
+				if hand_a > 90
 					{
-					if i = 0 && theme_b_mv[1] = 0 && abs(theme_b_sx[0]) >= 0.9
-						{ theme_b_mv[1] = 1; }
-					if i = 0 && theme_b_mv[2] = 0 && abs(theme_b_sx[1]) >= 0.9
-						{ theme_b_mv[2] = 1; }
-				
-					if theme_b_dir[i] = 1 or (theme_b_dir[i] = -1 && theme_end[i] != 1)
-						{ theme_b_sx[i] += 0.25 * theme_b_dir[i]; }
+					if hand_a < 270
+						{ hand_a += 30; }
+						else
+						{ hand_a = 270; hand_choose = 6; }
 					}
 					else
 					{
-					if theme_b_dir[i] = 1
-						{ theme_b_dir[i] = -theme_b_dir[i]; }
+					if hand_a > -90
+						{ hand_a -= 30; }
 						else
-						{
-						if theme_go[i] != 2
-							{ theme_b_im[i] = irandom(2); }
-							else
-							{ 
-							if theme_c != i
-								{ theme_b_im[i] = 0; }
-							theme_end[i] = 1;
-							}
-						
-							if theme_b_im[i] != 0
-								{ theme_b_th[i] = global.theme_name[i]; }
-							theme_b_dir[i] = -theme_b_dir[i];
-							theme_ss[i] = -theme_ss[i];
-						}
-					}
-				if theme_end[i] = 1
-					{ theme_ss[i] = 1; }
-				var list_scale2;
-				list_scale2 = 0.45;
-			
-				if theme_text_y < global.size / 2 - 150 && theme_c != i
-					{ theme_text_y += 10; }
-				if theme_b_y[i] > -45 && theme_go[i] = 0
-					{ theme_b_y[i] -= 25; }
-					else
-					{
-					theme_go[i] = 1;
-					if theme_b_y[i] < 0
-						{ theme_b_y[i] += 10; }
-						else
-						{
-						theme_go[i] = 2;
-						if theme_end[i] = 1 && (first_player = 1 or theme_c != -1)//(theme_b_dir[i] = -1 && theme_end[i] = 1)
-							{
-							if theme_sc[i] < 1
-								{ theme_sc[i] += 0.05; }
-							draw_sprite_ext(s_themes_ob, 0, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_sc[i], list_scale2 * theme_sc[i], 0, c_white, 1);
-							}
-						}
-					}
-				
-				if theme_go[i] = 2
-					{
-					theme_b_c[i] += 1;
-					if theme_b_c[i] >= theme_b_cn[i]
-						{ theme_l[i] = 1;  theme_b_c[i] = 0; }
-				
-					if theme_l[i] = 1
-						{
-						if theme_n[i] < 6
-							{ theme_n[i] += 0.5; }
-							else
-							{ theme_n[i] = 0; theme_l[i] = 0; theme_b_cn[i] = irandom_range(room_speed * 3, room_speed * 6); }
-						}
-					}
-				if (theme_b_dir[i] = 1 or theme_c_true = 1) && theme_c = i
-					{ theme_b_im[i] = theme_real_theme[i]; }
-				draw_sprite_ext(s_themes_button, theme_b_im[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1);
-				if theme_go[i] = 2 && theme_l[i] = 1 && first_player = 1
-					{ draw_sprite_ext(s_themes_button1, theme_n[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] /* - 50*/ + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1); }
-				draw_sprite_ext(s_themes_ss, theme_b_im[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2, list_scale2, 0, c_white, 1);
-			
-				if theme_end[i] = 1 && theme_c = -1
-					{
-					if mouse_check_button_pressed(mb_left)
-						{
-						if first_player = 1// && global.rounds = 1//first_player = 1
-							{
-							if point_in_rectangle(mouse_x, mouse_y, theme_b_x[i] - sprite_get_width(s_themes_button) / 2 * list_scale2, global.size / 2 - sprite_get_height(s_themes_button) / 2 * list_scale2, theme_b_x[i] + sprite_get_width(s_themes_button) / 2 * list_scale2, global.size / 2 + sprite_get_height(s_themes_button) / 2 * list_scale2)
-								{
-								audio_play_sound(sd_text, 2, 0);
-								theme_real_open[i] = 1;
-							
-								theme_c = i;
-								theme_b_dir[i] = -1;
-								theme_round[global.rounds] = theme_real_theme[i];
-								}
-							}
-						}
-					}
-				if theme_end[i] = 1 && theme_sc[i] > 0.7 && theme_c = i
-					{
-					if theme_ps[i] < 1
-						{ theme_ps[i] += 0.1; }
-					draw_sprite_ext(s_themes_pl, 2, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2 * theme_ps[i], list_scale2, 0, c_white, 1);
-					draw_sprite_ext(s_themes_pl, 0, theme_b_x[i] + theme_xx[i] + 208  * list_scale2 * (1 - theme_ps[i]), global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2, list_scale2, 0, c_white, 1);
-					draw_sprite_ext(s_themes_pl, 1, theme_b_x[i] + theme_xx[i] - 208  * list_scale2 * (1 - theme_ps[i]), global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2, list_scale2, 0, c_white, 1);
-				
-					draw_set_font(f_question_regular1);//draw_set_font(global.game_font);//draw_set_font(f_question_regular1);
-					draw_set_color(c_black);
-					draw_set_alpha(0.8);
-					if theme_b_th[theme_real_theme[i]] != "OTHER"
-						{ draw_text_transformed(theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 204 * list_scale2, theme_b_th[theme_real_theme[i]], theme_ps[i] * 1, 1, 0); }
-						else
-						{ draw_text_transformed(theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 204 * list_scale2, theme_b_th[theme_real_theme[i]] + " " + string(theme_real_theme[i]), theme_ps[i] * 1, 1, 0); }
-					draw_set_alpha(1);
+						{ hand_a = -90; hand_choose = 6; }
 					}
 				}
 			}
-		if theme_end[2] = 1 && theme_c = -1
+		if hand_choose = 6
 			{
+			if hand_s < 1
+				{ hand_s += 0.05; }
+				else
+				{ hand_choose = 7; }
+			}
+		if hand_choose = 7
+			{
+			if hand_s > 0.9
+				{ hand_s -= 0.025; }
+				else
+				{ hand_t = 0; hand_choose = 8; }
+			}
+	
+		if hand_choose = 8
+			{
+			if hand_t < 20
+				{ hand_t += 1; }
+				else
+				{ hand_t = 0; hand_choose = 9; }
+			}
+		if hand_choose = 9
+			{
+			if hand_alpha > 0
+				{ hand_alpha -= 0.05; }
+			hand_x += 70 * hand_dir;
+			}
+		
+		if hand_choose > 6
+			{
+			//hand_alpha = 1 / abs(hand_x - 640) * 100;
 			if first_player = 0
-				{
-				if enemy_timer = -1
-					{ enemy_timer = random_range(1, 8) * room_speed; }
-					else
-					{
-					enemy_timer -= 1;
-					if enemy_timer <=0
-						{
-						var iii;
-						iii = 1//irandom(2);
-						theme_real_open[iii] = 1;
-						theme_c = iii;
-						theme_b_dir[iii] = -1;
-						theme_round[global.rounds] = theme_real_theme[iii];
-						timer_t = 30 * room_speed;
-						}
-					}
-				}
-			if timer_t > 0
-				{ timer_t -= 2; }
+				{ draw_sprite_ext((global.enemy_object).sprite_index, (global.enemy_object).image_index, (global.enemy_object).x + 28, (global.enemy_object).y - 15 + o_control.back_train_y1, (global.enemy_object).sc * (global.enemy_object).scale, (global.enemy_object).scale, 0, c_white, hand_alpha); }
 				else
-				{
-				var iii;
-				iii = irandom(2);
-				theme_real_open[iii] = 1;
-				theme_c = iii;
-				theme_b_dir[iii] = -1;
-				theme_round[global.rounds] = theme_real_theme[iii];
-				timer_t = 30 * room_speed;
-				}
-			if timer_t <= 15 * room_speed
-				{
-				draw_set_color(c_white);
-				draw_set_alpha(0.4 + 0.6 * timer_t / (15 * room_speed));
-				draw_rectangle(640 - 320 * timer_t / (15 * room_speed), global.size / 2 + theme_goto_y + theme_yy[2] + 208 * list_scale2 + 45, 640 + 320 * timer_t / (15 * room_speed), global.size / 2 + theme_goto_y + theme_yy[2] + 208 * list_scale2 + 55, 0);
-				draw_set_alpha(1);
-				}
+				{ draw_sprite_ext((global.player_object).sprite_index, (global.player_object).image_index, (global.player_object).x - 28, (global.player_object).y - 15 + o_control.back_train_y2, (global.player_object).sc * (global.player_object).scale, (global.player_object).scale, 0, c_white, hand_alpha); }
 			}
-		}
-	//draw_text(mouse_x, mouse_y, string(theme_c));
-	#endregion
-	#region Выбор Темы 2
-	if theme_choose = 7
-		{
-		for(i=0;i<=2;i++)
+		if hand_choose > 5 && hand_choose < 10
 			{
-			if theme_b_mv[i] = 1
+			if hand_text_y < 400
+				{ hand_text_y += 40; }
+			draw_set_font(global.game_font);//draw_set_font(f_wanted_bold);
+			if ((hand_text_x > 640 && hand_dir = 1) or (hand_text_x < 640 && hand_dir = -1)) or hand_choose = 9
+				{ hand_text_x -= 70 * hand_dir; }
+				else
+				{ hand_text_x -= 0.5 * hand_dir; hand_x += 0.5 * hand_dir; }
+			if hand_text_x < -300 or hand_text_x > 1580
+				{ hand_choose = 10; }
+			if first_player = 1
+				{ draw_text_transformed_t(hand_text_x, 200, hand_text[0], 0.3, 0.3, 0, c_white, c_black); }
+				else
+				{ draw_text_transformed_t(hand_text_x, 200, string_upper(global.enemy_name) + " " + hand_text[1], 0.3, 0.3, 0, c_white, c_black); }
+			}
+	
+		if hand_choose = 10
+			{ hand_alpha = 0; /*hand_choose = 0;*/ theme_choose = 1; theme_b_mv[0] = 1; }
+	#endregion
+	#region Выбор Темы
+		#region Выбор Темы 1
+		if theme_choose = 1
+			{
+			if global.game_stage = 2
 				{
-				if theme_c = i
+				if enemy_smile = -1
 					{
-					if theme_lo = 0
+					enemy_smile_chance = choose(0,1,1);
+					if enemy_smile_chance = 1
 						{
-						if theme_yy[i] > - 60
-							{ theme_yy[i] -= 15; }
-							else
-							{ theme_lo = 1; }
+						enemy_smile = 2;
+						enemy_smile_time = room_speed * random_range(1, 3);
 						}
+					}
+				global.game_stage = 3;
+				}
+			#region Нажатие на V
+			if 0//keyboard_check_pressed(ord("V"))
+				{
+				theme_c      = -1;
+				theme_c_true = 0;
+				for(i=0; i<=2; i++)
+					{
+					theme_text_y  = -600;
+					theme_b_im[i] = irandom(2);
+					theme_b_sx[i] = 0;
+			
+					theme_b_x[i]  = 640 - 300 + 300 * i;
+					theme_b_y[i]  = 300 + global.more_size / 2;
+			
+					theme_b_c[i]   = 0;
+					theme_b_cn[i]  = 60;
+					theme_b_dir[i] = 1;
+			
+					theme_n[i]   = 0;
+			
+					theme_go[i]  = 0;
+					theme_sc[i]  = 0;
+					theme_end[i] = 0;
+			
+					theme_l[i]  = 0;
+					theme_ps[i] = 0;
+			
+					if theme_b_im[i] != 0
+						{ theme_b_th[i] = global.theme_name[i]; }
 						else
+						{ theme_b_th[i] = "--"; }
+					}
+				theme_b_mv[0] = !theme_b_mv[0];
+				theme_b_mv[1] = 0;
+				theme_b_mv[2] = 0;
+				}
+			#endregion	
+			for(i=0;i<=2;i++)
+				{
+				if theme_b_mv[i] = 1
+					{
+					if theme_c = i
 						{
-						if theme_yy[i] < 0
-							{ theme_yy[i] += 15; }
+						if theme_lo = 0
+							{
+							if theme_yy[i] > - 60
+								{ theme_yy[i] -= 15; }
+								else
+								{ theme_lo = 1; }
+							}
 							else
 							{
-							if i = 0
+							if theme_yy[i] < 0
+								{ theme_yy[i] += 15; }
+								else
 								{
-								if theme_xx[0] < 300
-									{ theme_xx[0] += 50; }
-								if theme_xx[1] < 2000
-									{ theme_xx[1] += 50; }
-								if theme_xx[2] < 2000
-									{ theme_xx[2] += 50; }
-									else
+								if i = 0
 									{
-									if theme_goto_y > - 400 - global.size / 1.5
-										{ theme_goto_y -= 40; }
+									if theme_xx[0] < 300
+										{ theme_xx[0] += 50; }
+									if theme_xx[1] < 2000
+										{ theme_xx[1] += 50; }
+									if theme_xx[2] < 2000
+										{ theme_xx[2] += 50; }
 										else
 										{
-										if theme_real_open[i] = 1
-											{ theme_real_open[i] = 2; }
-										theme_choose = 2;
+										if theme_goto_y > - 400 - global.size / 1.5
+											{ theme_goto_y -= 40; }
+											else
+											{
+											if theme_real_open[i] = 1
+												{ theme_real_open[i] = 2; }
+											theme_choose = 2;
+											}
 										}
+									}
+								if i = 1
+									{
+									if theme_xx[0] > -2000
+										{ theme_xx[0] -= 50; }
+									if theme_xx[2] < 2000
+										{ theme_xx[2] += 50; }
+										else
+										{
+										if theme_goto_y > - 400 - global.size / 1.5
+											{ theme_goto_y -= 40; }
+											else
+											{
+											if theme_real_open[i] = 1
+												{ theme_real_open[i] = 2; }
+											theme_choose = 2;
+											}
+										}
+									}
+								if i = 2
+									{
+									if theme_xx[0] > -2000
+										{ theme_xx[0] -= 50; }
+										else
+										{
+										if theme_goto_y > - 400 - global.size / 1.5
+											{ theme_goto_y -= 40; }
+											else
+											{
+											if theme_real_open[i] = 1
+												{ theme_real_open[i] = 2; }
+											theme_choose = 2;
+											}
+										}
+									if theme_xx[1] > -2000
+										{ theme_xx[1] -= 50; }
+									if theme_xx[2] > - 300
+										{ theme_xx[2] -= 50; }
 									}
 								}
-							if i = 1
+							}
+						if theme_c_true = 0
+							{
+							if (theme_b_sx[i] < 1 && theme_b_dir[i] = 1) or (theme_b_sx[i] > 0 && theme_b_dir[i] = -1)
+								{ theme_b_sx[i] += 0.25 * theme_b_dir[i]; }
+								else
 								{
-								if theme_xx[0] > -2000
-									{ theme_xx[0] -= 50; }
-								if theme_xx[2] < 2000
-									{ theme_xx[2] += 50; }
+								if theme_b_dir[i] = 1
+									{ theme_c_true = 1; }
 									else
-									{
-									if theme_goto_y > - 400 - global.size / 1.5
-										{ theme_goto_y -= 40; }
-										else
-										{
-										if theme_real_open[i] = 1
-											{ theme_real_open[i] = 2; }
-										theme_choose = 2;
-										}
-									}
-								}
-							if i = 2
-								{
-								if theme_xx[0] > -2000
-									{ theme_xx[0] -= 50; }
-									else
-									{
-									if theme_goto_y > - 400 - global.size / 1.5
-										{ theme_goto_y -= 40; }
-										else
-										{
-										if theme_real_open[i] = 1
-											{ theme_real_open[i] = 2; }
-										theme_choose = 2;
-										}
-									}
-								if theme_xx[1] > -2000
-									{ theme_xx[1] -= 50; }
-								if theme_xx[2] > - 300
-									{ theme_xx[2] -= 50; }
+									{ theme_b_im[i] = theme_real_theme[i]; theme_b_dir[i] = 1; }
 								}
 							}
 						}
-					if theme_c_true = 0
+			
+					if hand_choose = 0
 						{
-						if (theme_b_sx[i] < 1 && theme_b_dir[i] = 1) or (theme_b_sx[i] > 0 && theme_b_dir[i] = -1)
+						if i = 0
+							{
+							draw_set_alpha(0.65);
+							draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+							draw_set_alpha(1);
+					
+							theme_points_time += 1;
+							if theme_points_time = 20
+								{
+								if theme_points != "..."
+									{ theme_points += "."; }
+									else
+									{ theme_points = ""; }
+								theme_points_time = 0;
+								}
+					
+							draw_set_font(global.game_font); //draw_set_font(f_wanted_bold);
+							if first_player = 1//(first_player = 1 && global.rounds = 1) or (first_player = 2 && global.rounds = 2)
+								{ draw_text_transformed_t(640, theme_text_y + theme_goto_y, theme_text[0], 0.3, 0.3, 0, c_white, c_black); }
+								else
+								{ draw_text_transformed_t(640, theme_text_y + theme_goto_y - 25, string_upper(global.enemy_name) + "\n" + theme_text[1] + theme_points, 0.3, 0.3, 0, c_white, c_black); }
+							}
+						}
+						else
+						{ hand_choose = 0; }
+			
+					if (theme_b_sx[i] < 1 && theme_b_dir[i] = 1) or (theme_b_sx[i] > 0 && theme_b_dir[i] = -1)
+						{
+						if i = 0 && theme_b_mv[1] = 0 && abs(theme_b_sx[0]) >= 0.9
+							{ theme_b_mv[1] = 1; }
+						if i = 0 && theme_b_mv[2] = 0 && abs(theme_b_sx[1]) >= 0.9
+							{ theme_b_mv[2] = 1; }
+				
+						if theme_b_dir[i] = 1 or (theme_b_dir[i] = -1 && theme_end[i] != 1)
 							{ theme_b_sx[i] += 0.25 * theme_b_dir[i]; }
-							else
-							{
-							if theme_b_dir[i] = 1
-								{ theme_c_true = 1; }
-								else
-								{ theme_b_im[i] = theme_real_theme[i]; theme_b_dir[i] = 1; }
-							}
 						}
-					}
-			
-				if hand_choose = 0
-					{
-					if i = 0
-						{
-						draw_set_alpha(0.65);
-						draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-						draw_set_alpha(1);
-					
-						theme_points_time += 1;
-						if theme_points_time = 20
-							{
-							if theme_points != "..."
-								{ theme_points += "."; }
-								else
-								{ theme_points = ""; }
-							theme_points_time = 0;
-							}
-					
-						draw_set_font(global.game_font);
-						if first_player != 1
-							{ draw_text_transformed_t(640, theme_text_y + theme_goto_y, theme_text[0], 0.3, 0.3, 0, c_white, c_black); }
-							else
-							{ draw_text_transformed_t(640, theme_text_y + theme_goto_y - 25, string_upper(global.enemy_name) + "\n" + theme_text[1] + theme_points, 0.3, 0.3, 0, c_white, c_black); }
-						}
-					}
-					else
-					{ hand_choose = 0; }
-			
-				if (theme_b_sx[i] < 1 && theme_b_dir[i] = 1) or (theme_b_sx[i] > 0 && theme_b_dir[i] = -1)
-					{
-					if i = 0 && theme_b_mv[1] = 0 && abs(theme_b_sx[0]) >= 0.9
-						{ theme_b_mv[1] = 1; }
-					if i = 0 && theme_b_mv[2] = 0 && abs(theme_b_sx[1]) >= 0.9
-						{ theme_b_mv[2] = 1; }
-				
-					if theme_b_dir[i] = 1 or (theme_b_dir[i] = -1 && theme_end[i] != 1)
-						{ theme_b_sx[i] += 0.25 * theme_b_dir[i]; }
-					}
-					else
-					{
-					if theme_b_dir[i] = 1
-						{ theme_b_dir[i] = -theme_b_dir[i]; }
 						else
 						{
-						if theme_go[i] != 2
-							{ theme_b_im[i] = irandom(2); }
+						if theme_b_dir[i] = 1
+							{ theme_b_dir[i] = -theme_b_dir[i]; }
 							else
-							{ 
-							if theme_c != i
-								{ theme_b_im[i] = 0; }
-							theme_end[i] = 1;
-							}
+							{
+							if theme_go[i] != 2
+								{ theme_b_im[i] = irandom(2); }
+								else
+								{ 
+								if theme_c != i
+									{ theme_b_im[i] = 0; }
+								theme_end[i] = 1;
+								}
 						
-							if theme_b_im[i] != 0
-								{ theme_b_th[i] = global.theme_name[i]; }
-							theme_b_dir[i] = -theme_b_dir[i];
-							theme_ss[i] = -theme_ss[i];
-						}
-					}
-				if theme_end[i] = 1
-					{ theme_ss[i] = 1; }
-				var list_scale2;
-				list_scale2 = 0.45;
-			
-				if theme_text_y < global.size / 2 - 150 && theme_c != i
-					{ theme_text_y += 10; }
-				if theme_b_y[i] > -45 && theme_go[i] = 0
-					{ theme_b_y[i] -= 25; }
-					else
-					{
-					theme_go[i] = 1;
-					if theme_b_y[i] < 0
-						{ theme_b_y[i] += 10; }
-						else
-						{
-						theme_go[i] = 2;
-						if theme_end[i] = 1 && (first_player != 1 or theme_c != -1) && theme_real_open[i] != 2
-							{
-							if theme_sc[i] < 1
-								{ theme_sc[i] += 0.05; }
-							draw_sprite_ext(s_themes_ob, 0, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_sc[i], list_scale2 * theme_sc[i], 0, c_white, 1);
+								if theme_b_im[i] != 0
+									{ theme_b_th[i] = global.theme_name[i]; }
+								theme_b_dir[i] = -theme_b_dir[i];
+								theme_ss[i] = -theme_ss[i];
 							}
 						}
-					}
-				
-				if theme_go[i] = 2
-					{
-					theme_b_c[i] += 1;
-					if theme_b_c[i] >= theme_b_cn[i]
-						{ theme_l[i] = 1;  theme_b_c[i] = 0; }
-				
-					if theme_l[i] = 1
-						{
-						if theme_n[i] < 6
-							{ theme_n[i] += 0.5; }
-							else
-							{ theme_n[i] = 0; theme_l[i] = 0; theme_b_cn[i] = irandom_range(room_speed * 3, room_speed * 6); }
-						}
-					}
-				if (theme_b_dir[i] = 1 or theme_c_true = 1) && theme_c = i
-					{ theme_b_im[i] = theme_real_theme[i]; }
+					if theme_end[i] = 1
+						{ theme_ss[i] = 1; }
+					var list_scale2;
+					list_scale2 = 0.45;
 			
-				if theme_real_open[i] != 2
-					{
+					if theme_text_y < global.size / 2 - 150 && theme_c != i
+						{ theme_text_y += 10; }
+					if theme_b_y[i] > -45 && theme_go[i] = 0
+						{ theme_b_y[i] -= 25; }
+						else
+						{
+						theme_go[i] = 1;
+						if theme_b_y[i] < 0
+							{ theme_b_y[i] += 10; }
+							else
+							{
+							theme_go[i] = 2;
+							if theme_end[i] = 1 && (first_player = 1 or theme_c != -1)//(theme_b_dir[i] = -1 && theme_end[i] = 1)
+								{
+								if theme_sc[i] < 1
+									{ theme_sc[i] += 0.05; }
+								draw_sprite_ext(s_themes_ob, 0, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_sc[i], list_scale2 * theme_sc[i], 0, c_white, 1);
+								}
+							}
+						}
+				
+					if theme_go[i] = 2
+						{
+						theme_b_c[i] += 1;
+						if theme_b_c[i] >= theme_b_cn[i]
+							{ theme_l[i] = 1;  theme_b_c[i] = 0; }
+				
+						if theme_l[i] = 1
+							{
+							if theme_n[i] < 6
+								{ theme_n[i] += 0.5; }
+								else
+								{ theme_n[i] = 0; theme_l[i] = 0; theme_b_cn[i] = irandom_range(room_speed * 3, room_speed * 6); }
+							}
+						}
+					if (theme_b_dir[i] = 1 or theme_c_true = 1) && theme_c = i
+						{ theme_b_im[i] = theme_real_theme[i]; }
 					draw_sprite_ext(s_themes_button, theme_b_im[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1);
-					if theme_go[i] = 2 && theme_l[i] = 1 && first_player != 1
+					if theme_go[i] = 2 && theme_l[i] = 1 && first_player = 1
 						{ draw_sprite_ext(s_themes_button1, theme_n[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] /* - 50*/ + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1); }
 					draw_sprite_ext(s_themes_ss, theme_b_im[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2, list_scale2, 0, c_white, 1);
-					}
-					else
-					{
-					draw_sprite_ext(s_themes_button, theme_real_theme[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1);
-					draw_sprite_ext(s_themes_ss, theme_real_theme[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2, list_scale2, 0, c_white, 1);
-				
-					draw_sprite_ext(s_themes_button, theme_real_theme[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_black, 0.4);
-					}
-				if theme_end[i] = 1 && theme_c = -1
-					{
-					if mouse_check_button_pressed(mb_left)
+			
+					if theme_end[i] = 1 && theme_c = -1
 						{
-						if first_player != 1 && theme_real_open[i] != 2
+						if mouse_check_button_pressed(mb_left)
 							{
-							if point_in_rectangle(mouse_x, mouse_y, theme_b_x[i] - sprite_get_width(s_themes_button) / 2 * list_scale2, global.size / 2 - sprite_get_height(s_themes_button) / 2 * list_scale2, theme_b_x[i] + sprite_get_width(s_themes_button) / 2 * list_scale2, global.size / 2 + sprite_get_height(s_themes_button) / 2 * list_scale2)
+							if first_player = 1 // && global.rounds = 1//first_player = 1
 								{
-								audio_play_sound(sd_text, 2, 0);
-								theme_real_open[i] = 1;
-								theme_c = i;
-								theme_b_dir[i] = -1;
-								theme_round[global.rounds] = theme_real_theme[i];
+								if point_in_rectangle(mouse_x, mouse_y, theme_b_x[i] - sprite_get_width(s_themes_button) / 2 * list_scale2, global.size / 2 - sprite_get_height(s_themes_button) / 2 * list_scale2, theme_b_x[i] + sprite_get_width(s_themes_button) / 2 * list_scale2, global.size / 2 + sprite_get_height(s_themes_button) / 2 * list_scale2)
+									{
+									audio_play_sound(sd_text, 2, 0);
+									theme_real_open[i] = 1;
+							
+									theme_c = i;
+									theme_b_dir[i] = -1;
+									theme_round[global.rounds] = theme_real_theme[i];
+									}
 								}
 							}
 						}
-					}
-				if theme_end[i] = 1 && theme_sc[i] > 0.7 && theme_c = i
-					{
-					if theme_ps[i] < 1
-						{ theme_ps[i] += 0.1; }
-					draw_sprite_ext(s_themes_pl, 2, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2 * theme_ps[i], list_scale2, 0, c_white, 1);
-					draw_sprite_ext(s_themes_pl, 0, theme_b_x[i] + theme_xx[i] + 208  * list_scale2 * (1 - theme_ps[i]), global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2, list_scale2, 0, c_white, 1);
-					draw_sprite_ext(s_themes_pl, 1, theme_b_x[i] + theme_xx[i] - 208  * list_scale2 * (1 - theme_ps[i]), global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2, list_scale2, 0, c_white, 1);
+					if theme_end[i] = 1 && theme_sc[i] > 0.7 && theme_c = i
+						{
+						if theme_ps[i] < 1
+							{ theme_ps[i] += 0.1; }
+						draw_sprite_ext(s_themes_pl, 2, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2 * theme_ps[i], list_scale2, 0, c_white, 1);
+						draw_sprite_ext(s_themes_pl, 0, theme_b_x[i] + theme_xx[i] + 208  * list_scale2 * (1 - theme_ps[i]), global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2, list_scale2, 0, c_white, 1);
+						draw_sprite_ext(s_themes_pl, 1, theme_b_x[i] + theme_xx[i] - 208  * list_scale2 * (1 - theme_ps[i]), global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2, list_scale2, 0, c_white, 1);
 				
-					draw_set_font(f_question_regular1);
-					draw_set_color(c_black);
-					draw_set_alpha(0.8);
-					if theme_b_th[theme_real_theme[i]] != "OTHER"
-						{ draw_text_transformed(theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 204 * list_scale2, theme_b_th[theme_real_theme[i]], theme_ps[i] * 1, 1, 0); }
+						draw_set_font(f_question_regular1);//draw_set_font(global.game_font);//draw_set_font(f_question_regular1);
+						draw_set_color(c_black);
+						draw_set_alpha(0.8);
+						if theme_b_th[theme_real_theme[i]] != "OTHER"
+							{ draw_text_transformed(theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 204 * list_scale2, theme_b_th[theme_real_theme[i]], theme_ps[i] * 1, 1, 0); }
+							else
+							{ draw_text_transformed(theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 204 * list_scale2, theme_b_th[theme_real_theme[i]] + " " + string(theme_real_theme[i]), theme_ps[i] * 1, 1, 0); }
+						draw_set_alpha(1);
+						}
+					}
+				}
+			if theme_end[2] = 1 && theme_c = -1
+				{
+				if first_player = 0
+					{
+					if enemy_timer = -1
+						{ enemy_timer = room_speed; }
 						else
-						{ draw_text_transformed(theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 204 * list_scale2, theme_b_th[theme_real_theme[i]] + " " + string(theme_real_theme[i]), theme_ps[i] * 1, 1, 0); }
+						{
+						enemy_timer -= 1;
+						if enemy_timer <=0
+							{
+							var iii;
+							iii = 1//irandom(2);
+							theme_real_open[iii] = 1;
+							theme_c = iii;
+							theme_b_dir[iii] = -1;
+							theme_round[global.rounds] = theme_real_theme[iii];
+							timer_t = 30 * room_speed;
+							}
+						}
+					}
+				if timer_t > 0
+					{ timer_t -= 2; }
+					else
+					{
+					var iii;
+					iii = irandom(2);
+					theme_real_open[iii] = 1;
+					theme_c = iii;
+					theme_b_dir[iii] = -1;
+					theme_round[global.rounds] = theme_real_theme[iii];
+					timer_t = 30 * room_speed;
+					}
+				if timer_t <= 15 * room_speed
+					{
+					draw_set_color(c_white);
+					draw_set_alpha(0.4 + 0.6 * timer_t / (15 * room_speed));
+					draw_rectangle(640 - 320 * timer_t / (15 * room_speed), global.size / 2 + theme_goto_y + theme_yy[2] + 208 * list_scale2 + 45, 640 + 320 * timer_t / (15 * room_speed), global.size / 2 + theme_goto_y + theme_yy[2] + 208 * list_scale2 + 55, 0);
 					draw_set_alpha(1);
 					}
 				}
 			}
-		if theme_end[2] = 1 && theme_c = -1
+		//draw_text(mouse_x, mouse_y, string(theme_c));
+		#endregion
+		#region Выбор Темы 2
+		if theme_choose = 7
 			{
-			if first_player != 0
+			for(i=0;i<=2;i++)
 				{
-				if enemy_timer = -1
-					{ enemy_timer = random_range(1, 8) * room_speed; }
-					else
+				if theme_b_mv[i] = 1
 					{
-					enemy_timer -= 1;
-					if enemy_timer <= 0
+					if theme_c = i
 						{
-						var iii;
-						if theme_real_open[0] != 0
-							{ iii = choose(1, 2); }
-						if theme_real_open[1] != 0
-							{ iii = choose(0, 2); }
-						if theme_real_open[2] != 0
-							{ iii = choose(0, 1); }
-						/////////
-						iii = 2;///
-						////////
-						theme_real_open[iii] = 1;
-					
-						theme_c = iii;
-						theme_b_dir[iii] = -1;
-						theme_round[global.rounds] = theme_real_theme[iii];
-						timer_t = 30 * room_speed;
-						}
-					}
-				}
-			if timer_t > 0
-				{ timer_t -= 2; }
-				else
-				{
-				var iii;
-				if theme_real_open[0] != 0
-					{ iii = choose(1, 2); }
-				if theme_real_open[1] != 0
-					{ iii = choose(0, 2); }
-				if theme_real_open[2] != 0
-					{ iii = choose(0, 1); }
-					
-				theme_real_open[iii] = 1
-					
-				theme_c = iii;
-				theme_b_dir[iii] = -1;
-				theme_round[global.rounds] = theme_real_theme[iii];
-				timer_t = 30 * room_speed;
-				}
-			if timer_t <= 15 * room_speed
-				{
-				draw_set_color(c_white);
-				draw_set_alpha(0.4 + 0.6 * timer_t / (15 * room_speed));
-				draw_rectangle(640 - 320 * timer_t / (15 * room_speed), global.size / 2 + theme_goto_y + theme_yy[2] + 208 * list_scale2 + 45, 640 + 320 * timer_t / (15 * room_speed), global.size / 2 + theme_goto_y + theme_yy[2] + 208 * list_scale2 + 55, 0);
-				draw_set_alpha(1);
-				}
-			}
-		}
-	#endregion
-	#region Выбор Темы 3
-	if theme_choose = 8
-		{
-		for(i=0;i<=2;i++)
-			{
-			if theme_b_mv[i] = 1
-				{
-				if theme_c = i
-					{
-					if theme_lo = 0
-						{
-						if theme_yy[i] > - 60
-							{ theme_yy[i] -= 15; }
-							else
-							{ theme_lo = 1; }
-						}
-						else
-						{
-						if theme_yy[i] < 0
-							{ theme_yy[i] += 15; }
-							else
+						if theme_lo = 0
 							{
-							if i = 0
-								{
-								if theme_xx[0] < 300
-									{ theme_xx[0] += 50; }
-								if theme_xx[1] < 2000
-									{ theme_xx[1] += 50; }
-								if theme_xx[2] < 2000
-									{ theme_xx[2] += 50; }
-									else
-									{
-									if theme_goto_y > - 400 - global.size / 1.5
-										{ theme_goto_y -= 40; }
-										else
-										{
-										if theme_real_open[i] = 1
-											{ theme_real_open[i] = 2; }
-										theme_choose = 2;
-										}
-									}
-								}
-							if i = 1
-								{
-								if theme_xx[0] > -2000
-									{ theme_xx[0] -= 50; }
-								if theme_xx[2] < 2000
-									{ theme_xx[2] += 50; }
-									else
-									{
-									if theme_goto_y > - 400 - global.size / 1.5
-										{ theme_goto_y -= 40; }
-										else
-										{
-										if theme_real_open[i] = 1
-											{ theme_real_open[i] = 2; }
-										theme_choose = 2;
-										}
-									}
-								}
-							if i = 2
-								{
-								if theme_xx[0] > -2000
-									{ theme_xx[0] -= 50; }
-									else
-									{
-									if theme_goto_y > - 400 - global.size / 1.5
-										{ theme_goto_y -= 40; }
-										else
-										{
-										if theme_real_open[i] = 1
-											{ theme_real_open[i] = 2; }
-										theme_choose = 2;
-										}
-									}
-								if theme_xx[1] > -2000
-									{ theme_xx[1] -= 50; }
-								if theme_xx[2] > - 300
-									{ theme_xx[2] -= 50; }
-								}
-							}
-						}
-					if theme_c_true = 0
-						{
-						if (theme_b_sx[i] < 1 && theme_b_dir[i] = 1) or (theme_b_sx[i] > 0 && theme_b_dir[i] = -1)
-							{ theme_b_sx[i] += 0.25 * theme_b_dir[i]; }
-							else
-							{
-							if theme_b_dir[i] = 1
-								{ theme_c_true = 1; }
+							if theme_yy[i] > - 60
+								{ theme_yy[i] -= 15; }
 								else
-								{ theme_b_im[i] = theme_real_theme[i]; theme_b_dir[i] = 1; }
+								{ theme_lo = 1; }
 							}
-						}
-					}
-			
-				if hand_choose = 0
-					{
-					if i = 0
-						{
-						draw_set_alpha(0.65);
-						draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-						draw_set_alpha(1);
-					
-						draw_set_font(global.game_font);
-						}
-					}
-					else
-					{ hand_choose = 0; }
-			
-				if (theme_b_sx[i] < 1 && theme_b_dir[i] = 1) or (theme_b_sx[i] > 0 && theme_b_dir[i] = -1)
-					{
-					if i = 0 && theme_b_mv[1] = 0 && abs(theme_b_sx[0]) >= 0.9
-						{ theme_b_mv[1] = 1; }
-					if i = 0 && theme_b_mv[2] = 0 && abs(theme_b_sx[1]) >= 0.9
-						{ theme_b_mv[2] = 1; }
-				
-					if theme_b_dir[i] = 1 or (theme_b_dir[i] = -1 && theme_end[i] != 1)
-						{ theme_b_sx[i] += 0.25 * theme_b_dir[i]; }
-					}
-					else
-					{
-					if theme_b_dir[i] = 1
-						{ theme_b_dir[i] = -theme_b_dir[i]; }
-						else
-						{
-						if theme_go[i] != 2
-							{ theme_b_im[i] = irandom(2); }
 							else
-							{ 
-							if theme_c != i
-								{ theme_b_im[i] = 0; }
-							theme_end[i] = 1;
-							}
-						
-							if theme_b_im[i] != 0
-								{ theme_b_th[i] = global.theme_name[i]; }
-							theme_b_dir[i] = -theme_b_dir[i];
-							theme_ss[i] = -theme_ss[i];
-						}
-					}
-				if theme_end[i] = 1
-					{ theme_ss[i] = 1; }
-				var list_scale2;
-				list_scale2 = 0.45;
-			
-				if theme_text_y < global.size / 2 - 150 && theme_c != i
-					{ theme_text_y += 10; }
-				if theme_b_y[i] > -45 && theme_go[i] = 0
-					{ theme_b_y[i] -= 25; }
-					else
-					{
-					theme_go[i] = 1;
-					if theme_b_y[i] < 0
-						{ theme_b_y[i] += 10; }
-						else
-						{
-						theme_go[i] = 2;
-						if theme_end[i] = 1 && (first_player != 1 or theme_c != -1) && theme_real_open[i] != 2//(theme_b_dir[i] = -1 && theme_end[i] = 1)
 							{
-							if theme_sc[i] < 1
-								{ theme_sc[i] += 0.05; }
-							draw_sprite_ext(s_themes_ob, 0, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_sc[i], list_scale2 * theme_sc[i], 0, c_white, 1);
+							if theme_yy[i] < 0
+								{ theme_yy[i] += 15; }
+								else
+								{
+								if i = 0
+									{
+									if theme_xx[0] < 300
+										{ theme_xx[0] += 50; }
+									if theme_xx[1] < 2000
+										{ theme_xx[1] += 50; }
+									if theme_xx[2] < 2000
+										{ theme_xx[2] += 50; }
+										else
+										{
+										if theme_goto_y > - 400 - global.size / 1.5
+											{ theme_goto_y -= 40; }
+											else
+											{
+											if theme_real_open[i] = 1
+												{ theme_real_open[i] = 2; }
+											theme_choose = 2;
+											}
+										}
+									}
+								if i = 1
+									{
+									if theme_xx[0] > -2000
+										{ theme_xx[0] -= 50; }
+									if theme_xx[2] < 2000
+										{ theme_xx[2] += 50; }
+										else
+										{
+										if theme_goto_y > - 400 - global.size / 1.5
+											{ theme_goto_y -= 40; }
+											else
+											{
+											if theme_real_open[i] = 1
+												{ theme_real_open[i] = 2; }
+											theme_choose = 2;
+											}
+										}
+									}
+								if i = 2
+									{
+									if theme_xx[0] > -2000
+										{ theme_xx[0] -= 50; }
+										else
+										{
+										if theme_goto_y > - 400 - global.size / 1.5
+											{ theme_goto_y -= 40; }
+											else
+											{
+											if theme_real_open[i] = 1
+												{ theme_real_open[i] = 2; }
+											theme_choose = 2;
+											}
+										}
+									if theme_xx[1] > -2000
+										{ theme_xx[1] -= 50; }
+									if theme_xx[2] > - 300
+										{ theme_xx[2] -= 50; }
+									}
+								}
+							}
+						if theme_c_true = 0
+							{
+							if (theme_b_sx[i] < 1 && theme_b_dir[i] = 1) or (theme_b_sx[i] > 0 && theme_b_dir[i] = -1)
+								{ theme_b_sx[i] += 0.25 * theme_b_dir[i]; }
+								else
+								{
+								if theme_b_dir[i] = 1
+									{ theme_c_true = 1; }
+									else
+									{ theme_b_im[i] = theme_real_theme[i]; theme_b_dir[i] = 1; }
+								}
+							}
+						}
+			
+					if hand_choose = 0
+						{
+						if i = 0
+							{
+							draw_set_alpha(0.65);
+							draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+							draw_set_alpha(1);
+					
+							theme_points_time += 1;
+							if theme_points_time = 20
+								{
+								if theme_points != "..."
+									{ theme_points += "."; }
+									else
+									{ theme_points = ""; }
+								theme_points_time = 0;
+								}
+					
+							draw_set_font(global.game_font);
+							if first_player != 1
+								{ draw_text_transformed_t(640, theme_text_y + theme_goto_y, theme_text[0], 0.3, 0.3, 0, c_white, c_black); }
+								else
+								{ draw_text_transformed_t(640, theme_text_y + theme_goto_y - 25, string_upper(global.enemy_name) + "\n" + theme_text[1] + theme_points, 0.3, 0.3, 0, c_white, c_black); }
+							}
+						}
+						else
+						{ hand_choose = 0; }
+			
+					if (theme_b_sx[i] < 1 && theme_b_dir[i] = 1) or (theme_b_sx[i] > 0 && theme_b_dir[i] = -1)
+						{
+						if i = 0 && theme_b_mv[1] = 0 && abs(theme_b_sx[0]) >= 0.9
+							{ theme_b_mv[1] = 1; }
+						if i = 0 && theme_b_mv[2] = 0 && abs(theme_b_sx[1]) >= 0.9
+							{ theme_b_mv[2] = 1; }
+				
+						if theme_b_dir[i] = 1 or (theme_b_dir[i] = -1 && theme_end[i] != 1)
+							{ theme_b_sx[i] += 0.25 * theme_b_dir[i]; }
+						}
+						else
+						{
+						if theme_b_dir[i] = 1
+							{ theme_b_dir[i] = -theme_b_dir[i]; }
+							else
+							{
+							if theme_go[i] != 2
+								{ theme_b_im[i] = irandom(2); }
+								else
+								{ 
+								if theme_c != i
+									{ theme_b_im[i] = 0; }
+								theme_end[i] = 1;
+								}
+						
+								if theme_b_im[i] != 0
+									{ theme_b_th[i] = global.theme_name[i]; }
+								theme_b_dir[i] = -theme_b_dir[i];
+								theme_ss[i] = -theme_ss[i];
+							}
+						}
+					if theme_end[i] = 1
+						{ theme_ss[i] = 1; }
+					var list_scale2;
+					list_scale2 = 0.45;
+			
+					if theme_text_y < global.size / 2 - 150 && theme_c != i
+						{ theme_text_y += 10; }
+					if theme_b_y[i] > -45 && theme_go[i] = 0
+						{ theme_b_y[i] -= 25; }
+						else
+						{
+						theme_go[i] = 1;
+						if theme_b_y[i] < 0
+							{ theme_b_y[i] += 10; }
+							else
+							{
+							theme_go[i] = 2;
+							if theme_end[i] = 1 && (first_player != 1 or theme_c != -1) && theme_real_open[i] != 2
+								{
+								if theme_sc[i] < 1
+									{ theme_sc[i] += 0.05; }
+								draw_sprite_ext(s_themes_ob, 0, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_sc[i], list_scale2 * theme_sc[i], 0, c_white, 1);
+								}
+							}
+						}
+				
+					if theme_go[i] = 2
+						{
+						theme_b_c[i] += 1;
+						if theme_b_c[i] >= theme_b_cn[i]
+							{ theme_l[i] = 1;  theme_b_c[i] = 0; }
+				
+						if theme_l[i] = 1
+							{
+							if theme_n[i] < 6
+								{ theme_n[i] += 0.5; }
+								else
+								{ theme_n[i] = 0; theme_l[i] = 0; theme_b_cn[i] = irandom_range(room_speed * 3, room_speed * 6); }
+							}
+						}
+					if (theme_b_dir[i] = 1 or theme_c_true = 1) && theme_c = i
+						{ theme_b_im[i] = theme_real_theme[i]; }
+			
+					if theme_real_open[i] != 2
+						{
+						draw_sprite_ext(s_themes_button, theme_b_im[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1);
+						if theme_go[i] = 2 && theme_l[i] = 1 && first_player != 1
+							{ draw_sprite_ext(s_themes_button1, theme_n[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] /* - 50*/ + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1); }
+						draw_sprite_ext(s_themes_ss, theme_b_im[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2, list_scale2, 0, c_white, 1);
+						}
+						else
+						{
+						draw_sprite_ext(s_themes_button, theme_real_theme[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1);
+						draw_sprite_ext(s_themes_ss, theme_real_theme[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2, list_scale2, 0, c_white, 1);
+				
+						draw_sprite_ext(s_themes_button, theme_real_theme[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_black, 0.4);
+						}
+					if theme_end[i] = 1 && theme_c = -1
+						{
+						if mouse_check_button_pressed(mb_left)
+							{
+							if first_player != 1 && theme_real_open[i] != 2
+								{
+								if point_in_rectangle(mouse_x, mouse_y, theme_b_x[i] - sprite_get_width(s_themes_button) / 2 * list_scale2, global.size / 2 - sprite_get_height(s_themes_button) / 2 * list_scale2, theme_b_x[i] + sprite_get_width(s_themes_button) / 2 * list_scale2, global.size / 2 + sprite_get_height(s_themes_button) / 2 * list_scale2)
+									{
+									audio_play_sound(sd_text, 2, 0);
+									theme_real_open[i] = 1;
+									theme_c = i;
+									theme_b_dir[i] = -1;
+									theme_round[global.rounds] = theme_real_theme[i];
+									}
+								}
+							}
+						}
+					if theme_end[i] = 1 && theme_sc[i] > 0.7 && theme_c = i
+						{
+						if theme_ps[i] < 1
+							{ theme_ps[i] += 0.1; }
+						draw_sprite_ext(s_themes_pl, 2, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2 * theme_ps[i], list_scale2, 0, c_white, 1);
+						draw_sprite_ext(s_themes_pl, 0, theme_b_x[i] + theme_xx[i] + 208  * list_scale2 * (1 - theme_ps[i]), global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2, list_scale2, 0, c_white, 1);
+						draw_sprite_ext(s_themes_pl, 1, theme_b_x[i] + theme_xx[i] - 208  * list_scale2 * (1 - theme_ps[i]), global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2, list_scale2, 0, c_white, 1);
+				
+						draw_set_font(f_question_regular1);
+						draw_set_color(c_black);
+						draw_set_alpha(0.8);
+						if theme_b_th[theme_real_theme[i]] != "OTHER"
+							{ draw_text_transformed(theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 204 * list_scale2, theme_b_th[theme_real_theme[i]], theme_ps[i] * 1, 1, 0); }
+							else
+							{ draw_text_transformed(theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 204 * list_scale2, theme_b_th[theme_real_theme[i]] + " " + string(theme_real_theme[i]), theme_ps[i] * 1, 1, 0); }
+						draw_set_alpha(1);
+						}
+					}
+				}
+			if theme_end[2] = 1 && theme_c = -1
+				{
+				if first_player != 0
+					{
+					if enemy_timer = -1
+						{ enemy_timer = room_speed; }
+						else
+						{
+						enemy_timer -= 1;
+						if enemy_timer <= 0
+							{
+							var iii;
+							if theme_real_open[0] != 0
+								{ iii = choose(1, 2); }
+							if theme_real_open[1] != 0
+								{ iii = choose(0, 2); }
+							if theme_real_open[2] != 0
+								{ iii = choose(0, 1); }
+							/////////
+							iii = 2;///
+							////////
+							theme_real_open[iii] = 1;
+					
+							theme_c = iii;
+							theme_b_dir[iii] = -1;
+							theme_round[global.rounds] = theme_real_theme[iii];
+							timer_t = 30 * room_speed;
 							}
 						}
 					}
-				
-				if theme_go[i] = 2
-					{
-					theme_b_c[i] += 1;
-					if theme_b_c[i] >= theme_b_cn[i]
-						{ theme_l[i] = 1;  theme_b_c[i] = 0; }
-				
-					if theme_l[i] = 1
-						{
-						if theme_n[i] < 6
-							{ theme_n[i] += 0.5; }
-							else
-							{ theme_n[i] = 0; theme_l[i] = 0; theme_b_cn[i] = irandom_range(room_speed * 3, room_speed * 6); }
-						}
-					}
-				if (theme_b_dir[i] = 1 or theme_c_true = 1) && theme_c = i
-					{ theme_b_im[i] = theme_real_theme[i]; }
-			
-				if theme_real_open[i] != 2
-					{
-					draw_sprite_ext(s_themes_button, theme_b_im[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1);
-					if theme_go[i] = 2 && theme_l[i] = 1 && first_player != 1
-						{ draw_sprite_ext(s_themes_button1, theme_n[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] /* - 50*/ + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1); }
-					draw_sprite_ext(s_themes_ss, theme_b_im[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2, list_scale2, 0, c_white, 1);
-					}
+				if timer_t > 0
+					{ timer_t -= 2; }
 					else
 					{
-					draw_sprite_ext(s_themes_button, theme_real_theme[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1);
-					draw_sprite_ext(s_themes_ss, theme_real_theme[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2, list_scale2, 0, c_white, 1);
-				
-					draw_sprite_ext(s_themes_button, theme_real_theme[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_black, 0.4);
+					var iii;
+					if theme_real_open[0] != 0
+						{ iii = choose(1, 2); }
+					if theme_real_open[1] != 0
+						{ iii = choose(0, 2); }
+					if theme_real_open[2] != 0
+						{ iii = choose(0, 1); }
+					
+					theme_real_open[iii] = 1
+					
+					theme_c = iii;
+					theme_b_dir[iii] = -1;
+					theme_round[global.rounds] = theme_real_theme[iii];
+					timer_t = 30 * room_speed;
 					}
-				if theme_end[i] = 1 && theme_c = -1
+				if timer_t <= 15 * room_speed
 					{
-					if theme_real_open[i] != 2//first_player != 1 && theme_real_open[i] != 2// && global.rounds = 1//first_player = 1
-						{
-						theme_real_open[i] = 1;
-						theme_c = i;
-						theme_b_dir[i] = -1;
-						theme_round[global.rounds] = theme_real_theme[i];
-						}
-					}
-				if theme_end[i] = 1 && theme_sc[i] > 0.7 && theme_c = i
-					{
-					if theme_ps[i] < 1
-						{ theme_ps[i] += 0.1; }
-					draw_sprite_ext(s_themes_pl, 2, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2 * theme_ps[i], list_scale2, 0, c_white, 1);
-					draw_sprite_ext(s_themes_pl, 0, theme_b_x[i] + theme_xx[i] + 208  * list_scale2 * (1 - theme_ps[i]), global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2, list_scale2, 0, c_white, 1);
-					draw_sprite_ext(s_themes_pl, 1, theme_b_x[i] + theme_xx[i] - 208  * list_scale2 * (1 - theme_ps[i]), global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2, list_scale2, 0, c_white, 1);
-				
-					draw_set_font(f_question_regular1);
-					draw_set_color(c_black);
-					draw_set_alpha(0.8);
-					if theme_b_th[theme_real_theme[i]] != "OTHER"
-						{ draw_text_transformed(theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 204 * list_scale2, theme_b_th[theme_real_theme[i]], theme_ps[i] * 1, 1, 0); }
-						else
-						{ draw_text_transformed(theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 204 * list_scale2, theme_b_th[theme_real_theme[i]] + " " + string(theme_real_theme[i]), theme_ps[i] * 1, 1, 0); }
+					draw_set_color(c_white);
+					draw_set_alpha(0.4 + 0.6 * timer_t / (15 * room_speed));
+					draw_rectangle(640 - 320 * timer_t / (15 * room_speed), global.size / 2 + theme_goto_y + theme_yy[2] + 208 * list_scale2 + 45, 640 + 320 * timer_t / (15 * room_speed), global.size / 2 + theme_goto_y + theme_yy[2] + 208 * list_scale2 + 55, 0);
 					draw_set_alpha(1);
 					}
 				}
 			}
-		}
+		#endregion
+		#region Выбор Темы 3
+		if theme_choose = 8
+			{
+			for(i=0;i<=2;i++)
+				{
+				if theme_b_mv[i] = 1
+					{
+					if theme_c = i
+						{
+						if theme_lo = 0
+							{
+							if theme_yy[i] > - 60
+								{ theme_yy[i] -= 15; }
+								else
+								{ theme_lo = 1; }
+							}
+							else
+							{
+							if theme_yy[i] < 0
+								{ theme_yy[i] += 15; }
+								else
+								{
+								if i = 0
+									{
+									if theme_xx[0] < 300
+										{ theme_xx[0] += 50; }
+									if theme_xx[1] < 2000
+										{ theme_xx[1] += 50; }
+									if theme_xx[2] < 2000
+										{ theme_xx[2] += 50; }
+										else
+										{
+										if theme_goto_y > - 400 - global.size / 1.5
+											{ theme_goto_y -= 40; }
+											else
+											{
+											if theme_real_open[i] = 1
+												{ theme_real_open[i] = 2; }
+											theme_choose = 2;
+											}
+										}
+									}
+								if i = 1
+									{
+									if theme_xx[0] > -2000
+										{ theme_xx[0] -= 50; }
+									if theme_xx[2] < 2000
+										{ theme_xx[2] += 50; }
+										else
+										{
+										if theme_goto_y > - 400 - global.size / 1.5
+											{ theme_goto_y -= 40; }
+											else
+											{
+											if theme_real_open[i] = 1
+												{ theme_real_open[i] = 2; }
+											theme_choose = 2;
+											}
+										}
+									}
+								if i = 2
+									{
+									if theme_xx[0] > -2000
+										{ theme_xx[0] -= 50; }
+										else
+										{
+										if theme_goto_y > - 400 - global.size / 1.5
+											{ theme_goto_y -= 40; }
+											else
+											{
+											if theme_real_open[i] = 1
+												{ theme_real_open[i] = 2; }
+											theme_choose = 2;
+											}
+										}
+									if theme_xx[1] > -2000
+										{ theme_xx[1] -= 50; }
+									if theme_xx[2] > - 300
+										{ theme_xx[2] -= 50; }
+									}
+								}
+							}
+						if theme_c_true = 0
+							{
+							if (theme_b_sx[i] < 1 && theme_b_dir[i] = 1) or (theme_b_sx[i] > 0 && theme_b_dir[i] = -1)
+								{ theme_b_sx[i] += 0.25 * theme_b_dir[i]; }
+								else
+								{
+								if theme_b_dir[i] = 1
+									{ theme_c_true = 1; }
+									else
+									{ theme_b_im[i] = theme_real_theme[i]; theme_b_dir[i] = 1; }
+								}
+							}
+						}
+			
+					if hand_choose = 0
+						{
+						if i = 0
+							{
+							draw_set_alpha(0.65);
+							draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+							draw_set_alpha(1);
+					
+							draw_set_font(global.game_font);
+							}
+						}
+						else
+						{ hand_choose = 0; }
+			
+					if (theme_b_sx[i] < 1 && theme_b_dir[i] = 1) or (theme_b_sx[i] > 0 && theme_b_dir[i] = -1)
+						{
+						if i = 0 && theme_b_mv[1] = 0 && abs(theme_b_sx[0]) >= 0.9
+							{ theme_b_mv[1] = 1; }
+						if i = 0 && theme_b_mv[2] = 0 && abs(theme_b_sx[1]) >= 0.9
+							{ theme_b_mv[2] = 1; }
+				
+						if theme_b_dir[i] = 1 or (theme_b_dir[i] = -1 && theme_end[i] != 1)
+							{ theme_b_sx[i] += 0.25 * theme_b_dir[i]; }
+						}
+						else
+						{
+						if theme_b_dir[i] = 1
+							{ theme_b_dir[i] = -theme_b_dir[i]; }
+							else
+							{
+							if theme_go[i] != 2
+								{ theme_b_im[i] = irandom(2); }
+								else
+								{ 
+								if theme_c != i
+									{ theme_b_im[i] = 0; }
+								theme_end[i] = 1;
+								}
+						
+								if theme_b_im[i] != 0
+									{ theme_b_th[i] = global.theme_name[i]; }
+								theme_b_dir[i] = -theme_b_dir[i];
+								theme_ss[i] = -theme_ss[i];
+							}
+						}
+					if theme_end[i] = 1
+						{ theme_ss[i] = 1; }
+					var list_scale2;
+					list_scale2 = 0.45;
+			
+					if theme_text_y < global.size / 2 - 150 && theme_c != i
+						{ theme_text_y += 10; }
+					if theme_b_y[i] > -45 && theme_go[i] = 0
+						{ theme_b_y[i] -= 25; }
+						else
+						{
+						theme_go[i] = 1;
+						if theme_b_y[i] < 0
+							{ theme_b_y[i] += 10; }
+							else
+							{
+							theme_go[i] = 2;
+							if theme_end[i] = 1 && (first_player != 1 or theme_c != -1) && theme_real_open[i] != 2//(theme_b_dir[i] = -1 && theme_end[i] = 1)
+								{
+								if theme_sc[i] < 1
+									{ theme_sc[i] += 0.05; }
+								draw_sprite_ext(s_themes_ob, 0, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_sc[i], list_scale2 * theme_sc[i], 0, c_white, 1);
+								}
+							}
+						}
+				
+					if theme_go[i] = 2
+						{
+						theme_b_c[i] += 1;
+						if theme_b_c[i] >= theme_b_cn[i]
+							{ theme_l[i] = 1;  theme_b_c[i] = 0; }
+				
+						if theme_l[i] = 1
+							{
+							if theme_n[i] < 6
+								{ theme_n[i] += 0.5; }
+								else
+								{ theme_n[i] = 0; theme_l[i] = 0; theme_b_cn[i] = irandom_range(room_speed * 3, room_speed * 6); }
+							}
+						}
+					if (theme_b_dir[i] = 1 or theme_c_true = 1) && theme_c = i
+						{ theme_b_im[i] = theme_real_theme[i]; }
+			
+					if theme_real_open[i] != 2
+						{
+						draw_sprite_ext(s_themes_button, theme_b_im[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1);
+						if theme_go[i] = 2 && theme_l[i] = 1 && first_player != 1
+							{ draw_sprite_ext(s_themes_button1, theme_n[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] /* - 50*/ + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1); }
+						draw_sprite_ext(s_themes_ss, theme_b_im[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2, list_scale2, 0, c_white, 1);
+						}
+						else
+						{
+						draw_sprite_ext(s_themes_button, theme_real_theme[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1);
+						draw_sprite_ext(s_themes_ss, theme_real_theme[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2, list_scale2, 0, c_white, 1);
+				
+						draw_sprite_ext(s_themes_button, theme_real_theme[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_black, 0.4);
+						}
+					if theme_end[i] = 1 && theme_c = -1
+						{
+						if theme_real_open[i] != 2//first_player != 1 && theme_real_open[i] != 2// && global.rounds = 1//first_player = 1
+							{
+							theme_real_open[i] = 1;
+							theme_c = i;
+							theme_b_dir[i] = -1;
+							theme_round[global.rounds] = theme_real_theme[i];
+							}
+						}
+					if theme_end[i] = 1 && theme_sc[i] > 0.7 && theme_c = i
+						{
+						if theme_ps[i] < 1
+							{ theme_ps[i] += 0.1; }
+						draw_sprite_ext(s_themes_pl, 2, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2 * theme_ps[i], list_scale2, 0, c_white, 1);
+						draw_sprite_ext(s_themes_pl, 0, theme_b_x[i] + theme_xx[i] + 208  * list_scale2 * (1 - theme_ps[i]), global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2, list_scale2, 0, c_white, 1);
+						draw_sprite_ext(s_themes_pl, 1, theme_b_x[i] + theme_xx[i] - 208  * list_scale2 * (1 - theme_ps[i]), global.size / 2 + theme_goto_y + theme_yy[i] + 208 * list_scale2, list_scale2, list_scale2, 0, c_white, 1);
+				
+						draw_set_font(f_question_regular1);
+						draw_set_color(c_black);
+						draw_set_alpha(0.8);
+						if theme_b_th[theme_real_theme[i]] != "OTHER"
+							{ draw_text_transformed(theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 204 * list_scale2, theme_b_th[theme_real_theme[i]], theme_ps[i] * 1, 1, 0); }
+							else
+							{ draw_text_transformed(theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + 204 * list_scale2, theme_b_th[theme_real_theme[i]] + " " + string(theme_real_theme[i]), theme_ps[i] * 1, 1, 0); }
+						draw_set_alpha(1);
+						}
+					}
+				}
+			}
+		#endregion
 	#endregion
+	}
+#region Выбор темы
+	if global.game_stage = 1
+		{
+		
+		}
 #endregion
 #region Финиш дуэли
 	if theme_choose = 9
@@ -4164,6 +4186,28 @@ if view_go_left = 0 && view_go_right = 0
 	draw_set_font(global.game_font);
 	draw_text_transformed_t((global.player_object).x + 250, global.size - 22 - sprite_get_height(s_healthbar_hp) * gui_size + global.critical_y_p, "CRITICAL", 0.1, 0.1, 0, (global.player_object).hero_color, c_black);
 	draw_text_transformed_t((global.enemy_object).x - 250 , global.size - 22 - sprite_get_height(s_healthbar_hp) * gui_size + global.critical_y_e, "CRITICAL", 0.1, 0.1, 0, (global.enemy_object).hero_color , c_black);
+#endregion
+#region Верно или нет
+	if answer_rec = 1
+		{
+		if answer_alp < 0.8
+			{ answer_alp += 0.15; }
+			else
+			{ answer_rec = 2; }
+		}
+	if answer_rec = 2
+		{
+		if answer_alp > 0
+			{ answer_alp -= 0.05; }
+			else
+			{ answer_rec = 0; }
+		}
+	if answer_rec > 0
+		{
+		draw_set_alpha(answer_alp);
+		draw_rectangle_color(0, 0, 1280, global.size, answer_col, answer_col, answer_col, answer_col, 0);
+		draw_set_alpha(1);
+		}
 #endregion
 
 #region Отладка

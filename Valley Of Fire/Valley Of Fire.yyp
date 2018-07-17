@@ -3174,6 +3174,25 @@
             }
         },
         {
+            "Key": "9b043610-cea8-46dc-9464-92d37efdb213",
+            "Value": {
+                "id": "28250d67-5df5-49a6-ba49-e708f3001f89",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sounds\/s_coin\/s_coin.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
             "Key": "9b3b44e8-00d7-4b8d-b2b4-7ac837c4a7d1",
             "Value": {
                 "id": "8fa3cf6b-76ef-4c3a-8024-b56877a45aec",

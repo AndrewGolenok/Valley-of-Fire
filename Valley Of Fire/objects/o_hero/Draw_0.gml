@@ -39,6 +39,12 @@ if !enemy
 	}
 #endregion
 #region Рисование персонажа и выстрел
+	if shoot = 1
+		{
+		var penis;
+		penis = sprite_get_yoffset(hero_bullet);
+		draw_rectangle_color(x, sy - 2 - penis * scale, sx - 28, sy + 2 - penis * scale, c_white, c_white, c_white, c_white, 0);
+		}
 	if super = 1 or global.super_ability1 = 1 && !enemy//global.super_ability
 		{
 		if ability_index < 5
@@ -156,13 +162,17 @@ if !enemy
 			draw_sprite_ext(s_huntress_ability, 0, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.8 * bullet_alpha);
 			}
 			else
-			{ draw_sprite_ext(hero_bullet, 0, sx - 28, sy, sc * scale - 0.025, scale + 0.025, 0, c_white, bullet_alpha); }
+			{
+			draw_sprite_ext(hero_bullet, 0, sx - 28, sy, sc * scale - 0.025, scale + 0.025, 0, c_white, bullet_alpha);
+			}
 		
 		if (((sx >= 1280 - x - sprite_get_width(s_bullet_revolver) - weapon_spd * 1.2 && !enemy) or (sx <= (1280 - x) + weapon_spd * 1.2 + sprite_get_width(s_bullet_revolver) && enemy)) && answer = 1)
 		or (((sx >= 1280 - x - sprite_get_width(s_bullet_revolver) - weapon_spd * 1.2 - 1280 && !enemy) or (sx <= (1280 - x) + 1280 + weapon_spd * 1.2 + sprite_get_width(s_bullet_revolver) && enemy)) && answer = 0)
 			{
 			if enemy
 				{
+				if o_list.bot_question >= global.question && (o_list.bot_task >= global.task) && o_list.timer > 2 * room_speed
+					{ o_list.timer = 2 * room_speed; o_list.timer_x = 2 * room_speed; }
 				if answer = 1
 					{
 					with(o_hero)
@@ -215,6 +225,8 @@ if !enemy
 				}
 				else
 				{
+				if o_list.bot_question <= global.question && (o_list.bot_task <= global.task) && o_list.bot_time2 > 3 * room_speed
+					{ o_list.bot_time = random(1) * room_speed; o_list.bot_time2 = 3 * room_speed; }
 				if answer = 1
 					{
 					with(o_hero)

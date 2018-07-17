@@ -1,11 +1,21 @@
 #region Шейдер
 	application_surface_draw_enable(1);
 	
-	draw_set_alpha(0.3);
-	draw_surface(application_surface, 5, 5);
-	draw_surface(application_surface, -5, 5);
-	draw_surface(application_surface, 5, -5);
+	draw_set_alpha(0.3 * vs_alpha);
+	draw_surface(application_surface,  2.5,  2.5);
+	draw_surface(application_surface, -2.5,  2.5);
+	draw_surface(application_surface,  2.5, -2.5);
+	draw_surface(application_surface, -2.5, -2.5);
+	
+	draw_surface(application_surface,  5,  5);
+	draw_surface(application_surface, -5,  5);
+	draw_surface(application_surface,  5, -5);
 	draw_surface(application_surface, -5, -5);
+	
+	draw_surface(application_surface,  7.5,  7.5);
+	draw_surface(application_surface, -7.5,  7.5);
+	draw_surface(application_surface,  7.5, -7.5);
+	draw_surface(application_surface, -7.5, -7.5);
 	draw_set_alpha(1);
 	//shader_set(glsl_gaussian_blur);
 	//shader_set_uniform_f(uscale, 0.006, 0.0); //shader_set_uniform_f(uscale, 0.003, 0.0);
@@ -202,7 +212,7 @@
 				draw_set_font(global.game_font);
 				draw_text_transformed_a(gx, gy, "CHOOSE HERO", ts * s0, ts * s0, 0, c_white, c_black);
 			#endregion
-			#region Персон1ажи
+			#region Персонажи
 				for(i=1;i<=global.heroes_val;i++)
 					{
 					hero_spr   = asset_get_index("s_" + string(global.hero_code_name[hero_g[i]]));
@@ -470,16 +480,111 @@
 	#region Подбор противника
 		if menu_stage = "search"
 			{
-			var vs_spr, vs_spr1;
+			var vs_spr, vs_spr1, vs_size;
+			vs_size = 1;
 			vs_spr  = asset_get_index("s_" + string(global.hero_code_name[global.hero]));
 			vs_spr1 = asset_get_index("s_" + string(global.hero_code_name[vs_hero]));
-			vs_x1 = - 150;
-			vs_y1 = sprite_get_height(vs_spr) * 1.8; //global.size + 400;
-			vs_x2 = 1280 + 150;
-			vs_y2 = sprite_get_height(vs_spr1) * 1.8; //global.size + 400;
-			draw_sprite_ext(vs_spr, 0, vs_x1, vs_y1, -1.8, 1.8, 20, c_white, 1);
+			
+			if global.hero = 1
+				{ sherif_x = - 80; }
+				else
+				{ sherif_x = 0; }
+			if vs_hero = 1
+				{ sherif_x1 = - 80; }
+				else
+				{ sherif_x1 = 0; }
+			for(i=0;i<=5;i++)
+				{
+				draw_sprite_ext(vs_spr , 0, vs_x1 + sherif_x - 5 * i, vs_y1 - 5 * i, -vs_size, vs_size, 20, c_black, 0.2);
+				draw_sprite_ext(vs_spr1, 0, vs_x2 - sherif_x1 + 5 * i, vs_y2 - 5 * i, vs_size , vs_size, 20, c_black, 0.2);
+				}
+			if vs_go = 0
+				{
+				if vs_x1 < 20
+					{ vs_x1 += 25; }
+				if vs_y1 > global.size
+					{ vs_y1 -= 50; }
 				
-			draw_sprite_ext(vs_spr1, 0, vs_x2, vs_y2, 1.8, 1.8, 20, c_white, 1);
+				if vs_x2 > 1280 - 20
+					{ vs_x2 -= 25; }
+				if vs_y2 < global.size
+					{ vs_y2 += 50; }
+					else
+					{ vs_go = 1; }
+				}
+			if vs_go = 1
+				{
+				vs_x1 += 0.1;
+				vs_y1 -= 0.1;
+				vs_x2 -= 0.1;
+				vs_y2 += 0.1;
+				
+				//if vs_vx < 640 - 10
+				//	{ vs_vx += 25; }
+				if vs_vy > global.size / 2
+					{ vs_vy -= 70; }
+				
+				//if vs_sx > 640 + 10
+				//	{ vs_sx -= 25; }
+				if vs_sy < global.size / 2
+					{ vs_sy += 70; }
+					else
+					{ vs_go = 2; }
+				}
+			if vs_go = 2
+				{
+				vs_x1 += 0.05;
+				vs_y1 -= 0.05;
+				vs_x2 -= 0.05;
+				vs_y2 += 0.05;
+				vs_sy += 0.1;
+				vs_vy += 0.1;
+				
+				if vs_time < 10
+					{ vs_time += 1; }
+					else
+					{ vs_go = 3; }
+				//with(o_menu)
+				//	{ instance_destroy(); }
+				//instance_create_depth(0, 0, -1, o_list);
+				//global.enemy = 0;
+				//instance_create_depth(0, 0, 0, o_hero);
+				//global.enemy = 1;
+				//instance_create_depth(0, 0, 0, o_hero);
+				}
+			if vs_go = 3
+				{
+				if vs_sy < global.size + 1000
+					{ vs_sy += 70; }
+				if vs_vy > global.size - 1000
+					{ vs_vy -= 70; }
+				if vs_alpha > 0
+					{ vs_alpha -= 0.05; }
+				if vs_x1 > - 600
+					{
+					vs_x1 -= 30;
+					vs_y1 += 30;
+					vs_x2 += 30;
+					vs_y2 -= 30;
+					}
+					else
+					{
+					instance_create_depth(0, 0, -1, o_list);
+					global.enemy = 0;
+					instance_create_depth(0, 0, 0, o_hero);
+					global.enemy = 1;
+					instance_create_depth(0, 0, 0, o_hero);
+					global.room_to_go = "duel";
+					instance_destroy();
+					}
+				}
+			draw_sprite_ext(vs_spr , 0, vs_x1 + sherif_x, vs_y1, -vs_size, vs_size, 20, c_white, 1);
+			draw_sprite_ext(vs_spr1, 0, vs_x2 - sherif_x1, vs_y2, vs_size , vs_size, 20, c_white, 1);
+			
+			draw_set_font(global.game_font);
+			draw_text_transformed_a(vs_vx, vs_vy, "V", vs_ts * vs_alpha, vs_ts * vs_alpha, -20, c_white, c_black);
+			draw_text_transformed_a(vs_sx, vs_sy, "S", vs_ts * vs_alpha, vs_ts * vs_alpha, -20, c_white, c_black);
+			
 			//room_goto_t("duel");
 			}
 	#endregion

@@ -1,7 +1,7 @@
 scale = 1//0.2;
 
-if !audio_is_playing(sd_music)
-		{ audio_play_sound(sd_music, 1, 1);  }
+//if !audio_is_playing(sd_music)
+//		{ audio_play_sound(sd_music, 1, 1);  }
 		
 hero_left[1] = asset_get_index("s_"+global.hero_code_name[5]+"");
 hero_left[2] = asset_get_index("s_"+global.hero_code_name[7]+"");
