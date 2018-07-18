@@ -428,6 +428,19 @@
 	str2  = "ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ!?$%'@.,0123456789=≠+-/*><:;()°"; //"!"+"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя"; 
 	global.game_font = font_add_sprite_ext(s_game_font, str2, true, 1);
 #endregion
+#region Цвета персонажей
+	global.color_hero[1]  = c_orange;
+	global.color_hero[2]  = c_maroon;
+	global.color_hero[3]  = make_color_rgb(186,  85, 211);
+	global.color_hero[4]  = c_white;
+	global.color_hero[5]  = make_color_rgb(25 ,  25, 112);
+	global.color_hero[6]  = make_color_rgb(64 , 224, 208);
+	global.color_hero[7]  = make_color_rgb(60 , 179, 113);
+	global.color_hero[8]  = make_color_rgb(105, 105, 105);
+	global.color_hero[9]  = make_color_rgb(220,  20,  60);
+	global.color_hero[10] = make_color_rgb(250, 235, 215);
+	global.color_hero[11] = make_color_rgb(220,  20,  60);
+#endregion
 #region Прочее
 	//if os_type = os_ios { achievement_login(); } // Game Center
 	randomize(); // Включаем рандом

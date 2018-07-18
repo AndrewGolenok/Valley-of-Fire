@@ -1792,13 +1792,14 @@
 #region Способность
 	if mouse_check_button_pressed(mb_left) && theme_choose = 4// && list_scale = 1
 		{
-		if point_in_rectangle(mouse_x, mouse_y, 640 - 60 - 500 - super_x - 80, 100 - 80, 640 - 60 - 500 - super_x + 80, 100 + 80)
+		if point_in_rectangle(mouse_x, mouse_y, 640 - 80 + sprite_get_width(s_super) / 2 - 20, global.size - 50 - 80 + super_x + super_zhopa, 640 + 80 + sprite_get_width(s_super) / 2 - 20, global.size - 50 + 80 + super_zhopa) //point_in_rectangle(mouse_x, mouse_y, 640 /*- 60 - 500 - super_x*/- 80, global.size - 50 - 80 + super_x, 640 /*- 60 - 500 - super_x*/+ 80, global.size - 50 + 80)
 			{
 			audio_play_sound(sd_text, 2, 0);
 			if super_now = super_need && global.super_ability = 0
 				{
 				super_now = 0;
 				super_need += 3;
+				super_now1 = super_need;
 				global.super_ability = 1;
 				
 				with(global.player_object)
@@ -1840,120 +1841,251 @@
 			{ super_x += 40; }
 		}
 	
-	if super_need = 3
+	#region Кнопка суперудара игрока
+		if 0
 		{
-		if super_now = 1
-			{
-			if super_stage < 4
-				{ super_stage += 0.5; }
-			}
-		if super_now = 2
-			{
-			if super_stage < 9
-				{ super_stage += 0.5; }
-			}
-		if super_now = 3
-			{
-			if super_stage < 13
-				{ super_stage += 0.5; }
-			}
+		#region Говнокод
+			if super_need = 3
+				{
+				if super_now = 1
+					{
+					if super_stage < 4
+						{ super_stage += 0.5; }
+					}
+				if super_now = 2
+					{
+					if super_stage < 9
+						{ super_stage += 0.5; }
+					}
+				if super_now = 3
+					{
+					if super_stage < 13
+						{ super_stage += 0.5; }
+					}
+				}
+			if super_need = 6
+				{
+				if super_now = 0
+					{
+					if super_stage > 0
+						{ super_stage -= 0.5; }
+					}
+				if super_now = 1
+					{
+					if super_stage < 2
+						{ super_stage += 0.5; }
+					}
+				if super_now = 2
+					{
+					if super_stage < 4
+						{ super_stage += 0.5; }
+					}
+				if super_now = 3
+					{
+					if super_stage < 6
+						{ super_stage += 0.5; }
+					}
+				if super_now = 4
+					{
+					if super_stage < 8
+						{ super_stage += 0.5; }
+					}
+				if super_now = 5
+					{
+					if super_stage < 10
+						{ super_stage += 0.5; }
+					}
+				if super_now = 6
+					{
+					if super_stage < 13
+						{ super_stage += 0.5; }
+					}
+				}
+			if super_need = 9
+				{
+				if super_now = 0
+					{
+					if super_stage > 0
+						{ super_stage -= 0.5; }
+					}
+				if super_now = 1
+					{
+					if super_stage < 2
+						{ super_stage += 0.5; }
+					}
+				if super_now = 2
+					{
+					if super_stage < 3
+						{ super_stage += 0.5; }
+					}
+				if super_now = 3
+					{
+					if super_stage < 4
+						{ super_stage += 0.5; }
+					}
+				if super_now = 4
+					{
+					if super_stage < 5
+						{ super_stage += 0.5; }
+					}
+				if super_now = 5
+					{
+					if super_stage < 6
+						{ super_stage += 0.5; }
+					}
+				if super_now = 6
+					{
+					if super_stage < 7
+						{ super_stage += 0.5; }
+					}
+				if super_now = 7
+					{
+					if super_stage < 8
+						{ super_stage += 0.5; }
+					}
+				if super_now = 8
+					{
+					if super_stage < 10
+						{ super_stage += 0.5; }
+					}
+				if super_now = 9
+					{
+					if super_stage < 13
+						{ super_stage += 0.5; }
+					}
+				}
+		#endregion
 		}
-	if super_need = 6
-		{
-		if super_now = 0
+		#region Пацанкод
+			if part_n = 1
+				{
+				if part_x > 640
+					{ part_x -= 10; part_s += 0.05; }
+					else
+					{ part_n = 2; }
+				}
+			if part_n = 2
+				{
+				if part_x > (1280) * super_now1 / super_need
+					{ part_x -= 10; }
+				if part_y < global.size - 10
+					{ part_y += 5; }
+					else
+					{ part_n = 0; part_s = 1; }
+				part_s -= 0.05;
+				}
+				
+			if part_n > 0
+				{ draw_sprite_ext(s_super, global.hero + 1, part_x, part_y, 0.2 * part_s, 0.2 * part_s, 0, global.color_hero[global.hero], 1); }
+				else
+				{
+				if super_now <= super_need
+					{
+					if super_now1 < super_now
+						{ super_now1 += 0.02 * super_need; }
+					if super_now = 0
+						{
+						if super_now1 > 0
+							{ super_now1 -= 0.02 * super_need; }
+							else
+							{ super_now1 = 0; }
+						}
+					}
+				}
+			//draw_text_transformed_t(mouse_x, mouse_y, string(part_n), 0.5, 0.5, 0, global.color_hero[global.hero], c_black);
+		#endregion
+		
+		var d_size;
+		d_size = 0.05; //0.1 * (super_stage - 1) / 13;
+		
+		if super_now = super_need
 			{
-			if super_stage > 0
-				{ super_stage -= 0.5; }
-			}
-		if super_now = 1
-			{
-			if super_stage < 2
-				{ super_stage += 0.5; }
-			}
-		if super_now = 2
-			{
-			if super_stage < 4
-				{ super_stage += 0.5; }
-			}
-		if super_now = 3
-			{
-			if super_stage < 6
-				{ super_stage += 0.5; }
-			}
-		if super_now = 4
-			{
-			if super_stage < 8
-				{ super_stage += 0.5; }
-			}
-		if super_now = 5
-			{
-			if super_stage < 10
-				{ super_stage += 0.5; }
-			}
-		if super_now = 6
-			{
-			if super_stage < 13
-				{ super_stage += 0.5; }
-			}
+			if super_zhopa > 0
+				{ super_zhopa -= 40; super_angle = 0; }
+				else
+				{
+				if super_time < 40
+					{
+					super_time += 1;
+					if abs(super_angle) > 1.5
+						{ super_angle += 2 * super_dir; }
+						else
+						{ super_angle = 0; }
+					}
+					else
+					{
+					if (super_angle < 5 && super_dir = 1) or (super_angle > -5 && super_dir = -1)
+						{ super_angle += 2 * super_dir; }
+						else
+						{
+						super_dir = -super_dir;
+						super_angle += 2 * super_dir;
+						super_val += 1;
+						if super_val = 5
+							{ super_time = 0; super_val = 0; }
+						}
+					}
+				}
 		}
-	if super_need = 9
-		{
-		if super_now = 0
+			else
 			{
-			if super_stage > 0
-				{ super_stage -= 0.5; }
+			super_val = 0;
+			super_angle = 0;
+			if super_zhopa < 300
+				{ super_zhopa += 30; }
 			}
-		if super_now = 1
+		
+		if super_now = super_need
 			{
-			if super_stage < 2
-				{ super_stage += 0.5; }
+			if super_alp1 = 1
+				{
+				if super_alp > 0.7
+					{ super_alp -= 0.05; }
+					else
+					{ super_alp1 = 0 }
+				}
+				else
+				{
+				if super_alp < 1
+					{ super_alp += 0.05; }
+					else
+					{ super_alp1 = 1; }
+				}
 			}
-		if super_now = 2
+			else
+			{ super_alp1 = 1; super_alp = 1; }
+		draw_set_alpha(0.7);
+		draw_rectangle_color(0, global.size, 1280, global.size - 13, c_black, c_black, c_black, c_black, 0);
+		
+		if super_now = super_need
 			{
-			if super_stage < 3
-				{ super_stage += 0.5; }
+			draw_set_alpha(0.5);
+			draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 4, global.color_hero[global.hero], global.color_hero[global.hero], global.color_hero[global.hero], global.color_hero[global.hero], 0);
+			
+			draw_set_alpha(0.3);
+			draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 2, global.color_hero[global.hero], global.color_hero[global.hero], global.color_hero[global.hero], global.color_hero[global.hero], 0);
 			}
-		if super_now = 3
-			{
-			if super_stage < 4
-				{ super_stage += 0.5; }
-			}
-		if super_now = 4
-			{
-			if super_stage < 5
-				{ super_stage += 0.5; }
-			}
-		if super_now = 5
-			{
-			if super_stage < 6
-				{ super_stage += 0.5; }
-			}
-		if super_now = 6
-			{
-			if super_stage < 7
-				{ super_stage += 0.5; }
-			}
-		if super_now = 7
-			{
-			if super_stage < 8
-				{ super_stage += 0.5; }
-			}
-		if super_now = 8
-			{
-			if super_stage < 10
-				{ super_stage += 0.5; }
-			}
-		if super_now = 9
-			{
-			if super_stage < 13
-				{ super_stage += 0.5; }
-			}
-		}
-	
-	draw_sprite_ext(asset_get_index("s_super_" + global.hero_code_name[global.hero]), 1, 640 - 90 - 500 - super_x, 70, list_size1 * 0.9, list_size1 * 0.9, 0, c_white, 1);
-	draw_sprite_ext(s_super_black, super_stage, 640 - 90 - 500 - super_x, 70, list_size1 * 0.9, list_size1 * 0.9, 0, c_white, 1);
-	draw_sprite_ext(asset_get_index("s_super_" + global.hero_code_name[global.enemy_hero]), e_skill[global.rounds], 1280 - (640 - 90 - 500) + super_x, 70, -list_size1 * 0.9, list_size1 * 0.9, 0, c_white, 1);
-	
+		draw_set_alpha(1);
+		
+		draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, global.color_hero[global.hero], global.color_hero[global.hero], global.color_hero[global.hero], global.color_hero[global.hero], 0);
+		draw_set_alpha(0.2);
+		draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
+		draw_set_alpha(1);
+		
+		draw_set_alpha(1 - super_alp);
+		draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
+		draw_set_alpha(1);
+		
+		
+		draw_set_font(global.game_font);
+		draw_text_transformed_t(640 - string_width("SUPER") * 0.2 / 2 + 20, global.size - 50 + super_x + super_zhopa, "SUPER", 0.2, 0.2, super_angle, global.color_hero[global.hero], c_black);
+		
+		//draw_sprite_ext(s_super, 1, 640 + sprite_get_width(s_super) * (list_size1 * 1 + d_size) * super_scale / 2 + 40, global.size - 50 + super_x + super_zhopa, (list_size1 * 1 + d_size) * super_scale, (list_size1 * 1 + d_size) * super_scale, 0, c_white, 1);
+		draw_sprite_ext_t(s_super, 0, 640 + sprite_get_width(s_super) / 2 - 20, global.size - 50 + super_x + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, 0, global.color_hero[global.hero], 1, global.color_hero[global.hero], c_black);
+		draw_sprite_ext(s_super, global.hero + 1, 640 + sprite_get_width(s_super) / 2 - 20, global.size - 50 + super_x + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, 0, c_white, 1);
+		//draw_sprite_ext(s_super_black, super_stage, 86 * (list_size1 * 1.3 + d_size)/*- 90 - 500 - super_x*/, global.size - 40 - 1 + super_x, list_size1 * 1.3 + d_size, list_size1 * 1.3 + d_size, 0, c_white, 1);
+		//draw_sprite_ext(asset_get_index("s_super_" + global.hero_code_name[global.enemy_hero]), e_skill[global.rounds], 1280 - (640 - 90 - 500) + super_x, global.size - 80, -list_size1 * 1, list_size1 * 1, 0, c_white, 1);
+	#endregion
 	#region Способность Шерифа
 		if global.hero = 1
 			{
@@ -1997,7 +2129,7 @@
 			}
 	#endregion
 #endregion
-if 0
+//if 0
 	{
 	#region Выбор Первого игрока
 		if global.game_stage = 1 //keyboard_check_pressed(ord("H")) 
@@ -2428,7 +2560,7 @@ if 0
 						}
 					if (theme_b_dir[i] = 1 or theme_c_true = 1) && theme_c = i
 						{ theme_b_im[i] = theme_real_theme[i]; }
-					draw_sprite_ext(s_themes_button, theme_b_im[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1);
+					draw_sprite_ext(s_themes_button, 4/*theme_b_im[i]*/, theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, global.color_hero[theme_b_im[i]]/*c_white*/, 1);
 					if theme_go[i] = 2 && theme_l[i] = 1 && first_player = 1
 						{ draw_sprite_ext(s_themes_button1, theme_n[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] /* - 50*/ + theme_b_y[i], theme_b_sx[i] * list_scale2 * theme_ss[i], list_scale2, 0, c_white, 1); }
 					draw_sprite_ext(s_themes_ss, theme_b_im[i], theme_b_x[i] + theme_xx[i], global.size / 2 + theme_goto_y + theme_yy[i] + theme_b_y[i], theme_b_sx[i] * list_scale2, list_scale2, 0, c_white, 1);
@@ -3596,154 +3728,210 @@ if 0
 		//	{ health_e_al = 1; health_e_hp = e_hp; }
 		}
 	
-	draw_sprite_ext_t(s_healthbar_hp, 0, 48, global.size - 12, -gui_size, gui_size, 0, c_white, 1, c_white, c_black);
+	var h_y, h_x, h_s, h_y1;
+	h_x = 40;
+	h_y = 45; //global.size - 12;
+	h_s = 10;
+	h_y1 = 10;
 	
-	var pers, dop;
-	pers = (hp / maxhp)// * ((1205 - 35) * gui_size - 25);
-	dop  = maxhp / 100;
+	#region Хелсбар Игрока
+		draw_sprite_ext_t(s_healthbar_hp, 0, h_x, h_y + h_y1, -gui_size * 0.95, gui_size * 0.4, 0, c_white, 1, c_white, c_black);
+		
+		var pers, dop;
+		pers = (hp / maxhp)// * ((1205 - 35) * gui_size - 25);
+		dop  = maxhp / 100;
 	
-	//////////
-		draw_set_alpha(health_al);
+		//////////
+			//draw_set_alpha(health_al);
+			//draw_set_color(c_white);
+			//draw_rectangle(48 + 25, h_y - 47, 48 + 25 + ((1205 - 35) * gui_size - 25) * pers / round(maxhp) * health_hp, h_y - 25, 0); // round(hp) * health_hp
+		
+			//draw_set_alpha(0.3 * health_al);
+			//draw_set_color(c_black);
+			//draw_rectangle(48 + 25, h_y - 12 - 30, 48 + 25 + ((1205 - 35) * gui_size - 25) * pers / round(maxhp) * health_hp, h_y - 25, 0);
+			//draw_set_alpha(1);
+		//////////
 		draw_set_color(c_white);
-		draw_rectangle(48 + 25, global.size - 12 - 47, 48 + 25 + ((1205 - 35) * gui_size - 25) * pers / round(maxhp) * health_hp, global.size - 12 - 25, 0); // round(hp) * health_hp
+		draw_rectangle(h_x + 20, h_y - h_s - 10 + h_y1, h_x + ((1205 - 35) * gui_size - 25) * pers * 0.96 + 20, h_y - h_s / 8 - 10 + h_y1, 0);
 		
-		draw_set_alpha(0.3 * health_al);
+		draw_set_alpha(0.3);
 		draw_set_color(c_black);
-		draw_rectangle(48 + 25, global.size - 12 - 30, 48 + 25 + ((1205 - 35) * gui_size - 25) * pers / round(maxhp) * health_hp, global.size - 12 - 25, 0);
+		draw_rectangle(h_x + 20, h_y - h_s / 3 - 10 + h_y1, h_x + ((1205 - 35) * gui_size - 25) * pers * 0.96 + 20, h_y - h_s / 8 - 10 + h_y1, 0);
 		draw_set_alpha(1);
-	//////////
-	draw_set_color(c_white);
-	draw_rectangle(48 + 25, global.size - 12 - 47, 48 + 25 + ((1205 - 35) * gui_size - 25) * pers, global.size - 12 - 25, 0);
+	
+		//if health_al > 0
+		//	{ health_al -= 0.02; }
+		//	else
+		//	{ health_hp = hp; }
+		//if health_e_al > 0
+		//	{ health_e_al -= 0.02; }
+		//	else
+		//	{ health_e_hp = e_hp; }
+	
+		if o_math_mod = 0
+			{
+			draw_set_font(f_description_regular_big);
+			draw_set_color(c_black);
+			draw_set_alpha(0.75);
+				draw_text_transformed(48 + 25 + ((1205 - 35) * gui_size - 25) - (string_width(round(hp)) + string_width(maxhp) + string_width("/")) / 2 - 5, global.size - 12 - 35, string(round(hp)) + "/" + string(maxhp), 1, 1, 0/*, c_white, c_black*/);
+			draw_set_alpha(1);
+			}
+			else
+			{
+			draw_set_font(global.math_font);
+			draw_set_halign(fa_right);
+			draw_set_color(c_black);
 		
-	draw_set_alpha(0.3);
-	draw_set_color(c_black);
-	draw_rectangle(48 + 25, global.size - 12 - 30, 48 + 25 + ((1205 - 35) * gui_size - 25) * pers, global.size - 12 - 25, 0);
-	draw_set_alpha(1);
+			draw_set_alpha(0.8);
+			//draw_text_transformed(h_x + ((1205 - 35) * gui_size - 25) * pers / round(hp) * health_hp, h_y - 35 + 11, string(round(hp)), 0.12, 0.12, 0);
+			draw_set_alpha(1);
+			}
 	
-	//if health_al > 0
-	//	{ health_al -= 0.02; }
-	//	else
-	//	{ health_hp = hp; }
-	//if health_e_al > 0
-	//	{ health_e_al -= 0.02; }
-	//	else
-	//	{ health_e_hp = e_hp; }
+		draw_sprite_ext_t(s_rank_shield, 0, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8, gui_size * 0.8, 0 + restart_angle, c_white, 1, c_white, c_black);
+		draw_set_font(global.game_font); //draw_set_font(f_description_regular_big);
 	
-	if o_math_mod = 0
-		{
-		draw_set_font(f_description_regular_big);
-		draw_set_color(c_black);
-		draw_set_alpha(0.75);
-			draw_text_transformed(48 + 25 + ((1205 - 35) * gui_size - 25) - (string_width(round(hp)) + string_width(maxhp) + string_width("/")) / 2 - 5, global.size - 12 - 35, string(round(hp)) + "/" + string(maxhp), 1, 1, 0/*, c_white, c_black*/);
-		draw_set_alpha(1);
-		}
-		else
-		{
-		draw_set_font(global.math_font);
-		draw_set_halign(fa_right);
-		draw_set_color(c_black);
-		
-		draw_set_alpha(0.8);
-		draw_text_transformed(48 + 25 + ((1205 - 35) * gui_size - 25) * pers / round(hp) * health_hp, global.size - 12 - 35 + 11, string(round(hp)), 0.12, 0.12, 0);
-		draw_set_alpha(1);
-		}
+		var skul;
+			skul = 0;
+		if global.player_rank = 15
+			{ skul = 0; }
+		if global.player_rank = 10
+			{ skul = 1; }
+		if global.player_rank = 5
+			{ skul = 2; }
+		draw_sprite_ext_t(s_rank_skul, skul, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1/* + sprite_get_height(s_rank_shield) * gui_size / 2*/, gui_size * 0.8, gui_size * 0.8, 0 + restart_angle, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y + 35 + h_y1, string(global.player_rank), 0.09, 0.09, 0, c_white, c_black);
+		draw_text_transformed_t(20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 / 2, h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.player_name), 0.1, 0.1, 0, c_white, c_black);
 	
-	//for(i=1;i<dop;i++)
-	//	{ draw_sprite_ext(s_healthbar_dop, 0, 48 + 25 + i * ((1205 - 35) * gui_size - 25) / dop, global.size - 12 - 35, gui_size, gui_size, 0, c_white, 1); }
-		
-	draw_sprite_ext_t(s_rank_shield, 0, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, global.size - sprite_get_height(s_rank_shield) * gui_size / 2 - 6, gui_size, gui_size, 0 + restart_angle, c_white, 1, c_white, c_black);
-	draw_set_font(global.game_font); //draw_set_font(f_description_regular_big);
-	
-	var skul;
-		skul = 0;
-	if global.player_rank = 15
-		{ skul = 0; }
-	if global.player_rank = 10
-		{ skul = 1; }
-	if global.player_rank = 5
-		{ skul = 2; }
-	draw_text_transformed_t(10 + sprite_get_width(s_rank_shield) * gui_size / 2, global.size - 20 + 10 - 6, string(global.player_rank), 0.12, 0.12, 0, c_white, c_black);
-	draw_sprite_ext_t(s_rank_skul, skul, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, global.size - 20 - sprite_get_height(s_rank_shield) * gui_size / 2 - 6, gui_size, gui_size, 0 + restart_angle, c_white, 1, c_white, c_black);
-	
-	draw_text_transformed_t(20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 / 2, global.size - 20 - 2 - sprite_get_height(s_healthbar_hp) * gui_size, string_upper(global.player_name), 0.1, 0.1, 0, c_white, c_black);
-	
-	for(i=1; i<=3; i++)
-		{
-		draw_sprite_ext(s_healthbar_table_skul, 0, 20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 + sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3, global.size - 20 - 4 - sprite_get_height(s_healthbar_hp) * gui_size, gui_size, gui_size, 0, c_black, 0.75);
-		draw_sprite_ext(s_healthbar_table_skul, 0, 20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 + sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3, global.size - 20 - 4 - sprite_get_height(s_healthbar_hp) * gui_size + roundskul_y[i], roundskul_s[i], roundskul_s[i], 0, c_white, 1);
-		if roundskul[i] = 2 && roundskul_n[i] > 0
-			{ draw_sprite_ext(s_healthbar_table_x, 0, 20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 + sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3, global.size - 20 - 4 - sprite_get_height(s_healthbar_hp) * gui_size + roundskul_y[i], roundskul_s[i] * 0.7, roundskul_s[i] * 0.7, roundskul_xa[i], c_white, 1); }
-		}
-	
+		for(i=1; i<=3; i++)
+			{
+			draw_sprite_ext(s_healthbar_table_skul, 0, 640 - 40 + 40 * (i - 1)/*20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 + sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3*/, h_y - 10 + 3, gui_size * 1.5, gui_size * 1.5, 0, c_black, 0.75);
+			draw_sprite_ext_t(s_healthbar_table_skul, 0, 640 - 40 + 40 * (i - 1)/*20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 + sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3*/, h_y - roundskul_y[i] - 10, roundskul_s[i] * 1.5, roundskul_s[i] * 1.5, 0, c_white, 1, c_white, c_black);
+			if roundskul[i] = 2 && roundskul_n[i] > 0
+				{ draw_sprite_ext_t(s_healthbar_table_x, 0, 640 - 40 + 40 * (i - 1)/*20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 + sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3*/, h_y - roundskul_y[i] - 10, roundskul_s[i] * 0.7 * 1.5, roundskul_s[i] * 0.7 * 1.5, roundskul_xa[i], c_white, 1, c_white, c_black); }
+			}
+		var oneone, onetwo;
+		oneone = (roundskul[1] == 1) + (roundskul[2] == 1) + (roundskul[3] == 1);
+		onetwo = (roundskul[1] == 2) + (roundskul[2] == 2) + (roundskul[3] == 2);
+		draw_set_font(global.game_font);
+		draw_text_transformed_t(640, h_y + 30, string(oneone) + " : " + string(onetwo), 0.15, 0.15, 0, c_white, c_black);
+	#endregion
 	//////////////////////////
-	
-	draw_sprite_ext_t(s_healthbar_hp, 0, 1280 - 48, global.size - 12, gui_size, gui_size, 0, c_white, 1, c_white, c_black);
-	
-	var e_pers;
-	e_pers = (e_hp / e_maxhp);
-	
-	//////////
-		draw_set_alpha(health_e_al);
+	#region Хелсбар Противника
+		draw_sprite_ext_t(s_healthbar_hp, 0, 1280 - h_x, h_y + h_y1, gui_size * 0.95, gui_size * 0.4, 0, c_white, 1, c_white, c_black);
+		
+		var e_pers;
+		e_pers = (e_hp / e_maxhp);
+		
 		draw_set_color(c_white);
-		draw_rectangle(1280 - 48 - 25, global.size - 12 - 47, 1280 - 48 - 25 - ((1205 - 35) * gui_size - 25) * e_pers / round(e_hp) * health_e_hp, global.size - 12 - 25, 0);
+		draw_rectangle(1280 - h_x - ((1205 - 35) * gui_size - 25) * e_pers * 0.95 - 25, h_y - h_s / 8 - 10 + h_y1, 1280 - h_x - 25, h_y - h_s - 10 + h_y1, 0);
 		
-		draw_set_alpha(0.4 * health_e_al);
+		draw_set_alpha(0.3);
 		draw_set_color(c_black);
-		draw_rectangle(1280 - 48 - 25, global.size - 12 - 30, 1280 - 48 - 25 - ((1205 - 35) * gui_size - 25) * e_pers / round(e_hp) * health_e_hp, global.size - 12 - 25, 0);
+		draw_rectangle(1280 - h_x - ((1205 - 35) * gui_size - 25) * e_pers * 0.95 - 25, h_y - h_s / 8 - 10 + h_y1, 1280 - h_x - 25, h_y - h_s / 3 - 10 + h_y1, 0);
 		draw_set_alpha(1);
-	/////////
-	
-	draw_set_color(c_white);
-	draw_rectangle(1280 - 48 - 25, global.size - 12 - 47, 1280 - 48 - 25 - ((1205 - 35) * gui_size - 25) * e_pers, global.size - 12 - 25, 0);
 		
-	draw_set_alpha(0.4);
-	draw_set_color(c_black);
-	draw_rectangle(1280 - 48 - 25, global.size - 12 - 30, 1280 - 48 - 25 - ((1205 - 35) * gui_size - 25) * e_pers, global.size - 12 - 25, 0);
-	draw_set_alpha(1);
-	
-	if o_math_mod = 0
-		{
-		draw_set_font(f_description_regular_big);
-		draw_set_color(c_black);
-		draw_set_alpha(0.75);
-			draw_text_transformed(1280 - 48 - 25 - ((1205 - 35) * gui_size - 25) + (string_width(round(e_hp)) + string_width(e_maxhp) + string_width("/")) / 2 + 5, global.size - 12 - 35, string(e_hp) + "/" + string(e_maxhp), 1, 1, 0/*, c_white, c_black*/);
-		draw_set_alpha(1);
-		}
-		else
-		{
-		draw_set_font(global.math_font);
-		draw_set_halign(fa_left);
-		draw_set_color(c_black);
+			draw_set_font(global.math_font);
+			draw_set_halign(fa_right);
+			draw_set_color(c_black);
 		
-		draw_set_alpha(0.8);
-		draw_text_transformed(1280 - 48 - 25 - ((1205 - 35) * gui_size - 25) * e_pers / round(e_hp) * health_e_hp + 15, global.size - 12 - 35 + 11, string(round(e_hp)), 0.12, 0.12, 0);
+			draw_set_alpha(0.8);
+			//draw_text_transformed(1280 - h_x - ((1205 - 35) * gui_size - 25) * pers / round(e_hp) * health_e_hp, h_y - 35 + 11, string(round(e_hp)), 0.12, 0.12, 0);
+			draw_set_alpha(1);
+		
+		draw_sprite_ext_t(s_rank_shield, 0, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8, gui_size * 0.8, 0 + restart_angle, c_white, 1, c_white, c_black);
+		draw_set_font(global.game_font);
+	
+		var eskul;
+			eskul = 0;
+		if global.enemy_rank > 10
+			{ eskul = 0; }
+		if global.enemy_rank <= 10 && global.enemy_rank > 5
+			{ eskul = 1; }
+		if global.enemy_rank <= 5
+			{ eskul = 2; }
+		draw_sprite_ext_t(s_rank_skul, skul, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1/* + sprite_get_height(s_rank_shield) * gui_size / 2*/, gui_size * 0.8, gui_size * 0.8, 0 + restart_angle, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size / 2), h_y + 35 + h_y1, string(global.enemy_rank), 0.09, 0.09, 0, c_white, c_black);
+		draw_text_transformed_t(1280 - (20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name)) * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name), 0.1, 0.1, 0, c_white, c_black);
+	
+		//for(i=1; i<=3; i++)
+		//	{
+		//	draw_sprite_ext(s_healthbar_table_skul, 0, 1280 - h_x - 10/*20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 + sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3*/, h_y - 4 - sprite_get_height(s_healthbar_hp) * gui_size, gui_size, gui_size, 0, c_black, 0.75);
+		//	draw_sprite_ext(s_healthbar_table_skul, 0, 1280 - h_x - 10/*20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 + sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3*/, h_y - 4 - sprite_get_height(s_healthbar_hp) * gui_size + roundskul_y[i], roundskul_s[i], roundskul_s[i], 0, c_white, 1);
+		//	if roundskul[i] = 2 && roundskul_n[i] > 0
+		//		{ draw_sprite_ext(s_healthbar_table_x, 0, 1280 - h_x - 10/*20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 + sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3*/, h_y - 4 - sprite_get_height(s_healthbar_hp) * gui_size + roundskul_y[i], roundskul_s[i] * 0.7, roundskul_s[i] * 0.7, roundskul_xa[i], c_white, 1); }
+		//	}
+	#endregion
+	if 0
+	{
+	#region Хелсбар Противника 2
+		draw_sprite_ext_t(s_healthbar_hp, 0, 1280 - 48, global.size - 12, gui_size, gui_size, 0, c_white, 1, c_white, c_black);
+	
+		var e_pers;
+		e_pers = (e_hp / e_maxhp);
+	
+		//////////
+			draw_set_alpha(health_e_al);
+			draw_set_color(c_white);
+			draw_rectangle(1280 - 48 - 25, global.size - 12 - 47, 1280 - 48 - 25 - ((1205 - 35) * gui_size - 25) * e_pers / round(e_hp) * health_e_hp, global.size - 12 - 25, 0);
+		
+			draw_set_alpha(0.4 * health_e_al);
+			draw_set_color(c_black);
+			draw_rectangle(1280 - 48 - 25, global.size - 12 - 30, 1280 - 48 - 25 - ((1205 - 35) * gui_size - 25) * e_pers / round(e_hp) * health_e_hp, global.size - 12 - 25, 0);
+			draw_set_alpha(1);
+		/////////
+	
+		draw_set_color(c_white);
+		draw_rectangle(1280 - 48 - 25, global.size - 12 - 47, 1280 - 48 - 25 - ((1205 - 35) * gui_size - 25) * e_pers, global.size - 12 - 25, 0);
+		
+		draw_set_alpha(0.4);
+		draw_set_color(c_black);
+		draw_rectangle(1280 - 48 - 25, global.size - 12 - 30, 1280 - 48 - 25 - ((1205 - 35) * gui_size - 25) * e_pers, global.size - 12 - 25, 0);
 		draw_set_alpha(1);
-		}
 	
-	var eskul;
-	if global.enemy_rank > 10
-		{ eskul = 0; }
-	if global.enemy_rank <= 10 && global.enemy_rank > 5
-		{ eskul = 1; }
-	if global.enemy_rank <= 5
-		{ eskul = 2; }
+		if o_math_mod = 0
+			{
+			draw_set_font(f_description_regular_big);
+			draw_set_color(c_black);
+			draw_set_alpha(0.75);
+				draw_text_transformed(1280 - 48 - 25 - ((1205 - 35) * gui_size - 25) + (string_width(round(e_hp)) + string_width(e_maxhp) + string_width("/")) / 2 + 5, global.size - 12 - 35, string(e_hp) + "/" + string(e_maxhp), 1, 1, 0/*, c_white, c_black*/);
+			draw_set_alpha(1);
+			}
+			else
+			{
+			draw_set_font(global.math_font);
+			draw_set_halign(fa_left);
+			draw_set_color(c_black);
+		
+			draw_set_alpha(0.8);
+			draw_text_transformed(1280 - 48 - 25 - ((1205 - 35) * gui_size - 25) * e_pers / round(e_hp) * health_e_hp + 15, global.size - 12 - 35 + 11, string(round(e_hp)), 0.12, 0.12, 0);
+			draw_set_alpha(1);
+			}
 	
-	draw_sprite_ext_t(s_rank_shield, 0, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, global.size - sprite_get_height(s_rank_shield) * gui_size / 2 - 6, gui_size, gui_size, 0 + restart_angle2, c_white, 1, c_white, c_black);
-	draw_set_font(global.game_font); //draw_set_font(f_description_regular_big);
-	draw_text_transformed_t(1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, global.size - 20 + 10 - 6, string(global.enemy_rank), 0.12, 0.12, 0, c_white, c_black);
-	draw_sprite_ext_t(s_rank_skul, eskul, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, global.size - 20 - sprite_get_height(s_rank_shield) * gui_size / 2 - 6, gui_size, gui_size, 0 + restart_angle2, c_white, 1, c_white, c_black);
+		var eskul;
+		if global.enemy_rank > 10
+			{ eskul = 0; }
+		if global.enemy_rank <= 10 && global.enemy_rank > 5
+			{ eskul = 1; }
+		if global.enemy_rank <= 5
+			{ eskul = 2; }
 	
-	draw_text_transformed_t(1280 - 20 - sprite_get_width(s_rank_shield) * gui_size - string_width(string_upper(global.enemy_name)) * 0.1 / 2, global.size - 20 - 2 - sprite_get_height(s_healthbar_hp) * gui_size, string_upper(global.enemy_name), 0.1, 0.1, 0, c_white, c_black);
+		draw_sprite_ext_t(s_rank_shield, 0, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, global.size - sprite_get_height(s_rank_shield) * gui_size / 2 - 6, gui_size, gui_size, 0 + restart_angle2, c_white, 1, c_white, c_black);
+		draw_set_font(global.game_font); //draw_set_font(f_description_regular_big);
+		draw_text_transformed_t(1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, global.size - 20 + 10 - 6, string(global.enemy_rank), 0.12, 0.12, 0, c_white, c_black);
+		draw_sprite_ext_t(s_rank_skul, eskul, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, global.size - 20 - sprite_get_height(s_rank_shield) * gui_size / 2 - 6, gui_size, gui_size, 0 + restart_angle2, c_white, 1, c_white, c_black);
 	
-	draw_set_color(c_white);
-	for(i=1; i<=3; i++)
-		{
-		draw_sprite_ext(s_healthbar_table_skul, 0, 1280 - 20 - sprite_get_width(s_rank_shield) * gui_size - string_width(string_upper(global.enemy_name)) * 0.1 - sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3, global.size - 20 - 4 - sprite_get_height(s_healthbar_hp) * gui_size, gui_size, gui_size, 0, c_black, 0.75);
-		draw_sprite_ext(s_healthbar_table_skul, 0, 1280 - 20 - sprite_get_width(s_rank_shield) * gui_size - string_width(string_upper(global.enemy_name)) * 0.1 - sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3, global.size - 20 - 4 - sprite_get_height(s_healthbar_hp) * gui_size + roundskul_y[i], roundskul_s[i], roundskul_s[i], 0, c_white, 1);
-		if roundskul[i] = 1 && roundskul_n[i] > 0
-			{ draw_sprite_ext(s_healthbar_table_x, 0, 1280 - 20 - sprite_get_width(s_rank_shield) * gui_size - string_width(string_upper(global.enemy_name)) * 0.1 - sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3, global.size - 20 - 4 - sprite_get_height(s_healthbar_hp) * gui_size + roundskul_y[i], roundskul_s[i] * 0.7, roundskul_s[i] * 0.7,  roundskul_xa[i], c_white, 1); }
-		}
+		draw_text_transformed_t(1280 - 20 - sprite_get_width(s_rank_shield) * gui_size - string_width(string_upper(global.enemy_name)) * 0.1 / 2, global.size - 20 - 2 - sprite_get_height(s_healthbar_hp) * gui_size, string_upper(global.enemy_name), 0.1, 0.1, 0, c_white, c_black);
 	
+		draw_set_color(c_white);
+		for(i=1; i<=3; i++)
+			{
+			draw_sprite_ext(s_healthbar_table_skul, 0, 1280 - 20 - sprite_get_width(s_rank_shield) * gui_size - string_width(string_upper(global.enemy_name)) * 0.1 - sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3, global.size - 20 - 4 - sprite_get_height(s_healthbar_hp) * gui_size, gui_size, gui_size, 0, c_black, 0.75);
+			draw_sprite_ext(s_healthbar_table_skul, 0, 1280 - 20 - sprite_get_width(s_rank_shield) * gui_size - string_width(string_upper(global.enemy_name)) * 0.1 - sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3, global.size - 20 - 4 - sprite_get_height(s_healthbar_hp) * gui_size + roundskul_y[i], roundskul_s[i], roundskul_s[i], 0, c_white, 1);
+			if roundskul[i] = 1 && roundskul_n[i] > 0
+				{ draw_sprite_ext(s_healthbar_table_x, 0, 1280 - 20 - sprite_get_width(s_rank_shield) * gui_size - string_width(string_upper(global.enemy_name)) * 0.1 - sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3, global.size - 20 - 4 - sprite_get_height(s_healthbar_hp) * gui_size + roundskul_y[i], roundskul_s[i] * 0.7, roundskul_s[i] * 0.7,  roundskul_xa[i], c_white, 1); }
+			}
+	#endregion
+	}
 	//////////////////////////////
 	/////////////////////////////
 	if win_stage >= 4
@@ -3833,25 +4021,6 @@ if 0
 		}
 		else
 		{ restart_time2 = 0; restart_angle2 = 0; }
-	//if keyboard_check_pressed(ord("Q"))
-	//	{ roundskul[1] = 1; }
-	//	if keyboard_check_pressed(ord("W"))
-	//	{ roundskul[1] = 2; }
-			
-	//if keyboard_check_pressed(ord("E"))
-	//	{ roundskul[2] = 1; }
-	//	if keyboard_check_pressed(ord("R"))
-	//	{ roundskul[2] = 2; }
-			
-	//if keyboard_check_pressed(ord("T"))
-	//	{ roundskul[3] = 1; }
-	//	if keyboard_check_pressed(ord("Y"))
-	//	{ roundskul[3] = 2; }
-		
-	//roundskul[1]   = 0;
-	//roundskul_y[1] = 200;
-	//roundskul_n[1] = 0;
-	//roundskul_s[1] = 0.1;
 #endregion
 #region Слова при выстреле
 	for(i=0;i<=2;i++)
@@ -3885,6 +4054,13 @@ if 0
 					{ dop_text_xscale[i] -= 0.05; }
 					else
 					{
+					if i = 1
+						{
+						part_x = dop_text_x[1];
+						part_y = dop_text_y[1];
+						part_n = 1;
+						part_s = 1;
+						}
 					dop_text_end[i]    = 0;
 					dop_text_angle[i]  = 0;
 					dop_text_xscale[i] = 0;
@@ -3927,163 +4103,166 @@ if 0
 			}
 		}
 #endregion
-#region Смайлы
-	if point_in_circle(mouse_x, mouse_y, 640, global.size - 20, 65) && mouse_check_button_released(mb_left)
-		{ audio_play_sound(sd_text, 2, 0); smile_open = !smile_open; }
+if 0
+	{
+	#region Смайлы
+		if point_in_circle(mouse_x, mouse_y, 640, global.size - 20, 65) && mouse_check_button_released(mb_left)
+			{ audio_play_sound(sd_text, 2, 0); smile_open = !smile_open; }
 	
-	if enemy_smile_time > 0
-		{ enemy_smile_time -= 1; }
-		else
-		{
-		if enemy_smile_time > -1
-			{
-			smile_show1 = 1;
-			smile_cur1  = enemy_smile;
-			enemy_smile_time = -1;
-			}
-		}
-	
-	if smile_bi != smile_open
-		{
-		if smile_bs > 0
-			{ smile_bs -= 0.25; }
+		if enemy_smile_time > 0
+			{ enemy_smile_time -= 1; }
 			else
-			{ smile_bi = smile_open; }
-		}
-		else
-		{
-		if smile_bs < 1
-			{ smile_bs += 0.25; }
-		}
-	
-	draw_sprite_ext(s_smile_button2, smile_bi, 640, global.size - 20, 0.25 * smile_bs * 4, 0.25 * smile_bs * 4, 0, c_white, 0.8);
-	
-	if smile_open
-		{
-		if smile_sc < 1
-			{ smile_sc += 0.15; }
-			else
-			{ smile_sc = 1; }
-		draw_question(s_question_back, 0, 640, global.size - 140, 560 * smile_sc, 50, 1, c_white, 0.7);
-		for(i=0; i<=5; i++)
 			{
-			if point_in_circle(mouse_x, mouse_y, 640 - 260 + 100 * i, global.size - 140, 40) && smile_sc = 1
+			if enemy_smile_time > -1
 				{
-				if mouse_check_button_released(mb_left)
-					{
-					if enemy_smile = -1
-						{
-						audio_play_sound(sd_text, 2, 0);
-						enemy_smile_chance = choose(0,1);
-						if enemy_smile_chance = 1
-							{
-							if (hp / maxhp - e_hp / e_maxhp) * 100 < -30
-								{ enemy_smile = choose(1, 1, 1, 1, 3, 3, 4); }
-							if (hp / maxhp - e_hp / e_maxhp) * 100 >= -30 && (hp / maxhp - e_hp / e_maxhp) * 100 < 20
-								{ enemy_smile = choose(0, 1, 2, 2, 2, 3, 4); }
-							if (hp / maxhp - e_hp / e_maxhp) * 100 >= 20 && (hp / maxhp - e_hp / e_maxhp) * 100 < 40
-								{ enemy_smile = choose(2, 2, 2, 5, 5, 5, 4, 0); }
-							if (hp / maxhp - e_hp / e_maxhp) * 100 >= 40 && (hp / maxhp - e_hp / e_maxhp) * 100 < 70
-								{ enemy_smile = choose(0, 0, 0, 5, 5, 5); }
-							if (hp / maxhp - e_hp / e_maxhp) * 100 >= 70
-								{ enemy_smile = choose(0, 0, 0, 5, 5); }
-							enemy_smile_time = room_speed * random_range(1, 3);
-							}
-						}
-					if smile_show = 0
-						{
-						smile_open = 0;
-						smile_show = 1;
-						smile_cur  = i;
-						}
-					}
-				if smile_ss[i] < 0.12
-					{ smile_ss[i] += 0.02; }
-				draw_sprite_ext(asset_get_index("s_smile_"+string(i)), smile_n, 640 - 260 * smile_sc + 100 * i * smile_sc, global.size - 140, (0.27 + smile_ss[i]) * smile_sc, (0.27 + smile_ss[i]), 0, c_white, 1);
+				smile_show1 = 1;
+				smile_cur1  = enemy_smile;
+				enemy_smile_time = -1;
 				}
+			}
+	
+		if smile_bi != smile_open
+			{
+			if smile_bs > 0
+				{ smile_bs -= 0.25; }
 				else
-				{
-				if smile_ss[i] > 0
-					{ smile_ss[i] -= 0.02; }
-				draw_sprite_ext(s_smiles, i, 640 - 260 * smile_sc + 100 * i * smile_sc, global.size - 140, (0.27 + smile_ss[i]) * smile_sc, (0.27 + smile_ss[i]), 0, c_white, 1);
-				}
+				{ smile_bi = smile_open; }
 			}
-		smile_n += 1/3;
-		}
-		else
-		{
-		smile_n = 0;
-		if smile_sc > 0
+			else
 			{
-			smile_sc -= 0.15;
+			if smile_bs < 1
+				{ smile_bs += 0.25; }
+			}
+	
+		draw_sprite_ext(s_smile_button2, smile_bi, 640, global.size - 20, 0.25 * smile_bs * 4, 0.25 * smile_bs * 4, 0, c_white, 0.8);
+	
+		if smile_open
+			{
+			if smile_sc < 1
+				{ smile_sc += 0.15; }
+				else
+				{ smile_sc = 1; }
 			draw_question(s_question_back, 0, 640, global.size - 140, 560 * smile_sc, 50, 1, c_white, 0.7);
 			for(i=0; i<=5; i++)
-				{ draw_sprite_ext(s_smiles, i, 640 - 260 * smile_sc + 100 * i * smile_sc, global.size - 140, 0.27 * smile_sc, 0.27, 0, c_white, 1); }
-			}
-		}
-	#region Наш смайл
-		if smile_show = 1
-			{
-			smile_alp  = 1;
-			smile_img += 1/3;
-		
-			if smile_sy < 1
-				{ smile_sy += 0.2; }
-			
-			if smile_sec < 4 * room_speed
-				{ smile_sec += 1; }
-				else
-				{ smile_show = 0; }
-		
-			draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur)), smile_img, o_hero.x + 135, o_hero.y - 220, 0.4 * smile_sy, 0.4 * smile_sy, 0, c_white, 1);
+				{
+				if point_in_circle(mouse_x, mouse_y, 640 - 260 + 100 * i, global.size - 140, 40) && smile_sc = 1
+					{
+					if mouse_check_button_released(mb_left)
+						{
+						if enemy_smile = -1
+							{
+							audio_play_sound(sd_text, 2, 0);
+							enemy_smile_chance = choose(0,1);
+							if enemy_smile_chance = 1
+								{
+								if (hp / maxhp - e_hp / e_maxhp) * 100 < -30
+									{ enemy_smile = choose(1, 1, 1, 1, 3, 3, 4); }
+								if (hp / maxhp - e_hp / e_maxhp) * 100 >= -30 && (hp / maxhp - e_hp / e_maxhp) * 100 < 20
+									{ enemy_smile = choose(0, 1, 2, 2, 2, 3, 4); }
+								if (hp / maxhp - e_hp / e_maxhp) * 100 >= 20 && (hp / maxhp - e_hp / e_maxhp) * 100 < 40
+									{ enemy_smile = choose(2, 2, 2, 5, 5, 5, 4, 0); }
+								if (hp / maxhp - e_hp / e_maxhp) * 100 >= 40 && (hp / maxhp - e_hp / e_maxhp) * 100 < 70
+									{ enemy_smile = choose(0, 0, 0, 5, 5, 5); }
+								if (hp / maxhp - e_hp / e_maxhp) * 100 >= 70
+									{ enemy_smile = choose(0, 0, 0, 5, 5); }
+								enemy_smile_time = room_speed * random_range(1, 3);
+								}
+							}
+						if smile_show = 0
+							{
+							smile_open = 0;
+							smile_show = 1;
+							smile_cur  = i;
+							}
+						}
+					if smile_ss[i] < 0.12
+						{ smile_ss[i] += 0.02; }
+					draw_sprite_ext(asset_get_index("s_smile_"+string(i)), smile_n, 640 - 260 * smile_sc + 100 * i * smile_sc, global.size - 140, (0.27 + smile_ss[i]) * smile_sc, (0.27 + smile_ss[i]), 0, c_white, 1);
+					}
+					else
+					{
+					if smile_ss[i] > 0
+						{ smile_ss[i] -= 0.02; }
+					draw_sprite_ext(s_smiles, i, 640 - 260 * smile_sc + 100 * i * smile_sc, global.size - 140, (0.27 + smile_ss[i]) * smile_sc, (0.27 + smile_ss[i]), 0, c_white, 1);
+					}
+				}
+			smile_n += 1/3;
 			}
 			else
 			{
-			smile_img = 0;
-			smile_sec = 0;
-			smile_sy  = 0;
-		
-			if smile_alp > 0
+			smile_n = 0;
+			if smile_sc > 0
 				{
-				smile_alp -= 0.05;
-				draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur)), smile_img, o_hero.x + 135, o_hero.y - 220, 0.4, 0.4, 0, c_white, smile_alp);
+				smile_sc -= 0.15;
+				draw_question(s_question_back, 0, 640, global.size - 140, 560 * smile_sc, 50, 1, c_white, 0.7);
+				for(i=0; i<=5; i++)
+					{ draw_sprite_ext(s_smiles, i, 640 - 260 * smile_sc + 100 * i * smile_sc, global.size - 140, 0.27 * smile_sc, 0.27, 0, c_white, 1); }
 				}
-				else
-				{ smile_alp = 0; }
 			}
-	#endregion
-	#region Смайл противника
-		if smile_show1 = 1
-			{
-			smile_alp1  = 1;
-			smile_img1 += 1/3;
+		#region Наш смайл
+			if smile_show = 1
+				{
+				smile_alp  = 1;
+				smile_img += 1/3;
 		
-			if smile_sy1 < 1
-				{ smile_sy1 += 0.2; }
+				if smile_sy < 1
+					{ smile_sy += 0.2; }
 			
-			if smile_sec1 < 4 * room_speed
-				{ smile_sec1 += 1; }
-				else
-				{ smile_show1 = 0; enemy_smile = -1; }
+				if smile_sec < 4 * room_speed
+					{ smile_sec += 1; }
+					else
+					{ smile_show = 0; }
 		
-			draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur1)), smile_img1, (global.enemy_object).x - 135, o_hero.y - 220, 0.4 * smile_sy1, 0.4 * smile_sy1, 0, c_white, 1);
-			}
-			else
-			{
-			smile_img1 = 0;
-			smile_sec1 = 0;
-			smile_sy1  = 0;
-		
-			if smile_alp1 > 0
-				{
-				smile_alp1 -= 0.05;
-				draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur1)), smile_img1, (global.enemy_object).x - 135, o_hero.y - 220, 0.4, 0.4, 0, c_white, smile_alp1);
+				draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur)), smile_img, o_hero.x + 135, o_hero.y - 220, 0.4 * smile_sy, 0.4 * smile_sy, 0, c_white, 1);
 				}
 				else
-				{ smile_alp1 = 0; }
-			}
+				{
+				smile_img = 0;
+				smile_sec = 0;
+				smile_sy  = 0;
+		
+				if smile_alp > 0
+					{
+					smile_alp -= 0.05;
+					draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur)), smile_img, o_hero.x + 135, o_hero.y - 220, 0.4, 0.4, 0, c_white, smile_alp);
+					}
+					else
+					{ smile_alp = 0; }
+				}
+		#endregion
+		#region Смайл противника
+			if smile_show1 = 1
+				{
+				smile_alp1  = 1;
+				smile_img1 += 1/3;
+		
+				if smile_sy1 < 1
+					{ smile_sy1 += 0.2; }
+			
+				if smile_sec1 < 4 * room_speed
+					{ smile_sec1 += 1; }
+					else
+					{ smile_show1 = 0; enemy_smile = -1; }
+		
+				draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur1)), smile_img1, (global.enemy_object).x - 135, o_hero.y - 220, 0.4 * smile_sy1, 0.4 * smile_sy1, 0, c_white, 1);
+				}
+				else
+				{
+				smile_img1 = 0;
+				smile_sec1 = 0;
+				smile_sy1  = 0;
+		
+				if smile_alp1 > 0
+					{
+					smile_alp1 -= 0.05;
+					draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur1)), smile_img1, (global.enemy_object).x - 135, o_hero.y - 220, 0.4, 0.4, 0, c_white, smile_alp1);
+					}
+					else
+					{ smile_alp1 = 0; }
+				}
+		#endregion
 	#endregion
-#endregion
+	}
 #region Линии видов разрешения
 if keyboard_check_pressed(ord("L"))
 	{ lines_true = !lines_true; }
@@ -4164,28 +4343,37 @@ if view_go_left = 0 && view_go_right = 0
 #region Критикал
 	if global.critical = 3
 		{
-		if global.critical_y_p > 0
-			{ global.critical_y_p -= 20; }
+		if critical_x < 640 - 30
+			{ critical_x += 50; critical_y -= 5; }
+		if critical_x >= 640 - 30 && critical_x < 640 + 30
+			{ critical_x += 2; }
+		if critical_x >= 640 + 30 && critical_x < 1280 + 250
+			{ critical_x += 50; critical_y += 5; }
+		critical_s =  1 - 0.3 * abs(640 - critical_x) / 640;
+		//if global.critical_y_p > 0
+		//	{ global.critical_y_p -= 20; }
 		}
 		else
 		{
-		if global.critical_y_p < 200
-			{ global.critical_y_p += 20; }
+		critical_x = -250;
+		critical_y = -170;
+		//if global.critical_y_p < 200
+		//	{ global.critical_y_p += 20; }
 		}
-	if global.e_critical = 3
-		{
-		if global.critical_y_e > 0
-			{ global.critical_y_e -= 20; }
-		}
-		else
-		{
-		if global.critical_y_e < 200
-			{ global.critical_y_e += 20; }
-		}
+	//if global.e_critical = 3
+	//	{
+	//	if global.critical_y_e > 0
+	//		{ global.critical_y_e -= 20; }
+	//	}
+	//	else
+	//	{
+	//	if global.critical_y_e < 200
+	//		{ global.critical_y_e += 20; }
+	//	}
 	
 	draw_set_font(global.game_font);
-	draw_text_transformed_t((global.player_object).x + 250, global.size - 22 - sprite_get_height(s_healthbar_hp) * gui_size + global.critical_y_p, "CRITICAL", 0.1, 0.1, 0, (global.player_object).hero_color, c_black);
-	draw_text_transformed_t((global.enemy_object).x - 250 , global.size - 22 - sprite_get_height(s_healthbar_hp) * gui_size + global.critical_y_e, "CRITICAL", 0.1, 0.1, 0, (global.enemy_object).hero_color , c_black);
+	draw_text_transformed_t(critical_x, global.size / 2 + critical_y, "CRITICAL", 0.2 * critical_s, 0.2 * critical_s, 0, (global.player_object).hero_color, c_black);
+	//draw_text_transformed_t((global.enemy_object).x - 250 , global.size - 22 - sprite_get_height(s_healthbar_hp) * gui_size + global.critical_y_e, "CRITICAL", 0.1, 0.1, 0, (global.enemy_object).hero_color , c_black);
 #endregion
 #region Верно или нет
 	if answer_rec = 1

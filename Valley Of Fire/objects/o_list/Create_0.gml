@@ -351,6 +351,10 @@
 	global.critical   = 0;
 	global.e_critical = 0;
 	
+	critical_x = -250;
+	critical_y = -170;
+	critical_s = 0.7;
+	
 	global.critical_y_p = 200;
 	global.critical_y_e = 200;
 	
@@ -492,10 +496,24 @@
 	dop_q_y = 0;
 #endregion
 #region Суперудар Кнопка
-	super_need = 3;
-	super_now  = 0;
-	
+	super_need  = 3;
+	super_now   = 0;
+	super_now1  = 0;
+	super_scale = 0;
 	super_stage = 0;
+	super_zhopa = 300;
+	super_angle = 0;
+	super_dir   = 1;
+	super_alp   = 1;
+	super_alp1  = 1;
+	
+	super_time  = 0;
+	super_val   = 0;
+	
+	part_x = 0;
+	part_y = 0;
+	part_s = 1;
+	part_n = 0;
 #endregion
 #region Финиш Дуэли
 	whowin  = 0;

@@ -57,7 +57,7 @@ if !enemy
 		if image_index >= hero_abindex//26
 			{ ability_alpha -= 0.15; ability_index = 9; }
 		
-		draw_sprite_ext(ability_back, ability_index, x - 28, y - 15, sc * scale, scale, 0, c_white, ability_alpha);
+		draw_sprite_ext(ability_back, ability_index, x - 28, y - 15, sc * scale, scale, 0, hero_color, ability_alpha);
 		}
 		else
 		{ ability_index = 0; ability_alpha = 1; }
@@ -197,9 +197,9 @@ if !enemy
 							o_list.dop_i[1] = 7;
 							o_list.dop_text_color[1] = (global.enemy_object).hero_color;
 							if global.critical == 3
-								{ o_list.dop_text[7] = "-" + string(o_list.e_atk + o_list.e_atk / 10); }
+								{ o_list.dop_text[7] = "-" + string(round(o_list.e_atk + o_list.e_atk / 10)); }
 								else
-								{ o_list.dop_text[7] = "-" + string(o_list.e_atk); }
+								{ o_list.dop_text[7] = "-" + string(round(o_list.e_atk)); }
 							if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 								{
 								skeleton_animation_set("damaged");
@@ -243,14 +243,21 @@ if !enemy
 								{ poisoned = room_speed * 10; }
 							if o_list.view_go_right = 0
 								{ o_list.view_go_right = 1; }
+								
+							//if i = 8
+							//{
+							//o_list.part_x = o_list.dop_text_x[1];
+							//o_list.part_y = o_list.dop_text_y[1];
+							//o_list.part_n = 1;
+							//}
 							o_list.e_hp -= o_list.atk + o_list.atk / 10 * (global.e_critical == 3);
 							o_list.dop_i[2] = 8;
 							o_list.dop_text_color[2] = (global.player_object).hero_color;
 							
 							if global.critical == 3
-								{ o_list.dop_text[8] = "-" + string(o_list.atk + o_list.atk / 10)/* + "-" + string(round(o_list.atk / 10));*/ }
+								{ o_list.dop_text[8] = "-" + string(round(o_list.atk + o_list.atk / 10))/* + "-" + string(round(o_list.atk / 10));*/ }
 								else
-								{ o_list.dop_text[8] = "-" + string(o_list.atk); }
+								{ o_list.dop_text[8] = "-" + string(round(o_list.atk)); }
 							if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 								{
 								skeleton_animation_set("damaged");

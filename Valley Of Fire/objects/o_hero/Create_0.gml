@@ -70,13 +70,15 @@ super_img = 0;
 	
 ability_index = 0;
 ability_alpha = 1;
-ability_back  = asset_get_index("s_ability_back_" + string(global.hero_code_name[hero]));
+ability_back  = s_ability_back; //asset_get_index("s_ability_back_" + string(global.hero_code_name[hero]));
 switch(hero)
 	{
 	case 1: hero_abindex = 26; hero_color = c_orange; break;
 	case 2: hero_abindex = 26; hero_color = c_maroon; break; // DIEGO ???
 	case 3: hero_abindex = 35; hero_color = c_fuchsia; break;
-	}	
+	}
+
+hero_color = global.color_hero[hero];
 
 sx = x;
 sy = y; // Координаты снаряда

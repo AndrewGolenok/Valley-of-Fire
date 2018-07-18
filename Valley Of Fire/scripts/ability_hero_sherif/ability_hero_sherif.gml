@@ -84,7 +84,7 @@ if shoot = 2 or shoot = 3
 					o_list.hp -= o_list.e_atk;
 					o_list.dop_i[1] = 7;
 					o_list.dop_text_color[1] = c_orange;
-					o_list.dop_text[7] = "-" + string(o_list.e_atk);
+					o_list.dop_text[7] = "-" + string(round(o_list.e_atk));
 					if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 						{
 						skeleton_animation_set("damaged");
@@ -106,7 +106,7 @@ if shoot = 2 or shoot = 3
 						o_list.e_hp -= o_list.atk;
 						o_list.dop_i[2] = 8;
 						o_list.dop_text_color[2] = c_orange;
-						o_list.dop_text[8] = "-" + string(o_list.atk);
+						o_list.dop_text[8] = "-" + string(round(o_list.atk));
 						if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 							{
 							skeleton_animation_set("damaged");

@@ -33,6 +33,8 @@
 		{ back_y = 160; }
 		else
 		{ back_y = 30; }
+	if global.size < 650
+		{ back_y = 220; }
 	back_s  = 0.56;
 	back_sp = back_s;
 	
