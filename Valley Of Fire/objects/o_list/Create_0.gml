@@ -238,101 +238,178 @@
 	for(i=0; i<=5; i++)
 		{ smile_ss[i] = 0; }
 #endregion
-#region Выбор игрока
-	hand_choose = 0;
-	hand_x = 640;
-	hand_y = global.size + 100;
-	hand_a = 0;
-	hand_s = 0.9;
-	hand_t = 0;
+#region Выбор Игрока
+	#region Первый
+		hand_choose = 0;
+		hand_x = 640;
+		hand_y = global.size + 100;
+		hand_a = 0;
+		hand_s = 0.9;
+		hand_t = 0;
 	
-	first_player = -1;
+		first_player = -1;
 	
-	hand_text_n = 0;
+		hand_text_n = 0;
 	
-	hand_text_x = 1280 + 300;
-	hand_dir    = 1;
+		hand_text_x = 1280 + 300;
+		hand_dir    = 1;
 	
-	hand_alpha  = 1;
-	hand_text_y = 0;
+		hand_alpha  = 1;
+		hand_text_y = 0;
 	
-	theme_points_time = 0;
-	theme_points = "";
+		theme_points_time = 0;
+		theme_points = "";
 	
-	timer_t = 30 * room_speed;
+		timer_t = 30 * room_speed;
 	
-	enemy_timer = -1;
+		enemy_timer = -1;
 	
-	ini_open("Language/" + string_lower(string(global.lang)) + "/other_text_" + string_lower(string(global.lang)) + ".ini");
-	ini_open("other_text_en.ini")
-	hand_text[0] = ini_read_string("Text", "hand_text_0", "");
-	hand_text[1] = ini_read_string("Text", "hand_text_1", "");
-	hand_text[2] = ini_read_string("Text", "hand_text_2", "");
+		ini_open("Language/" + string_lower(string(global.lang)) + "/other_text_" + string_lower(string(global.lang)) + ".ini");
+		ini_open("other_text_en.ini")
+		hand_text[0] = ini_read_string("Text", "hand_text_0", "");
+		hand_text[1] = ini_read_string("Text", "hand_text_1", "");
+		hand_text[2] = ini_read_string("Text", "hand_text_2", "");
 	
-	theme_text[0] = ini_read_string("Text", "theme_text_0", "");
-	theme_text[1] = ini_read_string("Text", "theme_text_1", "");
+		theme_text[0] = ini_read_string("Text", "theme_text_0", "");
+		theme_text[1] = ini_read_string("Text", "theme_text_1", "");
 	
-	win_text[0] = ini_read_string("Text", "win_text_0", "");
-	win_text[1] = ini_read_string("Text", "win_text_1", "");
+		win_text[0] = ini_read_string("Text", "win_text_0", "");
+		win_text[1] = ini_read_string("Text", "win_text_1", "");
 	
-	end_text[0] = ini_read_string("Text", "end_text_0", "");
-	end_text[1] = ini_read_string("Text", "end_text_1", "");
+		end_text[0] = ini_read_string("Text", "end_text_0", "");
+		end_text[1] = ini_read_string("Text", "end_text_1", "");
 	
-	for(i=0;i<=2;i++)
-		{
-		dop_i[i] = -1;
+		for(i=0;i<=2;i++)
+			{
+			dop_i[i] = -1;
 	
-		dop_text_end[i]    = 0;
-		dop_text_angle[i]  = 0;
-		dop_text_xscale[i] = 0;
-		dop_text_yscale[i] = 0;
-		dop_text_dir[i]    = 1;
+			dop_text_end[i]    = 0;
+			dop_text_angle[i]  = 0;
+			dop_text_xscale[i] = 0;
+			dop_text_yscale[i] = 0;
+			dop_text_dir[i]    = 1;
 		
-		dop_text_color[i]  = c_white;
+			dop_text_color[i]  = c_white;
 	
-		if i = 0
-			{
-			dop_text_x[i] = 250;
-			dop_text_y[i] = global.size / 2 - 150;
+			if i = 0
+				{
+				dop_text_x[i] = 250;
+				dop_text_y[i] = global.size / 2 - 150;
+				}
+			if i = 1
+				{
+				dop_text_x[i] = 250;
+				dop_text_y[i] = global.size / 2 - 150;
+				}
+			if i = 2
+				{
+				dop_text_x[i] = 1280 - 250;
+				dop_text_y[i] = global.size / 2 - 150;
+				}
 			}
-		if i = 1
-			{
-			dop_text_x[i] = 250;
-			dop_text_y[i] = global.size / 2 - 150;
-			}
-		if i = 2
-			{
-			dop_text_x[i] = 1280 - 250;
-			dop_text_y[i] = global.size / 2 - 150;
-			}
-		}
 	
-	//dop_damage_x = 0;
-	//dop_damage_y = 0;
-	//dop_damage_a = 1;
-	//dop_damage_s = 1;
+		//dop_damage_x = 0;
+		//dop_damage_y = 0;
+		//dop_damage_a = 1;
+		//dop_damage_s = 1;
 	
-	dop_t[3] = 0;
-	dop_t[4] = 0;
-	dop_t[5] = 0;
-	dop_t[6] = 0;
+		dop_t[3] = 0;
+		dop_t[4] = 0;
+		dop_t[5] = 0;
+		dop_t[6] = 0;
 	
-	dop_dmg = 0;
+		dop_dmg = 0;
 	
-	dop_text[0] = ini_read_string("Text", "dop_text_0", "DODGE");  // DODGE
-	dop_text[1] = ini_read_string("Text", "dop_text_1", "MISS");  // MISS
-	dop_text[2] = ini_read_string("Text", "dop_text_2", "SKIP"); // SKIP
+		dop_text[0] = ini_read_string("Text", "dop_text_0", "DODGE");  // DODGE
+		dop_text[1] = ini_read_string("Text", "dop_text_1", "MISS");  // MISS
+		dop_text[2] = ini_read_string("Text", "dop_text_2", "SKIP"); // SKIP
 	
-	dop_text[3] = ini_read_string("Text", "dop_text_3", "CRITICAL"); // CRITICAL
-	dop_text[4] = ini_read_string("Text", "dop_text_4", "STUN");    // STUN
-	dop_text[5] = ini_read_string("Text", "dop_text_5", "POISON"); // POISON
-	dop_text[6] = ini_read_string("Text", "dop_text_6", "BLEED"); // BLEED
+		dop_text[3] = ini_read_string("Text", "dop_text_3", "CRITICAL"); // CRITICAL
+		dop_text[4] = ini_read_string("Text", "dop_text_4", "STUN");    // STUN
+		dop_text[5] = ini_read_string("Text", "dop_text_5", "POISON"); // POISON
+		dop_text[6] = ini_read_string("Text", "dop_text_6", "BLEED"); // BLEED
 	
-	dop_text[7] = "";
-	dop_text[8] = "";
-	ini_close();
+		dop_text[7] = "";
+		dop_text[8] = "";
+		ini_close();
+	#endregion
+	#region Второй
+		coin_x = 640;
+		coin_y = global.size + 100;
+		coin_s = 1;
+		coin_a = 0;
+		coin_i = choose(0, 9);
+		coin_spd = 35;
+		
+		coin_stage = 0;
+		first_time = 0;
+		
+		name_x  = 0;
+		name_y  = 0;
+		name_s  = 0;
+		
+		first_x = 0;
+		first_y = 0;
+		first_s = 0;
+		
+		th_ch1_x = 0;
+		th_ch1_y = 0;
+		th_ch1_s = 0;
+		
+		th_ch2_x = 0;
+		th_ch2_y = 0;
+		th_ch2_s = 0;
+		
+		theme_s1 = 1;
+		theme_s2 = 1;
+		theme_s3 = 1;
+		
+		coin_you[1]  = "YOU";
+		coin_you[0]  = "ENEMY";
+		coin_you[2]  = "FIRST"
+		coin_text1 = "GET READY?";
+		coin_text2 = "GO!";
+		
+		coin_text1_a = 0;
+		coin_text2_a = 0;
+		
+		coin_text1_s = 0;
+		coin_text2_s = 0;
+	#endregion
+#endregion
+#region Выбор Темы
 	
+	theme_x[1]  = 640 - 300;
+	theme_y[1]  = global.size / 2;
+	theme_s[1]  = 0;
+	theme_t[1]  = global.enemy_hero;
+	theme_a[1]  = 1;
+	theme_n[1]  = global.theme_name[theme_t[1]];
+	theme_x1[1] = 0;
+	theme_y1[1] = 0;
 	
+	theme_x[2]  = 640;
+	theme_y[2]  = global.size / 2;
+	theme_s[2]  = 0;
+	if global.enemy_hero != global.hero
+		{ theme_t[2] = global.hero; }
+		else
+		{ theme_t[2] = theme_new(theme_t[1], -1); }
+	theme_a[2]  = 1;
+	theme_n[2]  = global.theme_name[theme_t[2]];
+	theme_x1[2] = 0;
+	theme_y1[2] = 0;
+	
+	theme_x[3]  = 640 + 300;
+	theme_y[3]  = global.size / 2;
+	theme_s[3]  = 0;
+	theme_t[3]  = theme_new(theme_t[1], theme_t[2]);
+	theme_a[3]  = 1;
+	theme_n[3]  = global.theme_name[theme_t[3]];
+	theme_x1[3] = 0;
+	theme_y1[3] = 0;
+	
+	choose_y = global.size + 300;
 #endregion
 #region Выбор победителя
 	win_x  = 350;
@@ -514,6 +591,22 @@
 	part_y = 0;
 	part_s = 1;
 	part_n = 0;
+	part_xspd = 0;
+	part_yspd = 0;
+	
+	health_timer = 20;
+	health_scale = 1;
+	
+	health_e_timer = 20;
+	health_e_scale = 1;
+	
+	shaker = 0;
+	shaker_dir = 1;
+	shaker_spd = 10;
+	shaker_ang = 0;
+	go_hp = 0;
+	
+	super_text = "SUPER";
 #endregion
 #region Финиш Дуэли
 	whowin  = 0;

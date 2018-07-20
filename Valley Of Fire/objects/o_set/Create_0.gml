@@ -101,7 +101,7 @@
 #region Автоподстройка разрешения
 	application_surface_enable(1);
 	
-	global.size = 720; //590; //640; // 720; //800; //960;
+	global.size = 590; //590; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
@@ -143,7 +143,7 @@
 			//ini_write_string("Music", "reward", "1500");
 			//ini_write_string("Music", "dollars", "0");
 			}
-		global.music = ini_read_real("Music", "music", 1); // Музыка
+		global.music = 0; //ini_read_real("Music", "music", 1); // Музыка
 		//global.reward = ini_read_real("Music", "reward", 1); // Ранг
 		//global.dollars = ini_read_real("Music", "dollars", 1); // Бабки
 	ini_close();
@@ -414,10 +414,20 @@
 	for(i=1; i<=11; i++)
 		{ global.theme_name[i] = "OTHER"; }
 	
+	global.count_themes = 3; //9;
 	ini_open("Language/" + string(global.lang) + "/theme_name_" + string(global.lang) + ".ini");
 	global.theme_name[1] = ini_read_string("Theme Name", "name_1", "");
 	global.theme_name[2] = ini_read_string("Theme Name", "name_2", "");
 	global.theme_name[3] = ini_read_string("Theme Name", "name_3", "");
+	
+	global.theme_name[4] = "PRECISION";
+	global.theme_name[5] = "PRECISION";
+	global.theme_name[6] = "PRECISION";
+	global.theme_name[7] = "PRECISION";
+	global.theme_name[8] = "PRECISION";
+	global.theme_name[9] = "PRECISION";
+	
+	global.color_white = make_color_rgb(255, 248, 220);
 	ini_close();
 #endregion
 #region Шрифты
