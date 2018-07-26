@@ -27,8 +27,7 @@
 	//		{ back_spd += 0.05; }
 	//	}
 #endregion
-#region Зданий фон
-	
+#region Время и прочие характеристики
 	if global.music
 		{
 		if !audio_is_playing(sd_back_train)
@@ -121,7 +120,19 @@
 		{ star_alpha = back_alpha[1] * day_star; }
 	if back_time[1] = 1 or back_time[1] = 3
 		{ star_alpha = back_alpha[2] * day_star; }
-	
+#endregion
+#region Фон поезда
+if global.background = "train"
+	{
+	#region Координаты фона
+		if global.size < 900
+			{ back_y = 160; }
+			else
+			{ back_y = 30; }
+		if global.size < 650
+			{ back_y = 220; }
+	#endregion
+	#region Звезды и задник
 	/////// STARS ///////////
 	for(i=0; i<=128; i++)
 		{
@@ -139,148 +150,160 @@
 	draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, back_alpha[1]);
 	draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, back_alpha[2]);
 #endregion
-#region Рисование облаков
-	for(i=0; i<=8; i++)
-		{
-		if back_clouds_y[i] > back_m_y
-			{ back_clouds_y[i] = back_y + global.size - 1050 * back_s - 20; }
-		if back_clouds_x[i] != 2280
+	#region Рисование облаков
+		for(i=0; i<=8; i++)
 			{
-			if back_clouds_x[i] > back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - sprite_get_width(s_train_clouds) * back_clouds_sc[i] * back_s
+			if back_clouds_y[i] > back_m_y
+				{ back_clouds_y[i] = back_y + global.size - 1050 * back_s - 20; }
+			if back_clouds_x[i] != 2280
 				{
-				back_clouds_x[i] -= back_clouds_s[i];
-				back_clouds_ss[i] = back_clouds_sc[i] * (1 - 0.5 * abs(back_clouds_x[i] - 640) / 640) * back_s;
-				draw_sprite_ext(s_train_clouds, back_clouds_i[i], back_clouds_x[i], back_y + back_clouds_y[i], back_clouds_ss[i] * back_s, back_clouds_ss[i] * back_s, 0, c_white, 1);
-				}
-				else
-				{ back_clouds_x[i] = 2280; }
-			}
-		}
-#endregion
-#region Рисование гор
-	back_m_y = back_y + global.size - 1050 * back_s;
-	
-	for(i=back_n; i<=14; i++)
-		{
-		if i = back_n
-			{
-			if back_s = back_sp
-				{ back_m_x[back_n] -= back_spd; }
-				else
-				{ back_m_x[back_n] = back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s; }
-		
-			back_m_s[back_n] = (1 - 0.5 * abs(back_m_x[back_n] - 640) / 640) * back_s;
-		
-			if back_m_x[back_n] < back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - sprite_get_width(s_train_mountain) * back_m_s[back_n]
-				{
-				back_m_x[back_n] = back_m_x[back_p] + sprite_get_width(s_train_mountain) * back_m_s[back_p];
-				back_p = back_n;
-				back_m_img[back_p] = irandom(9);
-				if back_n != 14
-					{ back_n += 1; }
+				if back_clouds_x[i] > back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - sprite_get_width(s_train_clouds) * back_clouds_sc[i] * back_s
+					{
+					back_clouds_x[i] -= back_clouds_s[i];
+					back_clouds_ss[i] = back_clouds_sc[i] * (1 - 0.5 * abs(back_clouds_x[i] - 640) / 640) * back_s;
+					draw_sprite_ext(s_train_clouds, back_clouds_i[i], back_clouds_x[i], back_y + back_clouds_y[i], back_clouds_ss[i] * back_s, back_clouds_ss[i] * back_s, 0, c_white, 1);
+					}
 					else
-					{ back_n = 0; back_gt = 1 }
+					{ back_clouds_x[i] = 2280; }
 				}
 			}
-			else
-			{
-			back_m_x[i] = back_m_x[i-1] + sprite_get_width(s_train_mountain) * back_m_s[i-1];
-			back_m_s[i] = (1 - 0.5 * abs(back_m_x[i] - 640) / 640) * back_s;
-			}
+	#endregion
+	#region Рисование гор
+		back_m_y = back_y + global.size - 1050 * back_s;
 	
-		draw_sprite_ext(s_train_mountain, back_m_img[i], back_m_x[i], back_m_y, back_m_s[i], back_m_s[i], 0, c_white, 1);
-		}
-	if back_n > 0 or back_gt = 1
-		{
-		for(i=0; i<=back_p; i++)
+		for(i=back_n; i<=14; i++)
 			{
-			if i != 0
+			if i = back_n
+				{
+				if back_s = back_sp
+					{ back_m_x[back_n] -= back_spd; }
+					else
+					{ back_m_x[back_n] = back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s; }
+		
+				back_m_s[back_n] = (1 - 0.5 * abs(back_m_x[back_n] - 640) / 640) * back_s;
+		
+				if back_m_x[back_n] < back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - sprite_get_width(s_train_mountain) * back_m_s[back_n]
+					{
+					back_m_x[back_n] = back_m_x[back_p] + sprite_get_width(s_train_mountain) * back_m_s[back_p];
+					back_p = back_n;
+					back_m_img[back_p] = irandom(9);
+					if back_n != 14
+						{ back_n += 1; }
+						else
+						{ back_n = 0; back_gt = 1 }
+					}
+				}
+				else
 				{
 				back_m_x[i] = back_m_x[i-1] + sprite_get_width(s_train_mountain) * back_m_s[i-1];
 				back_m_s[i] = (1 - 0.5 * abs(back_m_x[i] - 640) / 640) * back_s;
 				}
-				else
+	
+			draw_sprite_ext(s_train_mountain, back_m_img[i], back_m_x[i], back_m_y, back_m_s[i], back_m_s[i], 0, c_white, 1);
+			}
+		if back_n > 0 or back_gt = 1
+			{
+			for(i=0; i<=back_p; i++)
 				{
-				if back_gt = 0
-					{	
-					back_m_x[i] = back_m_x[14] + sprite_get_width(s_train_mountain) * back_m_s[14];
+				if i != 0
+					{
+					back_m_x[i] = back_m_x[i-1] + sprite_get_width(s_train_mountain) * back_m_s[i-1];
 					back_m_s[i] = (1 - 0.5 * abs(back_m_x[i] - 640) / 640) * back_s;
 					}
 					else
 					{
-					back_m_x[back_n] -= back_spd;
-					back_gt = 0;
+					if back_gt = 0
+						{	
+						back_m_x[i] = back_m_x[14] + sprite_get_width(s_train_mountain) * back_m_s[14];
+						back_m_s[i] = (1 - 0.5 * abs(back_m_x[i] - 640) / 640) * back_s;
+						}
+						else
+						{
+						back_m_x[back_n] -= back_spd;
+						back_gt = 0;
+						}
 					}
+	
+				draw_sprite_ext(s_train_mountain, back_m_img[i], back_m_x[i], back_m_y, back_m_s[i], back_m_s[i], 0, c_white, 1);
 				}
-	
-			draw_sprite_ext(s_train_mountain, back_m_img[i], back_m_x[i], back_m_y, back_m_s[i], back_m_s[i], 0, c_white, 1);
 			}
-		}
-#endregion		
-#region Рисование песка
-	back_sand_y   = back_y + global.size - 1050 * back_s;
-	back_sand_spd = back_spd / 1.5 * 6;
+	#endregion		
+	#region Рисование песка
+		back_sand_y   = back_y + global.size - 1050 * back_s;
+		back_sand_spd = back_spd / 1.5 * 6;
 	
-	for(i=0; i<=5; i++)
-		{
-		back_sand_x[i] -= back_sand_spd;
-		if back_sand_x[i] <= back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - sprite_get_width(s_train_sand) / 2 * back_s
-			{ back_sand_x[i] = 1280 + sprite_get_width(s_train_sand) / 2 * back_s; }
-		
-		draw_sprite_ext(s_train_sand, 0, back_sand_x[i], back_sand_y, back_s, back_s, 0, c_white, 0.9);
-		}
-#endregion
-#region Рисование кактусов, утесов, черепков
-	for(i=0; i<=10; i++)
-		{
-		if back_other_x[i] != 2280
+		for(i=0; i<=5; i++)
 			{
-			if back_other_x[i] > back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - 268 * back_s
-				{
-				back_other_spd[i] = back_spd / 1.5 * (8 + 8 * back_other_sk[i]);
-				
-				back_other_y[i] += (back_spd * (back_other_x[i] - 640) / 640) / 2;
-				
-				back_other_x[i] -= back_other_spd[i];	
-				back_other_s[i]	 = (1 - 0.6 * abs(back_other_x[i] - 640) / 640) * back_s;
-				
-				draw_sprite_ext(back_other_spr[i], back_other_img[i], back_other_x[i], back_y - 20 + back_other_y[i] - (sprite_get_width(back_other_spr[i]) * back_other_s[i] * back_other_sk[i] / 3) / 2, back_other_s[i] * back_other_sk[i] / 3, back_other_s[i] * back_other_sk[i] * 1.25, -100, c_black, 0.45);
-				draw_sprite_ext(back_other_spr[i], back_other_img[i], back_other_x[i], back_y - 20 + back_other_y[i], back_other_s[i] * back_other_sk[i], back_other_s[i] * back_other_sk[i], 0, c_white, 1);
-				//draw_text(mouse_x, mouse_y, string(global.size - 200 * back_s));//draw_text(back_other_x[i], back_y + back_other_y[i], string(back_other_y[i]));
-				}
-				else
-				{ back_other_x[i] = 2280; }
+			back_sand_x[i] -= back_sand_spd;
+			if back_sand_x[i] <= back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - sprite_get_width(s_train_sand) / 2 * back_s
+				{ back_sand_x[i] = 1280 + sprite_get_width(s_train_sand) / 2 * back_s; }
+		
+			draw_sprite_ext(s_train_sand, 0, back_sand_x[i], back_sand_y, back_s, back_s, 0, c_white, 0.9);
 			}
-		}
-#endregion
-#region Анимация вагонов
-	back_anim_1 -= back_spd / 1.5 * 0.35;
-	back_anim_2 += back_spd / 1.5 * 0.35;
+	#endregion
+	#region Рисование кактусов, утесов, черепков
+		for(i=0; i<=10; i++)
+			{
+			if back_other_x[i] != 2280
+				{
+				if back_other_x[i] > back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - 268 * back_s
+					{
+					back_other_spd[i] = back_spd / 1.5 * (8 + 8 * back_other_sk[i]);
+				
+					back_other_y[i] += (back_spd * (back_other_x[i] - 640) / 640) / 2;
+				
+					back_other_x[i] -= back_other_spd[i];	
+					back_other_s[i]	 = (1 - 0.6 * abs(back_other_x[i] - 640) / 640) * back_s;
+				
+					draw_sprite_ext(back_other_spr[i], back_other_img[i], back_other_x[i], back_y - 20 + back_other_y[i] - (sprite_get_width(back_other_spr[i]) * back_other_s[i] * back_other_sk[i] / 3) / 2, back_other_s[i] * back_other_sk[i] / 3, back_other_s[i] * back_other_sk[i] * 1.25, -100, c_black, 0.45);
+					draw_sprite_ext(back_other_spr[i], back_other_img[i], back_other_x[i], back_y - 20 + back_other_y[i], back_other_s[i] * back_other_sk[i], back_other_s[i] * back_other_sk[i], 0, c_white, 1);
+					//draw_text(mouse_x, mouse_y, string(global.size - 200 * back_s));//draw_text(back_other_x[i], back_y + back_other_y[i], string(back_other_y[i]));
+					}
+					else
+					{ back_other_x[i] = 2280; }
+				}
+			}
+	#endregion
+	#region Анимация вагонов
+		back_anim_1 -= back_spd / 1.5 * 0.35;
+		back_anim_2 += back_spd / 1.5 * 0.35;
 
-	//if back_timen > 0
-	//	{
-		back_train_y1 += back_spd / 1.5 * back_dir1 * back_spd;
-		if abs(back_train_y1) >= back_spd * 5
-			{ back_dir1 = -back_dir1; back_train_y1 += back_spd / 1.5 * back_dir1 * back_spd; }
+		//if back_timen > 0
+		//	{
+			back_train_y1 += back_spd / 1.5 * back_dir1 * back_spd;
+			if abs(back_train_y1) >= back_spd * 5
+				{ back_dir1 = -back_dir1; back_train_y1 += back_spd / 1.5 * back_dir1 * back_spd; }
 	
-		back_train_y2 += back_spd / 1.5 * back_dir2 * back_spd;
-		if abs(back_train_y2) >= back_spd * 5
-			{ back_dir2 = -back_dir2; back_train_y2 += back_spd / 1.5 * back_dir2 * back_spd; }
-	//	}
+			back_train_y2 += back_spd / 1.5 * back_dir2 * back_spd;
+			if abs(back_train_y2) >= back_spd * 5
+				{ back_dir2 = -back_dir2; back_train_y2 += back_spd / 1.5 * back_dir2 * back_spd; }
+		//	}
 
-	if back_anim_1 < 0
-		{ back_anim_1 = 2; }
-	if back_anim_2 > 2
-		{ back_anim_2 = 0; }
+		if back_anim_1 < 0
+			{ back_anim_1 = 2; }
+		if back_anim_2 > 2
+			{ back_anim_2 = 0; }
 
-	draw_sprite_ext(s_train_decks, back_anim_1, 640 + back_x - sprite_get_width(s_train_back) * back_s / 2, global.size + back_y, -back_s, back_s, 0, c_white, 1);
-	draw_sprite_ext(s_train_decks, back_anim_2, 640 + back_x + sprite_get_width(s_train_back) * back_s / 2, global.size + back_y, back_s, back_s, 0, c_white, 1);
+		draw_sprite_ext(s_train_decks, back_anim_1, 640 + back_x - sprite_get_width(s_train_back) * back_s / 2, global.size + back_y, -back_s, back_s, 0, c_white, 1);
+		draw_sprite_ext(s_train_decks, back_anim_2, 640 + back_x + sprite_get_width(s_train_back) * back_s / 2, global.size + back_y, back_s, back_s, 0, c_white, 1);
 
-	draw_sprite_ext(s_train_rails, 0, 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, 1);
-	draw_sprite_ext(s_train_rails, 0, 640 + back_x, global.size + back_y, -back_s, back_s, 0, c_white, 1);
+		draw_sprite_ext(s_train_rails, 0, 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, 1);
+		draw_sprite_ext(s_train_rails, 0, 640 + back_x, global.size + back_y, -back_s, back_s, 0, c_white, 1);
 
-	draw_sprite_ext(s_train_wagon, 0, 640 + back_x, global.size + back_y + back_train_y1, back_s, back_s, 0, c_white, 1);
-draw_sprite_ext(s_train_wagon, 0, 640 + back_x, global.size + back_y + back_train_y2, -back_s, back_s, 0, c_white, 1);
+		draw_sprite_ext(s_train_wagon, 0, 640 + back_x, global.size + back_y + back_train_y1, back_s, back_s, 0, c_white, 1);
+	draw_sprite_ext(s_train_wagon, 0, 640 + back_x, global.size + back_y + back_train_y2, -back_s, back_s, 0, c_white, 1);
+	#endregion
+	}
+#endregion
+#region Поверх
+	draw_sprite_ext(s_train_back1, o_control.back_time[1], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[1]] * o_control.back_alpha[1]);
+	draw_sprite_ext(s_train_back1, o_control.back_time[2], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[2]] * o_control.back_alpha[2]);
+#endregion
+#region Фон Шахт
+	if global.background = "mine"
+		{
+		draw_sprite_ext(s_mine_back, 0, 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, 1);
+		}
 #endregion
 #region Суперспособность
 	//global.super_ability = 0;
@@ -295,10 +318,6 @@ draw_sprite_ext(s_train_wagon, 0, 640 + back_x, global.size + back_y + back_trai
 		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
 		}
-#endregion
-#region Поверх
-	draw_sprite_ext(s_train_back1, o_control.back_time[1], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[1]] * o_control.back_alpha[1]);
-	draw_sprite_ext(s_train_back1, o_control.back_time[2], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[2]] * o_control.back_alpha[2]);
 #endregion
 #region Старый код
 /*

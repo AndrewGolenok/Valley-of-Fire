@@ -1,7 +1,7 @@
 search = 1;
 
 godamaged = 0;
-damaged = 0;
+damaged   = 0;
 
 enemy = global.enemy;
 
@@ -41,8 +41,8 @@ hero_code_name = global.hero_code_name[hero];
 //	{ hero_bullet = asset_get_index("s_bullet_" + global.hero_code_weapon[hero]); }
 //	else
 //	{
-hero_bullet = asset_get_index("s_bullet_" + weapon);
-
+hero_bullet   = asset_get_index("s_bullet_" + weapon);
+hero_bullet_w = asset_get_index("s_bullet_" + weapon + "_w");
 sc = enemy - !enemy;
 
 sprite_index = hero_sprite;
@@ -83,8 +83,8 @@ hero_color = global.color_hero[hero];
 sx = x;
 sy = y; // Координаты снаряда
 
-xx=0;
-yy=0;
+xx = 0;
+yy = 0;
 
 abil_n = 0;
 
@@ -100,3 +100,14 @@ dynamit_y = 0;
 dynamit_a = 0;
 dynamit_i = 0;
 dynamit_d = 0;
+
+for(i=0;i<=10;i++)
+	{ bullet_lx[i] = 0; }
+bullet_lt = 0;
+bullet_timer = 0;
+
+if global.background = "mine"
+	{
+	y += 230;
+	scale = 0.45;
+	}

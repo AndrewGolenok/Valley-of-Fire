@@ -181,19 +181,19 @@
 		{ theme_b_th[i] = global.theme_name[i]; }
 #endregion
 #region Раунды
-	round_text1 = "ROUND";
-	round_text2[1] = "ONE";
-	round_text2[2] = "TWO";
-	round_text2[3] = "THREE";
-	round_text2[0] = "DUEL!";
+	//round_text1 = "ROUND";
+	//round_text2[1] = "ONE";
+	//round_text2[2] = "TWO";
+	//round_text2[3] = "THREE";
+	//round_text2[0] = "DUEL!";
 	
 	round_text1_x = 1450;
-	round_3_x     = 1450;
-	round_2_x     = 1450;
-	round_1_x     = 1450;
-	round_0_x     = 1450;
+	//round_3_x     = 1450;
+	//round_2_x     = 1450;
+	//round_1_x     = 1450;
+	//round_0_x     = 1450;
 	
-	round_alpha   = 1;
+	//round_alpha   = 1;
 #endregion
 #region Черепки
 	for(j=1; j<=3; j++)
@@ -340,6 +340,7 @@
 		coin_a = 0;
 		coin_i = choose(0, 9);
 		coin_spd = 35;
+		coin_d = 0;
 		
 		coin_stage = 0;
 		first_time = 0;
@@ -378,15 +379,15 @@
 	#endregion
 #endregion
 #region Выбор Темы
-	
 	theme_x[1]  = 640 - 300;
 	theme_y[1]  = global.size / 2;
 	theme_s[1]  = 0;
 	theme_t[1]  = global.enemy_hero;
 	theme_a[1]  = 1;
-	theme_n[1]  = global.theme_name[theme_t[1]];
+	theme_nn[1]  = global.theme_name[theme_t[1]];
 	theme_x1[1] = 0;
 	theme_y1[1] = 0;
+	theme_a1[1] = irandom(360);
 	
 	theme_x[2]  = 640;
 	theme_y[2]  = global.size / 2;
@@ -396,20 +397,49 @@
 		else
 		{ theme_t[2] = theme_new(theme_t[1], -1); }
 	theme_a[2]  = 1;
-	theme_n[2]  = global.theme_name[theme_t[2]];
+	theme_nn[2]  = global.theme_name[theme_t[2]];
 	theme_x1[2] = 0;
 	theme_y1[2] = 0;
+	theme_a1[2] = irandom(360);
 	
 	theme_x[3]  = 640 + 300;
 	theme_y[3]  = global.size / 2;
 	theme_s[3]  = 0;
 	theme_t[3]  = theme_new(theme_t[1], theme_t[2]);
 	theme_a[3]  = 1;
-	theme_n[3]  = global.theme_name[theme_t[3]];
+	theme_nn[3]  = global.theme_name[theme_t[3]];
 	theme_x1[3] = 0;
 	theme_y1[3] = 0;
+	theme_a1[3] = irandom(360);
 	
 	choose_y = global.size + 300;
+	
+	theme_g = 0;
+	theme_click = 0;
+	theme_dot = "";
+#endregion
+#region Объявление раунда
+	round_text[1] = "ROUND";
+	round_text[2] = "READY?";
+	round_text[3] = "GO!";
+	
+	round_x[1] = 300;
+	round_y[1] = global.size / 2 - 150;
+	round_x[2] = 900;
+	round_y[2] = global.size / 2;
+	round_x[3] = 400;
+	round_y[3] = global.size / 2 + 170;
+	
+	round_s[1] = 0;
+	round_s[2] = 0;
+	round_s[3] = 0;
+	
+	round_a[1] = -180;
+	round_a[2] = -180;
+	round_a[3] = -180;
+	
+	round_spd   = 0.0025;
+	round_alpha = 1;
 #endregion
 #region Выбор победителя
 	win_x  = 350;
@@ -424,7 +454,7 @@
 	win_text_y  = global.size + 100;
 	win_text_y1 = global.size + 100;
 #endregion
-#region Переменные
+#region Переменные и Темы
 	global.critical   = 0;
 	global.e_critical = 0;
 	
@@ -567,10 +597,65 @@
 	o_math_mod = 1;
 	o_but_sc   = 1.2;
 	
-	timer = 6 * room_speed;
+	timer   = 6 * room_speed;
 	timer_x = 6 * room_speed;
 	
 	dop_q_y = 0;
+	
+	#region Задача 1 - Шляпа, напёрстки
+		hat_x[1]  = 640 - 200;
+		hat_xn[1] = 640 - 200;
+		hat_y[1]  = 0;
+		hat_s[1]  = 1;
+		hat_h[1]  = 0;
+		
+		hat_x[2]  = 640;
+		hat_xn[2] = 640;
+		hat_y[2]  = 150;
+		hat_s[2]  = 1;
+		hat_h[2]  = 1;
+		
+		hat_x[3]  = 640 + 200;
+		hat_xn[3] = 640 + 200;
+		hat_y[3]  = 0;
+		hat_s[3]  = 1;
+		hat_h[3]  = 0;
+		
+		hat_spd  = 20;
+		hat_cha  = choose(1, 3);
+		hat_sha  = 2;
+		hat_num  = 1;
+		hat_max  = 7;
+		hat_res  = -1;
+		hat_end  = 0;
+		
+		hat_stage = 0;
+		hat_timer = 20;
+		hat_alpha[1] = 1;
+		hat_alpha[2] = 1;
+		hat_alpha[3] = 1;
+	#endregion
+	#region Задача 2 - Карты, найти пару
+		for(i=1;i<=2;i++)
+			{
+			for(j=1;j<=3;j++)
+				{
+				card_scale[i,j] = 0.7;
+				card_m[i,j]   = 0;
+				card_i[i,j]   = 0;
+				card_now[i,j] = 0;
+				card_end[i,j] = 0;
+				
+				card_alp[i,j] = 1;
+				card_yy[i,j]  = 0;
+				}
+			}
+		card_what();
+		fir_i = 0;
+		fir_j = 0;
+		sec_i = 0;
+		sec_j = 0;
+	#endregion
 #endregion
 #region Суперудар Кнопка
 	super_need  = 3;
@@ -618,6 +703,19 @@
 #endregion
 #region Бот
 	global.sraka = 0; // Никто не атакует
+	min_time[1,1] = 10;
+	min_time[1,2] = 10;
+	min_time[1,3] = 10;
+	min_time[1,4] = 10;
+	
+	min_time[2,1] = 90//50;
+	min_time[2,2] = 0;
+	min_time[2,3] = 90//50;
+	
+	min_time[3,1] = 10;
+	min_time[3,2] = 10;
+	min_time[3,3] = 10;
+	min_time[3,4] = 10;
 	
 	view_go_left = 0;
 	view_go_right = 0;

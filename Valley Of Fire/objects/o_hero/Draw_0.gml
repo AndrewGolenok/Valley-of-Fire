@@ -41,6 +41,18 @@ if !enemy
 #region Рисование персонажа и выстрел
 	if shoot = 1
 		{
+		//if bullet_timer < 5
+		//	{ bullet_timer ++; }
+		//	else
+		//	{
+		//	bullet_lx[1] = sx;
+		//	//if bullet_lt < 10
+		//	//	{ bullet_lt += 1; }
+		//	//	else
+		//	//	{ bullet_lt = 0; }
+		//	}
+		//for(i=0;i<=10;i++)
+		//	{ draw_sprite_ext(hero_bullet_w, 0, (i * bullet_lx[1] - 10 * bullet_lx[1]) / 10 + sx, sy, sc * scale - 0.025, scale + 0.025, 0, c_white, 1 * bullet_alpha / i); }
 		var penis;
 		penis = sprite_get_yoffset(hero_bullet);
 		draw_rectangle_color(x, sy - 2 - penis * scale, sx - 28, sy + 2 - penis * scale, c_white, c_white, c_white, c_white, 0);

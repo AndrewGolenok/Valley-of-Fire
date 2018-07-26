@@ -23,19 +23,31 @@
 	view_set_camera(VIEW, camera);
 #endregion
 #region Фон
+	global.background = choose("mine", "train"); //"train";
 	global.super_ability    = 0;
 	global.super_ability1   = 0;
 	global.ability_dop_anim = 0;
 	depth = 5;
 	
 	back_x  = 0;
-	if global.size < 900
-		{ back_y = 160; }
-		else
-		{ back_y = 30; }
-	if global.size < 650
-		{ back_y = 220; }
-	back_s  = 0.56;
+	if global.background = "train"
+		{
+		back_s  = 0.56;
+		if global.size < 900
+			{ back_y = 160; }
+			else
+			{ back_y = 30; }
+		if global.size < 650
+			{ back_y = 220; }
+		}
+	if global.background = "mine"
+		{
+		back_s  = 0.52;
+		if global.size < 900
+			{ back_y = 150; }
+			else
+			{ back_y = 0; }
+		}
 	back_sp = back_s;
 	
 	#region Поезд

@@ -1,6 +1,13 @@
-#region Фон песка
+#region Фон
 	//draw_sprite_ext(s_train_back1, o_control.back_time[1], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[1]] * o_control.back_alpha[1]);
 	//draw_sprite_ext(s_train_back1, o_control.back_time[2], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[2]] * o_control.back_alpha[2]);
+	if global.background = "mine"
+		{
+		var hui;
+		hui = 100 * 960 / global.size;
+		draw_sprite_ext(s_mine_rock1, 0, 0, global.size + hui, o_control.back_s, o_control.back_s, 0, c_white, 1);
+		draw_sprite_ext(s_mine_rock2, 0, 1280, global.size + 100 + hui, o_control.back_s, o_control.back_s, 0, c_white, 1);
+		}
 #endregion
 #region Листовка
 	#region Появление
@@ -679,7 +686,7 @@
 				}
 			#endregion
 			#region Меткость - Precision
-			if theme_round[global.rounds] = 2
+			if theme_round[global.rounds] = 4//2
 				{
 				#region Задача 1 - Бутылки, очередь
 					if round_task[global.rounds,global.task] = 1
@@ -1252,6 +1259,247 @@
 				#endregion
 				}
 			#endregion
+			#region Внимание - Attention
+				if theme_round[global.rounds] = 2//4
+				{
+				#region Задача 1 - Шляпа и напертски
+					if round_task[global.rounds,global.task] = 1
+						{
+						#region Движение
+							var hat_yy, hat_scale;
+							hat_yy = global.size / 2;
+							hat_scale = 0.8;
+							if hat_stage = 0 && list_scale = 1
+								{
+								if hat_timer > 0
+									{ hat_timer -=1; }
+									else
+									{
+									if hat_y[2] > 0
+										{ hat_y[2] -= 25; }
+										else
+										{ hat_timer = 10; hat_stage = 1; }
+									}
+								}
+							if hat_stage = 1
+								{
+								hat_sha  = choose(1, 2, 3);
+								if hat_sha = 1
+									{ hat_cha = choose(2, 3); }
+								if hat_sha = 2
+									{ hat_cha = choose(1, 3); }
+								if hat_sha = 3
+									{ hat_cha = choose(1, 2); }
+								hat_xn[hat_sha] = hat_x[hat_cha];
+								hat_xn[hat_cha] = hat_x[hat_sha];
+								hat_stage = 2;
+								}
+							if hat_stage = 2
+								{
+								if hat_x[hat_sha] < hat_xn[hat_sha]
+									{ hat_x[hat_sha] += hat_spd; }
+								if hat_x[hat_sha] > hat_xn[hat_sha]
+									{ hat_x[hat_sha] -= hat_spd; }
+								
+								if hat_x[hat_cha] < hat_xn[hat_cha]
+									{ hat_x[hat_cha] += hat_spd; }
+								if hat_x[hat_cha] > hat_xn[hat_cha]
+									{ hat_x[hat_cha] -= hat_spd; }
+								
+								if hat_x[hat_sha] = hat_xn[hat_sha] && hat_x[hat_cha] = hat_xn[hat_cha]
+									{
+									if hat_num < hat_max
+										{ hat_num +=1; hat_stage = 1; }
+										else
+										{ hat_stage = 3; }
+									}
+								}
+							if hat_stage = 4
+								{
+								if hat_y[hat_end] < 150
+									{ hat_y[hat_end] += 25; }
+									else
+									{ hat_stage = 5; }
+								}
+							if hat_stage = 5
+								{
+								if hat_res = 0
+									{
+									if hat_alpha[2] > 0.3
+										{ hat_alpha[2] -= 0.05; }
+										else
+										{ hat_stage = 6; }
+									}
+									else
+									{ hat_stage = 6; }
+								}
+							if hat_stage = 6
+								{
+								if hat_timer > 0
+									{ hat_timer -=1; }
+									else
+									{
+									global.answer = hat_res;
+									attention_1();
+									}
+								}
+						#endregion
+						#region Ответ
+						if hat_stage = 3
+							{
+							if mouse_check_button_released(mb_left)
+								{
+								if point_in_rectangle(mouse_x, mouse_y, hat_x[2] - 200 * hat_scale, hat_yy - 250 * hat_scale, hat_x[2] + 200 * hat_scale, hat_yy + hat_y[2] + 250 * hat_scale)
+									{
+									audio_play_sound(sd_text, 2, 0);
+									hat_end = 2;
+									hat_res = 1;
+									hat_stage = 4;
+									}
+								if point_in_rectangle(mouse_x, mouse_y, hat_x[1] - 200 * hat_scale, hat_yy - 250 * hat_scale, hat_x[1] + 200 * hat_scale, hat_yy + hat_y[1] + 250 * hat_scale)
+									{
+									audio_play_sound(sd_text, 2, 0);
+									hat_end = 1;
+									hat_res = 0;
+									hat_stage = 4;
+									}
+								if point_in_rectangle(mouse_x, mouse_y, hat_x[3] - 200 * hat_scale, hat_yy - 250 * hat_scale, hat_x[3] + 200 * hat_scale, hat_yy + hat_y[3] + 250 * hat_scale)
+									{
+									audio_play_sound(sd_text, 2, 0);
+									hat_end = 3;
+									hat_res = 0;
+									hat_stage = 4;
+									}
+								}
+							}
+						#endregion
+						#region Рисование
+							draw_sprite_ext_t(s_hat, 1, hat_x[2], hat_yy, hat_s[2] * hat_scale * list_scale, hat_s[2] * hat_scale * list_scale, 0, c_white, 1, c_white, c_black);
+							
+							draw_sprite_ext(s_hat, 0, hat_x[1], hat_yy - hat_y[1], hat_s[1] * hat_scale * list_scale, hat_s[1] * hat_scale * list_scale, 0, c_white, hat_alpha[1]);
+							draw_sprite_ext(s_hat, 0, hat_x[2], hat_yy - hat_y[2], hat_s[2] * hat_scale * list_scale, hat_s[2] * hat_scale * list_scale, 0, c_white, hat_alpha[2]);
+							draw_sprite_ext(s_hat, 0, hat_x[3], hat_yy - hat_y[3], hat_s[3] * hat_scale * list_scale, hat_s[3] * hat_scale * list_scale, 0, c_white, hat_alpha[3]);
+						#endregion
+						}
+				#endregion
+				#region Задача 2 - Карты, найти пару
+					if round_task[global.rounds,global.task] = 3
+						{
+						#region Движение
+							var card_x, card_y;
+							card_x = 640 - 140;
+							card_y = global.size / 2 - 60;
+						#endregion
+						#region Ответ
+							for(i=1;i<=2;i++)
+								{
+								for(j=1;j<=3;j++)
+									{
+									if point_in_rectangle(mouse_x, mouse_y, card_x + (j-1) * 140 - 75 * card_scale[i,j], card_y + 180 * (i-1) - 110 * card_scale[i,j], card_x + (j-1) * 140 + 75 * card_scale[i,j], card_y + 180 * (i-1) + 110 * card_scale[i,j])
+										{
+										if mouse_check_button_pressed(mb_left) && card_now[i,j] = 0 && card_end[i,j] = 0
+											{
+											if fir_i = 0 && fir_j = 0
+												{
+												fir_i = i;
+												fir_j = j;
+												card_now[i,j] = 1;
+												}
+												else
+												{
+												if sec_i = 0 && sec_j = 0
+													{
+													sec_i = i;
+													sec_j = j;
+													card_now[i,j] = 1;
+													}
+												}
+											}
+										}
+									if card_now[i,j] = 1
+										{
+										if card_scale[i,j] > 0
+											{ card_scale[i,j] -= 0.2; }
+											else
+											{ card_now[i,j] = 2; card_i[i,j] = card_m[i,j]; }
+										}
+									if card_now[i,j] = 2
+										{
+										if card_scale[i,j] < 0.7
+											{ card_scale[i,j] += 0.2; }
+											else
+											{
+											if sec_i != 0 && card_scale[sec_i,sec_j] = 0.7
+												{
+												if card_m[fir_i,fir_j] = card_m[sec_i,sec_j]
+													{
+													card_end[fir_i,fir_j] = 1;
+													card_end[sec_i,sec_j] = 1;
+													}
+													else
+													{
+													card_now[fir_i,fir_j] = 4;
+													card_now[sec_i,sec_j] = 4;
+													}
+												fir_i = 0;
+												fir_j = 0;
+												
+												sec_i = 0;
+												sec_j = 0;
+												}
+												else
+												{ card_now[i,j] = 3; }
+											}
+										}
+									if card_now[i,j] = 4
+										{
+										if card_scale[i,j] > 0
+											{ card_scale[i,j] -= 0.2; }
+											else
+											{ card_now[i,j] = 5; card_i[i,j] = 0; }
+										}
+									if card_now[i,j] = 5
+										{
+										if card_scale[i,j] < 0.7
+											{ card_scale[i,j] += 0.2; }
+											else
+											{ card_now[i,j] = 0; }
+										}
+									
+									//if card_now[i,j]
+									//	{
+										
+									//	}
+									if card_end[i,j] = 1
+										{
+										if card_alp[i,j] > 0
+											{
+											card_alp[i,j] -= 0.1;
+											card_yy[i,j]  += 5;
+											}
+										}
+									}
+								}
+							if card_end[1,1] = 1 && card_end[1,2] = 1 && card_end[1,3] = 1
+							&& card_end[2,1] = 1 && card_end[2,2] = 1 && card_end[2,3] = 1
+								{
+								global.answer = 1;
+								attention_2();
+								}
+						#endregion
+						#region Рисование
+							for(i=1;i<=2;i++)
+								{
+								for(j=1;j<=3;j++)
+									{
+									draw_sprite_ext(s_card, card_i[i,j], card_x + (j-1) * 140, card_y + 180 * (i-1) + card_yy[i,j], card_scale[i,j], 0.7, 0, c_white, card_alp[i,j]);
+									}
+								}
+						#endregion
+						}
+				#endregion
+				}
+			#endregion
 			}
 	#endregion
 	#region Геймплей
@@ -1281,6 +1529,7 @@
 			#region Игрок
 			if global.answer != -1
 				{
+				list_scale = 0;
 				//if bot_question <= global.question && (bot_task <= global.task) && bot_time2 > 3 * room_speed
 				//	{ bot_time = random(1) * room_speed; bot_time2 = 3 * room_speed; }
 				if global.answer = 1
@@ -1395,13 +1644,13 @@
 						if bot_time = -1
 							{
 							if bot_type = 0
-								{ bot_time = random_range(1, 3) * room_speed; }
+								{ bot_time = random_range(1, 3) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
 							if bot_type = 1
-								{ bot_time = random_range(1, 3) * room_speed; }
+								{ bot_time = random_range(1, 3) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
 							if bot_type = 2
-								{ bot_time = random_range(3, 5) * room_speed; }
+								{ bot_time = random_range(3, 5) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
 							if bot_type = 3
-								{ bot_time = random_range(2, 4) * room_speed; }
+								{ bot_time = random_range(2, 4) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
 							bot_time2  = 6 * room_speed;
 							}
 							else
@@ -1758,7 +2007,7 @@
 		draw_set_alpha(1);
 		draw_text_transformed(640, dop_q_y + global.size / 2 - 469 * list_size - 90 + list_y + button_x / 4 + 30, question_text, plas_scale, 1, 0);
 	#endregion
-	#region Победаня и проигрышная плашки
+	#region Победная и проигрышная плашки
 		//if plas_scale < 1
 			//{
 			//draw_sprite_ext(s_plash_win, 2, 640, global.size / 2 - 469 * list_size - 80 + list_y, list_size * plas_scale, list_size, 0, c_white, 1);
@@ -3199,6 +3448,8 @@ if 0
 		{
 		if coin_stage = 0
 			{
+			if coin_y = global.size + 100
+				{ audio_play_sound(sd_coin,1,0); }
 			if coin_y > global.size / 2 - 100
 				{
 				coin_y -= coin_spd;
@@ -3245,7 +3496,7 @@ if 0
 			if coin_y < global.size - 50
 				{
 				coin_y -= coin_spd;
-				if coin_i < 17
+				if coin_i < 9
 					{ coin_i += 1; }
 					else
 					{ coin_i = 0; }
@@ -3253,10 +3504,13 @@ if 0
 				}
 				else
 				{
-				if coin_i <= 8
-					{ coin_i = 5; first_player = 1; }
-				if coin_i > 8
-					{ coin_i = 13; first_player = 0; }
+				if coin_i <= 4
+					{ coin_i = 4; first_player = 1; }
+					else
+					{
+					if coin_i > 4
+						{ coin_i = 4; first_player = 0; }
+					}
 				coin_stage = 4;
 				coin_a = 0;
 				}
@@ -3275,9 +3529,9 @@ if 0
 			}
 		if coin_stage = 5
 			{
-			if name_x > 640 - 120
+			if name_x > 640 - (80 + 40 * !first_player)
 				{
-				name_x -= 10 * 2;
+				name_x -= (7 + !first_player * 3) * 2;
 				name_y -= 3 * 2;
 				
 				name_s += 0.065 * 2;
@@ -3308,7 +3562,7 @@ if 0
 		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
 		
-		draw_sprite_ext_t(s_start_coin, coin_i, coin_x, coin_y, coin_s, coin_s, coin_a, global.color_white, 1, global.color_white, c_black);
+		draw_sprite_ext_t(s_start_coin, coin_i, coin_x, coin_y + coin_d, coin_s, coin_s, coin_a, global.color_white, 1, global.color_white, c_black);
 		
 		if first_player != -1
 			{
@@ -3316,251 +3570,444 @@ if 0
 			draw_text_transformed_t( name_x,  name_y, coin_you[first_player], name_s * 0.3, name_s * 0.3, 0, global.color_white, c_black);
 			draw_text_transformed_t(first_x, first_y, coin_you[2], first_s * 0.3, first_s * 0.3, 0, global.color_white, c_black);
 			}
-		//draw_text_transformed_t(mouse_x, mouse_y, string(name_y), 1, 1, 0, c_white, c_black);
 		}
 #endregion
 #region Выбор Темы
 	#region Первый
-	if theme_choose = 1
+		if (theme_choose = 1 && global.game_stage = 2) or theme_choose = 7 or theme_choose = 8
 			{
-			if global.game_stage = 2
+			//if global.game_stage >= 2
 				{
-				if theme_s[1] < 1
-					{ theme_s[1] += 0.1; }
-					else
+				if theme_g = 0
 					{
-					if theme_s[2] < 1
-						{ theme_s[2] += 0.1; }
+					if theme_s[1] < 1
+						{ theme_s[1] += 0.1; }
 						else
 						{
-						if theme_s[3] < 1
-							{ theme_s[3] += 0.1; }
+						if theme_s[2] < 1
+							{ theme_s[2] += 0.1; }
+							else
+							{
+							if theme_s[3] < 1
+								{ theme_s[3] += 0.1; }
+							}
+						}
+					if theme_s[3] = 1
+						{
+						if coin_y < global.size + 300
+							{
+							coin_y  += 30;
+							name_y  += 30;
+							first_y += 30;
+							}
+							else
+							{
+							if theme_choose = 8
+								{
+								var numnum;
+								if theme_a[1] = 1
+									{ numnum = 1; }
+								if theme_a[2] = 1
+									{ numnum = 2; }
+								if theme_a[3] = 1
+									{ numnum = 3; }
+								
+								//theme_a[numnum] = 0;
+								theme_click = numnum;
+								theme_g = 1;
+								audio_play_sound(sd_text, 2, 0);
+								theme_round[global.rounds] = theme_t[numnum];
+								}
+								else
+								{
+								if choose_y > global.size - 80
+									{ choose_y -= 30; }
+								}
+							}
 						}
 					}
-				if theme_s[1] = 1
+				if theme_choose = 7 or theme_choose = 8
 					{
-					if coin_y < global.size + 300
+					draw_set_alpha(0.45);
+					draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+					draw_set_alpha(1);
+					}
+				for(i=1;i<=3;i++)
+					{
+					if theme_g = 0
 						{
-						coin_y  += 30;
-						name_y  += 30;
-						first_y += 30;
+						if theme_s[i] >= 1 && theme_a[i] = 1
+							{
+							var butsize;
+							butsize = theme_s[i] * 0.65 * sprite_get_width(s_themes_button) / 2;
+							if first_player = 1 && point_in_rectangle(mouse_x, mouse_y, theme_x[i] - butsize, theme_y[i] - butsize, theme_x[i] + butsize, theme_y[i] + butsize)
+								{
+								if mouse_check_button(mb_left)
+									{ theme_s[i] = 1.1; }
+									else
+									{ theme_s[i] = 1; }
+								if mouse_check_button_released(mb_left)
+									{
+									//theme_a[i]  = 0;
+									theme_click = i;
+									theme_g = 1;
+									audio_play_sound(sd_text, 2, 0);
+									theme_round[global.rounds] = theme_t[i];
+									}
+								}
+							theme_s[i] = 1;
+							theme_a1[i] += 10;
+							theme_x1[i] += lengthdir_x(random(0.5),theme_a1[i]);
+							theme_y1[i] += lengthdir_y(random(0.5),theme_a1[i]);
+							}
 						}
-						else
+					if theme_g = 1
 						{
-						if choose_y > 512
-							{ choose_y -= 30; }
+						if i != theme_click
+							{
+							theme_y[i] += 50;
+							choose_y += 50;
+							}
+							else
+							{
+							if theme_choose = 1
+								{
+								if theme_x[i] = 640
+									{ 
+									if theme_s[i] < 1.25
+										{ theme_y1[i] -= 1; theme_y[i] += 1; theme_s[i] += 0.025; }
+										else
+										{
+										if choose_y > 500
+											{ theme_a[theme_click] = 0; theme_g = 2; }
+										}
+									}
+								if i = 1
+									{
+									if theme_x[i] < 640
+										{ theme_x[i] += 40; }
+										else
+										{ theme_x[i] = 640; }
+									}
+								if i = 3
+									{
+									if theme_x[i] > 640
+										{ theme_x[i] -= 40; }
+										else
+										{ theme_x[i] = 640; }
+									}
+								}
+							if theme_choose = 7
+								{
+								if theme_x[i] = 640
+									{
+									if theme_s[i] < 1.25
+										{ theme_y1[i] -= 1; theme_y[i] += 1; theme_s[i] += 0.025; }
+										else
+										{
+										if choose_y > 500
+											{ theme_a[theme_click] = 0; theme_g = 2; }
+										}
+									}
+								#region Один и Два
+									if theme_a[1] = 1 && theme_a[2] = 1
+										{
+										if i = 1
+											{
+											if theme_x[i] < 640
+												{ theme_x[i] += 40; }
+												else
+												{ theme_x[i] = 640; }
+											}
+										if i = 2
+											{
+											if theme_x[i] > 640
+												{ theme_x[i] -= 40; }
+												else
+												{ theme_x[i] = 640; }
+											}	
+										}
+								#endregion
+								#region Один и Три
+									if theme_a[1] = 1 && theme_a[3] = 1
+										{
+										if i = 1
+											{
+											if theme_x[i] < 640
+												{ theme_x[i] += 40; }
+												else
+												{ theme_x[i] = 640; }
+											}
+										if i = 3
+											{
+											if theme_x[i] > 640
+												{ theme_x[i] -= 40; }
+												else
+												{ theme_x[i] = 640; }
+											}	
+										}
+								#endregion
+								#region Два и Три
+									if theme_a[2] = 1 && theme_a[3] = 1
+										{
+										if i = 2
+											{
+											if theme_x[i] < 640
+												{ theme_x[i] += 40; }
+												else
+												{ theme_x[i] = 640; }
+											}
+										if i = 3
+											{
+											if theme_x[i] > 640
+												{ theme_x[i] -= 40; }
+												else
+												{ theme_x[i] = 640; }
+											}	
+										}
+								#endregion
+								}
+							if theme_choose = 8
+								{
+								
+								if theme_s[theme_click] < 1.25
+									{ theme_y1[theme_click] -= 1; theme_y[theme_click] += 1; theme_s[theme_click] += 0.025; }
+									else
+									{
+									if choose_y > 500
+										{ theme_a[theme_click] = 0; theme_g = 2; }
+									}
+								}
+							}
+						}
+					if theme_g = 2
+						{
+						if theme_s[i] > 0
+							{ theme_s[i] -= 0.25; }
+							else
+							{ theme_choose = 2; theme_g = 3; global.game_stage = 3; }
+						}
+					draw_sprite_ext_t(s_themes_button, 0, theme_x[i] + theme_x1[i], theme_y[i] + theme_y1[i], theme_s[i] * 0.65, theme_s[i] * 0.65, 0, global.color_hero[theme_t[i]], 1, c_white, c_black);
+					draw_sprite_ext_t(s_themes_ss, theme_t[i], theme_x[i] + theme_x1[i], theme_y[i] + theme_y1[i], theme_s[i] * 0.64, theme_s[i] * 0.64, 0, global.color_white, 1, global.color_white, c_black);
+					draw_set_font(global.game_font);
+					draw_text_transformed_t(theme_x[i], theme_y[i] + 100, theme_nn[i], theme_s[i] * 0.2, theme_s[i] * 0.2, 0, global.color_white, c_black);
+					}
+				if choose_y <= global.size - 80
+					{
+					theme_points_time += 1;
+					if theme_points_time = 20
+						{
+						if first_player = 0 && theme_points = ""
+							{
+							var numnum;
+							if theme_choose = 1
+								{ numnum = choose(1, 1, 3, irandom_range(1, 3)); }
+							if theme_choose = 7
+								{
+								if theme_a[1] != 1
+									{ numnum = choose(3, 3, 3, 2); }
+								if theme_a[2] != 1
+									{ numnum = choose(1, 1, 1, 3); }
+								if theme_a[3] != 1
+									{ numnum = choose(1, 1, 1, 2); }
+								}
+							//if theme_choose = 8
+							//	{
+							//	if theme_a[1] = 1
+							//		{ numnum = 1; }
+							//	if theme_a[2] = 1
+							//		{ numnum = 2; }
+							//	if theme_a[3] = 1
+							//		{ numnum = 3; }
+							//	}
+							//theme_a[numnum] = 0;
+							theme_click = numnum;
+							theme_g = 1;
+							audio_play_sound(sd_text, 2, 0);
+							theme_round[global.rounds] = theme_t[numnum];
+							}
+						if theme_points != "..."
+							{ theme_points += "."; }
+							else
+							{ theme_points = "";}
+						theme_points_time = 0;
 						}
 					}
-				draw_sprite_ext_t(s_themes_button, 0, theme_x[1], theme_y[1], theme_s[1] * 0.65, theme_s[1] * 0.65, 0, global.color_hero[theme_t[1]], 1, c_white, c_black);
-				draw_sprite_ext_t(s_themes_button, 0, theme_x[2], theme_y[2], theme_s[2] * 0.65, theme_s[2] * 0.65, 0, global.color_hero[theme_t[2]], 1, c_white, c_black);
-				draw_sprite_ext_t(s_themes_button, 0, theme_x[3], theme_y[3], theme_s[3] * 0.65, theme_s[3] * 0.65, 0, global.color_hero[theme_t[3]], 1, c_white, c_black);
-				
-				draw_sprite_ext_t(s_themes_ss, theme_t[1], theme_x[1], theme_y[1], theme_s[1] * 0.65, theme_s[1] * 0.65, 0, global.color_white, 1, global.color_white, c_black);
-				draw_sprite_ext_t(s_themes_ss, theme_t[2], theme_x[2], theme_y[2], theme_s[2] * 0.65, theme_s[2] * 0.65, 0, global.color_white, 1, global.color_white, c_black);
-				draw_sprite_ext_t(s_themes_ss, theme_t[3], theme_x[3], theme_y[3], theme_s[3] * 0.65, theme_s[3] * 0.65, 0, global.color_white, 1, global.color_white, c_black);
-				
-				draw_set_font(global.game_font);
-				draw_text_transformed_t(theme_x[1], theme_y[1] + 100, theme_n[1], theme_s[1] * 0.2, theme_s[1] * 0.2, 0, global.color_white, c_black);
-				draw_text_transformed_t(theme_x[2], theme_y[2] + 100, theme_n[2], theme_s[2] * 0.2, theme_s[2] * 0.2, 0, global.color_white, c_black);
-				draw_text_transformed_t(theme_x[3], theme_y[3] + 100, theme_n[3], theme_s[3] * 0.2, theme_s[3] * 0.2, 0, global.color_white, c_black);
-				
-				draw_text_transformed_t(640, choose_y, theme_text[0], theme_s[1] * 0.23, theme_s[1] * 0.23, 0, global.color_white, c_black);
+				draw_text_transformed_t(640, choose_y, theme_text[!first_player] + theme_points, 0.23, 0.23, 0, global.color_white, c_black);
 				}
+			//if coin_d < 300
+			//	{ coin_d += 30; }
 			}
 	#endregion
 #endregion
-#region Финиш дуэли
-	if theme_choose = 9
-		{
-		draw_set_alpha(0.65);
-		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-		draw_set_alpha(1);
-		if whowin = 1
+#region Объявление раунда
+	#region Новое
+		if theme_choose = 3
 			{
-			if finplas < 1
+			global.game_stage = 4;
+			if round_s[1] < 1
 				{
-				draw_sprite_ext(s_plash_win, 2, 640, -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size * finplas, list_size, 0, c_white, 1);
-				draw_sprite_ext(s_plash_win, 0, 640 + 418  * list_size * (1 - finplas), -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
-				draw_sprite_ext(s_plash_win, 1, 640 - 418  * list_size * (1 - finplas), -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
+				round_a[1] += 15;
+				round_s[1] += 1/12;
 				}
 				else
-				{ win_plas += 0.4; draw_sprite_ext(s_plash_win_f, win_plas, 640, -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size * finplas, list_size, 0, c_white, 1); }
-			
-			draw_set_font(global.game_font);//draw_set_font(f_win_regular);
-			draw_set_color(c_black);
-			draw_set_alpha(0.4);
-			draw_text_transformed(640 - 1, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "VICTORY!", finplas * 0.18, 0.18, 0);
-			draw_set_color(c_white);
-			draw_set_alpha(1);
-			draw_text_transformed(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "VICTORY!", finplas * 0.18, 0.18, 0);
-			}
-		if whowin = 2
-			{
-			if finplas < 1
-				{ finplas += 0.1; }
-			
-			draw_sprite_ext(s_plash_lose, 2, 640, -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size * finplas, list_size, 0, c_white, 1);
-			draw_sprite_ext(s_plash_lose, 0, 640 + 418  * list_size * (1 - finplas), -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
-			draw_sprite_ext(s_plash_lose, 1, 640 - 418  * list_size * (1 - finplas), -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
-		
-			draw_set_font(global.game_font);//draw_set_font(f_win_regular);
-			draw_set_color(c_black);
-			draw_set_alpha(0.4);
-			draw_text_transformed(640 - 1, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0);
-			draw_set_color(c_white);
-			draw_set_alpha(1);
-			draw_text_transformed(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0);
-			}
-			
-		draw_set_font(global.game_font);
-		draw_text_transformed_t(640, global.size / 2 + 200 + fin_y, "TAP TO RESTART", 0.2, 0.2, 0, c_white, c_black);
-		
-		draw_set_color(c_black);
-		draw_set_alpha(0.4);
-		draw_text_transformed(640 - 1, 100 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "ACCURACY: " + string(round(100 * accuracy_true / accuracy_all)) + "%", finplas * 0.18, 0.18, 0);
-		draw_set_color(c_white);
-		draw_set_alpha(1);
-		draw_text_transformed(640, 100 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "ACCURACY: " + string(round(100 * accuracy_true / accuracy_all)) + "%", finplas * 0.18, 0.18, 0);
-		
-		var money, respect;
-		money = 25;
-		if whowin = 1
-			{ respect = "+1"; }
-			else
-			{ respect = "-1"; }
-		if roundskul[1] = 1
-			{ money += 25; }
-		if roundskul[2] = 1
-			{ money += 25; }
-		if roundskul[3] = 1 or (roundskul[3] = 0 && money > 25)
-			{ money += 25; }
-		draw_set_color(c_black);
-		draw_set_alpha(0.4);
-		draw_text_transformed(640 - 1, 200 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "MONEY +" + string(money) + "$", finplas * 0.18, 0.18, 0);
-		draw_set_color(c_white);
-		draw_set_alpha(1);
-		draw_text_transformed(640, 200 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "MONEY +" + string(money) + "$", finplas * 0.18, 0.18, 0);
-		
-		draw_set_color(c_black);
-		draw_set_alpha(0.4);
-		draw_text_transformed(640 - 1, 300 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "RESPECT " + string(respect), finplas * 0.18, 0.18, 0);
-		draw_set_color(c_white);
-		draw_set_alpha(1);
-		draw_text_transformed(640, 300 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "RESPECT " + string(respect), finplas * 0.18, 0.18, 0);
-		
-		if fin_y > 0
-			{ fin_y -= 40; }
-			else
-			{
-			if finplas < 1
-				{ finplas += 0.1; }
-			if mouse_check_button_pressed(mb_left)
-				{ room_goto_t("duel"); }
-			}
-		if o_control.back_spd > 0
-			{ o_control.back_spd -= 0.05; }
-		}
-#endregion
-#region Объявление раунда
-	if theme_choose = 3
-		{
-		if o_control.back_spd < 1.5
-			{ o_control.back_spd += 0.02; }
-		global.game_stage = 4;
-		draw_set_alpha(0.65 * round_alpha);
-		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-		draw_set_alpha(1);
-		
-		draw_set_font(global.game_font);
-		draw_text_transformed_t(round_text1_x, theme_text_y, round_text1 + " " + round_text2[global.rounds], 0.35, 0.35, 0, c_white, c_black);
-		
-		if round_text1_x > 660
-			{ round_text1_x -= 60; }//30; }
-		if round_text1_x <= 660
-			{
-			round_text1_x -= 1;// 0.25;
-			
-			if round_3_x > 660
-				{ round_3_x -= 60; }//30; }
-			if round_3_x <= 660 && round_3_x > 600
-				{ round_3_x -= 2; }
-			if round_3_x <= 600
 				{
-				round_3_x -= 100;
-				if round_2_x > 660
-					{ round_2_x -= 60; }//30; }
-				if round_2_x <= 660 && round_2_x > 600
-					{ round_2_x -= 2; }
-				if round_2_x <= 600
+				round_s[1] += round_spd;
+				if round_a[1] < 5
+					{ round_a[1] += 0.5; }
+					else
 					{
-					round_2_x -= 100;
-					if round_1_x > 660
-						{ round_1_x -= 60; }//30; }
-					if round_1_x <= 660 && round_1_x > 600
-						{ round_1_x -= 2; }
-					if round_1_x <= 600
+					if round_s[2] < 1
 						{
-						round_1_x -= 100;
-						if round_0_x > 660
-							{ round_0_x -= 60; }//30; }
-						if round_0_x <= 660 && round_0_x > 600
-							{ round_0_x -= 4; }
-						if round_0_x <= 600
+						round_a[2] += 15;
+						round_s[2] += 1/12;
+						}
+						else
+						{
+						round_s[2] += round_spd;
+						if round_a[2] < 5
+							{ round_a[2] += 0.5; }
+							else
 							{
-							round_alpha -= 0.01;
-							round_0_x -= 100;
-							round_text1_x -= 100;
-							if round_0_x <= - 40
+							if round_s[3] < 1
 								{
-								if global.game_stage = 4
+								round_a[3] += 15;
+								round_s[3] += 1/12;
+								}
+								else
+								{
+								round_s[3] += round_spd;
+								if round_a[3] < 5
+									{ round_a[3] += 0.5; }
+									else
 									{
-									global.game_stage = 5;
-									theme_choose = 4;
-									list_go = 1//!list_go;
-									list_y = -300;
-			
-									list_scale = 0;
-									plas_scale = 0;
+									if round_s[1] < 5
+										{ 
+										round_s[1] += round_spd * 90;
+										round_s[2] += round_spd * 90;
+										round_s[3] += round_spd * 90;
 									
-									var task_number, now_number;
-									if theme_round[global.rounds] = 1 or theme_round[global.rounds] = 3
-										{ task_number = "1234"; }
-									if theme_round[global.rounds] = 2
-										{ task_number = "1331"; }
-									for(j=1;j<=3;j++)
-										{
-										now_number = irandom_range(1, string_length(task_number));
-										round_task[global.rounds,j] = real(string_copy(task_number, now_number, 1));
-										task_number = string_delete(task_number, now_number, 1);
+										round_y[1] -= 50;
+										round_y[2] += 50;
+										round_y[3] += 50;
 										}
+										else
+										{
+										round_y[1] -= 50;
+										round_y[2] += 50;
+										round_y[3] += 50;
+										if round_alpha > 0
+											{ round_alpha -= 0.05; }
+											else
+											{
+											if global.game_stage = 4
+												{
+												global.game_stage = 5;
+												theme_choose = 4;
+												list_go = 1//!list_go;
+												list_y = -300;
+			
+												list_scale = 0;
+												plas_scale = 0;
+									
+												var task_number, now_number;
+												if theme_round[global.rounds] = 1 or theme_round[global.rounds] = 3
+													{ task_number = "1234"; }
+												if theme_round[global.rounds] = 2
+													{ task_number = "1331"; }
+												for(j=1;j<=3;j++)
+													{
+													now_number = irandom_range(1, string_length(task_number));
+													round_task[global.rounds,j] = real(string_copy(task_number, now_number, 1));
+													task_number = string_delete(task_number, now_number, 1);
+													}
 										
-									vvv = 1;
-									if theme_round[global.rounds] = 1
-										{ script_execute(asset_get_index("math_" + string(round_task[global.rounds,1]))); }
-									if theme_round[global.rounds] = 3
-										{ script_execute(asset_get_index("move_" + string(round_task[global.rounds,1]))); }
-									if theme_round[global.rounds] = 2
-										{ script_execute(asset_get_index("precision_" + string(round_task[global.rounds,1]))); }	
+												vvv = 1;
+												if theme_round[global.rounds] = 1
+													{ script_execute(asset_get_index("math_" + string(round_task[global.rounds,1]))); }
+												if theme_round[global.rounds] = 3
+													{ script_execute(asset_get_index("move_" + string(round_task[global.rounds,1]))); }
+												if theme_round[global.rounds] = 2
+													{ script_execute(asset_get_index("precision_" + string(round_task[global.rounds,1]))); }	
+												}
+											}
+										}
 									}
 								}
 							}
 						}
 					}
 				}
+			draw_set_alpha(0.45 * round_alpha);
+			draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+			draw_set_alpha(1);
+			
+			draw_set_font(global.game_font);
+			draw_text_transformed_t(round_x[1], round_y[1], round_text[1] + " " + string(global.rounds), round_s[1] * 0.25, round_s[1] * 0.25, round_a[1], global.color_white, c_black);
+			draw_text_transformed_t(round_x[2], round_y[2], round_text[2], round_s[2] * 0.45, round_s[2] * 0.45, round_a[2], global.color_white, c_black);
+			draw_text_transformed_t(round_x[3], round_y[3], round_text[3], round_s[3] * 0.85, round_s[3] * 0.85, round_a[3], global.color_white, c_black);
 			}
-		
-		draw_set_font(global.game_font);
-		//draw_set_font(f_wanted_bold);
-		draw_text_transformed_t(round_3_x, theme_text_y + 120, "3", 0.5, 0.5, 0, c_white, c_black);
-		//draw_set_font(f_wanted_bold);
-		draw_text_transformed_t(round_2_x, theme_text_y + 120, "2", 0.5, 0.5, 0, c_white, c_black);
-		//draw_set_font(f_wanted_bold);
-		draw_text_transformed_t(round_1_x, theme_text_y + 120, "1", 0.5, 0.5, 0, c_white, c_black);
-		//draw_set_font(f_wanted_bold);
-		draw_text_transformed_t(round_0_x, theme_text_y + 120, round_text2[0], 0.4, 0.4, 0, c_white, c_black);
-		}
+	#endregion
 	if theme_choose = 2
-		{ theme_choose = 3; }
+		{
+		theme_g = 0;
+		theme_click = 0;
+		theme_dot = "";
+		first_player = !first_player;
+		for(i=1;i<=3;i++)
+			{
+			if theme_a[i] = 1
+				{
+				theme_x[i]  = 640;
+				theme_y[i]  = global.size / 2;
+				theme_s[i]  = 0;
+				theme_x1[i] = 0;
+				theme_y1[i] = 0;
+				theme_a1[i] = irandom(360);
+				}
+				else
+				{
+				theme_x[i]  = 640;
+				theme_y[i]  = 100000;
+				theme_s[i]  = 0;
+				theme_x1[i] = 0;
+				theme_y1[i] = 100000;
+				theme_a1[i] = irandom(360);
+				}
+			}
+		if global.rounds = 1
+			{
+			if theme_a[1] != 1
+				{ theme_x[2]  = 640 - 150; theme_x[3]  = 640 + 150; }
+			if theme_a[2] != 1
+				{ theme_x[1]  = 640 - 150; theme_x[3]  = 640 + 150; }
+			if theme_a[3] != 1
+				{ theme_x[1]  = 640 - 150; theme_x[2]  = 640 + 150; }
+			}
+			
+		round_x[1] = 300;
+		round_y[1] = global.size / 2 - 150;
+		round_x[2] = 900;
+		round_y[2] = global.size / 2;
+		round_x[3] = 400;
+		round_y[3] = global.size / 2 + 170;
+	
+		round_s[1] = 0;
+		round_s[2] = 0;
+		round_s[3] = 0;
+	
+		round_a[1] = -180;
+		round_a[2] = -180;
+		round_a[3] = -180;
+	
+		round_spd   = 0.0025;
+		round_alpha = 1;
+		
+		coin_y = global.size + 300;
+		choose_y = global.size + 300;
+		
+		theme_choose = 3;
+		}
 #endregion
 #region Объявление победителя
 	if theme_choose = 6
@@ -3867,6 +4314,98 @@ if 0
 		theme_choose = 6;
 		}
 #endregion
+#region Финиш дуэли
+	if theme_choose = 9
+		{
+		draw_set_alpha(0.65);
+		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+		draw_set_alpha(1);
+		if whowin = 1
+			{
+			if finplas < 1
+				{
+				draw_sprite_ext(s_plash_win, 2, 640, -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size * finplas, list_size, 0, c_white, 1);
+				draw_sprite_ext(s_plash_win, 0, 640 + 418  * list_size * (1 - finplas), -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
+				draw_sprite_ext(s_plash_win, 1, 640 - 418  * list_size * (1 - finplas), -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
+				}
+				else
+				{ win_plas += 0.4; draw_sprite_ext(s_plash_win_f, win_plas, 640, -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size * finplas, list_size, 0, c_white, 1); }
+			
+			draw_set_font(global.game_font);//draw_set_font(f_win_regular);
+			draw_set_color(c_black);
+			draw_set_alpha(0.4);
+			draw_text_transformed(640 - 1, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "VICTORY!", finplas * 0.18, 0.18, 0);
+			draw_set_color(c_white);
+			draw_set_alpha(1);
+			draw_text_transformed(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "VICTORY!", finplas * 0.18, 0.18, 0);
+			}
+		if whowin = 2
+			{
+			if finplas < 1
+				{ finplas += 0.1; }
+			
+			draw_sprite_ext(s_plash_lose, 2, 640, -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size * finplas, list_size, 0, c_white, 1);
+			draw_sprite_ext(s_plash_lose, 0, 640 + 418  * list_size * (1 - finplas), -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
+			draw_sprite_ext(s_plash_lose, 1, 640 - 418  * list_size * (1 - finplas), -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
+		
+			draw_set_font(global.game_font);//draw_set_font(f_win_regular);
+			draw_set_color(c_black);
+			draw_set_alpha(0.4);
+			draw_text_transformed(640 - 1, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0);
+			draw_set_color(c_white);
+			draw_set_alpha(1);
+			draw_text_transformed(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0);
+			}
+			
+		draw_set_font(global.game_font);
+		draw_text_transformed_t(640, global.size / 2 + 200 + fin_y, "TAP TO RESTART", 0.2, 0.2, 0, c_white, c_black);
+		
+		draw_set_color(c_black);
+		draw_set_alpha(0.4);
+		draw_text_transformed(640 - 1, 100 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "ACCURACY: " + string(round(100 * accuracy_true / accuracy_all)) + "%", finplas * 0.18, 0.18, 0);
+		draw_set_color(c_white);
+		draw_set_alpha(1);
+		draw_text_transformed(640, 100 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "ACCURACY: " + string(round(100 * accuracy_true / accuracy_all)) + "%", finplas * 0.18, 0.18, 0);
+		
+		var money, respect;
+		money = 25;
+		if whowin = 1
+			{ respect = "+1"; }
+			else
+			{ respect = "-1"; }
+		if roundskul[1] = 1
+			{ money += 25; }
+		if roundskul[2] = 1
+			{ money += 25; }
+		if roundskul[3] = 1 or (roundskul[3] = 0 && money > 25)
+			{ money += 25; }
+		draw_set_color(c_black);
+		draw_set_alpha(0.4);
+		draw_text_transformed(640 - 1, 200 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "MONEY +" + string(money) + "$", finplas * 0.18, 0.18, 0);
+		draw_set_color(c_white);
+		draw_set_alpha(1);
+		draw_text_transformed(640, 200 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "MONEY +" + string(money) + "$", finplas * 0.18, 0.18, 0);
+		
+		draw_set_color(c_black);
+		draw_set_alpha(0.4);
+		draw_text_transformed(640 - 1, 300 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "RESPECT " + string(respect), finplas * 0.18, 0.18, 0);
+		draw_set_color(c_white);
+		draw_set_alpha(1);
+		draw_text_transformed(640, 300 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "RESPECT " + string(respect), finplas * 0.18, 0.18, 0);
+		
+		if fin_y > 0
+			{ fin_y -= 40; }
+			else
+			{
+			if finplas < 1
+				{ finplas += 0.1; }
+			if mouse_check_button_pressed(mb_left)
+				{ room_goto_t("duel"); }
+			}
+		if o_control.back_spd > 0
+			{ o_control.back_spd -= 0.05; }
+		}
+#endregion
 #region Хелсбар
 	var gui_size;
 	gui_size = 0.45;
@@ -4031,7 +4570,7 @@ if 0
 		oneone = (roundskul[1] == 1) + (roundskul[2] == 1) + (roundskul[3] == 1);
 		onetwo = (roundskul[1] == 2) + (roundskul[2] == 2) + (roundskul[3] == 2);
 		draw_set_font(global.game_font);
-		draw_text_transformed_t(640, h_y + 30, string(oneone) + " : " + string(onetwo), 0.15, 0.15, 0, global.color_white, c_black);
+		//draw_text_transformed_t(640, h_y + 30, string(oneone) + " : " + string(onetwo), 0.15, 0.15, 0, global.color_white, c_black);
 	#endregion
 	//////////////////////////
 	#region Хелсбар Противника
@@ -4659,7 +5198,7 @@ if view_go_left = 0 && view_go_right = 0
 	//	}
 	//draw_set_font(global.game_font); //draw_set_font(f_wanted_bold);
 	//draw_triangle(mouse_x - 640, mouse_y + 450, mouse_x + 640, mouse_y - 300, mouse_x + 640, mouse_y + 500, 0);
-	//draw_text_ext_transformed_t(mouse_x, mouse_y + 150, keyboard_string, 180, 700, 0.35, 0.35, ongle, c_white, c_black); //draw_text_transformed_t(mouse_x, mouse_y, string_upper(keyboard_string), 0.10, 0.10, 0, c_white, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(theme_choose), 0.35, 0.35, 0, c_white, c_black); //draw_text_transformed_t(mouse_x, mouse_y, string_upper(keyboard_string), 0.10, 0.10, 0, c_white, c_black);
 	//var ot11, ot1, ot2, ot3, ot4, ot5, ot6;
 	//ot11 = string(global.pin); //"rounds = " + string(global.rounds) + "\ntask = " + string(global.task) + "\nquestion = " + string(global.question);
 	//ot1 = "\nt1.1 = " + string(task_question[1,1]) + " t2.1 = " + string(task_question[2,1]) + " t3.1 = " + string(task_question[3,1]); //ot2 = "\nt1 = " + string(task_question[global.task,1]) + "\nt2 = " + string(task_question[global.task,2]) + "\nt3 = " + string(task_question[global.task,3]) + "\nt4 = " + string(task_question[global.task,4]) + "\nt5 = " + string(task_question[global.task,5]) + "\nt6 = " + string(task_question[global.task,6]);

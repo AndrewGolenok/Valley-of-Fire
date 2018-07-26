@@ -12,7 +12,11 @@
         "13010f59-9c0f-4dc1-8ea5-8398d8b6d180",
         "7fbe8b6b-6aac-4e53-8e5f-efe97113de69",
         "28c0dfef-e8d8-4fad-b75e-dce69985172c",
-        "6be1dabe-b68f-4141-812b-6c5abf0de4ef"
+        "6be1dabe-b68f-4141-812b-6c5abf0de4ef",
+        "5d4e8494-3474-4b3c-9208-c7fa52a7c302",
+        "3be93663-33de-4ab1-b03d-c8f0399b98fd",
+        "f376f137-bc78-4dff-8b16-bffd79acc44c",
+        "9b0a0e25-f213-48b1-9681-25280bc409ee"
     ],
     "filterType": "GMSprite",
     "folderName": "Question Figures",

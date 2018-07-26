@@ -101,7 +101,7 @@
 #region Автоподстройка разрешения
 	application_surface_enable(1);
 	
-	global.size = 590; //590; //640; // 720; //800; //960;
+	global.size = 640; //590; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
