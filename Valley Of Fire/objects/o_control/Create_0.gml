@@ -23,7 +23,7 @@
 	view_set_camera(VIEW, camera);
 #endregion
 #region Фон
-	global.background = choose("mine", "train"); //"train";
+	global.background = choose("mine", "train", "waterfall"); //"train";
 	global.super_ability    = 0;
 	global.super_ability1   = 0;
 	global.ability_dop_anim = 0;
@@ -45,6 +45,14 @@
 		back_s  = 0.52;
 		if global.size < 900
 			{ back_y = 150; }
+			else
+			{ back_y = 0; }
+		}
+	if global.background = "waterfall"
+		{
+		back_s = 0.52;
+		if global.size < 900
+			{ back_y = 30; }
 			else
 			{ back_y = 0; }
 		}
@@ -152,6 +160,17 @@
 			}
 		alarm[1] = 1;
 		alarm[0] = 1;
+	#endregion
+	#region Шахты
+		light_scale = 0.5;
+		light_dir = -1;
+		light_s   = 1;
+		light_alpha = 0.7;
+		light_x = 433 * back_s;
+		light_y = 1140 * back_s;
+	#endregion
+	#region Водопад
+		water_n = 0;
 	#endregion
 	#region Гуи
 		//q_col  = c_white;

@@ -55,7 +55,7 @@ if !enemy
 		//	{ draw_sprite_ext(hero_bullet_w, 0, (i * bullet_lx[1] - 10 * bullet_lx[1]) / 10 + sx, sy, sc * scale - 0.025, scale + 0.025, 0, c_white, 1 * bullet_alpha / i); }
 		var penis;
 		penis = sprite_get_yoffset(hero_bullet);
-		draw_rectangle_color(x, sy - 2 - penis * scale, sx - 28, sy + 2 - penis * scale, c_white, c_white, c_white, c_white, 0);
+		//draw_rectangle_color(x, sy - 2 - penis * scale, sx - 28, sy + 2 - penis * scale, c_white, c_white, c_white, c_white, 0);
 		}
 	if super = 1 or global.super_ability1 = 1 && !enemy//global.super_ability
 		{

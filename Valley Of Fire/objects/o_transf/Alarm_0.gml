@@ -16,6 +16,8 @@ alarm[1] = room_speed / 3;
 			application_surface_draw_enable(1);
 			with(o_menu)
 				{ instance_destroy(); }
+			with(o_padpiska)
+				{ instance_destroy(); }
 		break;
 		case "sethero":
 			with(o_set_hero)
@@ -43,6 +45,7 @@ alarm[1] = room_speed / 3;
 		case "menu":
 			instance_create_depth(0, 0, 0, o_control);
 			instance_create_depth(0, 0, -1, o_menu);
+			instance_create_depth(0, 0, -3, o_padpiska);
 		break;
 		case "sethero":
 			//instance_create_depth(0, 0, 0, o_control);

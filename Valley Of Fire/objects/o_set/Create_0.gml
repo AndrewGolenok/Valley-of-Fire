@@ -101,7 +101,7 @@
 #region Автоподстройка разрешения
 	application_surface_enable(1);
 	
-	global.size = 640; //590; //640; // 720; //800; //960;
+	global.size = 720; //590; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
@@ -452,9 +452,11 @@
 	global.color_hero[11] = make_color_rgb(220,  20,  60);
 #endregion
 #region Прочее
-	//if os_type = os_ios { achievement_login(); } // Game Center
 	randomize(); // Включаем рандом
-	//alarm[2] = room_speed * 1.5; // Покупки
+	//
+	if os_type = os_ios { achievement_login(); } // Game Center
+	alarm[2] = room_speed * 1.5; // Покупки
+	//
 	global.text_color = make_color_rgb(255, 228, 181);
 	global.room_to_go = "set";
 	room_goto_t("logo"); // Переход

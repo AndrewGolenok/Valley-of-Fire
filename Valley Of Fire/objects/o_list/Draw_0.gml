@@ -5,8 +5,10 @@
 		{
 		var hui;
 		hui = 100 * 960 / global.size;
-		draw_sprite_ext(s_mine_rock1, 0, 0, global.size + hui, o_control.back_s, o_control.back_s, 0, c_white, 1);
-		draw_sprite_ext(s_mine_rock2, 0, 1280, global.size + 100 + hui, o_control.back_s, o_control.back_s, 0, c_white, 1);
+		//draw_sprite_ext(s_mine_rock1, 0, 0, global.size + hui, o_control.back_s, o_control.back_s, 0, c_white, 1);
+		//draw_sprite_ext(s_mine_rock2, 0, 1280, global.size + 100 + hui, o_control.back_s, o_control.back_s, 0, c_white, 1);
+		draw_sprite_ext(s_mine_rock1, 0, 0, global.size + hui, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(s_mine_rock2, 0, 1280, global.size + 100 + hui, 1, 1, 0, c_white, 1);
 		}
 #endregion
 #region Листовка
@@ -1999,13 +2001,13 @@
 		//draw_sprite_ext(s_question_question, 0, 640 + 418  * list_size * (1 - plas_scale), global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
 		//draw_sprite_ext(s_question_question, 1, 640 - 418  * list_size * (1 - plas_scale)/* + (419 + 128) * list_size*/, global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
 		
-		draw_set_font(f_question_regular);
-		draw_set_color(c_black);
-		draw_set_alpha(0.4);
-		draw_text_transformed(640 - 1, dop_q_y + global.size / 2 - 469 * list_size - 90 + 3 + list_y + button_x / 4 + 30, question_text, plas_scale, 1, 0);
-		draw_set_color(c_white);
-		draw_set_alpha(1);
-		draw_text_transformed(640, dop_q_y + global.size / 2 - 469 * list_size - 90 + list_y + button_x / 4 + 30, question_text, plas_scale, 1, 0);
+		//draw_set_font(f_question_regular);
+		//draw_set_color(c_black);
+		//draw_set_alpha(0.4);
+		//draw_text_transformed(640 - 1, dop_q_y + global.size / 2 - 469 * list_size - 90 + 3 + list_y + button_x / 4 + 30, question_text, plas_scale, 1, 0);
+		//draw_set_color(c_white);
+		//draw_set_alpha(1);
+		//draw_text_transformed(640, dop_q_y + global.size / 2 - 469 * list_size - 90 + list_y + button_x / 4 + 30, question_text, plas_scale, 1, 0);
 	#endregion
 	#region Победная и проигрышная плашки
 		//if plas_scale < 1

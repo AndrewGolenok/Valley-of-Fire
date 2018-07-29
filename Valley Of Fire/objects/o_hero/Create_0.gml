@@ -111,3 +111,7 @@ if global.background = "mine"
 	y += 230;
 	scale = 0.45;
 	}
+if global.background = "waterfall"
+	{
+	y += 100;
+	}

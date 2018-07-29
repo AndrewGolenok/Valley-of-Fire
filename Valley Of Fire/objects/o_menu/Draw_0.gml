@@ -575,6 +575,8 @@
 					global.enemy = 1;
 					instance_create_depth(0, 0, 0, o_hero);
 					global.room_to_go = "duel";
+					with(o_padpiska)
+						{ instance_destroy(); }
 					instance_destroy();
 					}
 				}
