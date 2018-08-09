@@ -33,7 +33,7 @@
     "option_ios_orientation_portrait": false,
     "option_ios_orientation_portrait_flipped": false,
     "option_ios_output_dir": "~\/GameMakerStudio2\/iOS",
-    "option_ios_push_notifications": false,
+    "option_ios_push_notifications": true,
     "option_ios_scale": 0,
     "option_ios_splash_time": 0,
     "option_ios_splashscreen_ipad_ios7_landscape": "${base_options_dir}\/ios\/splash\/ipad_7_landscape.png",
@@ -58,7 +58,7 @@
     "option_ios_texture_page": "1024x1024",
     "option_ios_use_facebook": false,
     "option_ios_version": {
-        "build": 26,
+        "build": 301,
         "major": 1,
         "minor": 0,
         "revision": 0

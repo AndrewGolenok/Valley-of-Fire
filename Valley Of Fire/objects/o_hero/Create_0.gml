@@ -5,6 +5,8 @@ damaged   = 0;
 
 enemy = global.enemy;
 
+bullet_index = 0;
+
 if enemy
 	{ global.enemy_object  = id; }
 	else
@@ -64,6 +66,7 @@ shoot  = 0;
 weapon_spd = 70;
 
 stun_seconds = 1;
+stun = 0;
 
 super     = 0;
 super_img = 0;
@@ -95,11 +98,12 @@ answer = -1;
 poisoned = 0;
 huntress_poison = 0;
 diego_dynamit   = 0;
-dynamit_x = 0;
-dynamit_y = 0;
-dynamit_a = 0;
-dynamit_i = 0;
-dynamit_d = 0;
+dynamit_x  = 0;
+dynamit_y  = 0;
+dynamit_a  = 0;
+dynamit_i  = 0;
+dynamit_d  = 0;
+diego_boom = -1;
 
 for(i=0;i<=10;i++)
 	{ bullet_lx[i] = 0; }
@@ -114,4 +118,9 @@ if global.background = "mine"
 if global.background = "waterfall"
 	{
 	y += 100;
+	}
+if global.background = "saloon"
+	{
+	xn += 70 * !enemy - 70 * enemy;
+	y  += 130;
 	}

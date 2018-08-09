@@ -2,8 +2,8 @@ if keyboard_check_pressed(ord("1"))
 	{ room_goto_t("logo"); }
 if keyboard_check_pressed(ord("2"))
 	{ room_goto_t("menu"); }
-if keyboard_check_pressed(ord("3"))
-	{ room_goto_t("sethero"); }
+//if keyboard_check_pressed(ord("3"))
+//	{ room_goto_t("sethero"); }
 if keyboard_check_pressed(ord("4"))
 	{ room_goto_t("duel"); }
 

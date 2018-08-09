@@ -86,12 +86,12 @@
 	if day_second >= 60
 		{ day_second = day_second - 60; day_minute += 1; }
 		
-	//var date;
-	//date = date_current_datetime();
+	var date;
+	date = date_current_datetime();
 	
-	//day_hour   = date_get_hour(date);
-	//day_minute = date_get_minute(date);
-	//day_second = date_get_second(date);
+	day_hour   = date_get_hour(date);
+	day_minute = date_get_minute(date);
+	day_second = date_get_second(date);
 	
 	
 	draw_sprite_ext(s_train_back, back_time[1], 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, back_alpha[1]);
@@ -120,7 +120,7 @@
 		{ star_alpha = back_alpha[2] * day_star; }
 #endregion
 #region Фон Поезда
-	if global.background = "train" or global.background = "waterfall"
+	if global.background = "train" or global.background = "waterfall" or global.background = "saloon"
 		{
 		#region Звезды и задник
 		/////// STARS ///////////
@@ -296,13 +296,59 @@
 			{ back_dir1 = -back_dir1; back_train_y1 += back_spd / 1.5 * back_dir1 * back_spd; }
 		back_train_y2 = back_train_y1;
 		draw_sprite_ext(s_waterfall_back, 0, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
-		draw_sprite_ext(s_waterfall_reflection, 0, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 0.5);
+		draw_sprite_ext(s_waterfall_reflection, 0, 640 + back_x, global.size + back_y - 198, 1 - (back_train_y1) * 0.005, 1 - (back_train_y1) * 0.01, 0, c_white, 0.5);
 		
 		water_n += 0.3;
 		draw_sprite_ext(s_waterfall_fall, water_n, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 0.7);
 		draw_sprite_ext(s_waterfall_water, water_n, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
 		
 		draw_sprite_ext(s_waterfall_bridge, 0, 640 + back_x, global.size + back_y + back_train_y1, 1, 1, 0, c_white, 1);
+		}
+#endregion
+#region Фон Салуна
+	if global.background = "saloon"
+		{
+		sl_doors_i += 0.1;
+		
+		if sl_wanted_t > 0
+			{ sl_wanted_t -= 1; }
+			else
+			{
+			if sl_wanted_i < 10
+				{ sl_wanted_i += 0.3; }
+				else
+				{
+				sl_wanted_t = irandom_range(4, 10) * room_speed;
+				sl_wanted_i = 0;
+				}
+			}
+		
+		draw_sprite_ext(s_saloon_back, 0, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
+		//draw_sprite_ext(s_saloon_house, 0, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
+		//draw_sprite_ext(s_saloon_wanted, sl_wanted_i, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(s_saloon_doors, sl_doors_i, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
+		
+		if sl_tumble_g = 0
+			{
+			sl_tumble_x = 1280 + 50 + irandom(2000);
+			sl_tumble_y = irandom_range(global.size / 2 + 20, global.size);
+			sl_tumble_s = 0.1 + 0.3 * (sl_tumble_y / global.size);
+			sl_tumble_a = 0;
+			sl_tumble_g = 1;
+			sl_tumble_spd = irandom_range(1, 6);
+			}
+		if sl_tumble_g = 1
+			{
+			sl_tumble_x -= sl_tumble_spd;
+			sl_tumble_a += sl_tumble_spd;
+			if sl_tumble_x < - 50
+				{ sl_tumble_g = 0; }
+			}
+		if instance_exists(o_hero)
+			{
+			if sl_tumble_y < o_hero.y - 40
+				{ draw_sprite_ext(s_saloon_tumbleweed, 0, sl_tumble_x, sl_tumble_y, sl_tumble_s, sl_tumble_s, sl_tumble_a, c_white, 1); }
+			}
 		}
 #endregion
 #region Поверх

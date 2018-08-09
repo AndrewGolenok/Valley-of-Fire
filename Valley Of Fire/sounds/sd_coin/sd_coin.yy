@@ -1,5 +1,5 @@
 {
-    "id": "9b043610-cea8-46dc-9464-92d37efdb213",
+    "id": "c137285e-2efe-4d82-8fd2-3511f0154a89",
     "modelName": "GMSound",
     "mvc": "1.0",
     "name": "sd_coin",

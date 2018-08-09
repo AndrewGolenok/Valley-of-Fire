@@ -39,25 +39,15 @@ if !enemy
 	}
 #endregion
 #region Рисование персонажа и выстрел
-	if shoot = 1
-		{
-		//if bullet_timer < 5
-		//	{ bullet_timer ++; }
-		//	else
-		//	{
-		//	bullet_lx[1] = sx;
-		//	//if bullet_lt < 10
-		//	//	{ bullet_lt += 1; }
-		//	//	else
-		//	//	{ bullet_lt = 0; }
-		//	}
-		//for(i=0;i<=10;i++)
-		//	{ draw_sprite_ext(hero_bullet_w, 0, (i * bullet_lx[1] - 10 * bullet_lx[1]) / 10 + sx, sy, sc * scale - 0.025, scale + 0.025, 0, c_white, 1 * bullet_alpha / i); }
-		var penis;
-		penis = sprite_get_yoffset(hero_bullet);
-		//draw_rectangle_color(x, sy - 2 - penis * scale, sx - 28, sy + 2 - penis * scale, c_white, c_white, c_white, c_white, 0);
-		}
-	if super = 1 or global.super_ability1 = 1 && !enemy//global.super_ability
+	//if shoot = 1
+	//	{
+	//	var penis;
+	//	penis = sprite_get_yoffset(hero_bullet);
+	//	//draw_rectangle_color(x, sy - 2 - penis * scale, sx - 28, sy + 2 - penis * scale, c_white, c_white, c_white, c_white, 0);
+	//	}
+
+	//draw_text(mouse_x, mouse_y, string(bullet_index));
+	if (super = 1 or (global.super_ability1 = 1 && huntress_poison))// && !enemy//global.super_ability
 		{
 		if ability_index < 5
 			{ ability_index += 0.5; }
@@ -66,10 +56,10 @@ if !enemy
 		if ability_index >= 9
 			{ ability_index = 5; }
 		
-		if image_index >= hero_abindex//26
-			{ ability_alpha -= 0.15; ability_index = 9; }
+		if image_index >= hero_abindex && !huntress_poison //26 
+			{ ability_alpha -= 0.2; ability_index = 9; }
 		
-		draw_sprite_ext(ability_back, ability_index, x - 28, y - 15, sc * scale, scale, 0, hero_color, ability_alpha);
+		draw_sprite_ext(ability_back, ability_index, x - 28 * !enemy + 28 * enemy, y - 15, sc * scale, scale, 0, hero_color, ability_alpha);
 		}
 		else
 		{ ability_index = 0; ability_alpha = 1; }
@@ -89,9 +79,6 @@ if !enemy
 	
 	if enemy
 		{
-		//draw_set_alpha(0.5);
-		//draw_ellipse_color(x - 28 - sprite_get_width(sprite_index) * scale / 3, y - 45 * scale + o_control.back_train_y1, x + sprite_get_width(sprite_index) * scale / 3 + 10, y + 10 * scale + o_control.back_train_y1, c_black, c_black, 0);
-		//draw_set_alpha(1);
 		draw_sprite_ext(sprite_index, image_index, x + 28, y - 15 + o_control.back_train_y1, sc * scale, scale, 0, c_white, 1);
 		
 		if poisoned > 0
@@ -106,6 +93,7 @@ if !enemy
 				o_list.dop_text[8] = "-" + string(round(o_list.atk / 10));
 				if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 					{
+					stun = 0;
 					skeleton_animation_set("damaged");
 					change = 1;
 					}
@@ -136,6 +124,7 @@ if !enemy
 				o_list.dop_text[7] = "-" + string(round(o_list.e_atk / 10));
 				if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 					{
+					stun = 0;
 					skeleton_animation_set("damaged");
 					change = 1;
 					}
@@ -158,33 +147,38 @@ if !enemy
 		}
 	if shoot = 1
 		{
-		sx += (weapon_spd * (!enemy) - weapon_spd * (enemy)) * 2;
+		if hero = 3
+			{ bullet_index = 4; }
+		if bullet_index < 4
+			{ bullet_index += 1.5; }
+			else
+			{ sx += (weapon_spd * (!enemy) - weapon_spd * (enemy)) * 2; }
 		
 		if huntress_poison
 			{
-			draw_sprite_ext(s_huntress_ability, 0, sx + 1 - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.4 * bullet_alpha);
-			draw_sprite_ext(s_huntress_ability, 0, sx - 1 - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.4 * bullet_alpha);
-			draw_sprite_ext(s_huntress_ability, 0, sx - 28, sy - 1 - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.4 * bullet_alpha);
-			draw_sprite_ext(s_huntress_ability, 0, sx - 28, sy + 1 - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.4 * bullet_alpha);
+			draw_sprite_ext(s_huntress_ability, bullet_index, sx + 1 - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.4 * bullet_alpha);
+			draw_sprite_ext(s_huntress_ability, bullet_index, sx - 1 - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.4 * bullet_alpha);
+			draw_sprite_ext(s_huntress_ability, bullet_index, sx - 28, sy - 1 - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.4 * bullet_alpha);
+			draw_sprite_ext(s_huntress_ability, bullet_index, sx - 28, sy + 1 - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.4 * bullet_alpha);
 	
 			for(i = 0; i <= 5; i++)
-				{ draw_sprite_ext(s_huntress_ability, 0, sx - 8 * i - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.4 / i * bullet_alpha); }
+				{ draw_sprite_ext(s_huntress_ability, bullet_index, sx - 8 * i - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.4 / i * bullet_alpha); }
 	
-			draw_sprite_ext(s_huntress_ability, 0, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_white, 1 * bullet_alpha);
-			draw_sprite_ext(s_huntress_ability, 0, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.8 * bullet_alpha);
+			draw_sprite_ext(s_huntress_ability, bullet_index, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_white, 1 * bullet_alpha);
+			draw_sprite_ext(s_huntress_ability, bullet_index, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.8 * bullet_alpha);
 			}
 			else
 			{
-			draw_sprite_ext(hero_bullet, 0, sx - 28, sy, sc * scale - 0.025, scale + 0.025, 0, c_white, bullet_alpha);
+			draw_sprite_ext(hero_bullet, bullet_index, sx - 28, sy, sc * scale - 0.025, scale + 0.025, 0, c_white, bullet_alpha);
 			}
 		
-		if (((sx >= 1280 - x - sprite_get_width(s_bullet_revolver) - weapon_spd * 1.2 && !enemy) or (sx <= (1280 - x) + weapon_spd * 1.2 + sprite_get_width(s_bullet_revolver) && enemy)) && answer = 1)
-		or (((sx >= 1280 - x - sprite_get_width(s_bullet_revolver) - weapon_spd * 1.2 - 1280 && !enemy) or (sx <= (1280 - x) + 1280 + weapon_spd * 1.2 + sprite_get_width(s_bullet_revolver) && enemy)) && answer = 0)
+		//or (((sx >= 1280 - x - sprite_get_width(s_bullet_revolver) - weapon_spd * 1.2 - 1280 && !enemy) or (sx <= (1280 - x) + 1280 + weapon_spd * 1.2 + sprite_get_width(s_bullet_revolver) && enemy)) && answer = 0)
+		if ((((sx >= 1280 - x - sprite_get_width(s_bullet_revolver) - weapon_spd * 1.2) && !enemy) or ((sx <= (1280 - x) + weapon_spd * 1.2 + sprite_get_width(s_bullet_revolver)) && enemy)) && answer != -1)
 			{
 			if enemy
 				{
-				if o_list.bot_question >= global.question && (o_list.bot_task >= global.task) && o_list.timer > 2 * room_speed
-					{ o_list.timer = 2 * room_speed; o_list.timer_x = 2 * room_speed; }
+				//if o_list.bot_question >= global.question && (o_list.bot_task >= global.task) && o_list.timer > 2 * room_speed
+					//{ o_list.timer = 2 * room_speed; o_list.timer_x = 2 * room_speed; }
 				if answer = 1
 					{
 					with(o_hero)
@@ -199,12 +193,14 @@ if !enemy
 								}
 							if (global.enemy_object).huntress_poison = 1
 								{ poisoned = room_speed * 10; }
-							if o_list.view_go_left = 0
+							if o_list.view_go_left = 0 && o_list.view_go_right = 0
 								{ o_list.view_go_left = 1; }
-							o_list.hp -= o_list.e_atk + o_list.e_atk / 10 * (global.critical == 3);
+							
+							if o_list.hp > 0 && o_list.e_hp > 0
+								{ o_list.hp -= o_list.e_atk + o_list.e_atk / 10 * (global.critical == 3); }
 							
 							if diego_dynamit = 1 && skeleton_animation_get() != "super"
-								{ dynamit_d = o_list.e_atk + o_list.e_atk / 10 * (global.e_critical == 3); diego_dynamit = 2; change = 3; skeleton_animation_set("super"); }
+								{ dynamit_d = o_list.e_atk + o_list.e_atk / 10 * (global.e_critical == 3); diego_dynamit = 2; stun_seconds -= 1; change = 3; skeleton_animation_set("super"); }
 							
 							o_list.dop_i[1] = 7;
 							o_list.dop_text_color[1] = (global.enemy_object).hero_color;
@@ -214,6 +210,7 @@ if !enemy
 								{ o_list.dop_text[7] = "-" + string(round(o_list.e_atk)); }
 							if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 								{
+								stun = 0;
 								skeleton_animation_set("damaged");
 								change = 1;
 								}
@@ -227,7 +224,7 @@ if !enemy
 						if !enemy
 							{
 							if diego_dynamit = 1 && skeleton_animation_get() != "super"
-								{ dynamit_d = 0; diego_dynamit = 2; change = 3; skeleton_animation_set("super"); }
+								{ dynamit_d = 0; diego_dynamit = 2; change = 3; stun_seconds -= 1; skeleton_animation_set("super"); }
 							
 							if o_list.view_go_down = 0
 								{ o_list.view_go_down = 1; o_list.dop_i[0] = 0; }
@@ -253,7 +250,7 @@ if !enemy
 								}
 							if (global.player_object).huntress_poison = 1
 								{ poisoned = room_speed * 10; }
-							if o_list.view_go_right = 0
+							if o_list.view_go_left = 0 && o_list.view_go_right = 0
 								{ o_list.view_go_right = 1; }
 								
 							//if i = 8
@@ -262,7 +259,10 @@ if !enemy
 							//o_list.part_y = o_list.dop_text_y[1];
 							//o_list.part_n = 1;
 							//}
-							o_list.e_hp -= o_list.atk + o_list.atk / 10 * (global.e_critical == 3);
+							
+							if o_list.hp > 0 && o_list.e_hp > 0
+								{ o_list.e_hp -= o_list.atk + o_list.atk / 10 * (global.e_critical == 3); }
+								
 							o_list.dop_i[2] = 8;
 							o_list.dop_text_color[2] = (global.player_object).hero_color;
 							
@@ -272,6 +272,7 @@ if !enemy
 								{ o_list.dop_text[8] = "-" + string(round(o_list.atk)); }
 							if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 								{
+								stun = 0;
 								skeleton_animation_set("damaged");
 								change = 1;
 								}
@@ -291,83 +292,24 @@ if !enemy
 					}
 				}
 			if answer = 1
-				{ shoot = 4; answer = -1; global.pin = -1; }
+				{ shoot = 0; bullet_index = 0; answer = -1; global.pin = -1; }
 			}
 		if answer = 0 
 			{
 			if (sx > 1380 && !enemy) or (sx < - 100 && enemy)
-				{ shoot = 4; answer = -1; global.pin = -1; }
+				{ shoot = 0; bullet_index = 0; answer = -1; global.pin = -1; }
 			}
 		}
-	if shoot = 4
-		{
-		bullet_alpha = 0;
-		if bullet_alpha > 0
-			{ bullet_alpha -= 0.05; }
-			else
-			{ bullet_alpha = 1; shoot = 0; exit; }
-		}
-	#region Годдемедж
-	if 0 //godamaged = 1
-		{
-		if damaged = 0
-			{ godamaged = 0; }
-			else
-			{
-			if enemy
-				{
-				with(o_hero)
-					{
-					if enemy
-						{
-						answer = global.bot_answer;
-						image_speed = 2.5;
-						skeleton_animation_set("shoot");
-						change = 3;
-						}
-						else
-						{
-						if global.bot_answer = 0
-							{
-							image_speed = 1.5;
-							skeleton_animation_set("miss");
-							change = 1;
-							}
-						}
-					}
-				}
-				else
-				{
-				with(o_hero)
-					{
-					if !enemy
-						{
-						answer = global.answer;
-						image_speed = 2.5;
-						skeleton_animation_set("shoot");
-						change = 3;
-						}
-						else
-						{
-						if global.answer = 0
-							{
-							with(o_hero)
-								{
-								if enemy
-									{
-									image_speed = 1.5;
-									skeleton_animation_set("miss");
-									change = 1;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		damaged = 0;
-		}
-	#endregion
+	if answer = -1 && !super
+		{ shoot = 0; bullet_index = 0; }
+	//if shoot = 4
+	//	{
+	//	bullet_alpha = 0;
+	//	if bullet_alpha > 0
+	//		{ bullet_alpha -= 0.05; }
+	//		else
+	//		{ bullet_alpha = 1; shoot = 0; exit; }
+	//	}
 #endregion
 #region Суперспособность
 	var abil;
@@ -380,13 +322,13 @@ if !enemy
 	//		{ global.super_ability = 0; }
 	//	hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "2");
 	//	}
-	if diego_dynamit = 2 && image_index = 19
+	if diego_dynamit = 2 && image_index >= 18
 		{ diego_dynamit = 3; }
 	if diego_dynamit = 3
 		{
 		if enemy = 0
 			{
-			global.super_ability1 = 1;
+			//global.super_ability1 = 1;
 			dynamit_x = x + 375 * scale;
 			dynamit_y = y - 200;
 			dynamit_a = 135;
@@ -400,15 +342,21 @@ if !enemy
 			{ dynamit_x += 30; }
 			else
 			{
-			if o_list.view_go_right = 0
+			(global.enemy_object).diego_boom = 1;
+			view_xport = 0;
+			view_yport = 0;
+			
 				{ o_list.view_go_right = 1; }
-			o_list.e_hp -= dynamit_d;
+			o_list.view_go_down = 1;
+			if o_list.e_hp > 0 && o_list.hp > 0
+				{ o_list.e_hp -= dynamit_d; }
 			o_list.dop_i[2] = 8;
 			o_list.dop_text_color[2] = (global.player_object).hero_color;
 			o_list.dop_text[8] = "-" + string(dynamit_d);
 			
 			if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 				{
+				stun = 0;
 				skeleton_animation_set("damaged");
 				change = 1;
 				}
@@ -421,5 +369,25 @@ if !enemy
 			}
 		dynamit_a -= 5;
 		draw_sprite_ext(s_abil_thing_diego, 0, dynamit_x, dynamit_y, scale * 1.2, scale * 1.2, dynamit_a, c_white, 1)
+		}
+#endregion
+#region Стан и Взрыв
+	if diego_boom > 0
+		{
+		draw_sprite_ext(s_diego_boom, diego_boom, x, y - 200, scale * 1.2, scale * 1.2, 0, c_white, 1);
+		diego_boom += 0.5;
+		if diego_boom > 5
+			{ diego_boom = -1; }
+		//(global.enemy_object).x
+		}
+	if stun = 1 && skeleton_animation_get() != "stun"
+		{
+		//stun = 1;
+		stun_seconds = 3;// * room_speed;
+		sprite_index = hero_sprite;
+		skeleton_animation_set("stun");
+		image_index = 0;
+		image_speed = 2;
+		change = 4;
 		}
 #endregion

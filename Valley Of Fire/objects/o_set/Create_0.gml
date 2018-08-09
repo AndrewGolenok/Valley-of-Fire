@@ -101,6 +101,7 @@
 #region Автоподстройка разрешения
 	application_surface_enable(1);
 	
+	device_mouse_dbclick_enable(0);
 	global.size = 720; //590; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
@@ -409,23 +410,33 @@
 	global.question_text[2, 2] = "Targets!";
 	global.question_text[2, 3] = "Shoot the bottles in the\nright sequence!";
 	global.question_text[2, 4] = "---";
+	
+	for(i=4;i<=8;i++)
+		{
+		for(j=1;j<=4;j++)
+			{
+			global.question_text[i, j] = "-";
+			global.question_text[i, j] = "-";
+			global.question_text[i, j] = "-";
+			global.question_text[i, j] = "-";
+			}
+		}
 	ini_close();
 	
 	for(i=1; i<=11; i++)
 		{ global.theme_name[i] = "OTHER"; }
 	
-	global.count_themes = 3; //9;
+	global.count_themes = 4; //9;
 	ini_open("Language/" + string(global.lang) + "/theme_name_" + string(global.lang) + ".ini");
-	global.theme_name[1] = ini_read_string("Theme Name", "name_1", "");
-	global.theme_name[2] = ini_read_string("Theme Name", "name_2", "");
-	global.theme_name[3] = ini_read_string("Theme Name", "name_3", "");
+	global.theme_name[1] = "MATH"//ini_read_string("Theme Name", "name_1", "");
+	global.theme_name[2] = "PRECISION"//ini_read_string("Theme Name", "name_2", "");
+	global.theme_name[3] = "DIRECTIONS"//ini_read_string("Theme Name", "name_3", "");
 	
-	global.theme_name[4] = "PRECISION";
-	global.theme_name[5] = "PRECISION";
-	global.theme_name[6] = "PRECISION";
-	global.theme_name[7] = "PRECISION";
-	global.theme_name[8] = "PRECISION";
-	global.theme_name[9] = "PRECISION";
+	global.theme_name[4] = "CARDS";
+	global.theme_name[5] = "ATTENTION";
+	global.theme_name[6] = "MEASURE";
+	global.theme_name[7] = "BOTTLES";
+	global.theme_name[8] = "MOVE";
 	
 	global.color_white = make_color_rgb(255, 248, 220);
 	ini_close();

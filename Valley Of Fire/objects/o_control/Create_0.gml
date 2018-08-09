@@ -23,13 +23,13 @@
 	view_set_camera(VIEW, camera);
 #endregion
 #region Фон
-	global.background = choose("mine", "train", "waterfall"); //"train";
+	global.background = choose("train", "mine", "waterfall", "saloon");
 	global.super_ability    = 0;
 	global.super_ability1   = 0;
 	global.ability_dop_anim = 0;
 	depth = 5;
 	
-	back_x  = 0;
+	back_x = 0;
 	if global.background = "train"
 		{
 		back_s  = 0.56;
@@ -42,7 +42,7 @@
 		}
 	if global.background = "mine"
 		{
-		back_s  = 0.52;
+		back_s = 0.52;
 		if global.size < 900
 			{ back_y = 150; }
 			else
@@ -53,6 +53,14 @@
 		back_s = 0.52;
 		if global.size < 900
 			{ back_y = 30; }
+			else
+			{ back_y = 0; }
+		}
+	if global.background = "saloon"
+		{
+		back_s = 0.52;
+		if global.size < 900
+			{ back_y = 100; }
 			else
 			{ back_y = 0; }
 		}
@@ -171,6 +179,19 @@
 	#endregion
 	#region Водопад
 		water_n = 0;
+	#endregion
+	#region Салун
+		sl_doors_i  = 0;
+		
+		sl_wanted_t = irandom_range(4, 10) * room_speed;
+		sl_wanted_i = 0;
+		
+		sl_tumble_x = 0;
+		sl_tumble_y = 0;
+		sl_tumble_s = 0;
+		sl_tumble_a = 0;
+		sl_tumble_g = 0;
+		sl_tumble_spd = 0;
 	#endregion
 	#region Гуи
 		//q_col  = c_white;

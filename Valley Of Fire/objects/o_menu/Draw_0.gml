@@ -577,6 +577,7 @@
 					global.room_to_go = "duel";
 					with(o_padpiska)
 						{ instance_destroy(); }
+					o_control.sl_tumble_g = 0;
 					instance_destroy();
 					}
 				}

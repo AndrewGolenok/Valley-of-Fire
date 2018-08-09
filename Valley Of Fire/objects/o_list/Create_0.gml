@@ -32,7 +32,7 @@
 	e_skill[3] = 1;
 
 	abil_x = 160;
-	abil_y = global.size / 2;
+	abil_y = y; //global.size / 2;
 	abil_s = 0.5;
 	abil_a = 0;
 #endregion
@@ -106,6 +106,7 @@
 				}
 			}
 		}
+	theme_real_theme[2] = 5;
 	//if theme_real_theme[0] != -1
 	//	{
 	//	if global.hero != global.enemy_hero
@@ -384,7 +385,7 @@
 	theme_s[1]  = 0;
 	theme_t[1]  = global.enemy_hero;
 	theme_a[1]  = 1;
-	theme_nn[1]  = global.theme_name[theme_t[1]];
+	theme_nn[1] = global.theme_name[theme_t[1]];
 	theme_x1[1] = 0;
 	theme_y1[1] = 0;
 	theme_a1[1] = irandom(360);
@@ -397,7 +398,7 @@
 		else
 		{ theme_t[2] = theme_new(theme_t[1], -1); }
 	theme_a[2]  = 1;
-	theme_nn[2]  = global.theme_name[theme_t[2]];
+	theme_nn[2] = global.theme_name[theme_t[2]];
 	theme_x1[2] = 0;
 	theme_y1[2] = 0;
 	theme_a1[2] = irandom(360);
@@ -407,7 +408,7 @@
 	theme_s[3]  = 0;
 	theme_t[3]  = theme_new(theme_t[1], theme_t[2]);
 	theme_a[3]  = 1;
-	theme_nn[3]  = global.theme_name[theme_t[3]];
+	theme_nn[3] = global.theme_name[theme_t[3]];
 	theme_x1[3] = 0;
 	theme_y1[3] = 0;
 	theme_a1[3] = irandom(360);
@@ -416,7 +417,7 @@
 	
 	theme_g = 0;
 	theme_click = 0;
-	theme_dot = "";
+	theme_dot   = "";
 #endregion
 #region Объявление раунда
 	round_text[1] = "ROUND";
@@ -453,6 +454,31 @@
 	win_y = global.size - 50;
 	win_text_y  = global.size + 100;
 	win_text_y1 = global.size + 100;
+	
+	
+	whowin_stage = 0;
+	
+	whowin_x1 = 200 + 280;
+	whowin_y1 = global.size / 2;
+	whowin_s1 = 0;
+	whowin_c1 = c_black;
+	whowin_a1 = -180;
+	
+	whowin_x2 = 1080 - 280;
+	whowin_y2 = global.size / 2;
+	whowin_s2 = 0;
+	whowin_c2 = c_black;
+	whowin_a2 = -180;
+	
+	whowin_text	  = "";
+	whowin_text_x = 640;
+	whowin_text_y = global.size / 2 - 160;
+	whowin_text_s = 0;
+	whowin_text_a = -180;
+	
+	whowin_timer  = 0;
+	light_scale1  = 0;
+	light_scale1_dir = -1;
 #endregion
 #region Переменные и Темы
 	global.critical   = 0;
@@ -668,6 +694,10 @@
 	super_dir   = 1;
 	super_alp   = 1;
 	super_alp1  = 1;
+	super_alpha = 1;
+	
+	e_super_need = 3;
+	e_super_now  = 0;
 	
 	super_time  = 0;
 	super_val   = 0;
@@ -702,20 +732,73 @@
 	accuracy_all  = 0;
 #endregion
 #region Бот
+	for(i=1;i<=10;i++)
+		{
+		u_answer[i] = -1;
+		e_answer[i] = -1;
+		
+		u_time[i] = 6 * room_speed;
+		e_time[i] = 6 * room_speed;
+		}
+	u_question = 1;
+	e_question = 1;
 	global.sraka = 0; // Никто не атакует
+	for(i=1;i<=8;i++)
+		{
+		for(j=1;j<=4;j++)
+			{
+			min_time[i,j] = 10;
+			min_wait[i,j] = 10;
+			}
+		}
+	///
+	
 	min_time[1,1] = 10;
 	min_time[1,2] = 10;
 	min_time[1,3] = 10;
 	min_time[1,4] = 10;
 	
-	min_time[2,1] = 90//50;
-	min_time[2,2] = 0;
-	min_time[2,3] = 90//50;
+	min_time[2,1] = 30;
+	min_time[2,2] = 10;
+	min_time[2,3] = 30;
+	min_time[2,4] = 10;
 	
-	min_time[3,1] = 10;
-	min_time[3,2] = 10;
-	min_time[3,3] = 10;
-	min_time[3,4] = 10;
+	min_time[3,1] = 20;
+	min_time[3,2] = 30;
+	min_time[3,3] = 20;
+	min_time[3,4] = 20;
+	
+	min_time[4,1] = 20;
+	min_time[4,2] = 60;
+	min_time[4,3] = 10;
+	min_time[4,4] = 10;
+	
+	///
+	
+	min_wait[1,1] = 10;
+	min_wait[1,2] = 10;
+	min_wait[1,3] = 10;
+	min_wait[1,4] = 10;
+	
+	min_wait[2,1] = 90//50;
+	min_wait[2,2] = 0;
+	min_wait[2,3] = 90//50;
+	min_wait[2,4] = 0;
+	
+	min_wait[3,1] = 10;
+	min_wait[3,2] = 10;
+	min_wait[3,3] = 10;
+	min_wait[3,4] = 10;
+	
+	min_wait[4,1] = 90;
+	min_wait[4,2] = 100;
+	min_wait[4,3] = 0;
+	min_wait[4,4] = 0;
+	
+	///
+	
+	pre_wait = 1;
+	bot_wait = 1;
 	
 	view_go_left = 0;
 	view_go_right = 0;
@@ -729,6 +812,11 @@
 	bot_time   = -1;
 	bot_time2  = 6 * room_speed;
 	global.bot_answer = -1;
+	
+	hpold = 0;
+	hprld = 0;
+	
+	timer_y = 0;
 	
 	if bot_type = 0
 		{ global.enemy_name = choose("DUMB BOB", "SILLY SAM", "BAD BOY"); }
@@ -745,6 +833,12 @@
 	restart_time2  = 0;
 	restart_angle = 0;
 	restart_angle2 = 0;
+	
+	color[0] = c_white;
+	color[1] = c_white;
+	color[2] = c_white;
+	color[3] = c_white;
+	color[4] = c_white;
 #endregion
 #region Верно или нет
 	answer_rec = 0;

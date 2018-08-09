@@ -31,6 +31,8 @@ if image_index = 20 && skeleton_animation_get() = "shoot"
 	}
 if shoot = 2 or shoot = 3
 	{
+	if hero = 3
+		{ bullet_index = 4; }
 	if shoot = 2
 		{
 		if !enemy
@@ -40,10 +42,10 @@ if shoot = 2 or shoot = 3
 		}
 		else
 		{
-		if bullet_alpha > 0
-			{ bullet_alpha -= 0.05; }
-			else
-			{ shoot = 0; exit; }
+		//if bullet_alpha > 0
+		//	{ bullet_alpha -= 0.05; }
+		//	else
+			{ shoot = 0; bullet_index = 0; exit; }
 		}
 	
 	draw_sprite_ext(s_huntress_ability, 0, sx + 1 - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.4 * bullet_alpha);

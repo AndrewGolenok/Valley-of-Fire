@@ -7,7 +7,8 @@
         "7fac383d-3ccf-4ac3-a3da-4266b03677e4",
         "c7b47328-11dd-47ea-bc5d-57cbb17ff404",
         "1550ad5a-b960-4b16-aa2c-492adc83a5e3",
-        "6ade8835-feef-45f6-8878-f34d1a575763"
+        "6ade8835-feef-45f6-8878-f34d1a575763",
+        "1dfe2104-db40-4423-87b9-3ad0242c74bd"
     ],
     "filterType": "GMSprite",
     "folderName": "Things",

@@ -5,11 +5,16 @@ if diego_dynamit = 1
 	hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "2");
 	}
 	
-if diego_dynamit = 3
-	{ hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + ""); }
+if diego_dynamit != 1//>= 2
+	{ hero_sprite = asset_get_index("s_" + global.hero_code_name[hero]); }
 
 if change = 1
 	{
+	if global.super_ability = 1 && huntress_poison
+		{
+		global.super_ability  = 0;
+		global.super_ability1 = 1;
+		}
 	if global.game_stage = 0
 		{ global.game_stage = 1; }
 	sprite_index = hero_sprite;
@@ -41,7 +46,7 @@ if change = 4
 		if hero = 1 && skeleton_animation_get() = "win"
 			{ change = 2; }
 			else
-			{ change = 1; }
+			{ change = 1; stun = 0; }
 		}
 	}
 	

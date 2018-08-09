@@ -13,16 +13,15 @@ alarm[1] = room_speed / 3;
 				with(o_control)
 					{ instance_destroy(); }
 				}
-			application_surface_draw_enable(1);
 			with(o_menu)
 				{ instance_destroy(); }
-			with(o_padpiska)
-				{ instance_destroy(); }
+			//with(o_padpiska)
+			//	{ instance_destroy(); }
 		break;
-		case "sethero":
-			with(o_set_hero)
-				{ instance_destroy(); }
-		break;
+		//case "sethero":
+		//	with(o_set_hero)
+		//		{ instance_destroy(); }
+		//break;
 		case "duel":
 			if rm != "menu"
 				{
@@ -43,14 +42,15 @@ alarm[1] = room_speed / 3;
 			instance_create_depth(0, 0, 0, o_logo);
 		break;
 		case "menu":
-			instance_create_depth(0, 0, 0, o_control);
+			if rmp != "duel"
+			{ instance_create_depth(0, 0, 0, o_control); }
 			instance_create_depth(0, 0, -1, o_menu);
-			instance_create_depth(0, 0, -3, o_padpiska);
+			//instance_create_depth(0, 0, -3, o_padpiska);
 		break;
-		case "sethero":
-			//instance_create_depth(0, 0, 0, o_control);
-			//instance_create_depth(0, 0, -1, o_menu);
-		break;
+		//case "sethero":
+		//	instance_create_depth(0, 0, 0, o_control);
+		//	instance_create_depth(0, 0, -1, o_menu);
+		//break;
 		case "duel":
 			if rmp != "menu"
 				{ instance_create_depth(0, 0, -1, o_control); }
