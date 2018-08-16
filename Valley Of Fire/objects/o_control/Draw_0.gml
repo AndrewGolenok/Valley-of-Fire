@@ -1,4 +1,7 @@
 #region Тестовые сдвиги фона
+	var prx, pry;
+	prx = global.paral_x * global.paral_sx;
+	pry = global.paral_y * global.paral_sy;
 	//if keyboard_check(ord("A"))
 	//	{ back_x -= 10; }
 	//if keyboard_check(ord("D"))
@@ -136,9 +139,9 @@
 		draw_sprite_ext(s_sunmoon, 0, 640 + lengthdir_x(640, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600)), global.size / 2 + lengthdir_y(200, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600)), moon_scale, moon_scale, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600), c_white, 1);
 		draw_sprite_ext(s_sunmoon, 1, 640 - lengthdir_x(640, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600)), global.size / 2 - lengthdir_y(200, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600)), moon_scale, moon_scale, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600), c_white, 1);
 	
-		draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, 1);
-		draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, back_alpha[1]);
-		draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, back_alpha[2]);
+		draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, 1);
+		draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, back_alpha[1]);
+		draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, back_alpha[2]);
 	#endregion
 		#region Рисование облаков
 			for(i=0; i<=8; i++)
@@ -192,7 +195,7 @@
 					back_m_s[i] = (1 - 0.5 * abs(back_m_x[i] - 640) / 640) * back_s;
 					}
 	
-				draw_sprite_ext(s_train_mountain, back_m_img[i], back_m_x[i], back_m_y, back_m_s[i], back_m_s[i], 0, c_white, 1);
+				draw_sprite_ext(s_train_mountain, back_m_img[i], back_m_x[i] - prx, back_m_y - pry, back_m_s[i], back_m_s[i], 0, c_white, 1);
 				}
 			if back_n > 0 or back_gt = 1
 				{
@@ -217,7 +220,7 @@
 							}
 						}
 	
-					draw_sprite_ext(s_train_mountain, back_m_img[i], back_m_x[i], back_m_y, back_m_s[i], back_m_s[i], 0, c_white, 1);
+					draw_sprite_ext(s_train_mountain, back_m_img[i], back_m_x[i] - prx, back_m_y - pry, back_m_s[i], back_m_s[i], 0, c_white, 1);
 					}
 				}
 		#endregion		
@@ -231,7 +234,7 @@
 				if back_sand_x[i] <= back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - sprite_get_width(s_train_sand) / 2 * back_s
 					{ back_sand_x[i] = 1280 + sprite_get_width(s_train_sand) / 2 * back_s; }
 		
-				draw_sprite_ext(s_train_sand, 0, back_sand_x[i], back_sand_y, back_s, back_s, 0, c_white, 0.9);
+				draw_sprite_ext(s_train_sand, 0, back_sand_x[i] - prx, back_sand_y - pry, back_s, back_s, 0, c_white, 0.9);
 				}
 		#endregion
 		#region Рисование кактусов, утесов, черепков
@@ -248,8 +251,8 @@
 						back_other_x[i] -= back_other_spd[i];	
 						back_other_s[i]	 = (1 - 0.6 * abs(back_other_x[i] - 640) / 640) * back_s;
 				
-						draw_sprite_ext(back_other_spr[i], back_other_img[i], back_other_x[i], back_y - 20 + back_other_y[i] - (sprite_get_width(back_other_spr[i]) * back_other_s[i] * back_other_sk[i] / 3) / 2, back_other_s[i] * back_other_sk[i] / 3, back_other_s[i] * back_other_sk[i] * 1.25, -100, c_black, 0.45);
-						draw_sprite_ext(back_other_spr[i], back_other_img[i], back_other_x[i], back_y - 20 + back_other_y[i], back_other_s[i] * back_other_sk[i], back_other_s[i] * back_other_sk[i], 0, c_white, 1);
+						draw_sprite_ext(back_other_spr[i], back_other_img[i], back_other_x[i] - prx, back_y - 20 + back_other_y[i] - pry - (sprite_get_width(back_other_spr[i]) * back_other_s[i] * back_other_sk[i] / 3) / 2, back_other_s[i] * back_other_sk[i] / 3, back_other_s[i] * back_other_sk[i] * 1.25, -100, c_black, 0.45);
+						draw_sprite_ext(back_other_spr[i], back_other_img[i], back_other_x[i] - prx, back_y - 20 + back_other_y[i] - pry, back_other_s[i] * back_other_sk[i], back_other_s[i] * back_other_sk[i], 0, c_white, 1);
 						//draw_text(mouse_x, mouse_y, string(global.size - 200 * back_s));//draw_text(back_other_x[i], back_y + back_other_y[i], string(back_other_y[i]));
 						}
 						else
@@ -277,14 +280,14 @@
 			if back_anim_2 > 2
 				{ back_anim_2 = 0; }
 
-			draw_sprite_ext(s_train_decks, back_anim_1, 640 + back_x - sprite_get_width(s_train_back) * back_s / 2, global.size + back_y, -back_s, back_s, 0, c_white, 1);
-			draw_sprite_ext(s_train_decks, back_anim_2, 640 + back_x + sprite_get_width(s_train_back) * back_s / 2, global.size + back_y, back_s, back_s, 0, c_white, 1);
+			draw_sprite_ext(s_train_decks, back_anim_1, 640 + back_x - sprite_get_width(s_train_back) * back_s / 2 + prx, global.size + back_y + pry, -back_s, back_s, 0, c_white, 1);
+			draw_sprite_ext(s_train_decks, back_anim_2, 640 + back_x + sprite_get_width(s_train_back) * back_s / 2 + prx, global.size + back_y + pry, back_s, back_s, 0, c_white, 1);
 
-			draw_sprite_ext(s_train_rails, 0, 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, 1);
-			draw_sprite_ext(s_train_rails, 0, 640 + back_x, global.size + back_y, -back_s, back_s, 0, c_white, 1);
+			draw_sprite_ext(s_train_rails, 0, 640 + back_x + prx, global.size + back_y + pry, back_s, back_s, 0, c_white, 1);
+			draw_sprite_ext(s_train_rails, 0, 640 + back_x + prx, global.size + back_y + pry, -back_s, back_s, 0, c_white, 1);
 
-			draw_sprite_ext(s_train_wagon, 0, 640 + back_x, global.size + back_y + back_train_y1, back_s, back_s, 0, c_white, 1);
-		draw_sprite_ext(s_train_wagon, 0, 640 + back_x, global.size + back_y + back_train_y2, -back_s, back_s, 0, c_white, 1);
+			draw_sprite_ext(s_train_wagon, 0, 640 + back_x + prx, global.size + back_y + back_train_y1 + pry, back_s, back_s, 0, c_white, 1);
+		draw_sprite_ext(s_train_wagon, 0, 640 + back_x + prx, global.size + back_y + back_train_y2 + pry, -back_s, back_s, 0, c_white, 1);
 		#endregion
 		}
 #endregion
@@ -295,14 +298,14 @@
 		if abs(back_train_y1) >= back_spd * 5
 			{ back_dir1 = -back_dir1; back_train_y1 += back_spd / 1.5 * back_dir1 * back_spd; }
 		back_train_y2 = back_train_y1;
-		draw_sprite_ext(s_waterfall_back, 0, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
-		draw_sprite_ext(s_waterfall_reflection, 0, 640 + back_x, global.size + back_y - 198, 1 - (back_train_y1) * 0.005, 1 - (back_train_y1) * 0.01, 0, c_white, 0.5);
+		draw_sprite_ext(s_waterfall_back, 0, 640 + back_x - prx, global.size + back_y - pry, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(s_waterfall_reflection, 0, 640 + back_x - prx, global.size + back_y - 198 - pry, 1 - (back_train_y1) * 0.005, 1 - (back_train_y1) * 0.01, 0, c_white, 0.5);
 		
 		water_n += 0.3;
-		draw_sprite_ext(s_waterfall_fall, water_n, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 0.7);
-		draw_sprite_ext(s_waterfall_water, water_n, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(s_waterfall_fall, water_n, 640 + back_x - prx, global.size + back_y - pry, 1, 1, 0, c_white, 0.7);
+		draw_sprite_ext(s_waterfall_water, water_n, 640 + back_x - prx, global.size + back_y - pry, 1, 1, 0, c_white, 1);
 		
-		draw_sprite_ext(s_waterfall_bridge, 0, 640 + back_x, global.size + back_y + back_train_y1, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(s_waterfall_bridge, 0, 640 + back_x + prx, global.size + back_y + back_train_y1 + pry, 1, 1, 0, c_white, 1);
 		}
 #endregion
 #region Фон Салуна
@@ -323,10 +326,10 @@
 				}
 			}
 		
-		draw_sprite_ext(s_saloon_back, 0, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(s_saloon_back, 0, 640 + back_x - prx, global.size + back_y - pry, 1, 1, 0, c_white, 1);
 		//draw_sprite_ext(s_saloon_house, 0, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
 		//draw_sprite_ext(s_saloon_wanted, sl_wanted_i, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
-		draw_sprite_ext(s_saloon_doors, sl_doors_i, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(s_saloon_doors, sl_doors_i, 640 + back_x - prx, global.size + back_y - pry, 1, 1, 0, c_white, 1);
 		
 		if sl_tumble_g = 0
 			{
@@ -347,7 +350,7 @@
 		if instance_exists(o_hero)
 			{
 			if sl_tumble_y < o_hero.y - 40
-				{ draw_sprite_ext(s_saloon_tumbleweed, 0, sl_tumble_x, sl_tumble_y, sl_tumble_s, sl_tumble_s, sl_tumble_a, c_white, 1); }
+				{ draw_sprite_ext(s_saloon_tumbleweed, 0, sl_tumble_x - prx, sl_tumble_y - pry, sl_tumble_s, sl_tumble_s, sl_tumble_a, c_white, 1); }
 			}
 		}
 #endregion
@@ -381,8 +384,8 @@
 			{ light_alpha = 0.8 * 1 / (day_hour + day_minute / 60 + day_second / 360 + 0.001); }
 		if (day_hour >= 3 && day_hour < 6)
 			{ light_alpha = 0.6 * 3 / (day_hour + day_minute / 60 + day_second / 360); }
-		draw_sprite_ext(s_mine_back, 0, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
-		draw_sprite_ext(s_light, 0, 640 + back_x + light_x, global.size + back_y - light_y, light_scale * light_s, light_scale * light_s, 0, c_white, light_alpha);
+		draw_sprite_ext(s_mine_back, 0, 640 + back_x - prx, global.size + back_y - pry, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(s_light, 0, 640 + back_x + light_x - prx, global.size + back_y - light_y - pry, light_scale * light_s, light_scale * light_s, 0, c_white, light_alpha);
 		}
 #endregion
 #region Суперспособность

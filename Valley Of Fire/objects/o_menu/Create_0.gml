@@ -3,7 +3,7 @@ application_surface_draw_enable(false);
 uscale = shader_get_uniform (glsl_gaussian_blur, "u_Scale");
 
 menu_stage = "heroes1"; //"dificult";
-global.player_rank = 15;
+global.player_rank = 15//irandom_range(1, 15);
 
 s0 = 0;
 s1 = 0;

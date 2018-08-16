@@ -10,7 +10,7 @@
         "bad5a2e5-22d2-428a-b0b0-9b2c92c525f4"
     ],
     "filterType": "GMScript",
-    "folderName": "Precision",
+    "folderName": "Bottles",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

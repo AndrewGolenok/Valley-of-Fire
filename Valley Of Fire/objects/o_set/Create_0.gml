@@ -102,7 +102,7 @@
 	application_surface_enable(1);
 	
 	device_mouse_dbclick_enable(0);
-	global.size = 720; //590; //640; // 720; //800; //960;
+	global.size = 590; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
@@ -381,7 +381,7 @@
 #region Характеристики игрока
 	global.player_name  = "Andrew";
 	//global.hero = 1;
-	global.player_rank  = 25;
+	global.player_rank  = 15;
 	global.rank_stars   = 0;
 	global.weapon = "standard";
 	
@@ -429,14 +429,14 @@
 	global.count_themes = 4; //9;
 	ini_open("Language/" + string(global.lang) + "/theme_name_" + string(global.lang) + ".ini");
 	global.theme_name[1] = "MATH"//ini_read_string("Theme Name", "name_1", "");
-	global.theme_name[2] = "PRECISION"//ini_read_string("Theme Name", "name_2", "");
-	global.theme_name[3] = "DIRECTIONS"//ini_read_string("Theme Name", "name_3", "");
+	global.theme_name[2] = "BOTTLES"//ini_read_string("Theme Name", "name_2", "");
+	global.theme_name[3] = "MOVE"//ini_read_string("Theme Name", "name_3", "");
 	
-	global.theme_name[4] = "CARDS";
-	global.theme_name[5] = "ATTENTION";
-	global.theme_name[6] = "MEASURE";
-	global.theme_name[7] = "BOTTLES";
-	global.theme_name[8] = "MOVE";
+	global.theme_name[4] = "ATTENTION";
+	global.theme_name[5] = "CARDS";
+	//global.theme_name[6] = "SHOOTING";
+	//global.theme_name[7] = "MEASURE";
+	global.theme_name[8] = "STORM";
 	
 	global.color_white = make_color_rgb(255, 248, 220);
 	ini_close();
@@ -461,6 +461,12 @@
 	global.color_hero[9]  = make_color_rgb(220,  20,  60);
 	global.color_hero[10] = make_color_rgb(250, 235, 215);
 	global.color_hero[11] = make_color_rgb(220,  20,  60);
+#endregion
+#region Параллакс
+	global.paral_x = 0;
+	global.paral_y = 0;
+	global.paral_sx = 15;
+	global.paral_sy = 25;
 #endregion
 #region Прочее
 	randomize(); // Включаем рандом

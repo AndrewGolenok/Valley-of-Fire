@@ -33,56 +33,6 @@
             "enumb": 7,
             "eventtype": 7,
             "m_owner": "2c21d782-73b6-4a5d-a6e3-ce172e4e7bd3"
-        },
-        {
-            "id": "730f24b2-197d-4ce7-ab8f-1aa85d70edc1",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 38,
-            "eventtype": 5,
-            "m_owner": "2c21d782-73b6-4a5d-a6e3-ce172e4e7bd3"
-        },
-        {
-            "id": "d2f031ee-b691-4435-82ab-37d68eb86f07",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 40,
-            "eventtype": 5,
-            "m_owner": "2c21d782-73b6-4a5d-a6e3-ce172e4e7bd3"
-        },
-        {
-            "id": "f0917467-699b-4d5e-a27d-146d4452fcf5",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 90,
-            "eventtype": 5,
-            "m_owner": "2c21d782-73b6-4a5d-a6e3-ce172e4e7bd3"
-        },
-        {
-            "id": "b0a6d868-fbf4-4850-9897-d379ec9b822e",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 88,
-            "eventtype": 5,
-            "m_owner": "2c21d782-73b6-4a5d-a6e3-ce172e4e7bd3"
-        },
-        {
-            "id": "550ee7d2-4979-4395-a313-3640190d9ed6",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 67,
-            "eventtype": 9,
-            "m_owner": "2c21d782-73b6-4a5d-a6e3-ce172e4e7bd3"
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",

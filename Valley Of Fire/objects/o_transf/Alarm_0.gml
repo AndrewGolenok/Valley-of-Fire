@@ -23,11 +23,8 @@ alarm[1] = room_speed / 3;
 		//		{ instance_destroy(); }
 		//break;
 		case "duel":
-			if rm != "menu"
-				{
-				with(o_control)
-					{ instance_destroy(); }
-				}
+			with(o_control)
+				{ instance_destroy(); }
 			with(o_list)
 				{ instance_destroy(); }
 			with(o_hero)
@@ -42,8 +39,7 @@ alarm[1] = room_speed / 3;
 			instance_create_depth(0, 0, 0, o_logo);
 		break;
 		case "menu":
-			if rmp != "duel"
-			{ instance_create_depth(0, 0, 0, o_control); }
+			instance_create_depth(0, 0, 0, o_control);
 			instance_create_depth(0, 0, -1, o_menu);
 			//instance_create_depth(0, 0, -3, o_padpiska);
 		break;

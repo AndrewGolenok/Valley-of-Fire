@@ -452,7 +452,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_botle_destroy\/s_botle_destroy.yy",
+                "resourcePath": "sprites\/s_bottle1\/s_bottle1.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -566,7 +566,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "scripts\/move_4\/move_4.yy",
+                "resourcePath": "scripts\/move_2\/move_2.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -967,25 +967,6 @@
                 ],
                 "resourcePath": "sprites\/s_bullet_revolver_w\/s_bullet_revolver_w.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "2575a578-5fe3-4020-bfa6-92e67698dfc7",
-            "Value": {
-                "id": "51cdce7d-a9de-47fc-b8c6-fe3c8fbd09ef",
-                "modelName": "GMResourceInfo",
-                "mvc": "1.0",
-                "configDeltaFiles": [
-                    
-                ],
-                "configDeltas": [
-                    
-                ],
-                "resourceCreationConfigs": [
-                    "default"
-                ],
-                "resourcePath": "objects\/o_duel_old\/o_duel_old.yy",
-                "resourceType": "GMObject"
             }
         },
         {
@@ -2126,6 +2107,25 @@
                 ],
                 "resourcePath": "scripts\/draw_question\/draw_question.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "55eb94ab-5a00-4a5c-84b9-5e5da5a1a009",
+            "Value": {
+                "id": "327f6a44-8728-4968-8f8b-4877e7c164d6",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_bottle2\/s_bottle2.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -3549,7 +3549,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_botle\/s_botle.yy",
+                "resourcePath": "sprites\/s_botle122\/s_botle122.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -3777,7 +3777,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "scripts\/move_2\/move_2.yy",
+                "resourcePath": "scripts\/move_4\/move_4.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4689,7 +4689,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "scripts\/precision_4\/precision_4.yy",
+                "resourcePath": "scripts\/bottles_4\/bottles_4.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4765,7 +4765,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "scripts\/precision_2\/precision_2.yy",
+                "resourcePath": "scripts\/bottles_2\/bottles_2.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5145,7 +5145,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "scripts\/precision_1\/precision_1.yy",
+                "resourcePath": "scripts\/bottles_1\/bottles_1.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5829,7 +5829,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "scripts\/precision_3\/precision_3.yy",
+                "resourcePath": "scripts\/bottles_3\/bottles_3.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5868,6 +5868,25 @@
                     "default"
                 ],
                 "resourcePath": "sprites\/s_menu\/s_menu.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "eb03e751-8b41-4aaa-8d73-0c03bbe5a926",
+            "Value": {
+                "id": "f27e5f3c-a7e0-433e-bd92-983b21c1e9e0",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_bottle3\/s_bottle3.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -6290,6 +6309,25 @@
             }
         },
         {
+            "Key": "fdf335e2-1ce3-44ee-9e3f-39d276ec4c93",
+            "Value": {
+                "id": "1c24271d-6f4d-4579-83dd-21c1e264ffd4",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_bottle4\/s_bottle4.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "fe402791-2dfe-4807-9188-6d2416666383",
             "Value": {
                 "id": "764baf0f-b534-4edf-9b39-3b1674294ac2",
@@ -6342,9 +6380,9 @@
         "47220882-1206-4e5a-aa91-721c161ec3ea",
         "8cd2f8e0-1bd3-4bea-bd52-4f6802e2131c",
         "dd387eb7-1b0d-47ca-ba89-73807cd0749b",
-        "978d423b-21ce-4c28-ad03-fa63432d544c",
-        "d05271b5-98f7-408b-87fc-232d8b337fca",
         "14a60a04-2b05-4b60-bd69-1eba849264ce",
+        "d05271b5-98f7-408b-87fc-232d8b337fca",
+        "978d423b-21ce-4c28-ad03-fa63432d544c",
         "ce571263-2e7f-47a6-8a1f-577047ddc985",
         "c03ee318-772e-44e9-8b78-498d007dc558",
         "e92ad328-9b24-4136-966c-f0959d1006db",

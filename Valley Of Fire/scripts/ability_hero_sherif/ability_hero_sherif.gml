@@ -17,8 +17,11 @@ if image_index = 32 && skeleton_animation_get() = "super"
 	sx = x;
 	sy = y;
 	
-	shoot = 2; 
-	global.critical = 3;
+	shoot = 2;
+	if !enemy
+		{ global.critical = 3; }
+		else
+		{ global.e_critical = 3; }
 	if global.music { audio_play_sound(sd_revolver, 1, 0); }
 	}
 

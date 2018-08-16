@@ -1,5 +1,6 @@
 #region Стартовые переменные
 	//instance_destroy();
+	global.player_name = choose("Andrew", "Artem", "Nikolay");
 	lines_true = 0;
 
 	list_go = 0;
@@ -36,7 +37,7 @@
 	abil_s = 0.5;
 	abil_a = 0;
 #endregion
-#region Темы
+#region Темы (Старое)
 	theme_stage = 1;
 	
 	theme_goto_y = 0;
@@ -107,49 +108,6 @@
 			}
 		}
 	theme_real_theme[2] = 5;
-	//if theme_real_theme[0] != -1
-	//	{
-	//	if global.hero != global.enemy_hero
-	//		{ theme_real_theme[irandom_range(1,2)] = global.enemy_hero; }
-	//		else
-	//		{ theme_real_theme[irandom_range(1,2)] = find_real_theme_1(); }
-		
-	//	if theme_real_theme[1] != -1
-	//		{ theme_real_theme[2] = find_real_theme_2(); }
-	//		else
-	//		{ theme_real_theme[1] = find_real_theme_2(); }
-	//	}
-	//	else
-	//	{
-	//	if theme_real_theme[1] != -1
-	//		{
-	//		if global.hero != global.enemy_hero
-	//			{ theme_real_theme[choose(0,2)] = global.enemy_hero; }
-	//			else
-	//			{ theme_real_theme[choose(0,2)] = find_real_theme_1(); }
-		
-	//		if theme_real_theme[0] != -1
-	//			{ theme_real_theme[2] = find_real_theme_2(); }
-	//			else
-	//			{ theme_real_theme[0] = find_real_theme_2(); }
-	//		}
-	//		else
-	//		{
-	//		if theme_real_theme[2] != -1
-	//			{
-	//			if global.hero != global.enemy_hero
-	//				{ theme_real_theme[choose(0,1)] = global.enemy_hero; }
-	//				else
-	//				{ theme_real_theme[choose(0,1)] = find_real_theme_1(); }
-		
-	//			if theme_real_theme[0] != -1
-	//				{ theme_real_theme[1] = find_real_theme_2(); }
-	//				else
-	//				{ theme_real_theme[0] = find_real_theme_2(); }
-	//			}
-	//		}
-	//	}
-	
 	for(i=0; i<=2; i++)
 		{
 		theme_ss[i] = 1;
@@ -406,7 +364,7 @@
 	theme_x[3]  = 640 + 300;
 	theme_y[3]  = global.size / 2;
 	theme_s[3]  = 0;
-	theme_t[3]  = theme_new(theme_t[1], theme_t[2]);
+	theme_t[3]  = 4//theme_new(theme_t[1], theme_t[2]);
 	theme_a[3]  = 1;
 	theme_nn[3] = global.theme_name[theme_t[3]];
 	theme_x1[3] = 0;
@@ -480,7 +438,7 @@
 	light_scale1  = 0;
 	light_scale1_dir = -1;
 #endregion
-#region Переменные и Темы
+#region Переменные
 	global.critical   = 0;
 	global.e_critical = 0;
 	
@@ -563,63 +521,6 @@
 	theme_round[2] = -1; // Математика
 	theme_round[3] = -1; // Математика
 	
-	b_pressed_s[1] = 1;
-	b_pressed_s[2] = 1;
-	b_pressed_s[3] = 1;
-	b_pressed_s[4] = 1;
-	
-	equation_text = "";
-	vtext[1] = "+";
-	vtext[2] = "-";
-	vtext[3] = "/";
-	vtext[4] = "*";
-	
-	vtrue[1] = 0;
-	vtrue[2] = 0;
-	vtrue[3] = 0;
-	vtrue[4] = 0;
-	
-	hand_scale = 0;
-	hand_angle = 0;
-	hand_true  = 0;
-	
-	hand_s_x = 0;
-	hand_s_y = 0;
-	hand_s_t = 0;
-	
-	horse_p[1] = choose(-1, 1);
-	horse_p[2] = choose(-1, 1);
-	horse_p[3] = choose(-1, 1);
-	horse_p[4] = choose(-1, 1);
-	
-	horse_n[1] = 0;
-	horse_n[2] = 0;
-	horse_n[3] = 0;
-	horse_n[4] = 0;
-	
-	horse_now = 0;
-	
-	botle_all = 0;
-	botle_s = 0;
-	botle_stage = 0;
-	
-	for(i=1;i<=6;i++)
-		{
-		botle_y[i] = 0;
-		botle_x[i] = 0;
-		botle_n[i] = 0;
-		
-		botle_destroy[i] = 0;
-		
-		target_x[i] = 0;
-		target_y[i] = 0;
-		target_s[i] = 1;
-		target_c[i] = 1;
-		target_numb[i] = 0;
-		}
-		
-	target_n = 0;
-	
 	o_math_mod = 1;
 	o_but_sc   = 1.2;
 	
@@ -627,8 +528,103 @@
 	timer_x = 6 * room_speed;
 	
 	dop_q_y = 0;
+#endregion
+#region ТЕМЫ
+	#region	Математика - Math
+		equation_text = "";
+		vtext[1] = "+";
+		vtext[2] = "-";
+		vtext[3] = "/";
+		vtext[4] = "*";
 	
-	#region Задача 1 - Шляпа, напёрстки
+		vtrue[1] = 0;
+		vtrue[2] = 0;
+		vtrue[3] = 0;
+		vtrue[4] = 0;
+		
+		b_pressed_s[1] = 1;
+		b_pressed_s[2] = 1;
+		b_pressed_s[3] = 1;
+		b_pressed_s[4] = 1;
+	#endregion
+	#region	Движение - Move
+		hand_scale = 0;
+		hand_angle = 0;
+		hand_count = 1;
+		hand_speed = 23 - global.player_rank;
+		
+		for(i=1;i<=6;i++)
+			{
+			hand_true[i] = 0;
+			hand_xx[i]   = 640;
+			hand_ss[i]   = 1;
+			hand_red[i]  = 0;
+			}
+		
+		hand_now = 1;
+	
+		hand_s_x = 0;
+		hand_s_y = 0;
+		hand_s_t = 0;
+	
+		for(i=1;i<=6;i++)
+			{
+			horse_p[i]   = choose(-1, 1);
+			horse_n[i]   = 0;
+			horse_y[i]   = 0;
+			horse_red[i] = 1;
+			}
+		
+		horse_yy      = 0;
+		horse_now     = 0;
+		horse_count   = 4;
+		horse_death   = 0;
+		horse_death_y = 0;
+		horse_death_a = 1;
+	#endregion
+	#region	Бутылки - Bottles
+		bottle_all   = 0;
+		bottle_s     = 0;
+		bottle_stage = 0;
+		bottle_red   = 0;
+		bottle_s1    = 1;
+		bottle_s2    = 1;
+		bottle_a1    = 1;
+		
+		for(i=1;i<=6;i++)
+			{
+			bottle_y[i]  = 0;
+			bottle_a[i]  = 0;
+			bottle_x[i]  = 0;
+			bottle_n[i]  = 0;
+			bottle_n1[i] = 0;
+			bottle_i[i]  = irandom_range(2, 4);//irandom_range(1, 4);
+			
+			bottle_destroy[i] = 0;
+			
+			target_x[i] = 0;
+			target_y[i] = 0;
+			target_s[i] = 1;
+			target_c[i] = 1;
+			target_numb[i] = 0;
+			
+			bottle_spd[i]  = 0;
+			bottle_r[i]    = 0;
+			}
+		
+		target_n = 0;
+		
+		bottle_t[2] = 0;
+		bpttle_t[3] = 0;
+		
+		bottle_v[2] = 0;
+		bpttle_v[3] = 0;
+		
+		bottle_p[2] = 0;
+		bpttle_p[3] = 0;
+	#endregion
+	#region	Внимание - Attention
+		#region Задача 1 - Шляпа, напёрстки
 		hat_x[1]  = 640 - 200;
 		hat_xn[1] = 640 - 200;
 		hat_y[1]  = 0;
@@ -661,7 +657,9 @@
 		hat_alpha[2] = 1;
 		hat_alpha[3] = 1;
 	#endregion
-	#region Задача 2 - Карты, найти пару
+	#endregion
+	#region	Карты - Cards
+		#region Задача 1 - Карты, найти пару
 		for(i=1;i<=2;i++)
 			{
 			for(j=1;j<=3;j++)
@@ -681,6 +679,16 @@
 		fir_j = 0;
 		sec_i = 0;
 		sec_j = 0;
+	#endregion
+	#endregion
+	#region	Стрельба - Shooting -
+		
+	#endregion
+	#region	Мера - Measure - 
+		
+	#endregion
+	#region	Шторм - Storm
+		
 	#endregion
 #endregion
 #region Суперудар Кнопка
@@ -732,7 +740,7 @@
 	accuracy_all  = 0;
 #endregion
 #region Бот
-	for(i=1;i<=10;i++)
+	for(i=1;i<=12;i++)
 		{
 		u_answer[i] = -1;
 		e_answer[i] = -1;

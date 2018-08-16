@@ -55,6 +55,8 @@
 			{ back_y = 30; }
 			else
 			{ back_y = 0; }
+		if global.size <= 640
+			{ back_y = 100; }
 		}
 	if global.background = "saloon"
 		{
@@ -63,6 +65,8 @@
 			{ back_y = 100; }
 			else
 			{ back_y = 0; }
+		if global.size <= 640
+			{ back_y = 140; }
 		}
 	back_sp = back_s;
 	

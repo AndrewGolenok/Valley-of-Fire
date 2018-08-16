@@ -1,4 +1,8 @@
 #region Шейдер
+	var prx, pry;
+	prx = global.paral_x * global.paral_sx;
+	pry = global.paral_y * global.paral_sy;
+	
 	application_surface_draw_enable(1);
 	
 	draw_set_alpha(0.3 * vs_alpha);
@@ -106,8 +110,8 @@
 			#endregion
 			#region Рисование
 				var gy, gx, gd, gyr, gyt, gyd, scale, scale1, gyw, scale2;
-				gy = global.size / 2;
-				gx = 1280 / 2;
+				gy = global.size / 2 + pry;
+				gx = 1280 / 2 + prx;
 				gd = 360;
 				gyr = gy + 20;
 				gyt = gy - 290;
@@ -201,8 +205,8 @@
 			#region Переменные
 				var ts, gx, gy, hero_width, hero_spr;
 				ts = 0.35;
-				gx = 640;
-				gy = 50;
+				gx = 640 + prx;
+				gy = 50  + pry;
 			#endregion
 			#region Текст
 				if s0 < 1
@@ -252,12 +256,12 @@
 			anim += 1;
 			
 			draw_set_font(global.game_font);
-			draw_text_transformed_a(gx, gy, "CHOOSE HERO", ts * s0, ts * s0, 0, c_white, c_black);
+			draw_text_transformed_a(gx, 50, "LEVEL: " + string(global.player_rank), ts * s0, ts * s0, 0, c_white, c_black);
 		#endregion
 		#region Персонажи
 			///
-			xx5 = 560;
-			yy5 = yy - 220;
+			xx5 = 560 + prx;
+			yy5 = yy - 220 + pry;
 			ss5 = 0.48;
 			
 			draw_sprite_ext(s_thief, 0, xx - xx5, yy5, -ss5 * ps8, ss5 * ps8, 0, c_maroon, 1);
@@ -267,8 +271,8 @@
 			//draw_sprite_ext(s_sbill, 0, xx + xx5, yy5, ss5, ss5, 0, c_black, 0.8);
 			///
 			///
-			xx4 = 300;
-			yy4 = yy - 220;
+			xx4 = 300 + prx * 1.04;
+			yy4 = yy - 220 + pry * 1.04;
 			ss4 = 0.48;
 			
 			//draw_sprite_ext(s_diego2, 0, xx - xx4 - 50, yy4, -ss4, ss4, 0, c_maroon, 1);
@@ -282,8 +286,8 @@
 			//draw_sprite_ext(s_gangster, 0, xx + xx4 + 30, yy4, ss4, ss4, 0, c_black, 0.8);
 			///
 			///
-			xx3 = 340;
-			yy3 = yy - 20;
+			xx3 = 340 + prx * 1.06;
+			yy3 = yy - 20 + pry * 1.06;
 			ss3 = 0.5;
 			
 			draw_sprite_ext(s_shaman, 0, xx + xx3 + 50, yy3, ss3, ss3, 0, c_maroon, 1);
@@ -293,8 +297,8 @@
 			//draw_sprite_ext(s_doctor, 0, xx - xx3, yy3, -ss3, ss3, 0, c_black, 0.8);
 			///
 			///
-			xx2 = 550;
-			yy2 = yy + 10;
+			xx2 = 550 + prx * 1.08;
+			yy2 = yy + 10 + pry * 1.08;
 			ss2 = 0.5;
 			
 			draw_sprite_ext(s_drunk, 0, xx - xx2, yy2, -ss2, ss2, 0, c_maroon, 1);
@@ -307,8 +311,8 @@
 			//draw_sprite_ext(s_huntress, 0, xx + xx2 - 30, yy2, ss2, ss2, 0, c_black, 0.8);
 			///
 			///
-			xx1 = 200;
-			yy1 = yy + 100;
+			xx1 = 200 + prx * 1.1;
+			yy1 = yy + 100 + pry * 1.1;
 			ss1 = 0.65;
 			
 			draw_sprite_ext(s_chief, 0, xx + xx1, yy1, ss1 - 0.05, ss1 - 0.05, 0, c_maroon, 1);
@@ -392,18 +396,18 @@
 			ny = 0;
 			if show = 1
 				{
-				nx = xx - xx1 + 50;
-				ny = yy1 - 190;
+				nx = xx - xx1 + 50 - prx;
+				ny = yy1 - 190 - pry;
 				}
 			if show = 2
 				{
-				nx = xx - xx4 - 50;
-				ny = yy4 - 120;
+				nx = xx - xx4 - 50 - prx;
+				ny = yy4 - 120 - pry;
 				}
 			if show = 3
 				{
-				nx = xx + xx2 + 30;
-				ny = yy2 - 120;
+				nx = xx + xx2 + 30 - prx;
+				ny = yy2 - 120 - pry;
 				}
 			
 			if point_in_rectangle(mouse_x, mouse_y, nx - 85, ny - 160, nx + 120, ny + 160) && hold_go = 0
@@ -591,4 +595,17 @@
 			//room_goto_t("duel");
 			}
 	#endregion
+#endregion
+
+#region Изменение ранга
+	if keyboard_check_pressed(ord("O"))
+		{
+		if global.player_rank < 15
+			{ global.player_rank += 1; }
+		}
+	if keyboard_check_pressed(ord("P"))
+		{
+		if global.player_rank > 1
+			{ global.player_rank -= 1; }
+		}
 #endregion
