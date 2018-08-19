@@ -9,17 +9,17 @@ for(i=1;i<=6;i++)
 	hand_red[i]  = 0;
 	
 	if global.player_rank <= 3
-		{ hand_count = 4; hand_red[i] = choose(0, 1); min_time[3,1] = 100; }
+		{ hand_count = 4; hand_red[i] = choose(0, 1); min_time[3,1] = 100; min_wait[3,1] = 10; }
 	if global.player_rank < 7  && global.player_rank >= 4
-		{ hand_count = 3; hand_red[i] = choose(0, 0, 1); min_time[3,1] = 90; }
+		{ hand_count = 3; hand_red[i] = choose(0, 0, 1); min_time[3,1] = 90; min_wait[3,1] = 10; }
 	if global.player_rank < 10 && global.player_rank >= 7
-		{ hand_count = 3; hand_red[i] = choose(0, 0, 0, 1); min_time[3,1] = 80; }
+		{ hand_count = 3; hand_red[i] = choose(0, 0, 0, 1); min_time[3,1] = 80; min_wait[3,1] = 10; }
 	if global.player_rank < 13 && global.player_rank >= 10
-		{ hand_count = 2; hand_red[i] = choose(0, 0, 0, 0, 1); min_time[3,1] = 70; }
+		{ hand_count = 2; hand_red[i] = choose(0, 0, 0, 0, 1); min_time[3,1] = 70; min_wait[3,1] = 10; }
 	if global.player_rank < 15 && global.player_rank >= 13
-		{ hand_count = 2; min_time[3,1] = 50; }
+		{ hand_count = 2; min_time[3,1] = 50; min_wait[3,1] = 10; }
 	if global.player_rank >= 15
-		{ hand_count = 1; min_time[3,1] = 20; }
+		{ hand_count = 1; min_time[3,1] = 20; min_wait[3,1] = 10; }
 	
 	if global.player_rank > 10
 		{

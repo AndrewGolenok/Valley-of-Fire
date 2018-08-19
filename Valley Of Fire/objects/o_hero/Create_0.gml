@@ -7,6 +7,7 @@ enemy = global.enemy;
 
 bullet_index = 0;
 
+
 if enemy
 	{ global.enemy_object  = id; }
 	else
@@ -37,7 +38,7 @@ if !enemy
 	}
 
 //weapon = "";
-hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + ""/* + weapon*/);
+hero_sprite = asset_get_index("s_" + global.hero_code_name[hero]/* + weapon*/);
 hero_code_name = global.hero_code_name[hero];
 //if weapon = "standard"
 //	{ hero_bullet = asset_get_index("s_bullet_" + global.hero_code_weapon[hero]); }
@@ -74,11 +75,19 @@ super_img = 0;
 ability_index = 0;
 ability_alpha = 1;
 ability_back  = s_ability_back; //asset_get_index("s_ability_back_" + string(global.hero_code_name[hero]));
+
+hero_shoot = 20;
+knife_i = 0;
 switch(hero)
 	{
-	case 1: hero_abindex = 26; hero_color = c_orange; break;
-	case 2: hero_abindex = 26; hero_color = c_maroon; break; // DIEGO ???
-	case 3: hero_abindex = 35; hero_color = c_fuchsia; break;
+	case 1: hero_shoot = 9; hero_abindex = 23; break;
+	case 2: hero_abindex = 23; break;
+	case 5: hero_abindex = 23; break;
+	case 7: hero_abindex = 23; break;
+	
+	case 6: hero_abindex = 26; break;
+	case 4: hero_abindex = 26; break; // DIEGO ???
+	case 3: hero_abindex = 35; break;
 	}
 
 hero_color = global.color_hero[hero];
@@ -104,6 +113,10 @@ dynamit_a  = 0;
 dynamit_i  = 0;
 dynamit_d  = 0;
 diego_boom = -1;
+drunk_atk  = 0;
+
+bill_stage = 0;
+bill_boom  = -1;
 
 for(i=0;i<=10;i++)
 	{ bullet_lx[i] = 0; }

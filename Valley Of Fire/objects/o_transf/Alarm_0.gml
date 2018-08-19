@@ -1,4 +1,4 @@
-alarm[1] = room_speed / 3;
+alarm[1] = room_speed / 10;
 
 #region Удаление текущих объектов
 	switch(rmp)

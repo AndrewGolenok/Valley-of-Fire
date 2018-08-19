@@ -1,0 +1,69 @@
+
+sbil2.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+brothers/Layer_14
+  rotate: false
+  xy: 1, 1
+  size: 411, 392
+  orig: 411, 392
+  offset: 0, 0
+  index: -1
+brothers/Layer_10
+  rotate: false
+  xy: 217, 395
+  size: 125, 265
+  orig: 125, 265
+  offset: 0, 0
+  index: -1
+brothers/Layer_17
+  rotate: false
+  xy: 1, 596
+  size: 176, 187
+  orig: 176, 187
+  offset: 0, 0
+  index: -1
+brothers/gun
+  rotate: false
+  xy: 179, 662
+  size: 179, 124
+  orig: 179, 124
+  offset: 0, 0
+  index: -1
+brothers/Layer_11
+  rotate: false
+  xy: 1, 395
+  size: 214, 199
+  orig: 214, 199
+  offset: 0, 0
+  index: -1
+brothers/3
+  rotate: false
+  xy: 344, 542
+  size: 127, 71
+  orig: 183, 73
+  offset: 28, 1
+  index: -1
+brothers/4
+  rotate: false
+  xy: 344, 469
+  size: 143, 71
+  orig: 183, 73
+  offset: 20, 1
+  index: -1
+brothers/1
+  rotate: false
+  xy: 1, 788
+  size: 183, 73
+  orig: 183, 73
+  offset: 0, 0
+  index: -1
+brothers/2
+  rotate: false
+  xy: 344, 395
+  size: 142, 72
+  orig: 183, 73
+  offset: 20, 1
+  index: -1

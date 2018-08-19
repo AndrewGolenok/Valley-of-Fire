@@ -1,3 +1,16 @@
+if bill_stage = 1
+	{
+	bill_stage = 2;
+	global.super_ability = 0;
+	hero_sprite = s_jbill;
+	if !enemy
+		{ o_list.atk   /= 3; }
+		else
+		{ o_list.e_atk /= 3; }
+	image_speed = 2;
+	change = 1;
+	}
+
 if diego_dynamit = 1
 	{
 	if global.super_ability = 1 && change = 3
@@ -5,7 +18,7 @@ if diego_dynamit = 1
 	hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "2");
 	}
 	
-if diego_dynamit != 1//>= 2
+if diego_dynamit != 1 && bill_stage = 0//>= 2
 	{ hero_sprite = asset_get_index("s_" + global.hero_code_name[hero]); }
 
 if change = 1
@@ -43,7 +56,7 @@ if change = 4
 		{ change = 4; }
 		else
 		{
-		if hero = 1 && skeleton_animation_get() = "win"
+		if hero = 6 && skeleton_animation_get() = "win"
 			{ change = 2; }
 			else
 			{ change = 1; stun = 0; }
@@ -52,10 +65,14 @@ if change = 4
 	
 if change = 5
 	{
-	if hero = 1 or hero = 3
+	if hero = 6 or hero = 3
+		{ image_index = 35; }
+	if hero = 4
+		{ image_index = 18; }
+	if hero = 1
 		{ image_index = 35; }
 	if hero = 2
-		{ image_index = 18; }
+		{ image_index = 35; }
 	stun_seconds -= 1;
 	if stun_seconds > 1
 		{ change = 5; }

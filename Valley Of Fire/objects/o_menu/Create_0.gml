@@ -1,9 +1,10 @@
-surf_blur_pass = surface_create(display_get_width(), display_get_height());//surface_create(1280, global.size); display_get_height() * 1280) / display_get_width()
-application_surface_draw_enable(false);
-uscale = shader_get_uniform (glsl_gaussian_blur, "u_Scale");
+//surf_blur_pass = surface_create(display_get_width(), display_get_height());//surface_create(1280, global.size); display_get_height() * 1280) / display_get_width()
+//application_surface_draw_enable(false);
+//uscale = shader_get_uniform (glsl_gaussian_blur, "u_Scale");
 
 menu_stage = "heroes1"; //"dificult";
 global.player_rank = 15//irandom_range(1, 15);
+anim_skul = 0;
 
 s0 = 0;
 s1 = 0;
@@ -72,6 +73,8 @@ hold_true  = 0;
 hold_time  = 0;
 hold_go    = 0;
 
+global.hero       = 1;
+global.enemy_hero = choose(6, 4, 3); //choose(irandom_range(1, 6), irandom_range(1, 6), irandom_range(1, 7));
 #region Переменные персонажей
 	must_x    = 1280 / 2;
 	hero_y    = global.size - 50;

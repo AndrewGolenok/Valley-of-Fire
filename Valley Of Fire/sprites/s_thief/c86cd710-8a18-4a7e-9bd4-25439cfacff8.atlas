@@ -1,0 +1,83 @@
+
+thief.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+thief/knife
+  rotate: false
+  xy: 453, 1
+  size: 49, 129
+  orig: 49, 129
+  offset: 0, 0
+  index: -1
+thief/Layer_10
+  rotate: false
+  xy: 1, 793
+  size: 106, 224
+  orig: 106, 224
+  offset: 0, 0
+  index: -1
+thief/Layer_8
+  rotate: false
+  xy: 1, 1
+  size: 133, 513
+  orig: 133, 513
+  offset: 0, 0
+  index: -1
+thief/Layer_6
+  rotate: false
+  xy: 1, 516
+  size: 179, 275
+  orig: 179, 275
+  offset: 0, 0
+  index: -1
+thief/Layer_9
+  rotate: false
+  xy: 109, 793
+  size: 157, 145
+  orig: 157, 145
+  offset: 0, 0
+  index: -1
+thief/Layer_7
+  rotate: false
+  xy: 453, 132
+  size: 44, 85
+  orig: 44, 85
+  offset: 0, 0
+  index: -1
+thief/Layer_2
+  rotate: false
+  xy: 268, 793
+  size: 118, 131
+  orig: 118, 131
+  offset: 0, 0
+  index: -1
+thief/3
+  rotate: false
+  xy: 136, 74
+  size: 127, 71
+  orig: 183, 73
+  offset: 28, 1
+  index: -1
+thief/1
+  rotate: false
+  xy: 268, 926
+  size: 183, 73
+  orig: 183, 73
+  offset: 0, 0
+  index: -1
+thief/4
+  rotate: false
+  xy: 136, 1
+  size: 143, 71
+  orig: 183, 73
+  offset: 20, 1
+  index: -1
+thief/2
+  rotate: false
+  xy: 109, 940
+  size: 142, 72
+  orig: 183, 73
+  offset: 20, 1
+  index: -1

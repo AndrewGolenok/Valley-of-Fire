@@ -72,7 +72,7 @@ if !enemy
 	
 	if change = 5 && image_index = 28
 		{
-		if hero = 2
+		if hero = 4 // hero = 2
 			{
 			stun_seconds -= 1;
 			if stun_seconds > 1
@@ -97,7 +97,7 @@ if !enemy
 				o_list.dop_i[2] = 8;
 				o_list.dop_text_color[2] = (global.player_object).hero_color;
 				o_list.dop_text[8] = "-" + string(round(o_list.atk / 10));
-				if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
+				if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 					{
 					stun = 0;
 					skeleton_animation_set("damaged");
@@ -128,7 +128,7 @@ if !enemy
 				o_list.dop_i[1] = 7;
 				o_list.dop_text_color[1] = (global.enemy_object).hero_color;
 				o_list.dop_text[7] = "-" + string(round(o_list.e_atk / 10));
-				if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
+				if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 					{
 					stun = 0;
 					skeleton_animation_set("damaged");
@@ -142,7 +142,7 @@ if !enemy
 			}
 		}
 	
-	if change = 5 && hero = 1 && image_index = 50 && stun_seconds >= 2
+	if change = 5 && hero = 6 && image_index = 50 && stun_seconds >= 2
 		{
 		image_index = 28;
 		stun_seconds -= 1;
@@ -153,13 +153,15 @@ if !enemy
 		}
 	if shoot = 1
 		{
-		if hero = 3
+		if hero = 3 or hero = 1 or hero = 2 or hero = 7
 			{ bullet_index = 4; }
 		if bullet_index < 4
 			{ bullet_index += 1.5; }
 			else
 			{ sx += (weapon_spd * (!enemy) - weapon_spd * (enemy)) * 2; }
-		
+		if hero = 1 or hero = 2
+			{ knife_i += 0.5; }
+		//draw_text(x, mouse_y,string(bullet_index));
 		if huntress_poison
 			{
 			draw_sprite_ext(s_huntress_ability, bullet_index, sx + 1 - 28 + prx, sy - 15 + pry, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.4 * bullet_alpha);
@@ -175,7 +177,8 @@ if !enemy
 			}
 			else
 			{
-			draw_sprite_ext(hero_bullet, bullet_index, sx - 28 + prx, sy + pry, sc * scale - 0.025, scale + 0.025, 0, c_white, bullet_alpha);
+			//if (sx - 28 > x + 40 && !enemy) or (sx - 28 < x && enemy)
+				{ draw_sprite_ext(hero_bullet, bullet_index + knife_i, sx - 28 + prx, sy + pry, sc * scale - 0.025, scale + 0.025, 0, c_white, bullet_alpha); }
 			}
 		
 		//or (((sx >= 1280 - x - sprite_get_width(s_bullet_revolver) - weapon_spd * 1.2 - 1280 && !enemy) or (sx <= (1280 - x) + 1280 + weapon_spd * 1.2 + sprite_get_width(s_bullet_revolver) && enemy)) && answer = 0)
@@ -187,54 +190,59 @@ if !enemy
 					//{ o_list.timer = 2 * room_speed; o_list.timer_x = 2 * room_speed; }
 				if answer = 1
 					{
-					with(o_hero)
-						{
-						if !enemy
-							{
-							if huntress_poison = 1
-								{
-								huntress_poison = 0;
-								global.super_ability1 = 0;
-								super = 0;
-								}
-							if (global.enemy_object).huntress_poison = 1
-								{ poisoned = room_speed * 10; }
-							if o_list.view_go_left = 0 && o_list.view_go_right = 0
-								{ o_list.view_go_left = 1; }
+					enemy_deal();
+					//with(o_hero)
+					//	{
+					//	if !enemy
+					//		{
+					//		if huntress_poison = 1
+					//			{
+					//			huntress_poison = 0;
+					//			global.super_ability1 = 0;
+					//			super = 0;
+					//			}
+					//		if (global.enemy_object).huntress_poison = 1
+					//			{ poisoned = room_speed * 10; }
+					//		if o_list.view_go_left = 0 && o_list.view_go_right = 0
+					//			{ o_list.view_go_left = 1; }
 							
-							if o_list.hp > 0 && o_list.e_hp > 0
-								{ o_list.hp -= o_list.e_atk + o_list.e_atk / 10 * (global.critical == 3); }
+					//		if o_list.hp > 0 && o_list.e_hp > 0
+					//			{ o_list.hp -= o_list.e_atk + o_list.e_atk / 10 * (global.critical == 3); }
 							
-							if diego_dynamit = 1 && skeleton_animation_get() != "super"
-								{ dynamit_d = o_list.e_atk + o_list.e_atk / 10 * (global.e_critical == 3); diego_dynamit = 2; stun_seconds -= 1; change = 3; skeleton_animation_set("super"); }
+					//		if (global.enemy_hero) = 2
+					//			{ o_list.e_atk += 10; }
 							
-							o_list.dop_i[1] = 7;
-							o_list.dop_text_color[1] = (global.enemy_object).hero_color;
-							if global.critical == 3
-								{ o_list.dop_text[7] = "-" + string(round(o_list.e_atk + o_list.e_atk / 10)); }
-								else
-								{ o_list.dop_text[7] = "-" + string(round(o_list.e_atk)); }
-							if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
-								{
-								stun = 0;
-								skeleton_animation_set("damaged");
-								change = 1;
-								}
-							}
-						}
+					//		if diego_dynamit = 1 && skeleton_animation_get() != "super"
+					//			{ dynamit_d = o_list.e_atk + o_list.e_atk / 10 * (global.e_critical == 3); diego_dynamit = 2; stun_seconds -= 1; change = 3; skeleton_animation_set("super"); }
+							
+					//		o_list.dop_i[1] = 7;
+					//		o_list.dop_text_color[1] = (global.enemy_object).hero_color;
+					//		if global.critical == 3
+					//			{ o_list.dop_text[7] = "-" + string(round(o_list.e_atk + o_list.e_atk / 10)); }
+					//			else
+					//			{ o_list.dop_text[7] = "-" + string(round(o_list.e_atk)); }
+					//		if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= hero_shoot && skeleton_animation_get() = "shoot")
+					//			{
+					//			stun = 0;
+					//			skeleton_animation_set("damaged");
+					//			change = 1;
+					//			}
+					//		}
+					//	}
 					}
 					else
 					{
 					with(o_hero)
 						{
-						if !enemy
-							{
-							if diego_dynamit = 1 && skeleton_animation_get() != "super"
-								{ dynamit_d = 0; diego_dynamit = 2; change = 3; stun_seconds -= 1; skeleton_animation_set("super"); }
+						enemy_miss();
+						//if !enemy
+						//	{
+						//	if diego_dynamit = 1 && skeleton_animation_get() != "super"
+						//		{ dynamit_d = 0; diego_dynamit = 2; change = 3; stun_seconds -= 1; skeleton_animation_set("super"); }
 							
-							if o_list.view_go_down = 0
-								{ o_list.view_go_down = 1; o_list.dop_i[0] = 0; }
-							}
+						//	if o_list.view_go_down = 0
+						//		{ o_list.view_go_down = 1; o_list.dop_i[0] = 0; }
+						//	}
 						}
 					}
 				}
@@ -244,56 +252,61 @@ if !enemy
 					{ o_list.bot_time = random(1) * room_speed; o_list.bot_time2 = 3 * room_speed; }
 				if answer = 1
 					{
-					with(o_hero)
-						{
-						if enemy
-							{
-							if huntress_poison = 1
-								{
-								huntress_poison = 0;
-								global.super_ability1 = 0;
-								super = 0;
-								}
-							if (global.player_object).huntress_poison = 1
-								{ poisoned = room_speed * 10; }
-							if o_list.view_go_left = 0 && o_list.view_go_right = 0
-								{ o_list.view_go_right = 1; }
+					player_deal();
+					//with(o_hero)
+					//	{
+					//	if enemy
+					//		{
+					//		if huntress_poison = 1
+					//			{
+					//			huntress_poison = 0;
+					//			global.super_ability1 = 0;
+					//			super = 0;
+					//			}
+					//		if (global.player_object).huntress_poison = 1
+					//			{ poisoned = room_speed * 10; }
+					//		if o_list.view_go_left = 0 && o_list.view_go_right = 0
+					//			{ o_list.view_go_right = 1; }
 							
-							if o_list.hp > 0 && o_list.e_hp > 0
-								{ o_list.e_hp -= o_list.atk + o_list.atk / 10 * (global.e_critical == 3); }
+					//		if o_list.hp > 0 && o_list.e_hp > 0
+					//			{ o_list.e_hp -= o_list.atk + o_list.atk / 10 * (global.e_critical == 3); }
 							
-							if diego_dynamit = 1 && skeleton_animation_get() != "super"
-								{ dynamit_d = o_list.atk + o_list.atk / 10 * (global.e_critical == 3); diego_dynamit = 2; stun_seconds -= 1; change = 3; skeleton_animation_set("super"); }
+					//		if (global.hero) = 2
+					//			{ o_list.atk += 10; }
 							
-							o_list.dop_i[2] = 8;
-							o_list.dop_text_color[2] = (global.player_object).hero_color;
+					//		if diego_dynamit = 1 && skeleton_animation_get() != "super"
+					//			{ dynamit_d = o_list.atk + o_list.atk / 10 * (global.e_critical == 3); diego_dynamit = 2; stun_seconds -= 1; change = 3; skeleton_animation_set("super"); }
 							
-							if global.critical == 3
-								{ o_list.dop_text[8] = "-" + string(round(o_list.atk + o_list.atk / 10))/* + "-" + string(round(o_list.atk / 10));*/ }
-								else
-								{ o_list.dop_text[8] = "-" + string(round(o_list.atk)); }
-							if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
-								{
-								stun = 0;
-								skeleton_animation_set("damaged");
-								change = 1;
-								}
-							}
-						}
+					//		o_list.dop_i[2] = 8;
+					//		o_list.dop_text_color[2] = (global.player_object).hero_color;
+							
+					//		if global.critical == 3
+					//			{ o_list.dop_text[8] = "-" + string(round(o_list.atk + o_list.atk / 10))/* + "-" + string(round(o_list.atk / 10));*/ }
+					//			else
+					//			{ o_list.dop_text[8] = "-" + string(round(o_list.atk)); }
+					//		if !(skeleton_animation_get() = "super") && !(image_index <= hero_shoot && skeleton_animation_get() = "shoot")
+					//			{
+					//			stun = 0;
+					//			skeleton_animation_set("damaged");
+					//			change = 1;
+					//			}
+					//		}
+					//	}
 					}
 					else
 					{
-					with(o_hero)
-						{
-						if enemy
-							{
-							if diego_dynamit = 1 && skeleton_animation_get() != "super"
-								{ dynamit_d = o_list.atk + o_list.atk / 10 * (global.e_critical == 3); diego_dynamit = 2; stun_seconds -= 1; change = 3; skeleton_animation_set("super"); }
+					player_miss();
+					//with(o_hero)
+					//	{
+					//	if enemy
+					//		{
+					//		if diego_dynamit = 1 && skeleton_animation_get() != "super"
+					//			{ dynamit_d = o_list.atk + o_list.atk / 10 * (global.e_critical == 3); diego_dynamit = 2; stun_seconds -= 1; change = 3; skeleton_animation_set("super"); }
 							
-							if o_list.view_go_down = 0
-								{ o_list.view_go_down = 1; o_list.dop_i[0] = 1; }
-							}
-						}
+					//		if o_list.view_go_down = 0
+					//			{ o_list.view_go_down = 1; o_list.dop_i[0] = 1; }
+					//		}
+					//	}
 					}
 				}
 			if answer = 1
@@ -319,8 +332,43 @@ if !enemy
 	//		{ global.super_ability = 0; }
 	//	hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "2");
 	//	}
+	if enemy
+		{
+		if hero = 5
+			{
+			if o_list.e_hp <= o_list.e_maxhp / 2
+				{
+				if bill_stage = 0
+					{
+					global.super_ability = 1;
+					sprite_index = s_sbill1;
+					image_speed  = 0.85;
+					bill_stage   = 1;
+					skeleton_animation_set("death");
+					}
+				}
+			}
+		}
+		else
+		{
+		if hero = 5
+			{
+			if o_list.hp <= o_list.maxhp / 2
+				{
+				if bill_stage = 0
+					{
+					global.super_ability = 1;
+					sprite_index = s_sbill1;
+					image_speed  = 0.85;
+					bill_stage   = 1;
+					skeleton_animation_set("death");
+					}
+				}
+			}
+		}
 	if diego_dynamit = 2 && image_index >= 18
 		{ diego_dynamit = 3; }
+	
 	if diego_dynamit = 3
 		{
 		if enemy = 0
@@ -374,7 +422,7 @@ if !enemy
 				o_list.dop_text_color[2] = (global.player_object).hero_color;
 				o_list.dop_text[8] = "-" + string(dynamit_d);
 			
-				if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
+				if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 					{
 					stun = 0;
 					skeleton_animation_set("damaged");
@@ -424,7 +472,7 @@ if !enemy
 					{ o_list.dop_text[7] = "-" + string(round(o_list.e_atk + o_list.e_atk / 10)); }
 					else
 					{ o_list.dop_text[7] = "-" + string(round(o_list.e_atk)); }
-				if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
+				if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 					{
 					stun = 0;
 					skeleton_animation_set("damaged");
@@ -451,7 +499,9 @@ if !enemy
 			{ diego_boom = -1; }
 		//(global.enemy_object).x
 		}
-	if stun = 1 && skeleton_animation_get() != "stun"
+	if hero = 5  && bill_stage = 0
+		{ stun = 0; }
+	if global.super_ability = 0 && stun = 1 && skeleton_animation_get() != "stun"
 		{
 		//stun = 1;
 		stun_seconds = 3;// * room_speed;
@@ -460,5 +510,20 @@ if !enemy
 		image_index = 0;
 		image_speed = 2;
 		change = 4;
+		}
+	if bill_boom >= 0
+		{
+		draw_sprite_ext(s_diego_boom, bill_boom, x + 20 + prx, y - 250 + pry, scale * 1.2, scale * 1.2, 0, c_white, 1);
+		draw_sprite_ext(s_diego_boom, bill_boom, x - 20 + prx, y - 200 + pry, scale * 1.2, scale * 1.2, 0, c_white, 1);
+		draw_sprite_ext(s_diego_boom, bill_boom, x + 20 + prx, y - 150 + pry, scale * 1.2, scale * 1.2, 0, c_white, 1);
+		draw_sprite_ext(s_diego_boom, bill_boom, x - 20 + prx, y - 100 + pry, scale * 1.2, scale * 1.2, 0, c_white, 1);
+		draw_sprite_ext(s_diego_boom, bill_boom, x + 20 + prx, y - 50  + pry, scale * 1.2, scale * 1.2, 0, c_white, 1);
+		draw_sprite_ext(s_diego_boom, bill_boom, x - 20 + prx, y - 0   + pry, scale * 1.2, scale * 1.2, 0, c_white, 1);
+		
+		bill_boom += 0.5;
+		if bill_boom > 6
+			{ bill_boom = -1; }
+		if bill_boom = 3
+			{ hero_sprite = s_sbill; }
 		}
 #endregion

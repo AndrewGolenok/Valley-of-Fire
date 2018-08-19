@@ -3,13 +3,13 @@ scale = 1//0.2;
 //if !audio_is_playing(sd_music)
 //		{ audio_play_sound(sd_music, 1, 1);  }
 		
-hero_left[1] = asset_get_index("s_"+global.hero_code_name[5]+"");
-hero_left[2] = asset_get_index("s_"+global.hero_code_name[7]+"");
-hero_left[3] = asset_get_index("s_"+global.hero_code_name[1]+"");
+//hero_left[1] = asset_get_index("s_"+global.hero_code_name[5]+"");
+//hero_left[2] = asset_get_index("s_"+global.hero_code_name[7]+"");
+//hero_left[3] = asset_get_index("s_"+global.hero_code_name[1]+"");
 
-hero_right[1] = asset_get_index("s_"+global.hero_code_name[6]+"");
-hero_right[2] = asset_get_index("s_"+global.hero_code_name[3]+"");
-hero_right[3] = asset_get_index("s_"+global.hero_code_name[11]+"");
+//hero_right[1] = asset_get_index("s_"+global.hero_code_name[6]+"");
+//hero_right[2] = asset_get_index("s_huntress");
+//hero_right[3] = asset_get_index("s_chief");
 
 n = 0;
 

@@ -16,7 +16,7 @@
         "0a3ef521-792b-4d9b-bb3e-55e2bc56002c"
     ],
     "filterType": "GMSprite",
-    "folderName": " Logo",
+    "folderName": "Logo",
     "isDefaultView": false,
     "localisedFolderName": ""
 }

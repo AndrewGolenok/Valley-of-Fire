@@ -1,6 +1,13 @@
 #region Стартовые переменные
 	//instance_destroy();
+	anim_skul = 0;
 	global.player_name = choose("Andrew", "Artem", "Nikolay");
+	global.enemy_rank  = choose(global.player_rank - 1, global.player_rank + 1, global.player_rank + 1, global.player_rank, global.player_rank, global.player_rank, global.player_rank, global.player_rank)
+	
+	if global.enemy_rank > 15
+		{ global.enemy_rank = 15; }
+	if global.enemy_rank < 0
+		{ global.enemy_rank = 0; }
 	lines_true = 0;
 
 	list_go = 0;
@@ -355,6 +362,7 @@
 		{ theme_t[2] = global.hero; }
 		else
 		{ theme_t[2] = theme_new(theme_t[1], -1); }
+	
 	theme_a[2]  = 1;
 	theme_nn[2] = global.theme_name[theme_t[2]];
 	theme_x1[2] = 0;
@@ -364,7 +372,7 @@
 	theme_x[3]  = 640 + 300;
 	theme_y[3]  = global.size / 2;
 	theme_s[3]  = 0;
-	theme_t[3]  = 4//theme_new(theme_t[1], theme_t[2]);
+	theme_t[3]  = theme_new(theme_t[1], theme_t[2]);
 	theme_a[3]  = 1;
 	theme_nn[3] = global.theme_name[theme_t[3]];
 	theme_x1[3] = 0;
@@ -376,6 +384,7 @@
 	theme_g = 0;
 	theme_click = 0;
 	theme_dot   = "";
+	
 #endregion
 #region Объявление раунда
 	round_text[1] = "ROUND";
@@ -547,7 +556,45 @@
 		b_pressed_s[3] = 1;
 		b_pressed_s[4] = 1;
 	#endregion
-	#region	Движение - Move
+	#region	Бутылки    - Bottles
+		bottle_all   = 0;
+		bottle_s     = 1;
+		bottle_stage = 0;
+		bottle_red   = 0;
+		bottle_s1    = 1;
+		bottle_s2    = 1;
+		bottle_a1    = 1;
+		bottle_red_a = 0;
+		
+		bottle_change = 0;
+		bottle_end    = 0;
+		
+		for(i=1;i<=6;i++)
+			{
+			bottle_y[i]  = 0;
+			bottle_a[i]  = 0;
+			bottle_x[i]  = 0;
+			bottle_n[i]  = 0;
+			bottle_n1[i] = 0;
+			bottle_i[i]  = irandom_range(2, 3);//irandom_range(1, 4);
+			
+			bottle_destroy[i] = 0;
+			
+			target_x[i] = 0;
+			target_y[i] = 0;
+			target_s[i] = 1;
+			target_c[i] = 1;
+			target_numb[i] = 0;
+			
+			bottle_spd[i]  = 0;
+			bottle_r[i]    = 0;
+			bottle_p[i]    = 0;
+			bottle_d[i]    = 0;
+			}
+		
+		target_n = 0;
+	#endregion
+	#region	Движение   - Move
 		hand_scale = 0;
 		hand_angle = 0;
 		hand_count = 1;
@@ -566,64 +613,8 @@
 		hand_s_x = 0;
 		hand_s_y = 0;
 		hand_s_t = 0;
-	
-		for(i=1;i<=6;i++)
-			{
-			horse_p[i]   = choose(-1, 1);
-			horse_n[i]   = 0;
-			horse_y[i]   = 0;
-			horse_red[i] = 1;
-			}
-		
-		horse_yy      = 0;
-		horse_now     = 0;
-		horse_count   = 4;
-		horse_death   = 0;
-		horse_death_y = 0;
-		horse_death_a = 1;
 	#endregion
-	#region	Бутылки - Bottles
-		bottle_all   = 0;
-		bottle_s     = 0;
-		bottle_stage = 0;
-		bottle_red   = 0;
-		bottle_s1    = 1;
-		bottle_s2    = 1;
-		bottle_a1    = 1;
-		
-		for(i=1;i<=6;i++)
-			{
-			bottle_y[i]  = 0;
-			bottle_a[i]  = 0;
-			bottle_x[i]  = 0;
-			bottle_n[i]  = 0;
-			bottle_n1[i] = 0;
-			bottle_i[i]  = irandom_range(2, 4);//irandom_range(1, 4);
-			
-			bottle_destroy[i] = 0;
-			
-			target_x[i] = 0;
-			target_y[i] = 0;
-			target_s[i] = 1;
-			target_c[i] = 1;
-			target_numb[i] = 0;
-			
-			bottle_spd[i]  = 0;
-			bottle_r[i]    = 0;
-			}
-		
-		target_n = 0;
-		
-		bottle_t[2] = 0;
-		bpttle_t[3] = 0;
-		
-		bottle_v[2] = 0;
-		bpttle_v[3] = 0;
-		
-		bottle_p[2] = 0;
-		bpttle_p[3] = 0;
-	#endregion
-	#region	Внимание - Attention
+	#region	Внимание   - Attention
 		#region Задача 1 - Шляпа, напёрстки
 		hat_x[1]  = 640 - 200;
 		hat_xn[1] = 640 - 200;
@@ -643,6 +634,12 @@
 		hat_s[3]  = 1;
 		hat_h[3]  = 0;
 		
+		hat_x[4]  = 640 + 200;
+		hat_xn[4] = 640 + 200;
+		hat_y[4]  = 0;
+		hat_s[4]  = 1;
+		hat_h[4]  = 0;
+		
 		hat_spd  = 20;
 		hat_cha  = choose(1, 3);
 		hat_sha  = 2;
@@ -657,9 +654,44 @@
 		hat_alpha[2] = 1;
 		hat_alpha[3] = 1;
 	#endregion
+		#region Задача 2 - Камень, ножницы и чё там
+			for(i=1;i<=5;i++)
+				{
+				hand_sign[i] = 0;
+				hand_sign_red[i] = 0;
+				hand_sign_xx[i]  = 0;
+				hand_sign_ss[i]  = 1;
+				hand_sign_r[i]   = 0;
+				
+				for(j=1;j<=3;j++)
+					{
+					hand_sign_c[i]   = 0.65;
+					hand_sign_z[i,j] = 0;
+					}
+				}
+			hand_sign_now   = 1;
+			hand_sign_count = 0;
+			hand_sign_scale = 1;
+		#endregion
+		#region Задача 3 - Конь, заборы
+			for(i=1;i<=6;i++)
+			{
+			horse_p[i]   = choose(-1, 1);
+			horse_n[i]   = 0;
+			horse_y[i]   = 0;
+			horse_red[i] = 1;
+			}
+			
+			horse_yy      = 0;
+			horse_now     = 0;
+			horse_count   = 4;
+			horse_death   = 0;
+			horse_death_y = 0;
+			horse_death_a = 1;
+		#endregion
 	#endregion
-	#region	Карты - Cards
-		#region Задача 1 - Карты, найти пару
+	#region	Карты      - Cards
+		#region Задача 1 / 2 - Карты, найти пару / карту
 		for(i=1;i<=2;i++)
 			{
 			for(j=1;j<=3;j++)
@@ -674,20 +706,141 @@
 				card_yy[i,j]  = 0;
 				}
 			}
-		card_what();
 		fir_i = 0;
 		fir_j = 0;
 		sec_i = 0;
 		sec_j = 0;
+		card_all  = 2;
+		card_time = -1;
+		cards_1(); //card_what();
+		
+		card_find = 0;
+		card_have = 0;
+		card_find_a = 0;
+		card_find_s = 0;
+		card_find_time = 0;
 	#endregion
+		#region Задача 3 - Карты, порядок
+			cards_all   = 3;
+			cards_stage = 1;
+			cards_time  = 10;
+			cards_now   = 1;
+			for(i=1;i<=5;i++)
+				{
+				cards_y[i]  = 0;
+				cards_x[i]  = 0;
+				cards_m[i]  = 0;
+				cards_n[i]  = 0;
+				cards_i[i]  = 0;
+				cards_s[i]  = 0;
+				cards_ss[i] = 1;
+				cards_xx[i] = 0;
+				cards_xs[i] = 0;
+				cards_nu[i] = 0;
+				}
+		#endregion
 	#endregion
-	#region	Стрельба - Shooting -
+	#region	Стрельба   - Shooting
+		#region Мишени, появление
+			aim_xx[1] = 640 - 300;
+			aim_yy[1] = 150;
+			
+			aim_xx[2] = 640 - 200;
+			aim_yy[2] = global.size - 210;
+			
+			aim_xx[3] = 640;
+			aim_yy[3] = global.size / 2;
+			
+			aim_xx[4] = 640 + 150;
+			aim_yy[4] = 150;
+			
+			aim_xx[5] = 640 + 300;
+			aim_yy[5] = global.size - 210;
+			
+			aim_now   = 1;
+			aim_all   = 2;
+			aim_max_r = 0;
+			for(i=1;i<=5;i++)
+				{
+				aim_n[i] = 0;
+				aim_a[i] = 0;
+				aim_s[i] = 0;
+				aim_t[i] = 0;
+				aim_r[i] = 0;
+				aim_d[i] = 0;
+				
+				aim_p[i] = 0;
+				}
+		#endregion
+		#region Мишени, пистолет
+			target_ang = 0;
+			target_all = 5;
+			target_now = 1;
+			target_red = 0;
+			target_spd = 20;
+			target_bul = 0;
+			target_iii = 0;
+			target_gon = 0;
+			
+			target_v[1] = 0;
+			target_v[2] = 45;
+			target_v[3] = 90;
+			target_v[4] = 135;
+			target_v[5] = 180;
+			
+			for(i=1;i<=5;i++)
+				{
+				target_n[i] = 0;
+				target_m[i] = 0;
+				
+				target_y[i] = global.size / 2;
+				target_x[i] = 640 + 200;
+				
+				target_d[i] = 0;
+				target_s[i] = 1;
+				target_a[i] = 0;
+				}
+		#endregion
+		#region Мишени, нож
+			targetk_ang = 0;
+			targetk_all = 5;
+			targetk_spd = 20;
+			
+			//targetk_v[1] = 0;
+			//targetk_v[2] = 72;
+			//targetk_v[3] = 72 * 2;
+			//targetk_v[4] = 72 * 3;
+			//targetk_v[5] = 72 * 4;
+			
+			for(i=1;i<=5;i++)
+				{
+				targetk_v[i] = 72 * (i - 1)
+				targetk_n[i] = 0;
+				targetk_d[i] = 0;
+				}
+			for(i=1;i<=6;i++)
+				{
+				knife_now  = 1;
+				knife_spd  = 20;
+				knife_y[i] = global.size / 2;
+				knife_x[i] = 640 - 170;
+				
+				knife_d[i] = 0;
+				knife_a[i] = 0;
+				knife_n[i] = 0;
+				
+				knife_a1[i] = 0;
+				}
+		#endregion
+	#endregion
+	#region	Шторм      - Storm
+		global.storm = 0;
+	#endregion
+	
+	#region	///Стрельба - Shooting
 		
 	#endregion
-	#region	Мера - Measure - 
-		
-	#endregion
-	#region	Шторм - Storm
+	#region	///Мера - Measure
 		
 	#endregion
 #endregion

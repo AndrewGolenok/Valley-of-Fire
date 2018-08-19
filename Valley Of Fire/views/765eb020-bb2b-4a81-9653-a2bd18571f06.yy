@@ -4,7 +4,8 @@
     "mvc": "1.1",
     "name": "765eb020-bb2b-4a81-9653-a2bd18571f06",
     "children": [
-        "17739c4f-2670-447c-90dd-f17b7f4b1680"
+        "17739c4f-2670-447c-90dd-f17b7f4b1680",
+        "c3ddbc03-ee47-49ed-b29f-b754550a9738"
     ],
     "filterType": "GMSprite",
     "folderName": "Menu",

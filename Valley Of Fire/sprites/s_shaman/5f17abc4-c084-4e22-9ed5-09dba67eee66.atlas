@@ -1,0 +1,118 @@
+
+shaman.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+8/Layer_9
+  rotate: false
+  xy: 306, 498
+  size: 166, 261
+  orig: 166, 261
+  offset: 0, 0
+  index: -1
+8/spear
+  rotate: false
+  xy: 1, 838
+  size: 763, 75
+  orig: 763, 75
+  offset: 0, 0
+  index: -1
+8/Layer_10
+  rotate: false
+  xy: 910, 874
+  size: 64, 42
+  orig: 64, 42
+  offset: 0, 0
+  index: -1
+8/Layer_5
+  rotate: false
+  xy: 1, 1
+  size: 431, 495
+  orig: 431, 495
+  offset: 0, 0
+  index: -1
+8/Layer_14
+  rotate: false
+  xy: 474, 498
+  size: 179, 190
+  orig: 179, 190
+  offset: 0, 0
+  index: -1
+8/Layer_15_copy_2
+  rotate: false
+  xy: 911, 918
+  size: 28, 66
+  orig: 28, 66
+  offset: 0, 0
+  index: -1
+8/Layer_4
+  rotate: false
+  xy: 1, 498
+  size: 303, 338
+  orig: 303, 338
+  offset: 0, 0
+  index: -1
+8/Layer_12
+  rotate: false
+  xy: 766, 673
+  size: 155, 199
+  orig: 155, 199
+  offset: 0, 0
+  index: -1
+8/Layer_15
+  rotate: false
+  xy: 976, 874
+  size: 28, 66
+  orig: 28, 66
+  offset: 0, 0
+  index: -1
+8/Layer_15_copy
+  rotate: false
+  xy: 976, 942
+  size: 28, 66
+  orig: 28, 66
+  offset: 0, 0
+  index: -1
+8/Layer_7
+  rotate: false
+  xy: 655, 498
+  size: 188, 173
+  orig: 188, 173
+  offset: 0, 0
+  index: -1
+8/2
+  rotate: false
+  xy: 766, 874
+  size: 142, 72
+  orig: 183, 73
+  offset: 20, 1
+  index: -1
+8/3
+  rotate: false
+  xy: 491, 690
+  size: 127, 71
+  orig: 183, 73
+  offset: 28, 1
+  index: -1
+8/1
+  rotate: false
+  xy: 306, 761
+  size: 183, 73
+  orig: 183, 73
+  offset: 0, 0
+  index: -1
+8/4
+  rotate: false
+  xy: 766, 948
+  size: 143, 71
+  orig: 183, 73
+  offset: 20, 1
+  index: -1
+8/spear1
+  rotate: false
+  xy: 1, 915
+  size: 763, 75
+  orig: 763, 75
+  offset: 0, 0
+  index: -1

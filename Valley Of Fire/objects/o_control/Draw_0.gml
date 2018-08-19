@@ -138,10 +138,6 @@
 	
 		draw_sprite_ext(s_sunmoon, 0, 640 + lengthdir_x(640, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600)), global.size / 2 + lengthdir_y(200, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600)), moon_scale, moon_scale, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600), c_white, 1);
 		draw_sprite_ext(s_sunmoon, 1, 640 - lengthdir_x(640, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600)), global.size / 2 - lengthdir_y(200, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600)), moon_scale, moon_scale, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600), c_white, 1);
-	
-		draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, 1);
-		draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, back_alpha[1]);
-		draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, back_alpha[2]);
 	#endregion
 		#region Рисование облаков
 			for(i=0; i<=8; i++)
@@ -160,6 +156,11 @@
 						{ back_clouds_x[i] = 2280; }
 					}
 				}
+		#endregion
+		#region Задник
+		draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, 1);
+		draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, back_alpha[1]);
+		draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, back_alpha[2]);
 		#endregion
 		}
 	if global.background = "train"

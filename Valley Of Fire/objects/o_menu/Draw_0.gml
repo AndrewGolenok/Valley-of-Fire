@@ -3,8 +3,6 @@
 	prx = global.paral_x * global.paral_sx;
 	pry = global.paral_y * global.paral_sy;
 	
-	application_surface_draw_enable(1);
-	
 	draw_set_alpha(0.3 * vs_alpha);
 	draw_surface(application_surface,  2.5,  2.5);
 	draw_surface(application_surface, -2.5,  2.5);
@@ -21,6 +19,8 @@
 	draw_surface(application_surface,  7.5, -7.5);
 	draw_surface(application_surface, -7.5, -7.5);
 	draw_set_alpha(1);
+	
+	application_surface_draw_enable(0);
 	//shader_set(glsl_gaussian_blur);
 	//shader_set_uniform_f(uscale, 0.006, 0.0); //shader_set_uniform_f(uscale, 0.003, 0.0);
 	//surface_set_target(surf_blur_pass);
@@ -200,13 +200,20 @@
 			}
 	#endregion
 	#region Выбор героя
-		if menu_stage = "heroes2"
+		if menu_stage = "heroes0"
 			{
 			#region Переменные
 				var ts, gx, gy, hero_width, hero_spr;
 				ts = 0.35;
 				gx = 640 + prx;
 				gy = 50  + pry;
+				
+				var rankk;
+			rankk = string(global.player_rank);
+			if global.player_rank = 0
+				{ rankk = "LEGEND" }
+			draw_set_font(global.game_font);
+			draw_text_transformed_a(gx, 50, "LEVEL: " + string(rankk), ts * s0, ts * s0, 0, c_white, c_black);
 			#endregion
 			#region Текст
 				if s0 < 1
@@ -221,13 +228,13 @@
 					{
 					hero_spr   = asset_get_index("s_" + string(global.hero_code_name[hero_g[i]]));
 					
-					//draw_sprite_ext(hero_spr, 0, hero_x[i], hero_y, hero_size, hero_size, 0, c_white, 1);
+					draw_sprite_ext(hero_spr, 0, hero_x[i], hero_y, hero_size, hero_size, 0, c_white, 1);
 					}
 			#endregion
 			}
 	#endregion
 	#region Прочее
-	if menu_stage = "heroes1"
+	if menu_stage = "heroes2"
 		{
 		#region Переменные
 			var gx, gy, xx, yy, ts, ps, xx1, yy1, ss1, xx2, yy2, ss2, xx3, yy3, ss3, xx4, yy4, ss4,
@@ -243,9 +250,9 @@
 			
 			var hercol;
 			hercol = c_white;
-			if show = 1
+			if show = 6
 				{ hercol = c_orange; }
-			if show = 2
+			if show = 4
 				{ hercol = c_maroon; }
 			if show = 3
 				{ hercol = c_fuchsia; }
@@ -254,9 +261,12 @@
 			if s0 < 1
 				{ s0 += 0.1; }
 			anim += 1;
-			
+			var rankk;
+			rankk = string(global.player_rank);
+			if global.player_rank = 0
+				{ rankk = "LEGEND" }
 			draw_set_font(global.game_font);
-			draw_text_transformed_a(gx, 50, "LEVEL: " + string(global.player_rank), ts * s0, ts * s0, 0, c_white, c_black);
+			draw_text_transformed_a(gx, 50, "LEVEL: " + string(rankk), ts * s0, ts * s0, 0, c_white, c_black);
 		#endregion
 		#region Персонажи
 			///
@@ -276,7 +286,7 @@
 			ss4 = 0.48;
 			
 			//draw_sprite_ext(s_diego2, 0, xx - xx4 - 50, yy4, -ss4, ss4, 0, c_maroon, 1);
-			if show = 2
+			if show = 4
 				{ draw_sprite_ext_t(s_diego2, 0, xx - xx4 - 50, yy4, -ss4 * ps2, ss4 * ps2, 0, c_white, 1, c_white, c_black); }
 				else
 				{ draw_sprite_ext(s_diego2, 0, xx - xx4 - 50, yy4, -ss4 * ps2, ss4 * ps2, 0, c_white, 1); }
@@ -318,7 +328,7 @@
 			draw_sprite_ext(s_chief, 0, xx + xx1, yy1, ss1 - 0.05, ss1 - 0.05, 0, c_maroon, 1);
 			//draw_sprite_ext(s_chief, 0, xx + xx1, yy1, ss1 - 0.05, ss1 - 0.05, 0, c_black, 0.8);
 			
-			if show = 1
+			if show = 6
 				{ draw_sprite_ext_t(s_sherif, 0, xx - xx1, yy1, -ss1 * ps1, ss1 * ps1, 0, c_white, 1, c_white, c_black); }
 				else
 				{ draw_sprite_ext(s_sherif, 0, xx - xx1, yy1, -ss1 * ps1, ss1 * ps1, 0, c_white, 1); }
@@ -349,7 +359,7 @@
 						else
 						{ ps1 = 1; }
 					if mouse_check_button_released(mb_left)
-						{ show = 1; ps1 = 1.1; }
+						{ show = 6; ps1 = 1.1; }
 					}
 					else
 					{ ps1 = 1; }
@@ -362,7 +372,7 @@
 						else
 						{ ps2 = 1; }
 					if mouse_check_button_released(mb_left)
-						{ show = 2; }
+						{ show = 4; }
 					}
 					else
 					{ ps2 = 1; }
@@ -380,9 +390,9 @@
 					else
 					{ ps3 = 1; }
 			
-				if show = 1
+				if show = 6
 					{ ps1 = 1.1; }
-				if show = 2
+				if show = 4
 					{ ps2 = 1.1; }
 				if show = 3
 					{ ps3 = 1.1; }
@@ -394,12 +404,12 @@
 			var nx, ny;
 			nx = 100000000;
 			ny = 0;
-			if show = 1
+			if show = 6
 				{
 				nx = xx - xx1 + 50 - prx;
 				ny = yy1 - 190 - pry;
 				}
-			if show = 2
+			if show = 4
 				{
 				nx = xx - xx4 - 50 - prx;
 				ny = yy4 - 120 - pry;
@@ -452,9 +462,9 @@
 				draw_text_transformed_t(xx, 200, string_upper("(" + global.hero_class[show] + ")"), 0.09, 0.09, 0, hercol, c_black);
 				
 				var super;
-				if show = 1
+				if show = 6
 					{ super = s_super_sherif; }
-				if show = 2
+				if show = 4
 					{ super = s_super_diego; }
 				if show = 3
 					{ super = s_super_huntress; }
@@ -481,6 +491,96 @@
 		#endregion
 		}
 	#endregion
+	#region Выбор героя
+		if menu_stage = "heroes1"
+			{
+			var vs_spr, vs_spr1, vs_size;
+			vs_size = 1;
+			vs_spr  = asset_get_index("s_" + string(global.hero_code_name[global.hero]));
+			vs_spr1 = asset_get_index("s_" + string(global.hero_code_name[global.enemy_hero]));
+			vs_hero = global.enemy_hero
+			if global.hero = 6
+				{ sherif_x = - 80; }
+				else
+				{ sherif_x = 0; }
+			if vs_hero = 6
+				{ sherif_x1 = - 80; }
+				else
+				{ sherif_x1 = 0; }
+			for(i=0;i<=5;i++)
+				{
+				draw_sprite_ext(vs_spr , 0, vs_x1 + sherif_x - 5 * i, vs_y1 - 5 * i, -vs_size, vs_size, 20, c_black, 0.2);
+				draw_sprite_ext(vs_spr1, 0, vs_x2 - sherif_x1 + 5 * i, vs_y2 - 5 * i, vs_size , vs_size, 20, c_black, 0.2);
+				}
+			if vs_go = 0
+				{
+				if vs_x1 < 20
+					{ vs_x1 += 25; }
+				if vs_y1 > global.size
+					{ vs_y1 -= 50; }
+				
+				if vs_x2 > 1280 - 20
+					{ vs_x2 -= 25; }
+				if vs_y2 < global.size
+					{ vs_y2 += 50; }
+					else
+					{ vs_go = 1; }
+				}
+			
+			draw_sprite_ext(vs_spr , 0, vs_x1 + sherif_x, vs_y1, -vs_size, vs_size, 20, c_white, 1);
+			draw_sprite_ext(vs_spr1, 0, vs_x2 - sherif_x1, vs_y2, vs_size , vs_size, 20, c_white, 1);
+			
+			draw_set_font(global.game_font);
+			draw_text_transformed_a(vs_vx, vs_vy, "V", vs_ts * vs_alpha, vs_ts * vs_alpha, -20, c_white, c_black);
+			draw_text_transformed_a(vs_sx, vs_sy, "S", vs_ts * vs_alpha, vs_ts * vs_alpha, -20, c_white, c_black);
+			
+			if mouse_check_button_pressed(mb_left)
+				{
+				if mouse_x < 400
+					{
+					if mouse_y < global.size / 2
+						{
+						if global.hero > 1
+							{ global.hero -= 1; }
+						}
+						else
+						{
+						if global.hero < 7
+							{ global.hero += 1; }
+						}
+					}
+				if mouse_x > 800
+					{
+					//if global.hero = 6 or global.hero = 4 or global.hero = 3 or global.hero = 1
+						{ menu_stage = "search"; }
+					}
+				}
+			if anim_skul < 3
+				{ anim_skul += 0.5; }
+				else
+				{ anim_skul = 0; }
+			var skul, rank, rank_i, rank_yy;
+			rank_yy = -65;
+			skul = global.player_rank;
+			rank = string(global.player_rank);
+			if global.player_rank <=5
+				{ rank_i = 2; }
+			if global.player_rank > 5 && global.player_rank <= 10
+				{ rank_i = 1; }
+			if global.player_rank > 10
+				{ rank_i = 0; }
+			if global.player_rank = 0
+				{ rank_i = 3; rank = "LEGEND"; rank_yy = -45; }
+		
+			draw_sprite_ext_t(s_rank_shield, rank_i, 640, 100, 0.7, 0.7, 0, c_white, 1, c_white, c_black);
+			if global.player_rank <= 3
+				{ draw_sprite_ext_t(s_rank_skul_1, anim_skul, 640, 100, 0.7, 0.7, 0, c_white, 1, c_white, c_black); }
+			draw_sprite_ext_t(s_rank_skul, skul, 640, 100, 0.7, 0.7, 0, c_white, 1, c_white, c_black);
+		
+			draw_set_font(global.game_font);
+			draw_text_transformed_t(640, 120 + rank_yy, string(rank), 0.3, 0.3, 0, global.color_white, c_black);
+			}
+	#endregion
 	#region Подбор противника
 		if menu_stage = "search"
 			{
@@ -489,11 +589,11 @@
 			vs_spr  = asset_get_index("s_" + string(global.hero_code_name[global.hero]));
 			vs_spr1 = asset_get_index("s_" + string(global.hero_code_name[vs_hero]));
 			
-			if global.hero = 1
+			if global.hero = 6
 				{ sherif_x = - 80; }
 				else
 				{ sherif_x = 0; }
-			if vs_hero = 1
+			if vs_hero = 6
 				{ sherif_x1 = - 80; }
 				else
 				{ sherif_x1 = 0; }
@@ -591,9 +691,10 @@
 			draw_set_font(global.game_font);
 			draw_text_transformed_a(vs_vx, vs_vy, "V", vs_ts * vs_alpha, vs_ts * vs_alpha, -20, c_white, c_black);
 			draw_text_transformed_a(vs_sx, vs_sy, "S", vs_ts * vs_alpha, vs_ts * vs_alpha, -20, c_white, c_black);
-			
-			//room_goto_t("duel");
 			}
+	#endregion
+	#region Сурф
+		application_surface_draw_enable(1);
 	#endregion
 #endregion
 
@@ -605,7 +706,7 @@
 		}
 	if keyboard_check_pressed(ord("P"))
 		{
-		if global.player_rank > 1
+		if global.player_rank > 0
 			{ global.player_rank -= 1; }
 		}
 #endregion

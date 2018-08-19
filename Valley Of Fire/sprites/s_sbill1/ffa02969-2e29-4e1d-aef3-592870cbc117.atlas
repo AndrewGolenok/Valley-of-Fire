@@ -1,0 +1,83 @@
+
+sbill1.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+b
+  rotate: false
+  xy: 1, 1
+  size: 658, 860
+  orig: 658, 860
+  offset: 0, 0
+  index: -1
+brothers/Layer_48
+  rotate: false
+  xy: 1344, 1
+  size: 270, 243
+  orig: 270, 243
+  offset: 0, 0
+  index: -1
+brothers/Layer_41
+  rotate: false
+  xy: 1024, 1
+  size: 318, 483
+  orig: 318, 483
+  offset: 0, 0
+  index: -1
+j
+  rotate: false
+  xy: 661, 564
+  size: 411, 450
+  orig: 411, 450
+  offset: 0, 0
+  index: -1
+brothers/Layer_51
+  rotate: false
+  xy: 1344, 246
+  size: 235, 224
+  orig: 235, 224
+  offset: 0, 0
+  index: -1
+Layer_17
+  rotate: false
+  xy: 1797, 242
+  size: 176, 187
+  orig: 176, 187
+  offset: 0, 0
+  index: -1
+brothers/Layer_47
+  rotate: false
+  xy: 661, 1
+  size: 361, 561
+  orig: 361, 561
+  offset: 0, 0
+  index: -1
+brothers/Layer_52
+  rotate: false
+  xy: 1616, 1
+  size: 179, 322
+  orig: 179, 322
+  offset: 0, 0
+  index: -1
+brothers/Layer_54
+  rotate: false
+  xy: 1581, 325
+  size: 165, 199
+  orig: 165, 199
+  offset: 0, 0
+  index: -1
+brothers/Layer_58
+  rotate: false
+  xy: 1797, 1
+  size: 238, 239
+  orig: 238, 239
+  offset: 0, 0
+  index: -1
+Layer_19
+  rotate: false
+  xy: 1074, 486
+  size: 385, 299
+  orig: 385, 299
+  offset: 0, 0
+  index: -1

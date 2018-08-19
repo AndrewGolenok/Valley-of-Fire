@@ -13,17 +13,17 @@ bottle_n[1] = 0;
 bottle_red  = 0;
 
 if global.player_rank <= 3
-	{ bottle_all = 5; bottle_red = choose(0, 1); min_time[2,2] = 90; bottle_s1 = choose(1, -1); bottle_s2 = choose(1, -1); bottle_a1 = 0.4; }
+	{ bottle_all = 5; bottle_red = choose(0, 1); min_time[2,2] = 90; min_wait[2,2] = 100; bottle_s1 = choose(1, -1); bottle_s2 = choose(1, -1); bottle_a1 = 0.4; }
 if global.player_rank < 7  && global.player_rank >= 4
-	{ bottle_all = 5; bottle_red = choose(0, 0, 1); min_time[2,2] = 70; bottle_s1 = choose(1, -1); bottle_s2 = -1; bottle_a1 = 0.6; }
+	{ bottle_all = 5; bottle_red = choose(0, 0, 1); min_time[2,2] = 70; min_wait[2,2] = 80; bottle_s1 = choose(1, -1); bottle_s2 = -1; bottle_a1 = 0.6; }
 if global.player_rank < 10 && global.player_rank >= 7
-	{ bottle_all = 4; bottle_red = choose(0, 0, 0, 1); min_time[2,2] = 60; bottle_s1 = -1; bottle_s2 = choose(1, -1); bottle_a1 = 0.7; }
+	{ bottle_all = 4; bottle_red = choose(0, 0, 0, 1); min_time[2,2] = 60; min_wait[2,2] = 60; bottle_s1 = -1; bottle_s2 = choose(1, -1); bottle_a1 = 0.7; }
 if global.player_rank < 13 && global.player_rank >= 10
-	{ bottle_all = 4; bottle_red = choose(0, 0, 0, 0, 1); min_time[2,2] = 40; bottle_s1 = choose(1, -1); bottle_s2 = 1; bottle_a1 = 0.8; }
+	{ bottle_all = 4; bottle_red = choose(0, 0, 0, 0, 1); min_time[2,2] = 40; min_wait[2,2] = 40; bottle_s1 = choose(1, -1); bottle_s2 = 1; bottle_a1 = 0.8; }
 if global.player_rank < 15 && global.player_rank >= 13
-	{ bottle_all = 3; bottle_red = choose(0, 0, 0, 0, 1); min_time[2,2] = 30; bottle_s1 = 1; bottle_s2 = 1; bottle_a1 = 0.9; }
+	{ bottle_all = 3; bottle_red = choose(0, 0, 0, 0, 1); min_time[2,2] = 30; min_wait[2,2] = 30; bottle_s1 = 1; bottle_s2 = 1; bottle_a1 = 0.9; }
 if global.player_rank >= 15
-	{ bottle_all = 2; min_time[2,2] = 20; bottle_s1 = 1; bottle_s2 = 1; bottle_a1 = 1; }
+	{ bottle_all = 2; min_time[2,2] = 20; min_wait[2,2] = 20; bottle_s1 = 1; bottle_s2 = 1; bottle_a1 = 1; }
 
 bottle_stage = 1;
 
@@ -38,7 +38,7 @@ for(i=1;i<=bottle_all;i++)
 	sss = string_delete(sss, sss1, 1);
 	bottle_y[i] = -800;
 	bottle_x[i] = 640 - 60 * (bottle_all - 1) + 120 * (i - 1); // - 50 * i + 50 * (bottle_all / 2);
-	bottle_i[i] = irandom_range(2, 4);
+	bottle_i[i] = irandom_range(2, 3);
 	}
 	
 if bottle_all = 2

@@ -152,7 +152,7 @@
 #region Персонажи
 	//global.hero = 1;
 	global.player_rank = 15;
-	global.heroes_val  = 11;
+	global.heroes_val  = 7;
 	global.weapon = "standard";
 	
 	ini_open("Language/" + string(global.lang) + "/heroes_"+string(global.lang) + ".ini");
@@ -175,33 +175,33 @@
 	global.grade_rank[3] = ini_read_string("Description", "grade_rank_3", "Silver");
 	global.grade_rank[4] = ini_read_string("Description", "grade_rank_4", "Gold");
 	
-	#region Шериф
-		global.hp[1]  = 900;
-		global.atk[1] = 47;
+	#region Воришка
+		global.hp[1]  = 700;
+		global.atk[1] = 60;
 		
-		global.hero_code_name[1]   = "sherif";
-		global.hero_code_weapon[1] = "revolver";
+		global.hero_code_name[1]    = "thief";
+		global.hero_code_weapon[1]  = "knife";
 		
-		global.hero_code_theme[1]  = "math";
+		global.hero_code_theme[1]   = "cards";
 		
-		global.hero_full_wins[1]    = 4;
-		global.hero_nofull_wins[1]  = 0;
+		global.hero_full_wins[1]    = 90;
+		global.hero_nofull_wins[1]  = 40;
 		global.hero_full_loose[1]   = 0;
-		global.hero_nofull_loose[1] = 2;
+		global.hero_nofull_loose[1] = 0;
 	#endregion
-	#region Диего
-		global.hp[2]  = 1200;
-		global.atk[2] = 35;
+	#region Пьяница Джо
+		global.hp[2]  = 800;
+		global.atk[2] = 30;
 		
-		global.hero_code_name[2]   = "diego";
-		global.hero_code_weapon[2] = "rifle";
+		global.hero_code_name[2]    = "drunk";
+		global.hero_code_weapon[2]  = "bottle";
 		
-		global.hero_theme[2] = "math";
+		global.hero_code_theme[2]   = "bottles";
 		
-		global.hero_full_wins[2]   = 5;
-		global.hero_nofull_wins[2] = 2;
-		global.hero_full_loose[2]   = 2;
-		global.hero_nofull_loose[2] = 1;
+		global.hero_full_wins[2]    = 80;
+		global.hero_nofull_wins[2]  = 80;
+		global.hero_full_loose[2]   = 80;
+		global.hero_nofull_loose[2] = 80;
 	#endregion
 	#region Охотница
 		global.hp[3]  = 300;
@@ -210,129 +210,131 @@
 		global.hero_code_name[3]   = "huntress";
 		global.hero_code_weapon[3] = "bow";
 		
-		global.hero_code_theme[3]  = "math";
+		global.hero_code_theme[3]  = "move";
 		
 		global.hero_full_wins[3]    = 20;
 		global.hero_nofull_wins[3]  = 0;
 		global.hero_full_loose[3]   = 0;
 		global.hero_nofull_loose[3] = 0;
 	#endregion
-	#region Билл
-		global.hp[4]  = 200;
-		global.atk[4] = 150;
+	#region Диего
+		global.hp[4]  = 1200;
+		global.atk[4] = 35;
 		
-		global.hero_code_name[4]   = "sbill";
-		global.hero_code_name1[4]  = "jbill";
-		global.hero_code_weapon[4] = "-";
+		global.hero_code_name[4]    = "diego";
+		global.hero_code_weapon[4]  = "rifle";
 		
-		global.hero_code_theme[4]  = "math";
+		global.hero_theme[4] = "attention";
 		
-		global.hero_full_wins[4]    = 20;
-		global.hero_nofull_wins[4]  = 0;
-		global.hero_full_loose[4]   = 0;
-		global.hero_nofull_loose[4] = 0;
+		global.hero_full_wins[4]    = 5;
+		global.hero_nofull_wins[4]  = 2;
+		global.hero_full_loose[4]   = 2;
+		global.hero_nofull_loose[4] = 1;
 	#endregion
-	#region Гробовщик
-		global.hp[5]  = 250;
-		global.atk[5] = 82;
+	#region Билл
+		global.hp[5]  = 400;
+		global.atk[5] = 150;
 		
-		global.hero_code_name[5]   = "undertaker";
-		global.hero_code_weapon[5] = "-";
+		global.hero_code_name[5]    = "sbill";
+		global.hero_code_name1[5]   = "jbill";
+		global.hero_code_weapon[5]  = "pistol";
 		
-		global.hero_code_theme[5] = "";
+		global.hero_code_theme[5]   = "shooting";
 		
-		global.hero_full_wins[5]   = 0;
-		global.hero_nofull_wins[5] = 0;
-		global.hero_full_loose[5]   = 100;
+		global.hero_full_wins[5]    = 20;
+		global.hero_nofull_wins[5]  = 0;
+		global.hero_full_loose[5]   = 0;
 		global.hero_nofull_loose[5] = 0;
 	#endregion
-	#region Шаман
-		global.hp[6] = 1000;
-		global.atk[6] = 41.5;
+	#region Шериф
+		global.hp[6]  = 900;
+		global.atk[6] = 47;
 		
-		global.hero_code_name[6]   = "shaman";
-		global.hero_code_weapon[6] = "-";
+		global.hero_code_name[6]    = "sherif";
+		global.hero_code_weapon[6]  = "revolver";
 		
-		global.hero_code_theme[6] = "";
+		global.hero_code_theme[6]   = "math";
 		
-		global.hero_full_wins[6]   = 0;
-		global.hero_nofull_wins[6] = 0;
+		global.hero_full_wins[6]    = 4;
+		global.hero_nofull_wins[6]  = 0;
 		global.hero_full_loose[6]   = 0;
-		global.hero_nofull_loose[6] = 50;
+		global.hero_nofull_loose[6] = 2;
 	#endregion
-	#region Доктор
-		global.hp[7]  = 1100;
-		global.atk[7] = 37.5;
+	#region Шаман
+		global.hp[7]  = 1000;
+		global.atk[7] = 41.5;
 		
-		global.hero_code_name[7]   = "doctor";
-		global.hero_code_weapon[7] = "-";
+		global.hero_code_name[7]    = "shaman";
+		global.hero_code_weapon[7]  = "spear";
 		
-		global.hero_code_theme[7] = "";
+		global.hero_code_theme[7]   = "storm";
 		
-		global.hero_full_wins[7]   = 30;
-		global.hero_nofull_wins[7] = 50;
-		
+		global.hero_full_wins[7]    = 0;
+		global.hero_nofull_wins[7]  = 0;
 		global.hero_full_loose[7]   = 0;
-		global.hero_nofull_loose[7] = 0;
-	#endregion
-	#region Воришка
-		global.hp[8]  = 700;
-		global.atk[8] = 60;
-		
-		global.hero_code_name[8]   = "thief";
-		global.hero_code_weapon[8] = "-";
-		
-		global.hero_code_theme[8] = "";
-		
-		global.hero_full_wins[8]    = 90;
-		global.hero_nofull_wins[8]  = 40;
-		global.hero_full_loose[8]   = 0;
-		global.hero_nofull_loose[8] = 0;
-	#endregion
-	#region Гангстер
-		global.hp[9]  = 600;
-		global.atk[9] = 70;
-		
-		global.hero_code_name[9]   = "gangster";
-		global.hero_code_weapon[9] = "-";
-		
-		global.hero_code_theme[9] = "";
-		
-		global.hero_full_wins[9]    = 900;
-		global.hero_nofull_wins[9]  = 0;
-		global.hero_full_loose[9]   = 0;
-		global.hero_nofull_loose[9] = 0;
-	#endregion
-	#region Пьяница Джо
-		global.hp[10]  = 800;
-		global.atk[10] = 30;
-		
-		global.hero_code_name[10]   = "drunk";
-		global.hero_code_weapon[10] = "-";
-		
-		global.hero_code_theme[10] = "";
-		
-		global.hero_full_wins[10]    = 80;
-		global.hero_nofull_wins[10]  = 80;
-		global.hero_full_loose[10]   = 80;
-		global.hero_nofull_loose[10] = 80;
-	#endregion
-	#region Вождь
-		global.hp[11]  = 400;
-		global.atk[11] = 100;
-		
-		global.hero_code_name[11]   = "chief";
-		global.hero_code_weapon[11] = "-";
-		
-		global.hero_code_theme[11] = "";
-		
-		global.hero_full_wins[11]    = 0;
-		global.hero_nofull_wins[11]  = 0;
-		global.hero_full_loose[11]   = 0;
-		global.hero_nofull_loose[11] = 0;
+		global.hero_nofull_loose[7] = 50;
 	#endregion
 	
-	for(i = 1; i <= 11; i++)
+	#region Потом
+		#region Гробовщик
+			//global.hp[5]  = 250;
+			//global.atk[5] = 82;
+		
+			//global.hero_code_name[5]   = "undertaker";
+			//global.hero_code_weapon[5] = "-";
+		
+			//global.hero_code_theme[5] = "";
+		
+			//global.hero_full_wins[5]   = 0;
+			//global.hero_nofull_wins[5] = 0;
+			//global.hero_full_loose[5]   = 100;
+			//global.hero_nofull_loose[5] = 0;
+		#endregion
+		#region Доктор
+			//global.hp[7]  = 1100;
+			//global.atk[7] = 37.5;
+		
+			//global.hero_code_name[7]   = "doctor";
+			//global.hero_code_weapon[7] = "-";
+		
+			//global.hero_code_theme[7] = "";
+		
+			//global.hero_full_wins[7]   = 30;
+			//global.hero_nofull_wins[7] = 50;
+		
+			//global.hero_full_loose[7]   = 0;
+			//global.hero_nofull_loose[7] = 0;
+		#endregion
+		#region Гангстер
+			//global.hp[9]  = 600;
+			//global.atk[9] = 70;
+		
+			//global.hero_code_name[9]   = "gangster";
+			//global.hero_code_weapon[9] = "-";
+		
+			//global.hero_code_theme[9] = "";
+		
+			//global.hero_full_wins[9]    = 900;
+			//global.hero_nofull_wins[9]  = 0;
+			//global.hero_full_loose[9]   = 0;
+			//global.hero_nofull_loose[9] = 0;
+		#endregion
+		#region Вождь
+			//global.hp[11]  = 400;
+			//global.atk[11] = 100;
+		
+			//global.hero_code_name[11]   = "chief";
+			//global.hero_code_weapon[11] = "-";
+		
+			//global.hero_code_theme[11] = "";
+		
+			//global.hero_full_wins[11]    = 0;
+			//global.hero_nofull_wins[11]  = 0;
+			//global.hero_full_loose[11]   = 0;
+			//global.hero_nofull_loose[11] = 0;
+		#endregion
+	#endregion
+	for(i=1;i<=global.heroes_val;i++)
 		{
 		global.hero_wins[i]  = global.hero_full_wins[i] + global.hero_nofull_wins[i];
 		global.hero_loose[i] = global.hero_full_loose[i] + global.hero_nofull_loose[i];
@@ -344,10 +346,10 @@
 		
 		global.hero_description[i] = ini_read_string("Hero_"+string(i), "hero_description", "");
 		
-		global.ability_a1[i] = ini_read_string("Hero_"+string(i), "ability_a1", "");
-		global.ability_a2[i] = ini_read_string("Hero_"+string(i), "ability_a2", "");
-		global.ability_p1[i] = ini_read_string("Hero_"+string(i), "ability_p1", "");
-		global.ability_p2[i] = ini_read_string("Hero_"+string(i), "ability_p2", "");
+		global.ability_a1[i]  = ini_read_string("Hero_"+string(i), "ability_a1", "");
+		global.ability_a2[i]  = ini_read_string("Hero_"+string(i), "ability_a2", "");
+		global.ability_p1[i]  = ini_read_string("Hero_"+string(i), "ability_p1", "");
+		global.ability_p2[i]  = ini_read_string("Hero_"+string(i), "ability_p2", "");
 		
 		global.hero_weapon[i] = ini_read_string("Hero_"+string(i), "hero_weapon", "");
 		
@@ -396,29 +398,29 @@
 #endregion
 #region Вопросы и темы
 	ini_open("Language/" + string(global.lang) + "/question_text_" + string(global.lang) + ".ini");
-	global.question_text[1, 1] = ini_read_string("Theme_1", "question_1", "");
-	global.question_text[1, 2] = ini_read_string("Theme_1", "question_2", "");
-	global.question_text[1, 3] = ini_read_string("Theme_1", "question_3", "");
-	global.question_text[1, 4] = ini_read_string("Theme_1", "question_4", "");
+	global.question_text[1,1] = ini_read_string("Theme_1", "question_1", "");
+	global.question_text[1,2] = ini_read_string("Theme_1", "question_2", "");
+	global.question_text[1,3] = ini_read_string("Theme_1", "question_3", "");
+	global.question_text[1,4] = ini_read_string("Theme_1", "question_4", "");
 	
-	global.question_text[3, 1] = "Tap if hand direction is same!"; //ini_read_string("Theme_1", "question_1", "");
-	global.question_text[3, 2] = "Walk past the fences!";
-	global.question_text[3, 3] = "Swipe in the hand direction!";
-	global.question_text[3, 4] = "Tap if hand direction is equal...";
+	global.question_text[3,1] = "Tap if hand direction is same!"; //ini_read_string("Theme_1", "question_1", "");
+	global.question_text[3,2] = "Walk past the fences!";
+	global.question_text[3,3] = "Swipe in the hand direction!";
+	global.question_text[3,4] = "Tap if hand direction is equal...";
 	
-	global.question_text[2, 1] = "Shoot the bottles in the\norder of their appearance!";
-	global.question_text[2, 2] = "Targets!";
-	global.question_text[2, 3] = "Shoot the bottles in the\nright sequence!";
-	global.question_text[2, 4] = "---";
+	global.question_text[2,1] = "Shoot the bottles in the\norder of their appearance!";
+	global.question_text[2,2] = "Targets!";
+	global.question_text[2,3] = "Shoot the bottles in the\nright sequence!";
+	global.question_text[2,4] = "---";
 	
 	for(i=4;i<=8;i++)
 		{
 		for(j=1;j<=4;j++)
 			{
-			global.question_text[i, j] = "-";
-			global.question_text[i, j] = "-";
-			global.question_text[i, j] = "-";
-			global.question_text[i, j] = "-";
+			global.question_text[i,j] = "-";
+			global.question_text[i,j] = "-";
+			global.question_text[i,j] = "-";
+			global.question_text[i,j] = "-";
 			}
 		}
 	ini_close();
@@ -426,17 +428,16 @@
 	for(i=1; i<=11; i++)
 		{ global.theme_name[i] = "OTHER"; }
 	
-	global.count_themes = 4; //9;
+	global.count_themes = 7;
 	ini_open("Language/" + string(global.lang) + "/theme_name_" + string(global.lang) + ".ini");
-	global.theme_name[1] = "MATH"//ini_read_string("Theme Name", "name_1", "");
-	global.theme_name[2] = "BOTTLES"//ini_read_string("Theme Name", "name_2", "");
-	global.theme_name[3] = "MOVE"//ini_read_string("Theme Name", "name_3", "");
 	
+	global.theme_name[1] = "CARDS";
+	global.theme_name[2] = "BOTTLES";
+	global.theme_name[3] = "MOVE";
 	global.theme_name[4] = "ATTENTION";
-	global.theme_name[5] = "CARDS";
-	//global.theme_name[6] = "SHOOTING";
-	//global.theme_name[7] = "MEASURE";
-	global.theme_name[8] = "STORM";
+	global.theme_name[5] = "SHOOTING";
+	global.theme_name[6] = "MATH";
+	global.theme_name[7] = "STORM";
 	
 	global.color_white = make_color_rgb(255, 248, 220);
 	ini_close();
@@ -450,17 +451,17 @@
 	global.game_font = font_add_sprite_ext(s_game_font, str2, true, 1);
 #endregion
 #region Цвета персонажей
-	global.color_hero[1]  = c_orange;
-	global.color_hero[2]  = c_maroon;
-	global.color_hero[3]  = make_color_rgb(186,  85, 211);
-	global.color_hero[4]  = c_white;
-	global.color_hero[5]  = make_color_rgb(25 ,  25, 112);
-	global.color_hero[6]  = make_color_rgb(64 , 224, 208);
-	global.color_hero[7]  = make_color_rgb(60 , 179, 113);
-	global.color_hero[8]  = make_color_rgb(105, 105, 105);
-	global.color_hero[9]  = make_color_rgb(220,  20,  60);
-	global.color_hero[10] = make_color_rgb(250, 235, 215);
-	global.color_hero[11] = make_color_rgb(220,  20,  60);
+	global.color_hero[1]  = make_color_rgb(40 ,  40,  40);
+	global.color_hero[2]  = make_color_rgb(60 , 179, 113);
+	global.color_hero[3]  = make_color_rgb(186,  85, 211); // make_color_rgb(60 , 179, 113);
+	global.color_hero[4]  = c_maroon;
+	global.color_hero[5]  = global.color_white; //c_white;
+	global.color_hero[6]  = c_orange;
+	global.color_hero[7]  = make_color_rgb(135, 206, 235);//135, 206, 235
+	//global.color_hero[8]  = make_color_rgb(105, 105, 105);
+	//global.color_hero[9]  = make_color_rgb(220,  20,  60);
+	//global.color_hero[10] = make_color_rgb(250, 235, 215);
+	//global.color_hero[11] = make_color_rgb(220,  20,  60);
 #endregion
 #region Параллакс
 	global.paral_x = 0;

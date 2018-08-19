@@ -16,5 +16,5 @@ if go = 2
 		{ instance_destroy(); }
 	}
 draw_set_alpha(alp);
-draw_rectangle_color(0, 0, 1280, global.size, c_white, c_white, c_white, c_white, 0);
+draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0); //draw_rectangle_color(0, 0, 1280, global.size, c_white, c_white, c_white, c_white, 0);
 draw_set_alpha(1);
