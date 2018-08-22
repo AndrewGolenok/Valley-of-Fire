@@ -199,7 +199,8 @@
 			#endregion
 			}
 	#endregion
-	#region Выбор героя
+	
+	#region Прочее1
 		if menu_stage = "heroes0"
 			{
 			#region Переменные
@@ -233,7 +234,7 @@
 			#endregion
 			}
 	#endregion
-	#region Прочее
+	#region Прочее2
 	if menu_stage = "heroes2"
 		{
 		#region Переменные
@@ -491,6 +492,7 @@
 		#endregion
 		}
 	#endregion
+	
 	#region Выбор героя
 		if menu_stage = "heroes1"
 			{
@@ -534,8 +536,9 @@
 			draw_text_transformed_a(vs_vx, vs_vy, "V", vs_ts * vs_alpha, vs_ts * vs_alpha, -20, c_white, c_black);
 			draw_text_transformed_a(vs_sx, vs_sy, "S", vs_ts * vs_alpha, vs_ts * vs_alpha, -20, c_white, c_black);
 			
-			if mouse_check_button_pressed(mb_left)
+			if mouse_check_button(mb_left) && lag = 0
 				{
+				lag = 4;
 				if mouse_x < 400
 					{
 					if mouse_y < global.size / 2
@@ -554,7 +557,22 @@
 					//if global.hero = 6 or global.hero = 4 or global.hero = 3 or global.hero = 1
 						{ menu_stage = "search"; }
 					}
+				if mouse_x >= 400 && mouse_x <= 800
+					{
+					if mouse_y > global.size / 2
+						{
+						if global.player_rank < 15
+							{ global.player_rank += 1; }
+						}
+					if mouse_y <= global.size / 2
+						{
+						if global.player_rank > 0
+							{ global.player_rank -= 1; }
+						}
+					}
 				}
+			if lag > 0
+				{ lag -= 1; }
 			if anim_skul < 3
 				{ anim_skul += 0.5; }
 				else
@@ -578,7 +596,7 @@
 			draw_sprite_ext_t(s_rank_skul, skul, 640, 100, 0.7, 0.7, 0, c_white, 1, c_white, c_black);
 		
 			draw_set_font(global.game_font);
-			draw_text_transformed_t(640, 120 + rank_yy, string(rank), 0.3, 0.3, 0, global.color_white, c_black);
+			draw_text_transformed_t(640, 120 + rank_yy, string(rank), 0.25, 0.25, 0, global.color_white, c_black);
 			}
 	#endregion
 	#region Подбор противника
@@ -623,13 +641,9 @@
 				vs_x2 -= 0.1;
 				vs_y2 += 0.1;
 				
-				//if vs_vx < 640 - 10
-				//	{ vs_vx += 25; }
 				if vs_vy > global.size / 2
 					{ vs_vy -= 70; }
 				
-				//if vs_sx > 640 + 10
-				//	{ vs_sx -= 25; }
 				if vs_sy < global.size / 2
 					{ vs_sy += 70; }
 					else
@@ -648,13 +662,6 @@
 					{ vs_time += 1; }
 					else
 					{ vs_go = 3; }
-				//with(o_menu)
-				//	{ instance_destroy(); }
-				//instance_create_depth(0, 0, -1, o_list);
-				//global.enemy = 0;
-				//instance_create_depth(0, 0, 0, o_hero);
-				//global.enemy = 1;
-				//instance_create_depth(0, 0, 0, o_hero);
 				}
 			if vs_go = 3
 				{

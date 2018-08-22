@@ -18,15 +18,19 @@ if image_index = 15 && skeleton_animation_get() = "shoot" && shoot = 0
 	sy = y;
 	
 	knife_i = 0;
-	if super = 0
-		{ shoot = 1; }
-		else
+	shoot = 1;
+	//if super = 0
+	//	{ shoot = 1; }
+	//	else
+	if global.super_ability = 1
 		{ shoot = 2; }
 	bullet_index = 4;
 	if global.music { audio_play_sound(sd_bow, 1, 0); }
 	}
+
 if shoot = 2 or shoot = 3
 	{
+	knife_i += 1;
 	if hero = 2
 		{ bullet_index = 4; }
 	if shoot = 2
@@ -44,25 +48,25 @@ if shoot = 2 or shoot = 3
 			{ shoot = 0; bullet_index = 0; exit; }
 		}
 	
-	draw_sprite_ext(s_bullet_bottle, 0, sx + 1 - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 * bullet_alpha);
-	draw_sprite_ext(s_bullet_bottle, 0, sx - 1 - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 * bullet_alpha);
-	draw_sprite_ext(s_bullet_bottle, 0, sx - 28, sy - 1 - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 * bullet_alpha);
-	draw_sprite_ext(s_bullet_bottle, 0, sx - 28, sy + 1 - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 * bullet_alpha);
+	draw_sprite_ext(s_bullet_bottle, knife_i, sx + 1 - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 * bullet_alpha);
+	draw_sprite_ext(s_bullet_bottle, knife_i, sx - 1 - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 * bullet_alpha);
+	draw_sprite_ext(s_bullet_bottle, knife_i, sx - 28, sy - 1 - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 * bullet_alpha);
+	draw_sprite_ext(s_bullet_bottle, knife_i, sx - 28, sy + 1 - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 * bullet_alpha);
 	
 	for(i = 0; i <= 5; i++)
-		{ draw_sprite_ext(s_bullet_bottle, 0, sx - 8 * i - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 / i * bullet_alpha); }
+		{ draw_sprite_ext(s_bullet_bottle, knife_i, sx - 8 * i - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 / i * bullet_alpha); }
 	
-	draw_sprite_ext(s_bullet_bottle, 0, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_white, 1 * bullet_alpha);
-	draw_sprite_ext(s_bullet_bottle, 0, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.8 * bullet_alpha);
+	draw_sprite_ext(s_bullet_bottle, knife_i, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_white, 1 * bullet_alpha);
+	draw_sprite_ext(s_bullet_bottle, knife_i, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.8 * bullet_alpha);
 	
 	if (sx >= 1280 - x - sprite_get_width(s_bullet_bottle) / 4 && !enemy) or (sx <= (1280 - x) + sprite_get_width(s_bullet_bottle) / 4 && enemy)
 		{
 		if shoot != 3
 			{
 			if enemy
-				{ enemy_deal(); }
+				{ enemy_deal(); (global.player_object).stun = 1; }
 				else
-				{ player_deal(); }
+				{ player_deal(); (global.enemy_object).stun = 1; }
 			}
 		shoot = 3;
 		super = 0;

@@ -2,22 +2,45 @@
 //if super = 1
 //	{ draw_sprite_ext(sprite_index, image_index, x - 28, y - 15, sc * scale, scale, 0, c_fuchsia, super_img / 70); }
 	
-if image_index < hero_abindex && skeleton_animation_get() = "super"
-	{ super_img = image_index; }
-	else
-	{
-	if super_img > 1
-		{ super_img -= 2; }
-		else
-		{ super_img = 0; }
-	}
-	
-//if image_index = hero_abindex && skeleton_animation_get() = "super"
+//if image_index >= hero_abindex && skeleton_animation_get() = "super" && 0
 //	{
-//	sx = x;
-//	sy = y;
-	
-//	//shoot = 1//2;
+//	if global.super_ability = 1
+//		{
+//		var idol_n, idol_t;
+//		idol_t = 1;
+//		idol_n = -1;
+//		if enemy
+//			{
+//			if global.idol_h[1] != 0 && global.idol_h[2] != 0 && global.idol_h[2] != 0
+//				{ idol_t = 0; }
+//			}
+//			else
+//			{
+//			if global.idol_h[1] != 1 && global.idol_h[2] != 1 && global.idol_h[2] != 1
+//				{ idol_t = 0; }
+//			}
+//		if idol_t = 1
+//			{
+//			if global.idol[1] = 0 && global.idol[2] = 0 && global.idol[3] = 0
+//				{ idol_n = choose(1, 2, 3); }
+//			if global.idol[1] = 1 && global.idol[2] = 0 && global.idol[3] = 0
+//				{ idol_n = choose(2, 3); }
+//			if global.idol[1] = 0 && global.idol[2] = 1 && global.idol[3] = 0
+//				{ idol_n = choose(1, 3); }
+			
+//			//if global.idol[1] = 1 && global.idol[2] = 1 && global.idol[3] = 0
+//			//	{ idol_n = 3; }
+//			//if global.idol[1] = 1 && global.idol[2] = 0 && global.idol[3] = 1
+//			//	{ idol_n = 3; }
+//			//if global.idol[1] = 0 && global.idol[2] = 1 && global.idol[3] = 1
+//			//	{ idol_n = 3; }
+			
+//			if idol_n != -1
+//			 { global.idol[idol_n] = 1; }
+//			}
+//		super = 0;
+//		global.super_ability = 0;
+//		}
 //	if global.music { audio_play_sound(sd_bow, 1, 0); }
 //	}
 

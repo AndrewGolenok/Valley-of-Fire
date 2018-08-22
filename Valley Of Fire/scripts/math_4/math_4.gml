@@ -14,14 +14,14 @@ rr = irandom(1);
 		
 if sgn1 = "-"
 	{
-	b  = irandom_range(1, 150 - (global.player_rank - 1) * 10);
-	a  = irandom_range(b, 150 - (global.player_rank - 1) * 10);
+	b  = irandom_range(1, 145 - (global.player_rank - 1) * 10);
+	a  = irandom_range(b, 145 - (global.player_rank - 1) * 10);
 	ab = a - b;
 	}
 if sgn1 = "+"
 	{
-	a  = irandom_range(1, 150 - (global.player_rank - 1) * 10);
-	b  = irandom_range(1, 150 - (global.player_rank - 1) * 10);
+	a  = irandom_range(1, 145 - (global.player_rank - 1) * 10);
+	b  = irandom_range(1, 145 - (global.player_rank - 1) * 10);
 	ab = a + b;
 	}
 			

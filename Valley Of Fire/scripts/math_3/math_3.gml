@@ -19,14 +19,14 @@ if global.player_rank > 13
 		
 if sgn1 = "-"
 	{
-	b  = irandom(150 - (global.player_rank - 1) * 10);
-	a  = irandom_range(b, 150 - (global.player_rank - 1) * 10);
+	b  = irandom(145 - (global.player_rank - 1) * 10);
+	a  = irandom_range(b, 145 - (global.player_rank - 1) * 10);
 	ab = a - b;
 	}
 if sgn1 = "+"
 	{
-	a  = irandom(150 - (global.player_rank - 1) * 10);
-	b  = irandom(150 - (global.player_rank - 1) * 10);
+	a  = irandom(145 - (global.player_rank - 1) * 10);
+	b  = irandom(145 - (global.player_rank - 1) * 10);
 	ab = a + b;
 	}
 if sgn1 = "*"

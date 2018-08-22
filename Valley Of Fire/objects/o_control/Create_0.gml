@@ -1,5 +1,5 @@
 #region Переменные игроков
-	global.enemy_hero = choose(6, 4, 3);
+	global.enemy_hero = irandom_range(1,7);
 #endregion
 #region Камера
 	application_surface_enable(1);

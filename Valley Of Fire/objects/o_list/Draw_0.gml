@@ -1,3 +1,111 @@
+#region Идолы
+	for(i=1;i<=3;i++)
+		{
+		global.idol_x[i] = 640 - 250 * (global.idol_h[i]==1) + 250 * (global.idol_h[i]==0);
+		if global.idol[i] = 0
+			{
+			if global.idol_y[i] > -200
+				{ global.idol_y[i] -= 70; }
+				else
+				{ global.idol[i] = 0; }
+			}
+		if global.idol[i] = 1
+			{
+			if global.idol_y[i] < o_hero.y
+				{ global.idol_y[i] += 50; }
+				else
+				{ global.idol[i] = 2; }
+			}
+		if global.idol[i] = 2
+			{
+			if global.idol_s[i] > 0.8
+				{ global.idol_s[i] -= 0.05; }
+				else
+				{ global.idol[i] = 3; }
+			}
+		if global.idol[i] = 3
+			{
+			if global.idol_s[i] < 1
+				{ global.idol_s[i] += 0.05; }
+				else
+				{ global.idol[i] = 4; global.idol_s[i] = 1; }
+			}
+		if global.idol[i] = 4
+			{ global.idol_y[i] = o_hero.y; }
+		//if global.idol[i] = 5
+		//	{
+		//	if global.idol_y[i] > -200
+		//		{ global.idol_y[i] -= 50; }
+		//		else
+		//		{ global.idol[i] = -1; }
+		//	}
+		draw_sprite_ext_t(s_idols, i - 1, global.idol_x[i], (global.idol_h[i]==1) * o_control.back_train_y1 + (global.idol_h[i]==1) * o_control.back_train_y2 + global.idol_y[i], 1 * o_hero.scale * 1.3, global.idol_s[i] * o_hero.scale * 1.3, 0, c_white, 1, c_white, c_black);	
+			for(j=0;j<=1;j++)
+				{
+				if global.anim[i,j] > -1
+					{
+					if global.idol[i] > 0 && global.anim[i,j] > -1
+						{
+						if global.anim[i,j] < 5
+							{ global.anim[i,j] += 0.35; }
+							else
+							{
+							global.anim[i,j] = -1;
+							if i = 3
+								{
+								if j = 1
+									{
+									if hp > 0 && e_hp > 0
+										{ hp -= e_atk / 2; }
+									dop_i[1] = 7;
+									dop_text_color[1] = global.color_hero[7];
+									dop_text[7] = "-" + string(round(e_atk / 2));
+									with(global.enemy_object)
+										{
+										if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= hero_shoot && skeleton_animation_get() = "shoot")
+											{
+											stun = 0;
+											skeleton_animation_set("damaged");
+											change = 1;
+											}
+										}
+									}
+								if j = 0
+									{
+									if hp > 0 && e_hp > 0
+										{ e_hp -= atk / 2; }
+									dop_i[2] = 8;
+									dop_text_color[2] = global.color_hero[7];
+									dop_text[8] = "-" + string(round(atk / 2));
+									with(global.enemy_object)
+										{
+										if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= hero_shoot && skeleton_animation_get() = "shoot")
+											{
+											stun = 0;
+											skeleton_animation_set("damaged");
+											change = 1;
+											}
+										}
+									}
+								}
+							}
+							if i = 2 && global.anim[2,j] > -1
+								{ draw_sprite_ext_t(s_wind, global.anim[i,j], (global.player_object).x * (j==1) + (global.enemy_object).x * (j==0), (j==1) * o_control.back_train_y1 + (j==0) * o_control.back_train_y2 + (global.player_object).y * (j==1) + (global.enemy_object).y * (j==0), 1.4 * o_hero.scale, global.idol_s[i] * o_hero.scale, 0, c_white, 1, c_white, c_black); }
+							if i = 3 && global.anim[3,j] > -1
+								{ draw_sprite_ext_t(s_bolt, global.anim[i,j], (global.player_object).x * (j==1) + (global.enemy_object).x * (j==0), (j==1) * o_control.back_train_y1 + (j==0) * o_control.back_train_y2 + (global.player_object).y * (j==1) + (global.enemy_object).y * (j==0), 1.4 * o_hero.scale, global.idol_s[i] * o_hero.scale, 0, c_white, 1, c_white, c_black); }
+						}
+					}
+				//if global.anim[i,j] != -1
+				//	{
+				//	if i = 2 && global.idol = 4
+				//		{ draw_sprite_ext_t(s_wind, global.anim[i,j], (global.player_object).x * (j==1) + (global.enemy_object).x * (j==0), (global.player_object).y * (j==1) + (global.enemy_object).y * (j==0), 1 * o_hero.scale, global.idol_s[i] * o_hero.scale, 0, c_white, 1, c_white, c_black); }
+				//	if i = 3 && global.idol = 3
+				//		{ draw_sprite_ext_t(s_bolt, global.anim[i,j], (global.player_object).x * (j==1) + (global.enemy_object).x * (j==0), (global.player_object).y * (j==1) + (global.enemy_object).y * (j==0), 1 * o_hero.scale, global.idol_s[i] * o_hero.scale, 0, c_white, 1, c_white, c_black); }
+				//	}
+				//draw_sprite_ext_t(s_idols, i - 1, global.idol_x[i], global.idol_y[i], 1 * o_hero.scale, global.idol_s[i] * o_hero.scale, 0, 1, 1, c_white, c_black);	
+				}
+		}
+#endregion
 #region Фон
 	//if global.hero = 6 && ((global.player_object).super = 1 or (global.enemy_object).super = 1)
 	//	{ io_clear(); }
@@ -24,6 +132,10 @@
 		draw_sprite_ext_t(s_saloon_house, 0, 640 + o_control.back_x + prx, global.size + o_control.back_y + pry, 1, 1, 0, c_white, 1, c_white, c_black);
 		draw_sprite_ext_t(s_saloon_wanted, o_control.sl_wanted_i, 640 + o_control.back_x + prx, global.size + o_control.back_y + pry, 1, 1, 0, c_white, 1, c_white, c_black);
 		}
+#endregion
+#region Смена способности
+if global.hero = 1 && global.enemy_hero = 1
+	{ super_now = 0; super_need = 40; e_super_now = 0; e_super_need = 40; global.swipe_ability = 0; super_zhopa = 300; }
 #endregion
 #region Листовка
 	#region Появление
@@ -84,6 +196,20 @@
 						{ global.cananswer = 1; }
 						else
 						{ global.cananswer = 0; }
+					}
+				with(global.enemy_object)
+					{
+					if shoot = 0 && skeleton_animation_get() = "idle"
+						{ global.e_abilitican = 1; }
+						else
+						{ global.e_abilitican = 0; }
+					}
+				with(global.player_object)
+					{
+					if shoot = 0 && skeleton_animation_get() = "idle"
+						{ global.abilitican = 1; }
+						else
+						{ global.abilitican = 0; }
 					}
 			#endregion
 				
@@ -789,14 +915,14 @@
 										{
 										draw_set_color(c_maroon);
 										draw_set_alpha(bottle_a1);
-										draw_text_transformed(bottle_x[i], global.size / 2 + bottle_y[i] + 10, string(bottle_n[i]), bottle_s1 * 0.4, bottle_s2 * 0.4 * ((6 - bottle_destroy[i]) / 6), 16);
+										draw_text_transformed(bottle_x[i], global.size / 2 + bottle_y[i] + 10, string(bottle_n[i]), bottle_s1 * 0.4 * list_scale, bottle_s2 * 0.4 * ((6 - bottle_destroy[i]) / 6) * list_scale, 16);
 										draw_set_alpha(1);
 										}
 										else
 										{
 										draw_set_color(c_white);
 										draw_set_alpha(bottle_a1);
-										draw_text_transformed(bottle_x[i], global.size / 2 + bottle_y[i] + 10, string(bottle_n1[i]), bottle_s1 * 0.4, bottle_s2 * 0.4 * ((6 - bottle_destroy[i]) / 6), 16);
+										draw_text_transformed(bottle_x[i], global.size / 2 + bottle_y[i] + 10, string(bottle_n1[i]), bottle_s1 * 0.4 * list_scale, bottle_s2 * 0.4 * ((6 - bottle_destroy[i]) / 6) * list_scale, 16);
 										draw_set_alpha(1);
 										}
 									draw_set_color(c_white);
@@ -1380,7 +1506,7 @@
 								}
 						#endregion
 						#region Ответ
-						if hat_stage = 3 && global.super_ability = 0
+						if hat_stage = 3 && global.super_ability = 0 && list_scale = 1
 							{
 							for(dev=0;dev<5;dev++)
 								{
@@ -1757,37 +1883,39 @@
 							var card_x, card_y;
 							card_x = 640 - 70 - 70 * (card_all == 3);
 							card_y = global.size / 2 - 60 - 50;
-							
-							if card_time > -1
+							if list_scale = 1
 								{
-								if card_time > 0
+								if card_time > -1
 									{
-									card_time -= 1;
-									for(i=1;i<=2;i++)
+									if card_time > 0
 										{
-										for(j=1;j<=card_all;j++)
+										card_time -= 1;
+										for(i=1;i<=2;i++)
 											{
-											card_now[i,j]   = 3;
-											card_i[i,j]     = card_m[i,j];
-											card_scale[i,j] = 0.7
+											for(j=1;j<=card_all;j++)
+												{
+												card_now[i,j]   = 3;
+												card_i[i,j]     = card_m[i,j];
+												card_scale[i,j] = 0.7
+												}
 											}
+										}
+										else
+										{
+										for(i=1;i<=2;i++)
+											{
+											for(j=1;j<=card_all;j++)
+												{ card_now[i,j] = 4; }
+											}
+										card_time = -1;
 										}
 									}
 									else
-									{
-									for(i=1;i<=2;i++)
-										{
-										for(j=1;j<=card_all;j++)
-											{ card_now[i,j] = 4; }
-										}
-									card_time = -1;
-									}
+									{ pre_wait = 0; }
 								}
-								else
-								{ pre_wait = 0; }
 						#endregion
 						#region Ответ
-								if card_time = -1
+								if card_time = -1 && list_scale = 1
 									{
 									for(i=1;i<=2;i++)
 										{
@@ -1907,70 +2035,72 @@
 							var card_x, card_y;
 							card_x = 640 - 70 - 70 * (card_all == 3);
 							card_y = global.size / 2 - 60 - 50;
-							
-							if card_time > -1 && list_scale = 1
+							if list_scale = 1
 								{
-								if card_time > 0
+								if card_time > -1 && list_scale = 1
 									{
-									card_time -= 1;
-									for(i=1;i<=2;i++)
+									if card_time > 0
 										{
-										for(j=1;j<=card_all;j++)
+										card_time -= 1;
+										for(i=1;i<=2;i++)
 											{
-											card_now[i,j]   = 3;
-											card_i[i,j]     = card_m[i,j];
-											card_scale[i,j] = 0.7
+											for(j=1;j<=card_all;j++)
+												{
+												card_now[i,j]   = 3;
+												card_i[i,j]     = card_m[i,j];
+												card_scale[i,j] = 0.7
+												}
 											}
 										}
-									}
-									else
-									{
-									for(i=1;i<=2;i++)
+										else
 										{
-										for(j=1;j<=card_all;j++)
-											{ card_now[i,j] = 4; }
+										for(i=1;i<=2;i++)
+											{
+											for(j=1;j<=card_all;j++)
+												{ card_now[i,j] = 4; }
+											}
+										card_time = -2;
 										}
-									card_time = -2;
 									}
-								}
-								//else
-								//{ pre_wait = 0; }
-							if card_time = -3
-								{
-								if card_find_s < 1
+									//else
+									//{ pre_wait = 0; }
+								if card_time = -3
 									{
-									card_find_s += 0.1;
-									card_find_a -= 0.5;
-									}
-									else
-									{
-									if card_find_time > 0
+									if card_find_s < 1
 										{
-										card_find_time -= 1;
-										card_find_s += 0.005;
-										card_find_a -= 0.05;
+										card_find_s += 0.1;
+										card_find_a -= 0.5;
 										}
 										else
-										{ card_time = -4; }
+										{
+										if card_find_time > 0
+											{
+											card_find_time -= 1;
+											card_find_s += 0.005;
+											card_find_a -= 0.05;
+											}
+											else
+											{ card_time = -4; }
+										}
 									}
-								}
-							if card_time = -4
-								{
-								if card_find_s > 0
+								if card_time = -4
 									{
-									card_find_s -= 0.1;
-									card_find_a += 1;
-									}
-									else
-									{
-									card_time   = -1;
-									pre_wait    = 0;
-									card_find_s = 0;
+									if card_find_s > 0
+										{
+										card_find_s -= 0.1;
+										card_find_a += 1;
+										}
+										else
+										{
+										card_time   = -1;
+										pre_wait    = 0;
+										card_find_s = 0;
+										}
 									}
 								}
 						#endregion
 						#region Ответ
-								if card_time = -1 or card_time = -2
+								if card_time = -1 or card_time = -2 && list_scale = 1
 									{
 									for(i=1;i<=2;i++)
 										{
@@ -2085,7 +2215,7 @@
 									draw_sprite_ext(s_card, card_i[i,j], card_x + (j-1) * 140, card_y + 180 * (i-1) + card_yy[i,j], card_scale[i,j] * list_scale, 0.7, 0, c_white, card_alp[i,j]);
 									}
 								}
-							draw_sprite_ext(s_card, card_find, card_x + 70 + 70 * (card_all == 3), card_y + 90, card_find_s * 0.7, card_find_s * 0.7, card_find_a, c_white, 1);
+							draw_sprite_ext(s_card, card_find, card_x + 70 + 70 * (card_all == 3), card_y + 90, card_find_s * 0.7 * list_scale, card_find_s * 0.7 * list_scale, card_find_a, c_white, 1);
 						#endregion
 						}
 				#endregion
@@ -2410,7 +2540,7 @@
 				#region Задача 2 - Мишени, пистолет
 					if round_task[global.rounds,global.task] = 2
 						{
-						timer_y = 50;
+						timer_y = 160;
 						#region Координаты
 							if list_scale = 1
 								{
@@ -2422,7 +2552,11 @@
 										{ target_ang += target_spd * target_all / target_now; }
 									}
 								if target_ang >= 360
-									{ target_ang -= 360; }
+									{
+									if target_now > target_all / 2
+										{ pre_wait = 0; }
+									target_ang -= 360;
+									}
 								}
 						#endregion
 						#region Ответ
@@ -2504,16 +2638,16 @@
 									}
 								}
 							if target_red = 0
-								{ draw_sprite_ext_t(s_gun_bullet, target_iii, 640, global.size - 200, 0.8 * list_scale, 0.8 * list_scale, target_ang - 30, c_white, 1, c_white, c_black); }
+								{ draw_sprite_ext_t(s_gun_bullet, target_iii, 640, global.size - 200, 0.6 * list_scale, 0.6 * list_scale, target_ang - 30, c_white, 1, c_white, c_black); }
 								else
-								{ draw_sprite_ext_t(s_gun_bullet, target_iii, 640, global.size - 200, 0.8 * list_scale, 0.8 * list_scale, target_ang - 30, c_red, 1, c_red, c_black); }
+								{ draw_sprite_ext_t(s_gun_bullet, target_iii, 640, global.size - 200, 0.6 * list_scale, 0.6 * list_scale, target_ang - 30, c_red, 1, c_red, c_black); }
 						#endregion
 						}
 				#endregion
 				#region Задача 3 - Мишени, нож
 					if round_task[global.rounds,global.task] = 3
 						{
-						timer_y = 100;
+						timer_y = 160;
 						#region Координаты
 							//pre_wait = 0;
 							if list_scale = 1
@@ -2858,7 +2992,7 @@
 					else
 					{
 					if global.storm = 1 { storm_1(); }
-					
+					(global.player_object).answer = -1
 					(global.player_object).stun = 1;
 					global.answer = 0;
 					if theme_round[global.rounds] = 6
@@ -2897,34 +3031,93 @@
 				if u_answer[u_question] > e_answer[u_question]
 					{
 					if u_question > e_question
-						{ u_time[e_question] = 3 * room_speed; }
+						{ u_time[e_question] = (3 + 3 * global.p_totem_a[4]) * room_speed; }
 					if u_question = e_question
 						{
-						u_time[e_question] = 3 * room_speed;
-						if bot_time2 > 3 * room_speed
+						u_time[e_question] = (3 + 3 * global.p_totem_a[4]) * room_speed;
+						if bot_time2 > (3 + 3 * global.e_totem_a[4]) * room_speed
 							{
-							bot_time2 = 3 * room_speed;
+							bot_time2 = (3 + 3 * global.e_totem_a[4]) * room_speed;
 							bot_time = random(1) * room_speed;
 							}
 						}
 					}
 				u_question += 1;
-				//if bot_question <= global.question && (bot_task <= global.task) && bot_time2 > 3 * room_speed
-				//	{ bot_time = random(1) * room_speed; bot_time2 = 3 * room_speed; }
+				
+				var miss;
+				miss = 0;
+				if global.idol[3] = 4
+					{
+					if global.answer = 0 
+						{
+						global.anim[3,1] = 0;
+						}
+					}
+				if global.idol[2] = 4
+					{
+					var answ, may;
+					answ = global.answer;
+					may  = choose(0, 1);
+					if may = 1
+						{ global.answer = !answ; }
+					if answ != global.answer
+						{ global.anim[2,1] = 0; }
+					}
+				
+				if global.e_totem_a[9]
+					{
+					var chance;
+					chance = irandom(99);
+					if chance < 5
+						{ global.answer = 0; miss = 1; }
+					}
+				//if global.e_totem_a[12] && (e_hp - atk) <= 0
+				//	{
+				//	var chance;
+				//	chance = irandom(99);
+				//	if chance < 30
+				//		{ global.answer = 0; miss = 1; }
+				//	}
+				
+				if global.e_totem_a[18] = 1
+					{
+					if global.answer = 0
+						{ (global.enemy_object).have_posion = 1; }
+					}
+				
 				if global.answer = 1
 					{
 					answer_rec = 1;
 					answer_col = make_color_rgb(60, 179, 113);
 					
-					if super_now != super_need
-						{ super_now += 1; part_n = -1; }
-					if global.critical < 3
+					if global.hand = -1
+						{
+						if super_now != super_need
+							{ super_now += 1; part_n = -1; }
+						}
+						else
+						{
+						if global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.hero != 1)
+							{
+							if super_now != super_need
+								{ super_now += 1; part_n = -1; }
+							}
+							else
+							{
+							if e_super_now != e_super_need
+								{ e_super_now += 1; part_n = -1; }
+							}
+						}
+					if global.critical < 3 - 2 * global.p_totem_a[3]
 						{ global.critical += 1; }
 					}
 					else
 					{
 					answer_rec = 1;
-					answer_col = make_color_rgb(178, 34, 34);
+					if miss = 0
+						{ answer_col = make_color_rgb(178, 34, 34); }
+						else
+						{ answer_col = make_color_rgb(60, 179, 113); }
 					global.critical = 0;
 					}
 				accuracy_true += global.answer;
@@ -2990,7 +3183,12 @@
 								if huntress_poison = 0
 									{ skeleton_animation_set("shoot"); }
 									else
-									{ skeleton_animation_set("super"); }
+									{
+									if hero = 3
+										{ skeleton_animation_set("super"); }
+										else
+										{ skeleton_animation_set("shoot"); }
+									}
 								change = 3;
 								}
 								else
@@ -3026,7 +3224,7 @@
 								if bot_type = 0
 									{ bot_time = random_range(1, 2.5) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
 								if bot_type = 1
-									{ bot_time = random_range(1, 2) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
+									{ bot_time = random_range(0.25, 1.5) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
 								if bot_type = 2
 									{ bot_time = random_range(1, 4) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
 								if bot_type = 3
@@ -3037,7 +3235,7 @@
 								if bot_type = 0
 									{ bot_time = random_range(0, 1) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
 								if bot_type = 1
-									{ bot_time = random_range(0, 0.5) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
+									{ bot_time = random_range(0, 0.2) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
 								if bot_type = 2
 									{ bot_time = random_range(0.5, 2) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
 								if bot_type = 3
@@ -3080,79 +3278,301 @@
 											else
 											{
 											bot_time = -1;
+											(global.player_object).answer = -1
 											(global.enemy_object).stun = 1;
 											global.bot_answer = 0;
 											}
 										}
 									}
 								}
-							//if bot_time2 <= 30
-							//	{
-							//	if enemy_smile = -1
-							//		{
-							//		enemy_smile_chance = choose(0,0,0,1);
-							//		if enemy_smile_chance = 1
-							//			{
-							//			enemy_smile = choose(2,2,2,5);
-							//			enemy_smile_time = 30;
-							//			}
-							//		}
-							//	}
 							}
 						}
 					}
-				
-				if e_super_now = e_super_need && theme_choose = 4
+				if e_super_now1 < e_super_now
+					{ e_super_now1 += 1 / room_speed; }
+				if e_super_now = 0
+					{ e_super_now1 = 0; }
+				if global.hand = -1
 					{
-					if e_hp - atk <= hp
+					if e_super_now = e_super_need && e_super_now1 = e_super_need && theme_choose = 4 && global.e_abilitican = 1 && (global.enemy_object).stun = 0
 						{
-						if global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
+						if ((((e_hp - atk) / e_maxhp <= hp / maxhp ) && global.enemy_hero != 5)
+						or (global.enemy_hero = 5 && (global.enemy_object).bill_stage != 0)
+						or global.swipe_ability = 1 or (global.enemy_hero = 2)
+						or (global.enemy_hero = 1 && global.swipe_ability = 0
+						&& super_now = super_need != 0) && (bot_type = 2 or bot_type = 3)
+						or (global.enemy_hero = 1 && global.swipe_ability = 0) && (bot_type = 1 or bot_type = 2))
+						&& (global.enemy_object).hand_away = 0 && (global.player_object).hand_away = 0
 							{
-							e_super_now  = 0;
-							e_super_need += 3;
-							global.super_ability = 1;
-				
-							with(global.enemy_object)
+							if global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
 								{
-								change = 3;
-								super  = 1;
-								switch(global.enemy_hero)
+								e_super_now  = 0;
+								e_super_need += 3;
+								global.super_ability = 1;
+								
+								with(global.enemy_object)
 									{
-									case 6: abil_x = 1280 - 160; abil_y = y - 200; abil_s = 0.5; abil_a = 0; skeleton_animation_set("super"); break;
-									case 4: skeleton_animation_set("super"); diego_dynamit = 1; break;
-									case 3: change = 1; skeleton_animation_set("reload"); /*global.super_ability = 0; global.super_ability1 = 1;*/ huntress_poison = 1; break;
+									change = 3;
+									super  = 1;
+									if global.swipe_ability = 0
+										{
+										switch(global.enemy_hero)
+											{
+											case 1: o_list.e_super_need = 3 - global.e_totem_a[15]; skeleton_animation_set("super"); change = 1; break;
+											case 2: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+											case 6: abil_x = 160; skeleton_animation_set("super"); change = 3; break;
+											case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
+											case 3: change = 1; skeleton_animation_set("reload"); /*global.super_ability = 0; global.super_ability1 = 1;*/ huntress_poison = 1; break;
+											case 5: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 1; break;
+											case 7: super = 1; image_index = 0; image_speed = 2; skeleton_animation_set("greetings"); change = 2; break;
+											}
+										}
+										else
+										{
+										if global.enemy_hero != 1
+											{
+											change = 1; skeleton_animation_set("reload"); 
+											global.super_ability = 1;
+											hand_away = room_speed;
+												
+											o_list.super_now1 = 0//super_need;
+											var enemy_now, enemy_need, player_now, player_need;
+											enemy_now  = o_list.e_super_now;
+											enemy_need = o_list.e_super_need;
+												
+											player_now  = o_list.super_now;
+											player_need = o_list.super_need;
+												
+											o_list.super_now  = 0; //enemy_now;
+											o_list.super_need = 3 - global.p_totem_a[15]; //enemy_need;
+												
+											o_list.e_super_now  = player_now;
+											o_list.e_super_need = player_need;
+											}
+											else
+											{
+											switch(global.hero)
+												{
+												case 1: image_speed = 2; skeleton_animation_set("super"); change = 1; o_list.e_super_need = 3 - global.e_totem_a[15]; break;
+												case 2: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+												case 3: change = 1; skeleton_animation_set("reload"); huntress_poison = 1; break;
+												case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
+												case 5: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
+												case 6: abil_x = 160; skeleton_animation_set("shoot"); change = 3; break;
+												case 7: change = 1; skeleton_animation_set("super"); break;
+												}
+											}
+										}
 									}
+								
+								//skill[global.rounds] = 2;
+								//if global.rounds = 1
+								//	{ skill[2] = 0; }
+							
+								global.ability_dop_anim = 1;
 								}
-							//e_skill[global.rounds] = 2;
-							//if global.rounds = 1
-							//	{ e_skill[2] = 0; }
-							global.ability_dop_anim = 1;
 							}
 						}
+					}
+					else
+					{
+					#region ЖОПА
+					//if ((e_super_now = e_super_need && (global.hand = -1 or (global.hand = 0 && global.enemy_hero = 1) or (global.hand = 1 && global.hero = 1)))) && theme_choose = 4
+					//	{
+					//	if (e_hp - atk) / e_maxhp <= hp / maxhp
+					//		{
+					//		if global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
+					//			{
+					//			e_super_now  = 0;
+					//			e_super_need += 3;
+					//			if global.hand = 0 && global.enemy_hero = 1
+					//				{ e_super_need = 3; }
+					//			global.super_ability = 1;
+							
+					//			//if global.hand = 0 && global.enemy_hero != 1
+					//			//	{ global.super_ability = 0; super_now1 = 0; global.hand = 1; (global.enemy_object).super = 0; }
+							
+					//			if global.hand = -1 or (global.hand = 0 && global.enemy_hero = 1) or (global.hand = 1 && global.hero = 1)
+					//				{
+					//				with(global.enemy_object)
+					//					{
+					//					change = 3;
+					//					super  = 1;
+					//					if global.swipe_ability = 0
+					//						{
+					//						switch(global.enemy_hero)
+					//							{
+					//							case 1: super_need = 3; super_now1 = 3; skeleton_animation_set("super"); change = 1; break;
+					//							case 2: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//							case 6: abil_x = 160; skeleton_animation_set("super"); change = 3; break;
+					//							case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
+					//							case 3: change = 1; skeleton_animation_set("reload"); /*global.super_ability = 0; global.super_ability1 = 1;*/ huntress_poison = 1; break;
+					//							case 5: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 1; break;
+					//							case 7: break;
+					//							}
+					//						}
+					//						else
+					//						{
+					//						if global.enemy_hero != 1
+					//							{
+					//							change = 1; skeleton_animation_set("reload"); 
+					//							global.super_ability = 1;
+					//							hand_away = room_speed;
+												
+					//							super_need = 3; super_now1 = 0;
+					//							var enemy_now, enemy_need, player_now, player_need;
+					//							enemy_now  = o_list.e_super_now;
+					//							enemy_need = o_list.e_super_need;
+												
+					//							player_now  = o_list.super_now;
+					//							player_need = o_list.super_need;
+												
+					//							o_list.super_now  = enemy_now;
+					//							o_list.super_need = enemy_need;
+												
+					//							o_list.e_super_now  = player_now;
+					//							o_list.e_super_need = player_need;
+					//							}
+					//							else
+					//							{
+					//							switch(global.enemy_hero)
+					//								{
+					//								case 1: image_speed = 2; skeleton_animation_set("super"); change = 1; super_need = 3; super_now1 = 3; break;
+					//								case 2: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//								case 3: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//								case 4: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//								case 5: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
+					//								case 6: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//								case 7: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
+					//								}
+					//							}
+					//						}
+					//					}
+					//				}
+							
+					//			//skill[global.rounds] = 2;
+					//			//if global.rounds = 1
+					//			//	{ skill[2] = 0; }
+							
+					//			global.ability_dop_anim = 1;
+					//			}
+					//		}
+					//	}
+					//if (super_now = super_need && ((global.hand = 1 && global.enemy_hero = 1) or (global.hand = 0 && global.hero = 1))) && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && global.super_ability = 0// && (global.enemy_object).shoot = 0
+					//	{
+					//	super_now  = 0;
+					//	super_need += 3;
+					//	global.super_ability = 1;
+					
+					//	if global.enemy_hero = 1
+					//		{
+					//		with(global.enemy_object)
+					//			{
+					//			change = 3;
+					//			super  = 0;
+					//			switch(global.hero)
+					//				{
+					//				case 1: global.super_ability = 0; break;
+					//				case 2: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//				case 4: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//				case 3: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//				case 5: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
+					//				case 6: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//				case 7: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
+					//				}
+					//			}
+					//		//skill[global.rounds] = 2;
+					//		//if global.rounds = 1
+					//		//	{ skill[2] = 0; }
+					//		global.ability_dop_anim = 1;
+					//		}
+					//		else
+					//		{ global.super_ability = 1; (global.enemy_object).hand_away = room_speed; super_now1 = 0; /*global.hand = 1;*/ (global.enemy_object).super = 0; }
+					//	}
+					#endregion
 					}
 			#endregion
 			#region Враг
 			if global.bot_answer != -1 && bot_go != 0 && e_question <= 9
 				{
+				if global.bill_abil > 0
+					{
+					if irandom(9) != 0
+						{ global.bot_answer = 0; }
+					}
 				e_answer[e_question] = global.bot_answer;
 				if e_answer[e_question] > u_answer[e_question]
 					{
 					if e_question > u_question
-						{ e_time[e_question] = 3 * room_speed; }
+						{ e_time[e_question] = (3 + 3 * global.e_totem_a[4]) * room_speed; }
 					if e_question = u_question
 						{
-						if timer > 3 * room_speed
-							{ timer = 3 * room_speed; }
+						if timer > (3 + 3 * global.p_totem_a[4]) * room_speed
+							{ timer = (3 + 3 * global.p_totem_a[4]) * room_speed; }
 						}
 					}
 				e_question += 1;
-				//if bot_question >= global.question && (bot_task >= global.task) && timer > 2 * room_speed
-				//	{ timer = 2 * room_speed; timer_x = 2 * room_speed; }
+				
+				if global.idol[3] = 4
+					{
+					if global.bot_answer = 0 
+						{
+						global.anim[3,0] = 0;
+						}
+					}
+				if global.idol[2] = 4
+					{
+					var answ, may;
+					answ = global.bot_answer;
+					may = choose(0, 1);
+					if may = 1
+						{ global.bot_answer = !answ; }
+					if answ != global.bot_answer
+						{ global.anim[2,0] = 0; }
+					}
+				
+				if global.p_totem_a[9]
+					{
+					var chance;
+					chance = irandom(99);
+					if chance < 5
+						{ global.bot_answer = 0; }
+					}
+				//if global.p_totem_a[12] && (hp - e_atk) <= 0
+				//	{
+				//	var chance;
+				//	chance = irandom(99);
+				//	if chance < 30
+				//		{ global.bot_answer = 0; }
+				//	}
+				
+				if global.p_totem_a[18] = 1
+					{
+					if global.bot_answer = 0
+						{ (global.player_object).have_posion = 1; }
+					}
+				
 				if global.bot_answer = 1
 					{
-					if e_super_now < e_super_need
-						{ e_super_now += 1; }
-					if global.e_critical < 3
+					if global.hand = -1
+						{
+						if e_super_now < e_super_need
+							{ e_super_now += 1; }
+						}
+						else
+						{
+						if global.hand = -1 or (global.hand = 0 && global.enemy_hero = 1) or (global.hand = 1 && global.hero = 1)
+							{
+							if e_super_now < e_super_need
+								{ e_super_now += 1; }
+							}
+							else
+							{
+							if super_now < super_need
+								{ super_now += 1; }
+							}
+						}
+					if global.e_critical < 3 - 2 * global.e_totem_a[3]
 						{ global.e_critical += 1; }
 					}
 					else
@@ -3252,8 +3672,8 @@
 					u_answer[i] = -1;
 					e_answer[i] = -1;
 		
-					u_time[i] = 6 * room_speed;
-					e_time[i] = 6 * room_speed;
+					u_time[i] = (6 + 3 * global.p_totem_a[4]) * room_speed;
+					e_time[i] = (6 + 3 * global.e_totem_a[4]) * room_speed;
 					}
 				bot_time2 = e_time[u_question];
 				timer     = u_time[u_question];
@@ -3391,200 +3811,576 @@
 #region Способность
 	for(dev=0;dev<5;dev++)
 		{
+		//if global.enemy_hero = 1 && global.hero = 1
+		//	{
+		//	super_now  = 0;
+		//	super_need = 3;
+		//	super_now1 = 0;
+			
+		//	e_super_now  = 0;
+		//	e_super_need = 3;
+			
+		//	global.hand = -1;
+		//	}
 		mouse_x1 = device_mouse_x(dev);
 		mouse_y1 = device_mouse_y(dev);
-		if device_mouse_check_button_pressed(dev, mb_left) && theme_choose = 4 && (global.player_object).stun = 0
+		
+		if device_mouse_check_button_pressed(dev, mb_left) && theme_choose = 4 && (global.player_object).stun = 0 && global.abilitican = 1
 			{
 			//if point_in_rectangle(mouse_x1, mouse_y1, 640 - 80 + sprite_get_width(s_super) / 2 - 20, global.size - 50 - 80 + super_x + super_zhopa, 640 + 80 + sprite_get_width(s_super) / 2 - 20, global.size - 50 + 80 + super_zhopa)
-			if point_in_rectangle(mouse_x1, mouse_y1, 640 * 2 - 80 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 - 80 + super_x + super_zhopa, 640 * 2 + 80 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 + 80 + super_zhopa)
+			if point_in_rectangle(mouse_x1, mouse_y1, 640 * 2 - 80 - sprite_get_width(s_super) / 2, global.size - 50 - 80 + super_zhopa - 40, 640 * 2 + 80 - sprite_get_width(s_super) / 2, global.size - 50 + 80 + super_zhopa - 40)
 				{
 				audio_play_sound(sd_text, 2, 0);
-				if super_now = super_need && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0// && (global.enemy_object).shoot = 0
+				if global.hand = -1
 					{
-					super_now  = 0;
-					super_need += 3;
-					super_now1 = super_need;
-					global.super_ability = 1;
-				
-					with(global.player_object)
+					if super_now = super_need && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && !(global.hero = 1 && global.enemy_hero = 1)// && (global.enemy_object).shoot = 0
 						{
-						change = 3;
-						super  = 1;
-						switch(global.hero)
+						super_now  = 0;
+						super_need += 3;
+						super_now1 = super_need;
+						global.super_ability = 1;
+						
+						with(global.player_object)
 							{
-							case 2: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-							case 6: abil_x = 160; skeleton_animation_set("super"); break;
-							case 4: skeleton_animation_set("super"); diego_dynamit = 1; break;
-							case 3: change = 1; skeleton_animation_set("reload"); /*global.super_ability = 0; global.super_ability1 = 1;*/ huntress_poison = 1; break;
+							change = 3;
+							super  = 1;
+							if global.swipe_ability = 0
+								{
+								switch(global.hero)
+									{
+									case 1: o_list.super_need = 3 - global.p_totem_a[15]; o_list.super_now1 = 3; skeleton_animation_set("super"); change = 1; break;
+									case 2: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+									case 6: abil_x = 160; skeleton_animation_set("super"); change = 3; break;
+									case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
+									case 3: change = 1; skeleton_animation_set("reaload"); huntress_poison = 1; break;
+									case 5: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 1; break;
+									case 7: super = 1; image_index = 0; image_speed = 2; skeleton_animation_set("greetings"); change = 2; break;
+									}
+								}
+								else
+								{
+								if global.hero != 1
+									{
+									change = 1; skeleton_animation_set("reload"); 
+									global.super_ability = 1;
+									hand_away = room_speed;
+									
+									o_list.super_now1 = 0; //super_need;
+									var enemy_now, enemy_need, player_now, player_need;
+									enemy_now   = o_list.e_super_now;
+									enemy_need  = o_list.e_super_need;
+									
+									player_now  = o_list.super_now;
+									player_need = o_list.super_need;
+									
+									o_list.super_now  = enemy_now;
+									o_list.super_need = enemy_need;
+		
+									o_list.e_super_now  = 0; //player_now;
+									o_list.e_super_need = 3 - global.e_totem_a[15]; //player_need;
+									}
+									else
+									{
+									switch(global.enemy_hero)
+										{
+										case 1: image_speed = 2; skeleton_animation_set("super"); change = 1; o_list.super_need = 3 - global.p_totem_a[15]; o_list.super_now1 = 3; break;
+										case 2: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+										case 3: change = 1; skeleton_animation_set("reload"); huntress_poison = 1; break;
+										case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
+										case 5: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
+										case 6: abil_x = 160; skeleton_animation_set("shoot"); change = 3; break;
+										case 7: change = 1; skeleton_animation_set("super"); break;
+										}
+									}
+								}
 							}
+						//skill[global.rounds] = 2;
+						//if global.rounds = 1
+						//	{ skill[2] = 0; }
+						global.ability_dop_anim = 1;
 						}
-					skill[global.rounds] = 2;
-					if global.rounds = 1
-						{ skill[2] = 0; }
-					global.ability_dop_anim = 1;
+					}
+					else
+					{
+					#region ЖОПА
+					//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0// && (global.enemy_object).shoot = 0
+					//	{
+					//	super_now  = 0;
+					//	super_need += 3;
+					//	super_now1 = super_need;
+					//	if global.hand = 1
+					//		{ super_need = 3; }
+					//	global.super_ability = 1;
+					
+					//	//if global.hand = 1 && global.hero != 1
+					//	//	{ global.super_ability = 0; super_now1 = 0; global.hand = 0; (global.player_object).super = 0; }
+					
+					//	if global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1)
+					//		{
+					//		with(global.player_object)
+					//			{
+					//			change = 3;
+					//			super  = 1;
+					//			switch(global.hero)
+					//				{
+					//				case 1: super_now1 = 0; skeleton_animation_set("super"); global.hand = 0; change = 1; break;
+					//				case 2: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//				case 6: abil_x = 160; skeleton_animation_set("super"); change = 3; break;
+					//				case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
+					//				case 3: change = 1; skeleton_animation_set("reload"); /*global.super_ability = 0; global.super_ability1 = 1;*/ huntress_poison = 1; break;
+					//				case 5: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 1; break;
+					//				case 7: break;
+					//				}
+					//			}
+					//		}
+					//	//skill[global.rounds] = 2;
+					//	//if global.rounds = 1
+					//	//	{ skill[2] = 0; }
+					//	global.ability_dop_anim = 1;
+					//	}
+					//if (e_super_now = e_super_need && ((global.hand = 0 && global.hero = 1) or (global.hand = 1 && global.hero != 1))) && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && global.super_ability = 0// && (global.enemy_object).shoot = 0
+					//	{
+					//	e_super_now  = 0;
+					//	e_super_need += 3;
+					//	super_now1 = e_super_need;
+					//	global.super_ability = 1;
+					//	if global.hero = 1
+					//		{
+					//		with(global.player_object)
+					//			{
+					//			change = 3;
+					//			super  = 0;
+					//			switch(global.enemy_hero)
+					//				{
+					//				case 1: global.super_ability = 0; break;
+					//				case 2: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//				case 4: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//				case 3: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//				case 5: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
+					//				case 6: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+					//				case 7: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
+					//				}
+					//			}
+					//		//skill[global.rounds] = 2;
+					//		//if global.rounds = 1
+					//		//	{ skill[2] = 0; }
+					//		global.ability_dop_anim = 1;
+					//		}
+					//		else
+					//		{ global.super_ability = 1; (global.player_object).hand_away = room_speed; super_now1 = 0; /*global.hand = 0;*/ (global.player_object).super = 0; }
+					//	}
+					#endregion
 					}
 				}
 			}
 		}
-	if vvv
-		{
-		if super_x > 0
-			{ super_x -= 40; }
-		}
-		else
-		{
-		if super_x < 300
-			{ super_x += 40; }
-		}
+	//if vvv
+	//	{
+	//	if super_x > 0
+	//		{ super_x -= 40; }
+	//	}
+	//	else
+	//	{
+	//	if super_x < 300
+	//		{ super_x += 40; }
+	//	}
 	
 	#region Кнопка суперудара игрока
-		#region Пацанкод
-			if part_n = 1
-				{
-				if part_y < global.size - 10
-					{ part_y += part_yspd; }
-				if abs(part_x - (1280) * super_now1 / super_need) > 10
-					{ part_x -= sign(part_x - (1280) * super_now1 / super_need) * part_xspd; }
-					else
-					{
-					if part_y >= global.size - 10
-						{ part_n = 0; }
-					}
-				}
-			if part_n = 2
-				{
-				if part_s > 0
-					{ part_s -= 0.25; }
-					else
-					{ part_n = 0; }
-				}
-				
-			if part_n > 0
-				{
-				draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, global.color_hero[global.hero], 1, global.color_hero[global.hero], c_black);
-				draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, global.color_hero[global.hero], 1, global.color_hero[global.hero], c_black);
-				draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, global.color_hero[global.hero], 1, global.color_hero[global.hero], c_black);
-				}
-			
-			if part_n = 0
-				{
-				if super_now <= super_need
-					{
-					if super_now1 < super_now
-						{ super_now1 += 0.025 * super_need; }
-					if super_now = 0
-						{
-						if super_now1 > 0
-							{ super_now1 -= 0.025 * super_need; }
-							else
-							{ super_now1 = 0; }
-						}
-					}
-				}
-			//draw_text_transformed_t(mouse_x, mouse_y, string(part_n), 0.5, 0.5, 0, global.color_hero[global.hero], c_black);
-		#endregion
-		
-		var d_size;
-		d_size = 0.05; //0.1 * (super_stage - 1) / 13;
-		
-		if super_now = super_need
+		var butcolor;
+		butcolor = global.color_hero[global.hero];
+		if global.hand = -1
 			{
-			if super_now1 = super_need
-				{
-				if super_zhopa > 0
-					{ super_zhopa -= 40; super_angle = 0; }
-					else
-					{
-					if super_time < 40
-						{
-						super_time += 1;
-						if abs(super_angle) > 1.5
-							{ super_angle += 2 * super_dir; }
-							else
-							{ super_angle = 0; }
-						}
-						else
-						{
-						if (super_angle < 5 && super_dir = 1) or (super_angle > -5 && super_dir = -1)
-							{ super_angle += 2 * super_dir; }
-							else
-							{
-							super_dir = -super_dir;
-							super_angle += 2 * super_dir;
-							super_val += 1;
-							if super_val = 5
-								{ super_time = 0; super_val = 0; }
-							}
-						}
-					}
-				}
+			if global.swipe_ability = 0
+				{ butcolor = global.color_hero[global.hero]; }
+				else
+				{ butcolor = global.color_hero[global.enemy_hero]; }
 			}
 			else
 			{
-			super_val = 0;
-			super_angle = 0;
-			if super_zhopa < 300
-				{ super_zhopa += 30; }
+			if (global.hand = 0 && global.hero = 1)
+				{ butcolor = global.color_hero[global.enemy_hero]; }
 			}
-		
-		if super_now = super_need
-			{
-			if super_alp1 = 1
+		#region Пацанкод
+			if global.hand = -1
 				{
-				if super_alp > 0.2//0.7
-					{ super_alp -= 0.05; }
+				if part_n = 1
+					{
+					if part_y < global.size - 10
+						{ part_y += part_yspd; }
+					if abs(part_x - (1280) * super_now1 / super_need) > 10
+						{ part_x -= sign(part_x - (1280) * super_now1 / super_need) * part_xspd; }
+						else
+						{
+						if part_y >= global.size - 10
+							{ part_n = 0; }
+						}
+					}
+				if part_n = 2
+					{
+					if part_s > 0
+						{ part_s -= 0.25; }
+						else
+						{ part_n = 0; }
+					}
+				
+				if global.swipe_ability = 0
+					{
+					if part_n > 0
+						{
+						draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+						draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+						draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+						}
+					}
 					else
-					{ super_alp1 = 0 }
+					{
+					if part_n > 0
+						{
+						draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+						draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+						draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+						}
+					}
+				if part_n = 0
+					{
+					if super_now <= super_need
+						{
+						if super_now1 < super_now // super_need
+							{ super_now1 += 0.025 * super_need; }
+					
+						if super_now = 0
+							{
+							if super_now1 > 0
+								{ super_now1 -= 0.025 * super_need; }
+								else
+								{ super_now1 = 0; }
+							}
+						}
+					}
 				}
 				else
 				{
-				if super_alp < 1
-					{ super_alp += 0.05; }
-					else
+				#region ЖОПА
+				//if part_n = 1
+				//	{
+				//	if (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))
+				//		{
+				//		if part_y < global.size - 10
+				//			{ part_y += part_yspd; }
+				//		if abs(part_x - (1280) * super_now1 / super_need) > 10
+				//			{ part_x -= sign(part_x - (1280) * super_now1 / super_need) * part_xspd; }
+				//			else
+				//			{
+				//			if part_y >= global.size - 10
+				//				{ part_n = 0; }
+				//			}
+				//		}
+				//	if (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
+				//		{
+				//		if part_y < global.size - 10
+				//			{ part_y += part_yspd; }
+				//		if abs(part_x - (1280) * super_now1 / e_super_need) > 10
+				//			{ part_x -= sign(part_x - (1280) * super_now1 / e_super_need) * part_xspd; }
+				//			else
+				//			{
+				//			if part_y >= global.size - 10
+				//				{ part_n = 0; }
+				//			}
+				//		}
+				//	}
+				//if part_n = 2
+				//	{
+				//	if part_s > 0
+				//		{ part_s -= 0.25; }
+				//		else
+				//		{ part_n = 0; }
+				//	}
+			
+				//if (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))
+				//	{
+				//	if part_n > 0
+				//		{
+				//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+				//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+				//		draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+				//		}
+				//	}
+				//if (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
+				//	{
+				//	if part_n > 0
+				//		{
+				//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / e_super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+				//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / e_super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+				//		draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+				//		}
+				//	}
+				//if part_n = 0
+				//	{
+				//	if (super_now <= super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (e_super_now <= e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
+				//		{
+				//		if (super_now1 < super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1)))//super_now1 < super_now
+				//			{ super_now1 += 0.025 * super_need; }
+				//			else
+				//			{ super_now1 += 0.025 * e_super_need; }
+					
+				//		if super_now = 0 && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))
+				//			{
+				//			if super_now1 > 0
+				//				{ super_now1 -= 0.025 * super_need; }
+				//				else
+				//				{ super_now1 = 0; }
+				//			}
+				//		if e_super_now = 0 && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
+				//			{
+				//			if super_now1 > 0
+				//				{ super_now1 -= 0.025 * e_super_need; }
+				//				else
+				//				{ super_now1 = 0; }
+				//			}
+				//		}
+				//	}
+				#endregion
+				}
+			//draw_text_transformed_t(mouse_x, mouse_y, string(part_n), 0.5, 0.5, 0, global.color_hero[global.hero], c_black);
+		#endregion
+		var d_size;
+		d_size = 0.05; //0.1 * (super_stage - 1) / 13;
+		if global.hand = -1
+			{
+			if super_now = super_need
+				{
+				if super_now1 = super_need
 					{
-					if super_alpha > 0
-						{ super_alpha -= 0.05; }
+					if super_zhopa > 0
+						{ super_zhopa -= 40; super_angle = 0; }
 						else
-						{ super_alpha = 1; super_alp = 0.2; super_alp1 = 1; }
+						{
+						if super_time < 40
+							{
+							super_time += 1;
+							if abs(super_angle) > 1.5
+								{ super_angle += 2 * super_dir; }
+								else
+								{ super_angle = 0; }
+							}
+							else
+							{
+							if (super_angle < 5 && super_dir = 1) or (super_angle > -5 && super_dir = -1)
+								{ super_angle += 2 * super_dir; }
+								else
+								{
+								super_dir = -super_dir;
+								super_angle += 2 * super_dir;
+								super_val += 1;
+								if super_val = 5
+									{ super_time = 0; super_val = 0; }
+								}
+							}
+						}
 					}
 				}
+				else
+				{
+				super_val = 0;
+				super_angle = 0;
+				if super_zhopa < 300
+					{ super_zhopa += 30; }
+				}
+		
+			if super_now = super_need
+				{
+				if super_alp1 = 1
+					{
+					if super_alp > 0.2//0.7
+						{ super_alp -= 0.05; }
+						else
+						{ super_alp1 = 0 }
+					}
+					else
+					{
+					if super_alp < 1
+						{ super_alp += 0.05; }
+						else
+						{
+						if super_alpha > 0
+							{ super_alpha -= 0.05; }
+							else
+							{ super_alpha = 1; super_alp = 0.2; super_alp1 = 1; }
+						}
+					}
+				}
+				else
+				{ super_alp1 = 1; super_alp = 1; }
 			}
 			else
-			{ super_alp1 = 1; super_alp = 1; }
+			{
+			#region ЖОПА
+			//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (e_super_now = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
+			//	{
+			//	if (super_now1 = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (super_now1 = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
+			//		{
+			//		if super_zhopa > 0
+			//			{ super_zhopa -= 40; super_angle = 0; }
+			//			else
+			//			{
+			//			if super_time < 40
+			//				{
+			//				super_time += 1;
+			//				if abs(super_angle) > 1.5
+			//					{ super_angle += 2 * super_dir; }
+			//					else
+			//					{ super_angle = 0; }
+			//				}
+			//				else
+			//				{
+			//				if (super_angle < 5 && super_dir = 1) or (super_angle > -5 && super_dir = -1)
+			//					{ super_angle += 2 * super_dir; }
+			//					else
+			//					{
+			//					super_dir = -super_dir;
+			//					super_angle += 2 * super_dir;
+			//					super_val += 1;
+			//					if super_val = 5
+			//						{ super_time = 0; super_val = 0; }
+			//					}
+			//				}
+			//			}
+			//		}
+			//	}
+			//	else
+			//	{
+			//	super_val = 0;
+			//	super_angle = 0;
+			//	if super_zhopa < 300
+			//		{ super_zhopa += 30; }
+			//	}
+		
+			//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (e_super_now = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
+			//	{
+			//	if super_alp1 = 1
+			//		{
+			//		if super_alp > 0.2//0.7
+			//			{ super_alp -= 0.05; }
+			//			else
+			//			{ super_alp1 = 0 }
+			//		}
+			//		else
+			//		{
+			//		if super_alp < 1
+			//			{ super_alp += 0.05; }
+			//			else
+			//			{
+			//			if super_alpha > 0
+			//				{ super_alpha -= 0.05; }
+			//				else
+			//				{ super_alpha = 1; super_alp = 0.2; super_alp1 = 1; }
+			//			}
+			//		}
+			//	}
+			//	else
+			//	{ super_alp1 = 1; super_alp = 1; }
+			#endregion
+			}
 		draw_set_alpha(0.7);
 		draw_rectangle_color(0, global.size, 1280, global.size - 13, c_black, c_black, c_black, c_black, 0);
 		
-		if super_now = super_need
+		if global.hand = -1
 			{
-			draw_set_alpha(0.5 * super_alpha);
-			draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 4 * 8, global.color_hero[global.hero], global.color_hero[global.hero], global.color_hero[global.hero], global.color_hero[global.hero], 0);
-			
-			draw_set_alpha(0.3 * super_alpha);
-			draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 2 * 6, global.color_hero[global.hero], global.color_hero[global.hero], global.color_hero[global.hero], global.color_hero[global.hero], 0);
+			if super_now = super_need
+				{
+				draw_set_alpha(0.5 * super_alpha);
+				draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
+				
+				draw_set_alpha(0.3 * super_alpha);
+				draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
+				
+				}
+				
+				draw_set_alpha(1);
+				
+				draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
+				draw_set_alpha(0.2);
+				draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
+				draw_set_alpha(1);
+				
+				draw_set_alpha(1 - super_alp);
+				draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
+				draw_set_alpha(1);
+				//}
 			}
-		draw_set_alpha(1);
+			else
+			{
+			#region ЖОПА
+			//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1)))
+			//	{
+			//	draw_set_alpha(0.5 * super_alpha);
+			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
+				
+			//	draw_set_alpha(0.3 * super_alpha);
+			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
+				
+			//	draw_set_alpha(1);
+				
+			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
+			//	draw_set_alpha(0.2);
+			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
+			//	draw_set_alpha(1);
+				
+			//	draw_set_alpha(1 - super_alp);
+			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
+			//	draw_set_alpha(1);
+			//	}
+			//if e_super_now = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
+			//	{
+			//	draw_set_alpha(0.5 * super_alpha);
+			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
+			
+			//	draw_set_alpha(0.3 * super_alpha);
+			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
+			
+			
+			//	draw_set_alpha(1);
 		
-		draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, global.color_hero[global.hero], global.color_hero[global.hero], global.color_hero[global.hero], global.color_hero[global.hero], 0);
-		draw_set_alpha(0.2);
-		draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
-		draw_set_alpha(1);
+			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
+			//	draw_set_alpha(0.2);
+			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
+			//	draw_set_alpha(1);
 		
-		draw_set_alpha(1 - super_alp);
-		draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
-		draw_set_alpha(1);
-		
-		
+			//	draw_set_alpha(1 - super_alp);
+			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
+			//	draw_set_alpha(1);
+			//	}
+			#endregion
+			}
 		draw_set_font(global.game_font);
-		draw_text_transformed_t(640 * 2 - sprite_get_width(s_super) - string_width(super_text) * 0.2 / 2 + 20, global.size - 50 + super_x + super_zhopa, super_text, 0.2, 0.2, super_angle, global.color_hero[global.hero], c_black);
+		draw_text_transformed_t(640 * 2 - sprite_get_width(s_super) - string_width(super_text) * 0.2 / 2 + 20, global.size - 50 - 40 + super_zhopa, super_text, 0.2, 0.2, super_angle, butcolor, c_black);
 		
 		//draw_sprite_ext(s_super, 1, 640 + sprite_get_width(s_super) * (list_size1 * 1 + d_size) * super_scale / 2 + 40, global.size - 50 + super_x + super_zhopa, (list_size1 * 1 + d_size) * super_scale, (list_size1 * 1 + d_size) * super_scale, 0, c_white, 1);
-		draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 + super_x + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.hero], 1, global.color_hero[global.hero], c_black);
-		draw_sprite_ext(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 + super_x + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, c_white, 1);
+		if global.swipe_ability = 0
+			{ draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 - 40 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, butcolor, 1, butcolor, c_black); }
+			else
+			{ draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 - 40 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.enemy_hero], 1, global.color_hero[global.enemy_hero], c_black); }
+		if global.hand = -1
+			{
+			if global.swipe_ability = 0
+				{ draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2, global.size - 50 - 40 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black); }
+				else
+				{ draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2, global.size - 50 - 40 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black); }
+			}
+			else
+			{
+			#region ЖОПА
+			//if global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.hero != 1)
+			//	{ draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 + super_x + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black); }
+			//	else
+			//	{ draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 + super_x + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black); }
+			#endregion
+			}
 		//draw_sprite_ext(s_super_black, super_stage, 86 * (list_size1 * 1.3 + d_size)/*- 90 - 500 - super_x*/, global.size - 40 - 1 + super_x, list_size1 * 1.3 + d_size, list_size1 * 1.3 + d_size, 0, c_white, 1);
 		//draw_sprite_ext(asset_get_index("s_super_" + global.hero_code_name[global.enemy_hero]), e_skill[global.rounds], 1280 - (640 - 90 - 500) + super_x, global.size - 80, -list_size1 * 1, list_size1 * 1, 0, c_white, 1);
 	#endregion
 	#region Способность Шерифа
-		if global.hero = 6 && (global.player_object).super = 1
+		if global.hero = 6 && (global.player_object).super = 1//(global.hero = 6 or (global.enemy_hero = 6 && global.hero = 1 && global.swipe_ability)) && (global.player_object).super = 1
 			{
 			if global.ability_dop_anim = 1
 				{
@@ -3633,7 +4429,7 @@
 				}
 			}
 		
-		if global.enemy_hero = 6 && (global.enemy_object).super = 1
+		if global.enemy_hero = 6 && (global.enemy_object).super = 1//(global.enemy_hero = 6 or (global.hero = 6 && global.enemy_hero = 1 && global.swipe_ability)) && (global.enemy_object).super = 1
 			{
 			if global.ability_dop_anim = 1
 				{
@@ -3682,6 +4478,553 @@
 				}
 			}
 	#endregion
+	#region Способность Билла
+		if global.bill_abil > 0 && theme_choose = 4
+			{
+			if global.bill_abil_a < 0.98
+				{ global.bill_abil_a += 0.04; }
+				else
+				{ global.bill_abil_a = 0.98; }
+			global.bill_abil -= 1;
+			}
+			else
+			{
+			if global.bill_abil_a > 0
+				{ global.bill_abil_a -= 0.04; }
+				else
+				{ global.bill_abil_a = 0; }
+			global.bill_abil = 0;
+			}
+		draw_set_alpha(global.bill_abil_a);
+		draw_circle_color(640, global.size / 2, 1400 * global.bill_abil_a, global.color_white, global.color_white, 0);
+		draw_set_alpha(1);
+	#endregion
+#endregion
+#region Тотемы
+	if global.game_stage = 0.5
+		{
+		var txx, tss;
+		txx = 640;
+		tss = 0.3;
+		
+		#region Появление тотемов
+			if global.tot = 0
+				{
+				if totem_x < 0
+					{ totem_x += 30; }
+					else
+					{ global.tot = 1; }
+				}
+		#endregion
+		#region Эффект тотемов
+			if global.tot < 7 && global.tot != -1
+				{
+				if global.tot < 3
+					{ i = 1; }
+				if global.tot >= 3 && global.tot < 5
+					{ i = 2; }
+				if global.tot >= 5
+					{ i = 3; }
+				for(tt=1;tt<=6;tt++)
+					{
+					#region Игрок
+					if ((global.tot = 1 or global.tot = 3 or global.tot = 5 or global.tot = 1.5 or global.tot = 3.5 or global.tot = 5.5) && totem_first = 1)
+					or ((global.tot = 2 or global.tot = 4 or global.tot = 6 or global.tot = 2.5 or global.tot = 4.5 or global.tot = 6.5) && totem_first = 0)
+						{
+						if global.tot = tt
+							{
+							if global.p_totem[i] = -1
+								{ global.tot += 0.5; totem_time = 10; }
+							totem_pa[i] = 0;
+							if totem_ps[i] < 1.15
+								{ totem_ps[i] += 0.015; }
+								else
+								{
+								if totem_time  = 0
+									{
+									if global.p_totem[i] = 17
+										{
+										#region Случайные тотемы Врага
+										if global.enemy_level <= 4
+											{
+											global.e_totem[1] = irandom_range(1, 18);
+											global.e_totem[2] = -1;
+											global.e_totem[3] = -1;
+											}
+										if global.enemy_level > 4 && global.enemy_level < 7
+											{
+											var toi;
+											global.e_totem[1] = irandom_range(1, 18);
+							
+											if global.e_totem[1] != 1
+												{ global.e_totem[2] = irandom_range(1, global.e_totem[1]); }
+												else
+												{ global.e_totem[2] = irandom_range(2, 18); }
+											global.e_totem[3] = -1;
+											}
+										if global.enemy_level >= 7
+											{
+											var toi;
+											global.e_totem[1] = irandom_range(1, 18);
+		
+											if global.e_totem[1] != 1
+												{
+												global.e_totem[2] = irandom_range(1, global.e_totem[1]);
+												if global.e_totem[2] != 1
+													{ global.e_totem[3] = irandom_range(1, global.e_totem[2]); }
+													else
+													{ global.e_totem[3] = irandom_range(2, global.e_totem[1]); }
+												}
+												else
+												{
+												global.e_totem[2] = irandom_range(2, 18); 
+												if global.e_totem[2] != 2
+													{ global.e_totem[3] = irandom_range(2, global.e_totem[2]); }
+													else
+													{ global.e_totem[3] = irandom_range(3, 18); }
+												}
+											}
+									#endregion
+										#region Случайные тотемы Игрока
+										if global.p_totem[1] != -1 && global.p_totem[2] = -1 && global.p_totem[3] = -1
+											{ global.p_totem[1] = irandom_range(1, 18); }
+										if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] = -1
+											{
+											global.p_totem[1] = irandom_range(1, 18);
+							
+											if global.p_totem[1] != 1
+												{ global.p_totem[2] = irandom_range(1, global.p_totem[1]); }
+												else
+												{ global.p_totem[2] = irandom_range(2, 18); }
+											}
+										if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] != -1
+											{
+											global.p_totem[1] = irandom_range(1, 18);
+		
+											if global.p_totem[1] != 1
+												{
+												global.p_totem[2] = irandom_range(1, global.p_totem[1]);
+												if global.p_totem[2] != 1
+													{ global.p_totem[3] = irandom_range(1, global.p_totem[2]); }
+													else
+													{ global.p_totem[3] = irandom_range(2, global.p_totem[1]); }
+												}
+												else
+												{
+												global.p_totem[2] = irandom_range(2, 18); 
+												if global.p_totem[2] != 2
+													{ global.p_totem[3] = irandom_range(2, global.p_totem[2]); }
+													else
+													{ global.p_totem[3] = irandom_range(3, 18); }
+												}
+											}
+									#endregion
+										totem_ps[i] = 0.8;
+										//global.tot = 1;
+										}
+										else
+										{
+										if global.p_totem[i] = 10
+											{
+											global.p_totem[i] = choose(irandom_range(1,9), irandom_range(11,18));
+											totem_ps[i] = 0.8;
+											//global.tot = 1;
+											}
+											else
+											{
+											if global.p_totem[i] = 16
+												{
+												var en_tot;
+												en_tot = 1;
+												if global.e_totem[2] != -1
+													{ en_tot = choose(1, 2); }
+												if global.e_totem[3] != -1
+													{ en_tot = choose(1, 2, 3); }
+												global.p_totem[i] = global.e_totem[en_tot];
+												global.e_totem[en_tot] = 19;
+												totem_ps[i] = 0.8;
+												//totem_es[en_tot] = 0.8;
+												//global.tot = 1; global.tot += 0.5;
+												}
+												else
+												{
+												if global.p_totem[i] = 11
+													{ global.tot = 8; }
+													else
+													{
+													if global.p_totem[i] = 1
+														{
+														hp *= 1.05;
+														maxhp *= 1.05;
+														}
+													if global.p_totem[i] = 2
+														{
+														atk *= 1.05;
+														}
+													if global.p_totem[i] = 14
+														{
+														#region Все темы - темы игрока
+															theme_t[1]  = global.hero;
+															theme_nn[1] = global.theme_name[theme_t[1]];
+													
+															theme_t[2]  = global.hero;
+															theme_nn[2] = global.theme_name[theme_t[2]];
+													
+															theme_t[3]  = global.hero;
+															theme_nn[3] = global.theme_name[theme_t[3]];
+														#endregion
+														}
+													if global.p_totem[i] = 7
+														{ global.e_totem_a[7] = 0; }
+													global.tot += 0.5;
+													}
+												}
+											}
+										}
+									totem_time = 7;
+									}
+									else
+									{ totem_time -= 1; }
+								}
+							}
+							//else
+							//{
+							//if totem_ps[i] < 1
+							//	{ totem_ps[i] += 0.01; }
+							////if totem_ps[1] > 1
+							////	{ totem_ps[1] -= 0.01; }
+							//}
+						if global.tot = tt + 0.5
+							{
+							if totem_ps[i] > 1
+								{ totem_ps[i] -= 0.015; }
+								else
+								{ global.tot += 0.5; }
+							}
+						}
+					#endregion
+					#region Враг
+					if ((global.tot = 1 or global.tot = 3 or global.tot = 5 or global.tot = 1.5 or global.tot = 3.5 or global.tot = 5.5) && totem_first = 0)
+					or ((global.tot = 2 or global.tot = 4 or global.tot = 6 or global.tot = 2.5 or global.tot = 4.5 or global.tot = 6.5) && totem_first = 1)
+						{
+						if global.e_totem[i] = -1
+							{ global.tot += 0.5; totem_time = 10; }
+						if global.tot = tt
+							{
+							totem_ea[i] = 0;
+							if totem_es[i] < 1.15
+								{ totem_es[i] += 0.015; }
+								else
+								{
+								if totem_time  = 0
+									{
+									if global.e_totem[i] = 17
+										{
+										#region Случайные тотемы Врага
+										if global.enemy_level <= 4
+											{
+											global.e_totem[1] = irandom_range(1, 18);
+											global.e_totem[2] = -1;
+											global.e_totem[3] = -1;
+											}
+										if global.enemy_level > 4 && global.enemy_level < 7
+											{
+											var toi;
+											global.e_totem[1] = irandom_range(1, 18);
+							
+											if global.e_totem[1] != 1
+												{ global.e_totem[2] = irandom_range(1, global.e_totem[1]); }
+												else
+												{ global.e_totem[2] = irandom_range(2, 18); }
+											global.e_totem[3] = -1;
+											}
+										if global.enemy_level >= 7
+											{
+											var toi;
+											global.e_totem[1] = irandom_range(1, 18);
+		
+											if global.e_totem[1] != 1
+												{
+												global.e_totem[2] = irandom_range(1, global.e_totem[1]);
+												if global.e_totem[2] != 1
+													{ global.e_totem[3] = irandom_range(1, global.e_totem[2]); }
+													else
+													{ global.e_totem[3] = irandom_range(2, global.e_totem[1]); }
+												}
+												else
+												{
+												global.e_totem[2] = irandom_range(2, 18); 
+												if global.e_totem[2] != 2
+													{ global.e_totem[3] = irandom_range(2, global.e_totem[2]); }
+													else
+													{ global.e_totem[3] = irandom_range(3, 18); }
+												}
+											}
+									#endregion
+										#region Случайные тотемы Игрока
+										if global.p_totem[1] != -1 && global.p_totem[2] = -1 && global.p_totem[3] = -1
+											{ global.p_totem[1] = irandom_range(1, 18); }
+										if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] = -1
+											{
+											global.p_totem[1] = irandom_range(1, 18);
+							
+											if global.p_totem[1] != 1
+												{ global.p_totem[2] = irandom_range(1, global.p_totem[1]); }
+												else
+												{ global.p_totem[2] = irandom_range(2, 18); }
+											}
+										if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] != -1
+											{
+											global.p_totem[1] = irandom_range(1, 18);
+		
+											if global.p_totem[1] != 1
+												{
+												global.p_totem[2] = irandom_range(1, global.p_totem[1]);
+												if global.p_totem[2] != 1
+													{ global.p_totem[3] = irandom_range(1, global.p_totem[2]); }
+													else
+													{ global.p_totem[3] = irandom_range(2, global.p_totem[1]); }
+												}
+												else
+												{
+												global.p_totem[2] = irandom_range(2, 18); 
+												if global.p_totem[2] != 2
+													{ global.p_totem[3] = irandom_range(2, global.p_totem[2]); }
+													else
+													{ global.p_totem[3] = irandom_range(3, 18); }
+												}
+											}
+									#endregion
+										totem_es[i] = 0.8;
+										//global.tot = 1;
+										}
+										else
+										{
+										if global.e_totem[i] = 10
+											{
+											global.e_totem[i] = choose(irandom_range(1,9), irandom_range(11,18));
+											totem_es[i] = 0.8;
+											//global.tot = 1;
+											}
+											else
+											{
+											if global.e_totem[i] = 16
+												{
+												var pn_tot;
+												pn_tot = 1;
+												if global.p_totem[2] != -1
+													{ pn_tot = choose(1, 2); }
+												if global.p_totem[3] != -1
+													{ pn_tot = choose(1, 2, 3); }
+												global.e_totem[i] = global.p_totem[pn_tot];
+												global.p_totem[pn_tot] = 19;
+												totem_es[i] = 0.8;
+												//totem_ps[pn_tot] = 0.8;
+												//global.tot = 1; global.tot += 0.5;
+												}
+												else
+												{
+												if global.p_totem[i] = 11
+													{ global.tot = 8; }
+													else
+													{
+													if global.e_totem[i] = 1
+														{
+														e_hp *= 1.05;
+														e_maxhp *= 1.05;
+														}
+													if global.e_totem[i] = 2
+														{
+														e_atk *= 1.05;
+														}
+													if global.e_totem[i] = 14
+														{
+														#region Все темы - темы врага
+															theme_t[1]  = global.enemy_hero;
+															theme_nn[1] = global.theme_name[theme_t[1]];
+													
+															theme_t[2]  = global.enemy_hero;
+															theme_nn[2] = global.theme_name[theme_t[2]];
+													
+															theme_t[3]  = global.enemy_hero;
+															theme_nn[3] = global.theme_name[theme_t[3]];
+														#endregion
+														}
+													if global.e_totem[i] = 7
+														{ global.p_totem_a[7] = 0; }
+													global.tot += 0.5;
+													}
+												}
+											}
+										}
+									totem_time = 7;
+									}
+									else
+									{ totem_time -= 1; }
+								}
+							}
+							//else
+							//{
+							//if totem_es[i] < 1
+							//	{ totem_es[i] += 0.01; }
+							////if totem_ps[1] > 1
+							////	{ totem_ps[1] -= 0.01; }
+							//}
+						if global.tot = tt + 0.5
+							{
+							if totem_es[i] > 1
+								{ totem_es[i] -= 0.015; }
+								else
+								{ global.tot += 0.5; }
+							}
+						}
+					#endregion
+					}
+				}
+			
+		#endregion
+		#region Обновление переменных тотемов
+			for(i=1;i<=3;i++)
+				{
+				if global.p_totem[i] <= 6
+					{ totem_pc[i] = c_white; }
+				if global.e_totem[i] <= 6
+					{ totem_ec[i] = c_white; }
+		
+				if global.p_totem[i] > 6 && global.p_totem[i] <= 11
+					{ totem_pc[i] = c_aqua; }
+				if global.e_totem[i] > 6 && global.e_totem[i] <= 11
+					{ totem_ec[i] = c_aqua; }
+		
+				if global.p_totem[i] > 11 && global.p_totem[i] <= 15
+					{ totem_pc[i] = c_fuchsia; }
+				if global.e_totem[i] > 11 && global.e_totem[i] <= 15
+					{ totem_ec[i] = c_fuchsia; }
+		
+				if global.p_totem[i] > 15
+					{ totem_pc[i] = c_orange; }
+				if global.e_totem[i] > 15
+					{ totem_ec[i] = c_orange; }
+				}
+		#endregion
+		#region Уничтожение тотемов
+			if global.tot = 8
+				{
+				for(i=1;i<=3;i++)
+					{
+					if totem_ps[i] < 1.2
+						{ totem_ps[i] += 0.025; totem_es[i] += 0.025; }
+						else
+						{ global.tot = 9; }
+					}
+				}
+			if global.tot = 9
+				{
+				for(i=1;i<=3;i++)
+					{
+					if totem_ps[i] > 0
+						{ totem_ps[i] -= 0.05; totem_es[i] -= 0.05; }
+						else
+						{
+						global.tot = -1;
+						global.p_totem[1] = -1;
+						global.p_totem[2] = -1;
+						global.p_totem[3] = -1;
+					
+						global.e_totem[1] = -1;
+						global.e_totem[2] = -1;
+						global.e_totem[3] = -1;
+					
+						for(i=1;i<=18;i++)
+							{
+							global.p_totem_a[i] = 0;
+							global.e_totem_a[i] = 0;
+							}
+						global.game_stage = 1;
+						break;
+						}
+					}
+				}
+		#endregion
+		#region Уход тотемов
+			if global.tot = 7
+				{
+				if totem_x > -600
+					{ totem_x -= 40; }
+					else
+					{
+					global.tot = -1;
+					global.game_stage = 1;
+					}
+				}
+		#endregion
+		
+		#region Рисование
+		if (totem_alpha >= 1 && totem_alpha_d = 1) or (totem_alpha <= 0.5 && totem_alpha_d = -1)
+			{ totem_alpha_d = -totem_alpha_d; }
+		totem_alpha += 0.01 * totem_alpha_d;
+		
+		draw_set_alpha(0.45);
+		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+		draw_set_alpha(1);
+		
+		/// ТОТЕМЫ
+		if global.p_totem[3] > -1
+			{ draw_sprite_ext(s_totems_light, global.p_totem[3], txx * 0.5 + totem_x, totem_py[3], tss * totem_ps[3], tss * totem_ps[3], 0, totem_pc[3], totem_alpha); }
+		if global.p_totem[2] > -1
+			{ draw_sprite_ext(s_totems_light, global.p_totem[2], txx * 0.5 + totem_x, totem_py[2], tss * totem_ps[2], tss * totem_ps[2], 0, totem_pc[2], totem_alpha); }
+		if global.p_totem[1] > -1
+			{ draw_sprite_ext(s_totems_light, global.p_totem[1], txx * 0.5 + totem_x, totem_py[1], tss * totem_ps[1], tss * totem_ps[1], 0, totem_pc[1], totem_alpha); }
+		
+		if global.e_totem[3] > -1
+			{ draw_sprite_ext(s_totems_light, global.e_totem[3], txx * 1.5 - totem_x, totem_ey[3], tss * totem_es[3], tss * totem_es[3], 0, totem_ec[3], totem_alpha); }
+		if global.e_totem[2] > -1
+			{ draw_sprite_ext(s_totems_light, global.e_totem[2], txx * 1.5 - totem_x, totem_ey[2], tss * totem_es[2], tss * totem_es[2], 0, totem_ec[2], totem_alpha); }
+		if global.e_totem[1] > -1
+			{ draw_sprite_ext(s_totems_light, global.e_totem[1], txx * 1.5 - totem_x, totem_ey[1], tss * totem_es[1], tss * totem_es[1], 0, totem_ec[1], totem_alpha); }
+		///
+		
+		/// ТОТЕМЫ
+		if global.p_totem[3] > -1
+			{
+			draw_sprite_ext(s_totems, global.p_totem[3], txx * 0.5 + totem_x, totem_py[3], tss * totem_ps[3], tss * totem_ps[3], 0, c_white, 1);
+			draw_sprite_ext(s_totems, global.p_totem[3], txx * 0.5 + totem_x, totem_py[3], tss * totem_ps[3], tss * totem_ps[3], 0, c_black, totem_pa[3]);
+			draw_sprite_ext(s_totems_eyes, global.p_totem[3], txx * 0.5 + totem_x, totem_py[3], tss * totem_ps[3], tss * totem_ps[3], 0, totem_pc[3], totem_alpha);
+			}
+		if global.p_totem[2] > -1
+			{
+			draw_sprite_ext(s_totems, global.p_totem[2], txx * 0.5 + totem_x, totem_py[2], tss * totem_ps[2], tss * totem_ps[2], 0, c_white, 1);
+			draw_sprite_ext(s_totems, global.p_totem[2], txx * 0.5 + totem_x, totem_py[2], tss * totem_ps[2], tss * totem_ps[2], 0, c_black, totem_pa[2]);
+			draw_sprite_ext(s_totems_eyes, global.p_totem[2], txx * 0.5 + totem_x, totem_py[2], tss * totem_ps[2], tss * totem_ps[2], 0, totem_pc[2], totem_alpha);
+			}
+		if global.p_totem[1] > -1
+			{
+			draw_sprite_ext(s_totems, global.p_totem[1], txx * 0.5 + totem_x, totem_py[1], tss * totem_ps[1], tss * totem_ps[1], 0, c_white, 1);
+			draw_sprite_ext(s_totems, global.p_totem[1], txx * 0.5 + totem_x, totem_py[1], tss * totem_ps[1], tss * totem_ps[1], 0, c_black, totem_pa[1]);
+			draw_sprite_ext(s_totems_eyes, global.p_totem[1], txx * 0.5 + totem_x, totem_py[1], tss * totem_ps[1], tss * totem_ps[1], 0, totem_pc[1], totem_alpha);
+			}
+		
+		if global.e_totem[3] > -1
+			{
+			draw_sprite_ext(s_totems, global.e_totem[3], txx * 1.5 - totem_x, totem_ey[3], tss * totem_es[3], tss * totem_es[3], 0, c_white, 1);
+			draw_sprite_ext(s_totems, global.e_totem[3], txx * 1.5 - totem_x, totem_ey[3], tss * totem_es[3], tss * totem_es[3], 0, c_black, totem_ea[3]);
+			draw_sprite_ext(s_totems_eyes, global.e_totem[3], txx * 1.5 - totem_x, totem_ey[3], tss * totem_es[3], tss * totem_es[3], 0, totem_ec[3], totem_alpha);
+			}
+		if global.e_totem[2] > -1
+			{
+			draw_sprite_ext(s_totems, global.e_totem[2], txx * 1.5 - totem_x, totem_ey[2], tss * totem_es[2], tss * totem_es[2], 0, c_white, 1);
+			draw_sprite_ext(s_totems, global.e_totem[2], txx * 1.5 - totem_x, totem_ey[2], tss * totem_es[2], tss * totem_es[2], 0, c_black, totem_ea[2]);
+			draw_sprite_ext(s_totems_eyes, global.e_totem[2], txx * 1.5 - totem_x, totem_ey[2], tss * totem_es[2], tss * totem_es[2], 0, totem_ec[2], totem_alpha);
+			}
+		if global.e_totem[1] > -1
+			{
+			draw_sprite_ext(s_totems, global.e_totem[1], txx * 1.5 - totem_x, totem_ey[1], tss * totem_es[1], tss * totem_es[1], 0, c_white, 1);
+			draw_sprite_ext(s_totems, global.e_totem[1], txx * 1.5 - totem_x, totem_ey[1], tss * totem_es[1], tss * totem_es[1], 0, c_black, totem_ea[1]);
+			draw_sprite_ext(s_totems_eyes, global.e_totem[1], txx * 1.5 - totem_x, totem_ey[1], tss * totem_es[1], tss * totem_es[1], 0, totem_ec[1], totem_alpha);
+			}
+		///
+		#endregion
+		}
 #endregion
 #region Выбор Первого Игрока
 	if global.game_stage = 1 or global.game_stage = 2
@@ -3751,6 +5094,22 @@
 					if coin_i > 4
 						{ coin_i = 4; first_player = 0; }
 					}
+				
+				if global.p_totem_a[7] = 1 && global.e_totem_a[7] != 1
+					{
+					if theme_choose = 1
+						{ first_player = 1; }
+						else
+						{ first_player = 0; }
+					}
+				if global.e_totem_a[7] = 1 && global.p_totem_a[7] != 1
+					{
+					if theme_choose = 1
+						{ first_player = 0; }
+						else
+						{ first_player = 1; }
+					}
+				
 				coin_stage = 4;
 				coin_a = 0;
 				}
@@ -3813,255 +5172,62 @@
 		}
 #endregion
 #region Выбор Темы
-	#region Первый
-		if (theme_choose = 1 && global.game_stage = 2) or theme_choose = 7 or theme_choose = 8
-			{
-			//if global.game_stage >= 2
+	if (theme_choose = 1 && global.game_stage = 2) or theme_choose = 7 or theme_choose = 8
+		{
+		#region Тотем 7
+			if global.p_totem_a[7] = 1 && global.e_totem_a[7] != 1
 				{
-				if theme_g = 0
+				first_player = 1;
+				//if theme_choose = 1
+				//	{ first_player = 1; }
+				//	else
+				//	{ first_player = 0; }
+				}
+			if global.e_totem_a[7] = 1 && global.p_totem_a[7] != 1
+				{
+				first_player = 0;
+				//if theme_choose = 1
+				//	{ first_player = 0; }
+				//	else
+				//	{ first_player = 1; }
+				}
+		#endregion
+		//if global.game_stage >= 2
+			{
+			if theme_g = 0
+				{
+				if theme_s[1] < 1
+					{ theme_timer = room_speed * 14; theme_s[1] += 0.1; }
+					else
 					{
-					if theme_s[1] < 1
-						{ theme_s[1] += 0.1; }
+					if theme_s[2] < 1
+						{ theme_s[2] += 0.1; }
 						else
 						{
-						if theme_s[2] < 1
-							{ theme_s[2] += 0.1; }
-							else
-							{
-							if theme_s[3] < 1
-								{ theme_s[3] += 0.1; }
-							}
-						}
-					if theme_s[3] = 1
-						{
-						if coin_y < global.size + 300
-							{
-							coin_y  += 30;
-							name_y  += 30;
-							first_y += 30;
-							}
-							else
-							{
-							if theme_choose = 8
-								{
-								var numnum;
-								if theme_a[1] = 1
-									{ numnum = 1; }
-								if theme_a[2] = 1
-									{ numnum = 2; }
-								if theme_a[3] = 1
-									{ numnum = 3; }
-								
-								//theme_a[numnum] = 0;
-								theme_click = numnum;
-								theme_g = 1;
-								audio_play_sound(sd_text, 2, 0);
-								theme_round[global.rounds] = theme_t[numnum];
-								//if theme_t[i] = 7 { global.storm = 1; storm_1(); }
-								}
-								else
-								{
-								if choose_y > global.size - 80
-									{ choose_y -= 30; }
-								}
-							}
+						if theme_s[3] < 1
+							{ theme_s[3] += 0.1; }
 						}
 					}
-				if theme_choose = 7 or theme_choose = 8
+				if theme_s[3] = 1
 					{
-					draw_set_alpha(0.45);
-					draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-					draw_set_alpha(1);
-					}
-				for(i=1;i<=3;i++)
-					{
-					if theme_g = 0
+					if coin_y < global.size + 300
 						{
-						if theme_s[i] >= 1 && theme_a[i] = 1
-							{
-							var butsize;
-							butsize = theme_s[i] * 0.65 * sprite_get_width(s_themes_button) / 2;
-							if first_player = 1 && point_in_rectangle(mouse_x, mouse_y, theme_x[i] - butsize, theme_y[i] - butsize, theme_x[i] + butsize, theme_y[i] + butsize)
-								{
-								if mouse_check_button(mb_left)
-									{ theme_s[i] = 1.1; }
-									else
-									{ theme_s[i] = 1; }
-								if mouse_check_button_released(mb_left)
-									{
-									//theme_a[i]  = 0;
-									theme_click = i;
-									theme_g = 1;
-									audio_play_sound(sd_text, 2, 0);
-									theme_round[global.rounds] = theme_t[i];
-									//if theme_round[global.rounds] = 7 { global.storm = 1; storm_1(); }
-									}
-								}
-							theme_s[i] = 1;
-							theme_a1[i] += 10;
-							theme_x1[i] += lengthdir_x(random(0.5),theme_a1[i]);
-							theme_y1[i] += lengthdir_y(random(0.5),theme_a1[i]);
-							}
+						coin_y  += 30;
+						name_y  += 30;
+						first_y += 30;
 						}
-					if theme_g = 1
+						else
 						{
-						if i != theme_click
-							{
-							theme_y[i] += 50;
-							choose_y += 50;
-							}
-							else
-							{
-							if theme_choose = 1
-								{
-								if theme_x[i] = 640
-									{ 
-									if theme_s[i] < 1.25
-										{ theme_y1[i] -= 1; theme_y[i] += 1; theme_s[i] += 0.025; }
-										else
-										{
-										if choose_y > 500
-											{ theme_a[theme_click] = 0; theme_g = 2; }
-										}
-									}
-								if i = 1
-									{
-									if theme_x[i] < 640
-										{ theme_x[i] += 40; }
-										else
-										{ theme_x[i] = 640; }
-									}
-								if i = 3
-									{
-									if theme_x[i] > 640
-										{ theme_x[i] -= 40; }
-										else
-										{ theme_x[i] = 640; }
-									}
-								}
-							if theme_choose = 7
-								{
-								if theme_x[i] = 640
-									{
-									if theme_s[i] < 1.25
-										{ theme_y1[i] -= 1; theme_y[i] += 1; theme_s[i] += 0.025; }
-										else
-										{
-										if choose_y > 500
-											{ theme_a[theme_click] = 0; theme_g = 2; }
-										}
-									}
-								#region Один и Два
-									if theme_a[1] = 1 && theme_a[2] = 1
-										{
-										if i = 1
-											{
-											if theme_x[i] < 640
-												{ theme_x[i] += 40; }
-												else
-												{ theme_x[i] = 640; }
-											}
-										if i = 2
-											{
-											if theme_x[i] > 640
-												{ theme_x[i] -= 40; }
-												else
-												{ theme_x[i] = 640; }
-											}	
-										}
-								#endregion
-								#region Один и Три
-									if theme_a[1] = 1 && theme_a[3] = 1
-										{
-										if i = 1
-											{
-											if theme_x[i] < 640
-												{ theme_x[i] += 40; }
-												else
-												{ theme_x[i] = 640; }
-											}
-										if i = 3
-											{
-											if theme_x[i] > 640
-												{ theme_x[i] -= 40; }
-												else
-												{ theme_x[i] = 640; }
-											}	
-										}
-								#endregion
-								#region Два и Три
-									if theme_a[2] = 1 && theme_a[3] = 1
-										{
-										if i = 2
-											{
-											if theme_x[i] < 640
-												{ theme_x[i] += 40; }
-												else
-												{ theme_x[i] = 640; }
-											}
-										if i = 3
-											{
-											if theme_x[i] > 640
-												{ theme_x[i] -= 40; }
-												else
-												{ theme_x[i] = 640; }
-											}	
-										}
-								#endregion
-								}
-							if theme_choose = 8
-								{
-								
-								if theme_s[theme_click] < 1.25
-									{ theme_y1[theme_click] -= 1; theme_y[theme_click] += 1; theme_s[theme_click] += 0.025; }
-									else
-									{
-									if choose_y > 500
-										{ theme_a[theme_click] = 0; theme_g = 2; }
-									}
-								}
-							}
-						}
-					if theme_g = 2
-						{
-						if theme_s[i] > 0
-							{ theme_s[i] -= 0.25; }
-							else
-							{ theme_choose = 2; theme_g = 3; global.game_stage = 3; }
-						}
-					draw_sprite_ext_t(s_themes_button, 0, theme_x[i] + theme_x1[i], theme_y[i] + theme_y1[i], theme_s[i] * 0.65, theme_s[i] * 0.65, 0, global.color_hero[theme_t[i]], 1, c_white, c_black);
-					draw_sprite_ext_t(s_themes_ss, theme_t[i], theme_x[i] + theme_x1[i], theme_y[i] + theme_y1[i], theme_s[i] * 0.64, theme_s[i] * 0.64, 0, global.color_white, 1, global.color_white, c_black);
-					draw_set_font(global.game_font);
-					draw_text_transformed_t(theme_x[i], theme_y[i] + 100, theme_nn[i], theme_s[i] * 0.2, theme_s[i] * 0.2, 0, global.color_white, c_black);
-					}
-				if choose_y <= global.size - 80
-					{
-					theme_points_time += 1;
-					if theme_points_time = 20
-						{
-						if first_player = 0 && theme_points = ""
+						if theme_choose = 8
 							{
 							var numnum;
-							if theme_choose = 1
-								{ numnum = choose(1, 1, 3, irandom_range(1, 3)); }
-							if theme_choose = 7
-								{
-								if theme_a[1] != 1
-									{ numnum = choose(3, 3, 3, 2); }
-								if theme_a[2] != 1
-									{ numnum = choose(1, 1, 1, 3); }
-								if theme_a[3] != 1
-									{ numnum = choose(1, 1, 1, 2); }
-								}
-							//if theme_choose = 8
-							//	{
-							//	if theme_a[1] = 1
-							//		{ numnum = 1; }
-							//	if theme_a[2] = 1
-							//		{ numnum = 2; }
-							//	if theme_a[3] = 1
-							//		{ numnum = 3; }
-							//	}
+							if theme_a[1] = 1
+								{ numnum = 1; }
+							if theme_a[2] = 1
+								{ numnum = 2; }
+							if theme_a[3] = 1
+								{ numnum = 3; }
+								
 							//theme_a[numnum] = 0;
 							theme_click = numnum;
 							theme_g = 1;
@@ -4069,19 +5235,270 @@
 							theme_round[global.rounds] = theme_t[numnum];
 							//if theme_t[i] = 7 { global.storm = 1; storm_1(); }
 							}
-						if theme_points != "..."
-							{ theme_points += "."; }
 							else
-							{ theme_points = "";}
-						theme_points_time = 0;
+							{
+							if choose_y > global.size - 80
+								{ choose_y -= 30; }
+							}
 						}
 					}
-				draw_text_transformed_t(640, choose_y, theme_text[!first_player] + theme_points, 0.23, 0.23, 0, global.color_white, c_black);
 				}
-			//if coin_d < 300
-			//	{ coin_d += 30; }
+			if theme_choose = 7 or theme_choose = 8
+				{
+				draw_set_alpha(0.45);
+				draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+				draw_set_alpha(1);
+				}
+			for(i=1;i<=3;i++)
+				{
+				if theme_g = 0
+					{
+					if theme_s[i] >= 1 && theme_a[i] = 1
+						{
+						var butsize;
+						butsize = theme_s[i] * 0.65 * sprite_get_width(s_themes_button) / 2;
+						if first_player = 1 && point_in_rectangle(mouse_x, mouse_y, theme_x[i] - butsize, theme_y[i] - butsize, theme_x[i] + butsize, theme_y[i] + butsize)
+							{
+							if mouse_check_button(mb_left)
+								{ theme_s[i] = 1.1; }
+								else
+								{ theme_s[i] = 1; }
+							if mouse_check_button_released(mb_left)
+								{
+								//theme_a[i]  = 0;
+								theme_click = i;
+								theme_g = 1;
+								audio_play_sound(sd_text, 2, 0);
+								theme_round[global.rounds] = theme_t[i];
+								//if theme_round[global.rounds] = 7 { global.storm = 1; storm_1(); }
+								}
+							}
+						theme_s[i] = 1;
+						theme_a1[i] += 10;
+						theme_x1[i] += lengthdir_x(random(0.5),theme_a1[i]);
+						theme_y1[i] += lengthdir_y(random(0.5),theme_a1[i]);
+						}
+					}
+				if theme_g = 1
+					{
+					if i != theme_click
+						{
+						theme_y[i] += 50;
+						choose_y += 50;
+						}
+						else
+						{
+						if theme_choose = 1
+							{
+							if theme_x[i] = 640
+								{ 
+								if theme_s[i] < 1.25
+									{ theme_y1[i] -= 1; theme_y[i] += 1; theme_s[i] += 0.025; }
+									else
+									{
+									if choose_y > 500
+										{ theme_a[theme_click] = 0; theme_g = 2; }
+									}
+								}
+							if i = 1
+								{
+								if theme_x[i] < 640
+									{ theme_x[i] += 40; }
+									else
+									{ theme_x[i] = 640; }
+								}
+							if i = 3
+								{
+								if theme_x[i] > 640
+									{ theme_x[i] -= 40; }
+									else
+									{ theme_x[i] = 640; }
+								}
+							}
+						if theme_choose = 7
+							{
+							if theme_x[i] = 640
+								{
+								if theme_s[i] < 1.25
+									{ theme_y1[i] -= 1; theme_y[i] += 1; theme_s[i] += 0.025; }
+									else
+									{
+									if choose_y > 500
+										{ theme_a[theme_click] = 0; theme_g = 2; }
+									}
+								}
+							#region Один и Два
+								if theme_a[1] = 1 && theme_a[2] = 1
+									{
+									if i = 1
+										{
+										if theme_x[i] < 640
+											{ theme_x[i] += 40; }
+											else
+											{ theme_x[i] = 640; }
+										}
+									if i = 2
+										{
+										if theme_x[i] > 640
+											{ theme_x[i] -= 40; }
+											else
+											{ theme_x[i] = 640; }
+										}	
+									}
+							#endregion
+							#region Один и Три
+								if theme_a[1] = 1 && theme_a[3] = 1
+									{
+									if i = 1
+										{
+										if theme_x[i] < 640
+											{ theme_x[i] += 40; }
+											else
+											{ theme_x[i] = 640; }
+										}
+									if i = 3
+										{
+										if theme_x[i] > 640
+											{ theme_x[i] -= 40; }
+											else
+											{ theme_x[i] = 640; }
+										}	
+									}
+							#endregion
+							#region Два и Три
+								if theme_a[2] = 1 && theme_a[3] = 1
+									{
+									if i = 2
+										{
+										if theme_x[i] < 640
+											{ theme_x[i] += 40; }
+											else
+											{ theme_x[i] = 640; }
+										}
+									if i = 3
+										{
+										if theme_x[i] > 640
+											{ theme_x[i] -= 40; }
+											else
+											{ theme_x[i] = 640; }
+										}	
+									}
+							#endregion
+							}
+						if theme_choose = 8
+							{
+							if theme_s[theme_click] < 1.25
+								{ theme_y1[theme_click] -= 1; theme_y[theme_click] += 1; theme_s[theme_click] += 0.025; }
+								else
+								{
+								if choose_y > 500
+									{ theme_a[theme_click] = 0; theme_g = 2; }
+								}
+							}
+						}
+					}
+				if theme_g = 2
+					{
+					if theme_s[i] > 0
+						{ theme_s[i] -= 0.25; }
+						else
+						{ theme_choose = 2; theme_g = 3; global.game_stage = 3; }
+					}
+				draw_sprite_ext_t(s_themes_button, 0, theme_x[i] + theme_x1[i], theme_y[i] + theme_y1[i], theme_s[i] * 0.65, theme_s[i] * 0.65, 0, global.color_hero[theme_t[i]], 1, c_white, c_black);
+				draw_sprite_ext_t(s_themes_ss, theme_t[i], theme_x[i] + theme_x1[i], theme_y[i] + theme_y1[i], theme_s[i] * 0.64, theme_s[i] * 0.64, 0, global.color_white, 1, global.color_white, c_black);
+				draw_set_font(global.game_font);
+				if string_length(theme_nn[i]) < 7
+					{ draw_text_transformed_t(theme_x[i], theme_y[i] + 100, theme_nn[i], theme_s[i] * 0.2, theme_s[i] * 0.2, 0, global.color_white, c_black); }
+					else
+					{ draw_text_transformed_t(theme_x[i], theme_y[i] + 100, theme_nn[i], theme_s[i] * 0.18, theme_s[i] * 0.18, 0, global.color_white, c_black); }
+				}
+			if choose_y <= global.size - 80
+				{
+				theme_points_time += 1;
+				if theme_points_time = 20
+					{
+					if first_player = 0 && theme_points = ""
+						{
+						var numnum;
+						if theme_choose = 1
+							{ numnum = choose(1, 1, 3, irandom_range(1, 3)); }
+						if theme_choose = 7
+							{
+							if theme_a[1] != 1
+								{ numnum = choose(3, 3, 3, 2); }
+							if theme_a[2] != 1
+								{ numnum = choose(1, 1, 1, 3); }
+							if theme_a[3] != 1
+								{ numnum = choose(1, 1, 1, 2); }
+							}
+						//if theme_choose = 8
+						//	{
+						//	if theme_a[1] = 1
+						//		{ numnum = 1; }
+						//	if theme_a[2] = 1
+						//		{ numnum = 2; }
+						//	if theme_a[3] = 1
+						//		{ numnum = 3; }
+						//	}
+						//theme_a[numnum] = 0;
+						theme_click = numnum;
+						theme_g = 1;
+						audio_play_sound(sd_text, 2, 0);
+						theme_round[global.rounds] = theme_t[numnum];
+						//if theme_t[i] = 7 { global.storm = 1; storm_1(); }
+						}
+					if theme_points != "..."
+						{ theme_points += "."; }
+						else
+						{ theme_points = "";}
+					theme_points_time = 0;
+					}
+				}
+			draw_text_transformed_t(640, choose_y, theme_text[!first_player] + theme_points, 0.23, 0.23, 0, global.color_white, c_black);
 			}
-	#endregion
+		//if coin_d < 300
+		//	{ coin_d += 30; }
+			
+		if theme_click = 0
+			{
+			if theme_timer > 0
+				{ theme_timer -= 1; }
+				else
+				{
+				var numnum;
+				if theme_a[1] = 1 && theme_a[2] = 0 && theme_a[3] = 0
+					{ numnum = 1; }
+				if theme_a[2] = 1 && theme_a[1] = 0 && theme_a[3] = 0
+					{ numnum = 2; }
+				if theme_a[3] = 1 && theme_a[1] = 0 && theme_a[2] = 0
+					{ numnum = 3; }
+					
+				if theme_a[1] = 1 && theme_a[2] = 1 && theme_a[3] = 0
+					{ numnum = choose(1, 2); }
+				if theme_a[2] = 1 && theme_a[1] = 0 && theme_a[3] = 1
+					{ numnum = choose(2, 3); }
+				if theme_a[3] = 1 && theme_a[1] = 1 && theme_a[2] = 0
+					{ numnum = choose(1, 3); }
+					
+				if theme_a[3] = 1 && theme_a[1] = 1 && theme_a[2] = 1
+					{ numnum = choose(1, 2, 3); }
+					
+				theme_click = numnum;
+				theme_g = 1;
+				audio_play_sound(sd_text, 2, 0);
+				theme_round[global.rounds] = theme_t[numnum];
+				}
+			
+			if theme_timer <= room_speed * 7
+				{
+				draw_set_color(c_white);
+				
+				draw_set_alpha(0.4 + 0.6 * theme_timer / (7 * room_speed));
+				draw_rectangle(640 - 330 * theme_timer / (7 * room_speed), global.size / 2 - 20 - 5 + 165, 640 + 330 * theme_timer / (7 * room_speed), global.size / 2 - 20 + 5 + 165, 0);
+				draw_set_alpha(1);
+				}
+			}
+		}
 #endregion
 #region Объявление раунда
 	#region Новое
@@ -4145,6 +5562,23 @@
 											{
 											if global.game_stage = 4
 												{
+												if global.p_totem_a[13] = 1
+													{
+													var deal;
+													deal = choose(1, 0);
+													e_hp -= atk;
+													if deal = 0
+														{ hp -= e_atk; }
+													}
+												if global.e_totem_a[13] = 1
+													{
+													var deal;
+													deal = choose(1, 0);
+													hp -= e_atk;
+													if deal = 0
+														{ e_hp -= atk; }
+													}
+												
 												global.game_stage = 5;
 												theme_choose = 4;
 												list_go = 1//!list_go;
@@ -4202,6 +5636,18 @@
 	#endregion
 	if theme_choose = 2
 		{
+		for(i=1;i<=3;i++)
+			{
+			global.idol_x[i] = 0;
+			global.idol_y[i] = -200;
+		
+			global.idol[i]   = 0;
+			global.idol_s[i] = 1;
+			global.idol_h[i] = -1;
+			
+			for(j=0;j<=1;j++)
+				{ global.anim[i,j] = -1; }
+			}
 		theme_g = 0;
 		theme_click = 0;
 		theme_dot = "";
@@ -4266,12 +5712,22 @@
 		{
 		with(o_hero)
 			{
+			//if enemy
+			//	{
+			//	if hero = 1
+			//		{ global.hand = 0; }
+			//	}
+			//	else
+			//	{
+			//	if hero = 1
+			//		{ global.hand = 1; }
+			//	}
 			if hero = 5
 				{
 				if bill_stage = 2
 					{
 					//hero_sprite  = s_sbill;
-					bill_stage   = 3;
+					//bill_stage   = 0;
 					bill_boom    = 0;
 					//bill_boom    = 0;
 					//sprite_index = s_sbill;
@@ -4280,13 +5736,17 @@
 					//bill_stage   = 3;
 					//skeleton_animation_set("idle");
 					}
+				bill_stage = 0;
 				}
 			}
+		global.storm = 0;
 		global.critical   = 0;
 		global.e_critical = 0;
 		vvv = 0;
 		with(o_hero)
 			{
+			//bill_stage = 0;
+			//bill_boom  = -1;
 			poisoned = 0;
 			super = 0;
 			huntress_poison = 0;
@@ -4296,6 +5756,7 @@
 			dynamit_a = 0;
 			dynamit_i = 0;
 			dynamit_d = 0;
+			stun = 0;
 			}
 		global.super_ability1 = 0;
 		global.super_ability  = 0;
@@ -4863,6 +6324,9 @@
 		}
 	if theme_choose = 5
 		{
+		global.idol[1] = 0;
+		global.idol[2] = 0;
+		global.idol[3] = 0;
 		atk   = global.atk[global.hero];
 		e_atk = global.atk[global.enemy_hero];
 		
@@ -4957,7 +6421,7 @@
 			if finplas < 1
 				{ finplas += 0.1; }
 			if mouse_check_button_pressed(mb_left)
-				{ room_goto_t("duel"); }
+				{ room_goto_t("menu"); }
 			}
 		if o_control.back_spd > 0
 			{ o_control.back_spd -= 0.05; }
@@ -5237,7 +6701,7 @@
 				}
 			}	
 		}
-	
+	/*
 	//draw_rectangle(0, global.size - 120, 120, global.size, 1);
 	if point_in_rectangle(mouse_x, mouse_y, 0, global.size - 120, 120, global.size)
 		{
@@ -5284,6 +6748,7 @@
 		}
 		else
 		{ restart_time2 = 0; restart_angle2 = 0; }
+		*/
 #endregion
 #region Слова при выстреле
 	for(i=0;i<=2;i++)
@@ -5370,164 +6835,164 @@
 		}
 #endregion
 #region Смайлы
-		if 0
+	if 0
+		{
+		if point_in_circle(mouse_x, mouse_y, 640, global.size - 20, 65) && mouse_check_button_released(mb_left)
+			{ audio_play_sound(sd_text, 2, 0); smile_open = !smile_open; }
+	
+		if enemy_smile_time > 0
+			{ enemy_smile_time -= 1; }
+			else
 			{
-				if point_in_circle(mouse_x, mouse_y, 640, global.size - 20, 65) && mouse_check_button_released(mb_left)
-					{ audio_play_sound(sd_text, 2, 0); smile_open = !smile_open; }
-	
-				if enemy_smile_time > 0
-					{ enemy_smile_time -= 1; }
-					else
-					{
-					if enemy_smile_time > -1
-						{
-						smile_show1 = 1;
-						smile_cur1  = enemy_smile;
-						enemy_smile_time = -1;
-						}
-					}
-	
-				if smile_bi != smile_open
-					{
-					if smile_bs > 0
-						{ smile_bs -= 0.25; }
-						else
-						{ smile_bi = smile_open; }
-					}
-					else
-					{
-					if smile_bs < 1
-						{ smile_bs += 0.25; }
-					}
-	
-				draw_sprite_ext(s_smile_button2, smile_bi, 640, global.size - 20, 0.25 * smile_bs * 4, 0.25 * smile_bs * 4, 0, c_white, 0.8);
-	
-				if smile_open
-					{
-					if smile_sc < 1
-						{ smile_sc += 0.15; }
-						else
-						{ smile_sc = 1; }
-					draw_question(s_question_back, 0, 640, global.size - 140, 560 * smile_sc, 50, 1, c_white, 0.7);
-					for(i=0; i<=5; i++)
-						{
-						if point_in_circle(mouse_x, mouse_y, 640 - 260 + 100 * i, global.size - 140, 40) && smile_sc = 1
-							{
-							if mouse_check_button_released(mb_left)
-								{
-								if enemy_smile = -1
-									{
-									audio_play_sound(sd_text, 2, 0);
-									enemy_smile_chance = choose(0,1);
-									if enemy_smile_chance = 1
-										{
-										if (hp / maxhp - e_hp / e_maxhp) * 100 < -30
-											{ enemy_smile = choose(1, 1, 1, 1, 3, 3, 4); }
-										if (hp / maxhp - e_hp / e_maxhp) * 100 >= -30 && (hp / maxhp - e_hp / e_maxhp) * 100 < 20
-											{ enemy_smile = choose(0, 1, 2, 2, 2, 3, 4); }
-										if (hp / maxhp - e_hp / e_maxhp) * 100 >= 20 && (hp / maxhp - e_hp / e_maxhp) * 100 < 40
-											{ enemy_smile = choose(2, 2, 2, 5, 5, 5, 4, 0); }
-										if (hp / maxhp - e_hp / e_maxhp) * 100 >= 40 && (hp / maxhp - e_hp / e_maxhp) * 100 < 70
-											{ enemy_smile = choose(0, 0, 0, 5, 5, 5); }
-										if (hp / maxhp - e_hp / e_maxhp) * 100 >= 70
-											{ enemy_smile = choose(0, 0, 0, 5, 5); }
-										enemy_smile_time = room_speed * random_range(1, 3);
-										}
-									}
-								if smile_show = 0
-									{
-									smile_open = 0;
-									smile_show = 1;
-									smile_cur  = i;
-									}
-								}
-							if smile_ss[i] < 0.12
-								{ smile_ss[i] += 0.02; }
-							draw_sprite_ext(asset_get_index("s_smile_"+string(i)), smile_n, 640 - 260 * smile_sc + 100 * i * smile_sc, global.size - 140, (0.27 + smile_ss[i]) * smile_sc, (0.27 + smile_ss[i]), 0, c_white, 1);
-							}
-							else
-							{
-							if smile_ss[i] > 0
-								{ smile_ss[i] -= 0.02; }
-							draw_sprite_ext(s_smiles, i, 640 - 260 * smile_sc + 100 * i * smile_sc, global.size - 140, (0.27 + smile_ss[i]) * smile_sc, (0.27 + smile_ss[i]), 0, c_white, 1);
-							}
-						}
-					smile_n += 1/3;
-					}
-					else
-					{
-					smile_n = 0;
-					if smile_sc > 0
-						{
-						smile_sc -= 0.15;
-						draw_question(s_question_back, 0, 640, global.size - 140, 560 * smile_sc, 50, 1, c_white, 0.7);
-						for(i=0; i<=5; i++)
-							{ draw_sprite_ext(s_smiles, i, 640 - 260 * smile_sc + 100 * i * smile_sc, global.size - 140, 0.27 * smile_sc, 0.27, 0, c_white, 1); }
-						}
-					}
-				#region Наш смайл
-					if smile_show = 1
-						{
-						smile_alp  = 1;
-						smile_img += 1/3;
-		
-						if smile_sy < 1
-							{ smile_sy += 0.2; }
-			
-						if smile_sec < 4 * room_speed
-							{ smile_sec += 1; }
-							else
-							{ smile_show = 0; }
-		
-						draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur)), smile_img, o_hero.x + 135, o_hero.y - 220, 0.4 * smile_sy, 0.4 * smile_sy, 0, c_white, 1);
-						}
-						else
-						{
-						smile_img = 0;
-						smile_sec = 0;
-						smile_sy  = 0;
-		
-						if smile_alp > 0
-							{
-							smile_alp -= 0.05;
-							draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur)), smile_img, o_hero.x + 135, o_hero.y - 220, 0.4, 0.4, 0, c_white, smile_alp);
-							}
-							else
-							{ smile_alp = 0; }
-						}
-				#endregion
-				#region Смайл противника
-					if smile_show1 = 1
-						{
-						smile_alp1  = 1;
-						smile_img1 += 1/3;
-		
-						if smile_sy1 < 1
-							{ smile_sy1 += 0.2; }
-			
-						if smile_sec1 < 4 * room_speed
-							{ smile_sec1 += 1; }
-							else
-							{ smile_show1 = 0; enemy_smile = -1; }
-		
-						draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur1)), smile_img1, (global.enemy_object).x - 135, o_hero.y - 220, 0.4 * smile_sy1, 0.4 * smile_sy1, 0, c_white, 1);
-						}
-						else
-						{
-						smile_img1 = 0;
-						smile_sec1 = 0;
-						smile_sy1  = 0;
-		
-						if smile_alp1 > 0
-							{
-							smile_alp1 -= 0.05;
-							draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur1)), smile_img1, (global.enemy_object).x - 135, o_hero.y - 220, 0.4, 0.4, 0, c_white, smile_alp1);
-							}
-							else
-							{ smile_alp1 = 0; }
-						}
-				#endregion
+			if enemy_smile_time > -1
+				{
+				smile_show1 = 1;
+				smile_cur1  = enemy_smile;
+				enemy_smile_time = -1;
+				}
 			}
+	
+		if smile_bi != smile_open
+			{
+			if smile_bs > 0
+				{ smile_bs -= 0.25; }
+				else
+				{ smile_bi = smile_open; }
+			}
+			else
+			{
+			if smile_bs < 1
+				{ smile_bs += 0.25; }
+			}
+	
+		draw_sprite_ext(s_smile_button2, smile_bi, 640, global.size - 20, 0.25 * smile_bs * 4, 0.25 * smile_bs * 4, 0, c_white, 0.8);
+	
+		if smile_open
+			{
+			if smile_sc < 1
+				{ smile_sc += 0.15; }
+				else
+				{ smile_sc = 1; }
+			draw_question(s_question_back, 0, 640, global.size - 140, 560 * smile_sc, 50, 1, c_white, 0.7);
+			for(i=0; i<=5; i++)
+				{
+				if point_in_circle(mouse_x, mouse_y, 640 - 260 + 100 * i, global.size - 140, 40) && smile_sc = 1
+					{
+					if mouse_check_button_released(mb_left)
+						{
+						if enemy_smile = -1
+							{
+							audio_play_sound(sd_text, 2, 0);
+							enemy_smile_chance = choose(0,1);
+							if enemy_smile_chance = 1
+								{
+								if (hp / maxhp - e_hp / e_maxhp) * 100 < -30
+									{ enemy_smile = choose(1, 1, 1, 1, 3, 3, 4); }
+								if (hp / maxhp - e_hp / e_maxhp) * 100 >= -30 && (hp / maxhp - e_hp / e_maxhp) * 100 < 20
+									{ enemy_smile = choose(0, 1, 2, 2, 2, 3, 4); }
+								if (hp / maxhp - e_hp / e_maxhp) * 100 >= 20 && (hp / maxhp - e_hp / e_maxhp) * 100 < 40
+									{ enemy_smile = choose(2, 2, 2, 5, 5, 5, 4, 0); }
+								if (hp / maxhp - e_hp / e_maxhp) * 100 >= 40 && (hp / maxhp - e_hp / e_maxhp) * 100 < 70
+									{ enemy_smile = choose(0, 0, 0, 5, 5, 5); }
+								if (hp / maxhp - e_hp / e_maxhp) * 100 >= 70
+									{ enemy_smile = choose(0, 0, 0, 5, 5); }
+								enemy_smile_time = room_speed * random_range(1, 3);
+								}
+							}
+						if smile_show = 0
+							{
+							smile_open = 0;
+							smile_show = 1;
+							smile_cur  = i;
+							}
+						}
+					if smile_ss[i] < 0.12
+						{ smile_ss[i] += 0.02; }
+					draw_sprite_ext(asset_get_index("s_smile_"+string(i)), smile_n, 640 - 260 * smile_sc + 100 * i * smile_sc, global.size - 140, (0.27 + smile_ss[i]) * smile_sc, (0.27 + smile_ss[i]), 0, c_white, 1);
+					}
+					else
+					{
+					if smile_ss[i] > 0
+						{ smile_ss[i] -= 0.02; }
+					draw_sprite_ext(s_smiles, i, 640 - 260 * smile_sc + 100 * i * smile_sc, global.size - 140, (0.27 + smile_ss[i]) * smile_sc, (0.27 + smile_ss[i]), 0, c_white, 1);
+					}
+				}
+			smile_n += 1/3;
+			}
+			else
+			{
+			smile_n = 0;
+			if smile_sc > 0
+				{
+				smile_sc -= 0.15;
+				draw_question(s_question_back, 0, 640, global.size - 140, 560 * smile_sc, 50, 1, c_white, 0.7);
+				for(i=0; i<=5; i++)
+					{ draw_sprite_ext(s_smiles, i, 640 - 260 * smile_sc + 100 * i * smile_sc, global.size - 140, 0.27 * smile_sc, 0.27, 0, c_white, 1); }
+				}
+			}
+		#region Наш смайл
+			if smile_show = 1
+				{
+				smile_alp  = 1;
+				smile_img += 1/3;
+		
+				if smile_sy < 1
+					{ smile_sy += 0.2; }
+			
+				if smile_sec < 4 * room_speed
+					{ smile_sec += 1; }
+					else
+					{ smile_show = 0; }
+		
+				draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur)), smile_img, o_hero.x + 135, o_hero.y - 220, 0.4 * smile_sy, 0.4 * smile_sy, 0, c_white, 1);
+				}
+				else
+				{
+				smile_img = 0;
+				smile_sec = 0;
+				smile_sy  = 0;
+		
+				if smile_alp > 0
+					{
+					smile_alp -= 0.05;
+					draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur)), smile_img, o_hero.x + 135, o_hero.y - 220, 0.4, 0.4, 0, c_white, smile_alp);
+					}
+					else
+					{ smile_alp = 0; }
+				}
+		#endregion
+		#region Смайл противника
+			if smile_show1 = 1
+				{
+				smile_alp1  = 1;
+				smile_img1 += 1/3;
+		
+				if smile_sy1 < 1
+					{ smile_sy1 += 0.2; }
+			
+				if smile_sec1 < 4 * room_speed
+					{ smile_sec1 += 1; }
+					else
+					{ smile_show1 = 0; enemy_smile = -1; }
+		
+				draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur1)), smile_img1, (global.enemy_object).x - 135, o_hero.y - 220, 0.4 * smile_sy1, 0.4 * smile_sy1, 0, c_white, 1);
+				}
+				else
+				{
+				smile_img1 = 0;
+				smile_sec1 = 0;
+				smile_sy1  = 0;
+		
+				if smile_alp1 > 0
+					{
+					smile_alp1 -= 0.05;
+					draw_sprite_ext(asset_get_index("s_smile_" + string(smile_cur1)), smile_img1, (global.enemy_object).x - 135, o_hero.y - 220, 0.4, 0.4, 0, c_white, smile_alp1);
+					}
+					else
+					{ smile_alp1 = 0; }
+				}
+		#endregion
+		}
 	#endregion
 #region Линии видов разрешения
 if keyboard_check_pressed(ord("L"))
@@ -5607,7 +7072,7 @@ if lines_true
 	
 #endregion
 #region Критикал
-	if global.critical = 3
+	if global.critical = 3 - 2 * global.p_totem_a[3]
 		{
 		if critical_x < 640 - 30
 			{ critical_x += 50; critical_y -= 5; }
@@ -5656,97 +7121,68 @@ if lines_true
 			else
 			{ answer_rec = 0; }
 		}
-	if answer_rec > 0
+	if answer_rec > 0 && global.idol[2] != 4
 		{
 		draw_set_alpha(answer_alp);
 		draw_rectangle_color(0, 0, 1280, global.size, answer_col, answer_col, answer_col, answer_col, 0);
 		draw_set_alpha(1);
 		}
-#endregion
-#region Шэйк-эффект
-	if shaker = 1
+	if global.idol[1] = 4 or global.idol[2] = 4 or global.idol[3] = 4
 		{
-		if shaker_spd > 0
+		if idol_alpha_s = 0
 			{
-			if (shaker_ang < shaker_spd && shaker_dir = 1) or (shaker_ang > shaker_spd && shaker_dir = -1)
-				{ shaker_ang += 1 * shaker_dir; }
+			if idol_alpha < 0.2
+				{ idol_alpha += 0.002; }
 				else
-				{
-				shaker_dir  = -shaker_dir;
-				shaker_ang += 1 * shaker_dir;
-				shaker_spd -= 1;
-				}
-			camera_set_view_angle(camera_get_active(), shaker_ang);
+				{ idol_alpha_s = 1; }
 			}
-			else
+		if idol_alpha_s = 1
 			{
-			shaker = 0;
-			shaker_dir = 1;
-			shaker_spd = 10;
-			shaker_ang = 0;
+			if idol_alpha > 0
+				{ idol_alpha -= 0.002; }
+				else
+				{ idol_alpha_s = 0; }
 			}
+		var idol_col;
+		if global.idol[1] = 4
+			{ idol_col = make_color_rgb(253,265,15); }
+		if global.idol[2] = 4
+			{ idol_col = make_color_rgb(170,240,209); }
+		if global.idol[3] = 4
+			{ idol_col = make_color_rgb(127,199,255); }
+		draw_set_alpha(idol_alpha);
+		draw_rectangle_color(0, 0, 1280, global.size, idol_col, idol_col, idol_col, idol_col, 0);
+		draw_set_alpha(1);
 		}
-	if keyboard_check_pressed(ord("I"))
-		{ shaker = !shaker; }
 #endregion
 
+#region Шэйк-эффект
+	//if shaker = 1
+	//	{
+	//	if shaker_spd > 0
+	//		{
+	//		if (shaker_ang < shaker_spd && shaker_dir = 1) or (shaker_ang > shaker_spd && shaker_dir = -1)
+	//			{ shaker_ang += 1 * shaker_dir; }
+	//			else
+	//			{
+	//			shaker_dir  = -shaker_dir;
+	//			shaker_ang += 1 * shaker_dir;
+	//			shaker_spd -= 1;
+	//			}
+	//		camera_set_view_angle(camera_get_active(), shaker_ang);
+	//		}
+	//		else
+	//		{
+	//		shaker = 0;
+	//		shaker_dir = 1;
+	//		shaker_spd = 10;
+	//		shaker_ang = 0;
+	//		}
+	//	}
+	//if keyboard_check_pressed(ord("I"))
+	//	{ shaker = !shaker; }
+#endregion
 #region Отладка
-	//if list_scale > 0 && 0
-	//	{
-	//	var maxto;
-	//	maxto = - 1;
-	//	if global.rounds > 0 && global.task > 0
-	//		{ maxto = timer - min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
-	//	if maxto < 0
-	//		{ maxto = room_speed * 6; }
-	//	draw_circle_color(mouse_x, mouse_y, 47, c_black, c_black, 0);
-	//	for(i=1; i <= 360 * ((maxto) / (room_speed * 6)); i++)
-	//		{ draw_line_color(mouse_x, mouse_y, mouse_x + lengthdir_x(45, i + 90), mouse_y + lengthdir_y(45, i + 90), c_white, c_white); }
-	//	draw_circle_color(mouse_x, mouse_y, 30, c_black, c_black, 0);
-	//	draw_sprite_ext_t(s_healthbar_table_skul, 0, mouse_x, mouse_y, 0.7, 0.7, 0, c_white, 1, c_white, c_black);
-	//	}
-	//for(dev=0;dev<5;dev++)
-	//	{ 
-	//	draw_set_color(color[dev]);
-	//	draw_circle(device_mouse_x(dev), device_mouse_y(dev), 30, 0);
-	//	draw_set_color(c_white);
-	//	}
-	//if keyboard_check(vk_down)
-	//	{
-	//	ongle -= 1;
-	//	}
-	//if keyboard_check(vk_up)
-	//	{
-	//	ongle += 1;
-	//	}
-	//draw_set_font(global.game_font); //draw_set_font(f_wanted_bold);
-	//draw_text_transformed_t(mouse_x, mouse_y, string((global.enemy_object).bullet_alpha), 0.25, 0.25, 0, c_white, c_black); //draw_text_transformed_t(mouse_x, mouse_y, string_upper(keyboard_string), 0.10, 0.10, 0, c_white, c_black);
-	//draw_triangle(mouse_x - 640, mouse_y + 450, mouse_x + 640, mouse_y - 300, mouse_x + 640, mouse_y + 500, 0);
-	//var ot11, ot1, ot2, ot3, ot4, ot5, ot6;
-	//ot11 = string(global.pin); //"rounds = " + string(global.rounds) + "\ntask = " + string(global.task) + "\nquestion = " + string(global.question);
-	//ot1 = "\nt1.1 = " + string(task_question[1,1]) + " t2.1 = " + string(task_question[2,1]) + " t3.1 = " + string(task_question[3,1]); //ot2 = "\nt1 = " + string(task_question[global.task,1]) + "\nt2 = " + string(task_question[global.task,2]) + "\nt3 = " + string(task_question[global.task,3]) + "\nt4 = " + string(task_question[global.task,4]) + "\nt5 = " + string(task_question[global.task,5]) + "\nt6 = " + string(task_question[global.task,6]);
-	//ot2 = "\nt1.2 = " + string(task_question[1,2]) + " t2.2 = " + string(task_question[2,2]) + " t3.2 = " + string(task_question[3,2]);
-	//ot3 = "\nt1.3 = " + string(task_question[1,3]) + " t2.3 = " + string(task_question[2,3]) + " t3.3 = " + string(task_question[3,3]);
-	//ot4 = "\nt1.4 = " + string(task_question[1,4]) + " t2.4 = " + string(task_question[2,4]) + " t3.4 = " + string(task_question[3,4]);
-	//ot5 = "\nt1.5 = " + string(task_question[1,5]) + " t2.5 = " + string(task_question[2,5]) + " t3.5 = " + string(task_question[3,5]);
-	//ot6 = "\nt1.6 = " + string(task_question[1,6]) + " t2.6 = " + string(task_question[2,6]) + " t3.6 = " + string(task_question[3,6]);
-	//draw_set_font(f_description_regular);
-	//draw_text(mouse_x, mouse_y, ot11 + ot1 + ot2 + ot3 + ot4 + ot5 + ot6);
-#endregion
-#region Прочее
-	#region Старый код (Время)
-	//var str, font;
-	//str  = "0123456789?=≠+-/*><"; //"!"+"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя"; 
-	//font = font_add_sprite_ext(s_question_fig, str, true, 1);
-	//draw_set_font(f_player_name_big_bold);
-	//var hour, minute;
-	//hour = string(o_control.day_hour);
-	//minute = string(o_control.day_minute);
-
-	//if real(hour) < 10
-	//	{ hour = "0" + hour; }
-	//if real(minute) < 10
-	//	{ minute = "0" + minute; }
-	//draw_text_transformed_t(640, global.size / 2, hour + ":" + minute, 1, 1, 0, c_white, c_black);
-#endregion
+	draw_set_font(global.game_font);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(global.tot) + ":" + string(totem_time), 0.25, 0.25, 0, c_white, c_black);
 #endregion

@@ -7,6 +7,7 @@ enemy = global.enemy;
 
 bullet_index = 0;
 
+have_posion = 0;
 
 if enemy
 	{ global.enemy_object  = id; }
@@ -113,10 +114,13 @@ dynamit_a  = 0;
 dynamit_i  = 0;
 dynamit_d  = 0;
 diego_boom = -1;
-drunk_atk  = 0;
 
 bill_stage = 0;
 bill_boom  = -1;
+
+fire_time  = 0;
+
+hand_away  = 0;
 
 for(i=0;i<=10;i++)
 	{ bullet_lx[i] = 0; }

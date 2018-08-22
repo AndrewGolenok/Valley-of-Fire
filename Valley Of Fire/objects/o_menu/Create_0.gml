@@ -6,6 +6,8 @@ menu_stage = "heroes1"; //"dificult";
 global.player_rank = 15//irandom_range(1, 15);
 anim_skul = 0;
 
+lag = 0;
+
 s0 = 0;
 s1 = 0;
 s2 = 0;
@@ -74,7 +76,7 @@ hold_time  = 0;
 hold_go    = 0;
 
 global.hero       = 1;
-global.enemy_hero = choose(6, 4, 3); //choose(irandom_range(1, 6), irandom_range(1, 6), irandom_range(1, 7));
+global.enemy_hero = irandom_range(1,7); //choose(irandom_range(1, 6), irandom_range(1, 6), irandom_range(1, 7));
 #region Переменные персонажей
 	must_x    = 1280 / 2;
 	hero_y    = global.size - 50;

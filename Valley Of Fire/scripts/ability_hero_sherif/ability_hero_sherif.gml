@@ -19,9 +19,9 @@ if image_index = 32 && skeleton_animation_get() = "super"
 	
 	shoot = 2;
 	if !enemy
-		{ global.critical = 3; }
+		{ global.critical = 3 - 2 * global.p_totem_a[3]; }
 		else
-		{ global.e_critical = 3; }
+		{ global.e_critical = 3 - 2 * global.e_totem_a[3]; }
 	if global.music { audio_play_sound(sd_revolver, 1, 0); }
 	}
 

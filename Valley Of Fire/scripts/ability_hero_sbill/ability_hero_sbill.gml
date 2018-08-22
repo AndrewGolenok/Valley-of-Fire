@@ -2,15 +2,15 @@
 //if super = 1
 //	{ draw_sprite_ext(sprite_index, image_index, x - 28, y - 15, sc * scale, scale, 0, c_fuchsia, super_img / 70); }
 	
-if image_index < hero_abindex && skeleton_animation_get() = "super"
-	{ super_img = image_index; }
-	else
-	{
-	if super_img > 1
-		{ super_img -= 2; }
-		else
-		{ super_img = 0; }
-	}
+//if image_index < hero_abindex && skeleton_animation_get() = "super"
+//	{ super_img = image_index; }
+//	else
+//	{
+//	if super_img > 1
+//		{ super_img -= 2; }
+//		else
+//		{ super_img = 0; }
+//	}
 	
 //if image_index = hero_abindex && skeleton_animation_get() = "super"
 //	{
@@ -23,12 +23,20 @@ if image_index < hero_abindex && skeleton_animation_get() = "super"
 
 if (round(image_index) = 10 or round(image_index) = 9) && skeleton_animation_get() = "shoot" && shoot = 0
 	{
-	sx = x;
-	sy = y;
+	if super = 0
+		{
+		sx = x;
+		sy = y;
 	
-	knife_i = 0;
-	shoot = 1;
-	bullet_index = 4;
+		knife_i = 0;
+		shoot = 1;
+		}
+		else
+		{
+		super = 0;
+		global.super_ability = 0;
+		global.bill_abil = 10 * room_speed;
+		}
 	if global.music { audio_play_sound(sd_bow, 1, 0); }
 	}
 

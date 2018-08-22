@@ -1,7 +1,85 @@
+if hero = 1
+	{
+	if skeleton_animation_get() = "super"
+		{
+		if global.swipe_ability = 1
+			{
+			//global.super_ability = 0;
+			if ((global.enemy_hero = 5 && !enemy) or (global.hero = 5 && enemy)) && change = 3
+				{
+				super = 0;
+				global.bill_abil = 10 * room_speed;
+				global.super_ability = 0;
+				}
+			if ((global.enemy_hero = 7 && !enemy) or (global.hero = 7 && enemy)) && change = 3
+				{
+				global.super_ability = 0;
+				super = 0;
+				// ШАМАН
+				}
+			}
+			else
+			{
+			global.super_ability = 0;
+			global.swipe_ability = 1;
+			var enemy_now, enemy_need, player_now, player_need;
+			enemy_now  = o_list.e_super_now;
+			enemy_need = o_list.e_super_need;
+		
+			player_now  = o_list.super_now;
+			player_need = o_list.super_need;
+		
+			o_list.super_now  = enemy_now;
+			o_list.super_need = enemy_need;
+		
+			o_list.e_super_now  = 0; //player_now;
+			o_list.e_super_need = 3 - global.e_totem_a[15]; //player_need;
+		
+			o_list.super_now1 = 0; //super_need;
+			}
+		}
+	}
+if (hero = 7 && skeleton_animation_get() = "greetings") or (hero = 1 && global.swipe_ability = 1 && (global.enemy_object).hero = 7 && skeleton_animation_get() = "super")
+	{
+	if super = 1 //global.super_ability = 1
+		{
+		var idol_n, idol_t;
+		idol_t = 1;
+		idol_n = -1;
+		if global.idol_h[1] != -1 && global.idol_h[2] != -1 && global.idol_h[2] != -1
+			{ idol_t = 0; }
+		if idol_t = 1
+			{
+			if global.idol[1] = 0 && global.idol[2] = 0 global.idol[3] = 0
+				{ idol_n = choose(1, 2, 3); }
+			if global.idol[1] = 1 && global.idol[2] = 0 && global.idol[3] = 0
+				{ idol_n = choose(2, 3); }
+			if global.idol[1] = 0 && global.idol[2] = 1 && global.idol[3] = 0
+				{ idol_n = choose(1, 3); }
+			
+			if idol_n != -1
+				{
+				if enemy
+					{ global.idol_h[idol_n] = 0; }
+					else
+					{ global.idol_h[idol_n] = 1; }
+				global.idol[idol_n] = 1;
+				}
+			}
+		super = 0;
+		global.super_ability = 0;
+		}
+	}
+
 if bill_stage = 1
 	{
 	bill_stage = 2;
+	//if ((global.player_object).super = 1 && enemy) or ((global.enemy_object).super = 1 && enemy)
+	//	{  }
+	//	else
+	//	{
 	global.super_ability = 0;
+	//}
 	hero_sprite = s_jbill;
 	if !enemy
 		{ o_list.atk   /= 3; }
@@ -15,7 +93,8 @@ if diego_dynamit = 1
 	{
 	if global.super_ability = 1 && change = 3
 		{ global.super_ability = 0; }
-	hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "2");
+	if hero = 4
+		{ hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "2"); }
 	}
 	
 if diego_dynamit != 1 && bill_stage = 0//>= 2
@@ -29,7 +108,7 @@ if change = 1
 		global.super_ability1 = 1;
 		}
 	if global.game_stage = 0
-		{ global.game_stage = 1; }
+		{ global.game_stage = 0.5; }
 	sprite_index = hero_sprite;
 	skeleton_animation_set("idle");
 	image_index = 0;

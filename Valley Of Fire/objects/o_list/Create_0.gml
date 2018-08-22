@@ -1,5 +1,4 @@
 #region Стартовые переменные
-	//instance_destroy();
 	anim_skul = 0;
 	global.player_name = choose("Andrew", "Artem", "Nikolay");
 	global.enemy_rank  = choose(global.player_rank - 1, global.player_rank + 1, global.player_rank + 1, global.player_rank, global.player_rank, global.player_rank, global.player_rank, global.player_rank)
@@ -28,8 +27,8 @@
 
 	question_text = global.question_text[1, 1];
 
-	super_x = 300;
-	vvv = 0;
+	super_x  = 0;
+	vvv      = 0;
 	vvv_time = 0;
 	skill[1] = 1;
 	skill[2] = 1;
@@ -385,6 +384,7 @@
 	theme_click = 0;
 	theme_dot   = "";
 	
+	theme_timer = room_speed * 14;
 #endregion
 #region Объявление раунда
 	round_text[1] = "ROUND";
@@ -409,7 +409,7 @@
 	round_spd   = 0.0025;
 	round_alpha = 1;
 #endregion
-#region Выбор победителя
+#region Объявление победителя
 	win_x  = 350;
 	
 	win_s1  = 1;
@@ -458,8 +458,11 @@
 	global.critical_y_p = 200;
 	global.critical_y_e = 200;
 	
-	global.cananswer  = 1;
-	global.game_stage = 0;
+	global.cananswer   = 1;
+	global.game_stage  = 0;
+	
+	global.abilitican   = 1;
+	global.e_abilitican = 1;
 	
 	theme_round[1] = -1;
 	theme_round[2] = -1;
@@ -533,7 +536,7 @@
 	o_math_mod = 1;
 	o_but_sc   = 1.2;
 	
-	timer   = 6 * room_speed;
+	timer   = 6 * room_speed; // (6 + 3 * global.p_totem_a[4]) * room_speed
 	timer_x = 6 * room_speed;
 	
 	dop_q_y = 0;
@@ -713,6 +716,7 @@
 		card_all  = 2;
 		card_time = -1;
 		cards_1(); //card_what();
+		//cards_2();
 		
 		card_find = 0;
 		card_have = 0;
@@ -836,13 +840,6 @@
 	#region	Шторм      - Storm
 		global.storm = 0;
 	#endregion
-	
-	#region	///Стрельба - Shooting
-		
-	#endregion
-	#region	///Мера - Measure
-		
-	#endregion
 #endregion
 #region Суперудар Кнопка
 	super_need  = 3;
@@ -859,6 +856,7 @@
 	
 	e_super_need = 3;
 	e_super_now  = 0;
+	e_super_now1 = 0;
 	
 	super_time  = 0;
 	super_val   = 0;
@@ -1005,4 +1003,199 @@
 	answer_rec = 0;
 	answer_col = 0;
 	answer_alp = 0;
+#endregion
+#region Способности
+	global.bill_abil   = 0;
+	global.bill_abil_a = 0;
+	
+	global.hand = -1;
+	global.hand = -1;
+	
+	global.swipe_ability = 0;
+	
+	for(i=1;i<=3;i++)
+		{
+		global.idol_x[i] = 0;
+		global.idol_y[i] = -200;
+		
+		global.idol[i]   = 0;
+		global.idol_s[i] = 1;
+		global.idol_h[i] = -1;
+		
+		for(j=0;j<=1;j++)
+			{ global.anim[i,j] = -1; }
+		}
+	idol_alpha   = 0;
+	idol_alpha_s = 0;
+#endregion
+#region Тотемы
+	global.tot = 0;
+	global.p_totem[1] = 18;
+	global.p_totem[2] = 1;
+	global.p_totem[3] = 2;
+	
+	#region Случайные тотемы Врага
+		if global.enemy_level <= 4
+			{
+			global.e_totem[1] = choose(irandom_range(1, 6), irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
+			global.e_totem[2] = -1;
+			global.e_totem[3] = -1;
+			}
+		if global.enemy_level > 4 && global.enemy_level < 7
+			{
+			var toi;
+			global.e_totem[1] = choose(irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
+		
+			if global.e_totem[1] != 1
+				{ global.e_totem[2] = irandom_range(1, global.e_totem[1]); }
+				else
+				{ global.e_totem[2] = choose(irandom_range(2, 11), irandom_range(2, 15), irandom_range(2, 18)); }
+			global.e_totem[3] = -1;
+			}
+		if global.enemy_level >= 7
+			{
+			var toi;
+			global.e_totem[1] = choose(irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
+		
+			if global.e_totem[1] != 1
+				{
+				global.e_totem[2] = irandom_range(1, global.e_totem[1]);
+				if global.e_totem[2] != 1
+					{ global.e_totem[2] = irandom_range(1, global.e_totem[2]); }
+					else
+					{ global.e_totem[2] = irandom_range(2, global.e_totem[1]); }
+				}
+				else
+				{
+				global.e_totem[2] = choose(irandom_range(2, 15), irandom_range(2, 18)); 
+				if global.e_totem[2] != 2
+					{ global.e_totem[2] = irandom_range(2, global.e_totem[2]); }
+					else
+					{ global.e_totem[2] = irandom_range(3, 18); }
+				}
+			}
+	#endregion
+	global.e_totem[1] = 1;
+	global.e_totem[2] = 2;
+	global.e_totem[3] = 3;
+		
+	for(i=1;i<=3;i++)
+		{
+		if global.p_totem[i] <= 6
+			{ totem_pc[i] = c_white; }
+		if global.e_totem[i] <= 6
+			{ totem_ec[i] = c_white; }
+		
+		if global.p_totem[i] > 6 && global.p_totem[i] <= 11
+			{ totem_pc[i] = c_aqua; } // make_color_rgb(127,199,255);
+		if global.e_totem[i] > 6 && global.e_totem[i] <= 11
+			{ totem_ec[i] = c_aqua; }
+		
+		if global.p_totem[i] > 11 && global.p_totem[i] <= 15
+			{ totem_pc[i] = c_fuchsia; }
+		if global.e_totem[i] > 11 && global.e_totem[i] <= 15
+			{ totem_ec[i] = c_fuchsia; }
+		
+		if global.p_totem[i] > 15
+			{ totem_pc[i] = c_orange; }
+		if global.e_totem[i] > 15
+			{ totem_ec[i] = c_orange; }
+		}
+	
+	var txx, tss;
+	txx = 640;
+	tss = 0.3;
+	totem_alpha   = 1;
+	totem_alpha_d = -1;
+	totem_x = -600;
+	
+	if global.p_totem[1] = -1
+		{
+		totem_py[1] = -200;
+		totem_py[2] = -200;
+		totem_py[3] = -200;
+		}
+	if global.p_totem[1] != -1 && global.p_totem[2] = -1 && global.p_totem[3] = -1
+		{
+		totem_py[1] = global.size / 2 + sprite_get_height(s_totems) * tss * 0.9;
+		totem_py[2] = 0;
+		totem_py[3] = 0;
+		}
+	if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] = -1
+		{
+		totem_py[1] = global.size / 2;
+		totem_py[2] = global.size / 2 + sprite_get_height(s_totems) * tss * 0.9;
+		totem_py[3] = 0;
+		}
+	if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] != -1
+		{
+		totem_py[1] = global.size / 2 - sprite_get_height(s_totems) * tss * 0.9;
+		totem_py[2] = global.size / 2;
+		totem_py[3] = global.size / 2 + sprite_get_height(s_totems) * tss * 0.9;
+		}
+		
+	//
+	if global.e_totem[1] = -1
+		{
+		totem_ey[1] = -200;
+		totem_ey[2] = -200;
+		totem_ey[3] = -200;
+		}
+	if global.e_totem[1] != -1 && global.e_totem[2] = -1 && global.e_totem[3] = -1
+		{
+		totem_ey[1] = global.size / 2 + sprite_get_height(s_totems) * tss * 0.9;
+		totem_ey[2] = -200;
+		totem_ey[3] = -200;
+		}
+	if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] = -1
+		{
+		totem_ey[1] = global.size / 2;
+		totem_ey[2] = global.size / 2 + sprite_get_height(s_totems) * tss * 0.9;
+		totem_ey[3] = -200;
+		}
+	if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] != -1
+		{
+		totem_ey[1] = global.size / 2 - sprite_get_height(s_totems) * tss * 0.9;
+		totem_ey[2] = global.size / 2;
+		totem_ey[3] = global.size / 2 + sprite_get_height(s_totems) * tss * 0.9;
+		}
+	//
+	
+	totem_ps[1] = 1;
+	totem_ps[2] = 1;
+	totem_ps[3] = 1;
+	
+	totem_es[1] = 1;
+	totem_es[2] = 1;
+	totem_es[3] = 1;
+	
+	totem_pa[1] = 0.5;
+	totem_pa[2] = 0.5;
+	totem_pa[3] = 0.5;
+	
+	totem_ea[1] = 0.5;
+	totem_ea[2] = 0.5;
+	totem_ea[3] = 0.5;
+	
+	totem_time  = 7;
+	totem_first = choose(1, 0);
+	
+	for(i=1;i<=19;i++)
+		{
+		global.p_totem_a[i] = 0;
+		global.e_totem_a[i] = 0;
+		for(j=1;j<=3;j++)
+			{
+			if global.p_totem[j] = i
+				{ global.p_totem_a[i] = 1; }
+			if global.e_totem[j] = i
+				{ global.e_totem_a[i] = 1; }
+			}
+		}
+	 if global.e_totem_a[15] = 1
+		{ e_super_need = 2; }
+	if global.p_totem_a[15] = 1
+		{ super_need = 2; }
+	
+	poison_e = 0;
 #endregion

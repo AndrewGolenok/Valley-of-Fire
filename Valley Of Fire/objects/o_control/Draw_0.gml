@@ -96,7 +96,6 @@
 	day_minute = date_get_minute(date);
 	day_second = date_get_second(date);
 	
-	
 	draw_sprite_ext(s_train_back, back_time[1], 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, back_alpha[1]);
 	draw_sprite_ext(s_train_back, back_time[2], 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, back_alpha[2]);
 	
