@@ -1028,12 +1028,13 @@
 	idol_alpha   = 0;
 	idol_alpha_s = 0;
 #endregion
-#region Тотемы
+#region ТОТЕМЫ
 	global.tot = 0;
-	global.p_totem[1] = 18;
-	global.p_totem[2] = 1;
-	global.p_totem[3] = 2;
+	global.p_totem[1] = 1;
+	global.p_totem[2] = 2;
+	global.p_totem[3] = 3;
 	
+	global.enemy_level = 7;
 	#region Случайные тотемы Врага
 		if global.enemy_level <= 4
 			{
@@ -1061,23 +1062,24 @@
 				{
 				global.e_totem[2] = irandom_range(1, global.e_totem[1]);
 				if global.e_totem[2] != 1
-					{ global.e_totem[2] = irandom_range(1, global.e_totem[2]); }
+					{ global.e_totem[3] = irandom_range(1, global.e_totem[2]); }
 					else
-					{ global.e_totem[2] = irandom_range(2, global.e_totem[1]); }
+					{ global.e_totem[3] = irandom_range(2, global.e_totem[1]); }
 				}
 				else
 				{
 				global.e_totem[2] = choose(irandom_range(2, 15), irandom_range(2, 18)); 
 				if global.e_totem[2] != 2
-					{ global.e_totem[2] = irandom_range(2, global.e_totem[2]); }
+					{ global.e_totem[3] = irandom_range(2, global.e_totem[2]); }
 					else
-					{ global.e_totem[2] = irandom_range(3, 18); }
+					{ global.e_totem[3] = irandom_range(3, 18); }
 				}
 			}
 	#endregion
-	global.e_totem[1] = 1;
-	global.e_totem[2] = 2;
-	global.e_totem[3] = 3;
+	
+	//global.e_totem[1] = 18;
+	//global.e_totem[2] = 2;
+	//global.e_totem[3] = 3;
 		
 	for(i=1;i<=3;i++)
 		{
@@ -1117,21 +1119,21 @@
 		}
 	if global.p_totem[1] != -1 && global.p_totem[2] = -1 && global.p_totem[3] = -1
 		{
-		totem_py[1] = global.size / 2 + sprite_get_height(s_totems) * tss * 0.9;
+		totem_py[1] = global.size / 2 + 470 * tss * 0.9;
 		totem_py[2] = 0;
 		totem_py[3] = 0;
 		}
 	if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] = -1
 		{
 		totem_py[1] = global.size / 2;
-		totem_py[2] = global.size / 2 + sprite_get_height(s_totems) * tss * 0.9;
+		totem_py[2] = global.size / 2 + 470 * tss * 0.9;
 		totem_py[3] = 0;
 		}
 	if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] != -1
 		{
-		totem_py[1] = global.size / 2 - sprite_get_height(s_totems) * tss * 0.9;
+		totem_py[1] = global.size / 2 - 470 * tss * 0.9;
 		totem_py[2] = global.size / 2;
-		totem_py[3] = global.size / 2 + sprite_get_height(s_totems) * tss * 0.9;
+		totem_py[3] = global.size / 2 + 470 * tss * 0.9;
 		}
 		
 	//
@@ -1143,21 +1145,21 @@
 		}
 	if global.e_totem[1] != -1 && global.e_totem[2] = -1 && global.e_totem[3] = -1
 		{
-		totem_ey[1] = global.size / 2 + sprite_get_height(s_totems) * tss * 0.9;
+		totem_ey[1] = global.size / 2 + 470 * tss * 0.9;
 		totem_ey[2] = -200;
 		totem_ey[3] = -200;
 		}
 	if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] = -1
 		{
 		totem_ey[1] = global.size / 2;
-		totem_ey[2] = global.size / 2 + sprite_get_height(s_totems) * tss * 0.9;
+		totem_ey[2] = global.size / 2 + 470 * tss * 0.9;
 		totem_ey[3] = -200;
 		}
 	if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] != -1
 		{
-		totem_ey[1] = global.size / 2 - sprite_get_height(s_totems) * tss * 0.9;
+		totem_ey[1] = global.size / 2 - 470 * tss * 0.9;
 		totem_ey[2] = global.size / 2;
-		totem_ey[3] = global.size / 2 + sprite_get_height(s_totems) * tss * 0.9;
+		totem_ey[3] = global.size / 2 + 470 * tss * 0.9;
 		}
 	//
 	
@@ -1177,7 +1179,7 @@
 	totem_ea[2] = 0.5;
 	totem_ea[3] = 0.5;
 	
-	totem_time  = 7;
+	totem_time  = 10;
 	totem_first = choose(1, 0);
 	
 	for(i=1;i<=19;i++)
@@ -1192,10 +1194,14 @@
 				{ global.e_totem_a[i] = 1; }
 			}
 		}
+	
 	 if global.e_totem_a[15] = 1
 		{ e_super_need = 2; }
 	if global.p_totem_a[15] = 1
 		{ super_need = 2; }
 	
 	poison_e = 0;
+#endregion
+#region Сурфейс
+	global.draw_bsurf = 0;
 #endregion

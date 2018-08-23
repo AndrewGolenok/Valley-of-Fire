@@ -110,8 +110,8 @@ if !enemy
 		
 			abil_n += 0.4;
 			draw_sprite_ext(s_fire, abil_n, x + 5 + prx, y - 145 - 100 + o_control.back_train_y2 + pry, sc * scale * 1.3, scale * 1.3, 0, c_white, 1);
-			if poisoned > 0
-				{ poisoned = 0; }
+			//if poisoned > 0
+			//	{ poisoned = 0; }
 			}
 		if poisoned > 0
 			{
@@ -130,7 +130,7 @@ if !enemy
 					change = 1;
 					}
 				}
-			draw_sprite_ext(sprite_index, image_index, x + 28 + prx, y - 15 + o_control.back_train_y1 + pry, sc * scale, scale, 0, global.color_hero[3], 0.2);
+			draw_sprite_ext(sprite_index, image_index, x + 28 + prx, y - 15 + o_control.back_train_y1 + pry, sc * scale, scale, 0, c_fuchsia, 0.2);
 			
 			abil_n += 0.4;
 			draw_sprite_ext(s_abil_thing_huntress, abil_n, x + 5 + prx, y - 145 - 100 + o_control.back_train_y2 + pry, sc * scale * 1.3, scale * 1.3, 0, c_white, 1);
@@ -164,41 +164,9 @@ if !enemy
 		
 			abil_n += 0.4;
 			draw_sprite_ext(s_fire, abil_n, x + 5 + prx, y - 145 - 100 + o_control.back_train_y2 + pry, sc * scale * 1.3, scale * 1.3, 0, c_white, 1);
-			if poisoned > 0
-				{ poisoned = 0; }
-			}
-			
-			//if global.idol[1] = 4
-			//	{
-			//	if fire_time = 0
-			//		{
-			//		fire_time = room_speed;
-			//		o_list.hp -= o_list.e_atk / 10;
-			//		o_list.dop_i[1] = 7;
-			//		o_list.dop_text_color[1] = (global.enemy_object).hero_color;
-			//		o_list.dop_text[7] = "-" + string(round(o_list.e_atk / 10));
-			//		if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
-			//			{
-			//			stun = 0;
-			//			skeleton_animation_set("damaged");
-			//			change = 1;
-			//			}
-			//		}
-			//		else
-			//		{ fire_time -= 1; }
-			//	draw_sprite_ext(sprite_index, image_index, x - 28 + prx, y - 15 + o_control.back_train_y2 + pry, sc * scale, scale, 0, c_fuchsia, 0.2);
-		
-			//	abil_n += 0.4;
-			//	draw_sprite_ext(s_fire, abil_n, x + 5 + prx, y - 145 - 100 + o_control.back_train_y2 + pry, sc * scale * 1.3, scale * 1.3, 0, c_white, 1);
-			//	if poisoned > 0
-			//		{ poisoned = 0; }
-			//	}
-			//draw_sprite_ext(sprite_index, image_index, x - 28 + prx, y - 15 + o_control.back_train_y2 + pry, sc * scale, scale, 0, make_color_rgb(253,265,15), 0.2);
-			
-			//abil_n += 0.4;
-			//draw_sprite_ext(s_fire, abil_n, x + 5 + prx, y - 145 - 100 + o_control.back_train_y2 + pry, sc * scale * 1.3, scale * 1.3, 0, c_white, 1);
 			//if poisoned > 0
 			//	{ poisoned = 0; }
+			}
 		if poisoned > 0
 			{
 			poisoned -= 1;
@@ -216,7 +184,7 @@ if !enemy
 					change = 1;
 					}
 				}
-			draw_sprite_ext(sprite_index, image_index, x - 28 + prx, y - 15 + o_control.back_train_y2 + pry, sc * scale, scale, 0, global.color_hero[3], 0.2);
+			draw_sprite_ext(sprite_index, image_index, x - 28 + prx, y - 15 + o_control.back_train_y2 + pry, sc * scale, scale, 0, c_fuchsia, 0.2);
 		
 			abil_n += 0.4;
 			draw_sprite_ext(s_abil_thing_huntress, abil_n, x + 5 + prx, y - 145 - 100 + o_control.back_train_y2 + pry, sc * scale * 1.3, scale * 1.3, 0, c_white, 1);
@@ -277,7 +245,7 @@ if !enemy
 				{
 				if global.e_totem_a[15] = 0
 					{
-					if global.e_critical != 3 - 2 * global.e_totem_a[3] //if (sx - 28 > x + 40 && !enemy) or (sx - 28 < x && enemy)
+					if global.e_critical != 3 - 1 * global.e_totem_a[3] //if (sx - 28 > x + 40 && !enemy) or (sx - 28 < x && enemy)
 						{ draw_sprite_ext(hero_bullet, bullet_index + knife_i, sx - 28 + prx, sy + pry, sc * scale - 0.025, scale + 0.025, 0, c_white, bullet_alpha); }
 						else
 						{ draw_sprite_ext(hero_bullet, bullet_index + knife_i, sx - 28 + prx, sy + pry, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[hero], bullet_alpha); }
@@ -289,7 +257,7 @@ if !enemy
 				{
 				if have_posion = 0
 					{
-					if global.critical != 3 - 2 * global.p_totem_a[3] //if (sx - 28 > x + 40 && !enemy) or (sx - 28 < x && enemy)
+					if global.critical != 3 - 1 * global.p_totem_a[3] //if (sx - 28 > x + 40 && !enemy) or (sx - 28 < x && enemy)
 						{ draw_sprite_ext(hero_bullet, bullet_index + knife_i, sx - 28 + prx, sy + pry, sc * scale - 0.025, scale + 0.025, 0, c_white, bullet_alpha); }
 						else
 						{ draw_sprite_ext(hero_bullet, bullet_index + knife_i, sx - 28 + prx, sy + pry, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[hero], bullet_alpha); }
@@ -435,7 +403,7 @@ if !enemy
 					{
 					with((global.enemy_object))
 						{
-						dynamit_d = o_list.atk + o_list.atk / 10 * (global.e_critical == (3 - 2 * global.e_totem_a[3]));
+						dynamit_d = o_list.atk + o_list.atk / 10 * (global.e_critical == 3);
 						diego_dynamit = 2;
 						stun_seconds -= 1;
 						change = 3;
@@ -484,7 +452,7 @@ if !enemy
 					{
 					with((global.player_object))
 						{
-						dynamit_d = o_list.e_atk + o_list.e_atk / 10 * (global.e_critical == (3 - 2 * global.e_totem_a[3]));
+						dynamit_d = o_list.e_atk + o_list.e_atk / 10 * (global.e_critical == 3);
 						diego_dynamit = 2;
 						stun_seconds -= 1;
 						change = 3;
@@ -494,7 +462,7 @@ if !enemy
 				
 				o_list.dop_i[1] = 7;
 				o_list.dop_text_color[1] = (global.enemy_object).hero_color;
-				if global.critical == 3 - 2 * global.p_totem_a[3]
+				if global.critical == 3 - 1 * global.p_totem_a[3]
 					{ o_list.dop_text[7] = "-" + string(round(o_list.e_atk + o_list.e_atk / 10)); }
 					else
 					{ o_list.dop_text[7] = "-" + string(round(o_list.e_atk)); }

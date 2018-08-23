@@ -127,7 +127,6 @@ if stage = 4
 	draw_sprite_ext(s_logo1_smartcowboys, 0, 640, global.size - 610 * back_scale + all_y + 50 + smart_y,   back_scale * smart_scale,   back_scale * smart_scale,   smart_angle,   c_white, 1);
 	draw_sprite_ext(s_logo1_smartcowboys, 1, 640, global.size - 610 * back_scale + all_y + 50 + cowboys_y, back_scale * cowboys_scale, back_scale * cowboys_scale, cowboys_angle, c_white, 1);
 	}
-	
 
 draw_sprite_ext(s_logo1_sand, 0, 640, global.size + all_y, back_scale, back_scale, 0, c_white, 1);
 
@@ -273,11 +272,11 @@ if stage = 18
 	{
 	fire_angle = 0;
 	fire_angle1 = 0;
-	load_go += 2.5//choose(0, 0, random(3), random(10), 0, 0, 0);
-	//if fire_alpha > 0.65
-	//	{ fire_alpha -= 0.02; }
-	if load_go >= 100
-		{ room_goto_t("menu"); stage = 19; }
+	//load_go += 2.5//choose(0, 0, random(3), random(10), 0, 0, 0);
+	////if fire_alpha > 0.65
+	////	{ fire_alpha -= 0.02; }
+	//if load_go >= 100
+	//	{ room_goto_t("menu"); stage = 19; }
 	}
 
 if stage >= 5
@@ -301,6 +300,12 @@ draw_sprite_ext(s_train_back1, 0, 640, global.size, 0.512, 0.512, 0, c_white, da
 
 if stage >= 14
 	{
+	load_go += 2.5//choose(0, 0, random(3), random(10), 0, 0, 0);
+	//if fire_alpha > 0.65
+	//	{ fire_alpha -= 0.02; }
+	if load_go >= 100
+		{ room_goto_t("menu"); stage = 19; }
+	
 	draw_set_alpha(load_alpha);
 	draw_set_color(c_black);
 	draw_rectangle(0, global.size, 1280, global.size - 15, 0);

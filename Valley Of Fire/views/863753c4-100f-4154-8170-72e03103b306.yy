@@ -24,7 +24,8 @@
         "d36baa9f-f4f9-4e9a-b158-4f55bca37fbf",
         "f7851373-a769-4a00-86b9-ca141196a10f",
         "a6534da4-41c5-432d-aced-f27d766122c7",
-        "1d264e7d-28c0-4fe0-af79-3e3602f695b4"
+        "1d264e7d-28c0-4fe0-af79-3e3602f695b4",
+        "da5237cf-0425-4da9-89fd-0cb2230d00cc"
     ],
     "filterType": "GMSprite",
     "folderName": "Question Figures",

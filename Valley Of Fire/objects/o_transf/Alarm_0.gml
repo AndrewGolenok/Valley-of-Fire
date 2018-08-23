@@ -10,6 +10,8 @@ alarm[1] = room_speed / 10;
 		case "menu":
 			if rm != "duel"
 				{
+				global.draw_bsurf = 0;
+				surface_free(global.bsurf);
 				with(o_control)
 					{ instance_destroy(); }
 				}
@@ -23,6 +25,8 @@ alarm[1] = room_speed / 10;
 		//		{ instance_destroy(); }
 		//break;
 		case "duel":
+			global.draw_bsurf = 0;
+			surface_free(global.bsurf);
 			with(o_control)
 				{ instance_destroy(); }
 			with(o_list)

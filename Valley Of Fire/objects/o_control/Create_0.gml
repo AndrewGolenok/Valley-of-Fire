@@ -246,3 +246,10 @@
 		//	}
 	#endregion
 #endregion
+
+#region Сурфейс
+	global.bsurf = surface_create(1280, global.size);
+	surface_set_target(global.bsurf);
+	draw_clear_alpha(c_white, 0);
+	surface_reset_target();
+#endregion

@@ -102,7 +102,7 @@
 	application_surface_enable(1);
 	
 	device_mouse_dbclick_enable(0);
-	global.size = 590; //640; // 720; //800; //960;
+	global.size = 960; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
@@ -247,8 +247,8 @@
 		global.hero_nofull_loose[5] = 0;
 	#endregion
 	#region Шериф
-		global.hp[6]  = 600;
-		global.atk[6] = 70;
+		global.hp[6]  = 600;//900
+		global.atk[6] = 70;//47
 		
 		global.hero_code_name[6]    = "sherif";
 		global.hero_code_weapon[6]  = "revolver";
@@ -447,7 +447,7 @@
 	str1  = "0123456789?=≠+-/*><."; //"!"+"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя"; 
 	global.math_font = font_add_sprite_ext(s_question_fig, str1, true, 1);
 	
-	str2  = "ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ!?$%'@.,0123456789=≠+-/*><:;()°"; //"!"+"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя"; 
+	str2  = "ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ!?$%'@.,0123456789=≠+-/*><:;()°©ç"; //"!"+"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя"; 
 	global.game_font = font_add_sprite_ext(s_game_font, str2, true, 1);
 #endregion
 #region Цвета персонажей
@@ -467,7 +467,7 @@
 	global.paral_x = 0;
 	global.paral_y = 0;
 	global.paral_sx = 12;
-	global.paral_sy = 22;
+	global.paral_sy = 25;
 #endregion
 #region Тотемы
 	global.p_totem[1] = -1;
@@ -504,6 +504,9 @@
 #region Переменные игрока
 	global.player_level = 7;
 	global.enemy_level  = 7;
+	
+	global.gold = 820;
+	global.cash = 500;
 #endregion
 
 #region Прочее

@@ -122,9 +122,9 @@ if (round(image_index) = 10 or round(image_index) = 9) && skeleton_animation_get
 		{
 		shoot = 2;
 		if !enemy
-			{ global.critical = 3 - 2 * global.p_totem_a[3]; }
+			{ global.critical = 3 - 1 * global.p_totem_a[3]; }
 			else
-			{ global.e_critical = 3 - 2 * global.e_totem_a[3]; }
+			{ global.e_critical = 3 - 1 * global.e_totem_a[3]; }
 		}
 	if global.swipe_ability = 1 && ((global.enemy_hero = 2 && !enemy) or(global.hero = 2 && enemy)) && super = 1
 		{ shoot = 2; }
@@ -178,9 +178,9 @@ if shoot = 2 or shoot = 3
 			if shoot != 3
 				{
 				if enemy
-					{ enemy_deal(); global.e_critical = 3 - 2 * global.e_totem_a[3]; }
+					{ enemy_deal(); global.e_critical = 3 - 1 * global.e_totem_a[3]; }
 					else
-					{ player_deal(); global.critical = 3 - 2 * global.p_totem_a[3]; }
+					{ player_deal(); global.critical = 3 - 1 * global.p_totem_a[3]; }
 				}
 			}
 		shoot = 3;

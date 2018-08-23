@@ -1,34 +1,12 @@
 #region Тестовые сдвиги фона
 	var prx, pry;
 	prx = global.paral_x * global.paral_sx;
-	pry = global.paral_y * global.paral_sy;
-	//if keyboard_check(ord("A"))
-	//	{ back_x -= 10; }
-	//if keyboard_check(ord("D"))
-	//	{ back_x += 10; }
-	//if keyboard_check(ord("W"))
-	//	{ back_y -= 10; }
-	//if keyboard_check(ord("S"))
-	//	{ back_y += 10; }
+	pry = global.paral_y * global.paral_sy
 	
-	//back_sp = back_s;
-
-	//if keyboard_check(ord("Q"))
-	//	{ back_s -= 0.025 * back_s; }
-	//if keyboard_check(ord("E"))
-	//	{ back_s += 0.025 * back_s; }
-	
-		
-	//if keyboard_check(ord("N"))
-	//	{
-	//	if back_spd > 0
-	//		{ back_spd -= 0.05; }
-	//	}
-	//if keyboard_check(ord("M"))
-	//	{
-	//	if back_spd < 3
-	//		{ back_spd += 0.05; }
-	//	}
+	//surface_set_target(global.bsurf);
+	//draw_clear_alpha(c_white, 0);
+	if global.draw_bsurf = 1
+		{ surface_set_target(global.bsurf); draw_clear_alpha(c_white, 0); }
 #endregion
 #region Время и прочие характеристики
 	if global.music
@@ -401,6 +379,12 @@
 		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
 		}
+#endregion
+#region Сурфейс
+	//surface_reset_target();
+	//draw_surface(global.bsurf,  0,  0);
+	if global.draw_bsurf = 1
+		{ surface_reset_target(); }
 #endregion
 #region Старый код
 /*
