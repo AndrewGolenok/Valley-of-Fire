@@ -70,7 +70,10 @@ cowboys_scale = 0;
 
 word_y = 0;
 
-stage = 0;
+stage = -2;
+art_a = 0;
+black = 1;
+art_t = 1.5 * room_speed;
 
 back_scale = 0.3658;
 back_scale1 = 0.3716 + 0.01;
@@ -85,10 +88,10 @@ of_scale = 10;
 of_x = 0;
 of_y = 0;
 
-fire_alpha = 0;
-fire_angle = 0;
+fire_alpha  = 0;
+fire_angle  = 0;
 fire_angle1 = 0;
-fire_time = room_speed * 5;
-fire_dir = 1;
-fire_dir1 = 1;
-fire_dist = 0;
+fire_time   = room_speed * 5;
+fire_dir    = 1;
+fire_dir1   = 1;
+fire_dist   = 0;

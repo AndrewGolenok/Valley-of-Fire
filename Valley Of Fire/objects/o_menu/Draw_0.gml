@@ -1,131 +1,28 @@
 #region Шейдер
-	var prx, pry;
-	prx = global.paral_x * global.paral_sx;
-	pry = global.paral_y * global.paral_sy;
-	
-	//surface_set_target(back_surface);
-	//draw_clear_alpha(c_white, 0);
-	
-	if global.draw_bsurf = 1
+	if training_back_y > 0 && 1
 		{
-		draw_surface(global.bsurf,  0,  0);
+		var prx, pry;
+		prx = global.paral_x * global.paral_sx;
+		pry = global.paral_y * global.paral_sy;
 	
 		draw_set_alpha(0.3 * vs_alpha);
 	
-		draw_surface(global.bsurf,  0.5, -0.5);
-		draw_surface(global.bsurf, -0.5, -0.5);
+		draw_surface(application_surface,  2.5,  2.5);
+		draw_surface(application_surface, -2.5,  2.5);
+		draw_surface(application_surface,  2.5, -2.5);
+		draw_surface(application_surface, -2.5, -2.5);
 	
-		draw_surface(global.bsurf,  1,  1);
-		draw_surface(global.bsurf, -1,  1);
-		draw_surface(global.bsurf,  1, -1);
-		draw_surface(global.bsurf, -1, -1);
+		draw_surface(application_surface,  5,  5);
+		draw_surface(application_surface, -5,  5);
+		draw_surface(application_surface,  5, -5);
+		draw_surface(application_surface, -5, -5);
 	
-		draw_surface(global.bsurf,  1.5,  1.5);
-		draw_surface(global.bsurf, -1.5,  1.5);
-		draw_surface(global.bsurf,  1.5, -1.5);
-		draw_surface(global.bsurf, -1.5, -1.5);
+		draw_surface(application_surface,  7.5,  7.5);
+		draw_surface(application_surface, -7.5,  7.5);
+		draw_surface(application_surface,  7.5, -7.5);
+		draw_surface(application_surface, -7.5, -7.5);
+		draw_set_alpha(1);
 		}
-	//draw_surface(global.bsurf,  2,  2);
-	//draw_surface(global.bsurf, -2,  2);
-	//draw_surface(global.bsurf,  2, -2);
-	//draw_surface(global.bsurf, -2, -2);
-	
-	//draw_surface(global.bsurf,  2.5,  2.5);
-	//draw_surface(global.bsurf, -2.5,  2.5);
-	//draw_surface(global.bsurf,  2.5, -2.5);
-	//draw_surface(global.bsurf, -2.5, -2.5);
-	
-	//draw_surface(global.bsurf,  3,  3);
-	//draw_surface(global.bsurf, -3,  3);
-	//draw_surface(global.bsurf,  3, -3);
-	//draw_surface(global.bsurf, -3, -3);
-	
-	
-	//surface_reset_target();
-	//draw_surface(back_surface,  0,  0);
-	//draw_surface(application_surface,  2.5,  2.5);
-	//draw_surface(application_surface, -2.5,  2.5);
-	//draw_surface(application_surface,  2.5, -2.5);
-	//draw_surface(application_surface, -2.5, -2.5);
-	
-	//draw_surface(application_surface,  5,  5);
-	//draw_surface(application_surface, -5,  5);
-	//draw_surface(application_surface,  5, -5);
-	//draw_surface(application_surface, -5, -5);
-	
-	//draw_surface(application_surface,  7.5,  7.5);
-	//draw_surface(application_surface, -7.5,  7.5);
-	//draw_surface(application_surface,  7.5, -7.5);
-	//draw_surface(application_surface, -7.5, -7.5);
-	draw_set_alpha(1);
-#endregion
-#region Координаты
-	var menu_but_w, menu_but_s, menu_txt_s, menu_txt_w;
-	menu_but_w = 140;
-	menu_but_s = 1;
-	menu_txt_s = 0.2;
-	menu_txt_w = 240;
-	
-	var menu_stat_i, menu_stat_s, menu_plus_s, menu_setb_x, menu_setb_y;
-	menu_stat_i = 2.7;
-	menu_stat_s = 0.7;
-	menu_plus_s = 0.7;
-	menu_setb_x = 50;
-	menu_setb_y = 50;
-	
-	var menu_gold_t, menu_gold_x, menu_cash_x, menu_cash_t, menu_plus1_x, menu_plus2_x;
-	menu_gold_t = string(global.gold) + "©";
-	menu_cash_t = string(global.cash) + "ç";
-	menu_gold_x = 1280 - menu_setb_x / 2 - menu_txt_s * string_width(menu_cash_t) / 2;
-	menu_cash_x = 1280 - menu_setb_x / 2 - menu_txt_s * string_width(menu_cash_t) - menu_txt_s * string_width(menu_gold_t) / 2 - menu_setb_x;
-	
-	menu_plus1_x = menu_gold_x - menu_txt_s * string_width(menu_cash_t) / 2 - menu_setb_x /2;
-	menu_plus2_x = menu_cash_x - menu_txt_s * string_width(menu_gold_t) / 2 - menu_setb_x /2;
-#endregion
-#region Нажатие
-	
-#endregion
-#region Рисование
-	//
-	draw_sprite(s_blur, 0, 640, global.size / 2);
-	//
-	
-	//
-	draw_sprite_ext_t(s_menu_buttons, 0, menu_heroes_x + prx / 2, menu_heroes_y - pry, menu_but_s * menu_heroes_s, menu_but_s * menu_heroes_s, 0, c_white, 1, c_white, c_black);
-	draw_sprite_ext_t(s_menu_buttons, 1, menu_totems_x + prx / 2, menu_totems_y - pry, menu_but_s * menu_totems_s, menu_but_s * menu_totems_s, 0, c_white, 1, c_white, c_black);
-	draw_sprite_ext_t(s_menu_buttons, 2, menu_quests_x - prx, menu_quests_y - pry, menu_but_s * menu_quests_s, menu_but_s * menu_quests_s, 0, c_white, 1, c_white, c_black);
-	draw_sprite_ext_t(s_menu_buttons, 3,   menu_shop_x - prx,   menu_shop_y - pry, menu_but_s *   menu_shop_s, menu_but_s *   menu_shop_s, 0, c_white, 1, c_white, c_black);
-	
-	draw_set_font(global.game_font);
-	draw_set_halign(fa_center);
-	draw_set_valign(fa_bottom);
-	draw_text_ext_transformed_t(menu_heroes_x + prx / 2, menu_heroes_y - pry + menu_but_w * menu_heroes_s, menu_heroes_n, -1, menu_txt_w, menu_txt_s, menu_txt_s, 0, c_white, c_black);
-	draw_text_ext_transformed_t(menu_totems_x + prx / 2, menu_totems_y - pry + menu_but_w * menu_totems_s, menu_totems_n, -1, menu_txt_w, menu_txt_s, menu_txt_s, 0, c_white, c_black);
-	draw_text_ext_transformed_t(menu_quests_x - prx, menu_quests_y - pry + menu_but_w * menu_quests_s, menu_quests_n, -1, menu_txt_w, menu_txt_s, menu_txt_s, 0, c_white, c_black);
-	draw_text_ext_transformed_t(  menu_shop_x - prx,   menu_shop_y - pry + menu_but_w *   menu_shop_s,   menu_shop_n, -1, menu_txt_w, menu_txt_s, menu_txt_s, 0, c_white, c_black);
-	//
-	
-	//
-	draw_sprite_ext(s_logo1_smartcowboys, 0, 640,  80 + pry / 2, 0.35, 0.35, 0, c_white, 1);
-	draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 200 + pry / 2, 0.35, 0.35, 0, c_white, 1);
-	draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 200 + pry / 2, 0.35, 0.35, 0, c_red, 0.75);
-		
-	draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 130 + pry / 2, 0.35, 0.35, 10, c_white, 1);
-	draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 130 + pry / 2, 0.35, 0.35, 10, c_red, 0.75);
-	//
-	
-	//
-	draw_sprite_ext_t(s_menu_settings_b,  0, menu_setb_x + prx / 2, menu_setb_y + pry / 2, menu_stat_s, menu_stat_s, 0, c_white, 1, c_white, c_black);
-	draw_sprite_ext_t(s_menu_settings_b,  1, menu_setb_x * menu_stat_i + prx / 2, menu_setb_y + pry / 2, menu_stat_s, menu_stat_s, 0, c_white, 1, c_white, c_black);
-	//
-	
-	//
-	draw_text_transformed_t(menu_gold_x - prx, menu_setb_y + pry / 2, string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.color_white, c_black);
-	draw_sprite_ext_t(s_menu_settings_p, 1, menu_plus1_x - prx, menu_setb_y + pry / 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
-	
-	draw_text_transformed_t(menu_cash_x - prx, menu_setb_y + pry / 2, string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, global.color_white, c_black);
-	draw_sprite_ext_t(s_menu_settings_p, 1, menu_plus2_x - prx, menu_setb_y + pry / 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
-	//
 #endregion
 
 if 0

@@ -1,59 +1,172 @@
-#region Главное меню
-	#region Сурфейс
-		global.draw_bsurf = 0;
+#region Меню
+	if global.training_o = 0
+		{ global.menu_now   = "training"; } //"main";
+	global.back_scale = 1280 / 2092; //global.size / 1024;
+	
+#endregion
+#region Тренировка
+	training_back_y = global.size + 350;
+	global.training = 0;
+	#region Чтение ини
+	ini_open("Music.ini");
+		global.training_o = ini_read_real("Training", "training", 0);
+		
+		global.tr[1] = ini_read_real("Training", "tr1", 0);
+		global.tr[2] = ini_read_real("Training", "tr2", 0);
+		global.tr[3] = ini_read_real("Training", "tr3", 0);
+		global.tr[4] = ini_read_real("Training", "tr4", 0);
+		global.tr[5] = ini_read_real("Training", "tr5", 0);
+		global.tr[6] = ini_read_real("Training", "tr6", 0);
+	ini_close();
 	#endregion
+	theme_sc = 0.4;
+	tr_yes = 1;
+	for(i=1;i<=3;i++)
+		{
+		for(j=1;j<=2;j++)
+			{
+			theme_x[i,j] = 640 - 400 + 200 * i;
+			if j = 1
+				{
+				theme_y[i,j]  = global.size / 2 - 120;
+				theme_t[i,j]  = i;
+				
+				theme_ot[i,j] = global.tr[i];
+				
+				if theme_ot[i,j] = 1
+					{ theme_a[i,j] = 10; }
+					else
+					{ theme_a[i,j] = 0; }
+				}
+				else
+				{
+				theme_y[i,j]  = global.size / 2 + 100;
+				theme_t[i,j]  = 3 + i;
+				
+				theme_ot[i,j] = global.tr[3+i];
+				
+				if theme_ot[i,j] = 1
+					{ theme_a[i,j] = 10; }
+					else
+					{ theme_a[i,j] = 0; }
+				}
+			
+			theme_op[i,j]  = 0;
+			theme_s[i,j]   = 1;
+			theme_ss[i,j]  = 1;
+			theme_stage[i,j] = 0;
+			theme_nn[i,j] = global.theme_name[theme_t[i,j]];
+			}
+		}
+#endregion
+
+#region Главное меню (СТАРОЕ)
 	#region Мобайл / Планшет
 		if os_device = device_tablet
 			{ global.tablet = 0; }
 			else
 			{ global.tablet = 1; }
 		
-		global.tablet = 1;
+		global.tablet = choose(0, 1);
 	#endregion
 	#region Элементы
 		menu_stage = 0;
 		
-		menu_heroes_x = 150;
-		menu_heroes_y = global.size - 150 - 320;
-		menu_heroes_s = 1;
-		menu_heroes_n = "HEROES";
-		
-		menu_totems_x = 150;
-		menu_totems_y = global.size - 150;
-		menu_totems_s = 1;
-		menu_totems_n = "TOTEMS";
-		
-		menu_quests_x = 1280 - 150;
-		menu_quests_y = global.size - 150 - 320;
-		menu_quests_s = 1;
-		menu_quests_n = "QUESTS";
-		
-		menu_shop_x   = 1280 - 150;
-		menu_shop_y   = global.size - 150;
-		menu_shop_s   = 1;
-		menu_shop_n   = "SHOP";
+		if global.tablet = 1
+			{
+			menu_heroes_x = 150;
+			menu_heroes_y = global.size - 150 - 320;
+			menu_heroes_s = 1;
+			menu_heroes_n = "HEROES";
+			
+			menu_totems_x = 150;
+			menu_totems_y = global.size - 150;
+			menu_totems_s = 1;
+			menu_totems_n = "TOTEMS";
+			
+			menu_quests_x = 1280 - 150;
+			menu_quests_y = global.size - 150 - 320;
+			menu_quests_s = 1;
+			menu_quests_n = "QUESTS";
+			
+			menu_shop_x   = 1280 - 150;
+			menu_shop_y   = global.size - 150;
+			menu_shop_s   = 1;
+			menu_shop_n   = "SHOP";
+			}
+			else
+			{
+			menu_heroes_x = 150;
+			menu_heroes_y = global.size - 100 - 150;
+			menu_heroes_s = 1;
+			menu_heroes_n = "HEROES";
+			
+			menu_totems_x = 150;
+			menu_totems_y = global.size - 100;
+			menu_totems_s = 1;
+			menu_totems_n = "TOTEMS";
+			
+			menu_quests_x = 1280 - 150;
+			menu_quests_y = global.size - 100 - 150;
+			menu_quests_s = 1;
+			menu_quests_n = "QUESTS";
+			
+			menu_shop_x   = 1280 - 150;
+			menu_shop_y   = global.size - 100;
+			menu_shop_s   = 1;
+			menu_shop_n   = "SHOP";
+			}
 	#endregion
 	#region Игра
-		play_b_x = 0;
-		play_b_y = 0;
-		play_b_s = 0;
-		play_b_p = 0;
+		if global.tablet = 1
+			{
+			play_b_x  = 640;
+			play_b_y  = 170 + (global.size - 170) / 2 - 100;
+			play_b_s  = 0.3;
+			play_b_s1 = 1;
+			play_b_t  = "PLAY";
 		
-		training_b_x = 0;
-		training_b_y = 0;
-		training_b_s = 0;
-		training_b_p = 0;
+			training_b_x  = 640;
+			training_b_y  = 170 + (global.size - 170) / 2;
+			training_b_s  = 0.3;
+			training_b_s1 = 1;
+			training_b_t  = "TRAINING";
 		
-		arena_b_x = 0;
-		arena_b_y = 0;
-		arena_b_s = 0;
-		arena_b_p = 0;
+			arena_b_x  = 640;
+			arena_b_y  = 170 + (global.size - 170) / 2 + 100;
+			arena_b_s  = 0.3;
+			arena_b_s1 = 1;
+			arena_b_t  = "ARENA";
+		
+			menu_b_p = 0;
+			}
+			else
+			{
+			play_b_x  = 640;
+			play_b_y  = global.size - 300;
+			play_b_s  = 0.25;
+			play_b_s1 = 1;
+			play_b_t  = "PLAY";
+		
+			training_b_x  = 640;
+			training_b_y  = global.size - 200;
+			training_b_s  = 0.25;
+			training_b_s1 = 1;
+			training_b_t  = "TRAINING";
+		
+			arena_b_x  = 640;
+			arena_b_y  = global.size - 100;
+			arena_b_s  = 0.25;
+			arena_b_s1 = 1;
+			arena_b_t  = "ARENA";
+		
+			menu_b_p = 1;
+			}
 	#endregion
 #endregion
-
 #region СТАРЫЙ ОБЪЕКТ
 	menu_stage = "heroes1"; //"dificult";
-	global.player_rank = 15//irandom_range(1, 15);
+	global.player_rank = 15; //irandom_range(1, 15);
 	anim_skul = 0;
 
 	lag = 0;

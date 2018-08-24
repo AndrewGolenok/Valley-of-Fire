@@ -2,6 +2,12 @@ with(o_hero)
 	{
 	if enemy
 		{
+		if global.training > 0
+			{
+			sc_dist = 30;
+			sc_dir  = -1;
+			sc_spd   = 5;
+			}
 		if huntress_poison = 1
 			{
 			huntress_poison = 0;

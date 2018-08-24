@@ -43,20 +43,20 @@
 //		{ image_index -= 0.1; }
 //	}
 	
-	//var map = ds_map_create();
-	//var ntf = push_get_first_local_notification(map);
-	//while(ntf >= 0)
-	//   {
-	//   var data = ds_map_find_value(map, "data");
-	//   if data == "daily_reward 1" or data == "daily_reward 3" or data == "daily_reward 5" or data == "daily_reward 7"
-	//      {
-	//      push_cancel_local_notification(ntf);
-	//      }
-	//   ntf = push_get_next_local_notification(map);
-	//   }
-	//ds_map_destroy(map);
+	var map = ds_map_create();
+	var ntf = push_get_first_local_notification(map);
+	while(ntf >= 0)
+	   {
+	   var data = ds_map_find_value(map, "data");
+	   if data == "daily_reward 1" or data == "daily_reward 3" or data == "daily_reward 5" or data == "daily_reward 7"
+	      {
+	      push_cancel_local_notification(ntf);
+	      }
+	   ntf = push_get_next_local_notification(map);
+	   }
+	ds_map_destroy(map);
 
-	//alarm[0]=2;
+	alarm[0]=2;
 #endregion
 #region Реклама
 	#region UnityADS
@@ -102,7 +102,7 @@
 	application_surface_enable(1);
 	
 	device_mouse_dbclick_enable(0);
-	global.size = 960; //640; // 720; //800; //960;
+	global.size = 590; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
@@ -138,15 +138,44 @@
 #endregion
 #region Ини сохранения
 	ini_open("Music.ini");
-		if !ini_section_exists("Music")
-		    {
-			ini_write_string("Music", "music", "1");
-			//ini_write_string("Music", "reward", "1500");
-			//ini_write_string("Music", "dollars", "0");
-			}
-		global.music = 0; //ini_read_real("Music", "music", 1); // Музыка
-		//global.reward = ini_read_real("Music", "reward", 1); // Ранг
-		//global.dollars = ini_read_real("Music", "dollars", 1); // Бабки
+		#region Музыка
+			if !ini_section_exists("Music.ini")
+			    {
+				ini_write_string("Music.ini", "Music.ini", "1");
+				//ini_write_string("Music.ini", "reward", "1500");
+				//ini_write_string("Music.ini", "dollars", "0");
+				}
+			global.music = 0; //ini_read_real("Music.ini", "Music.ini", 1); // Музыка
+		#endregion
+		#region Обучение
+			///
+			if !ini_section_exists("Training")
+			    {
+				ini_write_string("Training", "training", "0");
+				
+				ini_write_string("Training", "tr1", "1");
+				ini_write_string("Training", "tr2", "0");
+				ini_write_string("Training", "tr3", "0");
+				ini_write_string("Training", "tr4", "0");
+				ini_write_string("Training", "tr5", "0");
+				ini_write_string("Training", "tr6", "0");
+				//ini_write_string("Music.ini", "reward", "1500");
+				//ini_write_string("Music.ini", "dollars", "0");
+				}
+			global.training_o = ini_read_real("Training", "training", 0);
+			
+			global.tr[1] = ini_read_real("Training", "tr1", 0);
+			global.tr[2] = ini_read_real("Training", "tr2", 0);
+			global.tr[3] = ini_read_real("Training", "tr3", 0);
+			global.tr[4] = ini_read_real("Training", "tr4", 0);
+			global.tr[5] = ini_read_real("Training", "tr5", 0);
+			global.tr[6] = ini_read_real("Training", "tr6", 0);
+			///
+		#endregion
+		#region Валюта
+			//global.reward = ini_read_real("Music.ini", "reward", 1); // Ранг
+			//global.dollars = ini_read_real("Music.ini", "dollars", 1); // Бабки
+		#endregion
 	ini_close();
 #endregion
 #region Персонажи

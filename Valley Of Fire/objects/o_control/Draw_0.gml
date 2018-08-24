@@ -2,11 +2,6 @@
 	var prx, pry;
 	prx = global.paral_x * global.paral_sx;
 	pry = global.paral_y * global.paral_sy
-	
-	//surface_set_target(global.bsurf);
-	//draw_clear_alpha(c_white, 0);
-	if global.draw_bsurf = 1
-		{ surface_set_target(global.bsurf); draw_clear_alpha(c_white, 0); }
 #endregion
 #region Время и прочие характеристики
 	if global.music
@@ -375,16 +370,10 @@
 	//	}
 	if global.super_ability = 1 or global.super_ability1 = 1
 		{
-		draw_set_alpha(0.5);
+		draw_set_alpha(0.45);
 		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
 		}
-#endregion
-#region Сурфейс
-	//surface_reset_target();
-	//draw_surface(global.bsurf,  0,  0);
-	if global.draw_bsurf = 1
-		{ surface_reset_target(); }
 #endregion
 #region Старый код
 /*

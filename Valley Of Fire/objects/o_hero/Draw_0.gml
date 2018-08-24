@@ -86,7 +86,7 @@ if !enemy
 	
 	if enemy
 		{
-		draw_sprite_ext(sprite_index, image_index, x + 28 + prx, y - 15 + o_control.back_train_y1 + pry, sc * scale, scale, 0, c_white, 1);
+		draw_sprite_ext(sprite_index, image_index, x + 28 + prx, y - 15 + o_control.back_train_y1 + pry, sc * scale, scale, image_angle, c_white, 1);
 		
 		if global.idol[1] = 4
 			{
@@ -542,6 +542,41 @@ if !enemy
 			global.swipe_ability = 0;
 			if global.super_ability	= 1
 				{ global.super_ability = 0; }
+			}
+		}
+#endregion
+
+#region Чучело
+	if global.training > 0
+		{
+		if enemy
+			{
+			if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
+				{ sc_angle += sc_spd * sc_dir; }
+				else
+				{ sc_dir = -sc_dir; sc_angle += sc_spd * sc_dir; }
+			if sc_dist > 10
+				{ sc_dist -= 1; }
+				else
+				{ sc_dist = 10; }
+			if sc_spd > 0.5
+				{ sc_spd -= 0.1; }
+				else
+				{ sc_spd = 0.5; }
+			
+			if hero_sprite  != s_training_scarecrow
+			or sprite_index != s_training_scarecrow
+			or image_speed > 0
+				{
+				hero_sprite = s_training_scarecrow;
+				sprite_index = hero_sprite;
+				image_index  = 0;
+				image_speed  = 0;
+				}
+			image_angle  = sc_angle;
+			stun = 0;
+			have_posion = 0;
+			poisoned = 0;
 			}
 		}
 #endregion

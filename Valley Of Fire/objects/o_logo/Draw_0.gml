@@ -1,3 +1,24 @@
+if stage = -2
+	{
+	black = 1;
+	if art_a < 1
+		{ art_a += 0.05; }
+		else
+		{
+		if art_t > 0
+			{ art_t -= 1; }
+			else
+			{ stage = -1; }
+		}
+	}
+if stage = -1
+	{
+	black = 0;
+	if art_a > 0
+		{ art_a -= 0.1; }
+		else
+		{ stage = 0; }
+	}
 if stage = 0
 	{
 	if all_y > 0
@@ -300,7 +321,7 @@ draw_sprite_ext(s_train_back1, 0, 640, global.size, 0.512, 0.512, 0, c_white, da
 
 if stage >= 14
 	{
-	load_go += 2.5//choose(0, 0, random(3), random(10), 0, 0, 0);
+	load_go += 2; //choose(0, 0, random(3), random(10), 0, 0, 0);
 	//if fire_alpha > 0.65
 	//	{ fire_alpha -= 0.02; }
 	if load_go >= 100
@@ -315,6 +336,11 @@ if stage >= 14
 	draw_rectangle(4, global.size, 1280 * load_go / 100 - 3, global.size - 12, 0);
 	}
 
+draw_set_alpha(black);
+	draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+draw_set_alpha(1);
+
+draw_sprite_ext(s_logo_artefact, 0, 640, global.size / 2, 1, 1, 0, c_white, art_a);
 #region Прочее
 /*
 #region Фон

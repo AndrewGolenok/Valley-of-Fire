@@ -141,3 +141,21 @@ if global.background = "saloon"
 	xn += 70 * !enemy - 70 * enemy;
 	y  += 130;
 	}
+	
+sc_dist  = 0;
+sc_dir   = 1;
+sc_spd   = 0.5;
+sc_angle = 0;
+if global.training > 0
+	{
+	if enemy
+		{
+		hero_sprite  = s_training_scarecrow;
+		sprite_index = hero_sprite;
+		image_index  = 0;
+		image_speed  = 0;
+		x = xn;
+		change = 2;
+		sc_dist = 10;
+		}
+	}

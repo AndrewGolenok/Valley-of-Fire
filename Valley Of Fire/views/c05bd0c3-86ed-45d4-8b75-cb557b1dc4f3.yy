@@ -13,7 +13,8 @@
         "79180c3b-00c2-4e97-a637-8f9d69d336d2",
         "f47896f2-e2d7-40d2-af3d-f59a411c5e2a",
         "40ce1285-8b4d-4193-a814-11b72fd8f76e",
-        "0a3ef521-792b-4d9b-bb3e-55e2bc56002c"
+        "0a3ef521-792b-4d9b-bb3e-55e2bc56002c",
+        "ca9528d2-6741-4d8c-97f7-44917d285b9f"
     ],
     "filterType": "GMSprite",
     "folderName": "Logo",
