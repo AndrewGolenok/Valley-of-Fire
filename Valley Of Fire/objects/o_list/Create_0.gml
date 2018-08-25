@@ -1,7 +1,12 @@
 #region Стартовые переменные
 	anim_skul = 0;
-	global.player_name = choose("Andrew", "Artem", "Nikolay");
+	global.player_name = string_upper(global.hero_code_name[global.hero]); //choose("Andrew", "Artem", "Nikolay");
 	global.enemy_rank  = choose(global.player_rank - 1, global.player_rank + 1, global.player_rank + 1, global.player_rank, global.player_rank, global.player_rank, global.player_rank, global.player_rank)
+	
+	if global.hero = 2
+		{ global.player_name = "DRUNK JOE"; }
+	if global.hero = 5
+		{ global.player_name = "SR. BILL"; }
 	
 	if global.enemy_rank > 15
 		{ global.enemy_rank = 15; }
@@ -1250,6 +1255,18 @@
 		theme_round[global.rounds]  = global.training;
 		round_task[global.rounds,1] = 1;
 		
+		if theme_round[global.rounds] = 6
+			{ script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task]))); }
+		if theme_round[global.rounds] = 2
+			{ script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task]))); }
+		if theme_round[global.rounds] = 3
+			{ script_execute(asset_get_index("move_" + string(round_task[global.rounds,global.task]))); }
+		if theme_round[global.rounds] = 4
+			{ script_execute(asset_get_index("attention_" + string(round_task[global.rounds,global.task]))); }
+		if theme_round[global.rounds] = 1
+			{ script_execute(asset_get_index("cards_" + string(round_task[global.rounds,global.task]))); }
+		if theme_round[global.rounds] = 5
+			{ script_execute(asset_get_index("shooting_" + string(round_task[global.rounds,global.task]))); }
 		#region Переменные
 			bot_time2 = e_time[u_question];
 			timer     = u_time[u_question];
@@ -1305,16 +1322,19 @@
 			cards_1();
 		#endregion
 		
-		e_hp    = atk * 9;
-		e_maxhp = atk * 9;
+		e_hp = atk * 9;
+		if global.hero = 2
+			{ e_hp = 9 * 52; }
+		
+		e_maxhp = e_hp;
 		health_e_hp = e_hp;
 		}
 	global.training_question = 0;
-	global.training_x = 1280 + 200;
+	global.training_x = 1280 + 400;
 	
-	global.training_goodbad   = ""; //choose("GOOD!", "AWESOME!", "EXELLENT", "TRY AGAIN");
-	global.training_goodbad_y = global.size + 100;
-	global.training_goodbad_t = room_speed;
+	global.training_gb   = ""; //choose("GOOD!", "AWESOME!", "EXELLENT", "TRY AGAIN");
+	global.training_gb_y = global.size + 100;
+	global.training_gb_t = room_speed;
 	var day_time;
 	if o_control.day_hour >= 5 && o_control.day_hour < 12
 		{ day_time = "MORNING" }
@@ -1352,10 +1372,10 @@
 		global.training_text[1,20] = "";
 		global.training_text[1,21] = "";
 		
-		global.training_text[1,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
+		global.training_text[1,22] = "I TAUGHT YOU EVERYTHING ABOUT CARDS! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES!";
 	#endregion
 	#region Бутылки
-		global.training_text[2,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
+		global.training_text[2,1]  = "BOTTLEEES";
 		global.training_text[2,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
 		global.training_text[2,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
 		global.training_text[2,4]  = "";
@@ -1368,18 +1388,18 @@
 		
 		global.training_text[2,10] = "TASK SECOND: FIND THE CARD";
 		global.training_text[2,11] = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[2,12] = "REMEMBER THIS CARD";
-		global.training_text[2,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
+		global.training_text[2,12] = "";
+		global.training_text[2,13] = "";
 		
 		global.training_text[2,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
 		global.training_text[2,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
 		global.training_text[2,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
 		global.training_text[2,17] = "";
 		
-		global.training_text[2,18] = "HA";
+		global.training_text[2,18] = "TASK FIRTH: ZHEPA";
 		global.training_text[2,19] = "HA HA";
 		global.training_text[2,20] = "HA HA HA";
-		global.training_text[2,21] = "BASTARD";
+		global.training_text[2,21] = "";
 		
 		global.training_text[2,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
 	#endregion
@@ -1391,17 +1411,17 @@
 		global.training_text[3,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
 		
 		global.training_text[3,6]  = "TASK FIRST: PAIR OF THE CARDS";
-		global.training_text[3,7]  = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[3,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
+		global.training_text[3,7]  = "TAP TAP TAP";
+		global.training_text[3,8]  = "RED RED RED";
 		global.training_text[3,9]  = "";
 		
 		global.training_text[3,10] = "TASK SECOND: FIND THE CARD";
-		global.training_text[3,11] = "REMEMBER THE POSITION OF THE CARDS";
+		global.training_text[3,11] = "";
 		global.training_text[3,12] = "REMEMBER THIS CARD";
-		global.training_text[3,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
+		global.training_text[3,13] = "";
 		
 		global.training_text[3,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
-		global.training_text[3,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
+		global.training_text[3,15] = "";
 		global.training_text[3,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
 		global.training_text[3,17] = "";
 		
@@ -1412,6 +1432,7 @@
 		
 		global.training_text[3,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
 	#endregion
+	
 	#region Внимание
 		global.training_text[4,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
 		global.training_text[4,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";

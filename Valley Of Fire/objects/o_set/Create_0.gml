@@ -102,7 +102,7 @@
 	application_surface_enable(1);
 	
 	device_mouse_dbclick_enable(0);
-	global.size = 960; //640; // 720; //800; //960;
+	global.size = 590; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
@@ -141,7 +141,7 @@
 		#region Музыка
 			if !ini_section_exists("Music.ini")
 			    {
-				ini_write_string("Music.ini", "Music.ini", "1");
+				ini_write_string("Music.ini", "music", "1");
 				//ini_write_string("Music.ini", "reward", "1500");
 				//ini_write_string("Music.ini", "dollars", "0");
 				}
