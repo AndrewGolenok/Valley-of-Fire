@@ -6,6 +6,10 @@
 #endregion
 #region Тренировка
 	training_back_y = global.size + 350;
+	sc_angle = 0;
+	sc_dir   = 1;
+	sc_spd   = 0.3;
+	sc_dist  = 5;
 	global.training = 0;
 	#region Чтение ини
 	ini_open("Music.ini");

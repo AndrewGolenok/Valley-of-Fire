@@ -4,7 +4,7 @@ var prx, pry;
 
 if global.menu_now = "training"
 	{
-	if training_back_y > 0
+	if training_back_y - 50 > 0
 		{ training_back_y -= 50; }
 		else
 		{ training_back_y = 0; }
@@ -114,7 +114,7 @@ if global.menu_now = "training"
 					}
 			#endregion
 			draw_sprite_ext(s_themes_button, 0, theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, theme_sc * 1.1, theme_sc * 1.1, 0, c_black, 0.5);
-			if theme_ot[i,j] = 1 && theme_op[i,j] = 1
+			if theme_ot[i,j] = 1 && theme_op[i,j] = 2
 				{ draw_sprite_ext(s_light, 0, theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, 0.3, 0.3, 0, c_white, 0.8); }
 			draw_sprite_ext_t(s_themes_button, 0, theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, theme_s[i,j] * theme_sc * theme_ss[i,j], theme_s[i,j] * theme_sc, 0, global.color_hero[theme_t[i,j]], 1, c_white, c_black);
 			draw_sprite_ext_t(s_themes_ss, theme_t[i,j], theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, theme_s[i,j] * theme_sc * theme_ss[i,j], theme_s[i,j] * theme_sc, 0, global.color_white, 1, global.color_white, c_black);
@@ -147,7 +147,34 @@ if global.menu_now = "training"
 		}
 	
 	draw_sprite_part_ext(s_training_back, 0, 0, top, sprite_get_width(s_training_back), sprite_get_height(s_training_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
-	draw_sprite_ext_t(s_training_back, 2, 640, global.size / 2 + training_back_y, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
+	draw_sprite_ext_t(s_training_back, 2, 640, global.size + training_back_y, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
+	
+	if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
+		{ sc_angle += sc_dir * sc_spd; }
+		else
+		{ sc_dir = -sc_dir; sc_angle += sc_dir * sc_spd; }
+	if sc_spd > 0.3
+		{ sc_spd -= 0.01; }
+		else
+		{ sc_spd = 0.3; }
+	if sc_dist > 5
+		{ sc_dist -= 0.025; }
+	
+	draw_sprite_ext_t(s_training_rope, 0, 1130, -training_back_y, 0.18, 0.18, sc_angle, c_white, 1, c_white, c_black);
+	draw_sprite_ext_t(s_training_sc, 0, 1130 + lengthdir_x(300, sc_angle - 90), -training_back_y + lengthdir_y(300, sc_angle - 90), 0.5, 0.5, 0, c_white, 1, c_white, c_black);
+	
+	if point_in_rectangle(mouse_x, mouse_y, - 60 + 1130 + lengthdir_x(300, sc_angle - 90), - 100 -training_back_y + lengthdir_y(300, sc_angle - 90), 60 + 1130 + lengthdir_x(300, sc_angle - 90), 100 -training_back_y + lengthdir_y(300, sc_angle - 90))
+		{
+		if mouse_check_button_pressed(mb_left)
+			{
+			if mouse_x > 1130 + lengthdir_x(300, sc_angle - 90)
+				{ sc_dir = -1; }
+				else
+				{ sc_dir = 1; }
+			sc_spd   = 1;
+			sc_dist  = 10;
+			}
+		}
 	}
 	
 if 0

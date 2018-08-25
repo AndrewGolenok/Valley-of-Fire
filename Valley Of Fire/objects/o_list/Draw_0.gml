@@ -1883,20 +1883,27 @@ if global.hero = 1 && global.enemy_hero = 1
 							var card_x, card_y;
 							card_x = 640 - 70 - 70 * (card_all == 3);
 							card_y = global.size / 2 - 60 - 50;
+							if global.training = 1
+								{
+								var hand_xxx, hand_yyy;
+								hand_xxx = -200;
+								hand_yyy = -200;
+								}
 							if list_scale = 1
 								{
 								if card_time > -1
 									{
 									if card_time > 0
 										{
-										card_time -= 1;
+										if global.training < 1 or global.training_stage[1] = 8
+											{ card_time -= 1; }
 										for(i=1;i<=2;i++)
 											{
 											for(j=1;j<=card_all;j++)
 												{
 												card_now[i,j]   = 3;
 												card_i[i,j]     = card_m[i,j];
-												card_scale[i,j] = 0.7
+												card_scale[i,j] = 0.7;
 												}
 											}
 										}
@@ -1923,12 +1930,68 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											for(dev=0;dev<5;dev++)
 												{
+												if global.training = 1 && global.training_stage[1] = 8 && hand_xxx = -200
+													{
+													if (i = 1 && j = 1) && global.training_hand_s = 0
+														{
+														hand_xxx = card_x;
+														hand_yyy = card_y + card_yy[i,j];
+														//hand_xxx = card_x + (j-1) * 140;
+														//hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+														}
+													if ((card_m[1,2] = card_m[1,1] && i = 1 && j = 2)
+													or (card_m[2,1] = card_m[1,1] && i = 2 && j = 1)
+													or (card_m[2,2] = card_m[1,1] && i = 2 && j = 2))
+													&& global.training_hand_s = 1
+														{
+														hand_xxx = card_x + (j-1) * 140;
+														hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+														}
+													if ((card_now[1,2] = 0 && i = 1 && j = 2)
+													or (card_now[2,1] = 0 && i = 2 && j = 1)
+													or (card_now[2,2] = 0 && i = 2 && j =2)) && global.training_hand_s = 2
+														{
+														hand_xxx = card_x + (j-1) * 140;
+														hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+														}
+													if ((card_now[1,2] = 0 && i = 1 && j = 2)
+													or (card_now[2,1] = 0 && i = 2 && j = 1)
+													or (card_now[2,2] = 0 && i = 2 && j =2)) && global.training_hand_s = 3
+														{
+														hand_xxx = card_x + (j-1) * 140;
+														hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+														}
+													global.training_hand_x = hand_xxx;
+													global.training_hand_y = hand_yyy;
+													}
+												//global.training_hand_s
 												mouse_x1 = device_mouse_x(dev);
 												mouse_y1 = device_mouse_y(dev);
 												if point_in_rectangle(mouse_x1, mouse_y1, card_x + (j-1) * 140 - 75 * card_scale[i,j], card_y + 180 * (i-1) - 110 * card_scale[i,j], card_x + (j-1) * 140 + 75 * card_scale[i,j], card_y + 180 * (i-1) + 110 * card_scale[i,j])
 													{
 													if device_mouse_check_button_pressed(dev, mb_left) && card_now[i,j] = 0 && card_end[i,j] = 0 && global.super_ability = 0 && list_scale > 0
 														{
+														if global.training = 1
+															{
+															if global.training_stage[1] = 8
+																{
+																if global.training_hand_s = 0
+																	{
+																	if !(i = 1 && j = 1)
+																		{ break; }
+																	}
+																if global.training_hand_s = 1
+																	{
+																	if !((i = 1 && j = 2 && card_m[1,1] = card_m[1,2])
+																	or (i = 2 && j = 1 && card_m[1,1] = card_m[2,1])
+																	or (i = 2 && j = 2 && card_m[1,1] = card_m[2,2]))
+																		{ break; }
+																	}
+																global.training_hand_s += 1;
+																}
+																else
+																{ break; }
+															}
 														if global.music { audio_play_sound(sd_text, 2, 0); }
 														if fir_i = 0 && fir_j = 0
 															{
@@ -2017,15 +2080,37 @@ if global.hero = 1 && global.enemy_hero = 1
 								}
 						#endregion
 						#region Рисование
-							if global.training = 1 && global.training_stage[1] = 6
-								{
-								draw_set_alpha(0.45);
-								draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-								draw_set_alpha(1);
-							
-								global.training_hand_x = card_x;
-								global.training_hand_y = card_y + card_yy[1,1];
-								}
+							#region Обучение
+								if global.training = 1
+									{
+									if (global.training_stage[1] = 6 or global.training_stage[1] = 7
+									or (global.training_stage[1] = 8 && global.training_question = 0))
+										{
+										draw_set_alpha(0.45);
+										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+										draw_set_alpha(1);
+										}
+									
+									//if global.training_stage[1] = 8
+									//	{
+									//	//global.training_hand_x = hand_xxx;
+									//	//global.training_hand_y = hand_yyy;
+									//	}
+									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+										{
+										if global.training_stage[1] = 6 or global.training_stage[1] = 7
+											{ global.training_stage[1] += 1; }
+										}
+									if global.training_question = 3
+										{
+										global.training_stage[1] += 1;
+										global.training_hand_s   = 0;
+										global.training_question = 0;
+										global.text_ne = 1;
+										global.text_go = 0;
+										}
+									}
+							#endregion
 							for(i=1;i<=2;i++)
 								{
 								for(j=1;j<=card_all;j++)
@@ -2044,13 +2129,22 @@ if global.hero = 1 && global.enemy_hero = 1
 							var card_x, card_y;
 							card_x = 640 - 70 - 70 * (card_all == 3);
 							card_y = global.size / 2 - 60 - 50;
+							
+							if global.training = 1
+								{
+								var hand_xxx, hand_yyy;
+								hand_xxx = -200;
+								hand_yyy = -200;
+								}
+							
 							if list_scale = 1
 								{
 								if card_time > -1 && list_scale = 1
 									{
 									if card_time > 0
 										{
-										card_time -= 1;
+										if global.training < 1 or (global.training_stage[1] = 12 or global.training_stage[1] = 13)
+											{ card_time -= 1; }
 										for(i=1;i<=2;i++)
 											{
 											for(j=1;j<=card_all;j++)
@@ -2082,28 +2176,49 @@ if global.hero = 1 && global.enemy_hero = 1
 										}
 										else
 										{
-										if card_find_time > 0
+										if global.training < 1 or (global.training_stage[1] = 12 or global.training_stage[1] = 13)
 											{
-											card_find_time -= 1;
-											card_find_s += 0.005;
-											card_find_a -= 0.05;
+											if card_find_time > 0
+												{
+												card_find_time -= 1;
+												card_find_s += 0.005;
+												card_find_a -= 0.05;
+												}
+												else
+												{ card_time = -4; }
 											}
-											else
-											{ card_time = -4; }
 										}
 									}
 								if card_time = -4
 									{
-									if card_find_s > 0
+									if global.training_stage[1] = 13
 										{
-										card_find_s -= 0.1;
-										card_find_a += 1;
+										if card_find_s > 0
+											{
+											card_find_s -= 0.1;
+											card_find_a += 1;
+											
+											global.training_hand_s = 0;
+											}
+											else
+											{
+											card_time   = -1;
+											pre_wait    = 0;
+											card_find_s = 0;
+											}
 										}
-										else
+									}
+								}
+							for(i=1;i<=2;i++)
+								{
+								for(j=1;j<=card_all;j++)
+									{
+									if (card_m[i,j] = card_find && fir_i != i && fir_j != j) && global.training_hand_s = 0 && hand_xxx = -200
 										{
-										card_time   = -1;
-										pre_wait    = 0;
-										card_find_s = 0;
+										hand_xxx = card_x + (j-1) * 140;
+										hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+										global.training_hand_x = hand_xxx;
+										global.training_hand_y = hand_yyy;
 										}
 									}
 								}
@@ -2123,6 +2238,33 @@ if global.hero = 1 && global.enemy_hero = 1
 													{
 													if device_mouse_check_button_pressed(dev, mb_left) && card_time = -1 && card_now[i,j] = 0 && card_end[i,j] = 0 && global.super_ability = 0 && list_scale > 0
 														{
+														if global.training = 1 && global.training_question = 0
+															{
+															if global.training_stage[1] = 13
+																{
+																if (card_m[i,j] = card_find && fir_i != i && fir_j != j) && global.training_hand_s = 0 && hand_xxx = -200
+																	{
+																	hand_xxx = card_x + (j-1) * 140;
+																	hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+																	global.training_hand_x = hand_xxx;
+																	global.training_hand_y = hand_yyy;
+																	}
+																if global.training_hand_s = 0
+																	{
+																	if card_m[i,j] != card_find
+																		{ break; }
+																	}
+																if global.training_hand_s = 1
+																	{
+																	if card_m[fir_i,fir_j] != card_m[i,j]
+																		{ break; }
+																	}
+																global.training_hand_s += 1;
+																}
+																else
+																{ break; }
+															}
+														
 														if global.music { audio_play_sound(sd_text, 2, 0); }
 														if fir_i = 0 && fir_j = 0
 															{
@@ -2171,7 +2313,7 @@ if global.hero = 1 && global.enemy_hero = 1
 															else
 															{
 															if card_have = 1 or card_have = 0
-																{ global.answer = 0; cards_2(); break; }
+																{ global.training_hand_s -= 1; global.answer = 0; cards_2(); break; }
 															card_now[fir_i,fir_j] = 4;
 															card_now[sec_i,sec_j] = 4;
 															}
@@ -2217,6 +2359,37 @@ if global.hero = 1 && global.enemy_hero = 1
 								}
 						#endregion
 						#region Рисование
+							#region Обучение
+								if global.training = 1
+									{
+									if (global.training_stage[1] = 10 or global.training_stage[1] = 11
+									or global.training_stage[1] = 12 or (global.training_stage[1] = 13 && global.training_question = 0))
+										{
+										draw_set_alpha(0.45);
+										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+										draw_set_alpha(1);
+										}
+									
+									//if global.training_stage[1] = 8
+									//	{
+									//	//global.training_hand_x = hand_xxx;
+									//	//global.training_hand_y = hand_yyy;
+									//	}
+									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+										{
+										if global.training_stage[1] = 10 or global.training_stage[1] = 11 or (global.training_stage[1] = 12 && card_find_s = 1)
+											{ global.training_stage[1] += 1; }
+										}
+									if global.training_question = 3
+										{
+										global.training_stage[1] += 1;
+										global.training_hand_s   = 0;
+										global.training_question = 0;
+										global.text_ne = 1;
+										global.text_go = 0;
+										}
+									}
+							#endregion
 							for(i=1;i<=2;i++)
 								{
 								for(j=1;j<=card_all;j++)
@@ -3149,7 +3322,10 @@ if global.hero = 1 && global.enemy_hero = 1
 					if global.training < 1
 						{ global.question += 1; }
 						else
-						{ global.training_question += 1; }
+						{
+						if global.answer = 1
+							{ global.training_question += 1; }
+						}
 					if global.storm = 1 { storm_1(); }
 					}
 					else
@@ -7171,17 +7347,32 @@ if lines_true
 		}
 #endregion
 #region ОБУЧЕНИЕ
-	#region Карты
 	if global.training > 0 //= 1
 		{
-		var txt_t;
+		var heroo;
+		heroo = asset_get_index("s_" + global.hero_code_name[global.training]);
+		draw_sprite_ext(heroo, 0, global.training_x, global.size / 2 + 450, 1, 1, 0, c_white, 1);
+		
+		
+		var txt_t, txt_t1, txt_t2, txt_t3, txt_t4;
 		txt_t = global.training_text[global.training,global.training_stage[global.training]];
 		if global.text_ne = 1
 			{
-			if mouse_check_button_pressed(mb_left) or txt_t = ""
+			if (mouse_check_button_pressed(mb_left) && global.text_sc = 1) or txt_t = ""
 				{
-				global.text_go = 1;
+				if global.training_stage[1] = 12 
+					{
+					if card_time = 0
+						{
+						global.text_go = 1;
 				global.text_ne = 0;
+						}
+					}
+					else
+					{
+					global.text_go = 1;
+					global.text_ne = 0;
+					}
 				}
 			}
 		
@@ -7224,17 +7415,91 @@ if lines_true
 			draw_text_ext_transformed_t(640, global.size / 2, txt_t, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, global.color_white, c_black); //  global.color_white, c_black
 			}
 		
-		if global.training_stage[global.training] = 6
+		//if global.training_stage[global.training] = 6
+		//	{
+		//	if global.training_x < 1280 + 200
+		//		{ global.training_x += 40; }
+		//		else
+		//		{ list_go = 1; list_scale = 1; }
+		//	}
+		
+		if global.training_stage[global.training] = 6 or global.training_stage[global.training]  = 10
+		or global.training_stage[global.training] = 14 or global.training_stage[global.training] = 18
 			{
 			if global.training_x < 1280 + 200
 				{ global.training_x += 40; }
 				else
-				{ list_go = 1; list_scale = 1; }
-			}
+				{ list_go = 1; }
 			
-		var heroo;
-		heroo = asset_get_index("s_" + global.hero_code_name[global.training]);
-		draw_sprite_ext(heroo, 0, global.training_x, global.size / 2 + 450, 1, 1, 0, c_white, 1);
+			if global.text_go = 0
+				{
+				if global.text_sc < 1
+					{ global.text_sc += 0.1; }
+				}
+			
+			txt_t = global.training_text[global.training,global.training_stage[global.training]];
+			draw_set_font(global.game_font);
+			draw_text_ext_transformed_t(1020, global.size / 2 - 100, txt_t, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, global.color_white, c_black);
+			}
+		if global.training_stage[global.training] = 7  or global.training_stage[global.training] = 11
+		or global.training_stage[global.training] = 15 or global.training_stage[global.training] = 19
+			{
+			txt_t  = global.training_text[global.training,global.training_stage[global.training]-1];
+			txt_t1 = global.training_text[global.training,global.training_stage[global.training]];
+			draw_set_font(global.game_font);
+			draw_text_ext_transformed_t(1020, global.size / 2 - 100, txt_t, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, global.color_white, c_black);
+			draw_text_ext_transformed_t(260, global.size / 2 + 20, txt_t1, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, global.color_white, c_black);
+			}
+		if global.training_stage[global.training] = 8  or global.training_stage[global.training] = 12
+		or global.training_stage[global.training] = 16 or global.training_stage[global.training] = 20
+			{
+			if global.training_question = 0
+				{
+				txt_t  = global.training_text[global.training,global.training_stage[global.training]-2];
+				txt_t1 = global.training_text[global.training,global.training_stage[global.training]-1];
+				txt_t2 = global.training_text[global.training,global.training_stage[global.training]];
+				draw_set_font(global.game_font);
+				draw_text_ext_transformed_t(1020, global.size / 2 - 100, txt_t,  -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, global.color_white, c_black);
+				draw_text_ext_transformed_t(260, global.size / 2 + 20, txt_t1, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, global.color_white, c_black);
+				draw_text_ext_transformed_t(1020, global.size / 2 + 100, txt_t2, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, global.color_white, c_black);
+				}
+			}
+		if global.training_stage[global.training] = 9  or global.training_stage[global.training] = 13
+		or global.training_stage[global.training] = 17 or global.training_stage[global.training] = 21
+			{
+			if global.training_question = 0
+				{
+				txt_t  = global.training_text[global.training,global.training_stage[global.training]-3];
+				txt_t1 = global.training_text[global.training,global.training_stage[global.training]-2];
+				txt_t2 = global.training_text[global.training,global.training_stage[global.training]-1];
+				txt_t3 = global.training_text[global.training,global.training_stage[global.training]];
+				draw_set_font(global.game_font);
+				draw_text_ext_transformed_t(1020, global.size / 2 - 100, txt_t,  -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, global.color_white, c_black);
+				draw_text_ext_transformed_t(260, global.size / 2 - 100, txt_t1, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, global.color_white, c_black);
+				draw_text_ext_transformed_t(1020, global.size / 2 + 100, txt_t2, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, global.color_white, c_black);
+				draw_text_ext_transformed_t(260, global.size / 2 + 100, txt_t3, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, global.color_white, c_black);
+				
+				if txt_t3 = ""
+					{
+					global.training_stage[global.training] += 1;
+					global.text_ne = 1;
+					global.text_go = 0;
+					round_task[global.rounds,1] += 1;
+					}
+				}
+			
+			//if global.text_go = 1
+			//	{
+			//	if global.text_sc > 0
+			//		{ global.text_sc -= 0.1; }
+			//		else
+			//		{
+			//		global.training_stage[global.training] += 1;
+			//		global.text_ne = 1;
+			//		global.text_go = 0;
+			//		}
+			//	}
+			}
 		
 		global.critical = 0;
 		super = 0;
@@ -7247,7 +7512,6 @@ if lines_true
 			else
 			{ global.training_hand_i = 0; }
 		}
-	#endregion
 #endregion
 
 #region Шэйк-эффект
@@ -7278,5 +7542,5 @@ if lines_true
 #endregion
 #region Отладка
 	//draw_set_font(global.game_font);
-	//draw_text_transformed_t(mouse_x, mouse_y, string(global.draw_bsurf) + ":" + string(global.bsurf), 0.25, 0.25, 0, c_white, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(global.training_question), 0.25, 0.25, 0, c_white, c_black);
 #endregion

@@ -1247,7 +1247,8 @@
 		global.e_totem[1] = -1;
 		global.e_totem[2] = -1;
 		global.e_totem[3] = -1;
-		theme_round[global.rounds] = global.training;
+		theme_round[global.rounds]  = global.training;
+		round_task[global.rounds,1] = 1;
 		
 		#region Переменные
 			bot_time2 = e_time[u_question];
@@ -1308,7 +1309,7 @@
 		e_maxhp = atk * 9;
 		health_e_hp = e_hp;
 		}
-	global.training_question = 1;
+	global.training_question = 0;
 	global.training_x = 1280 + 200;
 	
 	global.training_goodbad   = ""; //choose("GOOD!", "AWESOME!", "EXELLENT", "TRY AGAIN");
@@ -1341,7 +1342,7 @@
 		global.training_text[1,12] = "REMEMBER THIS CARD";
 		global.training_text[1,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
 		
-		global.training_text[1,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
+		global.training_text[1,14] = "TASK THIRD: THE SEQUENCE OF THE CARDS";
 		global.training_text[1,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
 		global.training_text[1,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
 		global.training_text[1,17] = "";
@@ -1352,156 +1353,151 @@
 		global.training_text[1,21] = "";
 		
 		global.training_text[1,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
-		//REMEMBER, WITH EACH NEW RANK OF THE TASKS WILL BE MORE DIFFICULT!
 	#endregion
 	#region Бутылки
-		global.training_text[1,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
-		global.training_text[1,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
-		global.training_text[1,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
-		global.training_text[1,4]  = "";
-		global.training_text[1,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
+		global.training_text[2,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
+		global.training_text[2,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
+		global.training_text[2,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
+		global.training_text[2,4]  = "";
+		global.training_text[2,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
 		
-		global.training_text[1,6]  = "TASK FIRST: PAIR OF THE CARDS";
-		global.training_text[1,7]  = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[1,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
-		global.training_text[1,9]  = "";
+		global.training_text[2,6]  = "TASK FIRST: PAIR OF THE CARDS";
+		global.training_text[2,7]  = "REMEMBER THE POSITION OF THE CARDS";
+		global.training_text[2,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
+		global.training_text[2,9]  = "";
 		
-		global.training_text[1,10] = "TASK SECOND: FIND THE CARD";
-		global.training_text[1,11] = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[1,12] = "REMEMBER THIS CARD";
-		global.training_text[1,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
+		global.training_text[2,10] = "TASK SECOND: FIND THE CARD";
+		global.training_text[2,11] = "REMEMBER THE POSITION OF THE CARDS";
+		global.training_text[2,12] = "REMEMBER THIS CARD";
+		global.training_text[2,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
 		
-		global.training_text[1,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
-		global.training_text[1,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
-		global.training_text[1,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
-		global.training_text[1,17] = "";
+		global.training_text[2,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
+		global.training_text[2,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
+		global.training_text[2,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
+		global.training_text[2,17] = "";
 		
-		global.training_text[1,18] = "";
-		global.training_text[1,19] = "";
-		global.training_text[1,20] = "";
-		global.training_text[1,21] = "";
+		global.training_text[2,18] = "HA";
+		global.training_text[2,19] = "HA HA";
+		global.training_text[2,20] = "HA HA HA";
+		global.training_text[2,21] = "BASTARD";
 		
-		global.training_text[1,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
-		//REMEMBER, WITH EACH NEW RANK OF THE TASKS WILL BE MORE DIFFICULT!
+		global.training_text[2,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
 	#endregion
 	#region Движение
-		global.training_text[1,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
-		global.training_text[1,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
-		global.training_text[1,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
-		global.training_text[1,4]  = "";
-		global.training_text[1,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
+		global.training_text[3,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
+		global.training_text[3,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
+		global.training_text[3,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
+		global.training_text[3,4]  = "";
+		global.training_text[3,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
 		
-		global.training_text[1,6]  = "TASK FIRST: PAIR OF THE CARDS";
-		global.training_text[1,7]  = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[1,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
-		global.training_text[1,9]  = "";
+		global.training_text[3,6]  = "TASK FIRST: PAIR OF THE CARDS";
+		global.training_text[3,7]  = "REMEMBER THE POSITION OF THE CARDS";
+		global.training_text[3,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
+		global.training_text[3,9]  = "";
 		
-		global.training_text[1,10] = "TASK SECOND: FIND THE CARD";
-		global.training_text[1,11] = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[1,12] = "REMEMBER THIS CARD";
-		global.training_text[1,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
+		global.training_text[3,10] = "TASK SECOND: FIND THE CARD";
+		global.training_text[3,11] = "REMEMBER THE POSITION OF THE CARDS";
+		global.training_text[3,12] = "REMEMBER THIS CARD";
+		global.training_text[3,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
 		
-		global.training_text[1,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
-		global.training_text[1,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
-		global.training_text[1,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
-		global.training_text[1,17] = "";
+		global.training_text[3,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
+		global.training_text[3,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
+		global.training_text[3,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
+		global.training_text[3,17] = "";
 		
-		global.training_text[1,18] = "";
-		global.training_text[1,19] = "";
-		global.training_text[1,20] = "";
-		global.training_text[1,21] = "";
+		global.training_text[3,18] = "";
+		global.training_text[3,19] = "";
+		global.training_text[3,20] = "";
+		global.training_text[3,21] = "";
 		
-		global.training_text[1,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
-		//REMEMBER, WITH EACH NEW RANK OF THE TASKS WILL BE MORE DIFFICULT!
+		global.training_text[3,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
 	#endregion
 	#region Внимание
-		global.training_text[1,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
-		global.training_text[1,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
-		global.training_text[1,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
-		global.training_text[1,4]  = "";
-		global.training_text[1,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
+		global.training_text[4,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
+		global.training_text[4,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
+		global.training_text[4,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
+		global.training_text[4,4]  = "";
+		global.training_text[4,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
 		
-		global.training_text[1,6]  = "TASK FIRST: PAIR OF THE CARDS";
-		global.training_text[1,7]  = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[1,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
-		global.training_text[1,9]  = "";
+		global.training_text[4,6]  = "TASK FIRST: PAIR OF THE CARDS";
+		global.training_text[4,7]  = "REMEMBER THE POSITION OF THE CARDS";
+		global.training_text[4,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
+		global.training_text[4,9]  = "";
 		
-		global.training_text[1,10] = "TASK SECOND: FIND THE CARD";
-		global.training_text[1,11] = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[1,12] = "REMEMBER THIS CARD";
-		global.training_text[1,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
+		global.training_text[4,10] = "TASK SECOND: FIND THE CARD";
+		global.training_text[4,11] = "REMEMBER THE POSITION OF THE CARDS";
+		global.training_text[4,12] = "REMEMBER THIS CARD";
+		global.training_text[4,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
 		
-		global.training_text[1,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
-		global.training_text[1,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
-		global.training_text[1,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
-		global.training_text[1,17] = "";
+		global.training_text[4,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
+		global.training_text[4,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
+		global.training_text[4,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
+		global.training_text[4,17] = "";
 		
-		global.training_text[1,18] = "";
-		global.training_text[1,19] = "";
-		global.training_text[1,20] = "";
-		global.training_text[1,21] = "";
+		global.training_text[4,18] = "";
+		global.training_text[4,19] = "";
+		global.training_text[4,20] = "";
+		global.training_text[4,21] = "";
 		
-		global.training_text[1,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
-		//REMEMBER, WITH EACH NEW RANK OF THE TASKS WILL BE MORE DIFFICULT!
+		global.training_text[4,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
 	#endregion
 	#region Стрельба
-		global.training_text[1,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
-		global.training_text[1,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
-		global.training_text[1,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
-		global.training_text[1,4]  = "";
-		global.training_text[1,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
+		global.training_text[5,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
+		global.training_text[5,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
+		global.training_text[5,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
+		global.training_text[5,4]  = "";
+		global.training_text[5,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
 		
-		global.training_text[1,6]  = "TASK FIRST: PAIR OF THE CARDS";
-		global.training_text[1,7]  = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[1,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
-		global.training_text[1,9]  = "";
+		global.training_text[5,6]  = "TASK FIRST: PAIR OF THE CARDS";
+		global.training_text[5,7]  = "REMEMBER THE POSITION OF THE CARDS";
+		global.training_text[5,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
+		global.training_text[5,9]  = "";
 		
-		global.training_text[1,10] = "TASK SECOND: FIND THE CARD";
-		global.training_text[1,11] = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[1,12] = "REMEMBER THIS CARD";
-		global.training_text[1,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
+		global.training_text[5,10] = "TASK SECOND: FIND THE CARD";
+		global.training_text[5,11] = "REMEMBER THE POSITION OF THE CARDS";
+		global.training_text[5,12] = "REMEMBER THIS CARD";
+		global.training_text[5,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
 		
-		global.training_text[1,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
-		global.training_text[1,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
-		global.training_text[1,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
-		global.training_text[1,17] = "";
+		global.training_text[5,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
+		global.training_text[5,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
+		global.training_text[5,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
+		global.training_text[5,17] = "";
 		
-		global.training_text[1,18] = "";
-		global.training_text[1,19] = "";
-		global.training_text[1,20] = "";
-		global.training_text[1,21] = "";
+		global.training_text[5,18] = "";
+		global.training_text[5,19] = "";
+		global.training_text[5,20] = "";
+		global.training_text[5,21] = "";
 		
-		global.training_text[1,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
-		//REMEMBER, WITH EACH NEW RANK OF THE TASKS WILL BE MORE DIFFICULT!
+		global.training_text[5,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
 	#endregion
 	#region Математика
-		global.training_text[1,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
-		global.training_text[1,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
-		global.training_text[1,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
-		global.training_text[1,4]  = "";
-		global.training_text[1,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
+		global.training_text[6,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
+		global.training_text[6,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
+		global.training_text[6,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
+		global.training_text[6,4]  = "";
+		global.training_text[6,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
 		
-		global.training_text[1,6]  = "TASK FIRST: PAIR OF THE CARDS";
-		global.training_text[1,7]  = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[1,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
-		global.training_text[1,9]  = "";
+		global.training_text[6,6]  = "TASK FIRST: PAIR OF THE CARDS";
+		global.training_text[6,7]  = "REMEMBER THE POSITION OF THE CARDS";
+		global.training_text[6,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
+		global.training_text[6,9]  = "";
 		
-		global.training_text[1,10] = "TASK SECOND: FIND THE CARD";
-		global.training_text[1,11] = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[1,12] = "REMEMBER THIS CARD";
-		global.training_text[1,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
+		global.training_text[6,10] = "TASK SECOND: FIND THE CARD";
+		global.training_text[6,11] = "REMEMBER THE POSITION OF THE CARDS";
+		global.training_text[6,12] = "REMEMBER THIS CARD";
+		global.training_text[6,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
 		
-		global.training_text[1,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
-		global.training_text[1,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
-		global.training_text[1,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
-		global.training_text[1,17] = "";
+		global.training_text[6,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
+		global.training_text[6,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
+		global.training_text[6,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
+		global.training_text[6,17] = "";
 		
-		global.training_text[1,18] = "";
-		global.training_text[1,19] = "";
-		global.training_text[1,20] = "";
-		global.training_text[1,21] = "";
+		global.training_text[6,18] = "HEH";
+		global.training_text[6,19] = "HEH HEH";
+		global.training_text[6,20] = "HEH HEH HEH";
+		global.training_text[6,21] = "HUNNY";
 		
-		global.training_text[1,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
+		global.training_text[6,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
 		//REMEMBER, WITH EACH NEW RANK OF THE TASKS WILL BE MORE DIFFICULT!
 	#endregion
 	
@@ -1512,4 +1508,5 @@
 	global.training_hand_x = - 200;
 	global.training_hand_y = - 200;
 	global.training_hand_i = 0;
+	global.training_hand_s = 0;
 #endregion

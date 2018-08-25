@@ -2376,6 +2376,25 @@
             }
         },
         {
+            "Key": "4ec2be7d-ddcf-44f1-9014-835f22bf25ae",
+            "Value": {
+                "id": "4573ed43-0920-403b-a2f8-b5dc1ac604a3",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_training_sc\/s_training_sc.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "509ab6b6-8cb0-4e91-be6a-3281c1105ffc",
             "Value": {
                 "id": "e4d73a95-9557-41cc-800f-48dc4f2617ee",
@@ -2601,6 +2620,25 @@
                 ],
                 "resourcePath": "objects\/o_list\/o_list.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "544bb08d-cfa6-49d5-81f4-b37f1ce93cf8",
+            "Value": {
+                "id": "2a05d28a-7106-490b-9566-51892e0b2b98",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_training_rope\/s_training_rope.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -5812,25 +5850,6 @@
                 ],
                 "resourcePath": "views\/c05bd0c3-86ed-45d4-8b75-cb557b1dc4f3.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "c0c12eef-bae2-42a3-b5ca-5d73bc22176c",
-            "Value": {
-                "id": "228d7551-2adc-46aa-9846-da7a7673e209",
-                "modelName": "GMResourceInfo",
-                "mvc": "1.0",
-                "configDeltaFiles": [
-                    
-                ],
-                "configDeltas": [
-                    
-                ],
-                "resourceCreationConfigs": [
-                    "default"
-                ],
-                "resourcePath": "sprites\/sprite240\/sprite240.yy",
-                "resourceType": "GMSprite"
             }
         },
         {
