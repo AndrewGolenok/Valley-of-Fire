@@ -4,11 +4,11 @@
     "mvc": "1.1",
     "name": "ad5ec2cc-9fa7-4b11-83a1-81fae6e422de",
     "children": [
-        "da83745d-18c1-4fd7-8004-6e95a8789944",
-        "4ec2be7d-ddcf-44f1-9014-835f22bf25ae",
-        "544bb08d-cfa6-49d5-81f4-b37f1ce93cf8",
-        "336a3622-908b-4a1a-a6c9-77f45e176482",
-        "1b30733c-7bf9-49ea-ac6d-3890f0ec2d85"
+        "cbb81a5d-3426-4a95-a896-890c47fa73bb",
+        "99d200be-b92e-4e77-be3a-e17564d7481b",
+        "b3511b43-ee1e-4a41-9579-230d436c2b1c",
+        "5010efc7-5420-4e15-bb54-1668bd2908c7",
+        "d08149f6-337d-4fca-8fa1-6957f77ccba2"
     ],
     "filterType": "GMSprite",
     "folderName": "Backs",

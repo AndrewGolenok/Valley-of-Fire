@@ -162,7 +162,7 @@
 				//ini_write_string("Music.ini", "reward", "1500");
 				//ini_write_string("Music.ini", "dollars", "0");
 				}
-			global.training_o = ini_read_real("Training", "training", 0);
+			//global.training_o = ini_read_real("Training", "training", 0);
 			
 			global.tr[1] = ini_read_real("Training", "tr1", 0);
 			global.tr[2] = ini_read_real("Training", "tr2", 0);
@@ -170,6 +170,11 @@
 			global.tr[4] = ini_read_real("Training", "tr4", 0);
 			global.tr[5] = ini_read_real("Training", "tr5", 0);
 			global.tr[6] = ini_read_real("Training", "tr6", 0);
+			
+			if global.tr[6] = 2
+				{ global.training_o = 1; }
+				else
+				{ global.training_o = 0; }
 			///
 		#endregion
 		#region Валюта

@@ -1379,79 +1379,274 @@
 	if o_control.day_hour < 5
 		{ day_time = "NIGHT" }
 		
+		
+	if 0
+		{
+		#region Карты
+			global.training_text[1,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
+			global.training_text[1,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
+			global.training_text[1,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
+			global.training_text[1,4]  = "";
+			global.training_text[1,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
+		
+			global.training_text[1,6]  = "TASK 1: PAIR OF THE CARDS";
+			global.training_text[1,7]  = "REMEMBER THE POSITION OF THE CARDS";
+			global.training_text[1,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
+			global.training_text[1,9]  = "";
+		
+			global.training_text[1,10] = "TASK 2: FIND THE CARD";
+			global.training_text[1,11] = "REMEMBER THE POSITION OF THE CARDS";
+			global.training_text[1,12] = "REMEMBER THIS CARD";
+			global.training_text[1,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
+		
+			global.training_text[1,14] = "TASK 3: THE SEQUENCE OF THE CARDS";
+			global.training_text[1,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
+			global.training_text[1,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
+			global.training_text[1,17] = "";
+		
+			global.training_text[1,18] = "";
+			global.training_text[1,19] = "";
+			global.training_text[1,20] = "";
+			global.training_text[1,21] = "";
+		
+			global.training_text[1,22] = "I TAUGHT YOU EVERYTHING ABOUT CARDS! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES!";
+		#endregion
+		#region Бутылки
+			global.training_text[2,1]  = "HELL-O-O! I AM J-O-O. WHAT? THEME? AHH, I SEE! BO-OTTLES! I LO-OVE BO-OTTLES!";
+			global.training_text[2,2]  = "I AM... A CO-OLLECTO-OR! REALLY. I HAVE O-ONE INTERESTING ABILITY - I HAVE A LITTLE DAMAGE AT FIRST.";
+			global.training_text[2,3]  = "BUT WITH EACH CO-ORRECT ANSWER MY DAMAGE GRO-OWS! REMEMBER THIS. HAVE YO-OU HEARD O-OF CRITICAL DAMAGE?";
+			global.training_text[2,4]  = "GIVE THE RIGHT ANSWERS TO-O THREE QUESTIO-ON IN SUCESSIO-ON AND YO-OUR ATK WILL ENCRESE!";
+			global.training_text[2,5]  = "IF YO-OU ANSWER INCO-ORRECTLY - ATTACK IT WILL BE THE INITAL! GO-OD LUCK!";
+		
+			global.training_text[2,6]  = "TASK 1: SEQUENCE";
+			global.training_text[2,7]  = "ATTENTION! WATCH OUT FOR BOTTLES!";
+			global.training_text[2,8]  = "TAP ON THE BOTTLES IN THE SEQUENCE OF THEIR APPEARING";
+			global.training_text[2,9]  = "";
+		
+			global.training_text[2,10] = "TASK 2: NUMBERS";
+			global.training_text[2,11] = "TAP ON THE BOTTLES BY THE NUMBERS 1...2...";
+			global.training_text[2,12] = "";
+			global.training_text[2,13] = "";
+		
+			global.training_text[2,14] = "TASK 3: FALLING";
+			global.training_text[2,15] = "ATTENTION! FOLLOW THE BOTTLES AND DO NOT LET THEM FALL!";
+			global.training_text[2,16] = "TAP ON EACH BOTTLE";
+			global.training_text[2,17] = "";
+		
+			global.training_text[2,18] = "TASK 4: FILLING";
+			global.training_text[2,19] = "ATTENTION! DO NOT LET THE BOTTLE BE FILLED";
+			global.training_text[2,20] = "MAKE THE LEVEL OF FILLING OF THE BOTTLES THE SAME";
+			global.training_text[2,21] = "";
+		
+			global.training_text[2,22] = "WELL, I HAVE TO-O SAVE BO-OTTLES FRO-OM FILLING UP! GO-OD LUCK AND DO-O NO-OT FO-ORGET THE CRITICAL DAMAGE!";
+		#endregion
+		#region Движение
+			global.training_text[3,1]  = "HELLO YOUNG WARRIOR! WE NEED STRONG GUYS!";
+			global.training_text[3,2]  = "STRONG GUYS SHOULD BE ABLE TO MOVE WELL.";
+			global.training_text[3,3]  = "WELL, I WILL TEACH YOU THE MOVE THEME.";
+			global.training_text[3,4]  = "MOVE THEME IS NOT COMPLICATED.";
+			global.training_text[3,5]  = "COMPLICATED - RED COLOR, BE CAREFUL!";
+		
+			global.training_text[3,6]  = "TASK 1: ARROWS";
+			global.training_text[3,7]  = "CLICK WHEN THE DIRECTION OF THE ARROW AND HAND MATCH";
+			global.training_text[3,8]  = "IF THE COLOR RED - DO THE OPPOSITE";
+			global.training_text[3,9]  = "";
+		
+			global.training_text[3,10] = "TASK 2: DEGREES";
+			global.training_text[3,11] = "";
+			global.training_text[3,12] = "CLICK WHEN THE DIRECTION OF THE HAND AND DEGREE MATCH";
+			global.training_text[3,13] = "";
+		
+			global.training_text[3,14] = "TASK 3: SWIPE HAND";
+			global.training_text[3,15] = "";
+			global.training_text[3,16] = "SLIDE IN THE DIRECTION OF THE HAND";
+			global.training_text[3,17] = "";
+		
+			global.training_text[3,18] = "";
+			global.training_text[3,19] = "";
+			global.training_text[3,20] = "";
+			global.training_text[3,21] = "";
+		
+			global.training_text[3,22] = "YOU ARE A GREAT WARRIOR! WE NEED PEOPLE LIKE YOU. BE CAREFUL, RED CAN MEET ANYWHERE. IN THIS CASE, JUST DO THE OPPOSITE.";
+		#endregion
+		#region Внимание
+			global.training_text[4,1]  = "GREETINGS, AMIGO! YOU KNOW WHAT YOU JUST SAW? IT IS TOTEMS, I... BORROWED IT FROM SOME GUY.";
+			global.training_text[4,2]  = "TOTEMS CAN GREATLY HELP YOU. THEY GIVE HP, ATTACK, DEFENCE AND MANY OTHER ABILITIES!";
+			global.training_text[4,3]  = "";
+			global.training_text[4,4]  = "NOW YOU CAN ONLY USE ONE, BUT YOU CAN INCREASE YOUR RANK AND USE TWO AND THREE TOTEMS!";
+			global.training_text[4,5]  = "WE TOO LONG TALK, AMIGO, IT IS TIME TO LEARN ATTENTION THEME!";
+		
+			global.training_text[4,6]  = "TASK 1: HATS, ATTENTION!";
+			global.training_text[4,7]  = "WATCH THE HAT IN WHICH THE SKULL!";
+			global.training_text[4,8]  = "";
+			global.training_text[4,9]  = "";
+		
+			global.training_text[4,10] = "TASK 2: ROCK, SCISSORS, PAPER";
+			global.training_text[4,11] = " ";//"ROCK IS STRONGER THAN SCISSORS, SCISSORS ARE STRONGER THAN PAPER, PAPER IS STRONGER THAN ROCK";
+			global.training_text[4,12] = " ";
+			global.training_text[4,13] = "";
+		
+			global.training_text[4,14] = "TASK 3: HORSE AND FENCES";
+			global.training_text[4,15] = "TAP TO GET PAST THE FENCES";
+			global.training_text[4,16] = "IF THE COLOR OF THE RED FENCE, THEN VICE VERSA";
+			global.training_text[4,17] = "";
+		
+			global.training_text[4,18] = "";
+			global.training_text[4,19] = "";
+			global.training_text[4,20] = "";
+			global.training_text[4,21] = "";
+		
+			global.training_text[4,22] = "VERY GOOD! OPEN THE LOOTBOXES, FIND THERE THE TOTEMS AND USE IT IN A DUEL! ADIOS, AMIGO!";
+		#endregion
+		#region Стрельба
+			global.training_text[5,1]  = "....HI! ...... HELLO. I SEE YOU STILL DO NOT KNOW HOW TO SHOOT.";
+			global.training_text[5,2]  = "....YEAH, HE DOES NOT KNOW HOW.....";
+			global.training_text[5,3]  = "QUIET! SORRY. I WANTED TO SAY I AM THE BEST SHOT IN TOWN AND CAN TEACH YOU SHOOTING......";
+			global.training_text[5,4]  = ".....I SHOOT BETTER THAN HIM! LOOK, THIS GAME IS NOT AS SIMPLE AS YOU THINK! THE RESPONSE TIME IS LIMITED TO SIX SECONDS! IF THE ENEMY....";
+			global.training_text[5,5]  = "SILENCE! IF THE ENEMY IS ALREADY ANSWERED, YOU HAVE THREE SECONDS!";
+		
+			global.training_text[5,6]  = "TASK 1: TARGET APPEARANCE";
+			global.training_text[5,7]  = "TAP ON THE TARGET IN THE SEQUENCE OF THEIR APPEARING";
+			global.training_text[5,8]  = " ";
+			global.training_text[5,9]  = "";
+		
+			global.training_text[5,10] = "TASK 2: SHOT";
+			global.training_text[5,11] = "SHOOT THE TARGET IN THE SEQUENCE";
+			global.training_text[5,12] = "FIRST 1, SECOND 2...";
+			global.training_text[5,13] = "";
+		
+			global.training_text[5,14] = "TASK 3: KNIFE THROWING";
+			global.training_text[5,15] = "";
+			global.training_text[5,16] = "";
+			global.training_text[5,17] = "TAP TO GET A KNIFE IN THE TARGET";
+		
+			global.training_text[5,18] = "";
+			global.training_text[5,19] = "";
+			global.training_text[5,20] = "";
+			global.training_text[5,21] = "";
+		
+			global.training_text[5,22] = "...... NOT BAD...... REMEMBER, IF YOU DO NOT HAVE TIME TO ANSWER THE QUESTION, YOU GET STUN. LUCKY FOR YOU, BILL SR. CAN NOT GIVE STUN!";
+		#endregion
+		#region Математика
+			global.training_text[6,1]  = "HELLO COWBOY! I SEE YOU LEARNED A LOT! HOW ABOUT YOU STRETCH YOUR BRAIN?";
+			global.training_text[6,2]  = "MATH IS NOT THAT DIFFICULT! IT IS JUST NUMBERS!";
+			global.training_text[6,3]  = "I SHOULD TELL YOU A LITTLE SECRET. IF YOU ANSWER CORRECTLY THREE QUESTIONS - YOU HAVE THE SUPER ABILITY!";
+			global.training_text[6,4]  = "USE IT AND DEFEAT THE ENEMY! MY ABILITY GIVES YOU CRITICAL DAMAGE AND SHOOTS THE OPPONENT!";
+			global.training_text[6,5]  = "WELL, THE FINAL STAGE OF TRAINING - MATHEMATICS! LET US GO!";
+		
+			global.training_text[6,6]  = "TASK 1: SIGN";
+			global.training_text[6,7]  = "CHOOSE RIGHT SIGN";
+			global.training_text[6,8]  = "";
+			global.training_text[6,9]  = "";
+		
+			global.training_text[6,10] = "TASK 2: DIGITS";
+			global.training_text[6,11] = "CHOOSE RIGHT DIGIT";
+			global.training_text[6,12] = "";
+			global.training_text[6,13] = "";
+		
+			global.training_text[6,14] = "TASK 3: WHAT MORE?";
+			global.training_text[6,15] = "LEFT MORE";
+			global.training_text[6,16] = "RIGHT MORE";
+			global.training_text[6,17] = "";
+		
+			global.training_text[6,18] = "TASK 4: EQUAL OR NOT?";
+			global.training_text[6,19] = "EQUAL";
+			global.training_text[6,20] = "NOT EQUAL";
+			global.training_text[6,21] = "";
+		
+			global.training_text[6,22] = "YOUR TRAINING IS OVER! NOW YOU ARE READY FOR THIS DUEL! DO NOT FORGET ALL THAT TEYUE SAID, USE SUPER AND... STOP!! WHAT!?";
+			//REMEMBER, WITH EACH NEW RANK OF THE TASKS WILL BE MORE DIFFICULT!
+		#endregion
+		#region Шторм
+			global.training_text[7,1]  = "OHHM... OHHHM.... OHHHHM..... SHAMAN IS HERE!";
+			global.training_text[7,2]  = "YOU STEAL MY TOTEMS! I STILL YOU THEMS! HM, WHO ARE YOU WANDERED?";
+			global.training_text[7,3]  = "SOMEONE STOLE MY TOTEMS AND SOLD! YOU WILL HELP TO FIND ALL MY TOTEMS? LOOK FOR THEM IN LOOTBOXES IN THE STORE!";
+			global.training_text[7,4]  = "BUT FIRST I WANT TO TEST YOUR STRENGTH WANDERED!";
+			global.training_text[7,5]  = "FIGHT ME IN A DUEL!";
+			global.training_text[7,6]  = "";
+			global.training_text[7,7]  = "";
+			global.training_text[7,8]  = "";
+			global.training_text[7,9]  = "";
+		
+			global.training_text[7,22] = "";
+			//REMEMBER, WITH EACH NEW RANK OF THE TASKS WILL BE MORE DIFFICULT!
+		#endregion
+		}
+	
 	#region Карты
 		global.training_text[1,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
-		global.training_text[1,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
-		global.training_text[1,3]  = "WHO HAS MORE HEALTH POINTS WINS THE ROUND. WHO HAS A VICTORY IN WHO ROUNDS WINS THE DUEL!";
+		global.training_text[1,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY SOLVING TASKS!";
+		global.training_text[1,3]  = "THE ONE, WHO HAS MORE HEALTH POINTS, WINS THE ROUND. THE ONE, WHO SUCCESED IN TWO ROUNDS WINS THE DUEL!";
 		global.training_text[1,4]  = "";
 		global.training_text[1,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
 		
-		global.training_text[1,6]  = "TASK 1: PAIR OF THE CARDS";
+		global.training_text[1,6]  = "TASK 1: PAIR OF THE CARDS"
 		global.training_text[1,7]  = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[1,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
+		global.training_text[1,8]  = "AND TAP ONE FROM THE PAIR OF THE CARDS";
 		global.training_text[1,9]  = "";
-		
+
 		global.training_text[1,10] = "TASK 2: FIND THE CARD";
 		global.training_text[1,11] = "REMEMBER THE POSITION OF THE CARDS";
 		global.training_text[1,12] = "REMEMBER THIS CARD";
-		global.training_text[1,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
-		
+		global.training_text[1,13] = "AND TAP ON THE TWO REQUIRED CARDS";
+
 		global.training_text[1,14] = "TASK 3: THE SEQUENCE OF THE CARDS";
 		global.training_text[1,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
 		global.training_text[1,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
 		global.training_text[1,17] = "";
-		
+
 		global.training_text[1,18] = "";
 		global.training_text[1,19] = "";
 		global.training_text[1,20] = "";
 		global.training_text[1,21] = "";
-		
-		global.training_text[1,22] = "I TAUGHT YOU EVERYTHING ABOUT CARDS! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES!";
+
+		global.training_text[1,22] = "I TAUGHT YOU EVERYTHING CONCERNING CARDS! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES!";
 	#endregion
 	#region Бутылки
 		global.training_text[2,1]  = "HELL-O-O! I AM J-O-O. WHAT? THEME? AHH, I SEE! BO-OTTLES! I LO-OVE BO-OTTLES!";
 		global.training_text[2,2]  = "I AM... A CO-OLLECTO-OR! REALLY. I HAVE O-ONE INTERESTING ABILITY - I HAVE A LITTLE DAMAGE AT FIRST.";
 		global.training_text[2,3]  = "BUT WITH EACH CO-ORRECT ANSWER MY DAMAGE GRO-OWS! REMEMBER THIS. HAVE YO-OU HEARD O-OF CRITICAL DAMAGE?";
-		global.training_text[2,4]  = "GIVE THE RIGHT ANSWERS TO-O THREE QUESTIO-ON IN SUCESSIO-ON AND YO-OUR ATK WILL ENCRESE!";
-		global.training_text[2,5]  = "IF YO-OU ANSWER INCO-ORRECTLY - ATTACK IT WILL BE THE INITAL! GO-OD LUCK!";
-		
+		global.training_text[2,4]  = "GIVE THE CORRECT ANSWERS TO-O THREE QUESTIO-ONS IN A ROW AND YO-OUR ATK WILL INCREASE!";
+		global.training_text[2,5]  = "IF YO-OU ANSWER INCO-ORRECTLY - ATTACK, IT WILL BE INITAL! GO-OD LUCK!";
+
 		global.training_text[2,6]  = "TASK 1: SEQUENCE";
-		global.training_text[2,7]  = "ATTENTION! WATCH OUT FOR BOTTLES!";
-		global.training_text[2,8]  = "TAP ON THE BOTTLES IN THE SEQUENCE OF THEIR APPEARING";
+		global.training_text[2,7]  = "ATTENTION! WATCH OUT FOR THE BOTTLES!";
+		global.training_text[2,8]  = "TAP ON THE BOTTLES IN THE SEQUENCE due to THEIR appearance";
 		global.training_text[2,9]  = "";
-		
+
 		global.training_text[2,10] = "TASK 2: NUMBERS";
 		global.training_text[2,11] = "TAP ON THE BOTTLES BY THE NUMBERS 1...2...";
 		global.training_text[2,12] = "";
 		global.training_text[2,13] = "";
-		
+
 		global.training_text[2,14] = "TASK 3: FALLING";
 		global.training_text[2,15] = "ATTENTION! FOLLOW THE BOTTLES AND DO NOT LET THEM FALL!";
 		global.training_text[2,16] = "TAP ON EACH BOTTLE";
 		global.training_text[2,17] = "";
-		
+
 		global.training_text[2,18] = "TASK 4: FILLING";
-		global.training_text[2,19] = "ATTENTION! DO NOT LET THE BOTTLE BE FILLED";
-		global.training_text[2,20] = "MAKE THE LEVEL OF FILLING OF THE BOTTLES THE SAME";
+		global.training_text[2,19] = "ATTENTION! DO NOT LET THE BOTTLE BE FILLED UP";
+		global.training_text[2,20] = "MAKE THE filling LEVEL OF THE BOTTLES THE SAME";
 		global.training_text[2,21] = "";
-		
+
 		global.training_text[2,22] = "WELL, I HAVE TO-O SAVE BO-OTTLES FRO-OM FILLING UP! GO-OD LUCK AND DO-O NO-OT FO-ORGET THE CRITICAL DAMAGE!";
+
 	#endregion
 	#region Движение
-		global.training_text[3,1]  = "HELLO YOUNG WARRIOR! WE NEED STRONG GUYS!";
+		global.training_text[3,1]  = "HELLO YOUNG WARRIOR! WE NEED STRONG GUYS here!";
 		global.training_text[3,2]  = "STRONG GUYS SHOULD BE ABLE TO MOVE WELL.";
 		global.training_text[3,3]  = "WELL, I WILL TEACH YOU THE MOVE THEME.";
 		global.training_text[3,4]  = "MOVE THEME IS NOT COMPLICATED.";
 		global.training_text[3,5]  = "COMPLICATED - RED COLOR, BE CAREFUL!";
 		
 		global.training_text[3,6]  = "TASK 1: ARROWS";
-		global.training_text[3,7]  = "CLICK WHEN THE DIRECTION OF THE ARROW AND HAND MATCH";
-		global.training_text[3,8]  = "IF THE COLOR RED - DO THE OPPOSITE";
+		global.training_text[3,7]  = "CLICK WHEN THE DIRECTION OF THE ARROW AND THE HAND MATCH";
+		global.training_text[3,8]  = "IF THE COLOR is RED - DO THE OPPOSITE";
 		global.training_text[3,9]  = "";
-		
+
 		global.training_text[3,10] = "TASK 2: DEGREES";
 		global.training_text[3,11] = "";
-		global.training_text[3,12] = "CLICK WHEN THE DIRECTION OF THE HAND AND DEGREE MATCH";
+		global.training_text[3,12] = "CLICK WHEN THE DIRECTION OF THE HAND AND THE DEGREE MATCH";
 		global.training_text[3,13] = "";
 		
 		global.training_text[3,14] = "TASK 3: SWIPE HAND";
@@ -1464,17 +1659,17 @@
 		global.training_text[3,20] = "";
 		global.training_text[3,21] = "";
 		
-		global.training_text[3,22] = "YOU ARE A GREAT WARRIOR! WE NEED PEOPLE LIKE YOU. BE CAREFUL, RED CAN MEET ANYWHERE. IN THIS CASE, JUST DO THE OPPOSITE.";
+		global.training_text[3,22] = "YOU ARE A GREAT WARRIOR! WE NEED PEOPLE LIKE YOU. BE CAREFUL, RED CAN APPEAR ANYWHERE. IN THIS CASE, Do JUST THE OPPOSITE.";
 	#endregion
 	#region Внимание
-		global.training_text[4,1]  = "GREETINGS, AMIGO! YOU KNOW WHAT YOU JUST SAW? IT IS TOTEMS, I... BORROWED IT FROM SOME GUY.";
-		global.training_text[4,2]  = "TOTEMS CAN GREATLY HELP YOU. THEY GIVE HP, ATTACK, DEFENCE AND MANY OTHER ABILITIES!";
+		global.training_text[4,1]  = "GREETINGS, AMIGO! YOU KNOW WHAT YOU HAVE JUST SEEN? THOSE WERE TOTEMS, I... BORROWED THEM FROM SOME GUY.";
+		global.training_text[4,2]  = "TOTEMS CAN HELP YOU A LOT. THEY GIVE HP, ATTACK, DEFENCE AND MANY OTHER ABILITIES!";
 		global.training_text[4,3]  = "";
 		global.training_text[4,4]  = "NOW YOU CAN ONLY USE ONE, BUT YOU CAN INCREASE YOUR RANK AND USE TWO AND THREE TOTEMS!";
-		global.training_text[4,5]  = "WE TOO LONG TALK, AMIGO, IT IS TIME TO LEARN ATTENTION THEME!";
+		global.training_text[4,5]  = "WELL NOW WE TALK FOR TOO LONG, AMIGO, IT IS TIME TO LEARN ATTENTION THEME!";
 		
 		global.training_text[4,6]  = "TASK 1: HATS, ATTENTION!";
-		global.training_text[4,7]  = "WATCH THE HAT IN WHICH THE SKULL!";
+		global.training_text[4,7]  = "WATCH THE HAT COMPRISING THE SKULL!";
 		global.training_text[4,8]  = "";
 		global.training_text[4,9]  = "";
 		
@@ -1485,7 +1680,7 @@
 		
 		global.training_text[4,14] = "TASK 3: HORSE AND FENCES";
 		global.training_text[4,15] = "TAP TO GET PAST THE FENCES";
-		global.training_text[4,16] = "IF THE COLOR OF THE RED FENCE, THEN VICE VERSA";
+		global.training_text[4,16] = "IF THE COLOR OF THE FENCE IS RED, THEN VICE VERSA";
 		global.training_text[4,17] = "";
 		
 		global.training_text[4,18] = "";
@@ -1493,17 +1688,17 @@
 		global.training_text[4,20] = "";
 		global.training_text[4,21] = "";
 		
-		global.training_text[4,22] = "VERY GOOD! OPEN THE LOOTBOXES, FIND THERE THE TOTEMS AND USE IT IN A DUEL! ADIOS, AMIGO!";
+		global.training_text[4,22] = "VERY GOOD! OPEN THE LOOTBOXES, FIND THERE THE TOTEMS AND USE THEM IN A DUEL! ADIOS, AMIGO!";
 	#endregion
 	#region Стрельба
 		global.training_text[5,1]  = "....HI! ...... HELLO. I SEE YOU STILL DO NOT KNOW HOW TO SHOOT.";
 		global.training_text[5,2]  = "....YEAH, HE DOES NOT KNOW HOW.....";
-		global.training_text[5,3]  = "QUIET! SORRY. I WANTED TO SAY I AM THE BEST SHOT IN TOWN AND CAN TEACH YOU SHOOTING......";
+		global.training_text[5,3]  = "QUIET! SORRY. I JUST WANTED TO SAY THAT I AM THE BEST SHOOTER IN TOWN AND CAN TEACH YOU SHOOTING......";
 		global.training_text[5,4]  = ".....I SHOOT BETTER THAN HIM! LOOK, THIS GAME IS NOT AS SIMPLE AS YOU THINK! THE RESPONSE TIME IS LIMITED TO SIX SECONDS! IF THE ENEMY....";
-		global.training_text[5,5]  = "SILENCE! IF THE ENEMY IS ALREADY ANSWERED, YOU HAVE THREE SECONDS!";
+		global.training_text[5,5]  = "SILENCE! IF THE ENEMY IS ALREADY RESPONDED, YOU HAVE THREE SECONDS!";
 		
 		global.training_text[5,6]  = "TASK 1: TARGET APPEARANCE";
-		global.training_text[5,7]  = "TAP ON THE TARGET IN THE SEQUENCE OF THEIR APPEARING";
+		global.training_text[5,7]  = "TAP ON THE TARGETS IN THE SEQUENCE OF THEIR APPEARAnce";
 		global.training_text[5,8]  = " ";
 		global.training_text[5,9]  = "";
 		
@@ -1517,22 +1712,22 @@
 		global.training_text[5,16] = "";
 		global.training_text[5,17] = "TAP TO GET A KNIFE IN THE TARGET";
 		
-		global.training_text[5,18] = "";
+		global.training_text[5,18] = ""
 		global.training_text[5,19] = "";
 		global.training_text[5,20] = "";
 		global.training_text[5,21] = "";
 		
-		global.training_text[5,22] = "...... NOT BAD...... REMEMBER, IF YOU DO NOT HAVE TIME TO ANSWER THE QUESTION, YOU GET STUN. LUCKY FOR YOU, BILL SR. CAN NOT GIVE STUN!";
+		global.training_text[5,22] = "...... NOT BAD...... REMEMBER, IF YOU DO NOT HAVE TIME TO ANSWER THE QUESTION, YOU GET STUNNED. LUCKY FOR YOU, BILL SR. CAN NOT GIVE STUN!";
 	#endregion
 	#region Математика
-		global.training_text[6,1]  = "HELLO COWBOY! I SEE YOU LEARNED A LOT! HOW ABOUT YOU STRETCH YOUR BRAIN?";
+		global.training_text[6,1]  = "HELLO COWBOY! I SEE YOU HAVE LEARNT A LOT! HOW ABOUT STRETCHING YOUR BRAIN?";
 		global.training_text[6,2]  = "MATH IS NOT THAT DIFFICULT! IT IS JUST NUMBERS!";
-		global.training_text[6,3]  = "I SHOULD TELL YOU A LITTLE SECRET. IF YOU ANSWER CORRECTLY THREE QUESTIONS - YOU HAVE THE SUPER ABILITY!";
-		global.training_text[6,4]  = "USE IT AND DEFEAT THE ENEMY! MY ABILITY GIVES YOU CRITICAL DAMAGE AND SHOOTS THE OPPONENT!";
-		global.training_text[6,5]  = "WELL, THE FINAL STAGE OF TRAINING - MATHEMATICS! LET US GO!";
+		global.training_text[6,3]  = "I SHOULD TELL YOU A LITTLE SECRET. IF YOU ANSWER CORRECTLY TO THREE QUESTIONS - YOU WILL GET THE SUPER ABILITY!";
+		global.training_text[6,4]  = "USE IT AND DEFEAT THE ENEMY! MY ABILITY GIVES YOU CRITICAL DAMAGE AND SHOOTS AGAINST THE OPPONENT!";
+		global.training_text[6,5]  = "WELL, THE FINAL STAGE OF TRAINING - MATHEMATICS! GO!";
 		
 		global.training_text[6,6]  = "TASK 1: SIGN";
-		global.training_text[6,7]  = "CHOOSE RIGHT SIGN";
+		global.training_text[6,7]  = "CHOOSE RIGHT SIGN"
 		global.training_text[6,8]  = "";
 		global.training_text[6,9]  = "";
 		
@@ -1551,14 +1746,13 @@
 		global.training_text[6,20] = "NOT EQUAL";
 		global.training_text[6,21] = "";
 		
-		global.training_text[6,22] = "YOUR TRAINING IS OVER! NOW YOU ARE READY FOR THIS DUEL! DO NOT FORGET ALL THAT TEYUE SAID, USE SUPER AND... STOP!! WHAT!?";
-		//REMEMBER, WITH EACH NEW RANK OF THE TASKS WILL BE MORE DIFFICULT!
+		global.training_text[6,22] = "YOUR TRAINING IS OVER! NOW YOU ARE READY FOR THIS DUEL! DO NOT FORGET ALL THAT HEROES SAID, USE SUPER AND... STOP!! WHAT!?";
 	#endregion
 	#region Шторм
 		global.training_text[7,1]  = "OHHM... OHHHM.... OHHHHM..... SHAMAN IS HERE!";
-		global.training_text[7,2]  = "YOU STEAL MY TOTEMS! I STILL YOU THEMS! HM, WHO ARE YOU WANDERED?";
-		global.training_text[7,3]  = "SOMEONE STOLE MY TOTEMS AND SOLD! YOU WILL HELP TO FIND ALL MY TOTEMS? LOOK FOR THEM IN LOOTBOXES IN THE STORE!";
-		global.training_text[7,4]  = "BUT FIRST I WANT TO TEST YOUR STRENGTH WANDERED!";
+		global.training_text[7,2]  = "YOU STEAL MY TOTEMS! I STILL YOUR THEMS! HM, WHO ARE YOU WANDERED?";
+		global.training_text[7,3]  = "SOMEONE STOLE MY TOTEMS AND SOLD THEM! WILL YOU HELP TO FIND ALL MY TOTEMS? LOOK FOR THEM IN LOOTBOXES IN THE STORE!";
+		global.training_text[7,4]  = "BUT FIRST I WANT TO TEST YOUR STRENGTH WANDERER!";
 		global.training_text[7,5]  = "FIGHT ME IN A DUEL!";
 		global.training_text[7,6]  = "";
 		global.training_text[7,7]  = "";
@@ -1566,7 +1760,6 @@
 		global.training_text[7,9]  = "";
 		
 		global.training_text[7,22] = "";
-		//REMEMBER, WITH EACH NEW RANK OF THE TASKS WILL BE MORE DIFFICULT!
 	#endregion
 	
 	global.text_go = 0;

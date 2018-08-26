@@ -1,9 +1,7 @@
 #region Меню
-	if global.training_o = 0
-		{ global.menu_now   = "training"; } //"main";
+	global.menu_now   = "main"; //"main";
 	global.back_scale = 1280 / 2092; //global.size / 1024;
-	
-	global.menu_next = "training";
+	global.menu_next = "main"; 
 	//global.menu_prev = "training";
 #endregion
 #region Тренировка
@@ -12,10 +10,13 @@
 	sc_dir   = 1;
 	sc_spd   = 0.3;
 	sc_dist  = 5;
+	
+	wl_spd = 0;
+	wl_ang = 0;
 	global.training = 0;
 	#region Чтение ини
 	ini_open("Music.ini");
-		global.training_o = ini_read_real("Training", "training", 0);
+		//global.training_o = ini_read_real("Training", "training", 0);
 		
 		global.tr[1] = ini_read_real("Training", "tr1", 0);
 		global.tr[2] = ini_read_real("Training", "tr2", 0);
@@ -23,6 +24,11 @@
 		global.tr[4] = ini_read_real("Training", "tr4", 0);
 		global.tr[5] = ini_read_real("Training", "tr5", 0);
 		global.tr[6] = ini_read_real("Training", "tr6", 0);
+		
+		if global.tr[6] = 2
+			{ global.training_o = 1; }
+			else
+			{ global.training_o = 0; }
 	ini_close();
 	#endregion
 	theme_sc = 0.4;
@@ -64,6 +70,10 @@
 			theme_nn[i,j] = global.theme_name[theme_t[i,j]];
 			}
 		}
+	if global.training_o = 0
+		{ global.menu_next = "training"; }
+		else
+		{ global.menu_next = "main"; }
 #endregion
 
 #region Главное меню (СТАРОЕ)
