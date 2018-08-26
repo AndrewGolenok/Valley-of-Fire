@@ -1410,8 +1410,8 @@
 	#endregion
 	#region Бутылки
 		global.training_text[2,1]  = "HELL-O-O! I AM J-O-O. WHAT? THEME? AHH, I SEE! BO-OTTLES! I LO-OVE BO-OTTLES!";
-		global.training_text[2,2]  = "I HAVE O-ONE INTERESTING ABILITY - I HAVE A LITTLE DAMAGE AT FIRST, BUT WITH EACH CO-ORRECT ANSWER MY DAMAGE GRO-OWS! REMEMBER THIS.";
-		global.training_text[2,3]  = "I AM... A CO-OLLECTO-OR! REALLY. HAVE YO-OU HEARD O-OF CRITICAL DAMAGE?";
+		global.training_text[2,2]  = "I AM... A CO-OLLECTO-OR! REALLY. I HAVE O-ONE INTERESTING ABILITY - I HAVE A LITTLE DAMAGE AT FIRST.";
+		global.training_text[2,3]  = "BUT WITH EACH CO-ORRECT ANSWER MY DAMAGE GRO-OWS! REMEMBER THIS. HAVE YO-OU HEARD O-OF CRITICAL DAMAGE?";
 		global.training_text[2,4]  = "GIVE THE RIGHT ANSWERS TO-O THREE QUESTIO-ON IN SUCESSIO-ON AND YO-OUR ATK WILL ENCRESE!";
 		global.training_text[2,5]  = "IF YO-OU ANSWER INCO-ORRECTLY - ATTACK IT WILL BE THE INITAL! GO-OD LUCK!";
 		
@@ -1445,7 +1445,7 @@
 		global.training_text[3,5]  = "COMPLICATED - RED COLOR, BE CAREFUL!";
 		
 		global.training_text[3,6]  = "TASK 1: ARROWS";
-		global.training_text[3,7]  = "CLICK WHEN THE DIRECTION OF THE ARMS AND HANDS MATCH";
+		global.training_text[3,7]  = "CLICK WHEN THE DIRECTION OF THE ARROW AND HAND MATCH";
 		global.training_text[3,8]  = "IF THE COLOR RED - DO THE OPPOSITE";
 		global.training_text[3,9]  = "";
 		
@@ -1467,11 +1467,11 @@
 		global.training_text[3,22] = "YOU ARE A GREAT WARRIOR! WE NEED PEOPLE LIKE YOU. BE CAREFUL, RED CAN MEET ANYWHERE. IN THIS CASE, JUST DO THE OPPOSITE.";
 	#endregion
 	#region Внимание
-		global.training_text[4,1]  = "GREETINGS, GRINGO! YOU KNOW WHAT YOU JUST SAW? IT IS TOTEMS, I... BORROWED IT FROM SOME GUY.";
+		global.training_text[4,1]  = "GREETINGS, AMIGO! YOU KNOW WHAT YOU JUST SAW? IT IS TOTEMS, I... BORROWED IT FROM SOME GUY.";
 		global.training_text[4,2]  = "TOTEMS CAN GREATLY HELP YOU. THEY GIVE HP, ATTACK, DEFENCE AND MANY OTHER ABILITIES!";
 		global.training_text[4,3]  = "";
-		global.training_text[4,4]  = "NOW YOU CAN ONLY USE ONE, BUT YOU CAN INCREASE YOUR RANK AND USE TWO, THEN THREE TOTEMS!";
-		global.training_text[4,5]  = "WE TOO LONG TALK, GRINGO, IT IS TIME TO LEARN ATTENTION THEME!";
+		global.training_text[4,4]  = "NOW YOU CAN ONLY USE ONE, BUT YOU CAN INCREASE YOUR RANK AND USE TWO AND THREE TOTEMS!";
+		global.training_text[4,5]  = "WE TOO LONG TALK, AMIGO, IT IS TIME TO LEARN ATTENTION THEME!";
 		
 		global.training_text[4,6]  = "TASK 1: HATS, ATTENTION!";
 		global.training_text[4,7]  = "WATCH THE HAT IN WHICH THE SKULL!";
@@ -1479,7 +1479,7 @@
 		global.training_text[4,9]  = "";
 		
 		global.training_text[4,10] = "TASK 2: ROCK, SCISSORS, PAPER";
-		global.training_text[4,11] = "ROCK IS STRONGER THAN SCISSORS, SCISSORS ARE STRONGER THAN PAPER, PAPER IS STRONGER THAN ROCK";
+		global.training_text[4,11] = " ";//"ROCK IS STRONGER THAN SCISSORS, SCISSORS ARE STRONGER THAN PAPER, PAPER IS STRONGER THAN ROCK";
 		global.training_text[4,12] = " ";
 		global.training_text[4,13] = "";
 		
@@ -1493,14 +1493,14 @@
 		global.training_text[4,20] = "";
 		global.training_text[4,21] = "";
 		
-		global.training_text[4,22] = "VERY GOOD, GRINGO! OPEN THE LOOTBOXES, FIND THERE THE TOTEMS AND USE IT IN A DUEL! GOOD BUY!";
+		global.training_text[4,22] = "VERY GOOD! OPEN THE LOOTBOXES, FIND THERE THE TOTEMS AND USE IT IN A DUEL! ADIOS, AMIGO!";
 	#endregion
 	#region Стрельба
 		global.training_text[5,1]  = "....HI! ...... HELLO. I SEE YOU STILL DO NOT KNOW HOW TO SHOOT.";
 		global.training_text[5,2]  = "....YEAH, HE DOES NOT KNOW HOW.....";
-		global.training_text[5,3]  = "QUIET! SORRY. I WANTED TO SAY I'M THE BEST SHOT IN TOWN AND CAN TEACH YOU SHOOTING......";
+		global.training_text[5,3]  = "QUIET! SORRY. I WANTED TO SAY I AM THE BEST SHOT IN TOWN AND CAN TEACH YOU SHOOTING......";
 		global.training_text[5,4]  = ".....I SHOOT BETTER THAN HIM! LOOK, THIS GAME IS NOT AS SIMPLE AS YOU THINK! THE RESPONSE TIME IS LIMITED TO SIX SECONDS! IF THE ENEMY....";
-		global.training_text[5,5]  = "SHUT UP! IF THE ENEMY IS ALREADY ANSWERED, YOU HAVE THREE SECONDS!";
+		global.training_text[5,5]  = "SILENCE! IF THE ENEMY IS ALREADY ANSWERED, YOU HAVE THREE SECONDS!";
 		
 		global.training_text[5,6]  = "TASK 1: TARGET APPEARANCE";
 		global.training_text[5,7]  = "TAP ON THE TARGET IN THE SEQUENCE OF THEIR APPEARING";
@@ -1522,7 +1522,7 @@
 		global.training_text[5,20] = "";
 		global.training_text[5,21] = "";
 		
-		global.training_text[5,22] = "...... NOT BAD...... REMEMBER, IF YOU DON'T HAVE TIME TO ANSWER THE QUESTION, YOU GET STUN. LUCKY FOR YOU, BILL SR. CAN NOT GIVE STUN!";
+		global.training_text[5,22] = "...... NOT BAD...... REMEMBER, IF YOU DO NOT HAVE TIME TO ANSWER THE QUESTION, YOU GET STUN. LUCKY FOR YOU, BILL SR. CAN NOT GIVE STUN!";
 	#endregion
 	#region Математика
 		global.training_text[6,1]  = "HELLO COWBOY! I SEE YOU LEARNED A LOT! HOW ABOUT YOU STRETCH YOUR BRAIN?";
@@ -1531,22 +1531,22 @@
 		global.training_text[6,4]  = "USE IT AND DEFEAT THE ENEMY! MY ABILITY GIVES YOU CRITICAL DAMAGE AND SHOOTS THE OPPONENT!";
 		global.training_text[6,5]  = "WELL, THE FINAL STAGE OF TRAINING - MATHEMATICS! LET US GO!";
 		
-		global.training_text[6,6]  = "TASK FIRST: SIGN";
+		global.training_text[6,6]  = "TASK 1: SIGN";
 		global.training_text[6,7]  = "CHOOSE RIGHT SIGN";
 		global.training_text[6,8]  = "";
 		global.training_text[6,9]  = "";
 		
-		global.training_text[6,10] = "TASK SECOND: DIGITS";
+		global.training_text[6,10] = "TASK 2: DIGITS";
 		global.training_text[6,11] = "CHOOSE RIGHT DIGIT";
 		global.training_text[6,12] = "";
 		global.training_text[6,13] = "";
 		
-		global.training_text[6,14] = "TASK THIRD: WHAT MORE?";
+		global.training_text[6,14] = "TASK 3: WHAT MORE?";
 		global.training_text[6,15] = "LEFT MORE";
 		global.training_text[6,16] = "RIGHT MORE";
 		global.training_text[6,17] = "";
 		
-		global.training_text[6,18] = "TASK FOURTH: EQUAL OR NOT?";
+		global.training_text[6,18] = "TASK 4: EQUAL OR NOT?";
 		global.training_text[6,19] = "EQUAL";
 		global.training_text[6,20] = "NOT EQUAL";
 		global.training_text[6,21] = "";
@@ -1556,9 +1556,9 @@
 	#endregion
 	#region Шторм
 		global.training_text[7,1]  = "OHHM... OHHHM.... OHHHHM..... SHAMAN IS HERE!";
-		global.training_text[7,2]  = "YOU STEAL MY TOTEMS! I STILL YOU THEMS! HM, WHO ARE YOU PALE FACE?";
-		global.training_text[7,3]  = "SOMEONE STOLE MY TOTEMS AND SOLD! YOU WILL HELP TO FIND ALL MY TOTEMS? LOOK FOR THEM IN BOXES IN THE STORE!";
-		global.training_text[7,4]  = "BUT FIRST I WANT TO TEST YOUR STRENGTH PALE FACE!";
+		global.training_text[7,2]  = "YOU STEAL MY TOTEMS! I STILL YOU THEMS! HM, WHO ARE YOU WANDERED?";
+		global.training_text[7,3]  = "SOMEONE STOLE MY TOTEMS AND SOLD! YOU WILL HELP TO FIND ALL MY TOTEMS? LOOK FOR THEM IN LOOTBOXES IN THE STORE!";
+		global.training_text[7,4]  = "BUT FIRST I WANT TO TEST YOUR STRENGTH WANDERED!";
 		global.training_text[7,5]  = "FIGHT ME IN A DUEL!";
 		global.training_text[7,6]  = "";
 		global.training_text[7,7]  = "";
@@ -1568,6 +1568,7 @@
 		global.training_text[7,22] = "";
 		//REMEMBER, WITH EACH NEW RANK OF THE TASKS WILL BE MORE DIFFICULT!
 	#endregion
+	
 	global.text_go = 0;
 	global.text_ne = 0;
 	global.text_sc = 0;

@@ -9150,7 +9150,7 @@ if lines_true
 		training_text_color = global.color_hero[global.training];
 		if global.training = 1
 			{ training_text_color = global.color_white; }
-		if global.training_stage[3] = 8
+		if global.training_stage[3] = 8 or global.training_stage[4] = 16
 			{ training_text_color = c_red; }
 		
 		global.p_totem[1] = -1;
@@ -9283,7 +9283,7 @@ if lines_true
 				}
 			}
 		if global.training_x <= 1280
-			{ global.training_hero_i += 0.5; }
+			{ global.training_hero_i += 1; }
 		var heroo;
 		heroo = asset_get_index("s_" + global.hero_code_name[global.training]);
 		draw_sprite_ext(heroo, global.training_hero_i, global.training_x, global.size / 2 + 450, 1, 1, 0, c_white, 1);

@@ -1,13 +1,36 @@
-var prx, pry;
-	prx = global.paral_x * global.paral_sx;
-	pry = global.paral_y * global.paral_sy;
+#region Параллакс
+	var prx, pry;
+		prx = global.paral_x * global.paral_sx;
+		pry = global.paral_y * global.paral_sy;
+#endregion
 
-if global.menu_now = "training"
+#region Главное меню
+	if global.menu_next = "main" or global.menu_now = "main"
+		{
+		if keyboard_check_pressed(ord("T"))
+			{ global.menu_next = "training"; }
+		}
+#endregion
+#region Тренировка
+if global.menu_now = "training" or global.menu_next = "training"
 	{
-	if training_back_y - 50 > 0
-		{ training_back_y -= 50; }
+	if global.menu_next = "training" && global.menu_now != "training"
+		{
+		if training_back_y - 50 > 0
+			{ training_back_y -= 50; }
+			else
+			{ training_back_y = 0; }
+		}
 		else
-		{ training_back_y = 0; }
+		{
+		if training_back_y - 50 < global.size + 350
+			{ training_back_y += 50; }
+			else
+			{
+			global.menu_now = global.menu_next;
+			training_back_y = 0;
+			}
+		}
 		
 	var colb;
 	colb = make_color_rgb(123, 0, 28);
@@ -189,8 +212,19 @@ if global.menu_now = "training"
 			sc_dist  = 10;
 			}
 		}
-	}
+	if point_in_rectangle(mouse_x, mouse_y, 0, 0, 64, 64)
+		{
+		if mouse_check_button_pressed(mb_left)
+			{ global.menu_next = "main"; }
+		}
 	
+	draw_set_font(global.game_font);
+	draw_set_alpha(0.3);
+	draw_text_transformed_t(50, 50, "X", 0.2, 0.2, 0, c_maroon, c_black);
+	draw_set_alpha(1);
+	}
+#endregion
+
 if 0
 	{
 	#region СТАРЫЙ ОБЪЕКТ

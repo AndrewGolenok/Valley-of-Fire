@@ -3,6 +3,8 @@
 		{ global.menu_now   = "training"; } //"main";
 	global.back_scale = 1280 / 2092; //global.size / 1024;
 	
+	global.menu_next = "training";
+	//global.menu_prev = "training";
 #endregion
 #region Тренировка
 	training_back_y = global.size + 350;
