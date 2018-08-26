@@ -216,137 +216,48 @@ if global.hero = 1 && global.enemy_hero = 1
 			#endregion
 				
 			#region Математика - Math
-			if theme_round[global.rounds] = 6
-				{
-				if global.training = 6
+				if theme_round[global.rounds] = 6
 					{
-					var hand_xxx, hand_yyy;
-					hand_xxx = -200;
-					hand_yyy = -200;
-							
-					global.training_hand_x = hand_xxx;
-					global.training_hand_y = hand_yyy;
-					}
-				timer_y  = -30;
-				pre_wait = 0;
-				#region Задача 1 - Знаки
-					if round_task[global.rounds,global.task] = 1
+					if global.training = 6
 						{
-						#region Координаты кнопок
-							var x1, y1, x2, y2, x3, y3, x4, y4, button_width, button_height;
-									
-							button_width  = sprite_get_width(s_question_sign)  * list_size1 * o_but_sc;
-							button_height = sprite_get_height(s_question_sign) * list_size1 * o_but_sc;
+						var hand_xxx, hand_yyy;
+						hand_xxx = -200;
+						hand_yyy = -200;
 							
-							x1 = 640 - button_width / 2 * 3 - 45; //640 - 5 - 160 * list_size1 - button_x;
-							y1 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 140 * list_size1 + list_y - 250 * (1 - list_scale);
+						global.training_hand_x = hand_xxx;
+						global.training_hand_y = hand_yyy;
+						}
+					timer_y  = -30;
+					pre_wait = 0;
+					#region Задача 1 - Знаки
+						if round_task[global.rounds,global.task] = 1
+							{
+							#region Координаты кнопок
+								var x1, y1, x2, y2, x3, y3, x4, y4, button_width, button_height;
+									
+								button_width  = sprite_get_width(s_question_sign)  * list_size1 * o_but_sc;
+								button_height = sprite_get_height(s_question_sign) * list_size1 * o_but_sc;
+							
+								x1 = 640 - button_width / 2 * 3 - 45; //640 - 5 - 160 * list_size1 - button_x;
+								y1 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 140 * list_size1 + list_y - 250 * (1 - list_scale);
 			
-							x2 = 640 - button_width / 2 - 15; //640 - 5 + 160 * list_size1 + button_x;
-							y2 = y1;
+								x2 = 640 - button_width / 2 - 15; //640 - 5 + 160 * list_size1 + button_x;
+								y2 = y1;
 		
-							x3 = 640 + button_width / 2 + 15; //x1;
-							y3 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 400 * list_size1 + list_y - 350 * (1 - list_scale);
+								x3 = 640 + button_width / 2 + 15; //x1;
+								y3 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 400 * list_size1 + list_y - 350 * (1 - list_scale);
 		
-							x4 = 640 + button_width / 2 * 3 + 45; // x2;
-							y4 = y3;
-						#endregion
-						#region Варианты
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
+								x4 = 640 + button_width / 2 * 3 + 45; // x2;
+								y4 = y3;
+							#endregion
+							#region Варианты
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									if global.training < 1 or global.training_question != 0
+									for(dev=0;dev<5;dev++)
 										{
-										#region Вариант 1
-											if point_in_rectangle(mouse_x1, mouse_y1, x1 - button_width / 2, y1 - button_height / 2, x1 + button_width / 2, y1 + button_height / 2)
-												{
-												if device_mouse_check_button(dev, mb_left)
-													{ b_pressed_s[1] = 1.2; }
-													else
-													{ b_pressed_s[1] = 1; }
-												if device_mouse_check_button_released(dev, mb_left)
-													{
-													if global.music { audio_play_sound(sd_text, 2, 0); }
-													if vtrue[1] = 1
-														{ global.answer = 1; }
-														else
-														{ global.answer = 0; }
-													math_1();
-													}
-												}
-												else
-												{ b_pressed_s[1] = 1; }
-										#endregion
-										#region Вариант 2
-											if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
-												{
-												if device_mouse_check_button(dev, mb_left)
-													{ b_pressed_s[2] = 1.2; }
-													else
-													{ b_pressed_s[2] = 1; }
-												if device_mouse_check_button_released(dev, mb_left)
-													{
-													if global.music
-														{ audio_play_sound(sd_text, 2, 0); }
-													/*audio_play_sound(sd_revolver, 1, 0);*/
-													if vtrue[2] = 1
-														{ global.answer = 1; }
-														else
-														{ global.answer = 0; }
-													math_1();
-													}
-												}
-												else
-												{ b_pressed_s[2] = 1; }
-										#endregion
-										#region Вариант 3
-											if point_in_rectangle(mouse_x1, mouse_y1, x3 - button_width / 2, y3 - button_height / 2, x3 + button_width / 2, y3 + button_height / 2)
-												{
-												if device_mouse_check_button(dev, mb_left)
-													{ b_pressed_s[3] = 1.2; }
-													else
-													{ b_pressed_s[3] = 1; }
-												if device_mouse_check_button_released(dev, mb_left)
-													{
-													if global.music { audio_play_sound(sd_text, 2, 0); }
-													/*audio_play_sound(sd_revolver, 1, 0);*/
-													if vtrue[3] = 1
-														{ global.answer = 1; }
-														else
-														{ global.answer = 0; }
-													math_1();
-													}
-												}
-												else
-												{ b_pressed_s[3] = 1; }
-										#endregion
-										#region Вариант 4
-											if point_in_rectangle(mouse_x1, mouse_y1, x4 - button_width / 2, y4 - button_height / 2, x4 + button_width / 2, y4 + button_height / 2)
-												{
-												if device_mouse_check_button(dev, mb_left)
-													{ b_pressed_s[4] = 1.2; }
-													else
-													{ b_pressed_s[4] = 1; }
-												if device_mouse_check_button_released(dev, mb_left)
-													{
-													if global.music { audio_play_sound(sd_text, 2, 0); }
-													/*audio_play_sound(sd_revolver, 1, 0);*/
-													if vtrue[4] = 1
-														{ global.answer = 1; }
-														else
-														{ global.answer = 0; }
-													math_1();
-													}
-												}
-												else
-												{ b_pressed_s[4] = 1; }
-										#endregion
-										}
-										else
-										{
-										if vtrue[1] = 1
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if global.training < 1 or global.training_question != 0
 											{
 											#region Вариант 1
 												if point_in_rectangle(mouse_x1, mouse_y1, x1 - button_width / 2, y1 - button_height / 2, x1 + button_width / 2, y1 + button_height / 2)
@@ -368,9 +279,6 @@ if global.hero = 1 && global.enemy_hero = 1
 													else
 													{ b_pressed_s[1] = 1; }
 											#endregion
-											}
-										if vtrue[2] = 1
-											{
 											#region Вариант 2
 												if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
 													{
@@ -393,9 +301,6 @@ if global.hero = 1 && global.enemy_hero = 1
 													else
 													{ b_pressed_s[2] = 1; }
 											#endregion
-											}
-										if vtrue[3] = 1
-											{
 											#region Вариант 3
 												if point_in_rectangle(mouse_x1, mouse_y1, x3 - button_width / 2, y3 - button_height / 2, x3 + button_width / 2, y3 + button_height / 2)
 													{
@@ -417,9 +322,6 @@ if global.hero = 1 && global.enemy_hero = 1
 													else
 													{ b_pressed_s[3] = 1; }
 											#endregion
-											}
-										if vtrue[4] = 1
-											{
 											#region Вариант 4
 												if point_in_rectangle(mouse_x1, mouse_y1, x4 - button_width / 2, y4 - button_height / 2, x4 + button_width / 2, y4 + button_height / 2)
 													{
@@ -442,34 +344,650 @@ if global.hero = 1 && global.enemy_hero = 1
 													{ b_pressed_s[4] = 1; }
 											#endregion
 											}
+											else
+											{
+											if global.training_stage[6] = 7
+												{
+												if vtrue[1] = 1
+													{
+													#region Вариант 1
+														if point_in_rectangle(mouse_x1, mouse_y1, x1 - button_width / 2, y1 - button_height / 2, x1 + button_width / 2, y1 + button_height / 2)
+															{
+															if device_mouse_check_button(dev, mb_left)
+																{ b_pressed_s[1] = 1.2; }
+																else
+																{ b_pressed_s[1] = 1; }
+															if device_mouse_check_button_released(dev, mb_left)
+																{
+																if global.music { audio_play_sound(sd_text, 2, 0); }
+																if vtrue[1] = 1
+																	{ global.answer = 1; }
+																	else
+																	{ global.answer = 0; }
+																math_1();
+																}
+															}
+															else
+															{ b_pressed_s[1] = 1; }
+													#endregion
+													}
+												if vtrue[2] = 1
+													{
+													#region Вариант 2
+														if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
+															{
+															if device_mouse_check_button(dev, mb_left)
+																{ b_pressed_s[2] = 1.2; }
+																else
+																{ b_pressed_s[2] = 1; }
+															if device_mouse_check_button_released(dev, mb_left)
+																{
+																if global.music
+																	{ audio_play_sound(sd_text, 2, 0); }
+																/*audio_play_sound(sd_revolver, 1, 0);*/
+																if vtrue[2] = 1
+																	{ global.answer = 1; }
+																	else
+																	{ global.answer = 0; }
+																math_1();
+																}
+															}
+															else
+															{ b_pressed_s[2] = 1; }
+													#endregion
+													}
+												if vtrue[3] = 1
+													{
+													#region Вариант 3
+														if point_in_rectangle(mouse_x1, mouse_y1, x3 - button_width / 2, y3 - button_height / 2, x3 + button_width / 2, y3 + button_height / 2)
+															{
+															if device_mouse_check_button(dev, mb_left)
+																{ b_pressed_s[3] = 1.2; }
+																else
+																{ b_pressed_s[3] = 1; }
+															if device_mouse_check_button_released(dev, mb_left)
+																{
+																if global.music { audio_play_sound(sd_text, 2, 0); }
+																/*audio_play_sound(sd_revolver, 1, 0);*/
+																if vtrue[3] = 1
+																	{ global.answer = 1; }
+																	else
+																	{ global.answer = 0; }
+																math_1();
+																}
+															}
+															else
+															{ b_pressed_s[3] = 1; }
+													#endregion
+													}
+												if vtrue[4] = 1
+													{
+													#region Вариант 4
+														if point_in_rectangle(mouse_x1, mouse_y1, x4 - button_width / 2, y4 - button_height / 2, x4 + button_width / 2, y4 + button_height / 2)
+															{
+															if device_mouse_check_button(dev, mb_left)
+																{ b_pressed_s[4] = 1.2; }
+																else
+																{ b_pressed_s[4] = 1; }
+															if device_mouse_check_button_released(dev, mb_left)
+																{
+																if global.music { audio_play_sound(sd_text, 2, 0); }
+																/*audio_play_sound(sd_revolver, 1, 0);*/
+																if vtrue[4] = 1
+																	{ global.answer = 1; }
+																	else
+																	{ global.answer = 0; }
+																math_1();
+																}
+															}
+															else
+															{ b_pressed_s[4] = 1; }
+													#endregion
+													}
+												}
+											}
 										}
 									}
-								}
-						#endregion
-						#region Рисование кнопок и вопроса
+							#endregion
+							#region Рисование кнопок и вопроса
+								#region Обучение
+									if global.training = 6
+										{
+										if global.training_stage[6] = 6 or (global.training_stage[6] = 7 && global.training_question = 0)
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[6] = 6
+												{ global.training_stage[6] = 7; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[6] = 10;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
+										}
+								#endregion
+								if (global.training < 1 or global.training_stage[6] >= 6)
+									{
+									var math_ind;
+									math_ind = 1.3;
+									draw_set_font(global.math_font);
+									
+									draw_set_color(c_black);
+									draw_set_alpha(0.4);
+									draw_text_transformed(640 - 3 + 30, global.size / 2 - 200 * list_size - 50 + list_y + 4 + button_x / 4 - 125 * (1 - list_scale), equation_text /*"14?7=2*/, list_size * 1.04, list_size * 1.04 * list_scale, 0);
+									draw_set_color(c_white);
+									draw_set_alpha(1);
+									draw_text_transformed_t(640 + 30, global.size / 2 - 200 * list_size - 50 + list_y + button_x / 4 - 125 * (1 - list_scale), equation_text /*"14?7=2*/, list_size * 1.04, list_size * 1.04 * list_scale, 0, c_white, c_black);
+									
+									draw_sprite_ext_t(s_question_sign, 0, x1, y1, list_size1 * b_pressed_s[1] * math_ind, list_size1 * list_scale * b_pressed_s[1] * math_ind, 0, c_white, 1, c_white, c_black);
+									draw_sprite_ext_t(s_question_sign, 1, x2, y1 + 3, -list_size1 * b_pressed_s[2] * math_ind, list_size1 * list_scale * b_pressed_s[2] * math_ind, 0, c_white, 1, c_white, c_black);
+									draw_sprite_ext_t(s_question_sign, 2, x3, y1 + 3, list_size1 * b_pressed_s[3] * math_ind, list_size1 * list_scale * b_pressed_s[3] * math_ind, 0, c_white, 1, c_white, c_black);
+									draw_sprite_ext_t(s_question_sign, 3, x4, y1, -list_size1 * b_pressed_s[4] * math_ind, list_size1 * list_scale * b_pressed_s[4] * math_ind, 0, c_white, 1, c_white, c_black);
+										
+									draw_set_font(global.game_font);
+									draw_text_transformed_t(x1, y1 + 10, "+", list_scale * 0.7, list_scale * 0.7, 0, c_white, c_black);
+									draw_text_transformed_t(x2, y1 + 10, "-", list_scale * 0.7, list_scale * 0.7, 0, c_white, c_black);
+									draw_text_transformed_t(x3, y1 + 10, "/", list_scale * 0.7, list_scale * 0.7, 0, c_white, c_black);
+									draw_text_transformed_t(x4, y1 + 10, "*", list_scale * 0.7, list_scale * 0.7, 0, c_white, c_black);
+									}
+								if global.training_question = 0 && global.training_stage[6] = 7 && hand_xxx = -200
+									{
+									if vtrue[1] = 1
+										{
+										hand_xxx = x1;
+										hand_yyy = y1;
+										}
+									if vtrue[2] = 1
+										{
+										hand_xxx = x2;
+										hand_yyy = y1;
+										}
+									if vtrue[3] = 1
+										{
+										hand_xxx = x3;
+										hand_yyy = y1;
+										}
+									if vtrue[4] = 1
+										{
+										hand_xxx = x4;
+										hand_yyy = y1;
+										}
+									
+									global.training_hand_x = hand_xxx;
+									global.training_hand_y = hand_yyy;
+									}
+							#endregion
+							}
+					#endregion
+					#region Задача 2 - Числа
+						if round_task[global.rounds,global.task] = 2
+							{
+							#region Координаты кнопок
+								var x1, y1, x2, y2, x3, y3, x4, y4, button_width, button_height;
+									
+								button_width = sprite_get_width(s_question_sign) * list_size1 * o_but_sc;
+								button_height = sprite_get_height(s_question_sign) * list_size1 * o_but_sc;
+									
+								x1 = 640 - button_width / 2 * 3 - 45; //640 - 5 - 160 * list_size1 - button_x;
+								y1 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 140 * list_size1 + list_y - 250 * (1 - list_scale);
+									
+								x2 = 640 - button_width / 2 - 15; //640 - 5 + 160 * list_size1 + button_x;
+								y2 = y1;
+									
+								x3 = 640 + button_width / 2 + 15; //x1;
+								y3 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 400 * list_size1 + list_y - 350 * (1 - list_scale);
+									
+								x4 = 640 + button_width / 2 * 3 + 45; // x2;
+								y4 = y3;
+							#endregion
+							#region Варианты
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
+										{
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if global.training < 1 or global.training_question != 0
+											{
+											#region Вариант 1
+												if point_in_rectangle(mouse_x1, mouse_y1, x1 - button_width / 2, y1 - button_height / 2, x1 + button_width / 2, y1 + button_height / 2)
+													{
+													if device_mouse_check_button(dev, mb_left)
+														{ b_pressed_s[1] = 1.2; }
+														else
+														{ b_pressed_s[1] = 1; }
+													if device_mouse_check_button_released(dev, mb_left)
+														{
+														if global.music { audio_play_sound(sd_text, 2, 0); }
+														/*audio_play_sound(sd_revolver, 1, 0);*/
+														if vtrue[1] = 1
+															{ global.answer = 1; }
+															else
+															{ global.answer = 0; }
+														math_2();
+														}
+													}
+													else
+													{ b_pressed_s[1] = 1; }
+											#endregion
+											#region Вариант 2
+												if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
+													{
+													if device_mouse_check_button(dev, mb_left)
+														{ b_pressed_s[2] = 1.2; }
+														else
+														{ b_pressed_s[2] = 1; }
+													if device_mouse_check_button_released(dev, mb_left)
+														{
+														if global.music { audio_play_sound(sd_text, 2, 0); }
+														/*audio_play_sound(sd_revolver, 1, 0);*/
+														if vtrue[2] = 1
+															{ global.answer = 1; }
+															else
+															{ global.answer = 0; }
+														math_2();
+														}
+													}
+													else
+													{ b_pressed_s[2] = 1; }
+											#endregion
+											#region Вариант 3
+												if point_in_rectangle(mouse_x1, mouse_y1, x3 - button_width / 2, y3 - button_height / 2, x3 + button_width / 2, y3 + button_height / 2)
+													{
+													if device_mouse_check_button(dev, mb_left)
+														{ b_pressed_s[3] = 1.2; }
+														else
+														{ b_pressed_s[3] = 1; }
+													if device_mouse_check_button_released(dev, mb_left)
+														{
+														if global.music { audio_play_sound(sd_text, 2, 0); }
+														/*audio_play_sound(sd_revolver, 1, 0);*/
+														if vtrue[3] = 1
+															{ global.answer = 1; }
+															else
+															{ global.answer = 0; }
+														math_2();
+														}
+													}
+													else
+													{ b_pressed_s[3] = 1; }
+											#endregion
+											#region Вариант 4
+											if point_in_rectangle(mouse_x1, mouse_y1, x4 - button_width / 2, y4 - button_height / 2, x4 + button_width / 2, y4 + button_height / 2)
+												{
+												if device_mouse_check_button(dev, mb_left)
+													{ b_pressed_s[4] = 1.2; }
+													else
+													{ b_pressed_s[4] = 1; }
+												if device_mouse_check_button_released(dev, mb_left)
+													{
+													if global.music { audio_play_sound(sd_text, 2, 0); }
+													/*audio_play_sound(sd_revolver, 1, 0);*/
+													if vtrue[4] = 1
+														{ global.answer = 1; }
+														else
+														{ global.answer = 0; }
+													math_2();
+													}
+												}
+												else
+												{ b_pressed_s[4] = 1; }
+										#endregion
+											}
+											else
+											{
+											if global.training_stage[6] = 11
+												{
+												if vtrue[1] = 1
+													{
+													#region Вариант 1
+														if point_in_rectangle(mouse_x1, mouse_y1, x1 - button_width / 2, y1 - button_height / 2, x1 + button_width / 2, y1 + button_height / 2)
+															{
+															if device_mouse_check_button(dev, mb_left)
+																{ b_pressed_s[1] = 1.2; }
+																else
+																{ b_pressed_s[1] = 1; }
+															if device_mouse_check_button_released(dev, mb_left)
+																{
+																if global.music { audio_play_sound(sd_text, 2, 0); }
+																/*audio_play_sound(sd_revolver, 1, 0);*/
+																if vtrue[1] = 1
+																	{ global.answer = 1; }
+																	else
+																	{ global.answer = 0; }
+																math_2();
+																}
+															}
+															else
+															{ b_pressed_s[1] = 1; }
+													#endregion
+													}
+												if vtrue[2] = 1
+													{
+													#region Вариант 2
+														if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
+															{
+															if device_mouse_check_button(dev, mb_left)
+																{ b_pressed_s[2] = 1.2; }
+																else
+																{ b_pressed_s[2] = 1; }
+															if device_mouse_check_button_released(dev, mb_left)
+																{
+																if global.music { audio_play_sound(sd_text, 2, 0); }
+																/*audio_play_sound(sd_revolver, 1, 0);*/
+																if vtrue[2] = 1
+																	{ global.answer = 1; }
+																	else
+																	{ global.answer = 0; }
+																math_2();
+																}
+															}
+															else
+															{ b_pressed_s[2] = 1; }
+													#endregion
+													}
+												if vtrue[3] = 1
+													{
+													#region Вариант 3
+														if point_in_rectangle(mouse_x1, mouse_y1, x3 - button_width / 2, y3 - button_height / 2, x3 + button_width / 2, y3 + button_height / 2)
+															{
+															if device_mouse_check_button(dev, mb_left)
+																{ b_pressed_s[3] = 1.2; }
+																else
+																{ b_pressed_s[3] = 1; }
+															if device_mouse_check_button_released(dev, mb_left)
+																{
+																if global.music { audio_play_sound(sd_text, 2, 0); }
+																/*audio_play_sound(sd_revolver, 1, 0);*/
+																if vtrue[3] = 1
+																	{ global.answer = 1; }
+																	else
+																	{ global.answer = 0; }
+																math_2();
+																}
+															}
+															else
+															{ b_pressed_s[3] = 1; }
+													#endregion
+													}
+												if vtrue[4] = 1
+													{
+													#region Вариант 4
+													if point_in_rectangle(mouse_x1, mouse_y1, x4 - button_width / 2, y4 - button_height / 2, x4 + button_width / 2, y4 + button_height / 2)
+														{
+														if device_mouse_check_button(dev, mb_left)
+															{ b_pressed_s[4] = 1.2; }
+															else
+															{ b_pressed_s[4] = 1; }
+														if device_mouse_check_button_released(dev, mb_left)
+															{
+															if global.music { audio_play_sound(sd_text, 2, 0); }
+															/*audio_play_sound(sd_revolver, 1, 0);*/
+															if vtrue[4] = 1
+																{ global.answer = 1; }
+																else
+																{ global.answer = 0; }
+															math_2();
+															}
+														}
+														else
+														{ b_pressed_s[4] = 1; }
+												#endregion
+													}
+												}
+											}
+										}
+									}
+							#endregion
+							#region Рисование кнопок и вопроса
+								#region Обучение
+									if global.training = 6
+										{
+										if global.training_stage[6] = 10 or (global.training_stage[6] = 11 && global.training_question = 0)
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[6] = 10
+												{ global.training_stage[6] = 11; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[6] = 14;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
+										}
+							#endregion
+								if (global.training < 1 or global.training_stage[6] >= 10)// && global.training_question != 0
+									{
+									var math_ind, txt_scale;
+									math_ind = 1.4;
+									txt_scale = 0.35;
+									draw_set_font(global.math_font);
+									
+									draw_set_color(c_black);
+									draw_set_alpha(0.4);
+									draw_text_transformed(640 - 3 + 30, global.size / 2 - 200 * list_size - 50 + list_y + 4 + button_x / 4 - 125 * (1 - list_scale), equation_text, list_size * 1.04, list_size * 1.04 * list_scale, 0);
+									draw_set_color(c_white);
+									draw_set_alpha(1);
+									draw_text_transformed_t(640 + 30, global.size / 2 - 200 * list_size - 50 + list_y + button_x / 4 - 125 * (1 - list_scale), equation_text, list_size * 1.04, list_size * 1.04 * list_scale, 0, c_white, c_black);
+									
+									draw_sprite_ext_t(s_question_sign, 0, x1, y1, list_size1 * b_pressed_s[1]* math_ind, list_size1 * list_scale * b_pressed_s[1]* math_ind, 0, c_white, 1, c_white, c_black);
+									draw_sprite_ext_t(s_question_sign, 0, x2, y1 + 6, list_size1 * b_pressed_s[2]* math_ind, list_size1 * list_scale * b_pressed_s[2]* math_ind, 0, c_white, 1, c_white, c_black);
+									draw_sprite_ext_t(s_question_sign, 0, x3, y1 + 6, -list_size1 * b_pressed_s[3]* math_ind, list_size1 * list_scale * b_pressed_s[3]* math_ind, 0, c_white, 1, c_white, c_black);
+									draw_sprite_ext_t(s_question_sign, 0, x4, y1, -list_size1 * b_pressed_s[4]* math_ind, list_size1 * list_scale * b_pressed_s[4]* math_ind, 0, c_white, 1, c_white, c_black);
+									
+									draw_text_transformed_t(x1 + 50, y1 + 65, vtext[1], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
+									draw_text_transformed_t(x2 + 50, y1 + 65, vtext[2], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
+									draw_text_transformed_t(x3 + 50, y1 + 65, vtext[3], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
+									draw_text_transformed_t(x4 + 50, y1 + 65, vtext[4], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
+									}
+								if global.training_question = 0 && global.training_stage[6] = 11 && hand_xxx = -200
+									{
+									if vtrue[1] = 1
+										{
+										hand_xxx = x1;
+										hand_yyy = y1;
+										}
+									if vtrue[2] = 1
+										{
+										hand_xxx = x2;
+										hand_yyy = y1;
+										}
+									if vtrue[3] = 1
+										{
+										hand_xxx = x3;
+										hand_yyy = y1;
+										}
+									if vtrue[4] = 1
+										{
+										hand_xxx = x4;
+										hand_yyy = y1;
+										}
+									
+									global.training_hand_x = hand_xxx;
+									global.training_hand_y = hand_yyy;
+									}
+							#endregion
+							}
+					#endregion
+					#region Задача 3 - Больше Меньше
+						if round_task[global.rounds,global.task] = 3
+							{
+							#region Координаты кнопок
+									var x1, y1, x2, y2, x3, y3, x4, y4, button_width, button_height;
+								
+									button_width = sprite_get_width(s_question_sign) * list_size1 * o_but_sc;
+									button_height = sprite_get_height(s_question_sign) * list_size1 * o_but_sc;
+								
+									x1 = 640 - button_width / 2 * 3 - 100; //640 - 5 - 160 * list_size1 - button_x;
+									y1 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 140 * list_size1 + list_y - 250 * (1 - list_scale);
+								
+									x2 = 640 - button_width / 2 - 15 - 50; //640 - 5 + 160 * list_size1 + button_x;
+									y2 = y1;
+								
+									x3 = 640 + button_width / 2 + 15 + 50; //x1;
+									y3 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 400 * list_size1 + list_y - 350 * (1 - list_scale);
+								
+									x4 = 640 + button_width / 2 * 3 + 100; // x2;
+									y4 = y3;
+							#endregion
+							#region Варианты
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
+										{
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if global.training < 1 or global.training_question != 0
+											{
+											#region Вариант 2
+												if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
+													{
+													if device_mouse_check_button(dev, mb_left)
+														{ b_pressed_s[2] = 1.2; }
+														else
+														{ b_pressed_s[2] = 1; }
+													if device_mouse_check_button_released(dev, mb_left)
+														{
+														if global.music { audio_play_sound(sd_text, 2, 0); }
+														/*audio_play_sound(sd_revolver, 1, 0);*/
+														if vtrue[2] = 1
+															{ global.answer = 1; }
+															else
+															{ global.answer = 0; }
+														math_3();
+														}
+													}
+													else
+													{ b_pressed_s[2] = 1; }
+											#endregion
+											#region Вариант 3
+												if point_in_rectangle(mouse_x1, mouse_y1, x3 - button_width / 2, y3 - button_height / 2, x3 + button_width / 2, y3 + button_height / 2)
+													{
+													if device_mouse_check_button(dev, mb_left)
+														{ b_pressed_s[3] = 1.2; }
+														else
+														{ b_pressed_s[3] = 1; }
+													if device_mouse_check_button_released(dev, mb_left)
+														{
+														if global.music { audio_play_sound(sd_text, 2, 0); }
+														/*audio_play_sound(sd_revolver, 1, 0);*/
+														if vtrue[3] = 1
+															{ global.answer = 1; }
+															else
+															{ global.answer = 0; }
+														math_3();
+														}
+													}
+													else
+													{ b_pressed_s[3] = 1; }
+											#endregion
+											}
+											else
+											{
+											if global.training_stage[6] = 16
+												{
+												if vtrue[2] = 1
+													{
+													#region Вариант 2
+														if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
+															{
+															if device_mouse_check_button(dev, mb_left)
+																{ b_pressed_s[2] = 1.2; }
+																else
+																{ b_pressed_s[2] = 1; }
+															if device_mouse_check_button_released(dev, mb_left)
+																{
+																if global.music { audio_play_sound(sd_text, 2, 0); }
+																/*audio_play_sound(sd_revolver, 1, 0);*/
+																if vtrue[2] = 1
+																	{ global.answer = 1; }
+																	else
+																	{ global.answer = 0; }
+																math_3();
+																}
+															}
+															else
+															{ b_pressed_s[2] = 1; }
+													#endregion
+													}
+												if vtrue[3] = 1
+													{
+													#region Вариант 3
+														if point_in_rectangle(mouse_x1, mouse_y1, x3 - button_width / 2, y3 - button_height / 2, x3 + button_width / 2, y3 + button_height / 2)
+															{
+															if device_mouse_check_button(dev, mb_left)
+																{ b_pressed_s[3] = 1.2; }
+																else
+																{ b_pressed_s[3] = 1; }
+															if device_mouse_check_button_released(dev, mb_left)
+																{
+																if global.music { audio_play_sound(sd_text, 2, 0); }
+																/*audio_play_sound(sd_revolver, 1, 0);*/
+																if vtrue[3] = 1
+																	{ global.answer = 1; }
+																	else
+																	{ global.answer = 0; }
+																math_3();
+																}
+															}
+															else
+															{ b_pressed_s[3] = 1; }
+													#endregion
+													}
+												}
+											}
+										}
+									}
+							#endregion
+							#region Рисование кнопок и вопроса
 							#region Обучение
 								if global.training = 6
 									{
-									if global.training_stage[6] = 6 or (global.training_stage[6] = 7 && global.training_question = 0)
+									if global.training_stage[6] = 14 or global.training_stage[6] = 15
+									or (global.training_stage[6] = 16 && global.training_question = 0)
 										{
 										draw_set_alpha(0.45);
 										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
 										draw_set_alpha(1);
 										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
+								
 									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
 										{
-										if global.training_stage[6] = 6
+										if global.training_stage[6] = 14 or global.training_stage[6] = 15
 											{ global.training_stage[6] += 1; }
 										}
+								
 									if global.training_question = 3
 										{
-										global.training_stage[6] += 1;
+										global.training_stage[6] = 18;
 										global.training_hand_s   = 0;
 										global.training_question = 0;
 										global.text_ne = 1;
@@ -477,31 +995,27 @@ if global.hero = 1 && global.enemy_hero = 1
 										}
 									}
 							#endregion
-							if global.training < 1 or global.training_question != 0 or global.training_stage[6] = 7
+							if (global.training < 1 or global.training_stage[6] >= 14)
 								{
-								var math_ind;
-								math_ind = 1.3;
+								var math_ind, txt_scale;
+								math_ind = 1.4;
+								txt_scale = 0.6;
 								draw_set_font(global.math_font);
-									
+							
 								draw_set_color(c_black);
 								draw_set_alpha(0.4);
-								draw_text_transformed(640 - 3 + 30, global.size / 2 - 200 * list_size - 50 + list_y + 4 + button_x / 4 - 125 * (1 - list_scale), equation_text /*"14?7=2*/, list_size * 1.04, list_size * 1.04 * list_scale, 0);
+								draw_text_transformed(640 - 3 + 30, global.size / 2 - 200 * list_size - 50 + list_y + 4 + button_x / 4 - 125 * (1 - list_scale), equation_text, list_size * 1.04, list_size * 1.04 * list_scale, 0);
 								draw_set_color(c_white);
 								draw_set_alpha(1);
-								draw_text_transformed_t(640 + 30, global.size / 2 - 200 * list_size - 50 + list_y + button_x / 4 - 125 * (1 - list_scale), equation_text /*"14?7=2*/, list_size * 1.04, list_size * 1.04 * list_scale, 0, c_white, c_black);
-									
-								draw_sprite_ext_t(s_question_sign, 0, x1, y1, list_size1 * b_pressed_s[1] * math_ind, list_size1 * list_scale * b_pressed_s[1] * math_ind, 0, c_white, 1, c_white, c_black);
-								draw_sprite_ext_t(s_question_sign, 1, x2, y1 + 3, -list_size1 * b_pressed_s[2] * math_ind, list_size1 * list_scale * b_pressed_s[2] * math_ind, 0, c_white, 1, c_white, c_black);
-								draw_sprite_ext_t(s_question_sign, 2, x3, y1 + 3, list_size1 * b_pressed_s[3] * math_ind, list_size1 * list_scale * b_pressed_s[3] * math_ind, 0, c_white, 1, c_white, c_black);
-								draw_sprite_ext_t(s_question_sign, 3, x4, y1, -list_size1 * b_pressed_s[4] * math_ind, list_size1 * list_scale * b_pressed_s[4] * math_ind, 0, c_white, 1, c_white, c_black);
-										
-								draw_set_font(global.game_font);
-								draw_text_transformed_t(x1, y1 + 10, "+", list_scale * 0.7, list_scale * 0.7, 0, c_white, c_black);
-								draw_text_transformed_t(x2, y1 + 10, "-", list_scale * 0.7, list_scale * 0.7, 0, c_white, c_black);
-								draw_text_transformed_t(x3, y1 + 10, "/", list_scale * 0.7, list_scale * 0.7, 0, c_white, c_black);
-								draw_text_transformed_t(x4, y1 + 10, "*", list_scale * 0.7, list_scale * 0.7, 0, c_white, c_black);
+								draw_text_transformed_t(640 + 30, global.size / 2 - 200 * list_size - 50 + list_y + button_x / 4 - 125 * (1 - list_scale), equation_text, list_size * 1.04, list_size * 1.04 * list_scale, 0, c_white, c_black);
+							
+								draw_sprite_ext_t(s_question_sign, 0, x2, y1 + 6, list_size1 * b_pressed_s[2]* math_ind, list_size1 * list_scale * b_pressed_s[2]* math_ind, 0, c_white, 1, c_white, c_black);
+								draw_sprite_ext_t(s_question_sign, 0, x3, y1 + 6, -list_size1 * b_pressed_s[3]* math_ind, list_size1 * list_scale * b_pressed_s[3]* math_ind, 0, c_white, 1, c_white, c_black);
+							
+								draw_text_transformed_t(x2 + 70, y1 + 100, vtext[2], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
+								draw_text_transformed_t(x3 + 70, y1 + 100, vtext[3], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
 								}
-							if global.training_question = 0 && global.training_stage[6] = 7 && hand_xxx = -200
+							if global.training_question = 0 && global.training_stage[6] = 16 && hand_xxx = -200
 								{
 								if vtrue[1] = 1
 									{
@@ -527,385 +1041,453 @@ if global.hero = 1 && global.enemy_hero = 1
 								global.training_hand_x = hand_xxx;
 								global.training_hand_y = hand_yyy;
 								}
-						#endregion
-						}
-				#endregion
-				#region Задача 2 - Числа
-					if round_task[global.rounds,global.task] = 2
-						{
-						#region Координаты кнопок
-							var x1, y1, x2, y2, x3, y3, x4, y4, button_width, button_height;
-									
-							button_width = sprite_get_width(s_question_sign) * list_size1 * o_but_sc;
-							button_height = sprite_get_height(s_question_sign) * list_size1 * o_but_sc;
-									
-							x1 = 640 - button_width / 2 * 3 - 45; //640 - 5 - 160 * list_size1 - button_x;
-							y1 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 140 * list_size1 + list_y - 250 * (1 - list_scale);
-									
-							x2 = 640 - button_width / 2 - 15; //640 - 5 + 160 * list_size1 + button_x;
-							y2 = y1;
-									
-							x3 = 640 + button_width / 2 + 15; //x1;
-							y3 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 400 * list_size1 + list_y - 350 * (1 - list_scale);
-									
-							x4 = 640 + button_width / 2 * 3 + 45; // x2;
-							y4 = y3;
-						#endregion
-						#region Варианты
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
+							#endregion
+							}
+					#endregion
+					#region Задача 4 - Равно Неравно
+						if round_task[global.rounds,global.task] = 4
+							{
+							#region Координаты кнопок
+									var x1, y1, x2, y2, x3, y3, x4, y4, button_width, button_height;
+							
+									button_width = sprite_get_width(s_question_sign) * list_size1 * o_but_sc;
+									button_height = sprite_get_height(s_question_sign) * list_size1 * o_but_sc;
+							
+									x1 = 640 - button_width / 2 * 3 - 45; //640 - 5 - 160 * list_size1 - button_x;
+									y1 = global.size / 2 + 50;
+							
+									x2 = 640 - button_width / 2 - 15; //640 - 5 + 160 * list_size1 + button_x;
+									y2 = y1;
+		
+									x3 = 640 + button_width / 2 + 15; //x1;
+									y3 = global.size / 2 + 50;
+							
+									x4 = 640 + button_width / 2 * 3 + 45; // x2;
+									y4 = y3;
+							#endregion
+							#region Варианты
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									#region Вариант 1
-										if point_in_rectangle(mouse_x1, mouse_y1, x1 - button_width / 2, y1 - button_height / 2, x1 + button_width / 2, y1 + button_height / 2)
-											{
-											if device_mouse_check_button(dev, mb_left)
-												{ b_pressed_s[1] = 1.2; }
-												else
-												{ b_pressed_s[1] = 1; }
-											if device_mouse_check_button_released(dev, mb_left)
-												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
-												/*audio_play_sound(sd_revolver, 1, 0);*/
-												if vtrue[1] = 1
-													{ global.answer = 1; }
-													else
-													{ global.answer = 0; }
-												math_2();
-												}
-											}
-											else
-											{ b_pressed_s[1] = 1; }
-									#endregion
-									#region Вариант 2
-										if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
-											{
-											if device_mouse_check_button(dev, mb_left)
-												{ b_pressed_s[2] = 1.2; }
-												else
-												{ b_pressed_s[2] = 1; }
-											if device_mouse_check_button_released(dev, mb_left)
-												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
-												/*audio_play_sound(sd_revolver, 1, 0);*/
-												if vtrue[2] = 1
-													{ global.answer = 1; }
-													else
-													{ global.answer = 0; }
-												math_2();
-												}
-											}
-											else
-											{ b_pressed_s[2] = 1; }
-									#endregion
-									#region Вариант 3
-										if point_in_rectangle(mouse_x1, mouse_y1, x3 - button_width / 2, y3 - button_height / 2, x3 + button_width / 2, y3 + button_height / 2)
-											{
-											if device_mouse_check_button(dev, mb_left)
-												{ b_pressed_s[3] = 1.2; }
-												else
-												{ b_pressed_s[3] = 1; }
-											if device_mouse_check_button_released(dev, mb_left)
-												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
-												/*audio_play_sound(sd_revolver, 1, 0);*/
-												if vtrue[3] = 1
-													{ global.answer = 1; }
-													else
-													{ global.answer = 0; }
-												math_2();
-												}
-											}
-											else
-											{ b_pressed_s[3] = 1; }
-									#endregion
-									#region Вариант 4
-									if point_in_rectangle(mouse_x1, mouse_y1, x4 - button_width / 2, y4 - button_height / 2, x4 + button_width / 2, y4 + button_height / 2)
+									for(dev=0;dev<5;dev++)
 										{
-										if device_mouse_check_button(dev, mb_left)
-											{ b_pressed_s[4] = 1.2; }
-											else
-											{ b_pressed_s[4] = 1; }
-										if device_mouse_check_button_released(dev, mb_left)
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if global.training < 1 or global.training_question != 0
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											/*audio_play_sound(sd_revolver, 1, 0);*/
-											if vtrue[4] = 1
-												{ global.answer = 1; }
-												else
-												{ global.answer = 0; }
-											math_2();
+											#region Вариант 2
+												if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
+													{
+													if device_mouse_check_button(dev, mb_left)
+														{ b_pressed_s[2] = 1.2; }
+														else
+														{ b_pressed_s[2] = 1; }
+													if device_mouse_check_button_released(dev, mb_left)
+														{
+														if global.music { audio_play_sound(sd_text, 2, 0); }
+														/*audio_play_sound(sd_revolver, 1, 0);*/
+														if vtrue[2] = 1
+															{ global.answer = 1; }
+															else
+															{ global.answer = 0; }
+														math_4();
+														}
+													}
+													else
+													{ b_pressed_s[2] = 1; }
+											#endregion
+											#region Вариант 3
+												if point_in_rectangle(mouse_x1, mouse_y1, x3 - button_width / 2, y3 - button_height / 2, x3 + button_width / 2, y3 + button_height / 2)
+													{
+													if device_mouse_check_button(dev, mb_left)
+														{ b_pressed_s[3] = 1.2; }
+														else
+														{ b_pressed_s[3] = 1; }
+													if device_mouse_check_button_released(dev, mb_left)
+														{
+														if global.music { audio_play_sound(sd_text, 2, 0); }
+														/*audio_play_sound(sd_revolver, 1, 0);*/
+														if vtrue[3] = 1
+															{ global.answer = 1; }
+															else
+															{ global.answer = 0; }
+														math_4();
+														}
+													}
+													else
+													{ b_pressed_s[3] = 1; }
+											#endregion
+											}
+											else
+											{
+											if global.training_stage[6] = 20
+												{
+												if vtrue[2] =1
+													{
+													#region Вариант 2
+														if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
+															{
+															if device_mouse_check_button(dev, mb_left)
+																{ b_pressed_s[2] = 1.2; }
+																else
+																{ b_pressed_s[2] = 1; }
+															if device_mouse_check_button_released(dev, mb_left)
+																{
+																if global.music { audio_play_sound(sd_text, 2, 0); }
+																/*audio_play_sound(sd_revolver, 1, 0);*/
+																if vtrue[2] = 1
+																	{ global.answer = 1; }
+																	else
+																	{ global.answer = 0; }
+																math_4();
+																}
+															}
+															else
+															{ b_pressed_s[2] = 1; }
+													#endregion
+													}
+												if vtrue[3] = 1
+													{
+													#region Вариант 3
+														if point_in_rectangle(mouse_x1, mouse_y1, x3 - button_width / 2, y3 - button_height / 2, x3 + button_width / 2, y3 + button_height / 2)
+															{
+															if device_mouse_check_button(dev, mb_left)
+																{ b_pressed_s[3] = 1.2; }
+																else
+																{ b_pressed_s[3] = 1; }
+															if device_mouse_check_button_released(dev, mb_left)
+																{
+																if global.music { audio_play_sound(sd_text, 2, 0); }
+																/*audio_play_sound(sd_revolver, 1, 0);*/
+																if vtrue[3] = 1
+																	{ global.answer = 1; }
+																	else
+																	{ global.answer = 0; }
+																math_4();
+																}
+															}
+															else
+															{ b_pressed_s[3] = 1; }
+													#endregion
+													}
+												}
+											}
+										}
+									}
+							#endregion
+							#region Рисование кнопок и вопроса
+								#region Обучение
+								if global.training = 6
+									{
+									if global.training_stage[6] = 18 or global.training_stage[6] = 19
+									or (global.training_stage[6] = 20 && global.training_question = 0)
+										{
+										draw_set_alpha(0.45);
+										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+										draw_set_alpha(1);
+										}
+								
+									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+										{
+										if global.training_stage[6] = 18 or global.training_stage[6] = 19
+											{ global.training_stage[6] += 1; }
+										}
+								
+									if global.training_question = 3
+										{
+										global.training_stage[6] = 22;
+										global.training_hand_s   = 0;
+										global.training_question = 0;
+										global.text_ne = 1;
+										global.text_go = 0;
+										}
+									}
+								#endregion
+								if (global.training < 1 or global.training_stage[6] >= 18)
+									{
+									var math_ind, txt_scale;
+									math_ind = 1.4;
+									txt_scale = 0.6;
+									draw_set_font(global.math_font);
+								
+									draw_set_color(c_black);
+									draw_set_alpha(0.4);
+									draw_text_transformed(640 - 3 + 30, global.size / 2 - 200 * list_size - 50 + list_y + 4 + button_x / 4 - 125 * (1 - list_scale), equation_text, list_size * 1.04, list_size * 1.04 * list_scale, 0);
+									draw_set_color(c_white);
+									draw_set_alpha(1);
+									draw_text_transformed_t(640 + 30, global.size / 2 - 200 * list_size - 50 + list_y + button_x / 4 - 125 * (1 - list_scale), equation_text, list_size * 1.04, list_size * 1.04 * list_scale, 0, c_white, c_black);
+								
+									draw_sprite_ext_t(s_question_sign, 0, x2, y1 + 6, list_size1 * b_pressed_s[2]* math_ind, list_size1 * list_scale * b_pressed_s[2]* math_ind, 0, c_white, 1, c_white, c_black);
+									draw_sprite_ext_t(s_question_sign, 0, x3, y1 + 6, -list_size1 * b_pressed_s[3]* math_ind, list_size1 * list_scale * b_pressed_s[3]* math_ind, 0, c_white, 1, c_white, c_black);
+								
+									draw_text_transformed_t(x2 + 70, y1 + 110, vtext[2], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
+									draw_text_transformed_t(x3 + 70, y1 + 110, vtext[3], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
+									}
+							
+								if global.training_question = 0 && global.training_stage[6] = 20 && hand_xxx = -200
+									{
+									if vtrue[1] = 1
+										{
+										hand_xxx = x1;
+										hand_yyy = y1;
+										}
+									if vtrue[2] = 1
+										{
+										hand_xxx = x2;
+										hand_yyy = y1;
+										}
+									if vtrue[3] = 1
+										{
+										hand_xxx = x3;
+										hand_yyy = y1;
+										}
+									if vtrue[4] = 1
+										{
+										hand_xxx = x4;
+										hand_yyy = y1;
+										}
+									
+									global.training_hand_x = hand_xxx;
+									global.training_hand_y = hand_yyy;
+									}
+								//draw_set_font(global.math_font);
+									
+								//draw_set_color(c_black);
+								//draw_set_alpha(0.4);
+								//draw_text_transformed(640 - 3 + 30, global.size / 2 - 200 * list_size - 50 + list_y + 4 + button_x / 4 - 125 * (1 - list_scale), equation_text /*"14?7=2*/, list_size * 1.04, list_size * 1.04 * list_scale, 0);
+								//draw_set_color(c_white);
+								//draw_set_alpha(1);
+								//draw_text_transformed(640 + 30, global.size / 2 - 200 * list_size - 50 + list_y + button_x / 4 - 125 * (1 - list_scale), equation_text /*"14?7=2*/, list_size * 1.04, list_size * 1.04 * list_scale, 0);
+									
+								//draw_sprite_ext(s_question_figure, 2, x2, y1 + 6 + 6, list_size1, list_size1 * list_scale, 0, c_black, 0.4);
+								//draw_sprite_ext(s_question_figure, 2, x3, y1 + 6 + 6, -list_size1, list_size1 * list_scale, 0, c_black, 0.4);
+									
+								//draw_sprite_ext(s_question_figure, 3, x2, y1 + 6, list_size1, list_size1 * list_scale, 0, c_white, 1);
+								//draw_sprite_ext(s_question_figure, 3, x3, y1 + 6, -list_size1, list_size1 * list_scale, 0, c_white, 1);
+									
+								//draw_sprite_ext(s_question_figure, 2, x2, y1 + 6, list_size1 * b_pressed_s[2], list_size1 * list_scale * b_pressed_s[2], 0, c_white, 1);
+								//draw_sprite_ext(s_question_figure, 2, x3, y1 + 6, -list_size1 * b_pressed_s[3], list_size1 * list_scale * b_pressed_s[3], 0, c_white, 1);
+									
+								//draw_text_transformed(x2 + 40, y1 + string_height(vtext[2]) / 2 * list_size * 1.04 * list_scale + 6, vtext[2], list_size * 1.1, list_size * 1.1 * list_scale, 0);
+								//draw_text_transformed(x3 + 40, y1 + string_height(vtext[3]) / 2 * list_size * 1.04  * list_scale + 6, vtext[3], list_size * 1.1, list_size * 1.1 * list_scale, 0);
+							#endregion
+							}
+					#endregion
+					}
+			#endregion
+			#region Бутылки    - Bottles
+				if theme_round[global.rounds] = 2
+					{
+					#region Задача 1 - Бутылки, очередь
+						if round_task[global.rounds,global.task] = 1
+							{
+							if global.training = 2
+								{
+								var hand_xxx, hand_yyy;
+								hand_xxx = -200;
+								hand_yyy = -200;
+							
+								global.training_hand_x = hand_xxx;
+								global.training_hand_y = hand_yyy;
+								}
+							timer_y = 140;
+							#region Координаты и появление
+								if list_scale = 1
+									{
+									if bottle_red = 0
+										{
+										for(i=1;i<=bottle_all;i++)
+											{
+											if bottle_n[i] = bottle_stage
+												{
+												if global.training < 1 or global.training_stage[global.training] >= 7
+													{
+													if bottle_y[i] < 0
+														{ global.training_hand_s = 0; bottle_y[i] += 100; }
+														else
+														{
+														bottle_y[i] = 0;
+														if bottle_stage < bottle_all
+															{ bottle_stage += 1; }
+															else
+															{ bottle_stage = 0; pre_wait = 0; }
+														}
+													}
+												}
+											bottle_x[i] = 640 - 60 * (bottle_all - 1) + 120 * (i - 1); //bottle_x[i] = 640 - 25 * (bottle_all - 1) + 50 * (i - 1);
 											}
 										}
 										else
-										{ b_pressed_s[4] = 1; }
+										{
+										if bottle_stage != 0
+											{
+											for(i=bottle_all;i>=1;i--)
+												{
+												if bottle_n[i] = bottle_stage
+													{
+													if bottle_y[i] < 0
+														{ bottle_y[i] += 100; }
+														else
+														{
+														bottle_y[i] = 0;
+														if bottle_stage > 1
+															{ bottle_stage -= 1; }
+															else
+															{ bottle_stage = 0; pre_wait = 0; }
+														}
+													}
+												bottle_x[i] = 640 - 60 * (bottle_all - 1) + 120 * (i - 1);
+												}
+											}
+										}
+									}
+							#endregion
+							#region Ответ
+								if bottle_stage = 0 && global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
+										{
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										for(i=1;i<=bottle_all;i++)
+											{
+											if global.training = 2
+												{
+												if global.training_hand_s + 1 = bottle_n[i] && hand_xxx = -200 && bottle_destroy[i] = 0
+												&& global.training_stage[2] = 8 && global.training_question = 0
+													{
+													hand_xxx = bottle_x[i];
+													hand_yyy = global.size / 2;
+												
+													global.training_hand_x = hand_xxx;
+													global.training_hand_y = hand_yyy;
+													}
+												}
+											if abs(mouse_x1 - bottle_x[i]) < 50 && abs(mouse_y1 - global.size / 2 + bottle_y[i] - 50) < 100
+												{
+												color[dev] = c_red;
+												if device_mouse_check_button_pressed(dev, mb_left)
+													{
+													color[dev] = c_green;
+													if bottle_destroy[i] = 0
+														{
+														if global.music { audio_play_sound(sd_text, 2, 0); }
+														//bottle_destroy[i] = 1;
+														if global.training < 1 or global.training_question != 0
+															{
+															bottle_destroy[i] = 1;
+															if bottle_s + 1 = bottle_n[i]
+																{
+																if bottle_s + 1 = bottle_all
+																	{ global.answer = 1; bottles_1(); }
+																	else
+																	{ bottle_s = bottle_n[i]; }
+																}
+																else
+																{ global.answer = 0; bottles_1(); }
+															}
+															else
+															{
+															if global.training_stage[2] = 8
+																{
+																global.training_hand_s += 1;
+																if bottle_s + 1 = bottle_n[i]
+																	{
+																	if bottle_s + 1 = bottle_all
+																		{ global.answer = 1; bottles_1(); }
+																		else
+																		{ bottle_s = bottle_n[i]; }
+																	bottle_destroy[i] = 1;
+																	}
+																}
+															}
+														}
+													}
+												}
+												else
+												{ color[dev] = c_white; }
+											}
+										}
+									}
+							#endregion
+							#region Рисование
+								#region Обучение
+									if global.training = 2
+										{
+										if (global.training_stage[2] = 6 or global.training_stage[2] = 7
+										or (global.training_stage[2] = 8 && global.training_question = 0))
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[2] = 6 or global.training_stage[2] = 7
+												{ global.training_stage[2] += 1; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[2] += 1;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
+										}
 								#endregion
-									}
-								}
-						#endregion
-						#region Рисование кнопок и вопроса
-							var math_ind, txt_scale;
-							math_ind = 1.4;
-							txt_scale = 0.35;
-							draw_set_font(global.math_font);
-									
-							draw_set_color(c_black);
-							draw_set_alpha(0.4);
-							draw_text_transformed(640 - 3 + 30, global.size / 2 - 200 * list_size - 50 + list_y + 4 + button_x / 4 - 125 * (1 - list_scale), equation_text, list_size * 1.04, list_size * 1.04 * list_scale, 0);
-							draw_set_color(c_white);
-							draw_set_alpha(1);
-							draw_text_transformed_t(640 + 30, global.size / 2 - 200 * list_size - 50 + list_y + button_x / 4 - 125 * (1 - list_scale), equation_text, list_size * 1.04, list_size * 1.04 * list_scale, 0, c_white, c_black);
-									
-							draw_sprite_ext_t(s_question_sign, 0, x1, y1, list_size1 * b_pressed_s[1]* math_ind, list_size1 * list_scale * b_pressed_s[1]* math_ind, 0, c_white, 1, c_white, c_black);
-							draw_sprite_ext_t(s_question_sign, 0, x2, y1 + 6, list_size1 * b_pressed_s[2]* math_ind, list_size1 * list_scale * b_pressed_s[2]* math_ind, 0, c_white, 1, c_white, c_black);
-							draw_sprite_ext_t(s_question_sign, 0, x3, y1 + 6, -list_size1 * b_pressed_s[3]* math_ind, list_size1 * list_scale * b_pressed_s[3]* math_ind, 0, c_white, 1, c_white, c_black);
-							draw_sprite_ext_t(s_question_sign, 0, x4, y1, -list_size1 * b_pressed_s[4]* math_ind, list_size1 * list_scale * b_pressed_s[4]* math_ind, 0, c_white, 1, c_white, c_black);
-									
-							draw_text_transformed_t(x1 + 50, y1 + 65, vtext[1], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
-							draw_text_transformed_t(x2 + 50, y1 + 65, vtext[2], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
-							draw_text_transformed_t(x3 + 50, y1 + 65, vtext[3], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
-							draw_text_transformed_t(x4 + 50, y1 + 65, vtext[4], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
-						#endregion
-						}
-				#endregion
-				#region Задача 3 - Больше Меньше
-					if round_task[global.rounds,global.task] = 3
-						{
-						#region Координаты кнопок
-								var x1, y1, x2, y2, x3, y3, x4, y4, button_width, button_height;
-								
-								button_width = sprite_get_width(s_question_sign) * list_size1 * o_but_sc;
-								button_height = sprite_get_height(s_question_sign) * list_size1 * o_but_sc;
-								
-								x1 = 640 - button_width / 2 * 3 - 100; //640 - 5 - 160 * list_size1 - button_x;
-								y1 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 140 * list_size1 + list_y - 250 * (1 - list_scale);
-								
-								x2 = 640 - button_width / 2 - 15 - 50; //640 - 5 + 160 * list_size1 + button_x;
-								y2 = y1;
-								
-								x3 = 640 + button_width / 2 + 15 + 50; //x1;
-								y3 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 400 * list_size1 + list_y - 350 * (1 - list_scale);
-								
-								x4 = 640 + button_width / 2 * 3 + 100; // x2;
-								y4 = y3;
-						#endregion
-						#region Варианты
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
+								for(i=1;i<=bottle_all;i++)
 									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									#region Вариант 2
-										if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
+									var bottle_spr, bottle_ss, bottle_col;
+									bottle_spr = asset_get_index("s_bottle" + string(bottle_i[i]));
+									if bottle_red = 1
+										{ bottle_col = c_red; }
+										else
+										{ bottle_col = c_white; }
+									if bottle_i[i] = 1
+										{ bottle_ss = 1; }
+										else
+										{ bottle_ss = 1.25; }
+									if bottle_destroy[i] > 0
+										{
+										if bottle_destroy[i] < 6
 											{
-											if device_mouse_check_button(dev, mb_left)
-												{ b_pressed_s[2] = 1.2; }
-												else
-												{ b_pressed_s[2] = 1; }
-											if device_mouse_check_button_released(dev, mb_left)
-												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
-												/*audio_play_sound(sd_revolver, 1, 0);*/
-												if vtrue[2] = 1
-													{ global.answer = 1; }
-													else
-													{ global.answer = 0; }
-												math_3();
-												}
+											bottle_destroy[i] += 1;
+											draw_sprite_ext(bottle_spr, bottle_destroy[i] - 1, bottle_x[i], global.size / 2 + bottle_y[i] - 50, 0.6 * list_scale * bottle_ss, 0.6 * list_scale * bottle_ss, 0, bottle_col, 1 - 0.1 * bottle_destroy[i]);
 											}
-											else
-											{ b_pressed_s[2] = 1; }
-									#endregion
-									#region Вариант 3
-										if point_in_rectangle(mouse_x1, mouse_y1, x3 - button_width / 2, y3 - button_height / 2, x3 + button_width / 2, y3 + button_height / 2)
-											{
-											if device_mouse_check_button(dev, mb_left)
-												{ b_pressed_s[3] = 1.2; }
-												else
-												{ b_pressed_s[3] = 1; }
-											if device_mouse_check_button_released(dev, mb_left)
-												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
-												/*audio_play_sound(sd_revolver, 1, 0);*/
-												if vtrue[3] = 1
-													{ global.answer = 1; }
-													else
-													{ global.answer = 0; }
-												math_3();
-												}
-											}
-											else
-											{ b_pressed_s[3] = 1; }
-									#endregion
+										}
+										else
+										{ draw_sprite_ext(bottle_spr, 0, bottle_x[i], global.size / 2 + bottle_y[i] - 50, 0.6 * list_scale * bottle_ss, 0.6 * list_scale * bottle_ss, 0, bottle_col, 1 - 0.5 * bottle_destroy[i]); }
 									}
-								}
-						#endregion
-						#region Рисование кнопок и вопроса
-							var math_ind, txt_scale;
-							math_ind = 1.4;
-							txt_scale = 0.6;
-							draw_set_font(global.math_font);
-									
-							draw_set_color(c_black);
-							draw_set_alpha(0.4);
-							draw_text_transformed(640 - 3 + 30, global.size / 2 - 200 * list_size - 50 + list_y + 4 + button_x / 4 - 125 * (1 - list_scale), equation_text, list_size * 1.04, list_size * 1.04 * list_scale, 0);
-							draw_set_color(c_white);
-							draw_set_alpha(1);
-							draw_text_transformed_t(640 + 30, global.size / 2 - 200 * list_size - 50 + list_y + button_x / 4 - 125 * (1 - list_scale), equation_text, list_size * 1.04, list_size * 1.04 * list_scale, 0, c_white, c_black);
-									
-							draw_sprite_ext_t(s_question_sign, 0, x2, y1 + 6, list_size1 * b_pressed_s[2]* math_ind, list_size1 * list_scale * b_pressed_s[2]* math_ind, 0, c_white, 1, c_white, c_black);
-							draw_sprite_ext_t(s_question_sign, 0, x3, y1 + 6, -list_size1 * b_pressed_s[3]* math_ind, list_size1 * list_scale * b_pressed_s[3]* math_ind, 0, c_white, 1, c_white, c_black);
-									
-							draw_text_transformed_t(x2 + 70, y1 + 100, vtext[2], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
-							draw_text_transformed_t(x3 + 70, y1 + 100, vtext[3], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
-						#endregion
-						}
-				#endregion
-				#region Задача 4 - Равно Неравно
-					if round_task[global.rounds,global.task] = 4
-						{
-						#region Координаты кнопок
-								var x1, y1, x2, y2, x3, y3, x4, y4, button_width, button_height;
-							
-								button_width = sprite_get_width(s_question_sign) * list_size1 * o_but_sc;
-								button_height = sprite_get_height(s_question_sign) * list_size1 * o_but_sc;
-							
-								x1 = 640 - button_width / 2 * 3 - 45; //640 - 5 - 160 * list_size1 - button_x;
-								y1 = global.size / 2 + 50;
-							
-								x2 = 640 - button_width / 2 - 15; //640 - 5 + 160 * list_size1 + button_x;
-								y2 = y1;
-		
-								x3 = 640 + button_width / 2 + 15; //x1;
-								y3 = global.size / 2 + 50;
-							
-								x4 = 640 + button_width / 2 * 3 + 45; // x2;
-								y4 = y3;
-						#endregion
-						#region Варианты
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									#region Вариант 2
-										if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
-											{
-											if device_mouse_check_button(dev, mb_left)
-												{ b_pressed_s[2] = 1.2; }
-												else
-												{ b_pressed_s[2] = 1; }
-											if device_mouse_check_button_released(dev, mb_left)
-												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
-												/*audio_play_sound(sd_revolver, 1, 0);*/
-												if vtrue[2] = 1
-													{ global.answer = 1; }
-													else
-													{ global.answer = 0; }
-												math_4();
-												}
-											}
-											else
-											{ b_pressed_s[2] = 1; }
-									#endregion
-									#region Вариант 3
-										if point_in_rectangle(mouse_x1, mouse_y1, x3 - button_width / 2, y3 - button_height / 2, x3 + button_width / 2, y3 + button_height / 2)
-											{
-											if device_mouse_check_button(dev, mb_left)
-												{ b_pressed_s[3] = 1.2; }
-												else
-												{ b_pressed_s[3] = 1; }
-											if device_mouse_check_button_released(dev, mb_left)
-												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
-												/*audio_play_sound(sd_revolver, 1, 0);*/
-												if vtrue[3] = 1
-													{ global.answer = 1; }
-													else
-													{ global.answer = 0; }
-												math_4();
-												}
-											}
-											else
-											{ b_pressed_s[3] = 1; }
-									#endregion
-									}
-								}
-						#endregion
-						#region Рисование кнопок и вопроса
-							var math_ind, txt_scale;
-							math_ind = 1.4;
-							txt_scale = 0.6;
-							draw_set_font(global.math_font);
-									
-							draw_set_color(c_black);
-							draw_set_alpha(0.4);
-							draw_text_transformed(640 - 3 + 30, global.size / 2 - 200 * list_size - 50 + list_y + 4 + button_x / 4 - 125 * (1 - list_scale), equation_text, list_size * 1.04, list_size * 1.04 * list_scale, 0);
-							draw_set_color(c_white);
-							draw_set_alpha(1);
-							draw_text_transformed_t(640 + 30, global.size / 2 - 200 * list_size - 50 + list_y + button_x / 4 - 125 * (1 - list_scale), equation_text, list_size * 1.04, list_size * 1.04 * list_scale, 0, c_white, c_black);
-									
-							draw_sprite_ext_t(s_question_sign, 0, x2, y1 + 6, list_size1 * b_pressed_s[2]* math_ind, list_size1 * list_scale * b_pressed_s[2]* math_ind, 0, c_white, 1, c_white, c_black);
-							draw_sprite_ext_t(s_question_sign, 0, x3, y1 + 6, -list_size1 * b_pressed_s[3]* math_ind, list_size1 * list_scale * b_pressed_s[3]* math_ind, 0, c_white, 1, c_white, c_black);
-									
-							draw_text_transformed_t(x2 + 70, y1 + 110, vtext[2], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
-							draw_text_transformed_t(x3 + 70, y1 + 110, vtext[3], txt_scale * list_scale, txt_scale * list_scale, 0, c_white, c_black);
-							//draw_set_font(global.math_font);
-									
-							//draw_set_color(c_black);
-							//draw_set_alpha(0.4);
-							//draw_text_transformed(640 - 3 + 30, global.size / 2 - 200 * list_size - 50 + list_y + 4 + button_x / 4 - 125 * (1 - list_scale), equation_text /*"14?7=2*/, list_size * 1.04, list_size * 1.04 * list_scale, 0);
-							//draw_set_color(c_white);
-							//draw_set_alpha(1);
-							//draw_text_transformed(640 + 30, global.size / 2 - 200 * list_size - 50 + list_y + button_x / 4 - 125 * (1 - list_scale), equation_text /*"14?7=2*/, list_size * 1.04, list_size * 1.04 * list_scale, 0);
-									
-							//draw_sprite_ext(s_question_figure, 2, x2, y1 + 6 + 6, list_size1, list_size1 * list_scale, 0, c_black, 0.4);
-							//draw_sprite_ext(s_question_figure, 2, x3, y1 + 6 + 6, -list_size1, list_size1 * list_scale, 0, c_black, 0.4);
-									
-							//draw_sprite_ext(s_question_figure, 3, x2, y1 + 6, list_size1, list_size1 * list_scale, 0, c_white, 1);
-							//draw_sprite_ext(s_question_figure, 3, x3, y1 + 6, -list_size1, list_size1 * list_scale, 0, c_white, 1);
-									
-							//draw_sprite_ext(s_question_figure, 2, x2, y1 + 6, list_size1 * b_pressed_s[2], list_size1 * list_scale * b_pressed_s[2], 0, c_white, 1);
-							//draw_sprite_ext(s_question_figure, 2, x3, y1 + 6, -list_size1 * b_pressed_s[3], list_size1 * list_scale * b_pressed_s[3], 0, c_white, 1);
-									
-							//draw_text_transformed(x2 + 40, y1 + string_height(vtext[2]) / 2 * list_size * 1.04 * list_scale + 6, vtext[2], list_size * 1.1, list_size * 1.1 * list_scale, 0);
-							//draw_text_transformed(x3 + 40, y1 + string_height(vtext[3]) / 2 * list_size * 1.04  * list_scale + 6, vtext[3], list_size * 1.1, list_size * 1.1 * list_scale, 0);
-						#endregion
-						}
-				#endregion
-				}
-			#endregion
-			 #region Бутылки    - Bottles
-			if theme_round[global.rounds] = 2
-				{
-				#region Задача 1 - Бутылки, очередь
-					if round_task[global.rounds,global.task] = 1
-						{
-						if global.training = 2
-							{
-							var hand_xxx, hand_yyy;
-							hand_xxx = -200;
-							hand_yyy = -200;
-							
-							global.training_hand_x = hand_xxx;
-							global.training_hand_y = hand_yyy;
+							#endregion
 							}
-						timer_y = 140;
-						#region Координаты и появление
-							if list_scale = 1
+					#endregion
+					#region Задача 2 - Бутылки, номера
+						if round_task[global.rounds,global.task] = 2
+							{
+							if global.training = 2
 								{
-								if bottle_red = 0
+								var hand_xxx, hand_yyy;
+								hand_xxx = -200;
+								hand_yyy = -200;
+							
+								global.training_hand_x = hand_xxx;
+								global.training_hand_y = hand_yyy;
+								}
+							timer_y = 140;
+							#region Координаты и появление
+								if list_scale = 1
 									{
 									for(i=1;i<=bottle_all;i++)
 										{
-										if bottle_n[i] = bottle_stage
+										if i = bottle_stage
 											{
-											if global.training < 1 or global.training_stage[global.training] >= 7
+											if global.training < 1 or global.training_stage[global.training] > 10
 												{
 												if bottle_y[i] < 0
 													{ global.training_hand_s = 0; bottle_y[i] += 100; }
@@ -919,87 +1501,62 @@ if global.hero = 1 && global.enemy_hero = 1
 													}
 												}
 											}
-										bottle_x[i] = 640 - 60 * (bottle_all - 1) + 120 * (i - 1); //bottle_x[i] = 640 - 25 * (bottle_all - 1) + 50 * (i - 1);
+										bottle_x[i] = 640 - 60 * (bottle_all - 1) + 120 * (i - 1);
 										}
 									}
-									else
+							#endregion
+							#region Ответ
+								if bottle_stage = 0 && global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 									{
-									if bottle_stage != 0
+									for(dev=0;dev<5;dev++)
 										{
-										for(i=bottle_all;i>=1;i--)
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										for(i=1;i<=bottle_all;i++)
 											{
-											if bottle_n[i] = bottle_stage
+											if global.training = 2
 												{
-												if bottle_y[i] < 0
-													{ bottle_y[i] += 100; }
-													else
+												if global.training_hand_s + 1 = bottle_n[i] && hand_xxx = -200 && bottle_destroy[i] = 0
+												&& global.training_stage[2] = 11 && global.training_question = 0
 													{
-													bottle_y[i] = 0;
-													if bottle_stage > 1
-														{ bottle_stage -= 1; }
-														else
-														{ bottle_stage = 0; pre_wait = 0; }
+													hand_xxx = bottle_x[i];
+													hand_yyy = global.size / 2;
+												
+													global.training_hand_x = hand_xxx;
+													global.training_hand_y = hand_yyy;
 													}
 												}
-											bottle_x[i] = 640 - 60 * (bottle_all - 1) + 120 * (i - 1);
-											}
-										}
-									}
-								}
-						#endregion
-						#region Ответ
-							if bottle_stage = 0 && global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									for(i=1;i<=bottle_all;i++)
-										{
-										if global.training = 2
-											{
-											if global.training_hand_s + 1 = bottle_n[i] && hand_xxx = -200 && bottle_destroy[i] = 0
-											&& global.training_stage[2] = 8 && global.training_question = 0
+											if abs(mouse_x1 - bottle_x[i]) < 50 && abs(mouse_y1 - global.size / 2 + bottle_y[i] - 50) < 100
 												{
-												hand_xxx = bottle_x[i];
-												hand_yyy = global.size / 2;
-												
-												global.training_hand_x = hand_xxx;
-												global.training_hand_y = hand_yyy;
-												}
-											}
-										if abs(mouse_x1 - bottle_x[i]) < 50 && abs(mouse_y1 - global.size / 2 + bottle_y[i] - 50) < 100
-											{
-											color[dev] = c_red;
-											if device_mouse_check_button_pressed(dev, mb_left)
-												{
-												color[dev] = c_green;
-												if bottle_destroy[i] = 0
+												if device_mouse_check_button_pressed(dev, mb_left)
 													{
-													if global.music { audio_play_sound(sd_text, 2, 0); }
-													//bottle_destroy[i] = 1;
-													if global.training < 1 or global.training_question != 0
+													if global.training < 1 or (global.training_stage[2] = 11 && global.training_question != 0)
 														{
-														bottle_destroy[i] = 1;
-														if bottle_s + 1 = bottle_n[i]
+														if bottle_destroy[i] = 0
 															{
-															if bottle_s + 1 = bottle_all
-																{ global.answer = 1; bottles_1(); }
+															if global.music { audio_play_sound(sd_text, 2, 0); }
+															bottle_destroy[i] = 1;
+															if bottle_s + 1 = bottle_n[i]
+																{
+																if bottle_s + 1 = bottle_all
+																	{ global.answer = 1; bottles_2(); }
+																	else
+																	{ bottle_s = bottle_n[i]; }
+																}
 																else
-																{ bottle_s = bottle_n[i]; }
+																{ global.answer = 0; bottles_2(); }
 															}
-															else
-															{ global.answer = 0; bottles_1(); }
 														}
 														else
 														{
-														if global.training_stage[2] = 8
+														if bottle_destroy[i] = 0
 															{
+															if global.music { audio_play_sound(sd_text, 2, 0); }
 															global.training_hand_s += 1;
 															if bottle_s + 1 = bottle_n[i]
 																{
 																if bottle_s + 1 = bottle_all
-																	{ global.answer = 1; bottles_1(); }
+																	{ global.answer = 1; bottles_2(); }
 																	else
 																	{ bottle_s = bottle_n[i]; }
 																bottle_destroy[i] = 1;
@@ -1009,466 +1566,285 @@ if global.hero = 1 && global.enemy_hero = 1
 													}
 												}
 											}
-											else
-											{ color[dev] = c_white; }
-										}
-									}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 2
-									{
-									if (global.training_stage[2] = 6 or global.training_stage[2] = 7
-									or (global.training_stage[2] = 8 && global.training_question = 0))
-										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[2] = 6 or global.training_stage[2] = 7
-											{ global.training_stage[2] += 1; }
-										}
-									if global.training_question = 3
-										{
-										global.training_stage[2] += 1;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
 										}
 									}
 							#endregion
-							for(i=1;i<=bottle_all;i++)
-								{
-								var bottle_spr, bottle_ss, bottle_col;
-								bottle_spr = asset_get_index("s_bottle" + string(bottle_i[i]));
-								if bottle_red = 1
-									{ bottle_col = c_red; }
-									else
-									{ bottle_col = c_white; }
-								if bottle_i[i] = 1
-									{ bottle_ss = 1; }
-									else
-									{ bottle_ss = 1.25; }
-								if bottle_destroy[i] > 0
-									{
-									if bottle_destroy[i] < 6
+							#region Рисование
+								#region Обучение
+									if global.training = 2
 										{
-										bottle_destroy[i] += 1;
-										draw_sprite_ext(bottle_spr, bottle_destroy[i] - 1, bottle_x[i], global.size / 2 + bottle_y[i] - 50, 0.6 * list_scale * bottle_ss, 0.6 * list_scale * bottle_ss, 0, bottle_col, 1 - 0.1 * bottle_destroy[i]);
+										if (global.training_stage[2] = 10
+										or (global.training_stage[2] = 11 && global.training_question = 0))
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[2] = 10
+												{ global.training_stage[2] += 1; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[2] = 14;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
 										}
-									}
-									else
-									{ draw_sprite_ext(bottle_spr, 0, bottle_x[i], global.size / 2 + bottle_y[i] - 50, 0.6 * list_scale * bottle_ss, 0.6 * list_scale * bottle_ss, 0, bottle_col, 1 - 0.5 * bottle_destroy[i]); }
-								}
-						#endregion
-						}
-				#endregion
-				#region Задача 2 - Бутылки, номера
-					if round_task[global.rounds,global.task] = 2
-						{
-						if global.training = 2
-							{
-							var hand_xxx, hand_yyy;
-							hand_xxx = -200;
-							hand_yyy = -200;
-							
-							global.training_hand_x = hand_xxx;
-							global.training_hand_y = hand_yyy;
-							}
-						timer_y = 140;
-						#region Координаты и появление
-							if list_scale = 1
-								{
+								#endregion
 								for(i=1;i<=bottle_all;i++)
 									{
-									if i = bottle_stage
-										{
-										if global.training < 1 or global.training_stage[global.training] > 10
-											{
-											if bottle_y[i] < 0
-												{ global.training_hand_s = 0; bottle_y[i] += 100; }
-												else
-												{
-												bottle_y[i] = 0;
-												if bottle_stage < bottle_all
-													{ bottle_stage += 1; }
-													else
-													{ bottle_stage = 0; pre_wait = 0; }
-												}
-											}
-										}
-									bottle_x[i] = 640 - 60 * (bottle_all - 1) + 120 * (i - 1);
-									}
-								}
-						#endregion
-						#region Ответ
-							if bottle_stage = 0 && global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									for(i=1;i<=bottle_all;i++)
-										{
-										if global.training = 2
-											{
-											if global.training_hand_s + 1 = bottle_n[i] && hand_xxx = -200 && bottle_destroy[i] = 0
-											&& global.training_stage[2] = 11 && global.training_question = 0
-												{
-												hand_xxx = bottle_x[i];
-												hand_yyy = global.size / 2;
-												
-												global.training_hand_x = hand_xxx;
-												global.training_hand_y = hand_yyy;
-												}
-											}
-										if abs(mouse_x1 - bottle_x[i]) < 50 && abs(mouse_y1 - global.size / 2 + bottle_y[i] - 50) < 100
-											{
-											if device_mouse_check_button_pressed(dev, mb_left)
-												{
-												if global.training < 1 or (global.training_stage[2] = 11 && global.training_question != 0)
-													{
-													if bottle_destroy[i] = 0
-														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
-														bottle_destroy[i] = 1;
-														if bottle_s + 1 = bottle_n[i]
-															{
-															if bottle_s + 1 = bottle_all
-																{ global.answer = 1; bottles_2(); }
-																else
-																{ bottle_s = bottle_n[i]; }
-															}
-															else
-															{ global.answer = 0; bottles_2(); }
-														}
-													}
-													else
-													{
-													if bottle_destroy[i] = 0
-														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
-														global.training_hand_s += 1;
-														if bottle_s + 1 = bottle_n[i]
-															{
-															if bottle_s + 1 = bottle_all
-																{ global.answer = 1; bottles_2(); }
-																else
-																{ bottle_s = bottle_n[i]; }
-															bottle_destroy[i] = 1;
-															}
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 2
-									{
-									if (global.training_stage[2] = 10
-									or (global.training_stage[2] = 11 && global.training_question = 0))
-										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[2] = 10
-											{ global.training_stage[2] += 1; }
-										}
-									if global.training_question = 3
-										{
-										global.training_stage[2] = 14;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
-										}
-									}
-							#endregion
-							for(i=1;i<=bottle_all;i++)
-								{
-								var bottle_spr, bottle_ss, bottle_col;
-								bottle_spr = asset_get_index("s_bottle" + string(bottle_i[i]));
-								if bottle_red = 0
-									{ bottle_col = c_white; }
-									else
-									{ bottle_col = c_red; }
-								if bottle_i[i] = 1
-									{ bottle_ss = 1; }
-									else
-									{ bottle_ss = 1.25; }
-								if bottle_destroy[i] > 0
-									{
-									if bottle_destroy[i] < 6
-										{
-										bottle_destroy[i] += 1;
-										draw_sprite_ext(bottle_spr, bottle_destroy[i] - 1, bottle_x[i], global.size / 2 + bottle_y[i] - 50, 0.6 * list_scale * bottle_ss, 0.6 * list_scale * bottle_ss, 0, bottle_col, 1 - 0.1 * bottle_destroy[i]);
-										}
-									}
-									else
-									{ draw_sprite_ext(bottle_spr, 0, bottle_x[i], global.size / 2 + bottle_y[i] - 50, 0.6 * list_scale * bottle_ss, 0.6 * list_scale * bottle_ss, 0, bottle_col, 1 - 0.5 * bottle_destroy[i]); }
-
-									draw_set_font(global.game_font);
+									var bottle_spr, bottle_ss, bottle_col;
+									bottle_spr = asset_get_index("s_bottle" + string(bottle_i[i]));
 									if bottle_red = 0
-										{
-										draw_set_color(c_maroon);
-										draw_set_alpha(bottle_a1);
-										draw_text_transformed(bottle_x[i], global.size / 2 + bottle_y[i] + 10, string(bottle_n[i]), bottle_s1 * 0.4 * list_scale, bottle_s2 * 0.4 * ((6 - bottle_destroy[i]) / 6) * list_scale, 16);
-										draw_set_alpha(1);
-										}
+										{ bottle_col = c_white; }
 										else
-										{
-										draw_set_color(c_white);
-										draw_set_alpha(bottle_a1);
-										draw_text_transformed(bottle_x[i], global.size / 2 + bottle_y[i] + 10, string(bottle_n1[i]), bottle_s1 * 0.4 * list_scale, bottle_s2 * 0.4 * ((6 - bottle_destroy[i]) / 6) * list_scale, 16);
-										draw_set_alpha(1);
-										}
-									draw_set_color(c_white);
-								}
-						#endregion
-						}
-				#endregion
-				#region Задача 3 - Бутылки, падение
-					if round_task[global.rounds,global.task] = 3
-						{
-						if global.training = 2
-							{
-							var hand_xxx, hand_yyy;
-							hand_xxx = -200;
-							hand_yyy = -200;
-							
-							global.training_hand_x = hand_xxx;
-							global.training_hand_y = hand_yyy;
-							}
-						timer_y  = 50;
-						#region Координаты
-							if list_scale = 1
-								{
-								for(i=1;i<=bottle_all;i++)
-									{
-									if bottle_y[i] > 200
-										{ pre_wait = 0; }
-									if global.training < 1 or global.training_question != 0
-										{
-										if ((bottle_y[i] < global.size + 100 && i = 1) or ((bottle_y[i - 1] > global.size / 2 - 100 or bottle_destroy[i - 1] != 0) && bottle_y[i] < global.size + 100)) && bottle_destroy[i] = 0 && !global.super_ability
-											{ bottle_y[i] += bottle_spd[i]; }
-										}
+										{ bottle_col = c_red; }
+									if bottle_i[i] = 1
+										{ bottle_ss = 1; }
 										else
+										{ bottle_ss = 1.25; }
+									if bottle_destroy[i] > 0
 										{
-										if global.training_stage[2] = 16
+										if bottle_destroy[i] < 6
 											{
-											if (bottle_y[i] < global.size / 2 && i = global.training_hand_s + 1) && bottle_destroy[i] = 0// or (bottle_destroy[i-1] != 0 && i > 1) && bottle_destroy[i] = 0
-												{ bottle_y[i] += bottle_spd[i]; }
-												
-											if bottle_y[i] >= global.size / 2
-												{
-												if global.training = 2 && bottle_destroy[i] = 0 && global.training_question = 0
-													{
-													var hand_xxx, hand_yyy;
-													hand_xxx = bottle_x[i];
-													hand_yyy = bottle_y[i];
-							
-													global.training_hand_x = hand_xxx;
-													global.training_hand_y = hand_yyy;
-													}
-												}
+											bottle_destroy[i] += 1;
+											draw_sprite_ext(bottle_spr, bottle_destroy[i] - 1, bottle_x[i], global.size / 2 + bottle_y[i] - 50, 0.6 * list_scale * bottle_ss, 0.6 * list_scale * bottle_ss, 0, bottle_col, 1 - 0.1 * bottle_destroy[i]);
 											}
 										}
-									if bottle_stage = i && bottle_destroy[i] = 0
-										{
-										if bottle_y[i] < global.size + 100
-											{ }
+										else
+										{ draw_sprite_ext(bottle_spr, 0, bottle_x[i], global.size / 2 + bottle_y[i] - 50, 0.6 * list_scale * bottle_ss, 0.6 * list_scale * bottle_ss, 0, bottle_col, 1 - 0.5 * bottle_destroy[i]); }
+
+										draw_set_font(global.game_font);
+										if bottle_red = 0
+											{
+											draw_set_color(c_maroon);
+											draw_set_alpha(bottle_a1);
+											draw_text_transformed(bottle_x[i], global.size / 2 + bottle_y[i] + 10, string(bottle_n[i]), bottle_s1 * 0.4 * list_scale, bottle_s2 * 0.4 * ((6 - bottle_destroy[i]) / 6) * list_scale, 16);
+											draw_set_alpha(1);
+											}
 											else
 											{
-											if global.training < 1 or global.training_question != 0
-												{
-												if bottle_r[i] = 1
-													{ bottle_stage += 1; bottle_destroy[i] = 1; }
-													else
-													{ bottles_3(); global.answer = 0; bottle_destroy[i] = 1; }
-												if i = bottle_all
-													{
-													if bottle_stage > bottle_all
-														{ bottles_3(); global.answer = 1; bottle_destroy[i] = 1; }
-														else
-														{ bottles_3(); global.answer = 0; bottle_destroy[i] = 1; }
-													}
-												}
-												else
-												{
-												//bottle_x[i] = 640;
-												//bottle_x[i] = 640;
-												//if global.training_stage[2] = 16
-												//	{
-												//	if bottle_r[i] = 1
-												//		{ global.training_hand_s += 1; bottle_stage += 1; bottle_destroy[i] = 1; }
-													
-												//	if i = bottle_all
-												//		{
-												//		if bottle_stage > bottle_all
-												//			{ bottles_3(); global.answer = 1; bottle_destroy[i] = 1; }
-												//		}
-												//	}
-												}
+											draw_set_color(c_white);
+											draw_set_alpha(bottle_a1);
+											draw_text_transformed(bottle_x[i], global.size / 2 + bottle_y[i] + 10, string(bottle_n1[i]), bottle_s1 * 0.4 * list_scale, bottle_s2 * 0.4 * ((6 - bottle_destroy[i]) / 6) * list_scale, 16);
+											draw_set_alpha(1);
 											}
-										}
+										draw_set_color(c_white);
 									}
-								}
-						if bottle_stage > bottle_all && global.answer = -1
-							{ bottles_3(); global.answer = 1; }
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+							#endregion
+							}
+					#endregion
+					#region Задача 3 - Бутылки, падение
+						if round_task[global.rounds,global.task] = 3
+							{
+							if global.training = 2
 								{
-								for(dev=0;dev<5;dev++)
+								var hand_xxx, hand_yyy;
+								hand_xxx = -200;
+								hand_yyy = -200;
+							
+								global.training_hand_x = hand_xxx;
+								global.training_hand_y = hand_yyy;
+								}
+							timer_y  = 50;
+							#region Координаты
+								if list_scale = 1
 									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
 									for(i=1;i<=bottle_all;i++)
 										{
-										if point_in_rectangle(mouse_x1, mouse_y1, bottle_x[i] - 50, bottle_y[i] - 90, bottle_x[i] + 50, bottle_y[i] + 90)//abs(mouse_x1 - bottle_x[i]) < 50 && abs(mouse_y1 + bottle_y[i]) < 100
+										if bottle_y[i] > 200
+											{ pre_wait = 0; }
+										if global.training < 1 or global.training_question != 0
 											{
-											if device_mouse_check_button_pressed(dev, mb_left) && bottle_destroy[i] = 0
+											if ((bottle_y[i] < global.size + 100 && i = 1) or ((bottle_y[i - 1] > global.size / 2 - 100 or bottle_destroy[i - 1] != 0) && bottle_y[i] < global.size + 100)) && bottle_destroy[i] = 0 && !global.super_ability
+												{ bottle_y[i] += bottle_spd[i]; }
+											}
+											else
+											{
+											if global.training_stage[2] = 16
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if (bottle_y[i] < global.size / 2 && i = global.training_hand_s + 1) && bottle_destroy[i] = 0// or (bottle_destroy[i-1] != 0 && i > 1) && bottle_destroy[i] = 0
+													{ bottle_y[i] += bottle_spd[i]; }
 												
-												if global.training < 1  or global.training_question != 0
+												if bottle_y[i] >= global.size / 2
 													{
-													if bottle_r[i] != 1
+													if global.training = 2 && bottle_destroy[i] = 0 && global.training_question = 0
+														{
+														var hand_xxx, hand_yyy;
+														hand_xxx = bottle_x[i];
+														hand_yyy = bottle_y[i];
+							
+														global.training_hand_x = hand_xxx;
+														global.training_hand_y = hand_yyy;
+														}
+													}
+												}
+											}
+										if bottle_stage = i && bottle_destroy[i] = 0
+											{
+											if bottle_y[i] < global.size + 100
+												{ }
+												else
+												{
+												if global.training < 1 or global.training_question != 0
+													{
+													if bottle_r[i] = 1
 														{ bottle_stage += 1; bottle_destroy[i] = 1; }
 														else
-														{ bottles_3(); global.answer = 0; }
+														{ bottles_3(); global.answer = 0; bottle_destroy[i] = 1; }
+													if i = bottle_all
+														{
+														if bottle_stage > bottle_all
+															{ bottles_3(); global.answer = 1; bottle_destroy[i] = 1; }
+															else
+															{ bottles_3(); global.answer = 0; bottle_destroy[i] = 1; }
+														}
 													}
 													else
 													{
-													if bottle_r[i] != 1
-														{ bottle_stage += 1; bottle_destroy[i] = 1; global.training_hand_s += 1; }
+													//bottle_x[i] = 640;
+													//bottle_x[i] = 640;
+													//if global.training_stage[2] = 16
+													//	{
+													//	if bottle_r[i] = 1
+													//		{ global.training_hand_s += 1; bottle_stage += 1; bottle_destroy[i] = 1; }
+													
+													//	if i = bottle_all
+													//		{
+													//		if bottle_stage > bottle_all
+													//			{ bottles_3(); global.answer = 1; bottle_destroy[i] = 1; }
+													//		}
+													//	}
 													}
 												}
 											}
 										}
 									}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 2
-									{
-									if (global.training_stage[2] = 14 or global.training_stage[2] = 15
-									or (global.training_stage[2] = 16 && global.training_question = 0))
-										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[2] = 14 or global.training_stage[2] = 15
-											{ global.training_stage[2] += 1; }
-										}
-									if global.training_question = 3
-										{
-										global.training_stage[2] = 18;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
-										}
-									}
+							if bottle_stage > bottle_all && global.answer = -1
+								{ bottles_3(); global.answer = 1; }
 							#endregion
-							for(i=1;i<=bottle_all;i++)
-								{
-								var bottle_spr, bottle_ss, bottle_col;
-								bottle_spr = asset_get_index("s_bottle" + string(bottle_i[i]));
-								if bottle_r[i] = 1
-									{ bottle_col = c_red; }
-									else
-									{ bottle_col = c_white; }
-								
-								if global.training = 2 && global.training_stage[2] = 16 && global.training_question = 0
-									{ bottle_x[i] = 640; }
-								
-								if bottle_destroy[i] > 0
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 									{
-									if bottle_destroy[i] < 6
+									for(dev=0;dev<5;dev++)
 										{
-										bottle_destroy[i] += 1;
-										draw_sprite_ext(bottle_spr, bottle_destroy[i] - 1, bottle_x[i], bottle_y[i], 0.7 * list_scale, 0.7 * list_scale , 0, bottle_col, 1 - 0.1 * bottle_destroy[i]);
-										}
-									}
-									else
-									{ draw_sprite_ext(bottle_spr, 0, bottle_x[i], bottle_y[i], 0.7 * list_scale, 0.7 * list_scale, 0, bottle_col, 1 - 0.5 * bottle_destroy[i]); }
-								
-								//draw_rectangle(bottle_x[i] - 50, bottle_y[i] - 60, bottle_x[i] + 50, bottle_y[i] + 90, 1);
-								}
-						#endregion
-						}
-				#endregion
-				#region Задача 4 - Бутылки, наполнение
-					if round_task[global.rounds,global.task] = 4
-						{
-						if global.training = 2
-							{
-							var hand_xxx, hand_yyy;
-							hand_xxx = -200;
-							hand_yyy = -200;
-							
-							global.training_hand_x = hand_xxx;
-							global.training_hand_y = hand_yyy;
-							}
-						timer_y = 100;
-						#region Координаты
-							if list_scale = 1
-								{
-								for(i=1;i<=bottle_all;i++)
-									{
-									if global.training < 1 or global.training_question != 0
-										{
-										if i = bottle_stage
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										for(i=1;i<=bottle_all;i++)
 											{
-											if bottle_y[i] < 0
-												{ bottle_y[i] += 100; }
-												else
+											if point_in_rectangle(mouse_x1, mouse_y1, bottle_x[i] - 50, bottle_y[i] - 90, bottle_x[i] + 50, bottle_y[i] + 90)//abs(mouse_x1 - bottle_x[i]) < 50 && abs(mouse_y1 + bottle_y[i]) < 100
 												{
-												bottle_y[i] = 0;
-												if bottle_stage < bottle_all
-													{ bottle_stage += 1; }
-													else
-													{ bottle_stage = 0; pre_wait = 0; }
+												if device_mouse_check_button_pressed(dev, mb_left) && bottle_destroy[i] = 0
+													{
+													if global.music { audio_play_sound(sd_text, 2, 0); }
+												
+													if global.training < 1  or global.training_question != 0
+														{
+														if bottle_r[i] != 1
+															{ bottle_stage += 1; bottle_destroy[i] = 1; }
+															else
+															{ bottles_3(); global.answer = 0; }
+														}
+														else
+														{
+														if bottle_r[i] != 1
+															{ bottle_stage += 1; bottle_destroy[i] = 1; global.training_hand_s += 1; }
+														}
+													}
 												}
 											}
 										}
-										else
+									}
+							#endregion
+							#region Рисование
+								#region Обучение
+									if global.training = 2
 										{
-										if global.training_stage >= 19
+										if (global.training_stage[2] = 14 or global.training_stage[2] = 15
+										or (global.training_stage[2] = 16 && global.training_question = 0))
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[2] = 14 or global.training_stage[2] = 15
+												{ global.training_stage[2] += 1; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[2] = 18;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
+										}
+								#endregion
+								for(i=1;i<=bottle_all;i++)
+									{
+									var bottle_spr, bottle_ss, bottle_col;
+									bottle_spr = asset_get_index("s_bottle" + string(bottle_i[i]));
+									if bottle_r[i] = 1
+										{ bottle_col = c_red; }
+										else
+										{ bottle_col = c_white; }
+								
+									if global.training = 2 && global.training_stage[2] = 16 && global.training_question = 0
+										{ bottle_x[i] = 640; }
+								
+									if bottle_destroy[i] > 0
+										{
+										if bottle_destroy[i] < 6
+											{
+											bottle_destroy[i] += 1;
+											draw_sprite_ext(bottle_spr, bottle_destroy[i] - 1, bottle_x[i], bottle_y[i], 0.7 * list_scale, 0.7 * list_scale , 0, bottle_col, 1 - 0.1 * bottle_destroy[i]);
+											}
+										}
+										else
+										{ draw_sprite_ext(bottle_spr, 0, bottle_x[i], bottle_y[i], 0.7 * list_scale, 0.7 * list_scale, 0, bottle_col, 1 - 0.5 * bottle_destroy[i]); }
+								
+									//draw_rectangle(bottle_x[i] - 50, bottle_y[i] - 60, bottle_x[i] + 50, bottle_y[i] + 90, 1);
+									}
+							#endregion
+							}
+					#endregion
+					#region Задача 4 - Бутылки, наполнение
+						if round_task[global.rounds,global.task] = 4
+							{
+							if global.training = 2
+								{
+								var hand_xxx, hand_yyy;
+								hand_xxx = -200;
+								hand_yyy = -200;
+							
+								global.training_hand_x = hand_xxx;
+								global.training_hand_y = hand_yyy;
+								}
+							timer_y = 100;
+							#region Координаты
+								if list_scale = 1
+									{
+									for(i=1;i<=bottle_all;i++)
+										{
+										if global.training < 1 or global.training_question != 0
 											{
 											if i = bottle_stage
 												{
@@ -1484,51 +1860,45 @@ if global.hero = 1 && global.enemy_hero = 1
 													}
 												}
 											}
-										}
-									bottle_x[i] = 640 - 60 * (bottle_all - 1) + 120 * (i - 1);
-									}
-								}
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0 && bottle_end = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									
-									if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
-										{
-										if device_mouse_check_button_pressed(dev, mb_left)
+											else
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											for(i=1;i<=bottle_all;i++)
+											if global.training_stage >= 19
 												{
-												if global.training < 1 or global.training_question != 0
+												if i = bottle_stage
 													{
-													if bottle_s = i && bottle_destroy[i] = 0
+													if bottle_y[i] < 0
+														{ bottle_y[i] += 100; }
+														else
 														{
-														bottle_s += 1;
-														if bottle_s > bottle_all
-															{
-															var pp;
-															pp = 0;
-															for(i=1;i<=bottle_all;i++)
-																{
-																if abs(bottle_p[1] - bottle_p[i]) > 0.2 or abs(bottle_p[1] - bottle_p[i]) > bottle_p[1] * 0.5
-																	{ pp = 1; }
-																}
-															if pp = 1
-																{ bottle_end = 1; }
-																else
-																{ global.answer = 1; bottles_4(); }
-															}
-														break;
+														bottle_y[i] = 0;
+														if bottle_stage < bottle_all
+															{ bottle_stage += 1; }
+															else
+															{ bottle_stage = 0; pre_wait = 0; }
 														}
 													}
-													else
+												}
+											}
+										bottle_x[i] = 640 - 60 * (bottle_all - 1) + 120 * (i - 1);
+										}
+									}
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0 && bottle_end = 0
+									{
+									for(dev=0;dev<5;dev++)
+										{
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+									
+										if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
+											{
+											if device_mouse_check_button_pressed(dev, mb_left)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												for(i=1;i<=bottle_all;i++)
 													{
-													if global.training_stage[2] = 20
+													if global.training < 1 or global.training_question != 0
 														{
 														if bottle_s = i && bottle_destroy[i] = 0
 															{
@@ -1550,237 +1920,383 @@ if global.hero = 1 && global.enemy_hero = 1
 															break;
 															}
 														}
+														else
+														{
+														if global.training_stage[2] = 20
+															{
+															if bottle_s = i && bottle_destroy[i] = 0
+																{
+																bottle_s += 1;
+																if bottle_s > bottle_all
+																	{
+																	var pp;
+																	pp = 0;
+																	for(i=1;i<=bottle_all;i++)
+																		{
+																		if abs(bottle_p[1] - bottle_p[i]) > 0.2 or abs(bottle_p[1] - bottle_p[i]) > bottle_p[1] * 0.5
+																			{ pp = 1; }
+																		}
+																	if pp = 1
+																		{ bottle_end = 1; }
+																		else
+																		{ global.answer = 1; bottles_4(); }
+																	}
+																break;
+																}
+															}
+														}
 													}
 												}
 											}
-										}
-									}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 2
-									{
-									if (global.training_stage[2] = 18 or global.training_stage[2] = 19
-									or (global.training_stage[2] = 20 && global.training_question = 0))
-										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[2] = 18 or global.training_stage[2] = 19
-											{ global.training_stage[2] += 1; }
-										}
-									if global.training_question = 3
-										{
-										global.training_stage[2] = 22;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
 										}
 									}
 							#endregion
-							for(i=1;i<=bottle_all;i++)
-								{
-								var bottle_spr, bottle_h, bottle_w;
-								bottle_spr = asset_get_index("s_bottle" + string(bottle_i[i]));
-								bottle_h   = sprite_get_height(bottle_spr); // * 0.6;
-								bottle_w   = sprite_get_width(bottle_spr);
-								if bottle_end = 1
-									{
-									bottle_destroy[i] = 1;
-									if i = bottle_all
-										{ bottle_end = 2; }
-									}
-								
-								if bottle_destroy[i] > 0
-									{
-									if bottle_destroy[i] < 6
+							#region Рисование
+								#region Обучение
+									if global.training = 2
 										{
-										bottle_destroy[i] += 1;
-										draw_sprite_ext(bottle_spr, bottle_destroy[i] - 1, bottle_x[i], global.size / 2 + bottle_y[i] - 50, 0.6 * list_scale, 0.6 * list_scale, 0, c_white, 1 - 0.1 * bottle_destroy[i]); 
-										draw_sprite_part_ext(bottle_spr, bottle_destroy[i] - 1, 0, bottle_h - bottle_h * bottle_p[i], bottle_w, bottle_h, bottle_x[i] - bottle_w / 2 * 0.6 + 2, global.size / 2 + bottle_y[i] - 50 + bottle_h / 2 * 0.6 - bottle_w * 0.6 * bottle_p[i], 0.6 * list_scale, 0.6 * list_scale, c_red, 1 - 0.1 * bottle_destroy[i]);
-										}
-									if bottle_end = 2 && bottle_destroy[bottle_all] = 6
-										{ global.answer = 0; bottles_4(); }
-									}
-									else
-									{
-									if global.training < 1 or global.training_question != 0
-										{
-										if bottle_s = i && bottle_stage = 0 && bottle_end = 0 && global.super_ability = 0
+										if (global.training_stage[2] = 18 or global.training_stage[2] = 19
+										or (global.training_stage[2] = 20 && global.training_question = 0))
 											{
-											if ((bottle_p[i] < 1 && bottle_d[i] = 1) or (bottle_p[i] > 0 && bottle_d[i] = -1))
-												{ bottle_p[i] += bottle_spd[i] * bottle_d[i]; }
-												else
-												{ bottle_end = 1; bottle_destroy[i] = 1; }
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
 											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[2] = 18 or global.training_stage[2] = 19
+												{ global.training_stage[2] += 1; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[2] = 22;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
+										}
+								#endregion
+								for(i=1;i<=bottle_all;i++)
+									{
+									var bottle_spr, bottle_h, bottle_w;
+									bottle_spr = asset_get_index("s_bottle" + string(bottle_i[i]));
+									bottle_h   = sprite_get_height(bottle_spr); // * 0.6;
+									bottle_w   = sprite_get_width(bottle_spr);
+									if bottle_end = 1
+										{
+										bottle_destroy[i] = 1;
+										if i = bottle_all
+											{ bottle_end = 2; }
+										}
+								
+									if bottle_destroy[i] > 0
+										{
+										if bottle_destroy[i] < 6
+											{
+											bottle_destroy[i] += 1;
+											draw_sprite_ext(bottle_spr, bottle_destroy[i] - 1, bottle_x[i], global.size / 2 + bottle_y[i] - 50, 0.6 * list_scale, 0.6 * list_scale, 0, c_white, 1 - 0.1 * bottle_destroy[i]); 
+											draw_sprite_part_ext(bottle_spr, bottle_destroy[i] - 1, 0, bottle_h - bottle_h * bottle_p[i], bottle_w, bottle_h, bottle_x[i] - bottle_w / 2 * 0.6 + 2, global.size / 2 + bottle_y[i] - 50 + bottle_h / 2 * 0.6 - bottle_w * 0.6 * bottle_p[i], 0.6 * list_scale, 0.6 * list_scale, c_red, 1 - 0.1 * bottle_destroy[i]);
+											}
+										if bottle_end = 2 && bottle_destroy[bottle_all] = 6
+											{ global.answer = 0; bottles_4(); }
 										}
 										else
 										{
-										//if global.training_stage[2] = 20
+										if global.training < 1 or global.training_question != 0
 											{
-											if bottle_p[i] <= 0.5
+											if bottle_s = i && bottle_stage = 0 && bottle_end = 0 && global.super_ability = 0
 												{
-												if bottle_s = i && bottle_stage = 0 && bottle_end = 0 && global.super_ability = 0
+												if ((bottle_p[i] < 1 && bottle_d[i] = 1) or (bottle_p[i] > 0 && bottle_d[i] = -1))
+													{ bottle_p[i] += bottle_spd[i] * bottle_d[i]; }
+													else
+													{ bottle_end = 1; bottle_destroy[i] = 1; }
+												}
+											}
+											else
+											{
+											//if global.training_stage[2] = 20
+												{
+												if bottle_p[i] <= 0.5
 													{
-													if ((bottle_p[i] < 1 && bottle_d[i] = 1) or (bottle_p[i] > 0 && bottle_d[i] = -1))
-														{ bottle_p[i] += bottle_spd[i] * bottle_d[i]; }
-														//else
-														//{ bottle_end = 1; bottle_destroy[i] = 1; }
+													if bottle_s = i && bottle_stage = 0 && bottle_end = 0 && global.super_ability = 0
+														{
+														if ((bottle_p[i] < 1 && bottle_d[i] = 1) or (bottle_p[i] > 0 && bottle_d[i] = -1))
+															{ bottle_p[i] += bottle_spd[i] * bottle_d[i]; }
+															//else
+															//{ bottle_end = 1; bottle_destroy[i] = 1; }
+														}
+													}
+													else
+													{
+													if global.training = 2 && bottle_s = i && bottle_destroy[i] = 0
+														{
+														var hand_xxx, hand_yyy;
+														hand_xxx = 800;
+														hand_yyy = global.size / 2;
+														
+														global.training_hand_x = hand_xxx;
+														global.training_hand_y = hand_yyy;
+														}
+													}
+												//if bottle_s = i && bottle_stage = 0 && bottle_end = 0
+												//	{
+												//	if ((bottle_p[i] < 0.6 && bottle_d[i] = 1) or (bottle_p[i] > 0.4 && bottle_d[i] = -1))
+												//		{
+												//		if ((bottle_p[i] < 1 && bottle_d[i] = 1) or (bottle_p[i] > 0 && bottle_d[i] = -1))
+												//			{ bottle_p[i] += bottle_spd[i] * bottle_d[i]; }
+												//		}
+												//		else
+												//		{
+												//		if global.training = 2 && bottle_s = i
+												//			{
+												//			var hand_xxx, hand_yyy;
+												//			hand_xxx = global.size / 2;
+												//			hand_yyy = 800;
+														
+												//			global.training_hand_x = hand_xxx;
+												//			global.training_hand_y = hand_yyy;
+												//			}
+												//		}
+												//	}
+												}
+											}
+										draw_sprite_ext(bottle_spr, 0, bottle_x[i], global.size / 2 + bottle_y[i] - 50, 0.6 * list_scale, 0.6 * list_scale, 0, c_white, 1 - 0.5 * bottle_destroy[i]);
+										draw_sprite_part_ext(bottle_spr, 0, 0, bottle_h - bottle_h * bottle_p[i], bottle_w, bottle_h, bottle_x[i] - bottle_w / 2 * 0.6 + 2, global.size / 2 + bottle_y[i] - 50 + bottle_h / 2 * 0.6 - bottle_w * 0.6 * bottle_p[i], 0.6 * list_scale, 0.6 * list_scale, c_red, 1 - 0.5 * bottle_destroy[i]);
+										}
+									}
+							#endregion
+							}
+					#endregion 
+					}
+			#endregion
+			#region Движение   - Move
+				if theme_round[global.rounds] = 3
+					{
+					if global.training = 3
+						{
+						var hand_xxx, hand_yyy;
+						hand_xxx = -200;
+						hand_yyy = -200;
+							
+						global.training_hand_x = hand_xxx;
+						global.training_hand_y = hand_yyy;
+						}
+					pre_wait = 0;
+					#region Задача 1 - Рука, стрелки, клик
+						if round_task[global.rounds,global.task] = 1
+							{
+							//if global.training = 2 && (global.training_stage[i] = 6
+							//or global.training_stage[i] = 7
+							//or (global.training_stage[i] = 8 && global.training_question = 0))
+								//if global.training = 3
+								//	{
+								//	var hand_xxx, hand_yyy;
+								//	hand_xxx = -200;
+								//	hand_yyy = -200;
+								//	if global.training_stage[3] = 8 && global.training_question = 0
+								//	&& (abs(hand_true[hand_now] - hand_angle) < 30  or abs(hand_true[hand_now] - hand_angle) > 329)
+								//		{
+								//		hand_xxx = 640 - 250;
+								//		hand_yyy = global.size / 2;
+									
+								//		global.training_hand_x = hand_xxx;
+								//		global.training_hand_y = hand_yyy;
+								//		}
+								//	}
+							timer_y = 140;
+							#region Координаты и появление
+								var x1, y1, y2;
+							
+								dop_q_y = 0;
+							
+								x1 = 640;
+								y1 = global.size / 2;
+							
+								y2 = global.size / 2 - 160;
+							
+								if hand_scale < 1
+									{ hand_scale += 0.1; }
+							
+								if hand_angle < 359
+									{ hand_angle += hand_speed; }
+									else
+									{ hand_angle = 0; }
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
+										{
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
+											{
+											if device_mouse_check_button_pressed(dev, mb_left)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.training < 1 or global.training_question > 1
+													{
+													if hand_now = hand_count
+														{
+														if ((abs(hand_true[hand_now] - hand_angle) < 30 or abs(hand_true[hand_now] - hand_angle) > 329)) // && hand_red[hand_now] = 0
+															{ global.answer = 1; }
+															else
+															{ global.answer = 0; }
+														move_1();
+														hand_scale = 0.5;
+														}
+														else
+														{
+														if abs(hand_true[hand_now] - hand_angle) < 30 or abs(hand_true[hand_now] - hand_angle) > 329
+															{ hand_now += 1; hand_scale = 0.5; }
+															else
+															{ global.answer = 0; hand_scale = 0.5; move_1(); }
+														}
+													}
+													else
+													{
+													if global.training_stage[3] = 7 or global.training_stage[3] = 8
+														{
+														if abs(hand_true[hand_now] - hand_angle) < 30 or abs(hand_true[hand_now] - hand_angle) > 329
+															{
+															global.answer = 1;
+															move_1();
+															if global.training_stage[3] = 7
+																{ hand_red[1] = 1; }
+															if global.training_stage[3] = 8
+																{ hand_red[1] = choose(0, 1); }
+															if global.training_stage[3] = 7
+																{ global.training_stage[3] += 1; }
+															hand_scale = 0.5; }
+															else
+															{ global.training_gb = "TRY AGAIN"; }
+														}
 													}
 												}
-												else
-												{
-												if global.training = 2 && bottle_s = i && bottle_destroy[i] = 0
-													{
-													var hand_xxx, hand_yyy;
-													hand_xxx = 800;
-													hand_yyy = global.size / 2;
-														
-													global.training_hand_x = hand_xxx;
-													global.training_hand_y = hand_yyy;
-													}
-												}
-											//if bottle_s = i && bottle_stage = 0 && bottle_end = 0
-											//	{
-											//	if ((bottle_p[i] < 0.6 && bottle_d[i] = 1) or (bottle_p[i] > 0.4 && bottle_d[i] = -1))
-											//		{
-											//		if ((bottle_p[i] < 1 && bottle_d[i] = 1) or (bottle_p[i] > 0 && bottle_d[i] = -1))
-											//			{ bottle_p[i] += bottle_spd[i] * bottle_d[i]; }
-											//		}
-											//		else
-											//		{
-											//		if global.training = 2 && bottle_s = i
-											//			{
-											//			var hand_xxx, hand_yyy;
-											//			hand_xxx = global.size / 2;
-											//			hand_yyy = 800;
-														
-											//			global.training_hand_x = hand_xxx;
-											//			global.training_hand_y = hand_yyy;
-											//			}
-											//		}
-											//	}
 											}
 										}
-									draw_sprite_ext(bottle_spr, 0, bottle_x[i], global.size / 2 + bottle_y[i] - 50, 0.6 * list_scale, 0.6 * list_scale, 0, c_white, 1 - 0.5 * bottle_destroy[i]);
-									draw_sprite_part_ext(bottle_spr, 0, 0, bottle_h - bottle_h * bottle_p[i], bottle_w, bottle_h, bottle_x[i] - bottle_w / 2 * 0.6 + 2, global.size / 2 + bottle_y[i] - 50 + bottle_h / 2 * 0.6 - bottle_w * 0.6 * bottle_p[i], 0.6 * list_scale, 0.6 * list_scale, c_red, 1 - 0.5 * bottle_destroy[i]);
 									}
-								}
-						#endregion
-						}
-				#endregion 
-				}
-			#endregion
-			 #region Движение   - Move
-			if theme_round[global.rounds] = 3
-				{
-				if global.training = 3
-					{
-					var hand_xxx, hand_yyy;
-					hand_xxx = -200;
-					hand_yyy = -200;
-							
-					global.training_hand_x = hand_xxx;
-					global.training_hand_y = hand_yyy;
-					}
-				pre_wait = 0;
-				#region Задача 1 - Рука, стрелки, клик
-					if round_task[global.rounds,global.task] = 1
-						{
-						//if global.training = 2 && (global.training_stage[i] = 6
-						//or global.training_stage[i] = 7
-						//or (global.training_stage[i] = 8 && global.training_question = 0))
+							#endregion
+							#region Рисование
+								#region Обучение
+									if global.training = 3
+										{
+										if (global.training_stage[3] = 6
+										or (global.training_stage[3] = 7 && global.training_question = 0)
+										or (global.training_stage[3] = 8 && global.training_question = 1))
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[3] = 6// or global.training_stage[3] = 7
+												{ global.training_stage[3] += 1; }
+											}
+										if global.training_question = 4
+											{
+											global.training_stage[3] += 1;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
+										}
+								#endregion
+								for(i=hand_count;i>=1;i--)
+									{
+									hand_xx[i] = 640 - (hand_now - i) * 100;
+									hand_ss[i] = 0;
+									if hand_now = i
+										{ hand_ss[i] = 0.9; }
+									if hand_now = i - 1 or hand_now = i + 1
+										{ hand_ss[i] = 0.5; }
+									if hand_red[i] = 0
+										{ draw_sprite_ext(s_arrow, 0, hand_xx[i], y2, hand_scale * list_scale * hand_ss[i], hand_scale * list_scale * hand_ss[i], hand_true[i] - 90, c_white, hand_ss[i] + 0.1); }
+										else
+										{ draw_sprite_ext(s_arrow, 0, hand_xx[i], y2, hand_scale * list_scale * hand_ss[i], hand_scale * list_scale * hand_ss[i], hand_true[i] - 90 + 180, c_red, hand_ss[i] + 0.1); }
+									}
+								draw_sprite_ext(s_hand, 0, x1, y1, hand_scale * list_scale * 0.8, hand_scale * list_scale * 0.8, hand_angle - 90, c_white, 1);
+							#endregion
+							}
+					#endregion
+					#region Задача 2 - Рука, градусы, клик
+						if round_task[global.rounds,global.task] = 2
+							{
 							//if global.training = 3
 							//	{
 							//	var hand_xxx, hand_yyy;
 							//	hand_xxx = -200;
 							//	hand_yyy = -200;
-							//	if global.training_stage[3] = 8 && global.training_question = 0
-							//	&& (abs(hand_true[hand_now] - hand_angle) < 30  or abs(hand_true[hand_now] - hand_angle) > 329)
+							//	if global.training_stage[3] = 12 && global.training_question = 0
+							//	//&& (abs(hand_true[hand_now] - hand_angle) < 30  or abs(hand_true[hand_now] - hand_angle) > 329)
 							//		{
 							//		hand_xxx = 640 - 250;
 							//		hand_yyy = global.size / 2;
-									
+								
 							//		global.training_hand_x = hand_xxx;
 							//		global.training_hand_y = hand_yyy;
 							//		}
 							//	}
-						timer_y = 140;
-						#region Координаты и появление
-							var x1, y1, y2;
-							
-							dop_q_y = 0;
-							
-							x1 = 640;
-							y1 = global.size / 2;
-							
-							y2 = global.size / 2 - 160;
-							
-							if hand_scale < 1
-								{ hand_scale += 0.1; }
-							
-							if hand_angle < 359
-								{ hand_angle += hand_speed; }
-								else
-								{ hand_angle = 0; }
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
+							timer_y = 140;
+							#region Координаты и появление
+								var x1, y1, x2, y2;
+						
+								dop_q_y = 0;
+						
+								x1 = 640 - 100;
+								y1 = global.size / 2;
+								x2 = 640 + 100;
+								y2 = y1;
+						
+								hand_scale = 1;
+								//if hand_scale < 1
+								//	{ hand_scale += 0.005; }
+						
+								if hand_angle < 359
+									{ hand_angle += hand_speed; }
+									else
+									{ hand_angle = 0; }
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
+									for(dev=0;dev<5;dev++)
 										{
-										if device_mouse_check_button_pressed(dev, mb_left)
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											if global.training < 1 or global.training_question > 1
+											if device_mouse_check_button_pressed(dev, mb_left)
 												{
-												if hand_now = hand_count
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+											
+												if global.training < 1 or global.training_question != 0
 													{
-													if ((abs(hand_true[hand_now] - hand_angle) < 30 or abs(hand_true[hand_now] - hand_angle) > 329)) // && hand_red[hand_now] = 0
+													if abs(hand_true[1] - hand_angle) < 30 or abs(hand_true[1] - hand_angle) > 329
 														{ global.answer = 1; }
 														else
 														{ global.answer = 0; }
-													move_1();
-													hand_scale = 0.5;
+													move_2();
 													}
 													else
 													{
-													if abs(hand_true[hand_now] - hand_angle) < 30 or abs(hand_true[hand_now] - hand_angle) > 329
-														{ hand_now += 1; hand_scale = 0.5; }
-														else
-														{ global.answer = 0; hand_scale = 0.5; move_1(); }
-													}
-												}
-												else
-												{
-												if global.training_stage[3] = 7 or global.training_stage[3] = 8
-													{
-													if abs(hand_true[hand_now] - hand_angle) < 30 or abs(hand_true[hand_now] - hand_angle) > 329
-														{
-														global.answer = 1;
-														move_1();
-														if global.training_stage[3] = 7
-															{ hand_red[1] = 1; }
-														if global.training_stage[3] = 8
-															{ hand_red[1] = choose(0, 1); }
-														if global.training_stage[3] = 7
-															{ global.training_stage[3] += 1; }
-														hand_scale = 0.5; }
+													if abs(hand_true[1] - hand_angle) < 30 or abs(hand_true[1] - hand_angle) > 329
+														{ global.answer = 1; move_2(); }
 														else
 														{ global.training_gb = "TRY AGAIN"; }
 													}
@@ -1788,947 +2304,791 @@ if global.hero = 1 && global.enemy_hero = 1
 											}
 										}
 									}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 3
-									{
-									if (global.training_stage[3] = 6
-									or (global.training_stage[3] = 7 && global.training_question = 0)
-									or (global.training_stage[3] = 8 && global.training_question = 1))
-										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[3] = 6// or global.training_stage[3] = 7
-											{ global.training_stage[3] += 1; }
-										}
-									if global.training_question = 4
-										{
-										global.training_stage[3] += 1;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
-										}
-									}
 							#endregion
-							for(i=hand_count;i>=1;i--)
-								{
-								hand_xx[i] = 640 - (hand_now - i) * 100;
-								hand_ss[i] = 0;
-								if hand_now = i
-									{ hand_ss[i] = 0.9; }
-								if hand_now = i - 1 or hand_now = i + 1
-									{ hand_ss[i] = 0.5; }
-								if hand_red[i] = 0
-									{ draw_sprite_ext(s_arrow, 0, hand_xx[i], y2, hand_scale * list_scale * hand_ss[i], hand_scale * list_scale * hand_ss[i], hand_true[i] - 90, c_white, hand_ss[i] + 0.1); }
-									else
-									{ draw_sprite_ext(s_arrow, 0, hand_xx[i], y2, hand_scale * list_scale * hand_ss[i], hand_scale * list_scale * hand_ss[i], hand_true[i] - 90 + 180, c_red, hand_ss[i] + 0.1); }
-								}
-							draw_sprite_ext(s_hand, 0, x1, y1, hand_scale * list_scale * 0.8, hand_scale * list_scale * 0.8, hand_angle - 90, c_white, 1);
-						#endregion
-						}
-				#endregion
-				#region Задача 2 - Рука, градусы, клик
-					if round_task[global.rounds,global.task] = 2
-						{
-						//if global.training = 3
-						//	{
-						//	var hand_xxx, hand_yyy;
-						//	hand_xxx = -200;
-						//	hand_yyy = -200;
-						//	if global.training_stage[3] = 12 && global.training_question = 0
-						//	//&& (abs(hand_true[hand_now] - hand_angle) < 30  or abs(hand_true[hand_now] - hand_angle) > 329)
-						//		{
-						//		hand_xxx = 640 - 250;
-						//		hand_yyy = global.size / 2;
-								
-						//		global.training_hand_x = hand_xxx;
-						//		global.training_hand_y = hand_yyy;
-						//		}
-						//	}
-						timer_y = 140;
-						#region Координаты и появление
-							var x1, y1, x2, y2;
-						
-							dop_q_y = 0;
-						
-							x1 = 640 - 100;
-							y1 = global.size / 2;
-							x2 = 640 + 100;
-							y2 = y1;
-						
-							hand_scale = 1;
-							//if hand_scale < 1
-							//	{ hand_scale += 0.005; }
-						
-							if hand_angle < 359
-								{ hand_angle += hand_speed; }
-								else
-								{ hand_angle = 0; }
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
+							#region Рисование
+								#region Обучение
+									if global.training = 3
 										{
-										if device_mouse_check_button_pressed(dev, mb_left)
+										if (global.training_stage[3] = 10 or global.training_stage[3] = 11
+										or (global.training_stage[3] = 12 && global.training_question = 0))
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											
-											if global.training < 1 or global.training_question != 0
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+										
+											draw_sprite_ext(s_directions, 0, 200, global.size / 2, 0.5, 0.5, 0, global.color_white, 1);
+											draw_text_transformed_t(200 + 130, global.size / 2, "0°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
+											draw_text_transformed_t(200, global.size / 2 - 130, "90°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
+											draw_text_transformed_t(200 - 130, global.size / 2, "180°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
+											draw_text_transformed_t(200, global.size / 2 + 130, "270°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
+											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[3] = 10 or global.training_stage[3] = 11
+												{ global.training_stage[3] = 12; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[3] += 1;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
+										}
+								#endregion
+								draw_set_font(global.game_font);
+								var hand_true2;
+								hand_true2 = hand_true[1] + 180;
+								if hand_true2 > 360
+									{ hand_true2 -= 360; }
+								if hand_red[1] = 0
+									{ draw_text_transformed_t(x1, y1, string(hand_true[1]) + "°", list_scale * 0.5, list_scale * 0.5, 15, c_white, c_black); }
+									else
+									{ draw_text_transformed_t(x1, y1, string(hand_true2) + "°", list_scale * 0.5, list_scale * 0.5, 15, c_red, c_black); }
+							
+								draw_sprite_ext(s_hand, 0, x2, y2, hand_scale * list_scale * 0.8, hand_scale * list_scale * 0.8, hand_angle - 90, c_white, 1);
+							#endregion
+							}
+					#endregion
+					#region Задача 3 - Рука, свайп
+						if round_task[global.rounds,global.task] = 3
+							{
+							timer_y = 140;
+							#region Координаты и появление
+								var x1, y1;
+							
+								dop_q_y = -70;
+							
+								x1 = 640;
+								y1 = global.size / 2;
+							
+								if hand_scale < 1
+									{ hand_scale += 0.1; }
+						
+								if hand_angle < hand_true
+									{ hand_angle += hand_speed; }
+									else
+									{ hand_angle = hand_true[hand_now]; }
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
+										{
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if hand_s_t > 0
+											{ hand_s_t -= 1; }
+											else
+											{ hand_s_t = 0; }
+							
+										if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
+											{
+											if device_mouse_check_button_pressed(dev, mb_left)
 												{
-												if abs(hand_true[1] - hand_angle) < 30 or abs(hand_true[1] - hand_angle) > 329
-													{ global.answer = 1; }
-													else
-													{ global.answer = 0; }
-												move_2();
+												hand_s_x = mouse_x1;
+												hand_s_y = mouse_y1;
+												hand_s_t = 50;
 												}
+											}
+								
+										if device_mouse_check_button_released(dev, mb_left)
+											{
+											if point_distance(hand_s_x, hand_s_y, mouse_x1, mouse_y1) < 190
+												{ hand_s_t = 0; }
 												else
 												{
-												if abs(hand_true[1] - hand_angle) < 30 or abs(hand_true[1] - hand_angle) > 329
-													{ global.answer = 1; move_2(); }
-													else
-													{ global.training_gb = "TRY AGAIN"; }
-												}
-											}
-										}
-									}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 3
-									{
-									if (global.training_stage[3] = 10 or global.training_stage[3] = 11
-									or (global.training_stage[3] = 12 && global.training_question = 0))
-										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										
-										draw_sprite_ext(s_directions, 0, 200, global.size / 2, 0.5, 0.5, 0, global.color_white, 1);
-										draw_text_transformed_t(200 + 130, global.size / 2, "0°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
-										draw_text_transformed_t(200, global.size / 2 - 130, "90°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
-										draw_text_transformed_t(200 - 130, global.size / 2, "180°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
-										draw_text_transformed_t(200, global.size / 2 + 130, "270°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
-										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[3] = 10 or global.training_stage[3] = 11
-											{ global.training_stage[3] = 12; }
-										}
-									if global.training_question = 3
-										{
-										global.training_stage[3] += 1;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
-										}
-									}
-							#endregion
-							draw_set_font(global.game_font);
-							var hand_true2;
-							hand_true2 = hand_true[1] + 180;
-							if hand_true2 > 360
-								{ hand_true2 -= 360; }
-							if hand_red[1] = 0
-								{ draw_text_transformed_t(x1, y1, string(hand_true[1]) + "°", list_scale * 0.5, list_scale * 0.5, 15, c_white, c_black); }
-								else
-								{ draw_text_transformed_t(x1, y1, string(hand_true2) + "°", list_scale * 0.5, list_scale * 0.5, 15, c_red, c_black); }
-							
-							draw_sprite_ext(s_hand, 0, x2, y2, hand_scale * list_scale * 0.8, hand_scale * list_scale * 0.8, hand_angle - 90, c_white, 1);
-						#endregion
-						}
-				#endregion
-				#region Задача 3 - Рука, свайп
-					if round_task[global.rounds,global.task] = 3
-						{
-						timer_y = 140;
-						#region Координаты и появление
-							var x1, y1;
-							
-							dop_q_y = -70;
-							
-							x1 = 640;
-							y1 = global.size / 2;
-							
-							if hand_scale < 1
-								{ hand_scale += 0.1; }
-						
-							if hand_angle < hand_true
-								{ hand_angle += hand_speed; }
-								else
-								{ hand_angle = hand_true[hand_now]; }
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									if hand_s_t > 0
-										{ hand_s_t -= 1; }
-										else
-										{ hand_s_t = 0; }
-							
-									if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
-										{
-										if device_mouse_check_button_pressed(dev, mb_left)
-											{
-											hand_s_x = mouse_x1;
-											hand_s_y = mouse_y1;
-											hand_s_t = 50;
-											}
-										}
-								
-									if device_mouse_check_button_released(dev, mb_left)
-										{
-										if point_distance(hand_s_x, hand_s_y, mouse_x1, mouse_y1) < 190
-											{ hand_s_t = 0; }
-											else
-											{
-											if hand_s_t > 0
-												{
-												if global.training < 1
+												if hand_s_t > 0
 													{
-													if hand_now = hand_count
+													if global.training < 1
+														{
+														if hand_now = hand_count
+															{
+															if global.music { audio_play_sound(sd_text, 2, 0); }
+													
+															if abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) < 30 or abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) > 329
+																{ global.answer = 1; }
+																else
+																{ global.answer = 0; }
+															move_3();
+															hand_scale = 0.5;
+															}
+															else
+															{
+															if abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) < 30 or abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) > 329
+																{ hand_now += 1; hand_scale = 0.5; }
+																else
+																{ move_3(); global.answer = 0; hand_scale = 0.5; }
+															}
+														}
+														else
 														{
 														if global.music { audio_play_sound(sd_text, 2, 0); }
 													
 														if abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) < 30 or abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) > 329
-															{ global.answer = 1; }
+															{ global.answer = 1; move_3(); hand_scale = 0.5; }
 															else
-															{ global.answer = 0; }
-														move_3();
-														hand_scale = 0.5;
+															{ global.training_gb = "TRY AGAIN"; }
 														}
-														else
-														{
-														if abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) < 30 or abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) > 329
-															{ hand_now += 1; hand_scale = 0.5; }
-															else
-															{ move_3(); global.answer = 0; hand_scale = 0.5; }
-														}
-													}
-													else
-													{
-													if global.music { audio_play_sound(sd_text, 2, 0); }
-													
-													if abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) < 30 or abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) > 329
-														{ global.answer = 1; move_3(); hand_scale = 0.5; }
-														else
-														{ global.training_gb = "TRY AGAIN"; }
 													}
 												}
 											}
 										}
 									}
-								}
-						#endregion
-						#region Рисование						
-							#region Обучение
-								if global.training = 3
-									{
-									if (global.training_stage[3] = 14 or global.training_stage[3] = 15
-									or (global.training_stage[3] = 16 && global.training_question = 0))
+							#endregion
+							#region Рисование						
+								#region Обучение
+									if global.training = 3
 										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
+										if (global.training_stage[3] = 14 or global.training_stage[3] = 15
+										or (global.training_stage[3] = 16 && global.training_question = 0))
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
 									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[3] = 14 or global.training_stage[3] = 15
-											{ global.training_stage[3] += 1; }
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[3] = 14 or global.training_stage[3] = 15
+												{ global.training_stage[3] += 1; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[3] = 22;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
 										}
-									if global.training_question = 3
+								#endregion
+								for(i=hand_count;i>=1;i--)
+									{
+									hand_xx[i] = 640 - (hand_now - i) * 170;
+									hand_ss[i] = 0;
+									if hand_now = i
+										{ hand_ss[i] = 0.9; }
+									if hand_now = i - 1 or hand_now = i + 1
+										{ hand_ss[i] = 0.5; }
+									if hand_red[i] = 0
+										{ draw_sprite_ext(s_hand, 0, hand_xx[i], y1, hand_scale * list_scale * hand_ss[i], hand_scale * list_scale * hand_ss[i], hand_true[i] - 90, c_white, hand_ss[i] + 0.1); }
+										else
+										{ draw_sprite_ext(s_hand, 0, hand_xx[i], y1, hand_scale * list_scale * hand_ss[i], hand_scale * list_scale * hand_ss[i], hand_true[i] - 90 + 180, c_red, hand_ss[i] + 0.1); }
+									}
+								//draw_sprite_ext(s_hand, 0, x1, y1, hand_scale * list_scale * 0.8, hand_scale * list_scale * 0.8, hand_angle - 90, c_white, 1);
+							#endregion
+							}
+					#endregion
+					#region Задача 4 - 
+						if round_task[global.rounds,global.task] = 4 && 0
+							{
+							timer_y = 50;
+							#region Координаты
+								var test_x1, test_x2, test_y;
+								test_x1 = 640 - 180;
+								test_x2 = 640 + 180;
+								test_y  = global.size / 2 - 60;
+							
+								pre_wait = 0;
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
 										{
-										global.training_stage[3] = 22;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if point_in_rectangle(mouse_x1, mouse_y1, test_x1 - 150, test_y - 100, test_x1 + 150, test_y + 100) && global.answer = -1
+											{
+											if mouse_check_button_pressed(mb_left)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												global.answer = 1;
+												}
+											}
+										if point_in_rectangle(mouse_x1, mouse_y1, test_x2 - 150, test_y - 100, test_x2 + 150, test_y + 100) && global.answer = -1
+											{
+											if mouse_check_button_pressed(mb_left)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												global.answer = 0;
+												}
+											}
 										}
 									}
 							#endregion
-							for(i=hand_count;i>=1;i--)
-								{
-								hand_xx[i] = 640 - (hand_now - i) * 170;
-								hand_ss[i] = 0;
-								if hand_now = i
-									{ hand_ss[i] = 0.9; }
-								if hand_now = i - 1 or hand_now = i + 1
-									{ hand_ss[i] = 0.5; }
-								if hand_red[i] = 0
-									{ draw_sprite_ext(s_hand, 0, hand_xx[i], y1, hand_scale * list_scale * hand_ss[i], hand_scale * list_scale * hand_ss[i], hand_true[i] - 90, c_white, hand_ss[i] + 0.1); }
-									else
-									{ draw_sprite_ext(s_hand, 0, hand_xx[i], y1, hand_scale * list_scale * hand_ss[i], hand_scale * list_scale * hand_ss[i], hand_true[i] - 90 + 180, c_red, hand_ss[i] + 0.1); }
-								}
-							//draw_sprite_ext(s_hand, 0, x1, y1, hand_scale * list_scale * 0.8, hand_scale * list_scale * 0.8, hand_angle - 90, c_white, 1);
+							#region Рисование
+							draw_set_font(global.game_font);
+							draw_text_transformed_t(test_x1, test_y, "TRUE" , 0.35 * list_scale, 0.35 * list_scale, 0, global.color_white, c_black);
+							draw_text_transformed_t(test_x2, test_y, "MISS" , 0.35 * list_scale, 0.35 * list_scale, 0, c_red, c_black);
 						#endregion
-						}
-				#endregion
-				#region Задача 4 - 
-					if round_task[global.rounds,global.task] = 4 && 0
+							}
+					#endregion
+					}
+			#endregion	
+			#region Внимание   - Attention
+				if theme_round[global.rounds] = 4
+					{
+					if global.training = 4
 						{
-						timer_y = 50;
-						#region Координаты
-							var test_x1, test_x2, test_y;
-							test_x1 = 640 - 180;
-							test_x2 = 640 + 180;
-							test_y  = global.size / 2 - 60;
+						if global.training_stage[4] = 7
+							{ global.training_stage[4] = 8; }
+						var hand_xxx, hand_yyy;
+						hand_xxx = -200;
+						hand_yyy = -200;
 							
-							pre_wait = 0;
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
+						global.training_hand_x = hand_xxx;
+						global.training_hand_y = hand_yyy;
+						}
+					#region Задача 1 - Шляпа и напертски
+						if round_task[global.rounds,global.task] = 1
+							{
+							timer_y = 120;
+							#region Движение
+								var hat_yy, hat_scale;
+								hat_yy = global.size / 2 - 30;
+								hat_scale = 0.8;
+								if hat_stage = 0 && list_scale = 1
 									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									if point_in_rectangle(mouse_x1, mouse_y1, test_x1 - 150, test_y - 100, test_x1 + 150, test_y + 100) && global.answer = -1
+									if global.training < 1 or global.training_stage[4] >= 8
 										{
-										if mouse_check_button_pressed(mb_left)
+										if hat_timer > 0
+											{ hat_timer -=1; }
+											else
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											global.answer = 1;
-											}
-										}
-									if point_in_rectangle(mouse_x1, mouse_y1, test_x2 - 150, test_y - 100, test_x2 + 150, test_y + 100) && global.answer = -1
-										{
-										if mouse_check_button_pressed(mb_left)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											global.answer = 0;
+											if hat_y[2] > 0
+												{ hat_y[2] -= 25; }
+												else
+												{ hat_timer = 10; hat_stage = 1; }
 											}
 										}
 									}
-								}
-						#endregion
-						#region Рисование
-						draw_set_font(global.game_font);
-						draw_text_transformed_t(test_x1, test_y, "TRUE" , 0.35 * list_scale, 0.35 * list_scale, 0, global.color_white, c_black);
-						draw_text_transformed_t(test_x2, test_y, "MISS" , 0.35 * list_scale, 0.35 * list_scale, 0, c_red, c_black);
-					#endregion
-						}
-				#endregion
-				}
-			#endregion	
-			 #region Внимание   - Attention
-			if theme_round[global.rounds] = 4
-				{
-				if global.training = 4
-					{
-					if global.training_stage[4] = 7
-						{ global.training_stage[4] = 8; }
-					var hand_xxx, hand_yyy;
-					hand_xxx = -200;
-					hand_yyy = -200;
-							
-					global.training_hand_x = hand_xxx;
-					global.training_hand_y = hand_yyy;
-					}
-				#region Задача 1 - Шляпа и напертски
-					if round_task[global.rounds,global.task] = 1
-						{
-						timer_y = 120;
-						#region Движение
-							var hat_yy, hat_scale;
-							hat_yy = global.size / 2 - 30;
-							hat_scale = 0.8;
-							if hat_stage = 0 && list_scale = 1
-								{
-								if global.training < 1 or global.training_stage[4] >= 8
+								if hat_stage = 1
+									{
+									hat_sha  = choose(1, 2, 3);
+									if hat_sha = 1
+										{ hat_cha = choose(2, 3); }
+									if hat_sha = 2
+										{ hat_cha = choose(1, 3); }
+									if hat_sha = 3
+										{ hat_cha = choose(1, 2); }
+									hat_xn[hat_sha] = hat_x[hat_cha];
+									hat_xn[hat_cha] = hat_x[hat_sha];
+									hat_stage = 2;
+									}
+								if hat_stage = 2
+									{
+									if hat_x[hat_sha] < hat_xn[hat_sha]
+										{
+										hat_x[hat_sha] += hat_spd;
+										if hat_x[hat_sha] > hat_xn[hat_sha]
+											{ hat_x[hat_sha] = hat_xn[hat_sha]; }
+										}
+									if hat_x[hat_sha] > hat_xn[hat_sha]
+										{
+										hat_x[hat_sha] -= hat_spd;
+										if hat_x[hat_sha] < hat_xn[hat_sha]
+											{ hat_x[hat_sha] = hat_xn[hat_sha]; }
+										}
+									if hat_x[hat_cha] < hat_xn[hat_cha]
+										{
+										hat_x[hat_cha] += hat_spd;
+										if hat_x[hat_cha] > hat_xn[hat_cha]
+											{ hat_x[hat_cha] = hat_xn[hat_cha]; }
+										}
+									if hat_x[hat_cha] > hat_xn[hat_cha]
+										{
+										hat_x[hat_cha] -= hat_spd;
+										if hat_x[hat_cha] < hat_xn[hat_cha]
+											{ hat_x[hat_cha] = hat_xn[hat_cha]; }
+										}
+								
+									if hat_x[hat_sha] = hat_xn[hat_sha] && hat_x[hat_cha] = hat_xn[hat_cha]
+										{
+										if hat_num < hat_max
+											{ hat_num +=1; hat_stage = 1; }
+											else
+											{ hat_stage = 3; pre_wait = 0; }
+										}
+									}
+								if hat_stage = 4
+									{
+									if hat_y[hat_end] < 150
+										{ hat_y[hat_end] += 25; }
+										else
+										{ hat_stage = 5; }
+									}
+								if hat_stage = 5
+									{
+									if hat_res = 0
+										{
+										if hat_alpha[2] > 0.3
+											{ hat_alpha[2] -= 0.05; }
+											else
+											{ hat_stage = 6; }
+										}
+										else
+										{ hat_stage = 6; }
+									}
+								if hat_stage = 6
 									{
 									if hat_timer > 0
 										{ hat_timer -=1; }
 										else
 										{
-										if hat_y[2] > 0
-											{ hat_y[2] -= 25; }
-											else
-											{ hat_timer = 10; hat_stage = 1; }
-										}
-									}
-								}
-							if hat_stage = 1
-								{
-								hat_sha  = choose(1, 2, 3);
-								if hat_sha = 1
-									{ hat_cha = choose(2, 3); }
-								if hat_sha = 2
-									{ hat_cha = choose(1, 3); }
-								if hat_sha = 3
-									{ hat_cha = choose(1, 2); }
-								hat_xn[hat_sha] = hat_x[hat_cha];
-								hat_xn[hat_cha] = hat_x[hat_sha];
-								hat_stage = 2;
-								}
-							if hat_stage = 2
-								{
-								if hat_x[hat_sha] < hat_xn[hat_sha]
-									{
-									hat_x[hat_sha] += hat_spd;
-									if hat_x[hat_sha] > hat_xn[hat_sha]
-										{ hat_x[hat_sha] = hat_xn[hat_sha]; }
-									}
-								if hat_x[hat_sha] > hat_xn[hat_sha]
-									{
-									hat_x[hat_sha] -= hat_spd;
-									if hat_x[hat_sha] < hat_xn[hat_sha]
-										{ hat_x[hat_sha] = hat_xn[hat_sha]; }
-									}
-								if hat_x[hat_cha] < hat_xn[hat_cha]
-									{
-									hat_x[hat_cha] += hat_spd;
-									if hat_x[hat_cha] > hat_xn[hat_cha]
-										{ hat_x[hat_cha] = hat_xn[hat_cha]; }
-									}
-								if hat_x[hat_cha] > hat_xn[hat_cha]
-									{
-									hat_x[hat_cha] -= hat_spd;
-									if hat_x[hat_cha] < hat_xn[hat_cha]
-										{ hat_x[hat_cha] = hat_xn[hat_cha]; }
-									}
-								
-								if hat_x[hat_sha] = hat_xn[hat_sha] && hat_x[hat_cha] = hat_xn[hat_cha]
-									{
-									if hat_num < hat_max
-										{ hat_num +=1; hat_stage = 1; }
-										else
-										{ hat_stage = 3; pre_wait = 0; }
-									}
-								}
-							if hat_stage = 4
-								{
-								if hat_y[hat_end] < 150
-									{ hat_y[hat_end] += 25; }
-									else
-									{ hat_stage = 5; }
-								}
-							if hat_stage = 5
-								{
-								if hat_res = 0
-									{
-									if hat_alpha[2] > 0.3
-										{ hat_alpha[2] -= 0.05; }
-										else
-										{ hat_stage = 6; }
-									}
-									else
-									{ hat_stage = 6; }
-								}
-							if hat_stage = 6
-								{
-								if hat_timer > 0
-									{ hat_timer -=1; }
-									else
-									{
-									global.answer = hat_res;
-									attention_1();
-									}
-								}
-						#endregion
-						#region Ответ
-						if hat_stage = 3 && global.super_ability = 0 && list_scale = 1
-							{
-							//hat_x[2] - 120 * hat_scale
-							//if global.training < 1 or (global.training_question != 0)
-							for(dev=0;dev<5;dev++)
-								{
-								mouse_x1 = device_mouse_x(dev);
-								mouse_y1 = device_mouse_y(dev);
-								if device_mouse_check_button_released(dev, mb_left)
-									{
-									if global.training < 1 or (global.training_question != 0)
-										{
-										if point_in_rectangle(mouse_x1, mouse_y1, hat_x[2] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[2] + 120 * hat_scale, hat_yy + hat_y[2] + 200 * hat_scale)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											hat_end = 2;
-											hat_res = 1;
-											hat_stage = 4;
-											}
-										if point_in_rectangle(mouse_x1, mouse_y1, hat_x[1] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[1] + 120 * hat_scale, hat_yy + hat_y[1] + 200 * hat_scale)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											hat_end = 1;
-											hat_res = 0;
-											hat_stage = 4;
-											}
-										if point_in_rectangle(mouse_x1, mouse_y1, hat_x[3] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[3] + 120 * hat_scale, hat_yy + hat_y[3] + 200 * hat_scale)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											hat_end = 3;
-											hat_res = 0;
-											hat_stage = 4;
-											}
-										}
-										else
-										{
-										if point_in_rectangle(mouse_x1, mouse_y1, hat_x[2] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[2] + 120 * hat_scale, hat_yy + hat_y[2] + 200 * hat_scale)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											hat_end = 2;
-											hat_res = 1;
-											hat_stage = 4;
-											}
-										if point_in_rectangle(mouse_x1, mouse_y1, hat_x[1] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[1] + 120 * hat_scale, hat_yy + hat_y[1] + 200 * hat_scale)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											global.training_gb = "TRY AGAIN";
-											}
-										if point_in_rectangle(mouse_x1, mouse_y1, hat_x[3] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[3] + 120 * hat_scale, hat_yy + hat_y[3] + 200 * hat_scale)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											global.training_gb = "TRY AGAIN";
-											}
-										}
-									}
-								}
-							}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 4
-									{
-									if (global.training_stage[4] = 6 or global.training_stage[4] = 7
-									or (global.training_stage[4] = 8 && global.training_question = 0))
-										{
-										if hat_stage = 3
-											{
-											global.training_hand_x = hat_x[2] - 120 * hat_scale + 100;
-											global.training_hand_y = hat_yy - 200 * hat_scale + 200;
-											}
-										
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[4] = 6// or global.training_stage[3] = 7
-											{ global.training_stage[4] += 1; }
-										}
-									if global.training_question = 3
-										{
-										global.training_stage[4] += 1;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
+										global.answer = hat_res;
+										attention_1();
 										}
 									}
 							#endregion
-							draw_sprite_ext_t(s_hat, 1, hat_x[2], hat_yy, hat_s[2] * hat_scale * list_scale, hat_s[2] * hat_scale * list_scale, 0, c_white, 1, c_white, c_black);
-							
-							draw_sprite_ext(s_hat, 0, hat_x[1], hat_yy - hat_y[1], hat_s[1] * hat_scale * list_scale, hat_s[1] * hat_scale * list_scale, 0, c_white, hat_alpha[1]);
-							draw_sprite_ext(s_hat, 0, hat_x[2], hat_yy - hat_y[2], hat_s[2] * hat_scale * list_scale, hat_s[2] * hat_scale * list_scale, 0, c_white, hat_alpha[2]);
-							draw_sprite_ext(s_hat, 0, hat_x[3], hat_yy - hat_y[3], hat_s[3] * hat_scale * list_scale, hat_s[3] * hat_scale * list_scale, 0, c_white, hat_alpha[3]);
-						#endregion
-						}
-				#endregion
-				#region Задача 2 - Камень, ножницы и чё там
-					if round_task[global.rounds,global.task] = 2
-						{
-						timer_y = 150;
-						pre_wait = 0;
-						#region Координаты
-							var x1, y1, y2;
-						
-							x1 = 640;
-							y1 = global.size / 2 - 140;
-							y2 = global.size / 2 + 35;
-							
-							if hand_sign_scale < 1
-								{ hand_sign_scale += 0.1; }
-								
-							if global.training_stage[4] = 12 && global.training_question = 0
+							#region Ответ
+							if hat_stage = 3 && global.super_ability = 0 && list_scale = 1
 								{
-								var nd;
-								nd = 0;
-								for(j=1;j<=3;j++)
-									{
-									if nd = 0
-										{
-										if hand_sign[1] = 0
-											{
-											if hand_sign_z[1,j] = 2
-												{ nd = j; }
-											}
-										if hand_sign[1] = 1
-											{
-											if hand_sign_z[1,j] = 0
-												{ nd = j; break; }
-											}
-										if hand_sign[hand_sign_now] = 2
-											{
-											if hand_sign_z[1,j] = 1
-												{ nd = j; break; }
-											}
-										}
-									}
-								
-								if nd != 0
-									{
-									hand_xxx = 640 - 340 + 170 * nd;
-									hand_yyy = y2;
-									}
-									else
-									{
-									hand_xxx = -200;
-									hand_yyy = -200;
-									}
-								global.training_hand_x = hand_xxx;
-								global.training_hand_y = hand_yyy;
-								}
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
+								//hat_x[2] - 120 * hat_scale
+								//if global.training < 1 or (global.training_question != 0)
 								for(dev=0;dev<5;dev++)
 									{
 									mouse_x1 = device_mouse_x(dev);
 									mouse_y1 = device_mouse_y(dev);
-									if mouse_check_button_pressed(mb_left)
+									if device_mouse_check_button_released(dev, mb_left)
 										{
-										if global.music { audio_play_sound(sd_text, 2, 0); }
-										
-										for(j=1;j<=3;j++)
+										if global.training < 1 or (global.training_question != 0)
 											{
-											if point_in_rectangle(mouse_x1, mouse_y1, 640 - 340 + 170 * j - 65, y2 - 65, 640 - 340 + 170 * j + 65, y2 + 65)
+											if point_in_rectangle(mouse_x1, mouse_y1, hat_x[2] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[2] + 120 * hat_scale, hat_yy + hat_y[2] + 200 * hat_scale)
 												{
-												if global.training < 1 or global.training_question != 0
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												hat_end = 2;
+												hat_res = 1;
+												hat_stage = 4;
+												}
+											if point_in_rectangle(mouse_x1, mouse_y1, hat_x[1] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[1] + 120 * hat_scale, hat_yy + hat_y[1] + 200 * hat_scale)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												hat_end = 1;
+												hat_res = 0;
+												hat_stage = 4;
+												}
+											if point_in_rectangle(mouse_x1, mouse_y1, hat_x[3] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[3] + 120 * hat_scale, hat_yy + hat_y[3] + 200 * hat_scale)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												hat_end = 3;
+												hat_res = 0;
+												hat_stage = 4;
+												}
+											}
+											else
+											{
+											if point_in_rectangle(mouse_x1, mouse_y1, hat_x[2] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[2] + 120 * hat_scale, hat_yy + hat_y[2] + 200 * hat_scale)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												hat_end = 2;
+												hat_res = 1;
+												hat_stage = 4;
+												}
+											if point_in_rectangle(mouse_x1, mouse_y1, hat_x[1] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[1] + 120 * hat_scale, hat_yy + hat_y[1] + 200 * hat_scale)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												global.training_gb = "TRY AGAIN";
+												}
+											if point_in_rectangle(mouse_x1, mouse_y1, hat_x[3] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[3] + 120 * hat_scale, hat_yy + hat_y[3] + 200 * hat_scale)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												global.training_gb = "TRY AGAIN";
+												}
+											}
+										}
+									}
+								}
+							#endregion
+							#region Рисование
+								#region Обучение
+									if global.training = 4
+										{
+										if (global.training_stage[4] = 6 or global.training_stage[4] = 7
+										or (global.training_stage[4] = 8 && global.training_question = 0))
+											{
+											if hat_stage = 3
+												{
+												global.training_hand_x = hat_x[2] - 120 * hat_scale + 100;
+												global.training_hand_y = hat_yy - 200 * hat_scale + 200;
+												}
+										
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[4] = 6// or global.training_stage[3] = 7
+												{ global.training_stage[4] += 1; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[4] += 1;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
+										}
+								#endregion
+								draw_sprite_ext_t(s_hat, 1, hat_x[2], hat_yy, hat_s[2] * hat_scale * list_scale, hat_s[2] * hat_scale * list_scale, 0, c_white, 1, c_white, c_black);
+							
+								draw_sprite_ext(s_hat, 0, hat_x[1], hat_yy - hat_y[1], hat_s[1] * hat_scale * list_scale, hat_s[1] * hat_scale * list_scale, 0, c_white, hat_alpha[1]);
+								draw_sprite_ext(s_hat, 0, hat_x[2], hat_yy - hat_y[2], hat_s[2] * hat_scale * list_scale, hat_s[2] * hat_scale * list_scale, 0, c_white, hat_alpha[2]);
+								draw_sprite_ext(s_hat, 0, hat_x[3], hat_yy - hat_y[3], hat_s[3] * hat_scale * list_scale, hat_s[3] * hat_scale * list_scale, 0, c_white, hat_alpha[3]);
+							#endregion
+							}
+					#endregion
+					#region Задача 2 - Камень, ножницы и чё там
+						if round_task[global.rounds,global.task] = 2
+							{
+							timer_y = 150;
+							pre_wait = 0;
+							#region Координаты
+								var x1, y1, y2;
+						
+								x1 = 640;
+								y1 = global.size / 2 - 140;
+								y2 = global.size / 2 + 35;
+							
+								if hand_sign_scale < 1
+									{ hand_sign_scale += 0.1; }
+								
+								if global.training <1 or (global.training_stage[4] = 12 && global.training_question = 0)
+									{
+									var nd;
+									nd = 0;
+									for(j=1;j<=3;j++)
+										{
+										if nd = 0
+											{
+											if hand_sign[1] = 0
+												{
+												if hand_sign_z[1,j] = 2
+													{ nd = j; }
+												}
+											if hand_sign[1] = 1
+												{
+												if hand_sign_z[1,j] = 0
+													{ nd = j; break; }
+												}
+											if hand_sign[hand_sign_now] = 2
+												{
+												if hand_sign_z[1,j] = 1
+													{ nd = j; break; }
+												}
+											}
+										}
+								
+									if nd != 0
+										{
+										hand_xxx = 640 - 340 + 170 * nd;
+										hand_yyy = y2;
+										}
+										else
+										{
+										hand_xxx = -200;
+										hand_yyy = -200;
+										}
+									global.training_hand_x = hand_xxx;
+									global.training_hand_y = hand_yyy;
+									}
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
+										{
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if mouse_check_button_pressed(mb_left)
+											{
+											if global.music { audio_play_sound(sd_text, 2, 0); }
+										
+											for(j=1;j<=3;j++)
+												{
+												if point_in_rectangle(mouse_x1, mouse_y1, 640 - 340 + 170 * j - 65, y2 - 65, 640 - 340 + 170 * j + 65, y2 + 65)
 													{
-													hand_sign_c[j]  = 0.7;
-													hand_sign_scale = 0.5;
-													if hand_sign_red[hand_sign_now] = 0
+													if global.training < 1 or global.training_question != 0
 														{
-														#region Если не красный
+														hand_sign_c[j]  = 0.7;
+														hand_sign_scale = 0.5;
+														if hand_sign_red[hand_sign_now] = 0
+															{
+															#region Если не красный
+																if hand_sign[hand_sign_now] = 0
+																	{
+																	if (hand_sign_z[hand_sign_now,j] = 2 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 1 && hand_sign_r[hand_sign_now] = 1)
+																		{ hand_sign_now += 1; }
+																		else
+																		{
+																		global.answer = 0;
+																		attention_2();
+																		}
+																	break;
+																	}
+																if hand_sign[hand_sign_now] = 1
+																	{
+																	if (hand_sign_z[hand_sign_now,j] = 0 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 2 && hand_sign_r[hand_sign_now] = 1)
+																		{ hand_sign_now += 1; }
+																		else
+																		{
+																		global.answer = 0;
+																		attention_2();
+																		}
+																	break;
+																	}
+																if hand_sign[hand_sign_now] = 2
+																	{
+																	if (hand_sign_z[hand_sign_now,j] = 1 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 0 && hand_sign_r[hand_sign_now] = 1)
+																		{ hand_sign_now += 1; }
+																		else
+																		{
+																		global.answer = 0;
+																		attention_2();
+																		}
+																	break;
+																	}
+															#endregion
+															}
+															else
+															{
+															#region Если красный
+																if hand_sign[hand_sign_now] = 0
+																	{
+																	if (hand_sign_z[hand_sign_now,j] = 1 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 2 && hand_sign_r[hand_sign_now] = 1)
+																		{ hand_sign_now += 1; }
+																		else
+																		{
+																		global.answer = 0;
+																		attention_2();
+																		}
+																	break;
+																	}
+																if hand_sign[hand_sign_now] = 1
+																	{
+																	if (hand_sign_z[hand_sign_now,j] = 2 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 0 && hand_sign_r[hand_sign_now] = 1)
+																		{ hand_sign_now += 1; }
+																		else
+																		{
+																		global.answer = 0;
+																		attention_2();
+																		}
+																	break;
+																	}
+																if hand_sign[hand_sign_now] = 2
+																	{
+																	if (hand_sign_z[hand_sign_now,j] = 0 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 1 && hand_sign_r[hand_sign_now] = 1)
+																		{ hand_sign_now += 1; }
+																		else
+																		{
+																		global.answer = 0;
+																		attention_2();
+																		}
+																	break;
+																	}
+															#endregion
+															}
+														}
+														else
+														{
+														#region Обучение
 															if hand_sign[hand_sign_now] = 0
 																{
 																if (hand_sign_z[hand_sign_now,j] = 2 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 1 && hand_sign_r[hand_sign_now] = 1)
 																	{ hand_sign_now += 1; }
 																	else
-																	{
-																	global.answer = 0;
-																	attention_2();
-																	}
-																break;
+																	{ global.training_gb = "TRY AGAIN"; }
 																}
 															if hand_sign[hand_sign_now] = 1
 																{
 																if (hand_sign_z[hand_sign_now,j] = 0 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 2 && hand_sign_r[hand_sign_now] = 1)
 																	{ hand_sign_now += 1; }
 																	else
-																	{
-																	global.answer = 0;
-																	attention_2();
-																	}
-																break;
+																	{ global.training_gb = "TRY AGAIN"; }
 																}
 															if hand_sign[hand_sign_now] = 2
 																{
 																if (hand_sign_z[hand_sign_now,j] = 1 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 0 && hand_sign_r[hand_sign_now] = 1)
 																	{ hand_sign_now += 1; }
 																	else
-																	{
-																	global.answer = 0;
-																	attention_2();
-																	}
-																break;
-																}
-														#endregion
-														}
-														else
-														{
-														#region Если красный
-															if hand_sign[hand_sign_now] = 0
-																{
-																if (hand_sign_z[hand_sign_now,j] = 1 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 2 && hand_sign_r[hand_sign_now] = 1)
-																	{ hand_sign_now += 1; }
-																	else
-																	{
-																	global.answer = 0;
-																	attention_2();
-																	}
-																break;
-																}
-															if hand_sign[hand_sign_now] = 1
-																{
-																if (hand_sign_z[hand_sign_now,j] = 2 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 0 && hand_sign_r[hand_sign_now] = 1)
-																	{ hand_sign_now += 1; }
-																	else
-																	{
-																	global.answer = 0;
-																	attention_2();
-																	}
-																break;
-																}
-															if hand_sign[hand_sign_now] = 2
-																{
-																if (hand_sign_z[hand_sign_now,j] = 0 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 1 && hand_sign_r[hand_sign_now] = 1)
-																	{ hand_sign_now += 1; }
-																	else
-																	{
-																	global.answer = 0;
-																	attention_2();
-																	}
-																break;
+																	{ global.training_gb = "TRY AGAIN"; }
 																}
 														#endregion
 														}
 													}
 													else
-													{
-													#region Обучение
-														if hand_sign[hand_sign_now] = 0
-															{
-															if (hand_sign_z[hand_sign_now,j] = 2 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 1 && hand_sign_r[hand_sign_now] = 1)
-																{ hand_sign_now += 1; }
-																else
-																{ global.training_gb = "TRY AGAIN"; }
-															}
-														if hand_sign[hand_sign_now] = 1
-															{
-															if (hand_sign_z[hand_sign_now,j] = 0 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 2 && hand_sign_r[hand_sign_now] = 1)
-																{ hand_sign_now += 1; }
-																else
-																{ global.training_gb = "TRY AGAIN"; }
-															}
-														if hand_sign[hand_sign_now] = 2
-															{
-															if (hand_sign_z[hand_sign_now,j] = 1 && hand_sign_r[hand_sign_now] = 0) or (hand_sign_z[hand_sign_now,j] = 0 && hand_sign_r[hand_sign_now] = 1)
-																{ hand_sign_now += 1; }
-																else
-																{ global.training_gb = "TRY AGAIN"; }
-															}
-													#endregion
-													}
+													{ hand_sign_c[j] = 0.65; }
 												}
-												else
-												{ hand_sign_c[j] = 0.65; }
+											if hand_sign_now > hand_sign_count
+												{
+												global.answer = 1;
+												attention_2();
+												}
 											}
-										if hand_sign_now > hand_sign_count
-											{
-											global.answer = 1;
-											attention_2();
-											}
-										}
-									}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 4
-									{
-									if (global.training_stage[4] = 10 or global.training_stage[4] = 11
-									or (global.training_stage[4] = 12 && global.training_question = 0))
-										{
-										if hat_stage = 3
-											{
-											global.training_hand_x = hat_x[2] - 120 * hat_scale + 100;
-											global.training_hand_y = hat_yy - 200 * hat_scale + 200;
-											}
-										
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[4] = 10 or global.training_stage[4] = 11
-											{ global.training_stage[4] += 1; }
-										}
-									if global.training_question = 3
-										{
-										global.training_stage[4] = 14;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
 										}
 									}
 							#endregion
-							if global.training_stage[4] > 11
-								{
-								for(i=hand_sign_count;i>=1;i--)
-									{
-									hand_sign_xx[i] = 640 - (hand_sign_now - i) * 170;
-									hand_sign_ss[i] = 0;
-								
-									if hand_sign_now = i
-										{ hand_sign_ss[i] = 0.9; }
-									if hand_sign_now = i - 1 or hand_sign_now = i + 1
-										{ hand_sign_ss[i] = 0.5; }
-								
-									if hand_sign_red[i] = 0
-										{ draw_sprite_ext(s_sign_hand, hand_sign[i], hand_sign_xx[i], y1, hand_sign_scale * list_scale * hand_sign_ss[i], hand_sign_scale * list_scale * hand_sign_ss[i], 0, c_white, hand_sign_ss[i] + 0.1); }
-										else
-										{ draw_sprite_ext(s_sign_hand, hand_sign[i], hand_sign_xx[i], y1, hand_sign_scale * list_scale * hand_sign_ss[i], hand_sign_scale * list_scale * hand_sign_ss[i], 0, c_red,   hand_sign_ss[i] + 0.1); }
-								
-									if i = hand_sign_now
+							#region Рисование
+								#region Обучение
+									if global.training = 4
 										{
-										for(j=1;j<=3;j++)
+										if (global.training_stage[4] = 10 or global.training_stage[4] = 11
+										or (global.training_stage[4] = 12 && global.training_question = 0))
 											{
-											if hand_sign_r[i] = 0
+											if hat_stage = 3
 												{
-												draw_sprite_ext_t(s_question_sign, 0, 640 - 340 + 170 * j, y2, list_scale * hand_sign_c[i], list_scale * hand_sign_c[i], 0, c_white, 1, c_white, c_black);
-												draw_sprite_ext(s_sign_hand, hand_sign_z[i,j], 640 - 340 + 170 * j, y2, list_scale * hand_sign_c[i], list_scale * hand_sign_c[i], 0, c_white, 1);
+												global.training_hand_x = hat_x[2] - 120 * hat_scale + 100;
+												global.training_hand_y = hat_yy - 200 * hat_scale + 200;
 												}
-												else
+										
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[4] = 10 or global.training_stage[4] = 11
+												{ global.training_stage[4] += 1; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[4] = 14;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
+										}
+								#endregion
+								if global.training_stage[4] > 11
+									{
+									for(i=hand_sign_count;i>=1;i--)
+										{
+										hand_sign_xx[i] = 640 - (hand_sign_now - i) * 170;
+										hand_sign_ss[i] = 0;
+								
+										if hand_sign_now = i
+											{ hand_sign_ss[i] = 0.9; }
+										if hand_sign_now = i - 1 or hand_sign_now = i + 1
+											{ hand_sign_ss[i] = 0.5; }
+								
+										if hand_sign_red[i] = 0
+											{ draw_sprite_ext(s_sign_hand, hand_sign[i], hand_sign_xx[i], y1, hand_sign_scale * list_scale * hand_sign_ss[i], hand_sign_scale * list_scale * hand_sign_ss[i], 0, c_white, hand_sign_ss[i] + 0.1); }
+											else
+											{ draw_sprite_ext(s_sign_hand, hand_sign[i], hand_sign_xx[i], y1, hand_sign_scale * list_scale * hand_sign_ss[i], hand_sign_scale * list_scale * hand_sign_ss[i], 0, c_red,   hand_sign_ss[i] + 0.1); }
+								
+										if i = hand_sign_now
+											{
+											for(j=1;j<=3;j++)
 												{
-												draw_sprite_ext_t(s_question_sign, 4, 640 - 340 + 170 * j, y2, list_scale * hand_sign_c[i], list_scale * hand_sign_c[i], 0, c_white, 1, c_white, c_black);
-												draw_sprite_ext(s_sign_hand, hand_sign_z[i,j], 640 - 340 + 170 * j, y2, list_scale * hand_sign_c[i], list_scale * hand_sign_c[i], 0, c_red, 1);
+												if hand_sign_r[i] = 0
+													{
+													draw_sprite_ext_t(s_question_sign, 0, 640 - 340 + 170 * j, y2, list_scale * hand_sign_c[i], list_scale * hand_sign_c[i], 0, c_white, 1, c_white, c_black);
+													draw_sprite_ext(s_sign_hand, hand_sign_z[i,j], 640 - 340 + 170 * j, y2, list_scale * hand_sign_c[i], list_scale * hand_sign_c[i], 0, c_white, 1);
+													}
+													else
+													{
+													draw_sprite_ext_t(s_question_sign, 4, 640 - 340 + 170 * j, y2, list_scale * hand_sign_c[i], list_scale * hand_sign_c[i], 0, c_white, 1, c_white, c_black);
+													draw_sprite_ext(s_sign_hand, hand_sign_z[i,j], 640 - 340 + 170 * j, y2, list_scale * hand_sign_c[i], list_scale * hand_sign_c[i], 0, c_red, 1);
+													}
+												//draw_rectangle(640 - 340 + 170 * j - 65, y2 - 65, 640 - 340 + 170 * j + 65, y2 + 65, 1);
 												}
-											//draw_rectangle(640 - 340 + 170 * j - 65, y2 - 65, 640 - 340 + 170 * j + 65, y2 + 65, 1);
 											}
 										}
 									}
-								}
-								else
-								{
-								if global.training_stage[4] = 11 or global.training_stage[4] = 10
-									{ draw_sprite_ext(s_sign_hand2, 0, 640, global.size / 2, list_scale, list_scale, 0, c_white, 1); }
-								}
-						#endregion
-						}
-				#endregion
-				#region Задача 3 - Конь, заборы
-					if round_task[global.rounds,global.task] = 3
-						{
-						timer_y = 180;
-						#region Координаты и появление
-							var x0, x1, y0, hn, ho;
-							pre_wait = 0
-							for(i=0;i<=6;i++)
-								{
-								horse_y[i] = global.size / 2 + 60 - 60 * i;
-								}
-							hn = 0;
-							ho = 0;
-							for(i=1;i<=horse_count;i++)
-								{
-								if horse_n[i] != 0
-									{
-									hn = horse_n[i];
-									ho = i;
-									}
-								}
-							if horse_yy < ho * 60 && horse_death = 0
-								{ horse_yy += ho * 5; }
-							
-							x0 = 640;
-							y0 = horse_y[horse_now];
-							
-							if horse_death = 1
-								{
-								if horse_death_y > - 10
-									{ horse_death_y -= 4; horse_death_a -= 10; }
 									else
-									{ horse_death = 3; }
-								}
-							if horse_death = 3
-								{
-								horse_death_y += 20;
-								if horse_death_y > 100
 									{
-									global.answer = 0;
-									attention_3();
+									if global.training_stage[4] = 11 or global.training_stage[4] = 10
+										{ draw_sprite_ext(s_sign_hand2, 0, 640, global.size / 2, list_scale, list_scale, 0, c_white, 1); }
 									}
-								}
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
+							#endregion
+							}
+					#endregion
+					#region Задача 3 - Конь, заборы
+						if round_task[global.rounds,global.task] = 3
+							{
+							timer_y = 180;
+							#region Координаты и появление
+								var x0, x1, y0, hn, ho;
+								pre_wait = 0
+								for(i=0;i<=6;i++)
 									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
+									horse_y[i] = global.size / 2 + 60 - 60 * i;
+									}
+								hn = 0;
+								ho = 0;
+								for(i=1;i<=horse_count;i++)
+									{
+									if horse_n[i] != 0
 										{
-										if device_mouse_check_button_pressed(dev, mb_left) && horse_death = 0
+										hn = horse_n[i];
+										ho = i;
+										}
+									}
+								if horse_yy < ho * 60 && horse_death = 0
+									{ horse_yy += ho * 5; }
+							
+								x0 = 640;
+								y0 = horse_y[horse_now];
+							
+								if horse_death = 1
+									{
+									if horse_death_y > - 10
+										{ horse_death_y -= 4; horse_death_a -= 10; }
+										else
+										{ horse_death = 3; }
+									}
+								if horse_death = 3
+									{
+									horse_death_y += 20;
+									if horse_death_y > 100
+										{
+										global.answer = 0;
+										attention_3();
+										}
+									}
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
+										{
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
+											if device_mouse_check_button_pressed(dev, mb_left) && horse_death = 0
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
 											
-											if global.training < 1 or global.training_question > 1
-												{
-												var dir;
-												if mouse_x1 < 640
-													{ dir = -1; }
-													else
-													{ dir = 1; }
-												
-												for(i=1;i<=horse_count;i++)
-													{
-													if horse_n[i] = 0
-														{
-														horse_now += 1;
-														horse_n[i] = dir;
-														if horse_p[i] = dir
-															{
-															horse_death = 1;
-															//global.answer = 0;
-															//move_4();
-															}
-															else
-															{
-															if horse_now = horse_count
-																{
-																global.answer = 1;
-																attention_3();
-																}
-															}
-														break;
-														}
-													}
-												}
-												else
-												{
-												if global.training_stage[4] = 15 or global.training_stage[4] = 16
+												if global.training < 1 or global.training_question > 1
 													{
 													var dir;
 													if mouse_x1 < 640
@@ -2740,1052 +3100,1170 @@ if global.hero = 1 && global.enemy_hero = 1
 														{
 														if horse_n[i] = 0
 															{
-															//horse_now += 1;
-															//horse_n[i] = dir;
+															horse_now += 1;
+															horse_n[i] = dir;
 															if horse_p[i] = dir
 																{
-																global.training_gb = "TRY AGAIN";
-																//horse_death = 1;
+																horse_death = 1;
+																//global.answer = 0;
+																//move_4();
 																}
 																else
 																{
-																horse_now += 1;
-																horse_n[i] = dir;
 																if horse_now = horse_count
 																	{
 																	global.answer = 1;
 																	attention_3();
-																	if global.training_stage[4] = 15
-																		{ horse_red[1] = -1; horse_red[3] = -1; global.training_stage[4] = 16; }
 																	}
 																}
 															break;
 															}
 														}
+													}
+													else
+													{
+													if global.training_stage[4] = 15 or global.training_stage[4] = 16
+														{
+														var dir;
+														if mouse_x1 < 640
+															{ dir = -1; }
+															else
+															{ dir = 1; }
 												
-													//var dir;
-													//if mouse_x1 < 640
-													//	{ dir = -1; }
-													//	else
-													//	{ dir = 1; }
+														for(i=1;i<=horse_count;i++)
+															{
+															if horse_n[i] = 0
+																{
+																//horse_now += 1;
+																//horse_n[i] = dir;
+																if horse_p[i] = dir
+																	{
+																	global.training_gb = "TRY AGAIN";
+																	//horse_death = 1;
+																	}
+																	else
+																	{
+																	horse_now += 1;
+																	horse_n[i] = dir;
+																	if horse_now = horse_count
+																		{
+																		global.answer = 1;
+																		attention_3();
+																		if global.training_stage[4] = 15
+																			{ horse_red[1] = -1; horse_red[3] = -1; global.training_stage[4] = 16; }
+																		}
+																	}
+																break;
+																}
+															}
+												
+														//var dir;
+														//if mouse_x1 < 640
+														//	{ dir = -1; }
+														//	else
+														//	{ dir = 1; }
 													
-													//for(i=1;i<=horse_count;i++)
-													//	{
-													//	if horse_p[i] != dir
-													//		{
-													//		if horse_n[i] = 0
-													//			{
-													//			horse_now += 1;
-													//			horse_n[i] = dir;
-													//			if horse_now = horse_count
-													//				{
-													//				global.answer = 1;
-													//				attention_3();
-													//				if global.training_stage = 15
-													//					{ horse_red[1] = 1; horse_red[3] = 1; global.training_stage = 16; }
-													//				}
-													//			break;
-													//			}
-													//		}
-													//		else
-													//		{
-													//		global.training_gb = "TRY AGAIN";
-													//		break;
-													//		}
-													//	}
+														//for(i=1;i<=horse_count;i++)
+														//	{
+														//	if horse_p[i] != dir
+														//		{
+														//		if horse_n[i] = 0
+														//			{
+														//			horse_now += 1;
+														//			horse_n[i] = dir;
+														//			if horse_now = horse_count
+														//				{
+														//				global.answer = 1;
+														//				attention_3();
+														//				if global.training_stage = 15
+														//					{ horse_red[1] = 1; horse_red[3] = 1; global.training_stage = 16; }
+														//				}
+														//			break;
+														//			}
+														//		}
+														//		else
+														//		{
+														//		global.training_gb = "TRY AGAIN";
+														//		break;
+														//		}
+														//	}
+														}
 													}
 												}
 											}
 										}
-									}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 4
-									{
-									if (global.training_stage[4] = 14
-									or (global.training_stage[4] = 15 && global.training_question = 0)
-									or (global.training_stage[4] = 16 && global.training_question = 1))
-										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[4] = 14 // or global.training_stage[4] = 15
-											{ global.training_stage[4] += 1; }
-										}
-									if global.training_question = 4
-										{
-										global.training_stage[4] = 22;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
-										}
-									if (global.training_question = 0 && global.training_stage[4] = 15) or (global.training_question = 1 && global.training_stage[4] = 16)
-										{
-										if horse_now + 1 <= horse_count
-											{
-											hand_xxx = 640 - horse_p[horse_now+1] * 180;
-											hand_yyy = global.size / 2;
-											}
-										}
-									global.training_hand_x = hand_xxx;
-									global.training_hand_y = hand_yyy;
 									}
 							#endregion
-							for(i=horse_count;i>=1;i--)
-								{
-								var hral;
-								if horse_y[i] + horse_yy > global.size / 2 + 80
-									{
-									hral = 1 - abs(global.size / 2 + 80 - horse_y[i] - horse_yy) / 80;
-									if hral < 0
-										{ hral = 0; }
-									}
-									else
-									{ hral = 1; }
-								
-								//if (global.training_stage[4] = 16 && global.training_question = 1)
-								//	{ horse_red[1] = -1; horse_red[3] = -1; }
-								
-								if horse_red[i] = 1
-									{ draw_sprite_ext(s_fence, 0, x0 + 60 * horse_p[i], horse_y[i] + horse_yy, list_scale, list_scale, 0, c_white, hral); }
-									else
-									{ draw_sprite_ext(s_fence, 0, x0 - 60 * horse_p[i], horse_y[i] + horse_yy, list_scale, list_scale, 0, c_red, hral); }
-								if horse_now = i && horse_death = 0
-									{ draw_sprite_ext(s_horse, horse_death, x0 + 60 * hn, y0 + horse_yy, list_scale, list_scale, horse_death_a, c_white, 1); }
-								}
-							if horse_now = 0 or horse_death != 0
-								{ draw_sprite_ext(s_horse, horse_death, x0 + 60 * hn, y0 + horse_yy + horse_death_y, list_scale, list_scale, horse_death_a, c_white, 1); }
-						#endregion
-						}
-				#endregion
-				#region Задача 4 -
-					if round_task[global.rounds,global.task] = 4 && 0
-						{
-						timer_y = 50;
-						#region Координаты
-							var test_x1, test_x2, test_y;
-							test_x1 = 640 - 180;
-							test_x2 = 640 + 180;
-							test_y  = global.size / 2 - 60;
+							#region Рисование
+								#region Обучение
+									if global.training = 4
+										{
+										if (global.training_stage[4] = 14
+										or (global.training_stage[4] = 15 && global.training_question = 0)
+										or (global.training_stage[4] = 16 && global.training_question = 1))
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
 									
-							pre_wait = 0;
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									if point_in_rectangle(mouse_x1, mouse_y1, test_x1 - 150, test_y - 100, test_x1 + 150, test_y + 100) && global.answer = -1
-										{
-										if mouse_check_button_pressed(mb_left)
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											global.answer = 1;
+											if global.training_stage[4] = 14 // or global.training_stage[4] = 15
+												{ global.training_stage[4] += 1; }
 											}
-										}
-									if point_in_rectangle(mouse_x1, mouse_y1, test_x2 - 150, test_y - 100, test_x2 + 150, test_y + 100) && global.answer = -1
-										{
-										if mouse_check_button_pressed(mb_left)
+										if global.training_question = 4
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											global.answer = 0;
+											global.training_stage[4] = 22;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
 											}
-										}
-									}
-								}
-						#endregion
-						#region Рисование
-						draw_set_font(global.game_font);
-						draw_text_transformed_t(test_x1, test_y, "TRUE" , 0.35 * list_scale, 0.35 * list_scale, 0, global.color_white, c_black);
-						draw_text_transformed_t(test_x2, test_y, "MISS" , 0.35 * list_scale, 0.35 * list_scale, 0, c_red, c_black);
-					#endregion
-						}
-				#endregion
-				}
-			#endregion
-			 #region Карты	    - Cards
-			if theme_round[global.rounds] = 1
-				{
-				#region Задача 1 - Карты, найти пару
-					if round_task[global.rounds,global.task] = 1
-						{
-						timer_y  = 0;//50;
-						#region Координаты
-							var card_x, card_y;
-							card_x = 640 - 70 - 70 * (card_all == 3);
-							card_y = global.size / 2 - 60 - 50;
-							if global.training = 1
-								{
-								var hand_xxx, hand_yyy;
-								hand_xxx = -200;
-								hand_yyy = -200;
-								}
-							if list_scale = 1
-								{
-								if card_time > -1
-									{
-									if card_time > 0
-										{
-										if global.training < 1 or global.training_stage[1] = 8
-											{ card_time -= 1; }
-										for(i=1;i<=2;i++)
+										if (global.training_question = 0 && global.training_stage[4] = 15) or (global.training_question = 1 && global.training_stage[4] = 16)
 											{
-											for(j=1;j<=card_all;j++)
+											if horse_now + 1 <= horse_count
 												{
-												card_now[i,j]   = 3;
-												card_i[i,j]     = card_m[i,j];
-												card_scale[i,j] = 0.7;
+												hand_xxx = 640 - horse_p[horse_now+1] * 180;
+												hand_yyy = global.size / 2;
 												}
 											}
+										global.training_hand_x = hand_xxx;
+										global.training_hand_y = hand_yyy;
+										}
+								#endregion
+								for(i=horse_count;i>=1;i--)
+									{
+									var hral;
+									if horse_y[i] + horse_yy > global.size / 2 + 80
+										{
+										hral = 1 - abs(global.size / 2 + 80 - horse_y[i] - horse_yy) / 80;
+										if hral < 0
+											{ hral = 0; }
 										}
 										else
-										{
-										for(i=1;i<=2;i++)
-											{
-											for(j=1;j<=card_all;j++)
-												{ card_now[i,j] = 4; }
-											}
-										card_time = -1;
-										}
+										{ hral = 1; }
+								
+									//if (global.training_stage[4] = 16 && global.training_question = 1)
+									//	{ horse_red[1] = -1; horse_red[3] = -1; }
+								
+									if horse_red[i] = 1
+										{ draw_sprite_ext(s_fence, 0, x0 + 60 * horse_p[i], horse_y[i] + horse_yy, list_scale, list_scale, 0, c_white, hral); }
+										else
+										{ draw_sprite_ext(s_fence, 0, x0 - 60 * horse_p[i], horse_y[i] + horse_yy, list_scale, list_scale, 0, c_red, hral); }
+									if horse_now = i && horse_death = 0
+										{ draw_sprite_ext(s_horse, horse_death, x0 + 60 * hn, y0 + horse_yy, list_scale, list_scale, horse_death_a, c_white, 1); }
 									}
-									else
-									{ pre_wait = 0; }
-								}
-						#endregion
-						#region Ответ
-								if card_time = -1 && list_scale = 1
+								if horse_now = 0 or horse_death != 0
+									{ draw_sprite_ext(s_horse, horse_death, x0 + 60 * hn, y0 + horse_yy + horse_death_y, list_scale, list_scale, horse_death_a, c_white, 1); }
+							#endregion
+							}
+					#endregion
+					#region Задача 4 -
+						if round_task[global.rounds,global.task] = 4 && 0
+							{
+							timer_y = 50;
+							#region Координаты
+								var test_x1, test_x2, test_y;
+								test_x1 = 640 - 180;
+								test_x2 = 640 + 180;
+								test_y  = global.size / 2 - 60;
+									
+								pre_wait = 0;
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 									{
-									for(i=1;i<=2;i++)
+									for(dev=0;dev<5;dev++)
 										{
-										for(j=1;j<=3;j++)
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if point_in_rectangle(mouse_x1, mouse_y1, test_x1 - 150, test_y - 100, test_x1 + 150, test_y + 100) && global.answer = -1
 											{
-											for(dev=0;dev<5;dev++)
+											if mouse_check_button_pressed(mb_left)
 												{
-												if global.training = 1 && global.training_stage[1] = 8 && hand_xxx = -200
-													{
-													if (i = 1 && j = 1) && global.training_hand_s = 0
-														{
-														hand_xxx = card_x;
-														hand_yyy = card_y + card_yy[i,j];
-														//hand_xxx = card_x + (j-1) * 140;
-														//hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
-														}
-													if ((card_m[1,2] = card_m[1,1] && i = 1 && j = 2)
-													or (card_m[2,1] = card_m[1,1] && i = 2 && j = 1)
-													or (card_m[2,2] = card_m[1,1] && i = 2 && j = 2))
-													&& global.training_hand_s = 1
-														{
-														hand_xxx = card_x + (j-1) * 140;
-														hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
-														}
-													if ((card_now[1,2] = 0 && i = 1 && j = 2)
-													or (card_now[2,1] = 0 && i = 2 && j = 1)
-													or (card_now[2,2] = 0 && i = 2 && j =2)) && global.training_hand_s = 2
-														{
-														hand_xxx = card_x + (j-1) * 140;
-														hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
-														}
-													if ((card_now[1,2] = 0 && i = 1 && j = 2)
-													or (card_now[2,1] = 0 && i = 2 && j = 1)
-													or (card_now[2,2] = 0 && i = 2 && j =2)) && global.training_hand_s = 3
-														{
-														hand_xxx = card_x + (j-1) * 140;
-														hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
-														}
-													global.training_hand_x = hand_xxx;
-													global.training_hand_y = hand_yyy;
-													}
-												//global.training_hand_s
-												mouse_x1 = device_mouse_x(dev);
-												mouse_y1 = device_mouse_y(dev);
-												if point_in_rectangle(mouse_x1, mouse_y1, card_x + (j-1) * 140 - 75 * card_scale[i,j], card_y + 180 * (i-1) - 110 * card_scale[i,j], card_x + (j-1) * 140 + 75 * card_scale[i,j], card_y + 180 * (i-1) + 110 * card_scale[i,j])
-													{
-													if device_mouse_check_button_pressed(dev, mb_left) && card_now[i,j] = 0 && card_end[i,j] = 0 && global.super_ability = 0 && list_scale > 0
-														{
-														if global.training = 1
-															{
-															if global.training_stage[1] = 8
-																{
-																if global.training_hand_s = 0
-																	{
-																	if !(i = 1 && j = 1)
-																		{ break; }
-																	}
-																if global.training_hand_s = 1
-																	{
-																	if !((i = 1 && j = 2 && card_m[1,1] = card_m[1,2])
-																	or (i = 2 && j = 1 && card_m[1,1] = card_m[2,1])
-																	or (i = 2 && j = 2 && card_m[1,1] = card_m[2,2]))
-																		{ break; }
-																	}
-																global.training_hand_s += 1;
-																}
-																else
-																{ break; }
-															}
-														if global.music { audio_play_sound(sd_text, 2, 0); }
-														if fir_i = 0 && fir_j = 0
-															{
-															fir_i = i;
-															fir_j = j;
-															card_now[i,j] = 1;
-															}
-															else
-															{
-															if sec_i = 0 && sec_j = 0
-																{
-																sec_i = i;
-																sec_j = j;
-																card_now[i,j] = 1;
-																}
-															}
-														}
-													}
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												global.answer = 1;
 												}
-											if card_now[i,j] = 1
+											}
+										if point_in_rectangle(mouse_x1, mouse_y1, test_x2 - 150, test_y - 100, test_x2 + 150, test_y + 100) && global.answer = -1
+											{
+											if mouse_check_button_pressed(mb_left)
 												{
-												if card_scale[i,j] > 0
-													{ card_scale[i,j] -= 0.2; }
-													else
-													{ card_now[i,j] = 2; card_i[i,j] = card_m[i,j]; }
-												}
-											if card_now[i,j] = 2
-												{
-												if card_scale[i,j] < 0.7
-													{ card_scale[i,j] += 0.2; }
-													else
-													{
-													if sec_i != 0 && card_scale[sec_i,sec_j] = 0.7
-														{
-														if card_m[fir_i,fir_j] = card_m[sec_i,sec_j]
-															{
-															card_end[fir_i,fir_j] = 1;
-															card_end[sec_i,sec_j] = 1;
-															}
-															else
-															{
-															card_now[fir_i,fir_j] = 4;
-															card_now[sec_i,sec_j] = 4;
-															}
-														fir_i = 0;
-														fir_j = 0;
-												
-														sec_i = 0;
-														sec_j = 0;
-														}
-														else
-														{ card_now[i,j] = 3; }
-													}
-												}
-											if card_now[i,j] = 4
-												{
-												if card_scale[i,j] > 0
-													{ card_scale[i,j] -= 0.2; }
-													else
-													{ card_now[i,j] = 5; card_i[i,j] = 0; }
-												}
-											if card_now[i,j] = 5
-												{
-												if card_scale[i,j] < 0.7
-													{ card_scale[i,j] += 0.2; }
-													else
-													{ card_now[i,j] = 0; }
-												}
-										
-											if card_end[i,j] = 1
-												{
-												if card_alp[i,j] > 0
-													{
-													card_alp[i,j] -= 0.1;
-													card_yy[i,j]  += 5;
-													}
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												global.answer = 0;
 												}
 											}
 										}
-								if card_end[1,1] = 1 && card_end[1,2] = 1
-								&& card_end[2,1] = 1 && card_end[2,2] = 1 && ((card_end[2,3] = 1 && card_end[1,3] = 1) or card_all = 2)
-									{
-									global.answer = 1;
-									cards_1();
 									}
-								}
+							#endregion
+							#region Рисование
+							draw_set_font(global.game_font);
+							draw_text_transformed_t(test_x1, test_y, "TRUE" , 0.35 * list_scale, 0.35 * list_scale, 0, global.color_white, c_black);
+							draw_text_transformed_t(test_x2, test_y, "MISS" , 0.35 * list_scale, 0.35 * list_scale, 0, c_red, c_black);
 						#endregion
-						#region Рисование
-							#region Обучение
+							}
+					#endregion
+					}
+			#endregion
+			#region Карты	   - Cards
+				if theme_round[global.rounds] = 1
+					{
+					#region Задача 1 - Карты, найти пару
+						if round_task[global.rounds,global.task] = 1
+							{
+							timer_y  = 0;//50;
+							#region Координаты
+								var card_x, card_y;
+								card_x = 640 - 70 - 70 * (card_all == 3);
+								card_y = global.size / 2 - 60 - 50;
 								if global.training = 1
 									{
-									if (global.training_stage[1] = 6 or global.training_stage[1] = 7
-									or (global.training_stage[1] = 8 && global.training_question = 0))
-										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[1] = 6 or global.training_stage[1] = 7
-											{ global.training_stage[1] += 1; }
-										}
-									if global.training_question = 3
-										{
-										global.training_stage[1] += 1;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
-										}
+									var hand_xxx, hand_yyy;
+									hand_xxx = -200;
+									hand_yyy = -200;
 									}
-							#endregion
-							for(i=1;i<=2;i++)
-								{
-								for(j=1;j<=card_all;j++)
+								if list_scale = 1
 									{
-									draw_sprite_ext(s_card, card_i[i,j], card_x + (j-1) * 140, card_y + 180 * (i-1) + card_yy[i,j], card_scale[i,j] * list_scale, 0.7, 0, c_white, card_alp[i,j]);
-									}
-								}
-						#endregion
-						}
-				#endregion
-				#region Задача 2 - Карты, найти карту
-					if round_task[global.rounds,global.task] = 2
-						{
-						timer_y  = 0;
-						#region Координаты
-							var card_x, card_y;
-							card_x = 640 - 70 - 70 * (card_all == 3);
-							card_y = global.size / 2 - 60 - 50;
-							
-							if global.training = 1
-								{
-								var hand_xxx, hand_yyy;
-								hand_xxx = -200;
-								hand_yyy = -200;
-								}
-							
-							if list_scale = 1
-								{
-								if card_time > -1 && list_scale = 1
-									{
-									if card_time > 0
+									if card_time > -1
 										{
-										if global.training < 1 or (global.training_stage[1] = 12 or global.training_stage[1] = 13)
-											{ card_time -= 1; }
-										for(i=1;i<=2;i++)
+										if card_time > 0
 											{
-											for(j=1;j<=card_all;j++)
+											if global.training < 1 or global.training_stage[1] = 8
+												{ card_time -= 1; }
+											for(i=1;i<=2;i++)
 												{
-												card_now[i,j]   = 3;
-												card_i[i,j]     = card_m[i,j];
-												card_scale[i,j] = 0.7
+												for(j=1;j<=card_all;j++)
+													{
+													card_now[i,j]   = 3;
+													card_i[i,j]     = card_m[i,j];
+													card_scale[i,j] = 0.7;
+													}
 												}
-											}
-										}
-										else
-										{
-										for(i=1;i<=2;i++)
-											{
-											for(j=1;j<=card_all;j++)
-												{ card_now[i,j] = 4; }
-											}
-										card_time = -2;
-										}
-									}
-									//else
-									//{ pre_wait = 0; }
-								if card_time = -3
-									{
-									if card_find_s < 1
-										{
-										card_find_s += 0.1;
-										card_find_a -= 0.5;
-										}
-										else
-										{
-										if global.training < 1 or (global.training_stage[1] = 12 or global.training_stage[1] = 13)
-											{
-											if card_find_time > 0
-												{
-												card_find_time -= 1;
-												card_find_s += 0.005;
-												card_find_a -= 0.05;
-												}
-												else
-												{ card_time = -4; }
-											}
-										}
-									}
-								if card_time = -4
-									{
-									if global.training_stage[1] = 13
-										{
-										if card_find_s > 0
-											{
-											card_find_s -= 0.1;
-											card_find_a += 1;
-											
-											global.training_hand_s = 0;
 											}
 											else
 											{
-											card_time   = -1;
-											pre_wait    = 0;
-											card_find_s = 0;
+											for(i=1;i<=2;i++)
+												{
+												for(j=1;j<=card_all;j++)
+													{ card_now[i,j] = 4; }
+												}
+											card_time = -1;
 											}
 										}
+										else
+										{ pre_wait = 0; }
 									}
-								}
-							if global.training_stage[1] = 13 && global.training_question = 0
-								{
+							#endregion
+							#region Ответ
+									if card_time = -1 && list_scale = 1
+										{
+										for(i=1;i<=2;i++)
+											{
+											for(j=1;j<=3;j++)
+												{
+												for(dev=0;dev<5;dev++)
+													{
+													if global.training = 1 && global.training_stage[1] = 8 && hand_xxx = -200
+														{
+														if (i = 1 && j = 1) && global.training_hand_s = 0
+															{
+															hand_xxx = card_x;
+															hand_yyy = card_y + card_yy[i,j];
+															//hand_xxx = card_x + (j-1) * 140;
+															//hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+															}
+														if ((card_m[1,2] = card_m[1,1] && i = 1 && j = 2)
+														or (card_m[2,1] = card_m[1,1] && i = 2 && j = 1)
+														or (card_m[2,2] = card_m[1,1] && i = 2 && j = 2))
+														&& global.training_hand_s = 1
+															{
+															hand_xxx = card_x + (j-1) * 140;
+															hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+															}
+														if ((card_now[1,2] = 0 && i = 1 && j = 2)
+														or (card_now[2,1] = 0 && i = 2 && j = 1)
+														or (card_now[2,2] = 0 && i = 2 && j =2)) && global.training_hand_s = 2
+															{
+															hand_xxx = card_x + (j-1) * 140;
+															hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+															}
+														if ((card_now[1,2] = 0 && i = 1 && j = 2)
+														or (card_now[2,1] = 0 && i = 2 && j = 1)
+														or (card_now[2,2] = 0 && i = 2 && j =2)) && global.training_hand_s = 3
+															{
+															hand_xxx = card_x + (j-1) * 140;
+															hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+															}
+														global.training_hand_x = hand_xxx;
+														global.training_hand_y = hand_yyy;
+														}
+													//global.training_hand_s
+													mouse_x1 = device_mouse_x(dev);
+													mouse_y1 = device_mouse_y(dev);
+													if point_in_rectangle(mouse_x1, mouse_y1, card_x + (j-1) * 140 - 75 * card_scale[i,j], card_y + 180 * (i-1) - 110 * card_scale[i,j], card_x + (j-1) * 140 + 75 * card_scale[i,j], card_y + 180 * (i-1) + 110 * card_scale[i,j])
+														{
+														if device_mouse_check_button_pressed(dev, mb_left) && card_now[i,j] = 0 && card_end[i,j] = 0 && global.super_ability = 0 && list_scale > 0
+															{
+															if global.training = 1
+																{
+																if global.training_stage[1] = 8
+																	{
+																	if global.training_hand_s = 0
+																		{
+																		if !(i = 1 && j = 1)
+																			{ break; }
+																		}
+																	if global.training_hand_s = 1
+																		{
+																		if !((i = 1 && j = 2 && card_m[1,1] = card_m[1,2])
+																		or (i = 2 && j = 1 && card_m[1,1] = card_m[2,1])
+																		or (i = 2 && j = 2 && card_m[1,1] = card_m[2,2]))
+																			{ break; }
+																		}
+																	global.training_hand_s += 1;
+																	}
+																	else
+																	{ break; }
+																}
+															if global.music { audio_play_sound(sd_text, 2, 0); }
+															if fir_i = 0 && fir_j = 0
+																{
+																fir_i = i;
+																fir_j = j;
+																card_now[i,j] = 1;
+																}
+																else
+																{
+																if sec_i = 0 && sec_j = 0
+																	{
+																	sec_i = i;
+																	sec_j = j;
+																	card_now[i,j] = 1;
+																	}
+																}
+															}
+														}
+													}
+												if card_now[i,j] = 1
+													{
+													if card_scale[i,j] > 0
+														{ card_scale[i,j] -= 0.2; }
+														else
+														{ card_now[i,j] = 2; card_i[i,j] = card_m[i,j]; }
+													}
+												if card_now[i,j] = 2
+													{
+													if card_scale[i,j] < 0.7
+														{ card_scale[i,j] += 0.2; }
+														else
+														{
+														if sec_i != 0 && card_scale[sec_i,sec_j] = 0.7
+															{
+															if card_m[fir_i,fir_j] = card_m[sec_i,sec_j]
+																{
+																card_end[fir_i,fir_j] = 1;
+																card_end[sec_i,sec_j] = 1;
+																}
+																else
+																{
+																card_now[fir_i,fir_j] = 4;
+																card_now[sec_i,sec_j] = 4;
+																}
+															fir_i = 0;
+															fir_j = 0;
+												
+															sec_i = 0;
+															sec_j = 0;
+															}
+															else
+															{ card_now[i,j] = 3; }
+														}
+													}
+												if card_now[i,j] = 4
+													{
+													if card_scale[i,j] > 0
+														{ card_scale[i,j] -= 0.2; }
+														else
+														{ card_now[i,j] = 5; card_i[i,j] = 0; }
+													}
+												if card_now[i,j] = 5
+													{
+													if card_scale[i,j] < 0.7
+														{ card_scale[i,j] += 0.2; }
+														else
+														{ card_now[i,j] = 0; }
+													}
+										
+												if card_end[i,j] = 1
+													{
+													if card_alp[i,j] > 0
+														{
+														card_alp[i,j] -= 0.1;
+														card_yy[i,j]  += 5;
+														}
+													}
+												}
+											}
+									if card_end[1,1] = 1 && card_end[1,2] = 1
+									&& card_end[2,1] = 1 && card_end[2,2] = 1 && ((card_end[2,3] = 1 && card_end[1,3] = 1) or card_all = 2)
+										{
+										global.answer = 1;
+										cards_1();
+										}
+									}
+							#endregion
+							#region Рисование
+								#region Обучение
+									if global.training = 1
+										{
+										if (global.training_stage[1] = 6 or global.training_stage[1] = 7
+										or (global.training_stage[1] = 8 && global.training_question = 0))
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[1] = 6 or global.training_stage[1] = 7
+												{ global.training_stage[1] += 1; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[1] += 1;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
+										}
+								#endregion
 								for(i=1;i<=2;i++)
 									{
 									for(j=1;j<=card_all;j++)
 										{
-										if ((card_m[i,j] = card_find && fir_i != i && fir_j != j)) && hand_xxx = -200 //if (card_m[i,j] = card_find && fir_i != i && fir_j != j) && global.training_question = 0 && hand_xxx = -200
+										draw_sprite_ext(s_card, card_i[i,j], card_x + (j-1) * 140, card_y + 180 * (i-1) + card_yy[i,j], card_scale[i,j] * list_scale, 0.7, 0, c_white, card_alp[i,j]);
+										}
+									}
+							#endregion
+							}
+					#endregion
+					#region Задача 2 - Карты, найти карту
+						if round_task[global.rounds,global.task] = 2
+							{
+							timer_y  = 0;
+							#region Координаты
+								var card_x, card_y;
+								card_x = 640 - 70 - 70 * (card_all == 3);
+								card_y = global.size / 2 - 60 - 50;
+							
+								if global.training = 1
+									{
+									var hand_xxx, hand_yyy;
+									hand_xxx = -200;
+									hand_yyy = -200;
+									}
+							
+								if list_scale = 1
+									{
+									if card_time > -1 && list_scale = 1
+										{
+										if card_time > 0
 											{
-											hand_xxx = card_x + (j-1) * 140;
-											hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+											if global.training < 1 or (global.training_stage[1] = 12 or global.training_stage[1] = 13)
+												{ card_time -= 1; }
+											for(i=1;i<=2;i++)
+												{
+												for(j=1;j<=card_all;j++)
+													{
+													card_now[i,j]   = 3;
+													card_i[i,j]     = card_m[i,j];
+													card_scale[i,j] = 0.7
+													}
+												}
+											}
+											else
+											{
+											for(i=1;i<=2;i++)
+												{
+												for(j=1;j<=card_all;j++)
+													{ card_now[i,j] = 4; }
+												}
+											card_time = -2;
+											}
+										}
+										//else
+										//{ pre_wait = 0; }
+									if card_time = -3
+										{
+										if card_find_s < 1
+											{
+											card_find_s += 0.1;
+											card_find_a -= 0.5;
+											}
+											else
+											{
+											if global.training < 1 or (global.training_stage[1] = 12 or global.training_stage[1] = 13)
+												{
+												if card_find_time > 0
+													{
+													card_find_time -= 1;
+													card_find_s += 0.005;
+													card_find_a -= 0.05;
+													}
+													else
+													{ card_time = -4; }
+												}
+											}
+										}
+									if card_time = -4
+										{
+										if global.training < 1 or global.training_stage[1] = 13
+											{
+											if card_find_s > 0
+												{
+												card_find_s -= 0.1;
+												card_find_a += 1;
 											
-											global.training_hand_x = hand_xxx;
-											global.training_hand_y = hand_yyy;
+												global.training_hand_s = 0;
+												}
+												else
+												{
+												card_time   = -1;
+												pre_wait    = 0;
+												card_find_s = 0;
+												}
 											}
 										}
 									}
-								}
-						#endregion
-						#region Ответ
-								if card_time = -1 or card_time = -2 && list_scale = 1
+								if global.training_stage[1] = 13 && global.training_question = 0
 									{
 									for(i=1;i<=2;i++)
 										{
 										for(j=1;j<=card_all;j++)
 											{
-											//if global.training = 1 && global.training_question = 0
-											//	{
-											//	if ((card_m[i,j] = card_find && fir_i != i && fir_j != j) or (fir_i != 0 && fir_j != 0)) && hand_xxx = -200// && global.training_hand_s = 0 && hand_xxx = -200
-											//		{
-											//		hand_xxx = card_x + (j-1) * 140;
-											//		hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
-											//		global.training_hand_x = hand_xxx;
-											//		global.training_hand_y = hand_yyy;
-											//		}
-											//	}
-											for(dev=0;dev<5;dev++)
+											if ((card_m[i,j] = card_find && fir_i != i && fir_j != j)) && hand_xxx = -200 //if (card_m[i,j] = card_find && fir_i != i && fir_j != j) && global.training_question = 0 && hand_xxx = -200
 												{
-												mouse_x1 = device_mouse_x(dev);
-												mouse_y1 = device_mouse_y(dev);
-												if point_in_rectangle(mouse_x1, mouse_y1, card_x + (j-1) * 140 - 75 * card_scale[i,j], card_y + 180 * (i-1) - 110 * card_scale[i,j], card_x + (j-1) * 140 + 75 * card_scale[i,j], card_y + 180 * (i-1) + 110 * card_scale[i,j])
-													{
-													if device_mouse_check_button_pressed(dev, mb_left) && card_time = -1 && card_now[i,j] = 0 && card_end[i,j] = 0 && global.super_ability = 0 && list_scale > 0
-														{
-														if global.training = 1 && global.training_question = 0
-															{
-															if global.training_stage[1] = 13
-																{
-																if global.training_hand_s = 0
-																	{
-																	if card_m[i,j] != card_find
-																		{ break; }
-																	}
-																if global.training_hand_s = 1
-																	{
-																	if card_m[fir_i,fir_j] != card_m[i,j]
-																		{ break; }
-																	}
-																global.training_hand_s += 1;
-																}
-																else
-																{ break; }
-															}
-														
-														if global.music { audio_play_sound(sd_text, 2, 0); }
-														if fir_i = 0 && fir_j = 0
-															{
-															fir_i = i;
-															fir_j = j;
-															card_now[i,j] = 1;
-															}
-															else
-															{
-															if sec_i = 0 && sec_j = 0
-																{
-																sec_i = i;
-																sec_j = j;
-																card_now[i,j] = 1;
-																}
-															}
-														}
-													}
-												}
-											if card_now[i,j] = 1
-												{
-												if card_scale[i,j] > 0
-													{ card_scale[i,j] -= 0.2; }
-													else
-													{ card_now[i,j] = 2; card_i[i,j] = card_m[i,j]; }
-												}
-											if card_now[i,j] = 2
-												{
-												if card_scale[i,j] < 0.7
-													{ card_scale[i,j] += 0.2; }
-													else
-													{
-													if card_i[i,j] = card_find
-														{ card_have += 1; }
-														else
-														{ global.answer = 0; cards_2(); break; }
-													if sec_i != 0 && card_scale[sec_i,sec_j] = 0.7
-														{
-														if card_m[fir_i,fir_j] = card_m[sec_i,sec_j]
-															{
-															if card_have = 2
-																{ global.answer = 1; cards_2(); break; }
-															card_end[fir_i,fir_j] = 1;
-															card_end[sec_i,sec_j] = 1;
-															}
-															else
-															{
-															if card_have = 1 or card_have = 0
-																{ global.answer = 0; cards_2(); break; }
-															card_now[fir_i,fir_j] = 4;
-															card_now[sec_i,sec_j] = 4;
-															}
-														fir_i = 0;
-														fir_j = 0;
-												
-														sec_i = 0;
-														sec_j = 0;
-														}
-														else
-														{ card_now[i,j] = 3; }
-													}
-												}
-											if card_now[i,j] = 4
-												{
-												if card_scale[i,j] > 0
-													{ card_scale[i,j] -= 0.2; }
-													else
-													{ card_now[i,j] = 5; card_i[i,j] = 0; }
-												}
-											if card_now[i,j] = 5
-												{
-												if card_scale[i,j] < 0.7
-													{ card_scale[i,j] += 0.2; }
-													else
-													{
-													card_now[i,j] = 0;
-													if card_time = -2
-														{ card_time = -3; }
-													}
-												}
-										
-											if card_end[i,j] = 1
-												{
-												if card_alp[i,j] > 0
-													{
-													card_alp[i,j] -= 0.1;
-													card_yy[i,j]  += 5;
-													}
+												hand_xxx = card_x + (j-1) * 140;
+												hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+											
+												global.training_hand_x = hand_xxx;
+												global.training_hand_y = hand_yyy;
 												}
 											}
-										}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 1
-									{
-									if (global.training_stage[1] = 10 or global.training_stage[1] = 11
-									or global.training_stage[1] = 12 or (global.training_stage[1] = 13 && global.training_question = 0))
-										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[1] = 10 or global.training_stage[1] = 11 or (global.training_stage[1] = 12 && card_find_s >= 1)
-											{ global.training_stage[1] += 1; }
-										}
-									if global.training_question = 3
-										{
-										global.training_stage[1] += 1;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
-										
-										//round_task[global.rounds,1] += 1;
 										}
 									}
 							#endregion
-							for(i=1;i<=2;i++)
-								{
-								for(j=1;j<=card_all;j++)
-									{
-									draw_sprite_ext(s_card, card_i[i,j], card_x + (j-1) * 140, card_y + 180 * (i-1) + card_yy[i,j], card_scale[i,j] * list_scale, 0.7, 0, c_white, card_alp[i,j]);
-									}
-								}
-							draw_sprite_ext(s_card, card_find, card_x + 70 + 70 * (card_all == 3), card_y + 90, card_find_s * 0.7 * list_scale, card_find_s * 0.7 * list_scale, card_find_a, c_white, 1);
-						#endregion
-						}
-				#endregion
-				#region Задача 3 - Карты, порядок
-					if round_task[global.rounds,global.task] = 3
-						{
-						timer_y = -20;
-						#region Координаты
-							var card_x, card_y;
-							card_x = 640;
-							card_y = global.size / 2 - 70;
-							
-							if global.training = 1
-								{
-								var hand_xxx, hand_yyy;
-								hand_xxx = -200;
-								hand_yyy = -200;
-								}
-							
-							#region Старое
-							//if list_scale = 1
-							//	{
-							//	for(i=cards_all;i>=1;i--)
-							//		{
-							//		if cards_s[i] = 0
-							//			{
-							//			if cards_i[i] = 0
-							//				{
-							//				cards_x[i] += (18 - cards_time);
-							//				if cards_ss[i] > 0
-							//					{ cards_ss[i] -= 1 / cards_time; }
-							//					else
-							//					{ cards_i[i] = cards_m[i]; }
-							//				}
-							//				else
-							//				{
-							//				if cards_ss[i] < 1
-							//					{ cards_ss[i] += 1 / cards_time; cards_x[i] += (18 - cards_time); }
-							//					else
-							//					{
-							//					cards_s[i] = 1;
-							//					}
-							//				}
-							//			break;
-							//			}
-							//		if cards_s[i] = 1 && cards_s[1] = 1
-							//			{
-							//			if cards_x[i] < cards_n[i]
-							//				{
-											
-							//				}
-							//			}
-							//		//cards_y[i] = 0;
-							//		//cards_n[i] = 0;
-							//		}
-								#endregion
-							if list_scale = 1
-								{
-								for(i=1;i<=cards_all;i++)
-									{
-									if cards_s[i] = 0
+							#region Ответ
+									if card_time = -1 or card_time = -2 && list_scale = 1
 										{
-										if cards_i[i] = 0
+										for(i=1;i<=2;i++)
 											{
-											if cards_ss[i] > 0
-												{ cards_ss[i] -= 1 / 5; }
-												else
-												{ cards_i[i] = cards_m[i]; }
-											}
-											else
-											{
-											if cards_ss[i] < 1
-												{ cards_ss[i] += 1 / 5; }
-												else
-												{ cards_s[i] = 1; }
-											}
-										break;
-										}
-									if cards_s[i] = 1 && cards_s[cards_all] = 1
-										{
-										if cards_time > 0 
-											{
-											//cards_time -= 1;
-											if global.training < 0 or global.training_stage[1] = 15 or global.training_stage[1] = 16
-												{ cards_time -= 1; }
-											}
-											else
-											{
-											//if abs(cards_x[i] - cards_xx[i]) > 10
-											//	{ cards_x[i] -= 20 * sign(cards_x[i] - cards_xx[i]); }
-											//	else
-											//	{ cards_x[i] = cards_xx[i]; }
-											//if cards_y[i] < 200
-											//	{ cards_y[i] += 30; }
-											//	else
-											//	{ pre_wait = 0; }
-											if global.training < 1 or global.training_stage[1] = 16
+											for(j=1;j<=card_all;j++)
 												{
-												if abs(cards_x[i] - cards_xx[i]) > 10
-													{ cards_x[i] -= 20 * sign(cards_x[i] - cards_xx[i]); }
-													else
-													{ cards_x[i] = cards_xx[i]; }
-												if cards_y[i] < 200
-													{ cards_y[i] += 30; }
-													else
-													{ pre_wait = 0; }
-												}
-											}
-										}
-									if cards_s[i] = 2
-										{
-										if global.training > 0 && hand_xxx = -200 && cards_x[i] = cards_xs[i]
-											{
-											hand_xxx = cards_x[i];
-											hand_yyy = cards_y[i];
-											}
-										if abs(cards_x[i] - cards_xs[i]) > 10
-											{ cards_x[i] -= 20 * sign(cards_x[i] - cards_xs[i]); }
-											else
-											{
-											cards_x[i] = cards_xs[i];
-											if cards_now > cards_all
-												{
-												global.answer = 1;
-												cards_3();
-												break;
-												}
-											}
-										if cards_y[i] > 0
-											{ cards_y[i] -= 30; }
-										}
-									}
-								}
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									
-									if device_mouse_check_button_pressed(dev, mb_left)
-										{
-										if global.music { audio_play_sound(sd_text, 2, 0); }
-										
-										for(i=1;i<=cards_all;i++)
-											{
-											if point_in_rectangle(mouse_x1, mouse_y1, card_x + cards_x[i] - 52, card_y + cards_y[i] - 70 - 75, card_x + cards_x[i] + 52, card_y + cards_y[i] - 70 + 75)
-												{
-												if global.training < 1 or global.training_question != 0
+												//if global.training = 1 && global.training_question = 0
+												//	{
+												//	if ((card_m[i,j] = card_find && fir_i != i && fir_j != j) or (fir_i != 0 && fir_j != 0)) && hand_xxx = -200// && global.training_hand_s = 0 && hand_xxx = -200
+												//		{
+												//		hand_xxx = card_x + (j-1) * 140;
+												//		hand_yyy = card_y + 180 * (i-1) + card_yy[i,j];
+												//		global.training_hand_x = hand_xxx;
+												//		global.training_hand_y = hand_yyy;
+												//		}
+												//	}
+												for(dev=0;dev<5;dev++)
 													{
-													if cards_nu[i] = cards_now
+													mouse_x1 = device_mouse_x(dev);
+													mouse_y1 = device_mouse_y(dev);
+													if point_in_rectangle(mouse_x1, mouse_y1, card_x + (j-1) * 140 - 75 * card_scale[i,j], card_y + 180 * (i-1) - 110 * card_scale[i,j], card_x + (j-1) * 140 + 75 * card_scale[i,j], card_y + 180 * (i-1) + 110 * card_scale[i,j])
 														{
-														cards_now += 1;
-														cards_s[i] = 2;
-														}
-														else
-														{
-														global.answer = 0;
-														cards_3();
-														break;
+														if device_mouse_check_button_pressed(dev, mb_left) && card_time = -1 && card_now[i,j] = 0 && card_end[i,j] = 0 && global.super_ability = 0 && list_scale > 0
+															{
+															if global.training = 1 && global.training_question = 0
+																{
+																if global.training_stage[1] = 13
+																	{
+																	if global.training_hand_s = 0
+																		{
+																		if card_m[i,j] != card_find
+																			{ break; }
+																		}
+																	if global.training_hand_s = 1
+																		{
+																		if card_m[fir_i,fir_j] != card_m[i,j]
+																			{ break; }
+																		}
+																	global.training_hand_s += 1;
+																	}
+																	else
+																	{ break; }
+																}
+																//else
+																//{
+														
+																//}
+														
+															if global.music { audio_play_sound(sd_text, 2, 0); }
+															if fir_i = 0 && fir_j = 0
+																{
+																fir_i = i;
+																fir_j = j;
+																card_now[i,j] = 1;
+																}
+																else
+																{
+																if sec_i = 0 && sec_j = 0
+																	{
+																	sec_i = i;
+																	sec_j = j;
+																	card_now[i,j] = 1;
+																	}
+																}
+															}
 														}
 													}
-													else
+												if card_now[i,j] = 1
 													{
-													if global.training_stage[1] = 16
+													if card_scale[i,j] > 0
+														{ card_scale[i,j] -= 0.2; }
+														else
+														{ card_now[i,j] = 2; card_i[i,j] = card_m[i,j]; }
+													}
+												if card_now[i,j] = 2
+													{
+													if card_scale[i,j] < 0.7
+														{ card_scale[i,j] += 0.2; }
+														else
+														{
+														if card_i[i,j] = card_find
+															{ card_have += 1; }
+															else
+															{ global.answer = 0; cards_2(); break; }
+														if sec_i != 0 && card_scale[sec_i,sec_j] = 0.7
+															{
+															if card_m[fir_i,fir_j] = card_m[sec_i,sec_j]
+																{
+																if card_have = 2
+																	{ global.answer = 1; cards_2(); break; }
+																card_end[fir_i,fir_j] = 1;
+																card_end[sec_i,sec_j] = 1;
+																}
+																else
+																{
+																if card_have = 1 or card_have = 0
+																	{ global.answer = 0; cards_2(); break; }
+																card_now[fir_i,fir_j] = 4;
+																card_now[sec_i,sec_j] = 4;
+																}
+															fir_i = 0;
+															fir_j = 0;
+												
+															sec_i = 0;
+															sec_j = 0;
+															}
+															else
+															{ card_now[i,j] = 3; }
+														}
+													}
+												if card_now[i,j] = 4
+													{
+													if card_scale[i,j] > 0
+														{ card_scale[i,j] -= 0.2; }
+														else
+														{ card_now[i,j] = 5; card_i[i,j] = 0; }
+													}
+												if card_now[i,j] = 5
+													{
+													if card_scale[i,j] < 0.7
+														{ card_scale[i,j] += 0.2; }
+														else
+														{
+														card_now[i,j] = 0;
+														if card_time = -2
+															{ card_time = -3; }
+														}
+													}
+										
+												if card_end[i,j] = 1
+													{
+													if card_alp[i,j] > 0
+														{
+														card_alp[i,j] -= 0.1;
+														card_yy[i,j]  += 5;
+														}
+													}
+												}
+											}
+									}
+							#endregion
+							#region Рисование
+								#region Обучение
+									if global.training = 1
+										{
+										if (global.training_stage[1] = 10 or global.training_stage[1] = 11
+										or global.training_stage[1] = 12 or (global.training_stage[1] = 13 && global.training_question = 0))
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[1] = 10 or global.training_stage[1] = 11 or (global.training_stage[1] = 12 && card_find_s >= 1)
+												{ global.training_stage[1] += 1; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[1] += 1;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+										
+											//round_task[global.rounds,1] += 1;
+											}
+										}
+								#endregion
+								for(i=1;i<=2;i++)
+									{
+									for(j=1;j<=card_all;j++)
+										{
+										draw_sprite_ext(s_card, card_i[i,j], card_x + (j-1) * 140, card_y + 180 * (i-1) + card_yy[i,j], card_scale[i,j] * list_scale, 0.7, 0, c_white, card_alp[i,j]);
+										}
+									}
+								draw_sprite_ext(s_card, card_find, card_x + 70 + 70 * (card_all == 3), card_y + 90, card_find_s * 0.7 * list_scale, card_find_s * 0.7 * list_scale, card_find_a, c_white, 1);
+							#endregion
+							}
+					#endregion
+					#region Задача 3 - Карты, порядок
+						if round_task[global.rounds,global.task] = 3
+							{
+							timer_y = -20;
+							#region Координаты
+								var card_x, card_y;
+								card_x = 640;
+								card_y = global.size / 2 - 70;
+							
+								if global.training = 1
+									{
+									var hand_xxx, hand_yyy;
+									hand_xxx = -200;
+									hand_yyy = -200;
+									}
+							
+								#region Старое
+								//if list_scale = 1
+								//	{
+								//	for(i=cards_all;i>=1;i--)
+								//		{
+								//		if cards_s[i] = 0
+								//			{
+								//			if cards_i[i] = 0
+								//				{
+								//				cards_x[i] += (18 - cards_time);
+								//				if cards_ss[i] > 0
+								//					{ cards_ss[i] -= 1 / cards_time; }
+								//					else
+								//					{ cards_i[i] = cards_m[i]; }
+								//				}
+								//				else
+								//				{
+								//				if cards_ss[i] < 1
+								//					{ cards_ss[i] += 1 / cards_time; cards_x[i] += (18 - cards_time); }
+								//					else
+								//					{
+								//					cards_s[i] = 1;
+								//					}
+								//				}
+								//			break;
+								//			}
+								//		if cards_s[i] = 1 && cards_s[1] = 1
+								//			{
+								//			if cards_x[i] < cards_n[i]
+								//				{
+											
+								//				}
+								//			}
+								//		//cards_y[i] = 0;
+								//		//cards_n[i] = 0;
+								//		}
+									#endregion
+								if list_scale = 1
+									{
+									for(i=1;i<=cards_all;i++)
+										{
+										if cards_s[i] = 0
+											{
+											if cards_i[i] = 0
+												{
+												if cards_ss[i] > 0
+													{ cards_ss[i] -= 1 / 5; }
+													else
+													{ cards_i[i] = cards_m[i]; }
+												}
+												else
+												{
+												if cards_ss[i] < 1
+													{ cards_ss[i] += 1 / 5; }
+													else
+													{ cards_s[i] = 1; }
+												}
+											break;
+											}
+										if cards_s[i] = 1 && cards_s[cards_all] = 1
+											{
+											if cards_time > 0 
+												{
+												//cards_time -= 1;
+												if global.training < 1 or global.training_stage[1] = 15 or global.training_stage[1] = 16
+													{ cards_time -= 1; }
+												}
+												else
+												{
+												//if abs(cards_x[i] - cards_xx[i]) > 10
+												//	{ cards_x[i] -= 20 * sign(cards_x[i] - cards_xx[i]); }
+												//	else
+												//	{ cards_x[i] = cards_xx[i]; }
+												//if cards_y[i] < 200
+												//	{ cards_y[i] += 30; }
+												//	else
+												//	{ pre_wait = 0; }
+												if global.training < 1 or global.training_stage[1] = 16
+													{
+													if abs(cards_x[i] - cards_xx[i]) > 10
+														{ cards_x[i] -= 20 * sign(cards_x[i] - cards_xx[i]); }
+														else
+														{ cards_x[i] = cards_xx[i]; }
+													if cards_y[i] < 200
+														{ cards_y[i] += 30; }
+														else
+														{ pre_wait = 0; }
+													}
+												}
+											}
+										if cards_s[i] = 2
+											{
+											if global.training > 0 && hand_xxx = -200 && cards_x[i] = cards_xs[i]
+												{
+												hand_xxx = cards_x[i];
+												hand_yyy = cards_y[i];
+												}
+											if abs(cards_x[i] - cards_xs[i]) > 10
+												{ cards_x[i] -= 20 * sign(cards_x[i] - cards_xs[i]); }
+												else
+												{
+												cards_x[i] = cards_xs[i];
+												if cards_now > cards_all
+													{
+													global.answer = 1;
+													cards_3();
+													break;
+													}
+												}
+											if cards_y[i] > 0
+												{ cards_y[i] -= 30; }
+											}
+										}
+									}
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
+										{
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+									
+										if device_mouse_check_button_pressed(dev, mb_left)
+											{
+											if global.music { audio_play_sound(sd_text, 2, 0); }
+										
+											for(i=1;i<=cards_all;i++)
+												{
+												if point_in_rectangle(mouse_x1, mouse_y1, card_x + cards_x[i] - 52, card_y + cards_y[i] - 70 - 75, card_x + cards_x[i] + 52, card_y + cards_y[i] - 70 + 75)
+													{
+													if global.training < 1 or global.training_question != 0
 														{
 														if cards_nu[i] = cards_now
 															{
 															cards_now += 1;
 															cards_s[i] = 2;
 															}
+															else
+															{
+															global.answer = 0;
+															cards_3();
+															break;
+															}
+														}
+														else
+														{
+														if global.training_stage[1] = 16
+															{
+															if cards_nu[i] = cards_now
+																{
+																cards_now += 1;
+																cards_s[i] = 2;
+																}
+															}
 														}
 													}
 												}
 											}
 										}
 									}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 1
-									{
-									if (global.training_stage[1] = 14 or global.training_stage[1] = 15
-									or (global.training_stage[1] = 16 && global.training_question = 0))
+							#endregion
+							#region Рисование
+								#region Обучение
+									if global.training = 1
 										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
+										if (global.training_stage[1] = 14 or global.training_stage[1] = 15
+										or (global.training_stage[1] = 16 && global.training_question = 0))
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
 									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[1] = 14 or (global.training_stage[1] = 15 && cards_s[2] = 1)
-											{ global.training_stage[1] += 1; }
-										}
-									if global.training_question = 3
-										{
-										global.training_stage[1] += 1;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[1] = 14 or (global.training_stage[1] = 15 && cards_s[2] = 1)
+												{ global.training_stage[1] += 1; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[1] += 1;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
 										
-										global.training_stage[1] = 22;
-										//round_task[global.rounds,1] += 1;
+											global.training_stage[1] = 22;
+											//round_task[global.rounds,1] += 1;
+											}
+										}
+								#endregion
+								for(i=1;i<=cards_all;i++)
+									{ draw_sprite_ext(s_card, cards_i[i], card_x + cards_x[i], card_y + cards_y[i] - 70, cards_ss[i] * 0.7, 0.7, 0, c_white, 1); }
+							#endregion
+							}
+					#endregion
+					#region Задача 4 -
+						if round_task[global.rounds,global.task] = 4
+							{
+							timer_y = 50;
+							#region Координаты
+								var test_x1, test_x2, test_y;
+								test_x1 = 640 - 180;
+								test_x2 = 640 + 180;
+								test_y  = global.size / 2 - 60;
+									
+								pre_wait = 0;
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
+										{
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if point_in_rectangle(mouse_x1, mouse_y1, test_x1 - 150, test_y - 100, test_x1 + 150, test_y + 100) && global.answer = -1
+											{
+											if mouse_check_button_pressed(mb_left)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												global.answer = 1;
+												}
+											}
+										if point_in_rectangle(mouse_x1, mouse_y1, test_x2 - 150, test_y - 100, test_x2 + 150, test_y + 100) && global.answer = -1
+											{
+											if mouse_check_button_pressed(mb_left)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												global.answer = 0;
+												}
+											}
 										}
 									}
 							#endregion
-							for(i=1;i<=cards_all;i++)
-								{ draw_sprite_ext(s_card, cards_i[i], card_x + cards_x[i], card_y + cards_y[i] - 70, cards_ss[i] * 0.7, 0.7, 0, c_white, 1); }
+							#region Рисование
+							draw_set_font(global.game_font);
+							draw_text_transformed_t(test_x1, test_y, "TRUE" , 0.35 * list_scale, 0.35 * list_scale, 0, global.color_white, c_black);
+							draw_text_transformed_t(test_x2, test_y, "MISS" , 0.35 * list_scale, 0.35 * list_scale, 0, c_red, c_black);
 						#endregion
-						}
-				#endregion
-				#region Задача 4 -
-					if round_task[global.rounds,global.task] = 4
-						{
-						timer_y = 50;
-						#region Координаты
-							var test_x1, test_x2, test_y;
-							test_x1 = 640 - 180;
-							test_x2 = 640 + 180;
-							test_y  = global.size / 2 - 60;
-									
-							pre_wait = 0;
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									if point_in_rectangle(mouse_x1, mouse_y1, test_x1 - 150, test_y - 100, test_x1 + 150, test_y + 100) && global.answer = -1
-										{
-										if mouse_check_button_pressed(mb_left)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											global.answer = 1;
-											}
-										}
-									if point_in_rectangle(mouse_x1, mouse_y1, test_x2 - 150, test_y - 100, test_x2 + 150, test_y + 100) && global.answer = -1
-										{
-										if mouse_check_button_pressed(mb_left)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											global.answer = 0;
-											}
-										}
-									}
-								}
-						#endregion
-						#region Рисование
-						draw_set_font(global.game_font);
-						draw_text_transformed_t(test_x1, test_y, "TRUE" , 0.35 * list_scale, 0.35 * list_scale, 0, global.color_white, c_black);
-						draw_text_transformed_t(test_x2, test_y, "MISS" , 0.35 * list_scale, 0.35 * list_scale, 0, c_red, c_black);
+							}
 					#endregion
-						}
-				#endregion
-				}
-			#endregion			
-			 #region Стрельба   - Shooting
-			if theme_round[global.rounds] = 5
-				{
-				if global.training = 5
-					{
-					if global.training_stage[5] = 7
-						{ global.training_stage[5] = 8; }
-					var hand_xxx, hand_yyy;
-					hand_xxx = -200;
-					hand_yyy = -200;
-							
-					global.training_hand_x = hand_xxx;
-					global.training_hand_y = hand_yyy;
 					}
-				#region Задача 1 - Мишени, появление
-					if round_task[global.rounds,global.task] = 1
+			#endregion			
+			#region Стрельба   - Shooting
+				if theme_round[global.rounds] = 5
+					{
+					if global.training = 5
 						{
-						timer_y = 170;
-						#region Координаты
-							if list_scale = 1 && (global.player_object).stun = 0 && (global.training < 1 or global.training_stage[5] = 8)
-								{
-								for(i=1;i<=aim_all;i++)
+						if global.training_stage[5] = 7
+							{ global.training_stage[5] = 8; }
+						var hand_xxx, hand_yyy;
+						hand_xxx = -200;
+						hand_yyy = -200;
+							
+						global.training_hand_x = hand_xxx;
+						global.training_hand_y = hand_yyy;
+						}
+					#region Задача 1 - Мишени, появление
+						if round_task[global.rounds,global.task] = 1
+							{
+							timer_y = 170;
+							#region Координаты
+								if list_scale = 1 && (global.player_object).stun = 0 && (global.training < 1 or global.training_stage[5] = 8)
 									{
-									if aim_p[i] = 0
+									for(i=1;i<=aim_all;i++)
 										{
-										if aim_s[i] < 1
+										if aim_p[i] = 0
 											{
-											aim_s[i] += 0.1;
-											aim_a[i] += 5;
-											break;
+											if aim_s[i] < 1
+												{
+												aim_s[i] += 0.1;
+												aim_a[i] += 5;
+												break;
+												}
+												else
+												{ aim_p[i] = 1; }
 											}
 											else
-											{ aim_p[i] = 1; }
-										}
-										else
-										{
-										pre_wait = 0;
-										aim_a[i] += 2;
-										if aim_d[i] = 0
 											{
-											//if (global.training < 1 or global.training_question != 0)
-											//	{
-											//	if aim_s[i] > 0
-											//		{ aim_s[i] -= 0.1; }
-											//	}
-											//	else
-											//	{
-											//	if hand_xxx = -200// && aim_d[i] = 0
-											//		{
-											//		hand_xxx = aim_xx[aim_n[i]];
-											//		hand_yyy = aim_yy[aim_n[i]];
-												
-											//		global.training_hand_x = hand_xxx;
-											//		global.training_hand_y = hand_yyy;
-											//		}
-											//	}
-											if (global.training < 1 or global.training_question != 0)
+											pre_wait = 0;
+											aim_a[i] += 2;
+											if aim_d[i] = 0
 												{
-												if aim_t[i] > 0
-													{ aim_t[i] -= 1; }
+												//if (global.training < 1 or global.training_question != 0)
+												//	{
+												//	if aim_s[i] > 0
+												//		{ aim_s[i] -= 0.1; }
+												//	}
+												//	else
+												//	{
+												//	if hand_xxx = -200// && aim_d[i] = 0
+												//		{
+												//		hand_xxx = aim_xx[aim_n[i]];
+												//		hand_yyy = aim_yy[aim_n[i]];
+												
+												//		global.training_hand_x = hand_xxx;
+												//		global.training_hand_y = hand_yyy;
+												//		}
+												//	}
+												if (global.training < 1 or global.training_question != 0)
+													{
+													if aim_t[i] > 0
+														{ aim_t[i] -= 1; }
+														else
+														{
+														if aim_r[i] = 0 
+															{
+															if aim_s[i] > 0
+																{ aim_s[i] -= 0.1; }
+																else
+																{
+																global.answer = 0;
+																shooting_1();
+																break;
+																}
+															}
+															else
+															{ aim_d[i] = 1; }
+														}
+													}
 													else
 													{
-													if aim_r[i] = 0 
+													if hand_xxx = -200 && aim_d[i] = 0
 														{
-														if aim_s[i] > 0
-															{ aim_s[i] -= 0.1; }
+														hand_xxx = aim_xx[aim_n[i]];
+														hand_yyy = aim_yy[aim_n[i]];
+												
+														global.training_hand_x = hand_xxx;
+														global.training_hand_y = hand_yyy;
+														}
+													}
+												}
+												else
+												{
+												if aim_s[i] > 0
+													{ aim_s[i] -= 0.1; }
+												}
+											}
+										if aim_now > aim_all
+											{
+											global.answer = 1;
+											shooting_1();
+											break;
+											}
+										//if aim_r[i] = 1
+										//	{
+										//	if aim_now = i
+										//		{ aim_now += 1; }
+										//	if aim_now > aim_all
+										//		{
+										//		global.answer = 1;
+										//		shooting_1();
+										//		break;
+										//		}
+										//	}
+										}
+									}
+								if aim_r[aim_now] = 1
+									{
+									aim_now += 1;
+									if aim_now > aim_all
+										{
+										global.answer = 1;
+										shooting_1();
+										}
+									}
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
+										{
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										for(i=1;i<=aim_all;i++)
+											{
+											if point_in_circle(mouse_x1, mouse_y1, aim_xx[aim_n[i]], aim_yy[aim_n[i]], 70) && global.answer = -1
+												{
+												if device_mouse_check_button_pressed(dev,mb_left) && aim_d[i] = 0
+													{
+													if global.music { audio_play_sound(sd_text, 2, 0); }
+													if global.training < 1 or global.training_question != 0
+														{
+														if aim_now = i
+															{
+															aim_d[i] = 2;
+															aim_now += 1;
+															break;
+															}
 															else
 															{
 															global.answer = 0;
@@ -3794,236 +4272,12 @@ if global.hero = 1 && global.enemy_hero = 1
 															}
 														}
 														else
-														{ aim_d[i] = 1; }
-													}
-												}
-												else
-												{
-												if hand_xxx = -200 && aim_d[i] = 0
-													{
-													hand_xxx = aim_xx[aim_n[i]];
-													hand_yyy = aim_yy[aim_n[i]];
-												
-													global.training_hand_x = hand_xxx;
-													global.training_hand_y = hand_yyy;
-													}
-												}
-											}
-											else
-											{
-											if aim_s[i] > 0
-												{ aim_s[i] -= 0.1; }
-											}
-										}
-									if aim_now > aim_all
-										{
-										global.answer = 1;
-										shooting_1();
-										break;
-										}
-									//if aim_r[i] = 1
-									//	{
-									//	if aim_now = i
-									//		{ aim_now += 1; }
-									//	if aim_now > aim_all
-									//		{
-									//		global.answer = 1;
-									//		shooting_1();
-									//		break;
-									//		}
-									//	}
-									}
-								}
-							if aim_r[aim_now] = 1
-								{
-								aim_now += 1;
-								if aim_now > aim_all
-									{
-									global.answer = 1;
-									shooting_1();
-									}
-								}
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									for(i=1;i<=aim_all;i++)
-										{
-										if point_in_circle(mouse_x1, mouse_y1, aim_xx[aim_n[i]], aim_yy[aim_n[i]], 70) && global.answer = -1
-											{
-											if device_mouse_check_button_pressed(dev,mb_left) && aim_d[i] = 0
-												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
-												if global.training < 1 or global.training_question != 0
-													{
-													if aim_now = i
 														{
-														aim_d[i] = 2;
-														aim_now += 1;
-														break;
-														}
-														else
-														{
-														global.answer = 0;
-														shooting_1();
-														break;
-														}
-													}
-													else
-													{
-													if aim_now = i && global.training_stage[5] = 8
-														{
-														aim_d[i] = 2;
-														aim_now += 1;
-														break;
-														}
-													}
-												}
-											}
-										}
-									}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 5
-									{
-									if (global.training_stage[5] = 6 or global.training_stage[5] = 7
-									or (global.training_stage[5] = 8 && global.training_question = 0))
-										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
-									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[5] = 6 or global.training_stage[5] = 7
-											{ global.training_stage[5] += 1; }
-										}
-									if global.training_question = 3
-										{
-										global.training_stage[5] += 1;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
-										}
-									}
-							#endregion
-							for(i=1;i<=aim_all;i++)
-								{
-								if aim_r[i] = 0
-									{ draw_sprite_ext_t(s_target_2, 0, aim_xx[aim_n[i]], aim_yy[aim_n[i]], aim_s[i] * 0.9, aim_s[i] * 0.9, aim_a[i], global.color_white, 1, global.color_white, c_black); }
-									else
-									{ draw_sprite_ext_t(s_target_2, 0, aim_xx[aim_n[i]], aim_yy[aim_n[i]], aim_s[i] * 0.9, aim_s[i] * 0.9, aim_a[i], c_red, 1, c_red, c_black); }
-								//draw_text_transformed_t(aim_xx[aim_n[i]], aim_yy[aim_n[i]], string(i), aim_s[i] * 0.2, aim_s[i] * 0.2, 0, c_white, c_black);
-								//draw_circle(aim_xx[aim_n[i]], aim_yy[aim_n[i]], 70, 1);
-								}
-							//draw_text_transformed_t(mouse_x, mouse_y, string(aim_now), 0.2, 0.2, 0, c_white, c_black);
-						#endregion
-						}
-				#endregion
-				#region Задача 2 - Мишени, пистолет
-					if round_task[global.rounds,global.task] = 2
-						{
-						timer_y = 160;
-						#region Координаты
-							if list_scale = 1
-								{
-								if global.training < 1 or global.training_question != 0
-									{
-									if target_iii = 0
-										{
-										if target_red = 0
-											{ target_ang += target_spd + (target_now * 2); }
-											else
-											{ target_ang += target_spd * target_all / target_now; }
-										}
-									if target_ang >= 360
-										{
-										if target_now > target_all / 2
-											{ pre_wait = 0; }
-										target_ang -= 360;
-										}
-									}
-									else
-									{
-									if target_iii = 0 && global.training_stage[5] = 12
-										{
-										var t_stop;
-										t_stop = 0;
-										for(i=1;i<=target_all;i++)
-											{
-											if target_d[i] = 0
-												{
-												//draw_text_transformed_t(640, global.size / 2, string(round(point_direction(640 - 200, global.size / 2, target_x[i], target_y[i]))) + "/" + string(round(target_ang)), 0.3, 0.3, 0, c_white, c_black);
-												if abs(target_v[target_m[i]] - target_ang) < target_spd + (target_now * 2)
-												or abs(target_v[target_m[i]] - target_ang) > 360 - target_spd - (target_now * 2)
-													{
-													if target_n[i] = target_now
-														{
-														t_stop = 1;
-														target_ang = target_v[target_m[i]];
-														hand_xxx = 640 - 300;
-														hand_yyy = global.size / 2 + 100;
-														
-														global.training_hand_x = hand_xxx;
-														global.training_hand_y = hand_yyy;
-														}
-													}
-												}
-											}
-										if t_stop = 0
-											{ target_ang += target_spd + (target_now * 2); }
-										}
-									if target_ang >= 360
-										{
-										target_ang -= 360;
-										}
-									}
-								}
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
-										{
-										if device_mouse_check_button_pressed(dev, mb_left)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											if global.training < 1 or global.training_question != 0
-												{
-												if target_iii = 0
-													{
-													target_iii = 1;
-													}
-												}
-												else
-												{
-												for(i=1;i<=target_all;i++)
-													{
-													if target_d[i] = 0 && global.training_stage[5] = 12
-														{
-														//draw_text_transformed_t(640, global.size / 2, string(round(point_direction(640 - 200, global.size / 2, target_x[i], target_y[i]))) + "/" + string(round(target_ang)), 0.3, 0.3, 0, c_white, c_black);
-														if abs(target_v[target_m[i]] - target_ang) < 20
-														or abs(target_v[target_m[i]] - target_ang) > 340
+														if aim_now = i && global.training_stage[5] = 8
 															{
-															if target_n[i] = target_now
-																{ target_iii = 1; }
+															aim_d[i] = 2;
+															aim_now += 1;
+															break;
 															}
 														}
 													}
@@ -4031,330 +4285,474 @@ if global.hero = 1 && global.enemy_hero = 1
 											}
 										}
 									}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 5
-									{
-									if (global.training_stage[5] = 10 or global.training_stage[5] = 11
-									or (global.training_stage[5] = 12 && global.training_question = 0))
+							#endregion
+							#region Рисование
+								#region Обучение
+									if global.training = 5
 										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
+										if (global.training_stage[5] = 6 or global.training_stage[5] = 7
+										or (global.training_stage[5] = 8 && global.training_question = 0))
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
 									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[5] = 10 or global.training_stage[5] = 11
-											{ global.training_stage[5] += 1; }
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[5] = 6 or global.training_stage[5] = 7
+												{ global.training_stage[5] += 1; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[5] += 1;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
 										}
-									if global.training_question = 3
+								#endregion
+								for(i=1;i<=aim_all;i++)
+									{
+									if aim_r[i] = 0
+										{ draw_sprite_ext_t(s_target_2, 0, aim_xx[aim_n[i]], aim_yy[aim_n[i]], aim_s[i] * 0.9, aim_s[i] * 0.9, aim_a[i], global.color_white, 1, global.color_white, c_black); }
+										else
+										{ draw_sprite_ext_t(s_target_2, 0, aim_xx[aim_n[i]], aim_yy[aim_n[i]], aim_s[i] * 0.9, aim_s[i] * 0.9, aim_a[i], c_red, 1, c_red, c_black); }
+									//draw_text_transformed_t(aim_xx[aim_n[i]], aim_yy[aim_n[i]], string(i), aim_s[i] * 0.2, aim_s[i] * 0.2, 0, c_white, c_black);
+									//draw_circle(aim_xx[aim_n[i]], aim_yy[aim_n[i]], 70, 1);
+									}
+								//draw_text_transformed_t(mouse_x, mouse_y, string(aim_now), 0.2, 0.2, 0, c_white, c_black);
+							#endregion
+							}
+					#endregion
+					#region Задача 2 - Мишени, пистолет
+						if round_task[global.rounds,global.task] = 2
+							{
+							timer_y = 160;
+							#region Координаты
+								if list_scale = 1
+									{
+									if global.training < 1 or global.training_question != 0
 										{
-										global.training_stage[5] += 1;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
+										if target_iii = 0
+											{
+											if target_red = 0
+												{ target_ang += target_spd + (target_now * 2); }
+												else
+												{ target_ang += target_spd * target_all / target_now; }
+											}
+										if target_ang >= 360
+											{
+											if target_now > target_all / 2
+												{ pre_wait = 0; }
+											target_ang -= 360;
+											}
+										}
+										else
+										{
+										if target_iii = 0 && global.training_stage[5] = 12
+											{
+											var t_stop;
+											t_stop = 0;
+											for(i=1;i<=target_all;i++)
+												{
+												if target_d[i] = 0
+													{
+													//draw_text_transformed_t(640, global.size / 2, string(round(point_direction(640 - 200, global.size / 2, target_x[i], target_y[i]))) + "/" + string(round(target_ang)), 0.3, 0.3, 0, c_white, c_black);
+													if abs(target_v[target_m[i]] - target_ang) < target_spd + (target_now * 2)
+													or abs(target_v[target_m[i]] - target_ang) > 360 - target_spd - (target_now * 2)
+														{
+														if target_n[i] = target_now
+															{
+															t_stop = 1;
+															target_ang = target_v[target_m[i]];
+															hand_xxx = 640 - 300;
+															hand_yyy = global.size / 2 + 100;
+														
+															global.training_hand_x = hand_xxx;
+															global.training_hand_y = hand_yyy;
+															}
+														}
+													}
+												}
+											if t_stop = 0
+												{ target_ang += target_spd + (target_now * 2); }
+											}
+										if target_ang >= 360
+											{
+											target_ang -= 360;
+											}
 										}
 									}
 							#endregion
-							if global.training < 1 or global.training_question != 0 or global.training_stage[5] = 12
-								{
-								for(i=1;i<=target_all;i++)
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 									{
-									if target_d[i] = 1
+									for(dev=0;dev<5;dev++)
 										{
-										if target_s[i] > 0
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
 											{
-											target_s[i] -= 0.15;
-											target_a[i] += 5;
+											if device_mouse_check_button_pressed(dev, mb_left)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.training < 1 or global.training_question != 0
+													{
+													if target_iii = 0
+														{
+														target_iii = 1;
+														}
+													}
+													else
+													{
+													for(i=1;i<=target_all;i++)
+														{
+														if target_d[i] = 0 && global.training_stage[5] = 12
+															{
+															//draw_text_transformed_t(640, global.size / 2, string(round(point_direction(640 - 200, global.size / 2, target_x[i], target_y[i]))) + "/" + string(round(target_ang)), 0.3, 0.3, 0, c_white, c_black);
+															if abs(target_v[target_m[i]] - target_ang) < 20
+															or abs(target_v[target_m[i]] - target_ang) > 340
+																{
+																if target_n[i] = target_now
+																	{ target_iii = 1; }
+																}
+															}
+														}
+													}
+												}
 											}
-											else
-											{ target_s[i] = 0; }
-										if target_s[i] < 0
-											{ target_s[i] = 0; }
 										}
-									target_x[i] = 640 + lengthdir_x(300, target_v[target_m[i]]);
-									target_y[i] = global.size / 2 + 95 + lengthdir_y(300, target_v[target_m[i]]);
-									draw_sprite_ext_t(s_target_2, 0, target_x[i], target_y[i], 0.7 * list_scale * target_s[i], 0.7 * list_scale * target_s[i], target_a[i], c_maroon, 1, c_maroon, c_black);
-									draw_text_transformed_t(target_x[i], target_y[i], string(target_n[i]), 0.3 * list_scale * target_s[i], 0.3 * list_scale * target_s[i], target_a[i], global.color_white, c_black);
 									}
-								//draw_line(640 - 200, global.size / 2, 640 - 200 + lengthdir_x(640, target_ang + 15), global.size / 2 + lengthdir_y(640, target_ang + 15));
-								if target_iii > 0
+							#endregion
+							#region Рисование
+								#region Обучение
+									if global.training = 5
+										{
+										if (global.training_stage[5] = 10 or global.training_stage[5] = 11
+										or (global.training_stage[5] = 12 && global.training_question = 0))
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
+									
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[5] = 10 or global.training_stage[5] = 11
+												{ global.training_stage[5] += 1; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[5] += 1;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
+										}
+								#endregion
+								if global.training < 1 or global.training_question != 0 or global.training_stage[5] = 12
 									{
-									if target_iii < 4
-										{ target_iii += 1; }
+									for(i=1;i<=target_all;i++)
+										{
+										if target_d[i] = 1
+											{
+											if target_s[i] > 0
+												{
+												target_s[i] -= 0.15;
+												target_a[i] += 5;
+												}
+												else
+												{ target_s[i] = 0; }
+											if target_s[i] < 0
+												{ target_s[i] = 0; }
+											}
+										target_x[i] = 640 + lengthdir_x(300, target_v[target_m[i]]);
+										target_y[i] = global.size / 2 + 95 + lengthdir_y(300, target_v[target_m[i]]);
+										draw_sprite_ext_t(s_target_2, 0, target_x[i], target_y[i], 0.7 * list_scale * target_s[i], 0.7 * list_scale * target_s[i], target_a[i], c_maroon, 1, c_maroon, c_black);
+										draw_text_transformed_t(target_x[i], target_y[i], string(target_n[i]), 0.3 * list_scale * target_s[i], 0.3 * list_scale * target_s[i], target_a[i], global.color_white, c_black);
+										}
+									//draw_line(640 - 200, global.size / 2, 640 - 200 + lengthdir_x(640, target_ang + 15), global.size / 2 + lengthdir_y(640, target_ang + 15));
+									if target_iii > 0
+										{
+										if target_iii < 4
+											{ target_iii += 1; }
+											else
+											{
+											target_iii = 0;
+											for(i=1;i<=target_all;i++)
+												{
+												if target_d[i] = 0
+													{
+													//draw_text_transformed_t(640, global.size / 2, string(round(point_direction(640 - 200, global.size / 2, target_x[i], target_y[i]))) + "/" + string(round(target_ang)), 0.3, 0.3, 0, c_white, c_black);
+													if abs(target_v[target_m[i]] - target_ang) < 20
+													or abs(target_v[target_m[i]] - target_ang) > 340
+														{
+														pre_wait = 0;
+														if target_n[i] = target_now
+															{ target_now += 1 * (target_red == 0) - 1 * (target_red == 1); target_d[i] = 1; }
+															else
+															{
+															global.answer = 0;
+															shooting_2();
+															//break;
+															}
+														if (target_now > target_all && target_red = 0) or (target_now < target_all && target_red = 1)
+															{
+															global.answer = 1;
+															shooting_2();
+															//break;
+															}
+														break;
+														}
+													}
+												}
+											}
+										}
+								//if global.training < 1 or global.training_question != 0 or global.training_stage[5] = 12
+								//	{
+									if target_red = 0
+										{ draw_sprite_ext_t(s_gun_bullet, target_iii, 640, global.size / 2 + 95/* - 200*/, 0.6 * list_scale, 0.6 * list_scale, target_ang - 20, c_white, 1, c_white, c_black); }
+										else
+										{ draw_sprite_ext_t(s_gun_bullet, target_iii, 640, global.size / 2 + 95/* - 200*/, 0.6 * list_scale, 0.6 * list_scale, target_ang - 20, c_red, 1, c_red, c_black); }
+									}
+							#endregion
+							}
+					#endregion
+					#region Задача 3 - Мишени, нож
+						if round_task[global.rounds,global.task] = 3
+							{
+							timer_y = 160;
+							#region Координаты
+								//pre_wait = 0;
+								if list_scale = 1
+									{
+									if global.training < 1 or global.training_question != 0
+										{
+										targetk_ang += targetk_spd;
+										if targetk_ang >= 360
+											{
+											targetk_ang -= 360;
+											if knife_now > targetk_all / 2
+												{ pre_wait = 0; }
+											}
+										}
 										else
 										{
-										target_iii = 0;
-										for(i=1;i<=target_all;i++)
+										if global.training_stage[5] = 17
 											{
-											if target_d[i] = 0
+											if !((abs((targetk_v[targetk_n[1]] + targetk_ang) - 180) < targetk_spd && (targetk_v[targetk_n[1]] + targetk_ang) <= 360)
+											or (abs((targetk_v[targetk_n[1]] + targetk_ang) - 540) < targetk_spd && (targetk_v[targetk_n[1]] + targetk_ang) > 360))
 												{
-												//draw_text_transformed_t(640, global.size / 2, string(round(point_direction(640 - 200, global.size / 2, target_x[i], target_y[i]))) + "/" + string(round(target_ang)), 0.3, 0.3, 0, c_white, c_black);
-												if abs(target_v[target_m[i]] - target_ang) < 20
-												or abs(target_v[target_m[i]] - target_ang) > 340
+												targetk_ang += targetk_spd;
+												if targetk_ang >= 360
 													{
-													pre_wait = 0;
-													if target_n[i] = target_now
-														{ target_now += 1 * (target_red == 0) - 1 * (target_red == 1); target_d[i] = 1; }
-														else
-														{
-														global.answer = 0;
-														shooting_2();
-														//break;
-														}
-													if (target_now > target_all && target_red = 0) or (target_now < target_all && target_red = 1)
-														{
-														global.answer = 1;
-														shooting_2();
-														//break;
-														}
-													break;
+													targetk_ang -= 360;
+													if knife_now > targetk_all / 2
+														{ pre_wait = 0; }
 													}
-												}
-											}
-										}
-									}
-							//if global.training < 1 or global.training_question != 0 or global.training_stage[5] = 12
-							//	{
-								if target_red = 0
-									{ draw_sprite_ext_t(s_gun_bullet, target_iii, 640, global.size / 2 + 95/* - 200*/, 0.6 * list_scale, 0.6 * list_scale, target_ang - 20, c_white, 1, c_white, c_black); }
-									else
-									{ draw_sprite_ext_t(s_gun_bullet, target_iii, 640, global.size / 2 + 95/* - 200*/, 0.6 * list_scale, 0.6 * list_scale, target_ang - 20, c_red, 1, c_red, c_black); }
-								}
-						#endregion
-						}
-				#endregion
-				#region Задача 3 - Мишени, нож
-					if round_task[global.rounds,global.task] = 3
-						{
-						timer_y = 160;
-						#region Координаты
-							//pre_wait = 0;
-							if list_scale = 1
-								{
-								if global.training < 1 or global.training_question != 0
-									{
-									targetk_ang += targetk_spd;
-									if targetk_ang >= 360
-										{
-										targetk_ang -= 360;
-										if knife_now > targetk_all / 2
-											{ pre_wait = 0; }
-										}
-									}
-									else
-									{
-									if global.training_stage[5] = 17
-										{
-										if !((abs((targetk_v[targetk_n[1]] + targetk_ang) - 180) < targetk_spd && (targetk_v[targetk_n[1]] + targetk_ang) <= 360)
-										or (abs((targetk_v[targetk_n[1]] + targetk_ang) - 540) < targetk_spd && (targetk_v[targetk_n[1]] + targetk_ang) > 360))
-											{
-											targetk_ang += targetk_spd;
-											if targetk_ang >= 360
-												{
-												targetk_ang -= 360;
-												if knife_now > targetk_all / 2
-													{ pre_wait = 0; }
-												}
-											}
-											else
-											{
-											hand_xxx = 640 + 300;
-											hand_yyy = global.size / 2;
-											
-											global.training_hand_x = hand_xxx;
-											global.training_hand_y = hand_yyy;
-											}
-										}
-									}
-								for(i=1;i<=knife_now;i++)
-									{
-									if knife_d[i] = -1
-										{
-										if knife_x[i] > 640 - 200
-											{ knife_x[i] -= 10; }
-											else
-											{ knife_d[i] = 0; }
-										}
-									if knife_d[i] = 1
-										{
-										if knife_x[i] < 640 + 200 - sprite_get_width(s_knife_target2) / 2
-											{ knife_x[i] += knife_spd; }
-										if knife_x[i] >= 640 + 200 - sprite_get_width(s_knife_target2) / 2
-											{
-											knife_x[i] = 640 + 200 - sprite_get_width(s_knife_target2) / 2 + 10;
-											for(j=1;j<=targetk_all;j++)
-												{
-												//if abs((targetk_v[targetk_n[j]] + targetk_ang) - 180) < 72
-												//&& point_distance(knife_x[i], knife_y[i], 640 + 200 + lengthdir_x(150,targetk_v[targetk_n[j]] + targetk_ang), global.size / 2 + lengthdir_y(150,targetk_v[targetk_n[j]] + targetk_ang)) < 120
-												if point_in_circle(knife_x[i], knife_y[i], 640 + 200 + lengthdir_x(sprite_get_width(s_knife_target2) / 2,targetk_v[targetk_n[j]] + targetk_ang), global.size / 2 + lengthdir_y(sprite_get_width(s_knife_target2) / 2,targetk_v[targetk_n[j]] + targetk_ang), 40)
-													{
-													knife_d[i]  = 2;
-													knife_now  += 1;
-													knife_n[i]  = j;
-													knife_a1[i] = (180 - targetk_ang);
-													break;
-													}
-												if j = targetk_all
-													{
-													global.answer = 0;
-													shooting_3();
-													break;
-													}
-												}
-											}
-										}
-									if global.answer = -1
-										{
-										if knife_d[i] = 2
-											{
-											knife_x[i] = 640 + 200 + lengthdir_x(sprite_get_width(s_knife_target2) / 2,targetk_v[targetk_n[knife_n[i]]] + targetk_ang);
-											knife_y[i] = global.size / 2 + lengthdir_y(sprite_get_width(s_knife_target2) / 2,targetk_v[targetk_n[knife_n[i]]] + targetk_ang);
-											knife_a[i] = knife_a1[i] + targetk_ang - 180; //targetk_v[targetk_n[knife_n[i]]] + targetk_ang - 180;
-											}
-										}
-									}
-							
-								if knife_now > targetk_all // && knife_d[knife_now - 1] = 2
-									{
-									global.answer = 1;
-									shooting_3();
-									}
-								}
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
-										{
-										if device_mouse_check_button_pressed(dev,mb_left)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											if global.training < 1 or global.training_question != 0
-												{
-												if knife_d[knife_now] = 0
-													{ knife_d[knife_now] = 1; }
 												}
 												else
 												{
-												if (abs((targetk_v[targetk_n[1]] + targetk_ang) - 180) < targetk_spd && (targetk_v[targetk_n[1]] + targetk_ang) <= 360)
-												or (abs((targetk_v[targetk_n[1]] + targetk_ang) - 540) < targetk_spd && (targetk_v[targetk_n[1]] + targetk_ang) > 360)
-												&& global.training_stage[5] = 17
+												hand_xxx = 640 + 300;
+												hand_yyy = global.size / 2;
+											
+												global.training_hand_x = hand_xxx;
+												global.training_hand_y = hand_yyy;
+												}
+											}
+										}
+									for(i=1;i<=knife_now;i++)
+										{
+										if knife_d[i] = -1
+											{
+											if knife_x[i] > 640 - 200
+												{ knife_x[i] -= 10; }
+												else
+												{ knife_d[i] = 0; }
+											}
+										if knife_d[i] = 1
+											{
+											if knife_x[i] < 640 + 200 - sprite_get_width(s_knife_target2) / 2
+												{ knife_x[i] += knife_spd; }
+											if knife_x[i] >= 640 + 200 - sprite_get_width(s_knife_target2) / 2
+												{
+												knife_x[i] = 640 + 200 - sprite_get_width(s_knife_target2) / 2 + 10;
+												for(j=1;j<=targetk_all;j++)
+													{
+													//if abs((targetk_v[targetk_n[j]] + targetk_ang) - 180) < 72
+													//&& point_distance(knife_x[i], knife_y[i], 640 + 200 + lengthdir_x(150,targetk_v[targetk_n[j]] + targetk_ang), global.size / 2 + lengthdir_y(150,targetk_v[targetk_n[j]] + targetk_ang)) < 120
+													if point_in_circle(knife_x[i], knife_y[i], 640 + 200 + lengthdir_x(sprite_get_width(s_knife_target2) / 2,targetk_v[targetk_n[j]] + targetk_ang), global.size / 2 + lengthdir_y(sprite_get_width(s_knife_target2) / 2,targetk_v[targetk_n[j]] + targetk_ang), 40)
+														{
+														knife_d[i]  = 2;
+														knife_now  += 1;
+														knife_n[i]  = j;
+														knife_a1[i] = (180 - targetk_ang);
+														break;
+														}
+													if j = targetk_all
+														{
+														global.answer = 0;
+														shooting_3();
+														break;
+														}
+													}
+												}
+											}
+										if global.answer = -1
+											{
+											if knife_d[i] = 2
+												{
+												knife_x[i] = 640 + 200 + lengthdir_x(sprite_get_width(s_knife_target2) / 2,targetk_v[targetk_n[knife_n[i]]] + targetk_ang);
+												knife_y[i] = global.size / 2 + lengthdir_y(sprite_get_width(s_knife_target2) / 2,targetk_v[targetk_n[knife_n[i]]] + targetk_ang);
+												knife_a[i] = knife_a1[i] + targetk_ang - 180; //targetk_v[targetk_n[knife_n[i]]] + targetk_ang - 180;
+												}
+											}
+										}
+							
+									if knife_now > targetk_all // && knife_d[knife_now - 1] = 2
+										{
+										global.answer = 1;
+										shooting_3();
+										}
+									}
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
+										{
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if (point_in_rectangle(mouse_x1, mouse_y1, 0, 0, 1280, global.size - 150) && super_now = super_need) or super_now != super_need
+											{
+											if device_mouse_check_button_pressed(dev,mb_left)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.training < 1 or global.training_question != 0
 													{
 													if knife_d[knife_now] = 0
 														{ knife_d[knife_now] = 1; }
 													}
+													else
+													{
+													if (abs((targetk_v[targetk_n[1]] + targetk_ang) - 180) < targetk_spd && (targetk_v[targetk_n[1]] + targetk_ang) <= 360)
+													or (abs((targetk_v[targetk_n[1]] + targetk_ang) - 540) < targetk_spd && (targetk_v[targetk_n[1]] + targetk_ang) > 360)
+													&& global.training_stage[5] = 17
+														{
+														if knife_d[knife_now] = 0
+															{ knife_d[knife_now] = 1; }
+														}
+													}
 												}
 											}
 										}
 									}
-								}
-						#endregion
-						#region Рисование
-							#region Обучение
-								if global.training = 5
-									{
-									if (global.training_stage[5] = 14
-									or (global.training_stage[5] = 17 && global.training_question = 0))
+							#endregion
+							#region Рисование
+								#region Обучение
+									if global.training = 5
 										{
-										draw_set_alpha(0.45);
-										draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-										draw_set_alpha(1);
-										}
+										if (global.training_stage[5] = 14
+										or (global.training_stage[5] = 17 && global.training_question = 0))
+											{
+											draw_set_alpha(0.45);
+											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+											draw_set_alpha(1);
+											}
 									
-									//if global.training_stage[1] = 8
-									//	{
-									//	//global.training_hand_x = hand_xxx;
-									//	//global.training_hand_y = hand_yyy;
-									//	}
-									if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
-										{
-										if global.training_stage[5] = 14
-											{ global.training_stage[5] = 17; }
+										//if global.training_stage[1] = 8
+										//	{
+										//	//global.training_hand_x = hand_xxx;
+										//	//global.training_hand_y = hand_yyy;
+										//	}
+										if mouse_check_button_pressed(mb_left) && global.training_x > 1280 && global.text_sc = 1
+											{
+											if global.training_stage[5] = 14
+												{ global.training_stage[5] = 17; }
+											}
+										if global.training_question = 3
+											{
+											global.training_stage[5] = 22;
+											global.training_hand_s   = 0;
+											global.training_question = 0;
+											global.text_ne = 1;
+											global.text_go = 0;
+											}
 										}
-									if global.training_question = 3
+								#endregion
+								for(i=1;i<=knife_now;i++)
+									{ draw_sprite_ext_t(s_knife, 0, knife_x[i], knife_y[i], list_scale, list_scale, knife_a[i], c_white, 1, c_white, c_black); }
+								draw_sprite_ext_t(s_knife_target2, 1, 640 + 200, global.size / 2, list_scale, list_scale, targetk_ang, c_white, 1, c_white, c_black);
+								for(i=1;i<=targetk_all;i++)
+									{
+									draw_sprite_ext_t(s_knife_target, 0, 640 + 200 + lengthdir_x(sprite_get_width(s_knife_target2) / 2,targetk_v[targetk_n[i]] + targetk_ang), global.size / 2 + lengthdir_y(sprite_get_width(s_knife_target2) / 2,targetk_v[targetk_n[i]] + targetk_ang), list_scale, list_scale, targetk_ang + targetk_v[targetk_n[i]], c_white, 1, c_white, c_black);
+									//draw_circle(640 + 200 + lengthdir_x(150,targetk_v[targetk_n[i]] + targetk_ang), global.size / 2 + lengthdir_y(150,targetk_v[targetk_n[i]] + targetk_ang), 30, 1);
+									}
+								//draw_text_transformed(mouse_x, mouse_y, string(knife_now), 0.3, 0.3, -15);
+							#endregion
+							}
+					#endregion
+					#region Задача 4 -
+						if round_task[global.rounds,global.task] = 4
+							{
+							timer_y = 50;
+							#region Координаты
+								var test_x1, test_x2, test_y;
+								test_x1 = 640 - 180;
+								test_x2 = 640 + 180;
+								test_y  = global.size / 2 - 60;
+									
+								pre_wait = 0;
+							#endregion
+							#region Ответ
+								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
+									{
+									for(dev=0;dev<5;dev++)
 										{
-										global.training_stage[5] = 22;
-										global.training_hand_s   = 0;
-										global.training_question = 0;
-										global.text_ne = 1;
-										global.text_go = 0;
+										mouse_x1 = device_mouse_x(dev);
+										mouse_y1 = device_mouse_y(dev);
+										if point_in_rectangle(mouse_x1, mouse_y1, test_x1 - 150, test_y - 100, test_x1 + 150, test_y + 100) && global.answer = -1
+											{
+											if mouse_check_button_pressed(mb_left)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												global.answer = 1;
+												}
+											}
+										if point_in_rectangle(mouse_x1, mouse_y1, test_x2 - 150, test_y - 100, test_x2 + 150, test_y + 100) && global.answer = -1
+											{
+											if mouse_check_button_pressed(mb_left)
+												{
+												if global.music { audio_play_sound(sd_text, 2, 0); }
+												global.answer = 0;
+												}
+											}
 										}
 									}
 							#endregion
-							for(i=1;i<=knife_now;i++)
-								{ draw_sprite_ext_t(s_knife, 0, knife_x[i], knife_y[i], list_scale, list_scale, knife_a[i], c_white, 1, c_white, c_black); }
-							draw_sprite_ext_t(s_knife_target2, 1, 640 + 200, global.size / 2, list_scale, list_scale, targetk_ang, c_white, 1, c_white, c_black);
-							for(i=1;i<=targetk_all;i++)
-								{
-								draw_sprite_ext_t(s_knife_target, 0, 640 + 200 + lengthdir_x(sprite_get_width(s_knife_target2) / 2,targetk_v[targetk_n[i]] + targetk_ang), global.size / 2 + lengthdir_y(sprite_get_width(s_knife_target2) / 2,targetk_v[targetk_n[i]] + targetk_ang), list_scale, list_scale, targetk_ang + targetk_v[targetk_n[i]], c_white, 1, c_white, c_black);
-								//draw_circle(640 + 200 + lengthdir_x(150,targetk_v[targetk_n[i]] + targetk_ang), global.size / 2 + lengthdir_y(150,targetk_v[targetk_n[i]] + targetk_ang), 30, 1);
-								}
-							//draw_text_transformed(mouse_x, mouse_y, string(knife_now), 0.3, 0.3, -15);
+							#region Рисование
+							draw_set_font(global.game_font);
+							draw_text_transformed_t(test_x1, test_y, "TRUE" , 0.35 * list_scale, 0.35 * list_scale, 0, global.color_white, c_black);
+							draw_text_transformed_t(test_x2, test_y, "MISS" , 0.35 * list_scale, 0.35 * list_scale, 0, c_red, c_black);
 						#endregion
-						}
-				#endregion
-				#region Задача 4 -
-					if round_task[global.rounds,global.task] = 4
-						{
-						timer_y = 50;
-						#region Координаты
-							var test_x1, test_x2, test_y;
-							test_x1 = 640 - 180;
-							test_x2 = 640 + 180;
-							test_y  = global.size / 2 - 60;
-									
-							pre_wait = 0;
-						#endregion
-						#region Ответ
-							if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
-								{
-								for(dev=0;dev<5;dev++)
-									{
-									mouse_x1 = device_mouse_x(dev);
-									mouse_y1 = device_mouse_y(dev);
-									if point_in_rectangle(mouse_x1, mouse_y1, test_x1 - 150, test_y - 100, test_x1 + 150, test_y + 100) && global.answer = -1
-										{
-										if mouse_check_button_pressed(mb_left)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											global.answer = 1;
-											}
-										}
-									if point_in_rectangle(mouse_x1, mouse_y1, test_x2 - 150, test_y - 100, test_x2 + 150, test_y + 100) && global.answer = -1
-										{
-										if mouse_check_button_pressed(mb_left)
-											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
-											global.answer = 0;
-											}
-										}
-									}
-								}
-						#endregion
-						#region Рисование
-						draw_set_font(global.game_font);
-						draw_text_transformed_t(test_x1, test_y, "TRUE" , 0.35 * list_scale, 0.35 * list_scale, 0, global.color_white, c_black);
-						draw_text_transformed_t(test_x2, test_y, "MISS" , 0.35 * list_scale, 0.35 * list_scale, 0, c_red, c_black);
+							}
 					#endregion
-						}
-				#endregion
-				}
+					}
 			#endregion		
-			 #region Шторм      - Storm
+			#region Шторм      - Storm
 				if theme_round[global.rounds] = 7
 					{ global.storm = 1; storm_1(); }
 			#endregion
@@ -5407,7 +5805,7 @@ if global.hero = 1 && global.enemy_hero = 1
 		mouse_x1 = device_mouse_x(dev);
 		mouse_y1 = device_mouse_y(dev);
 		
-		if device_mouse_check_button_pressed(dev, mb_left) && theme_choose = 4 && (global.player_object).stun = 0 && global.abilitican = 1 && global.training < 1
+		if device_mouse_check_button_pressed(dev, mb_left) && theme_choose = 4 && (global.player_object).stun = 0 && global.abilitican = 1 && (global.training < 1 or global.training = 6)
 			{
 			//if point_in_rectangle(mouse_x1, mouse_y1, 640 - 80 + sprite_get_width(s_super) / 2 - 20, global.size - 50 - 80 + super_x + super_zhopa, 640 + 80 + sprite_get_width(s_super) / 2 - 20, global.size - 50 + 80 + super_zhopa)
 			if point_in_rectangle(mouse_x1, mouse_y1, 640 * 2 - 80 - sprite_get_width(s_super) / 2, global.size - 50 - 80 + super_zhopa - 20, 640 * 2 + 80 - sprite_get_width(s_super) / 2, global.size - 50 + 80 + super_zhopa - 20)
@@ -8752,8 +9150,8 @@ if lines_true
 		training_text_color = global.color_hero[global.training];
 		if global.training = 1
 			{ training_text_color = global.color_white; }
-		if global.training_stage[1] = 10
-			{  }
+		if global.training_stage[3] = 8
+			{ training_text_color = c_red; }
 		
 		global.p_totem[1] = -1;
 		global.p_totem[2] = -1;
@@ -8763,7 +9161,6 @@ if lines_true
 		global.e_totem[2] = -1;
 		global.e_totem[3] = -1;
 		
-		global.super_ability = 0;
 		if global.training_stage[global.training] = 22
 			{ list_go = 0; list_scale = 0; }
 		
@@ -8824,8 +9221,12 @@ if lines_true
 							#endregion
 						ini_close();
 						}
-					room_goto_t("menu");
+					if global.training != 6
+						{ room_goto_t("menu"); }
+						else
+						{ global.shomen = 1; room_goto_t("duel"); }
 					}
+				
 				if global.training_stage[1] = 12 
 					{
 					if card_time = 0
@@ -8873,133 +9274,141 @@ if lines_true
 					else
 					{
 					global.training_stage[global.training] += 1;
+					
+					if global.training = 7 && global.training_stage[7] = 6
+						{ global.shomen = 2; room_goto_t("duel"); }
 					global.text_ne = 1;
 					global.text_go = 0;
 					}
 				}
 			}
+		if global.training_x <= 1280
+			{ global.training_hero_i += 0.5; }
 		var heroo;
 		heroo = asset_get_index("s_" + global.hero_code_name[global.training]);
-		draw_sprite_ext(heroo, 0, global.training_x, global.size / 2 + 450, 1, 1, 0, c_white, 1);
-			
-		if global.training_stage[global.training] < 6 or global.training_stage[global.training] = 22
-			{
-			draw_set_font(global.game_font);
-			draw_text_ext_transformed_t(640, global.size / 2, txt_t, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
-			}
-		//if global.training_stage[global.training] = 6
-		//	{
-		//	if global.training_x < 1280 + 200
-		//		{ global.training_x += 40; }
-		//		else
-		//		{ list_go = 1; list_scale = 1; }
-		//	}
+		draw_sprite_ext(heroo, global.training_hero_i, global.training_x, global.size / 2 + 450, 1, 1, 0, c_white, 1);
 		
-		if global.training_stage[global.training] = 6 or global.training_stage[global.training]  = 10
-		or global.training_stage[global.training] = 14 or global.training_stage[global.training] = 18
+		draw_sprite_ext_t(s_training_hand, global.training_hand_i, global.training_hand_x, global.training_hand_y, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
+		
+		if global.super_ability = 0
 			{
-			if global.training_x < 1280 + 500
-				{ global.training_x += 50; }
-				else
-				{ list_go = 1; }
-			
-			if global.text_go = 0
+			if global.training_stage[global.training] < 6 or global.training_stage[global.training] = 22
 				{
-				if global.text_sc < 1
-					{ global.text_sc += 0.1; }
+				draw_set_font(global.game_font);
+				draw_text_ext_transformed_t(640, global.size / 2, txt_t, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
 				}
 			
-			txt_t = global.training_text[global.training,global.training_stage[global.training]];
-			draw_set_font(global.game_font);
-			draw_text_ext_transformed_t(1020, global.size / 2 - 100, txt_t, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
-			}
-		if global.training_stage[global.training] = 7  or global.training_stage[global.training] = 11
-		or global.training_stage[global.training] = 15 or global.training_stage[global.training] = 19
-			{
-			if !(global.training_stage[2] = 11 && global.training_question != 0)
+			if global.training_stage[global.training] = 6 or global.training_stage[global.training]  = 10
+			or global.training_stage[global.training] = 14 or global.training_stage[global.training] = 18
 				{
-				txt_t  = global.training_text[global.training,global.training_stage[global.training]-1];
-				txt_t1 = global.training_text[global.training,global.training_stage[global.training]];
+				if global.training_x < 1280 + 500
+					{ global.training_x += 50; }
+					else
+					{ list_go = 1; }
+				
+				if global.text_go = 0
+					{
+					if global.text_sc < 1
+						{ global.text_sc += 0.1; }
+					}
+			
+				txt_t = global.training_text[global.training,global.training_stage[global.training]];
 				draw_set_font(global.game_font);
 				draw_text_ext_transformed_t(1020, global.size / 2 - 100, txt_t, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
-				draw_text_ext_transformed_t(260, global.size / 2 + 20, txt_t1, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
 				}
-			}
-		if global.training_stage[global.training] = 8  or global.training_stage[global.training] = 12
-		or global.training_stage[global.training] = 16 or global.training_stage[global.training] = 20
-			{
-			if (global.training_question = 0) or (global.training_question = 1 && global.training_stage[3] = 8)
-			 or (global.training_question = 1 && global.training_stage[4] = 16)
+			if global.training_stage[global.training] = 7  or global.training_stage[global.training] = 11
+			or global.training_stage[global.training] = 15 or global.training_stage[global.training] = 19
 				{
-				txt_t  = global.training_text[global.training,global.training_stage[global.training]-2];
-				txt_t1 = global.training_text[global.training,global.training_stage[global.training]-1];
-				txt_t2 = global.training_text[global.training,global.training_stage[global.training]];
-				draw_set_font(global.game_font);
-				draw_text_ext_transformed_t(1020, global.size / 2 - 100, txt_t,  -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
-				draw_text_ext_transformed_t(260, global.size / 2 + 20, txt_t1, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
-				draw_text_ext_transformed_t(1020, global.size / 2 + 100, txt_t2, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
-				}
-			}
-		if global.training_stage[global.training] = 9  or global.training_stage[global.training] = 13
-		or global.training_stage[global.training] = 17 or global.training_stage[global.training] = 21
-			{
-			if global.training_question = 0
-				{
-				txt_t  = global.training_text[global.training,global.training_stage[global.training]-3];
-				txt_t1 = global.training_text[global.training,global.training_stage[global.training]-2];
-				txt_t2 = global.training_text[global.training,global.training_stage[global.training]-1];
-				txt_t3 = global.training_text[global.training,global.training_stage[global.training]];
-				draw_set_font(global.game_font);
-				draw_text_ext_transformed_t(1020, global.size / 2 - 100, txt_t,  -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
-				draw_text_ext_transformed_t(260, global.size / 2 - 100, txt_t1, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
-				draw_text_ext_transformed_t(1020, global.size / 2 + 100, txt_t2, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
-				draw_text_ext_transformed_t(260, global.size / 2 + 100, txt_t3, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
-				
-				if txt_t3 = ""
+				if !(global.training_stage[2] = 11 && global.training_question != 0)
 					{
-					if global.training = 1 && global.training_stage[1] = 17
+					if ((global.training = 6 && global.training_question = 0)
+					or global.training_stage[6] = 16 or global.training_stage[6] = 20) or global.training != 6
 						{
-						global.training_hand_s   = 0;
-						global.training_question = 0;
-						global.text_ne = 1;
-						global.text_go = 0;
-										
-						global.training_stage[global.training] = 22;
-						//round_task[global.rounds,1] += 1;
-						}
-						else
-						{
-						global.training_stage[global.training] += 1;
-						global.text_ne = 1;
-						global.text_go = 0;
-						if global.training = 1 && global.training_stage[1] > 17
-						round_task[global.rounds,1] += 1;
+						txt_t  = global.training_text[global.training,global.training_stage[global.training]-1];
+						txt_t1 = global.training_text[global.training,global.training_stage[global.training]];
+						draw_set_font(global.game_font);
+						draw_text_ext_transformed_t(1020, global.size / 2 - 100, txt_t, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
+						draw_text_ext_transformed_t(260, global.size / 2 + 20, txt_t1, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
 						}
 					}
 				}
+			if global.training_stage[global.training] = 8  or global.training_stage[global.training] = 12
+			or global.training_stage[global.training] = 16 or global.training_stage[global.training] = 20
+				{
+				if ((global.training_question = 0) or (global.training_question = 1 && global.training_stage[3] = 8)
+				 or (global.training_question = 1 && global.training_stage[4] = 16))
+					{
+					if (global.training = 6 && global.training_question = 0) or global.training != 6
+						{
+						txt_t  = global.training_text[global.training,global.training_stage[global.training]-2];
+						txt_t1 = global.training_text[global.training,global.training_stage[global.training]-1];
+						txt_t2 = global.training_text[global.training,global.training_stage[global.training]];
+						draw_set_font(global.game_font);
+						draw_text_ext_transformed_t(1020, global.size / 2 - 100, txt_t,  -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
+						draw_text_ext_transformed_t(260, global.size / 2 + 20, txt_t1, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
+						draw_text_ext_transformed_t(1020, global.size / 2 + 100, txt_t2, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
+						}
+					}
+				}
+			if global.training_stage[global.training] = 9  or global.training_stage[global.training] = 13
+			or global.training_stage[global.training] = 17 or global.training_stage[global.training] = 21
+				{
+				if global.training_question = 0
+					{
+					txt_t  = global.training_text[global.training,global.training_stage[global.training]-3];
+					txt_t1 = global.training_text[global.training,global.training_stage[global.training]-2];
+					txt_t2 = global.training_text[global.training,global.training_stage[global.training]-1];
+					txt_t3 = global.training_text[global.training,global.training_stage[global.training]];
+					draw_set_font(global.game_font);
+					draw_text_ext_transformed_t(1020, global.size / 2 - 100, txt_t,  -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
+					draw_text_ext_transformed_t(260, global.size / 2 - 100, txt_t1, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
+					draw_text_ext_transformed_t(1020, global.size / 2 + 100, txt_t2, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
+					draw_text_ext_transformed_t(260, global.size / 2 + 100, txt_t3, -1, 500 / 0.18, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, training_text_color, c_black);
+				
+					if txt_t3 = ""
+						{
+						if global.training = 1 && global.training_stage[1] = 17
+							{
+							global.training_hand_s   = 0;
+							global.training_question = 0;
+							global.text_ne = 1;
+							global.text_go = 0;
+										
+							global.training_stage[global.training] = 22;
+							//round_task[global.rounds,1] += 1;
+							}
+							else
+							{
+							global.training_stage[global.training] += 1;
+							global.text_ne = 1;
+							global.text_go = 0;
+							if global.training = 1 && global.training_stage[1] > 17
+								{ round_task[global.rounds,1] += 1; }
+							}
+						}
+					}
 			
-			//if global.text_go = 1
-			//	{
-			//	if global.text_sc > 0
-			//		{ global.text_sc -= 0.1; }
-			//		else
-			//		{
-			//		global.training_stage[global.training] += 1;
-			//		global.text_ne = 1;
-			//		global.text_go = 0;
-			//		}
-			//	}
+				//if global.text_go = 1
+				//	{
+				//	if global.text_sc > 0
+				//		{ global.text_sc -= 0.1; }
+				//		else
+				//		{
+				//		global.training_stage[global.training] += 1;
+				//		global.text_ne = 1;
+				//		global.text_go = 0;
+				//		}
+				//	}
+				}
 			}
-		
 		if global.training != 2
 			{ global.critical = 0; }
 		if global.training != 6
 			{
+			global.super_ability = 0;
 			super = 0;
 			super_now = 0;
 			}
-		
-		draw_sprite_ext_t(s_training_hand, global.training_hand_i, global.training_hand_x, global.training_hand_y, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
 		
 		if global.training_hand_i < 11
 			{ global.training_hand_i += 0.4; }
@@ -9090,6 +9499,6 @@ if lines_true
 	//	{ shaker = !shaker; }
 #endregion
 #region Отладка
-	draw_set_font(global.game_font);
-	draw_text_transformed_t(mouse_x, mouse_y, string(global.training_hand_x) + " " + string(global.training_stage[global.training]) + " " + string(global.training_question), 0.25, 0.25, 0, c_white, c_black);
+	//draw_set_font(global.game_font);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(global.training_hand_x) + " " + string(global.training_stage[global.training]) + " " + string(global.training_question), 0.25, 0.25, 0, c_white, c_black);
 #endregion

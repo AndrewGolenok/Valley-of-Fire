@@ -328,7 +328,7 @@ if !enemy
 				if o_list.e_hp <= o_list.e_maxhp / 2
 					{
 					if global.hero = 5
-						{ global.enemy_name = "JR. " + global.enemy_name; }
+						{ global.enemy_name = global.enemy_name + " JR."; }
 					if bill_stage = 0
 						{
 						global.super_ability = 1;
@@ -346,7 +346,7 @@ if !enemy
 			if hero = 5
 				{
 				if global.hero = 5
-					{ global.player_name = "JR. BILL"; }
+					{ global.player_name = "BILL JR."; }
 				if o_list.hp <= o_list.maxhp / 2
 					{
 					if bill_stage = 0

@@ -531,6 +531,7 @@
 	// 19 - деактивированный 16 тотем
 #endregion
 #region Переменные игрока
+	global.shomen = 0;
 	global.player_level = 7;
 	global.enemy_level  = 7;
 	
