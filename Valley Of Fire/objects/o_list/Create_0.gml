@@ -1106,6 +1106,16 @@
 	//global.e_totem[2] = 2;
 	//global.e_totem[3] = 3;
 		
+	if global.training = 4
+		{
+		global.p_totem[1] = 15;
+		global.p_totem[2] = 8;
+		global.p_totem[3] = 12;
+		
+		global.e_totem[1] = 18;
+		global.e_totem[2] = 6;
+		global.e_totem[3] = 3;
+		}
 	for(i=1;i<=3;i++)
 		{
 		if global.p_totem[i] <= 6
@@ -1226,6 +1236,8 @@
 		{ super_need = 2; }
 	
 	poison_e = 0;
+	totem_txt_i = 0;
+	totem_txt = "";
 #endregion
 #region ОБУЧЕНИЕ
 	global.training_stage[1] = -1;
@@ -1245,13 +1257,17 @@
 		global.task  = 1;
 		global.game_stage = 5;
 		
-		global.p_totem[1] = -1;
-		global.p_totem[2] = -1;
-		global.p_totem[3] = -1;
-		
-		global.e_totem[1] = -1;
-		global.e_totem[2] = -1;
-		global.e_totem[3] = -1;
+		if global.training != 4
+			{
+			global.tot = -1;
+			global.p_totem[1] = -1;
+			global.p_totem[2] = -1;
+			global.p_totem[3] = -1;
+			
+			global.e_totem[1] = -1;
+			global.e_totem[2] = -1;
+			global.e_totem[3] = -1;
+			}
 		theme_round[global.rounds]  = global.training;
 		round_task[global.rounds,1] = 1;
 		
@@ -1330,7 +1346,7 @@
 		health_e_hp = e_hp;
 		}
 	global.training_question = 0;
-	global.training_x = 1280 + 400;
+	global.training_x = 1280 + 500;
 	
 	global.training_gb   = ""; //choose("GOOD!", "AWESOME!", "EXELLENT", "TRY AGAIN");
 	global.training_gb_y = global.size + 100;
@@ -1432,7 +1448,6 @@
 		
 		global.training_text[3,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
 	#endregion
-	
 	#region Внимание
 		global.training_text[4,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
 		global.training_text[4,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
@@ -1441,18 +1456,18 @@
 		global.training_text[4,5]  = "NOW I WILL TEACH YOU TO PLAY THE THEME CARDS!";
 		
 		global.training_text[4,6]  = "TASK FIRST: PAIR OF THE CARDS";
-		global.training_text[4,7]  = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[4,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
+		global.training_text[4,7]  = "FFFFFFFFFFFFF";
+		global.training_text[4,8]  = "";
 		global.training_text[4,9]  = "";
 		
 		global.training_text[4,10] = "TASK SECOND: FIND THE CARD";
-		global.training_text[4,11] = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[4,12] = "REMEMBER THIS CARD";
-		global.training_text[4,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
+		global.training_text[4,11] = "REMEMBER THIS CARD";
+		global.training_text[4,12] = " ";
+		global.training_text[4,13] = "";
 		
 		global.training_text[4,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
 		global.training_text[4,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
-		global.training_text[4,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
+		global.training_text[4,16] = "REDREDRED";
 		global.training_text[4,17] = "";
 		
 		global.training_text[4,18] = "";
@@ -1471,18 +1486,18 @@
 		
 		global.training_text[5,6]  = "TASK FIRST: PAIR OF THE CARDS";
 		global.training_text[5,7]  = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[5,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
+		global.training_text[5,8]  = " ";
 		global.training_text[5,9]  = "";
 		
 		global.training_text[5,10] = "TASK SECOND: FIND THE CARD";
 		global.training_text[5,11] = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[5,12] = "REMEMBER THIS CARD";
-		global.training_text[5,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
+		global.training_text[5,12] = "FIRST 1, SECOND 2...";
+		global.training_text[5,13] = "";
 		
 		global.training_text[5,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
-		global.training_text[5,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
-		global.training_text[5,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
-		global.training_text[5,17] = "";
+		global.training_text[5,15] = "";
+		global.training_text[5,16] = "";
+		global.training_text[5,17] = "REMEMBER THE SEQUENCE OF THE CARDS";
 		
 		global.training_text[5,18] = "";
 		global.training_text[5,19] = "";
@@ -1491,6 +1506,7 @@
 		
 		global.training_text[5,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
 	#endregion
+	
 	#region Математика
 		global.training_text[6,1]  = "GOOD " + day_time + " FRIEND! WELCOME TO THE VALLEY OF FIRE!";
 		global.training_text[6,2]  = "YOU HAVE TO DEFEAT THE OPPONENT BY ANSWERING TASKS!";
@@ -1500,23 +1516,23 @@
 		
 		global.training_text[6,6]  = "TASK FIRST: PAIR OF THE CARDS";
 		global.training_text[6,7]  = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[6,8]  = "AND TAP ONE THE PAIR OF THE CARDS";
+		global.training_text[6,8]  = "";
 		global.training_text[6,9]  = "";
 		
 		global.training_text[6,10] = "TASK SECOND: FIND THE CARD";
 		global.training_text[6,11] = "REMEMBER THE POSITION OF THE CARDS";
-		global.training_text[6,12] = "REMEMBER THIS CARD";
-		global.training_text[6,13] = "AND TAP ON THE TWO REQUIRED THE CARDS";
+		global.training_text[6,12] = "";
+		global.training_text[6,13] = "";
 		
 		global.training_text[6,14] = "TASK FIRTH: THE SEQUENCE OF THE CARDS";
-		global.training_text[6,15] = "REMEMBER THE SEQUENCE OF THE CARDS";
-		global.training_text[6,16] = "TAP ON THE CARDS IN THE ORIGINAL SEQUENCE";
+		global.training_text[6,15] = "RIGHT BUT";
+		global.training_text[6,16] = "LEFT BUT";
 		global.training_text[6,17] = "";
 		
 		global.training_text[6,18] = "HEH";
 		global.training_text[6,19] = "HEH HEH";
-		global.training_text[6,20] = "HEH HEH HEH";
-		global.training_text[6,21] = "HUNNY";
+		global.training_text[6,20] = "";
+		global.training_text[6,21] = "";
 		
 		global.training_text[6,22] = "I TAUGHT YOU EVERYTHING I KNEW MYSELF! JOE WILL TEACH YOU HOW TO PLAY THE THEME BOTTLES";
 		//REMEMBER, WITH EACH NEW RANK OF THE TASKS WILL BE MORE DIFFICULT!
@@ -1530,4 +1546,20 @@
 	global.training_hand_y = - 200;
 	global.training_hand_i = 0;
 	global.training_hand_s = 0;
+	
+	if global.training = 4
+		{
+		global.tot = 0;
+		//global.p_totem[1] = 15;
+		//global.p_totem[2] = 8;
+		//global.p_totem[3] = 12;
+		
+		//global.e_totem[1] = 6;
+		//global.e_totem[2] = 18;
+		//global.e_totem[3] = 3;
+		
+		list_scale = 0;
+		list_go = 0;
+		global.game_stage = 0.5;
+		}
 #endregion

@@ -1977,6 +1977,25 @@
             }
         },
         {
+            "Key": "43db365f-e381-42df-ad2f-5201ff3d8903",
+            "Value": {
+                "id": "9a53662a-6138-4bed-8aca-50c76179f3a1",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_sign_hand2\/s_sign_hand2.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "43fd2093-a5a3-4a93-8e2a-83a3ecf6839d",
             "Value": {
                 "id": "ee0c4a2a-424c-41ee-bc9a-b8ae0ebcdef6",
@@ -5773,6 +5792,25 @@
                     "default"
                 ],
                 "resourcePath": "sprites\/s_hunter_idle_standard1\/s_hunter_idle_standard1.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "bccc65d2-a136-4861-8361-066efb3ff05c",
+            "Value": {
+                "id": "701104e4-49ea-4ef8-84f7-ccce29425753",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_directions\/s_directions.yy",
                 "resourceType": "GMSprite"
             }
         },
