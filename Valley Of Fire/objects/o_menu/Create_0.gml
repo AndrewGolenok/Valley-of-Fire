@@ -75,6 +75,82 @@
 		else
 		{ global.menu_next = "main"; }
 #endregion
+#region Тотемы
+	totem_now = 1;
+	
+	totem_yy  = 0;
+	totem_yy1 = 0;
+	hold_my   = 0;
+	hold_sp   = 0;
+	hold_ti   = 0;
+	hold_dr   = 1;
+	hold_do   = 1;
+	
+	totem_alp = 0.5;
+	totem_adi = 1;
+	
+	totem_s   = 0.25;
+	totem_w   = sprite_get_width(s_totems) * totem_s;
+	totem_r   = 70;
+	
+	text_x = totem_w * 0.8;
+	
+	for(i=1;i<=18;i++)
+		{
+		totem_x[i] = 0;
+		totem_y[i] = 0;
+		
+		/// X
+		if i = 1 or i = 4 or i = 7 or i = 10 or i = 12 or i = 15 or i = 16
+			{ totem_x[i] = 0; }
+		if i = 2 or i = 5 or i = 8 or i = 11 or i = 13 or i = 17
+			{ totem_x[i] = totem_w * 0.8; }
+		if i = 3 or i = 6 or i = 9 or i = 14 or i = 18
+			{ totem_x[i] = 2 * totem_w * 0.8; }
+		/// X
+		
+		/// Y
+		if i = 1 or i = 2 or i = 3
+			{ totem_y[i] = 0; }
+		if i = 4 or i = 5 or i = 6
+			{ totem_y[i] = totem_w * 0.8; }
+		
+		if i = 7 or i = 8 or i = 9
+			{ totem_y[i] = 2 * (totem_w * 0.8) + totem_r; }
+		if i = 10 or i = 11
+			{ totem_y[i] = 3 * (totem_w * 0.8) + totem_r; }
+		
+		if i = 12 or i = 13 or i = 14
+			{ totem_y[i] = 4 * (totem_w * 0.8) + totem_r * 2; }
+		if i = 15
+			{ totem_y[i] = 5 * (totem_w * 0.8) + totem_r * 2; }
+		
+		if i = 16 or i = 17 or i = 18
+			{ totem_y[i] = 6 * (totem_w * 0.8) + totem_r * 3; }
+		/// Y
+		
+		totem_c[i] = c_white;
+		if i <= 6
+			{ totem_c[i] = global.color_white; }
+		if i > 6 && i <= 11
+			{ totem_c[i] = c_aqua; }
+		if i > 11 && i <= 15
+			{ totem_c[i] = c_fuchsia; }
+		if i > 15
+			{ totem_c[i] = c_orange; }
+		}
+	text_tot[1] = "COMMON";
+	text_y[1]   = -totem_r * 1.5;
+	
+	text_tot[2] = "RARE";
+	text_y[2]   = (totem_y[4] + totem_y[7]) / 2;
+	
+	text_tot[3] = "EPIC";
+	text_y[3]   = (totem_y[10] + totem_y[12]) / 2;
+	
+	text_tot[4] = "LEGENDARY";
+	text_y[4]   = (totem_y[15] + totem_y[16]) / 2;
+#endregion
 
 #region Главное меню (СТАРОЕ)
 	#region Мобайл / Планшет

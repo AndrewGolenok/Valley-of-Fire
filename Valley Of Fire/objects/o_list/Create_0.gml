@@ -1130,9 +1130,9 @@
 	for(i=1;i<=3;i++)
 		{
 		if global.p_totem[i] <= 6
-			{ totem_pc[i] = c_white; }
+			{ totem_pc[i] = global.color_white; }
 		if global.e_totem[i] <= 6
-			{ totem_ec[i] = c_white; }
+			{ totem_ec[i] = global.color_white; }
 		
 		if global.p_totem[i] > 6 && global.p_totem[i] <= 11
 			{ totem_pc[i] = c_aqua; } // make_color_rgb(127,199,255);

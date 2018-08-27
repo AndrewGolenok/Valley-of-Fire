@@ -102,7 +102,7 @@
 	application_surface_enable(1);
 	
 	device_mouse_dbclick_enable(0);
-	global.size = 590; //640; // 720; //800; //960;
+	global.size = 640; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
@@ -151,8 +151,8 @@
 			///
 			if !ini_section_exists("Training")
 			    {
-				ini_write_string("Training", "training", "0");
-				
+				//ini_write_string("Training", "training", "0");
+				//
 				ini_write_string("Training", "tr1", "1");
 				ini_write_string("Training", "tr2", "0");
 				ini_write_string("Training", "tr3", "0");
@@ -180,6 +180,14 @@
 		#region Валюта
 			//global.reward = ini_read_real("Music.ini", "reward", 1); // Ранг
 			//global.dollars = ini_read_real("Music.ini", "dollars", 1); // Бабки
+		#endregion
+		#region Тотемы
+			for(i=0;i<=19;i++)
+				{
+				if !ini_section_exists("Totems")
+				    { ini_write_string("Totems", "totem" + string(i), "0"); }
+				global.totem_have[i] = ini_read_real("Totems", "totem" + string(i), 0);
+				}
 		#endregion
 	ini_close();
 #endregion
@@ -511,6 +519,13 @@
 	global.e_totem[1] = -1;
 	global.e_totem[2] = -1;
 	global.e_totem[3] = -1;
+	
+	for(i=1;i<=19;i++)
+		{
+		//global.totem_have[i] = 0;
+		global.totem_name[i] = "TOTEM NAME";
+		global.totem_desc[i] = "causes damage to the rival hero at the beginning and may damage your hero as well with the 50% possibility";
+		}
 	
 	//// 1 - Увеличивает ХП  персонажа на 5%
 	//// 2 - Увеличивает АТК персонажа на 5%

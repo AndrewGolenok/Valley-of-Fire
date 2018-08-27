@@ -120,7 +120,122 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 	
 	///////
 	
+	#region Сами тотемы
+		for(i=1;i<=18;i++)
+			{
+			draw_sprite_ext(s_totems, i, 290 + totem_x[i], 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + 10, totem_s, totem_s, 0, c_black, 0.5); 
+			draw_sprite_ext(s_totems, i, 290 + totem_x[i], 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1, totem_s, totem_s, 0, c_white, 1);
+			if global.totem_have[i] = 0
+				{ draw_sprite_ext(s_totems, i, 290 + totem_x[i], 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1, totem_s, totem_s, 0, c_black, 0.4); }
+				else
+				{ draw_sprite_ext(s_totems_eyes, i, 290 + totem_x[i], 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1, totem_s, totem_s, 0, totem_c[i], totem_alp); }
+			}
+		
+		//draw_set_alpha(0.5);
+		//draw_set_color(c_black);
+		//	draw_text_transformed(290 + text_x, 8 + 140 + 360 - top + text_y[1] + training_back_y + totem_yy1, text_tot[1], 0.2, 0.2, 0);
+		//	draw_text_transformed(290 + text_x, 8 + 140 + 360 - top + text_y[2] + training_back_y + totem_yy1, text_tot[2], 0.2, 0.2, 0);
+		//	draw_text_transformed(290 + text_x, 8 + 140 + 360 - top + text_y[3] + training_back_y + totem_yy1, text_tot[3], 0.2, 0.2, 0);
+		//	draw_text_transformed(290 + text_x, 8 + 140 + 360 - top + text_y[4] + training_back_y + totem_yy1, text_tot[4], 0.2, 0.2, 0);
+		//draw_set_color(c_white);
+		//draw_set_alpha(1);
+		
+		//draw_set_alpha(0.5);
+		//draw_text_transformed_t(290 + text_x, 8 + 140 + 360 - top + text_y[1] + training_back_y + totem_yy1, text_tot[1], 0.2, 0.2, 0, totem_c[1], c_black);
+		//draw_text_transformed_t(290 + text_x, 8 + 140 + 360 - top + text_y[2] + training_back_y + totem_yy1, text_tot[2], 0.2, 0.2, 0, totem_c[7], c_black);
+		//draw_text_transformed_t(290 + text_x, 8 + 140 + 360 - top + text_y[3] + training_back_y + totem_yy1, text_tot[3], 0.2, 0.2, 0, totem_c[12], c_black);
+		//draw_text_transformed_t(290 + text_x, 8 + 140 + 360 - top + text_y[4] + training_back_y + totem_yy1, text_tot[4], 0.2, 0.2, 0, totem_c[16], c_black);
+		//draw_set_alpha(1);
+		
+		draw_text_transformed_t(290 + text_x, 140 + 360 - top + text_y[1] + training_back_y + totem_yy1, text_tot[1], 0.2, 0.2, 0, totem_c[1], c_black);
+		draw_text_transformed_t(290 + text_x, 140 + 360 - top + text_y[2] + training_back_y + totem_yy1, text_tot[2], 0.2, 0.2, 0, totem_c[7], c_black);
+		draw_text_transformed_t(290 + text_x, 140 + 360 - top + text_y[3] + training_back_y + totem_yy1, text_tot[3], 0.2, 0.2, 0, totem_c[12], c_black);
+		draw_text_transformed_t(290 + text_x, 140 + 360 - top + text_y[4] + training_back_y + totem_yy1, text_tot[4], 0.2, 0.2, 0, totem_c[16], c_black);
+		
+		if mouse_check_button(mb_left)
+		&& point_in_rectangle(mouse_x, mouse_y, 120, global.size / 2 - 270, 720, global.size / 2 + 270)
+			{
+			if totem_yy = 0
+				{ totem_yy = totem_yy1 - mouse_y; }
+			var totemy;
+			totemy = totem_yy1;
+			totem_yy1 = totem_yy + mouse_y;
+			
+			if totem_yy1 > 100
+				{ totem_yy1 = 100; }
+			if totem_yy1 < -1000
+				{ totem_yy1 = -1000; }
+			
+			if abs(totem_yy1 - totemy) > 50
+				{
+				hold_dr = sign(totem_yy1 - totemy);
+				hold_sp = abs(totemy - totem_yy1) / 2;
+				hold_ti = room_speed / 4;
+				hold_do = (hold_sp / 2) / 20;
+				}
+			if hold_ti > 0
+				{ hold_ti -= 1; }
+				else
+				{ hold_sp = 0; }
+			}
+			else
+			{
+			totem_yy = 0;
+			
+			if abs(hold_sp) > 0
+				{
+				if hold_dr = 1
+					{
+					totem_yy1 += hold_sp;
+					hold_sp -= hold_do;
+					if hold_sp < 0
+						{ hold_sp = 0  }
+					}
+				if hold_dr = -1
+					{
+					totem_yy1 -= hold_sp;
+					hold_sp -= hold_do;
+					if hold_sp < 0
+						{ hold_sp = 0; }
+					}
+				if totem_yy1 > 100
+					{ hold_sp = 0; }
+				if totem_yy1 < -1000
+					{ hold_sp = 0; }
+				}
+				else
+				{
+				if totem_yy1 > 0
+					{ totem_yy1 -= 10; }
+				if totem_yy1 < -900
+					{ totem_yy1 += 10; }
+				}
+			}
+	#endregion
+	
 	draw_sprite_part_ext(s_totem_back, 0, 0, top, sprite_get_width(s_totem_back), sprite_get_height(s_totem_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
+	
+	#region Описание тотема
+			/////
+			if (totem_alp >= 1 && totem_adi = 1) or (totem_alp <= 0.5 && totem_adi = -1)
+				{ totem_adi = -totem_adi; }
+			totem_alp += 0.01 * totem_adi;
+		
+			draw_sprite_ext(s_totems, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, c_black, 0.5); 
+			if global.totem_have[totem_now] = 1
+				{ draw_sprite_ext(s_totems_light, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, totem_c[totem_now], totem_alp); }
+			draw_sprite_ext(s_totems, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, c_white, 1);
+			if global.totem_have[totem_now] = 0
+				{ draw_sprite_ext(s_totems, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, c_black, 0.4); }
+				else
+				{ draw_sprite_ext(s_totems_eyes, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, totem_c[totem_now], totem_alp); }
+			////
+			draw_text_transformed_t(1280 - 300, global.size / 2 - 100 + training_back_y + 120, global.totem_name[totem_now], 0.15, 0.15, 0, totem_c[totem_now], c_black);
+			draw_text_ext_transformed_t(1280 - 300, global.size / 2 - 100 + training_back_y + 300, string_upper(global.totem_desc[totem_now]), -1, 2000, 0.12, 0.12, 0, global.color_white, c_black);
+			////
+		
+		#endregion
+	
 	
 	var yh, col;
 	yh = 0;
@@ -156,7 +271,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 	if point_in_rectangle(mouse_x, mouse_y, 0, 0, 100, 100)
 		{
 		if mouse_check_button_pressed(mb_left)
-			{ global.menu_next = "main"; }
+			{ totem_yy1 = 0; global.menu_next = "main"; }
 		}
 	
 	draw_set_font(global.game_font);
@@ -382,11 +497,11 @@ if global.menu_now = "store" or global.menu_next = "store"
 		#endregion
 		//menu_setb_y - training_back_y + pry
 		//top - training_back_y + pry * 0.5 + sc_angle * 2 - 27
-		draw_text_transformed_t(menu_gold_x + prx, top - training_back_y + pry * 0.5 + sc_angle * 2, string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.color_hero[2], c_black);
-		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus1_x + prx, top - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(menu_gold_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.color_hero[2], c_black);
+		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus1_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
 		
-		draw_text_transformed_t(menu_cash_x + prx, top - training_back_y + pry * 0.5 + sc_angle * 2, string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, gold_col, c_black);
-		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus2_x + prx, top - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(menu_cash_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, gold_col, c_black);
+		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
 		// ЗОЛОТО И КЭШ
 	}
 #endregion
@@ -1416,3 +1531,8 @@ if 0
 		//
 	#endregion
 	}
+	
+#region Отладка
+	draw_set_font(global.game_font);
+	draw_text_transformed_t(mouse_x, mouse_y, string(totem_yy1) + " " + string(hold_sp), 0.25, 0.25, 0, c_white, c_black);
+#endregion
