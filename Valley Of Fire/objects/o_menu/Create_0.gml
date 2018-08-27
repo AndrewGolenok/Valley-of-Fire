@@ -1,4 +1,5 @@
 #region Меню
+	global.duel = 0;
 	global.menu_now   = "main"; //"main";
 	global.back_scale = 1280 / 2092; //global.size / 1024;
 	global.menu_next = "main"; 
@@ -77,10 +78,11 @@
 #endregion
 #region Тотемы
 	totem_now = 1;
-	
+	hero_i    = 0;
 	totem_yy  = 0;
 	totem_yy1 = 0;
-	hold_my   = 0;
+	//hold_my   = 0;
+	
 	hold_sp   = 0;
 	hold_ti   = 0;
 	hold_dr   = 1;
@@ -88,6 +90,9 @@
 	
 	totem_alp = 0.5;
 	totem_adi = 1;
+	
+	totem_pr = 0;
+	totem_re = 0;
 	
 	totem_s   = 0.25;
 	totem_w   = sprite_get_width(s_totems) * totem_s;
@@ -99,6 +104,7 @@
 		{
 		totem_x[i] = 0;
 		totem_y[i] = 0;
+		totems_ss[i] = 1;
 		
 		/// X
 		if i = 1 or i = 4 or i = 7 or i = 10 or i = 12 or i = 15 or i = 16
@@ -150,6 +156,63 @@
 	
 	text_tot[4] = "LEGENDARY";
 	text_y[4]   = (totem_y[15] + totem_y[16]) / 2;
+#endregion
+#region Персонажи
+	hero_now = 1;
+	hero_s   = 0.5;
+	hero_yy  = 0;
+	hero_yy1 = 1;
+	hero_w   = sprite_get_width(s_wanted) * hero_s;
+	hero_h   = sprite_get_height(s_wanted) * hero_s;
+	hero_r   = 70;
+	hero_re  = 0;
+	//hero_dr  = 1;
+	//hero_sp  = 0;
+	hero_pr  = 0;
+	for(i=1;i<=7;i++)
+		{
+		hero_xx[i]  = 0;
+		hero_yyy[i] = 0;
+		hero_ss[i]  = 1;
+		if i <= 2
+			{
+			hero_xx[i]  = (hero_w + hero_r) * (i - 1);
+			hero_yyy[i]  = 0;
+			hero_lvl[i] = 0;
+			}
+		if i > 2 && i <= 4
+			{
+			hero_xx[i]  = (hero_w + hero_r)  * ((i-2) - 1);
+			hero_yyy[i]  = hero_h + hero_r;
+			hero_lvl[i] = 0;
+			}
+		if i > 4 && i <= 6
+			{
+			hero_xx[i]  = (hero_w + hero_r)  * ((i-4) - 1);
+			hero_yyy[i]  = (hero_h + hero_r) * 2;
+			hero_lvl[i] = 0;
+			}
+		if i = 7
+			{
+			hero_xx[i]  = 0;
+			hero_yyy[i]  = (hero_h + hero_r) * 3;
+			hero_lvl[i] = 0;
+			}
+		if global.heroes_have[i] < 42 + 26 + 16 + 10 + 6 + 4 + 2
+			{ hero_lvl[i] = 7; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16 - 26; hero_need[i] = 42 + 26 + 16 + 10 + 6 + 4 + 2; }
+		if global.heroes_have[i] < 26 + 16 + 10 + 6 + 4 + 2
+			{ hero_lvl[i] = 6; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16; hero_need[i] = 26 + 16 + 10 + 6 + 4 + 2; }
+		if global.heroes_have[i] < 16 + 10 + 6 + 4 + 2
+			{ hero_lvl[i] = 5; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10; hero_need[i] = 16 + 10 + 6 + 4 + 2; }
+		if global.heroes_have[i] < 10 + 6 + 4 + 2
+			{ hero_lvl[i] = 4; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6; hero_need[i] = 10 + 6 + 4 + 2; }
+		if global.heroes_have[i] < 6 + 4 + 2
+			{ hero_lvl[i] = 3; hero_now1[i] = global.heroes_have[i] - 2 - 4; hero_need[i] = 6 + 4 + 2; }
+		if global.heroes_have[i] < 4 + 2
+			{ hero_lvl[i] = 2; hero_now1[i] = global.heroes_have[i] - 2; hero_need[i] = 4 + 2; }
+		if global.heroes_have[i] < 2
+			{ hero_lvl[i] = 1; hero_now1[i] = global.heroes_have[i]; hero_need[i] = 2; }
+		}
 #endregion
 
 #region Главное меню (СТАРОЕ)

@@ -35,20 +35,28 @@ if os_type != os_macosx
 if keyboard_check_pressed(ord("C"))
 	{
 	ini_open("Music.ini");
-		for(i=1;i<=19;i++)
-			{
-			ini_write_string("Totems", "totem" + string(i), "0");
-			global.totem_have[i] = ini_read_real("Totems", "totem" + string(i), 0);
-			}
+		//for(i=1;i<=7;i++)
+		//	{
+		//	ini_write_string("Heroes", "heroes" + string(i), "0");
+		//	global.heroes_have[i] = ini_read_real("Heroes", "heroes" + string(i), 0);
+		//	}
+		//for(i=1;i<=19;i++)
+		//	{
+		//	ini_write_string("Totems", "totem" + string(i), string(!global.totem_have[i]));
+		//	global.totem_have[i] = ini_read_real("Totems", "totem" + string(i), 0);
+		//	}
+		if !ini_section_exists("Rank")
+			{ ini_write_string("Ranks", "ranks", string(irandom(70))); }
+		global.rank_stars = ini_read_real("Ranks", "ranks", 0);
 	ini_close();
 	}
 if keyboard_check_pressed(ord("V"))
 	{
 	ini_open("Music.ini");
-		for(i=1;i<=19;i++)
+		for(i=1;i<=7;i++)
 			{
-			ini_write_string("Totems", "totem" + string(i), "1");
-			global.totem_have[i] = ini_read_real("Totems", "totem" + string(i), 0);
+			ini_write_string("Heroes", "heroes" + string(i), string(irandom(42)));
+			global.heroes_have[i] = ini_read_real("Heroes", "heroes" + string(i), 0);
 			}
 	ini_close();
 	}

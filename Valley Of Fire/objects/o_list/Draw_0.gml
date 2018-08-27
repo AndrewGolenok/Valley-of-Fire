@@ -6948,6 +6948,37 @@ if global.hero = 1 && global.enemy_hero = 1
 			{ totem_alpha_d = -totem_alpha_d; }
 		totem_alpha += 0.01 * totem_alpha_d;
 		
+		if totem_first = 1
+			{
+			if global.tot = 1
+				{ totem_txt = global.totem_name[global.p_totem[1]]; }
+			if global.tot = 2
+				{ totem_txt = global.totem_name[global.e_totem[1]]; }
+			if global.tot = 3
+				{ totem_txt = global.totem_name[global.p_totem[2]]; }
+			if global.tot = 4
+				{ totem_txt = global.totem_name[global.e_totem[2]]; }
+			if global.tot = 5
+				{ totem_txt = global.totem_name[global.p_totem[3]]; }
+			if global.tot = 6
+				{ totem_txt = global.totem_name[global.e_totem[3]]; }
+			}
+			else
+			{
+			if global.tot = 1
+				{ totem_txt = global.totem_name[global.e_totem[1]]; }
+			if global.tot = 2
+				{ totem_txt = global.totem_name[global.p_totem[1]]; }
+			if global.tot = 3
+				{ totem_txt = global.totem_name[global.e_totem[2]]; }
+			if global.tot = 4
+				{ totem_txt = global.totem_name[global.p_totem[2]]; }
+			if global.tot = 5
+				{ totem_txt = global.totem_name[global.e_totem[3]]; }
+			if global.tot = 6
+				{ totem_txt = global.totem_name[global.p_totem[3]]; }
+			}
+		
 		if global.tot != -1
 			{
 			draw_set_alpha(0.45);

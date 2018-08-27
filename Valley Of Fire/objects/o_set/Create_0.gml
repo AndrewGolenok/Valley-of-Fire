@@ -102,7 +102,7 @@
 	application_surface_enable(1);
 	
 	device_mouse_dbclick_enable(0);
-	global.size = 640; //640; // 720; //800; //960;
+	global.size = 720; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
@@ -175,6 +175,7 @@
 				{ global.training_o = 1; }
 				else
 				{ global.training_o = 0; }
+			global.training = 0;
 			///
 		#endregion
 		#region Валюта
@@ -188,6 +189,19 @@
 				    { ini_write_string("Totems", "totem" + string(i), "0"); }
 				global.totem_have[i] = ini_read_real("Totems", "totem" + string(i), 0);
 				}
+		#endregion
+		#region Листовки
+			for(i=1;i<=7;i++)
+				{
+				if !ini_section_exists("Heroes")
+				    { ini_write_string("Heroes", "heroes" + string(i), "0"); }
+				global.heroes_have[i] = ini_read_real("Heroes", "heroes" + string(i), 0);
+				}
+		#endregion
+		#region Ранг и звёзды
+			if !ini_section_exists("Rank")
+				{ ini_write_string("Ranks", "ranks", "0"); }
+			global.rank_stars = ini_read_real("Ranks", "ranks", 0);
 		#endregion
 	ini_close();
 #endregion
@@ -376,6 +390,7 @@
 			//global.hero_nofull_loose[11] = 0;
 		#endregion
 	#endregion
+	/*
 	for(i=1;i<=global.heroes_val;i++)
 		{
 		global.hero_wins[i]  = global.hero_full_wins[i] + global.hero_nofull_wins[i];
@@ -420,23 +435,24 @@
 		for(j=1; j<=global.hero_level[i]-1; j++)
 			{ global.hero_exp[i] -= j * 100; }
 		}
+	*/
 	ini_close();
 #endregion
 #region Характеристики игрока
-	global.player_name  = "Andrew";
-	//global.hero = 1;
-	global.player_rank  = 15;
-	global.rank_stars   = 0;
-	global.weapon = "standard";
+	//global.player_name  = "Andrew";
+	////global.hero = 1;
+	//global.player_rank  = 15;
+	////global.rank_stars   = 0;
+	//global.weapon = "standard";
 	
-	global.enemy_name   = "Werdna";
-	global.enemy_hero   = 3;
-	global.enemy_rank	= 15;
-	global.enemy_weapon = "standard";
-	global.enemy = 0;
+	//global.enemy_name   = "Werdna";
+	//global.enemy_hero   = 3;
+	//global.enemy_rank	= 15;
+	//global.enemy_weapon = "standard";
+	//global.enemy = 0;
 	
-	global.hero		  = choose(1, 2, 3);
-	global.enemy_hero = choose(1, 2, 3);
+	//global.hero		  = choose(1, 2, 3);
+	//global.enemy_hero = choose(1, 2, 3);
 #endregion
 #region Вопросы и темы
 	ini_open("Language/" + string(global.lang) + "/question_text_" + string(global.lang) + ".ini");
@@ -489,7 +505,7 @@
 	str1  = "0123456789?=≠+-/*><."; //"!"+"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя"; 
 	global.math_font = font_add_sprite_ext(s_question_fig, str1, true, 1);
 	
-	str2  = "ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ!?$%'@.,0123456789=≠+-/*><:;()°©ç"; //"!"+"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя"; 
+	str2  = "ABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ!?$%'@.,0123456789=≠+-/*><:;()°~©ç"; //"!"+"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя"; 
 	global.game_font = font_add_sprite_ext(s_game_font, str2, true, 1);
 #endregion
 #region Цвета персонажей
@@ -527,6 +543,62 @@
 		global.totem_desc[i] = "causes damage to the rival hero at the beginning and may damage your hero as well with the 50% possibility";
 		}
 	
+	global.totem_name[1] = "FRIENDLY TOTEM";
+	global.totem_desc[1] = "Increases the hero HP by 5%";
+	
+	global.totem_name[2] = "WARRIOR TOTEM";
+	global.totem_desc[2] = "increases the hero ATK by 5%";
+	
+	global.totem_name[3] = "hostile totem";
+	global.totem_desc[3] = "CRIT demands only one correct answer";
+	
+	global.totem_name[4] = "thinking totem";
+	global.totem_desc[4] = "gives 3 additional seconds to answer";
+	
+	global.totem_name[5] = "grumpy totem";
+	global.totem_desc[5] = "CRIT *2";
+	
+	global.totem_name[6] = "last chance";
+	global.totem_desc[6] = "gives 20% ATK bonus if your rival next attack is mortal";
+	
+	global.totem_name[7] = "joyful totem";
+	global.totem_desc[7] = "you are to choose the theme";
+	
+	global.totem_name[8] = "inaccessible totem";
+	global.totem_desc[8] = "gives immunity to being stunned";
+	
+	global.totem_name[9] = "evasive totem";
+	global.totem_desc[9] = "gives 5% possibility to avoid damage";
+	
+	global.totem_name[10] = "odd frog";
+	global.totem_desc[10] = "turns into other random totem whose power will work";
+	
+	global.totem_name[11] = "happy lion";
+	global.totem_desc[11] = "destroys all totems of either player";
+	
+	global.totem_name[12] = "steel bull";
+	global.totem_desc[12] = "gives 35% possibility to block mortal attack";
+	
+	global.totem_name[13] = "ambiguous panther";
+	global.totem_desc[13] = "causes damage to the rival hero at the beginning and may damage your hero as well with the 50% possibility";
+	
+	global.totem_name[14] = "all-seeing owl";
+	global.totem_desc[14] = "all themes turn into your hero themes";
+	
+	global.totem_name[15] = "purple fox";
+	global.totem_desc[15] = "SUPER demands one less correct answer";
+	
+	global.totem_name[16] = "rat thief";
+	global.totem_desc[16] = "exchanges with your rival totem and its power works";
+	
+	global.totem_name[17] = "treacherous pig";
+	global.totem_desc[17] = "turns all players totems into random ones";
+	
+	global.totem_name[18] = "King cobra";
+	global.totem_desc[18] = "your weapon gets poison at every incorrect answer of your rival";
+	
+	global.totem_name[19] = "RAT";
+	global.totem_desc[19] = "(DO NOTHING)";
 	//// 1 - Увеличивает ХП  персонажа на 5%
 	//// 2 - Увеличивает АТК персонажа на 5%
 	// 3 - КРИТ требует всего 1 верный ответ
@@ -552,8 +624,8 @@
 #endregion
 #region Переменные игрока
 	global.shomen = 0;
-	global.player_level = 7;
-	global.enemy_level  = 7;
+	//global.player_level = 7;
+	//global.enemy_level  = 7;
 	
 	global.gold = 820;
 	global.cash = 500;

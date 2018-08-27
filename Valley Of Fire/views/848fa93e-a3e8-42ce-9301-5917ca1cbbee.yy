@@ -13,7 +13,8 @@
         "b6d37ebb-3765-4d62-9f3b-1dc0bdd2c1c3",
         "ddfd8d5f-3bea-44bb-8d13-2028717331ec",
         "df170815-93b6-4005-8d06-4b5ba1003e41",
-        "fe662303-fee0-44d1-855e-8a5af27f2b32"
+        "fe662303-fee0-44d1-855e-8a5af27f2b32",
+        "720e29af-2bbc-4007-be58-19dd59ed1625"
     ],
     "filterType": "GMSprite",
     "folderName": "Healthbar",
