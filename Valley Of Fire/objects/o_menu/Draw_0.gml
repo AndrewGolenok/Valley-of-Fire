@@ -1,5 +1,5 @@
 #region Шейдер
-	if training_back_y > 0 && 1
+	if training_back_y > 0 && global.lug = 0
 		{
 		var prx, pry;
 		prx = global.paral_x * global.paral_sx;
@@ -23,6 +23,8 @@
 		draw_surface(application_surface, -7.5, -7.5);
 		draw_set_alpha(1);
 		}
+	if fps_real < 60
+		{ global.lug = 1; }
 #endregion
 
 if 0

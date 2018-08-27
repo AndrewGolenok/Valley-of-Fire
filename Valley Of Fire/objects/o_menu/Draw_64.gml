@@ -19,7 +19,11 @@
 			if mouse_check_button(mb_left)
 				{ ms2 = 1.1; }
 			if mouse_check_button_released(mb_left)
-				{ global.menu_next = "totem"; }
+				{
+				totem_yy  = 0;
+				totem_yy1 = 0;
+				global.menu_next = "totem";
+				}
 			}
 		if point_in_rectangle(mouse_x, mouse_y, 640 + 150 - 125,  global.size - 30 - 150, 640 + 150 + 125, global.size - 30 + 125)
 			{
@@ -40,7 +44,11 @@
 			if mouse_check_button(mb_left)
 				{ ms1 = 1.1; }
 			if mouse_check_button_released(mb_left)
-				{ global.menu_next = "heroes"; }
+				{
+				hero_yy  = 0;
+				hero_yy1 = 0;
+				global.menu_next = "heroes";
+				}
 			}
 		
 		draw_set_alpha(0.4)
@@ -86,7 +94,8 @@
 				{ ms5 = 1.1; }
 			if mouse_check_button_released(mb_left)
 				{
-				global.duel = 1;
+				if global.training_o = 1
+					{ global.duel = 1; }
 				global.menu_next = "training";
 				}
 			}
@@ -250,10 +259,31 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 					{ totem_pr = i; }
 				if mouse_check_button_released(mb_left) && totem_re = 0 && totem_yy1 <= 0 && totem_yy1 >= -950
 					{
-					if totem_pr = i// && hold_sp = 0// && totem_yy = 0
-						{ totem_pr = 0; totem_re = 0; totem_now = i; }
+					if global.duel = 0
+						{
+						if totem_pr = i// && hold_sp = 0// && totem_yy = 0
+							{ totem_pr = 0; totem_re = 0; totem_now = i; }
+							else
+							{ totem_pr = 0; totem_re = 0; }
+						}
 						else
-						{ totem_pr = 0; totem_re = 0; }
+						{
+						if global.totem_have[i] = 1
+							{
+							if global.p_totem[3] = -1
+								{ global.p_totem[3] = i; }
+								else
+								{
+								if global.p_totem[2] = -1
+									{ global.p_totem[2] = i; }
+									else
+									{
+									if global.p_totem[1] = -1
+										{ global.p_totem[1] = i; }
+									}
+								}
+							}
+						}
 					}
 				}
 			//draw_rectangle_color(290 + totem_x[i] - totem_s * totem_w, 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + 10 - totem_s * totem_w, 290 + totem_x[i] + totem_s * totem_w, 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + 10 + totem_s * totem_w, c_white, c_white, c_white, c_white, 1);
@@ -263,24 +293,68 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 	draw_sprite_part_ext(s_totem_back, 0, 0, top, sprite_get_width(s_totem_back), sprite_get_height(s_totem_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 	
 	#region Описание тотема
-			/////
-			if (totem_alp >= 1 && totem_adi = 1) or (totem_alp <= 0.5 && totem_adi = -1)
-				{ totem_adi = -totem_adi; }
-			totem_alp += 0.01 * totem_adi;
-		
-			draw_sprite_ext(s_totems, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y + 30, 0.4, 0.4, 0, c_black, 0.5); 
-			if global.totem_have[totem_now] = 1
-				{ draw_sprite_ext(s_totems_light, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, totem_c[totem_now], totem_alp); }
-			draw_sprite_ext(s_totems, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, c_white, 1);
-			if global.totem_have[totem_now] = 0
-				{ draw_sprite_ext(s_totems, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, c_black, 0.4); }
+			if global.duel = 0
+				{
+				/////
+				if (totem_alp >= 1 && totem_adi = 1) or (totem_alp <= 0.5 && totem_adi = -1)
+					{ totem_adi = -totem_adi; }
+				totem_alp += 0.01 * totem_adi;
+				
+				draw_sprite_ext(s_totems, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y + 30, 0.4, 0.4, 0, c_black, 0.5); 
+				if global.totem_have[totem_now] = 1
+					{ draw_sprite_ext(s_totems_light, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, totem_c[totem_now], totem_alp); }
+				draw_sprite_ext(s_totems, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, c_white, 1);
+				if global.totem_have[totem_now] = 0
+					{ draw_sprite_ext(s_totems, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, c_black, 0.4); }
+					else
+					{ draw_sprite_ext(s_totems_eyes, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, totem_c[totem_now], totem_alp); }
+				////
+				draw_text_ext_transformed_t(1280 - 300, global.size / 2 - 100 + training_back_y + 235, string_upper(global.totem_desc[totem_now]), -1, 2500, 0.12, 0.12, 0, global.color_white, c_black);
+				draw_text_ext_transformed_t(1280 - 300, global.size / 2 - 100 + training_back_y + 90, string_upper(global.totem_name[totem_now]), -1, 1000, 0.15, 0.15, 0, totem_c[totem_now], c_black);
+				////
+				}
 				else
-				{ draw_sprite_ext(s_totems_eyes, totem_now, 1280 - 300, global.size / 2 - 100 + training_back_y, 0.4, 0.4, 0, totem_c[totem_now], totem_alp); }
-			////
-			draw_text_ext_transformed_t(1280 - 300, global.size / 2 - 100 + training_back_y + 235, string_upper(global.totem_desc[totem_now]), -1, 2500, 0.12, 0.12, 0, global.color_white, c_black);
-			draw_text_ext_transformed_t(1280 - 300, global.size / 2 - 100 + training_back_y + 90, string_upper(global.totem_name[totem_now]), -1, 1000, 0.15, 0.15, 0, totem_c[totem_now], c_black);
-			////
-		
+				{
+				if (totem_alp >= 1 && totem_adi = 1) or (totem_alp <= 0.5 && totem_adi = -1)
+					{ totem_adi = -totem_adi; }
+				totem_alp += 0.01 * totem_adi;
+				
+				
+				if global.p_totem[1] != -1
+					{
+					draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300, global.size / 2 - 100 + training_back_y + 30, totem_s, totem_s, 0, c_black, 0.5); 
+					if global.totem_have[global.p_totem[1]] = 1
+						{ draw_sprite_ext(s_totems_light, global.p_totem[1], 1280 - 300, global.size / 2 - 100 + training_back_y, totem_s, totem_s, 0, totem_c[global.p_totem[1]], totem_alp); }
+					draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300, global.size / 2 - 100 + training_back_y, totem_s, totem_s, 0, c_white, 1);
+					if global.totem_have[global.p_totem[1]] = 0
+						{ draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300, global.size / 2 - 100 + training_back_y, totem_s, totem_s, 0, c_black, 0.4); }
+						else
+						{ draw_sprite_ext(s_totems_eyes, global.p_totem[1], 1280 - 300, global.size / 2 - 100 + training_back_y, totem_s, totem_s, 0, totem_c[global.p_totem[1]], totem_alp); }
+					}
+				
+				if global.p_totem[2] != -1
+					{
+					draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300, totem_w * totem_s + global.size / 2 - 100 + training_back_y + 30, totem_s, totem_s, 0, c_black, 0.5); 
+					if global.totem_have[global.p_totem[2]] = 1
+						{ draw_sprite_ext(s_totems_light, global.p_totem[2], 1280 - 300, totem_w * totem_s + global.size / 2 - 100 + training_back_y, totem_s, totem_s, 0, totem_c[global.p_totem[2]], totem_alp); }
+					draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300, totem_w * totem_s + global.size / 2 - 100 + training_back_y, totem_s, totem_s, 0, c_white, 1);
+					if global.totem_have[global.p_totem[2]] = 0
+						{ draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300, totem_w * totem_s + global.size / 2 - 100 + training_back_y, totem_s, totem_s, 0, c_black, 0.4); }
+						else
+						{ draw_sprite_ext(s_totems_eyes, global.p_totem[2], 1280 - 300, totem_w * totem_s + global.size / 2 - 100 + training_back_y, totem_s, totem_s, 0, totem_c[global.p_totem[2]], totem_alp); }
+					}
+				if global.p_totem[3] != -1
+					{
+					draw_sprite_ext(s_totems, global.p_totem[3], 1280 - 300, 2 * totem_w * totem_s + global.size / 2 - 100 + training_back_y + 30, totem_s, totem_s, 0, c_black, 0.5); 
+					if global.totem_have[global.p_totem[3]] = 1
+						{ draw_sprite_ext(s_totems_light, global.p_totem[3], 1280 - 300, 2 * totem_w * totem_s + global.size / 2 - 100 + training_back_y, totem_s, totem_s, 0, totem_c[global.p_totem[3]], totem_alp); }
+					draw_sprite_ext(s_totems, global.p_totem[3], 1280 - 300, 2 * totem_w * totem_s + global.size / 2 - 100 + training_back_y, totem_s, totem_s, 0, c_white, 1);
+					if global.totem_have[global.p_totem[3]] = 0
+						{ draw_sprite_ext(s_totems, global.p_totem[3],  1280 - 300, 2 * totem_w * totem_s + global.size / 2 - 100 + training_back_y, totem_s, totem_s, 0, c_black, 0.4); }
+						else
+						{ draw_sprite_ext(s_totems_eyes, global.p_totem[3], 1280 - 300, 2 * totem_w * totem_s + global.size / 2 - 100 + training_back_y, totem_s, totem_s, 0, totem_c[global.p_totem[3]], totem_alp); }
+					}
+				}
 		#endregion
 	
 	var yh, col;
@@ -290,9 +364,17 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 		{ yh = 30; }
 	draw_sprite_ext_t(s_totem_back, 2, 640 - 50, global.size + training_back_y + yh + 20 * (960 / global.size), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 	
-	draw_set_font(global.game_font);
-	draw_text_transformed_t(780, global.size / 2 + training_back_y, "T\nO\nT\nE\nM\nS", 0.22, 0.22, 0, col, c_black);
-			
+	if global.duel = 1
+		{
+		draw_set_font(global.game_font);
+		draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE YOUR TOTEMS", 0.22, 0.22, 0, col, c_black);
+		}
+		else
+		{
+		draw_set_font(global.game_font);
+		draw_text_transformed_t(780, global.size / 2 + training_back_y, "T\nO\nT\nE\nM\nS", 0.22, 0.22, 0, col, c_black);
+		}
+	
 	if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
 		{ sc_angle += sc_dir * sc_spd; }
 		else
@@ -319,7 +401,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 		if mouse_check_button_pressed(mb_left)
 			{
 			if global.duel = 1
-				{ global.menu_next = "heroes"; }
+				{ global.menu_now = "heroes"; global.menu_next = "heroes"; io_clear(); }
 				else
 				{ global.menu_next = "main"; }
 			totem_yy1 = 0;
@@ -388,6 +470,8 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 			{
 			draw_sprite_ext(s_wanted, i, 330 + hero_xx[i] + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + 10 + pry, hero_s * hero_ss[i], hero_s * hero_ss[i], 0, c_black, 0.5); 
 			draw_sprite_ext_t(s_wanted, i, 330 + hero_xx[i] + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + pry, hero_s * hero_ss[i], hero_s * hero_ss[i], 0, c_white, 1, c_white, c_black); 	
+			if global.heroes_have[i] = 0
+				{ draw_sprite_ext(s_wanted, i, 330 + hero_xx[i] + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + pry, hero_s * hero_ss[i], hero_s * hero_ss[i], 0, c_black, 0.5); }
 			
 			draw_set_alpha(0.5);
 			draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15 + pry, 330 + hero_xx[i] + hero_w * hero_s * 1.1 + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15+ pry, c_black, c_black, c_black, c_black, 0);
@@ -503,37 +587,61 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 					{ name = "BILL SR."; }
 				draw_text_transformed_t(1280 - 300, global.size / 2 - 30 + training_back_y + 30, name, 0.2, 0.2, 0, global.color_hero[i], c_black);
 				
-				atkk = global.atk[i] * (0.01 * hero_lvl[i]);
-				hpp  = global.hp[i] * (0.01 * hero_lvl[i]);
-				draw_text_transformed_t(1280 - 300 - 90, global.size / 2 - 30 + training_back_y + 70, "HP: " + string(global.hp[i]), 0.12, 0.12, 0, global.color_white, c_black);
-				draw_text_transformed_t(1280 - 300 - 90, global.size / 2 - 30 + training_back_y + 100, "(+"+string(hpp)+")", 0.12, 0.12, 0, global.color_hero[2], c_black);
-				
-				draw_set_halign(fa_left);
-				draw_text_transformed_t(1280 - 300 + 90, global.size / 2 - 30 + training_back_y + 70, "ATK: " + string(global.atk[i]), 0.12, 0.12, 0, global.color_white, c_black);
-				draw_text_transformed_t(1280 - 300 + 90, global.size / 2 - 30 + training_back_y + 100, "(+"+string(atkk)+")", 0.12, 0.12, 0, global.color_hero[2], c_black);
-				draw_set_halign(fa_center);
-				
-				draw_sprite_ext_t(s_themes_button, 0, 1280 - 300 - 75, global.size / 2 - 30 + training_back_y + 165, 0.3, 0.3, 0, global.color_hero[i], 1, global.color_white, c_black);
-				draw_sprite_ext_t(s_themes_ss, i, 1280 - 300 - 75, global.size / 2 - 30 + training_back_y + 165, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black);
-				draw_sprite_ext_t(s_themes_button, 0, 1280 - 300 + 75, global.size / 2 - 30 + training_back_y + 165, 0.3, 0.3, 0, global.color_hero[i], 1, global.color_hero[i], c_black);
-				draw_sprite_ext_t(s_super, i + 1, 1280 - 300 + 75, global.size / 2 - 30 + training_back_y + 165, 0.45, 0.45, 0, global.color_white, 1, global.color_white, c_black);
-				
-				theme = string_upper(global.hero_code_theme[i]);
-				if i = 4
-					{ theme = "ATTENTION"; }
-				switch(i)
+				if global.duel = 0
 					{
-					case 1: supert = "THEFT"; break;
-					case 2: supert = "STUN"; break;
-					case 3: supert = "POISON"; break;
-					case 4: supert = "DYNAMIT"; break;
-					case 5: supert = "HAZE"; break;
-					case 6: supert = "CRITICAL"; break;
-					case 7: supert = "IDOLS"; break;
+					atkk = global.atk[i] * (0.01 * hero_lvl[i]);
+					hpp  = global.hp[i] * (0.01 * hero_lvl[i]);
+					draw_text_transformed_t(1280 - 300 - 90, global.size / 2 - 30 + training_back_y + 70, "HP: " + string(global.hp[i]), 0.12, 0.12, 0, global.color_white, c_black);
+					draw_text_transformed_t(1280 - 300 - 90, global.size / 2 - 30 + training_back_y + 100, "(+"+string(hpp)+")", 0.12, 0.12, 0, global.color_hero[2], c_black);
+					
+					draw_set_halign(fa_left);
+					draw_text_transformed_t(1280 - 300 + 90, global.size / 2 - 30 + training_back_y + 70, "ATK: " + string(global.atk[i]), 0.12, 0.12, 0, global.color_white, c_black);
+					draw_text_transformed_t(1280 - 300 + 90, global.size / 2 - 30 + training_back_y + 100, "(+"+string(atkk)+")", 0.12, 0.12, 0, global.color_hero[2], c_black);
+					draw_set_halign(fa_center);
+					
+					draw_sprite_ext_t(s_themes_button, 0, 1280 - 300 - 75, global.size / 2 - 30 + training_back_y + 165, 0.3, 0.3, 0, global.color_hero[i], 1, global.color_white, c_black);
+					draw_sprite_ext_t(s_themes_ss, i, 1280 - 300 - 75, global.size / 2 - 30 + training_back_y + 165, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black);
+					draw_sprite_ext_t(s_themes_button, 0, 1280 - 300 + 75, global.size / 2 - 30 + training_back_y + 165, 0.3, 0.3, 0, global.color_hero[i], 1, global.color_hero[i], c_black);
+					draw_sprite_ext_t(s_super, i + 1, 1280 - 300 + 75, global.size / 2 - 30 + training_back_y + 165, 0.45, 0.45, 0, global.color_white, 1, global.color_white, c_black);
+					
+					theme = string_upper(global.hero_code_theme[i]);
+					if i = 4
+						{ theme = "ATTENTION"; }
+					switch(i)
+						{
+						case 1: supert = "THEFT"; break;
+						case 2: supert = "STUN"; break;
+						case 3: supert = "POISON"; break;
+						case 4: supert = "DYNAMIT"; break;
+						case 5: supert = "HAZE"; break;
+						case 6: supert = "CRITICAL"; break;
+						case 7: supert = "IDOLS"; break;
+						}
+					draw_text_transformed_t(1280 - 300 - 75, global.size / 2 - 30 + training_back_y + 165 + 50, theme, 0.12, 0.12, 0, global.color_white, c_black);
+					draw_text_transformed_t(1280 - 300 + 75, global.size / 2 - 30 + training_back_y + 165 + 50, supert, 0.12, 0.12, 0, global.color_white, c_black);
 					}
-				draw_text_transformed_t(1280 - 300 - 75, global.size / 2 - 30 + training_back_y + 165 + 50, theme, 0.12, 0.12, 0, global.color_white, c_black);
-				draw_text_transformed_t(1280 - 300 + 75, global.size / 2 - 30 + training_back_y + 165 + 50, supert, 0.12, 0.12, 0, global.color_white, c_black);
-				
+					else
+					{
+					var himher, go5;
+					if i = 1 or i = 3
+						{ himher = "HER"; }
+						else
+						{ himher = "HIM"; }
+					go5 = 1;
+					//draw_rectangle(1280 - 300 - 100, global.size / 2 - 30 + training_back_y + 230 - 70, 1280 - 300 + 100, global.size / 2 - 30 + training_back_y + 230 + 70, 1);
+					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - 150, global.size / 2 - 30 + training_back_y + 150 - 70, 1280 - 300 + 150, global.size / 2 - 30 + training_back_y + 150 + 70)
+						{
+						if mouse_check_button(mb_left)
+							{ go5 = 1.1; }
+						if mouse_check_button_released(mb_left) && global.heroes_have[i] > 0
+							{
+							global.hero = i;
+							global.duel = 1;
+							global.menu_now = "totem"; global.menu_next = "totem";
+							}
+						}
+					draw_text_transformed_t(1280 - 300, global.size / 2 - 30 + training_back_y + 130 + 20, "CHOOSE\n" + himher, 0.3 * go5, 0.3 * go5, 0, global.color_white, c_black);
+					}
 				//draw_set_alpha(0.5);
 				//draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15, 330 + hero_xx[i] + hero_w * hero_s * 1.1, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15, c_black, c_black, c_black, c_black, 0);
 				//draw_set_alpha(1);
@@ -556,9 +664,16 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 		{ yh = 30; }
 	draw_sprite_ext_t(s_heroes_back, 2, 640, global.size + training_back_y + yh + 40 * (960 / global.size), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 	
-	draw_set_font(global.game_font);
-	draw_text_transformed_t(80, global.size / 2 + training_back_y - 40, "H\nE\nR\nO\nE\nS", 0.22, 0.22, 0, col, c_black);
-			
+	if global.duel = 0
+		{
+		draw_set_font(global.game_font);
+		draw_text_transformed_t(80, global.size / 2 + training_back_y - 40, "H\nE\nR\nO\nE\nS", 0.22, 0.22, 0, col, c_black);
+		}
+		else
+		{
+		draw_set_font(global.game_font);
+		draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE YOUR HERO", 0.22, 0.22, 0, col, c_black);
+		}
 	if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
 		{ sc_angle += sc_dir * sc_spd; }
 		else
@@ -595,8 +710,9 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 				else
 				{
 				hero_i = 0;
-				hero_yy1 = 0;
-				global.menu_next = "training";
+				//hero_yy1 = 0;
+				global.menu_now = "training"; global.menu_next = "training";
+				io_clear();
 				}
 			}
 		}
@@ -770,16 +886,14 @@ if global.menu_now = "training" or global.menu_next = "training"
 			{ training_back_y += global.size / 12; }
 			else
 			{
-			//if global.duel = 1
-			//	{
-			//	if global.menu_next = "main"
-			//		{ global.duel = 0; global.menu_now = "main"; }
-			//	if global.menu_next = "heroes"
-			//		{ global.menu_now = global.menu_next; }
-			//	}
-			//	else
-			//	{ global.menu_now = global.menu_next; }
-			global.menu_now = global.menu_next;
+			if global.duel = 1
+				{
+				if global.menu_next = "main"
+					{ global.duel = 0; global.menu_now = "main"; }
+				}
+				else
+				{ global.menu_now = global.menu_next; }
+			//global.menu_now = global.menu_next;
 			training_back_y = global.size + 350;
 			}
 		}
@@ -1058,7 +1172,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 				{
 				global.player_rank = skul_i;
 				global.duel = 1;
-				global.menu_next = "heroes";
+				global.menu_now = "heroes"; global.menu_next = "heroes";
 				}
 			}
 		//draw_rectangle(640 - 290, global.size / 2 - 60 + 150 + training_back_y, 640 + 290, global.size / 2 + 60 + 150 + training_back_y, 1);

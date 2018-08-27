@@ -1,4 +1,5 @@
 #region Меню
+	global.lug = 0;
 	global.duel = 0;
 	global.menu_now   = "main"; //"main";
 	global.back_scale = 1280 / 2092; //global.size / 1024;

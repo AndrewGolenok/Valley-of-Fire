@@ -1066,19 +1066,19 @@
 #endregion
 #region ТОТЕМЫ
 	global.tot = 0;
-	global.p_totem[1] = 1;
-	global.p_totem[2] = 2;
-	global.p_totem[3] = 3;
+	//global.p_totem[1] = 1;
+	//global.p_totem[2] = 2;
+	//global.p_totem[3] = 3;
 	
-	global.enemy_level = irandom_range(1,10);
+	global.enemy_level = choose(global.enemy_rank, global.playre_rank + 1, global.player_rank - 1); //irandom_range(1,10);
 	#region Случайные тотемы Врага
-		if global.enemy_level <= 4
+		if global.enemy_level >= 12
 			{
 			global.e_totem[1] = choose(irandom_range(1, 6), irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
 			global.e_totem[2] = -1;
 			global.e_totem[3] = -1;
 			}
-		if global.enemy_level > 4 && global.enemy_level < 7
+		if global.enemy_level < 12 && global.enemy_level >= 9
 			{
 			var toi;
 			global.e_totem[1] = choose(irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
@@ -1089,7 +1089,7 @@
 				{ global.e_totem[2] = choose(irandom_range(2, 11), irandom_range(2, 15), irandom_range(2, 18)); }
 			global.e_totem[3] = -1;
 			}
-		if global.enemy_level >= 7
+		if global.enemy_level < 9
 			{
 			var toi;
 			global.e_totem[1] = choose(irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
