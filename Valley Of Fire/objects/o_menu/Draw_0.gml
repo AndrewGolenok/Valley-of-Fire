@@ -25,6 +25,8 @@
 		}
 	if fps_real < 60
 		{ global.lug = 1; }
+		else
+		{ global.lug = 0; }
 #endregion
 
 if 0

@@ -1,5 +1,6 @@
 #region Меню
 	global.lug = 0;
+	global.lug_time = 0;
 	global.duel = 0;
 	global.menu_now   = "main"; //"main";
 	global.back_scale = 1280 / 2092; //global.size / 1024;
@@ -12,6 +13,8 @@
 	sc_dir   = 1;
 	sc_spd   = 0.3;
 	sc_dist  = 5;
+	
+	
 	
 	wl_spd = 0;
 	wl_ang = 0;
@@ -98,6 +101,18 @@
 	totem_s   = 0.25;
 	totem_w   = sprite_get_width(s_totems) * totem_s;
 	totem_r   = 70;
+	
+	totems_y[1] = -(global.size / 2);
+	totems_y[2] = -(global.size / 2 - 100 + totem_w);
+	totems_y[3] = -(global.size / 2 - 100 + totem_w * 2);
+	
+	totems_x[1] = 0;
+	totems_x[2] = 0;
+	totems_x[3] = 0;
+	
+	totems_p[1] = 1;
+	totems_p[2] = 1;
+	totems_p[3] = 1;
 	
 	text_x = totem_w * 0.8;
 	

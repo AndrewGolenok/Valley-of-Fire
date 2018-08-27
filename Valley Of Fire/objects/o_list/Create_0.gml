@@ -1070,7 +1070,7 @@
 	//global.p_totem[2] = 2;
 	//global.p_totem[3] = 3;
 	
-	global.enemy_level = choose(global.enemy_rank, global.playre_rank + 1, global.player_rank - 1); //irandom_range(1,10);
+	global.enemy_level = choose(global.enemy_rank, global.player_rank + 1, global.player_rank - 1); //irandom_range(1,10);
 	#region Случайные тотемы Врага
 		if global.enemy_level >= 12
 			{
