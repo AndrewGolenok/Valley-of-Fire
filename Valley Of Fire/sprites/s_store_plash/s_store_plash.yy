@@ -2,7 +2,7 @@
     "id": "4052c516-06e2-4d7e-a9b2-e7efadd403e0",
     "modelName": "GMSprite",
     "mvc": "1.12",
-    "name": "s_plash_lose1",
+    "name": "s_store_plash",
     "For3D": false,
     "HTile": false,
     "VTile": false,

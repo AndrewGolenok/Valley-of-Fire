@@ -802,7 +802,7 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 			draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15 + pry, 330 + hero_xx[i] - hero_w * hero_s * 1.1 + (2 * hero_w * hero_s * 1.1) * (hero_now1[i] / hero_need[i])+ prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15 + pry, global.color_hero[i], global.color_hero[i], global.color_hero[i], global.color_hero[i], 0);
 			
 			draw_sprite_ext_t(s_themes_ss, i, 330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx + 20, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 - hero_h * hero_s * 1.1 + pry + 20, 0.3, 0.3, 0, global.color_hero[i], 1, global.color_hero[i], c_black);
-			draw_text_transformed_t(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx + 20, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 - hero_h * hero_s * 1.1 + pry + 20, string(hero_lvl[i]) + "", 0.18, 0.18, 0, global.color_white, c_black);
+			draw_text_transformed_t(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx + 20, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 - hero_h * hero_s * 1.1 + pry + 20, string(hero_lvl[i]) + "", 0.18, 0.18, 0, global.color_white, c_black);
 			
 			draw_text_transformed_t(330 + hero_xx[i] + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + pry, "(" + string(hero_now1[i]) + "~" + string(hero_need[i]) + ")", 0.1, 0.1, 0, global.color_white, c_black);
 			}
@@ -1502,13 +1502,47 @@ if global.menu_now = "store" or global.menu_next = "store"
 	
 	////////
 	#region Кнопки магазина
-		draw_text_transformed(640, top + 20 + lootbox_y + training_back_y + totem_yy1 + pry + 10, "LOOTBOXES", 0.25, 0.25, 0);
+		//// ЛУТБОКСЫ
+		draw_sprite_ext(s_store_plash, 0, 640, top + 20 + lootbox_y + training_back_y + totem_yy1 + pry, 0.5, 0.5, 0, c_black, 0.5);
+		draw_sprite_ext(s_store_plash, 0, 640, top + 20 + lootbox_y + training_back_y + totem_yy1 + pry, 0.5, 0.5, 0, c_white, 1);
+		draw_text_transformed_t(640, top + 20 + lootbox_y + training_back_y + totem_yy1 + pry, "LOOTBOXES", 0.25, 0.25, 0, global.color_white, c_black);
 		
-		draw_sprite_ext(s_lootbox1, 0, 640 - 250, top + 80 + lootbox_y + training_back_y + totem_yy1 + pry + 10, 0.5, 0.5, 0, c_black, 0.5);
-		draw_sprite_ext(s_lootbox1, 0, 640 - 250, top + 80 + lootbox_y + training_back_y + totem_yy1 + pry     , 0.5, 0.5, 0, c_white, 1);
+		draw_sprite_ext(s_lootbox1, 0, 640 - 150, top + 80 + lootbox_y + training_back_y + totem_yy1 + pry + 10 + store_yy1, 0.2, 0.2, 0, c_black, 0.5);
+		draw_sprite_ext(s_lootbox1, 0, 640 - 150, top + 80 + lootbox_y + training_back_y + totem_yy1 + pry + store_yy1     , 0.2, 0.2, 0, c_white, 1);
 		
-		draw_sprite_ext(s_lootbox2, 0, 640 + 250, top + 80 + lootbox_y + training_back_y + totem_yy1 + pry + 10, 0.5, 0.5, 0, c_black, 0.5);
-		draw_sprite_ext(s_lootbox2, 0, 640 + 250, top + 80 + lootbox_y + training_back_y + totem_yy1 + pry     , 0.5, 0.5, 0, c_white, 1);
+		draw_sprite_ext(s_lootbox2, 0, 640 + 150, top + 80 + lootbox_y + training_back_y + totem_yy1 + pry + 10 + store_yy1, 0.2, 0.2, 0, c_black, 0.5);
+		draw_sprite_ext(s_lootbox2, 0, 640 + 150, top + 80 + lootbox_y + training_back_y + totem_yy1 + pry + store_yy1     , 0.2, 0.2, 0, c_white, 1);
+		////
+		
+		////// ЕЖЕДНЕВНЫЕ ПОКУПКИ
+		draw_sprite_ext(s_store_plash, 0, 640, top + 20 + daily_y + training_back_y + totem_yy1 + pry, 0.5, 0.5, 0, c_black, 0.5);
+		draw_sprite_ext(s_store_plash, 0, 640, top + 20 + daily_y + training_back_y + totem_yy1 + pry, 0.5, 0.5, 0, c_white, 1);
+		draw_text_transformed_t(640, top + 20 + daily_y + training_back_y + totem_yy1 + pry, "DAILY ITEMS", 0.25, 0.25, 0, global.color_white, c_black);
+		
+		
+		draw_sprite_ext(s_wanted, 1, 640 - 200 + 5, top + 80 + daily_y + training_back_y + totem_yy1 + pry + store_yy1 + 10, 0.2, 0.2, 0, c_black, 0.5);
+		draw_sprite_ext(s_wanted, 2, 640 + 5, top + 80 + daily_y + training_back_y + totem_yy1 + pry + store_yy1 + 10, 0.2, 0.2, 0, black, 0.5);
+		draw_sprite_ext(s_wanted, 3, 640 + 200 + 5, top + 80 + daily_y + training_back_y + totem_yy1 + pry + store_yy1 + 10, 0.2, 0.2, 0, c_black, 0.5);
+		
+		draw_sprite_ext(s_wanted, 1, 640 - 200, top + 80 + daily_y + training_back_y + totem_yy1 + pry + store_yy1, 0.2, 0.2, 0, c_white, 1);
+		draw_sprite_ext(s_wanted, 2, 640, top + 80 + daily_y + training_back_y + totem_yy1 + pry + store_yy1, 0.2, 0.2, 0, c_white, 1);
+		draw_sprite_ext(s_wanted, 3, 640 + 200, top + 80 + daily_y + training_back_y + totem_yy1 + pry + store_yy1, 0.2, 0.2, 0, c_white, 1);
+		///////
+		
+		////// ПОКУПКА ДОЛЛАРОВ
+		draw_sprite_ext(s_store_plash, 0, 640, top + 20 + daily_y + training_back_y + totem_yy1 + pry, 0.5, 0.5, 0, c_black, 0.5);
+		draw_sprite_ext(s_store_plash, 0, 640, top + 20 + daily_y + training_back_y + totem_yy1 + pry, 0.5, 0.5, 0, c_white, 1);
+		draw_text_transformed_t(640, top + 20 + daily_y + training_back_y + totem_yy1 + pry, "DAILY ITEMS", 0.25, 0.25, 0, global.color_white, c_black);
+		
+		
+		draw_sprite_ext(s_wanted, 1, 640 - 200 + 5, top + 80 + daily_y + training_back_y + totem_yy1 + pry + store_yy1 + 10, 0.2, 0.2, 0, c_black, 0.5);
+		draw_sprite_ext(s_wanted, 2, 640 + 5, top + 80 + daily_y + training_back_y + totem_yy1 + pry + store_yy1 + 10, 0.2, 0.2, 0, black, 0.5);
+		draw_sprite_ext(s_wanted, 3, 640 + 200 + 5, top + 80 + daily_y + training_back_y + totem_yy1 + pry + store_yy1 + 10, 0.2, 0.2, 0, c_black, 0.5);
+		
+		draw_sprite_ext(s_wanted, 1, 640 - 200, top + 80 + daily_y + training_back_y + totem_yy1 + pry + store_yy1, 0.2, 0.2, 0, c_white, 1);
+		draw_sprite_ext(s_wanted, 2, 640, top + 80 + daily_y + training_back_y + totem_yy1 + pry + store_yy1, 0.2, 0.2, 0, c_white, 1);
+		draw_sprite_ext(s_wanted, 3, 640 + 200, top + 80 + daily_y + training_back_y + totem_yy1 + pry + store_yy1, 0.2, 0.2, 0, c_white, 1);
+		///////
 		
 		
 		if mouse_check_button(mb_left)

@@ -186,6 +186,15 @@
 	daily_t[2] = 0;
 	daily_t[3] = 0;
 	
+	daily_n[1] = 0;
+	daily_n[2] = 0;
+	daily_n[3] = 0;
+	
+	daily_s[1] = 1;
+	daily_s[2] = 1;
+	daily_s[3] = 1;
+	
+	
 	cash_y   = 700;
 	gold_y   = 1200;
 	
