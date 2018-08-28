@@ -906,7 +906,19 @@
 	accuracy_true = 0;
 	accuracy_all  = 0;
 	
-	rank_stage = 0;
+	g_rank_stage = 0;
+	g_enemy_change = 0;
+	g_star_y = 0;
+	g_star_a = 0;
+	g_rank_y = 0;
+	g_skul_y = 0;
+	g_rank_s = 0;
+	g_skul_s = 0;
+	
+	txt_gold = "";
+	txt_cash = "";
+	
+	g_rank_type = -1;
 #endregion
 #region Бот
 	for(i=1;i<=12;i++)

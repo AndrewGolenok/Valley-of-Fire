@@ -232,7 +232,8 @@
 #endregion
 #region Ранг
 	global.g_rank_now = 0;
-	global.g_rank_now = 0;
+	global.g_stars_need = 0;
+	global.g_stars_now = 0;
 #endregion
 
 #region Главное меню (СТАРОЕ)

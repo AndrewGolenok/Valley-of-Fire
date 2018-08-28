@@ -8433,13 +8433,310 @@ if global.hero = 1 && global.enemy_hero = 1
 		//draw_set_color(c_white);
 		//draw_set_alpha(1);
 		//draw_text_transformed(640, 300 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "RESPECT " + string(respect), finplas * 0.18, 0.18, 0);
-		
 		if fin_y > 0
 			{ fin_y -= 40; }
 			else
 			{
 			if finplas < 1
 				{ finplas += 0.1; }
+				else
+				{
+				if g_rank_stage = 0
+					{ g_rank_stage = 1; }
+				}
+			#region Какой ранг
+				var star_now, star_need, shield_i, skul_i, go5;
+					if global.rank_stars < 70
+						{ star_now = global.rank_stars - 69; star_need = -1; shield_i = 3; skul_i = 0;}
+					if global.rank_stars < 69
+						{ star_now = global.rank_stars - 63; star_need = 6; shield_i = 2; skul_i = 1;}
+					if global.rank_stars < 63
+						{ star_now = global.rank_stars - 57; star_need = 6; shield_i = 2; skul_i = 2;}
+					if global.rank_stars < 57
+						{ star_now = global.rank_stars - 51; star_need = 6; shield_i = 2; skul_i = 3;}
+					if global.rank_stars < 51
+						{ star_now = global.rank_stars - 46; star_need = 5; shield_i = 2; skul_i = 4;}
+					if global.rank_stars < 46
+						{ star_now = global.rank_stars - 41; star_need = 5; shield_i = 2; skul_i = 5;}
+					if global.rank_stars < 41
+						{ star_now = global.rank_stars - 36; star_need = 5; shield_i = 1; skul_i = 6;}
+					if global.rank_stars < 36
+						{ star_now = global.rank_stars - 31; star_need = 5; shield_i = 1; skul_i = 7;}
+					if global.rank_stars < 31
+						{ star_now = global.rank_stars - 26; star_need = 5; shield_i = 1; skul_i = 8;}
+					if global.rank_stars < 26
+						{ star_now = global.rank_stars - 21; star_need = 5; shield_i = 1; skul_i = 9;}
+					if global.rank_stars < 21
+						{ star_now = global.rank_stars - 16; star_need = 5; shield_i = 1; skul_i = 10;}
+					if global.rank_stars < 16
+						{ star_now = global.rank_stars - 12; star_need = 4; shield_i = 0; skul_i = 11;}
+					if global.rank_stars < 12
+						{ star_now = global.rank_stars - 8; star_need = 4; shield_i = 0; skul_i = 12;}
+					if global.rank_stars < 8
+						{ star_now = global.rank_stars - 5; star_need = 3; shield_i = 0; skul_i = 13;}
+					if global.rank_stars < 5
+						{ star_now = global.rank_stars - 2; star_need = 3; shield_i = 0; skul_i = 14;}
+					if global.rank_stars < 2
+						{ star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15;}
+					if g_rank_type = -1
+						{
+						if whowin = 0 && star_now - 1 < 0
+							{ g_rank_type = 1; g_star_y = 0; }
+						if whowin = 0 && star_now - 1 >= 0
+							{ g_rank_type = 2; g_star_y = 0;  }
+						if whowin = 1 && star_now + 1 < star_need
+							{ g_rank_type = 3; g_star_y = -global.size / 2 - 50;  }
+						if whowin = 1 && star_now + 1 = star_need
+							{ g_rank_type = 4; g_star_y = -global.size / 2 - 50;  }
+						}
+			#endregion
+			
+			if g_enemy_change = 0
+				{
+				g_enemy_change = choose(0, 0, 1);
+				if g_enemy_change = 1
+					{
+					if whowin = 1
+						{ global.enemy_rank -= 1; }
+						else
+						{ global.enemy_rank += 1; }
+					if global.enemy_rank > 15
+						{ global.enemy_rank = 15; }
+					if global.enemy_rank < 0
+						{ global.enemy_rank = 0; }
+					}
+				}
+			
+			/////////
+			if g_rank_stage = 1	
+				{
+				if g_rank_s  < 1
+					{ g_rank_s += 0.21; }
+					else
+					{ g_rank_s = 1; g_rank_stage = 2; }
+				}
+			////////////
+			if g_rank_stage = 2
+				{
+				if g_star_a  < 1
+					{ g_star_a  += 0.1; }
+					else
+					{ g_rank_stage = 3; }
+				}
+			//////////
+			if g_rank_stage = 3
+				{
+				if g_rank_type = 1
+					{
+					g_rank_stage = 4;
+					}
+				if g_rank_type = 2
+					{
+					if g_star_y = 0
+						{ global.rank_stars -= 1; }
+					if g_star_y < global.size / 2 + 50
+						{ g_star_y += 40; }
+						else
+						{ g_rank_stage = 6; }//{ g_rank_stage = 4; }
+					}
+				if g_rank_type = 3
+					{
+					if g_star_y = -global.size / 2 - 50
+						{ global.rank_stars += 1; }
+					if g_star_y < 0
+						{ g_star_y += 40; }
+						else
+						{ g_rank_stage = 6; }//{ g_rank_stage = 4; }
+					}
+				if g_rank_type = 4
+					{
+					g_rank_stage = 4;
+					}
+				}
+			//////////////
+			if g_rank_stage = 4
+				{
+				if g_rank_type = 1
+					{
+					//if g_skul_s > 0
+						{
+						if g_skul_y < global.size / 2 + 200
+							{ g_skul_y += 50; }
+							else
+							{ global.rank_stars -= 1; g_rank_stage = 5; g_skul_y = 0; g_skul_s = 0; }
+						}
+					}
+				//if g_rank_type = 2
+				//	{
+				//	g_rank_stage = 5;
+				//	}
+				//if g_rank_type = 3
+				//	{
+				//	g_rank_stage = 5;
+				//	}
+				if g_rank_type = 4
+					{
+					//if g_skul_s > 0
+						{
+						if g_skul_y > -global.size / 2 - 200
+							{ g_skul_y -= 50; }
+							else
+							{ global.rank_stars += 1; g_rank_stage = 5; g_skul_y = 0; g_skul_s = 10; }
+						}
+					}
+				}
+			////
+			if g_rank_stage = 5
+				{
+				if g_rank_type = 1
+					{
+					if g_skul_s < 1
+						{ g_skul_s += 0.2; }
+						else
+						{ g_rank_stage = 6; }
+					}
+				if g_rank_type = 4
+					{
+					if g_skul_s > 0
+						{ g_skul_s -= 0.5; }
+						else
+						{ g_rank_stage = 6; }
+					}
+				}
+			///////
+			if g_rank_stage = 6
+				{
+				//if g_rank_type = 1
+				//	{ g_rank_stage = 7; }
+				if g_rank_type = 2
+					{
+					txt_gold = "+5©"
+					}
+				if g_rank_type = 3
+					{
+					txt_gold = "+10©";
+					txt_cash = "+1ç";
+					}
+				if g_rank_type = 4
+					{
+					txt_gold = "+15©";
+					txt_cash = "+2ç";
+					}
+				g_rank_stage = 7;
+				}
+			///////
+			if g_rank_stage = 7
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(640, global.size - 60 + fin_y, "TAP TO GO MENU", 0.2, 0.2, 0, c_white, c_black);
+				
+				if mouse_check_button_pressed(mb_left)
+					{
+					global.p_totem[1] = -1;
+					global.p_totem[2] = -1;
+					global.p_totem[3] = -1;
+					room_goto_t("menu");
+					}
+				}
+			////////
+			
+			if g_rank_stage >= 1
+				{
+				#region Ранг
+					draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50 + 15 + training_back_y, 1 * g_rank_s, 1 * g_rank_s, 0, c_black, 0.5);
+					draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50 + training_back_y, 1 * g_rank_s, 1 * g_rank_s, 0, c_white, 1);
+		
+					draw_sprite_ext(s_rank_skul, skul_i, 640, g_skul_y + global.size / 2 - 50 + 15 + training_back_y, 1 * g_rank_s * g_skul_s, 1 * g_rank_s * g_skul_s, 0, c_black, 0.5);
+					draw_sprite_ext(s_rank_skul, skul_i, 640, g_skul_y + global.size / 2 - 50 + training_back_y, 1 * g_rank_s * g_skul_s, 1 * g_rank_s * g_skul_s, 0, c_white, 1);	
+		
+					if g_rank_stage >= 2 && (g_rank_stage != 4 or g_rank_type != 1)
+						{
+						draw_set_alpha(g_star_a );
+						if star_need = 2
+							{
+							draw_sprite_ext_t(s_rank_star, 0, 640 - 30, g_skul_y + global.size / 2 + 35 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 + 30, global.size / 2 + 35 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							
+							if star_now > 0
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 30, global.size / 2 + 35 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 1
+								{ draw_sprite_ext(s_rank_star, 0, 640 + 30, g_star_y + global.size / 2 + 35, 0.3, 0.3, 0, c_white, 1); }
+							}
+						if star_need = 3
+							{
+							draw_sprite_ext_t(s_rank_star, 0, 640 - 70, global.size / 2 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 70 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 + 70, global.size / 2+ training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+			
+							if star_now > 0
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 70, global.size / 2 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 1
+								{ draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 70 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 2
+								{ draw_sprite_ext(s_rank_star, 0, 640 + 30, g_star_y + global.size / 2 + 35, 0.3, 0.3, 0, c_white, 1); }
+							}
+						if star_need = 4
+							{
+							draw_sprite_ext_t(s_rank_star, 0, 640 - 110, global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 - 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 + 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 + 110, global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+			
+							if star_now > 0
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 110, global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 1
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 2
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 3
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 110, g_star_y + global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							}
+						if star_need = 5
+							{
+							draw_sprite_ext_t(s_rank_star, 0, 640 - 100, global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 - 60, global.size / 2 + 15+ training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 + 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 + 100, global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+			
+							if star_now > 0
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 100, global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 1
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 2
+								{ draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 3
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 4
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 100, g_star_y + global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							}
+						if star_need = 6
+							{
+							draw_sprite_ext_t(s_rank_star, 0, 640 - 120, global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 - 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 - 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 + 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 + 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_rank_star, 0, 640 + 120, global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+			
+							if star_now > 0
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 120, global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 1
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 2
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 3
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 4
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							if star_now > 5
+								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 120, g_star_y + global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+							}
+						draw_set_alpha(1);
+						}
+					draw_text_transformed_t(640, global.size / 2 - 150 + training_back_y, string(skul_i), 0.27 * g_rank_s, 0.27 * g_rank_s, 5, global.color_white, c_black);
+				#endregion
+				}	
 				
 			if 0
 				{

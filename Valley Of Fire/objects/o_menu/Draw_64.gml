@@ -1234,6 +1234,9 @@ if global.menu_now = "training" or global.menu_next = "training"
 		draw_text_transformed_t(640, global.size / 2 + 150 + training_back_y, "CHOOSE HERO", 0.27 * go5, 0.27 * go5, 5, global.color_white, c_black);
 		//ИГРА
 		
+		//global.g_rank_now = 0;
+		//global.g_stars_need = 0;
+		//global.g_stars_now = 0;
 		}
 	
 	draw_sprite_part_ext(s_training_back, 0, 0, top, sprite_get_width(s_training_back), sprite_get_height(s_training_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
