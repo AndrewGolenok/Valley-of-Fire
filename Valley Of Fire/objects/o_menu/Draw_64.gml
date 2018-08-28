@@ -8,12 +8,14 @@
 	if global.menu_next = "main" or global.menu_now = "main"
 		{
 		// КНОПКИ
-		var ms1, ms2, ms3, ms4, ms5;
+		var ms1, ms2, ms3, ms4, ms5, ms6;
 		ms1 = 1;
 		ms2 = 1;
 		ms3 = 1
 		ms4 = 1;
+		
 		ms5 = 1;
+		ms6 = 1;
 		if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 125,  global.size - 30 - 125, 640 - 150 + 125, global.size - 30 + 125)
 			{
 			if mouse_check_button(mb_left)
@@ -74,13 +76,17 @@
 		draw_set_alpha(1);
 		// КНОПКИ
 		
+		var sc_scale;
+		sc_scale = 1;
+		if global.size < 0
+			{ sc_scale = 0.4 + 0.7 * (global.size / 960); }
 		// ЛОГО
-		draw_sprite_ext(s_logo1_smartcowboys, 0, 640, 80, 0.35, 0.35, 0, c_white, 1);
-		draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 80 + 120, 0.35, 0.35, 0, c_white, 1);
-		draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 80 + 120, 0.35, 0.35, 0, c_red, 0.75);
+		draw_sprite_ext(s_logo1_smartcowboys, 0, 640, 80, 0.35 * sc_scale, 0.35 * sc_scale, 0, c_white, 1);
+		draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 80 + 120 * sc_scale, 0.35 * sc_scale, 0.35 * sc_scale, 0, c_white, 1);
+		draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 80 + 120 * sc_scale, 0.35 * sc_scale, 0.35 * sc_scale, 0, c_red, 0.75);
 		
-		draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 80 + 50, 0.35, 0.35, 10, c_white, 1);
-		draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 80 + 50, 0.35, 0.35, 10, c_red, 0.75);
+		draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 80 + 50 * sc_scale, 0.35 * sc_scale, 0.35 * sc_scale, 10, c_white, 1);
+		draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 80 + 50 * sc_scale, 0.35 * sc_scale, 0.35 * sc_scale, 10, c_red, 0.75);
 		// ЛОГО
 		
 		// ИГРА
@@ -92,7 +98,7 @@
 		//draw_set_alpha(1);
 		
 		//// БЫСТРАЯ ИГРА
-		if point_in_rectangle(mouse_x, mouse_y, 640 - 30, global.size / 2 + 20 - 60, 640 + string_width("QUICK PLAY") * 0.27 - 30, global.size / 2 + 20 + 60)
+		if point_in_rectangle(mouse_x, mouse_y, 640 - string_width("œQUICK PLAYœ") * 0.22 / 2, global.size / 2 - string_height("œQUICK PLAYœ") * 0.22 - 10, 640 + string_width("œQUICK PLAYœ") * 0.22 / 2, global.size / 2 - 10)
 			{
 			if mouse_check_button(mb_left)
 				{ ms5 = 1.1; }
@@ -107,7 +113,7 @@
 					}
 				r_heroes = real(string_copy(heroes, irandom_range(1, string_length(heroes)), 1));
 				
-				var totems, r_t1, r_t2, r_t3, n_totem;
+				var totems, r_t1, r_t2, r_t3, n_totem, ti;
 				totems = "";
 				n_totem = irandom(1)
 				
@@ -120,24 +126,37 @@
 						}
 					if string_length(totems) >= 3
 						{
-						r_t3 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
-						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
-						r_t2 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
-						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
-						r_t1 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						ti = irandom_range(1, string_length(totems));
+						r_t3 = real(string_copy(totems, ti, 1));
+						totems = string_delete(totems, ti, 1);
+						
+						ti = irandom_range(1, string_length(totems));
+						r_t2 = real(string_copy(totems, ti, 1));
+						totems = string_delete(totems, ti, 1);
+						
+						ti = irandom_range(1, string_length(totems));
+						r_t1 = real(string_copy(totems, ti, 1));
 						}
 					if string_length(totems) = 2
 						{
-						r_t3 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
-						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
-						r_t2 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						ti = irandom_range(1, string_length(totems));
+						r_t3 = real(string_copy(totems, ti, 1));
+						totems = string_delete(totems, ti, 1);
+						
+						ti = irandom_range(1, string_length(totems));
+						r_t2 = real(string_copy(totems, ti, 1));
+						totems = string_delete(totems, ti, 1);
+						
 						r_t1 = -1;
 						}
 					if string_length(totems) = 1
 						{
-						r_t3 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
-						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
+						ti = irandom_range(1, string_length(totems));
+						r_t3 = real(string_copy(totems, ti, 1));
+						totems = string_delete(totems, ti, 1);
+						
 						r_t2 = -1;
+						
 						r_t1 = -1;
 						}
 					}
@@ -150,24 +169,37 @@
 						}
 					if string_length(totems) >= 3
 						{
-						r_t3 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
-						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
-						r_t2 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
-						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
-						r_t1 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						ti = irandom_range(1, string_length(totems));
+						r_t3 = real(string_copy(totems, ti, 1));
+						totems = string_delete(totems, ti, 1);
+						
+						ti = irandom_range(1, string_length(totems));
+						r_t2 = real(string_copy(totems, ti, 1));
+						totems = string_delete(totems, ti, 1);
+						
+						ti = irandom_range(1, string_length(totems));
+						r_t1 = real(string_copy(totems, ti, 1));
 						}
 					if string_length(totems) = 2
 						{
-						r_t3 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
-						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
-						r_t2 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						ti = irandom_range(1, string_length(totems));
+						r_t3 = real(string_copy(totems, ti, 1));
+						totems = string_delete(totems, ti, 1);
+						
+						ti = irandom_range(1, string_length(totems));
+						r_t2 = real(string_copy(totems, ti, 1));
+						totems = string_delete(totems, ti, 1);
+						
 						r_t1 = -1;
 						}
 					if string_length(totems) = 1
 						{
-						r_t3 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
-						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
+						ti = irandom_range(1, string_length(totems));
+						r_t3 = real(string_copy(totems, ti, 1));
+						totems = string_delete(totems, ti, 1);
+						
 						r_t2 = -1;
+						
 						r_t1 = -1;
 						}
 					}
@@ -182,15 +214,15 @@
 				room_goto_t("duel");
 				}
 			}
-		
-		draw_text_transformed_t(640 - string_width("QUICK PLAY") * 0.27 - 30, global.size / 2 + 20, "QUICK PLAY", 0.27 * ms5, 0.27 * ms5, 5, global.color_white, c_black);
+		//draw_rectangle(640 - string_width("QUICK PLAY") * 0.22 - 30, global.size / 2 + 20, 640 - 30, global.size / 2 + 20, 1);
+		draw_text_transformed_t(640, global.size / 2 - string_height("œQUICK PLAYœ") * 0.22 / 2 - 10, "œQUICK PLAYœ", 0.22 * ms5, 0.22 * ms5, 5, global.color_white, c_black);
 		//БЫСТРАЯ ИГРА
 		
 		//// РАНКЕД ДУЭЛЬ
-		if point_in_rectangle(mouse_x, mouse_y, 640 + 30, global.size / 2 + 20 - 60, 640 - string_width("RANKED DUEL") * 0.27 + 30, global.size / 2 + 20 + 60)
+		if point_in_rectangle(mouse_x, mouse_y, 640 - string_width("®RANKED®") * 0.22 / 2, global.size / 2 + 10, 640 + string_width("®RANKED®") * 0.22 / 2, global.size / 2 + string_height("®RANKED®") * 0.22 + 10)
 			{
 			if mouse_check_button(mb_left)
-				{ ms5 = 1.1; }
+				{ ms6 = 1.1; }
 			if mouse_check_button_released(mb_left)
 				{
 				global.duel = 1;
@@ -198,7 +230,7 @@
 				}
 			}
 		
-		draw_text_transformed_t(640 + string_width("RANKED DUEL") * 0.27 + 30, global.size / 2 + 20, "RANKED DUEL", 0.27 * ms5, 0.27 * ms5, 5, global.color_white, c_black);
+		draw_text_transformed_t(640, global.size / 2 + string_height("®RANKED®") * 0.22 / 2 + 10, "®RANKED®", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black);
 		//РАНКЕД ДУЭЛЬ
 		}
 #endregion
@@ -254,12 +286,12 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 	#region Сами тотемы
 		for(i=1;i<=18;i++)
 			{
-			draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + 10 + pry, totem_s, totem_s, 0, c_black, 0.5); 
-			draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + pry, totem_s * totems_ss[i], totem_s * totems_ss[i], 0, c_white, 1);
+			draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, 160 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + 10 + pry, totem_s, totem_s, 0, c_black, 0.5); 
+			draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, 160 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + pry, totem_s * totems_ss[i], totem_s * totems_ss[i], 0, c_white, 1);
 			if global.totem_have[i] = 0
-				{ draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + pry, totem_s * totems_ss[i], totem_s * totems_ss[i], 0, c_black, 0.4); }
+				{ draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, 160 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + pry, totem_s * totems_ss[i], totem_s * totems_ss[i], 0, c_black, 0.4); }
 				else
-				{ draw_sprite_ext(s_totems_eyes, i, 290 + totem_x[i] + prx, 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + pry, totem_s * totems_ss[i], totem_s * totems_ss[i], 0, totem_c[i], totem_alp); }
+				{ draw_sprite_ext(s_totems_eyes, i, 290 + totem_x[i] + prx, 160 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + pry, totem_s * totems_ss[i], totem_s * totems_ss[i], 0, totem_c[i], totem_alp); }
 			}
 		
 		//draw_set_alpha(0.5);
@@ -278,10 +310,10 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 		//draw_text_transformed_t(290 + text_x, 8 + 140 + 360 - top + text_y[4] + training_back_y + totem_yy1, text_tot[4], 0.2, 0.2, 0, totem_c[16], c_black);
 		//draw_set_alpha(1);
 		
-		draw_text_transformed_t(290 + text_x + prx, 140 + 360 - top + text_y[1] + training_back_y + totem_yy1 + pry, text_tot[1], 0.2, 0.2, 0, totem_c[1], c_black);
-		draw_text_transformed_t(290 + text_x + prx, 140 + 360 - top + text_y[2] + training_back_y + totem_yy1 + pry, text_tot[2], 0.2, 0.2, 0, totem_c[7], c_black);
-		draw_text_transformed_t(290 + text_x + prx, 140 + 360 - top + text_y[3] + training_back_y + totem_yy1 + pry, text_tot[3], 0.2, 0.2, 0, totem_c[12], c_black);
-		draw_text_transformed_t(290 + text_x + prx, 140 + 360 - top + text_y[4] + training_back_y + totem_yy1 + pry, text_tot[4], 0.2, 0.2, 0, totem_c[16], c_black);
+		draw_text_transformed_t(290 + text_x + prx, 160 + 360 - top + text_y[1] + training_back_y + totem_yy1 + pry, text_tot[1], 0.2, 0.2, 0, totem_c[1], c_black);
+		draw_text_transformed_t(290 + text_x + prx, 160 + 360 - top + text_y[2] + training_back_y + totem_yy1 + pry, text_tot[2], 0.2, 0.2, 0, totem_c[7], c_black);
+		draw_text_transformed_t(290 + text_x + prx, 160 + 360 - top + text_y[3] + training_back_y + totem_yy1 + pry, text_tot[3], 0.2, 0.2, 0, totem_c[12], c_black);
+		draw_text_transformed_t(290 + text_x + prx, 160 + 360 - top + text_y[4] + training_back_y + totem_yy1 + pry, text_tot[4], 0.2, 0.2, 0, totem_c[16], c_black);
 		
 		if mouse_check_button(mb_left)
 		&& point_in_rectangle(mouse_x, mouse_y, 120, global.size / 2 - 270, 720, global.size / 2 + 270)
@@ -756,21 +788,21 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 	#region Листовки
 		for(i=1;i<=7;i++)
 			{
-			draw_sprite_ext(s_wanted, i, 330 + hero_xx[i] + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + 10 + pry, hero_s * hero_ss[i], hero_s * hero_ss[i], 0, c_black, 0.5); 
-			draw_sprite_ext_t(s_wanted, i, 330 + hero_xx[i] + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + pry, hero_s * hero_ss[i], hero_s * hero_ss[i], 0, c_white, 1, c_white, c_black); 	
+			draw_sprite_ext(s_wanted, i, 330 + hero_xx[i] + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + 10 + pry, hero_s * hero_ss[i], hero_s * hero_ss[i], 0, c_black, 0.5); 
+			draw_sprite_ext_t(s_wanted, i, 330 + hero_xx[i] + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + pry, hero_s * hero_ss[i], hero_s * hero_ss[i], 0, c_white, 1, c_white, c_black); 	
 			if global.heroes_have[i] = 0
-				{ draw_sprite_ext(s_wanted, i, 330 + hero_xx[i] + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + pry, hero_s * hero_ss[i], hero_s * hero_ss[i], 0, c_black, 0.5); }
+				{ draw_sprite_ext(s_wanted, i, 330 + hero_xx[i] + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + pry, hero_s * hero_ss[i], hero_s * hero_ss[i], 0, c_black, 0.5); }
 			
 			draw_set_alpha(0.5);
-			draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15 + pry, 330 + hero_xx[i] + hero_w * hero_s * 1.1 + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15+ pry, c_black, c_black, c_black, c_black, 0);
+			draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15 + pry, 330 + hero_xx[i] + hero_w * hero_s * 1.1 + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15+ pry, c_black, c_black, c_black, c_black, 0);
 			draw_set_alpha(1);
 			
-			draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15 + pry, 330 + hero_xx[i] - hero_w * hero_s * 1.1 + (2 * hero_w * hero_s * 1.1) * (hero_now1[i] / hero_need[i])+ prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15 + pry, global.color_hero[i], global.color_hero[i], global.color_hero[i], global.color_hero[i], 0);
+			draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15 + pry, 330 + hero_xx[i] - hero_w * hero_s * 1.1 + (2 * hero_w * hero_s * 1.1) * (hero_now1[i] / hero_need[i])+ prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15 + pry, global.color_hero[i], global.color_hero[i], global.color_hero[i], global.color_hero[i], 0);
 			
-			draw_sprite_ext_t(s_themes_ss, i, 330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx + 20, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 - hero_h * hero_s * 1.1 + pry + 20, 0.3, 0.3, 0, global.color_hero[i], 1, global.color_hero[i], c_black);
-			draw_text_transformed_t(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx + 20, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 - hero_h * hero_s * 1.1 + pry + 20, string(hero_lvl[i]) + "", 0.18, 0.18, 0, global.color_white, c_black);
+			draw_sprite_ext_t(s_themes_ss, i, 330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx + 20, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 - hero_h * hero_s * 1.1 + pry + 20, 0.3, 0.3, 0, global.color_hero[i], 1, global.color_hero[i], c_black);
+			draw_text_transformed_t(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx + 20, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 - hero_h * hero_s * 1.1 + pry + 20, string(hero_lvl[i]) + "", 0.18, 0.18, 0, global.color_white, c_black);
 			
-			draw_text_transformed_t(330 + hero_xx[i] + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + pry, "(" + string(hero_now1[i]) + "~" + string(hero_need[i]) + ")", 0.1, 0.1, 0, global.color_white, c_black);
+			draw_text_transformed_t(330 + hero_xx[i] + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + pry, "(" + string(hero_now1[i]) + "~" + string(hero_need[i]) + ")", 0.1, 0.1, 0, global.color_white, c_black);
 			}
 		if mouse_check_button(mb_left)
 		&& point_in_rectangle(mouse_x, mouse_y, 120, global.size / 2 - 270, 720, global.size / 2 + 270)
@@ -1186,7 +1218,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 						{ hand_i += 0.4; }
 						else
 						{ hand_i = 0; }
-					draw_sprite_ext(s_training_hand, hand_i, theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, 1, 1, 0, c_white, 1);
+					draw_sprite_ext_t(s_training_hand, hand_i, theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
 					}
 				draw_set_font(global.game_font);
 				//draw_text_transformed_t(global.size / 2, 100 + training_back_y, "T\nR\nA\nI\nN\nI\nN\nG", 0.3, 0.3, 0, global.color_white, c_black);
@@ -1258,89 +1290,91 @@ if global.menu_now = "training" or global.menu_next = "training"
 		if global.rank_stars < 2
 			{ star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15;}
 		
-		draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50 + 15 + training_back_y, 1, 1, 0, c_black, 0.5);
-		draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50 + training_back_y, 1, 1, 0, c_white, 1);
-		
-		draw_sprite_ext(s_rank_skul, skul_i, 640, global.size / 2 - 50 + 15 + training_back_y, 1, 1, 0, c_black, 0.5);
-		draw_sprite_ext(s_rank_skul, skul_i, 640, global.size / 2 - 50 + training_back_y, 1, 1, 0, c_white, 1);	
-		
-		if star_need = 2
+		if global.training_o = 1
 			{
-			draw_sprite_ext_t(s_rank_star, 0, 640 - 30, global.size / 2 + 35 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 + 30, global.size / 2 + 35 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+			draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50 + 15 + training_back_y, 1, 1, 0, c_black, 0.5);
+			draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50 + training_back_y, 1, 1, 0, c_white, 1);
 			
-			if star_now > 0
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 30, global.size / 2 + 35 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			//if star_now > 1
-			//	{ draw_sprite_ext(s_rank_star, 0, 640 + 30, global.size / 2 + 35, 0.3, 0.3, 0, c_white, 1); }
-			}
-		if star_need = 3
-			{
-			draw_sprite_ext_t(s_rank_star, 0, 640 - 70, global.size / 2 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 70 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 + 70, global.size / 2+ training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+			draw_sprite_ext(s_rank_skul, skul_i, 640, global.size / 2 - 50 + 15 + training_back_y, 1, 1, 0, c_black, 0.5);
+			draw_sprite_ext(s_rank_skul, skul_i, 640, global.size / 2 - 50 + training_back_y, 1, 1, 0, c_white, 1);	
 			
-			if star_now > 0
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 70, global.size / 2 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			if star_now > 1
-				{ draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 70 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			//if star_now > 2
-			//	{ draw_sprite_ext(s_rank_star, 0, 640 + 30, global.size / 2 + 35, 0.3, 0.3, 0, c_white, 1); }
-			}
-		if star_need = 4
-			{
-			draw_sprite_ext_t(s_rank_star, 0, 640 - 110, global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 - 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 + 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 + 110, global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+			if star_need = 2
+				{
+				draw_sprite_ext_t(s_rank_star, 0, 640 - 30, global.size / 2 + 35 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 + 30, global.size / 2 + 35 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
 			
-			if star_now > 0
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 110, global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			if star_now > 1
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			if star_now > 2
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 + 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			}
-		if star_need = 5
-			{
-			draw_sprite_ext_t(s_rank_star, 0, 640 - 100, global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 - 60, global.size / 2 + 15+ training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 + 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 + 100, global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				if star_now > 0
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 - 30, global.size / 2 + 35 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				//if star_now > 1
+				//	{ draw_sprite_ext(s_rank_star, 0, 640 + 30, global.size / 2 + 35, 0.3, 0.3, 0, c_white, 1); }
+				}
+			if star_need = 3
+				{
+				draw_sprite_ext_t(s_rank_star, 0, 640 - 70, global.size / 2 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 70 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 + 70, global.size / 2+ training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
 			
-			if star_now > 0
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 100, global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			if star_now > 1
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			if star_now > 2
-				{ draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			if star_now > 3
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 + 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			}
-		if star_need = 6
-			{
-			draw_sprite_ext_t(s_rank_star, 0, 640 - 120, global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 - 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 - 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 + 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 + 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_rank_star, 0, 640 + 120, global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				if star_now > 0
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 - 70, global.size / 2 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				if star_now > 1
+					{ draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 70 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				//if star_now > 2
+				//	{ draw_sprite_ext(s_rank_star, 0, 640 + 30, global.size / 2 + 35, 0.3, 0.3, 0, c_white, 1); }
+				}
+			if star_need = 4
+				{
+				draw_sprite_ext_t(s_rank_star, 0, 640 - 110, global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 - 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 + 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 + 110, global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
 			
-			if star_now > 0
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 120, global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			if star_now > 1
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			if star_now > 2
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			if star_now > 3
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 + 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-			if star_now > 4
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 + 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				if star_now > 0
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 - 110, global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				if star_now > 1
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 - 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				if star_now > 2
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 + 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				}
+			if star_need = 5
+				{
+				draw_sprite_ext_t(s_rank_star, 0, 640 - 100, global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 - 60, global.size / 2 + 15+ training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 + 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 + 100, global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+			
+				if star_now > 0
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 - 100, global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				if star_now > 1
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 - 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				if star_now > 2
+					{ draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				if star_now > 3
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 + 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				}
+			if star_need = 6
+				{
+				draw_sprite_ext_t(s_rank_star, 0, 640 - 120, global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 - 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 - 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 + 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 + 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				draw_sprite_ext_t(s_rank_star, 0, 640 + 120, global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
+				
+				if star_now > 0
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 - 120, global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				if star_now > 1
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 - 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				if star_now > 2
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 - 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				if star_now > 3
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 + 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				if star_now > 4
+					{ draw_sprite_ext_t(s_rank_star, 0, 640 + 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
+				}
+			
+			draw_text_transformed_t(640, global.size / 2 - 150 + training_back_y, string(skul_i), 0.27, 0.27, 5, global.color_white, c_black);
 			}
-		
-		draw_text_transformed_t(640, global.size / 2 - 150 + training_back_y, string(skul_i), 0.27, 0.27, 5, global.color_white, c_black);
-		
 		go5 = 1;
 		if global.training_o = 1
 			{
@@ -1363,13 +1397,14 @@ if global.menu_now = "training" or global.menu_next = "training"
 		//global.g_stars_need = 0;
 		//global.g_stars_now = 0;
 		}
+	
 	if global.training_o != 1 && global.duel = 1
 		{
-		draw_set_alpha(0.5);
-		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+		draw_set_alpha(0.45);
+		draw_rectangle_color(0, 0, 1280, global.size + training_back_y, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
 		
-		draw_text_ext_transformed_t(640, global.size / 2 + training_back_y, "YOU HAVE NOT FINISHED TRAINING YET!", -1, 1200, 0.27 * go5, 0.27 * go5, 25, global.color_white, c_black);
+		draw_text_ext_transformed_t(640 + prx, global.size / 2 + training_back_y + pry, "YOU HAVE NOT FINISHED TRAINING YET!", -1, 1200, 0.27 * go5, 0.27 * go5, -25, global.color_white, c_black);
 		}
 	draw_sprite_part_ext(s_training_back, 0, 0, top, sprite_get_width(s_training_back), sprite_get_height(s_training_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 	var yh, col;

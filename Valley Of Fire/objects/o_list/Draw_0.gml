@@ -8937,7 +8937,7 @@ if global.hero = 1 && global.enemy_hero = 1
 					else
 					{
 					draw_sprite_ext(s_sunmoon, 0, 640, global.size / 2 - 50 + 15, 0.5, 0.5, 0, c_black, 0.5);
-					draw_sprite_ext(s_sunmoon, 0, 640, global.size / 2 - 50, 0.5, 0.5, 0, c_white, 1);
+					draw_sprite_ext_t(s_sunmoon, 0, 640, global.size / 2 - 50, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
 					}
 				}	
 			}
@@ -9101,18 +9101,19 @@ if global.hero = 1 && global.enemy_hero = 1
 			if global.player_rank = 0
 				{ rank_i = 3; rank = "LEGEND"; rank_yy = -45; }
 		
+		draw_set_font(global.game_font);
+		
 		if global.quick = 0
 			{
 			draw_sprite_ext_t(s_rank_shield, rank_i, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_scale, gui_size * 0.8 * health_scale, 0 + restart_angle, c_white, 1, c_white, c_black);
 			if global.player_rank <= 3
 				{ draw_sprite_ext_t(s_rank_skul_1, anim_skul, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_scale, gui_size * 0.8 * health_scale, 0 + restart_angle, c_white, 1, c_white, c_black); }
 			draw_sprite_ext_t(s_rank_skul, skul, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_scale, gui_size * 0.8 * health_scale, 0 + restart_angle, c_white, 1, c_white, c_black);
+			draw_text_transformed_t(10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y + 35 + h_y1 + rank_yy, string(rank), 0.09 * health_scale, 0.09 * health_scale, 0, global.color_white, c_black);
 			}
 			else
-			{ draw_sprite_ext_t(s_sunmoon, 0, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_scale * 0.2, gui_size * 0.8 * health_scale * 0.2, 0 + restart_angle, c_white, 1, c_white, c_black); }
+			{ draw_sprite_ext_t(s_sunmoon, 0, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_scale * 0.6, gui_size * 0.8 * health_scale * 0.6, 0 + restart_angle, c_white, 1, c_white, c_black); }
 		
-		draw_set_font(global.game_font);
-		draw_text_transformed_t(10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y + 35 + h_y1 + rank_yy, string(rank), 0.09 * health_scale, 0.09 * health_scale, 0, global.color_white, c_black);
 		draw_text_transformed_t(10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 / 2, h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.player_name), 0.1, 0.1, 0, global.color_white, c_black);
 		//20
 		for(i=1; i<=3; i++)
@@ -9167,13 +9168,20 @@ if global.hero = 1 && global.enemy_hero = 1
 			if global.enemy_rank = 0
 				{ e_rank_i = 3; e_rank = "LEGEND"; e_rank_yy = -45; }
 		
-		draw_sprite_ext_t(s_rank_shield, e_rank_i, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_e_scale, gui_size * 0.8 * health_e_scale, 0 + restart_angle, c_white, 1, c_white, c_black);
-		if global.enemy_rank <= 3
-			{ draw_sprite_ext_t(s_rank_skul_1, anim_skul, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1/* + sprite_get_height(s_rank_shield) * gui_size / 2*/, gui_size * 0.8 * health_e_scale, gui_size * 0.8 * health_e_scale, 0 + restart_angle, c_white, 1, c_white, c_black); }
-		draw_sprite_ext_t(s_rank_skul, e_skul, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1/* + sprite_get_height(s_rank_shield) * gui_size / 2*/, gui_size * 0.8 * health_e_scale, gui_size * 0.8 * health_e_scale, 0 + restart_angle, c_white, 1, c_white, c_black);
+		if global.quick = 0
+			{
+			draw_sprite_ext_t(s_rank_shield, e_rank_i, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_e_scale, gui_size * 0.8 * health_e_scale, 0 + restart_angle, c_white, 1, c_white, c_black);
+			if global.enemy_rank <= 3
+				{ draw_sprite_ext_t(s_rank_skul_1, anim_skul, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1/* + sprite_get_height(s_rank_shield) * gui_size / 2*/, gui_size * 0.8 * health_e_scale, gui_size * 0.8 * health_e_scale, 0 + restart_angle, c_white, 1, c_white, c_black); }
+			draw_sprite_ext_t(s_rank_skul, e_skul, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1/* + sprite_get_height(s_rank_shield) * gui_size / 2*/, gui_size * 0.8 * health_e_scale, gui_size * 0.8 * health_e_scale, 0 + restart_angle, c_white, 1, c_white, c_black);
+			
+			draw_set_font(global.game_font);
+			draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size / 2), h_y + 35 + h_y1 + e_rank_yy, string(e_rank), 0.09, 0.09, 0, global.color_white, c_black);
+			}
+			else
+			{ draw_sprite_ext_t(s_sunmoon, 0, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_e_scale * 0.6, gui_size * 0.8 * health_e_scale * 0.6, 0 + restart_angle, c_white, 1, c_white, c_black); }
 		
 		draw_set_font(global.game_font);
-		draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size / 2), h_y + 35 + h_y1 + e_rank_yy, string(e_rank), 0.09, 0.09, 0, global.color_white, c_black);
 		draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name)) * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name), 0.1, 0.1, 0, global.color_white, c_black);
 		
 		//for(i=1; i<=3; i++)

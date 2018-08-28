@@ -1043,6 +1043,8 @@
 		{ global.enemy_name = choose("LUCKY BOY", "GOLD JACK", "MAD DOC"); }
 	if global.training > 0
 		{ global.enemy_name = "MR. SMART"; }
+	if global.shomen
+		{ global.enemy_name = "CRAZY SHAMAN"; }
 #endregion
 #region Отладка
 	ongle = 0;
