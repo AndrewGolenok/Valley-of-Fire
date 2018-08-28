@@ -1139,6 +1139,24 @@
 	//global.e_totem[2] = 2;
 	//global.e_totem[3] = 3;
 		
+	var rpt1, rpt2, rpt3;
+	rpt1 = global.p_totem[1];
+	rpt2 = global.p_totem[2];
+	rpt3 = global.p_totem[3];
+	
+	if rpt3 != -1 && rpt2 = -1 && rpt1 = -1
+		{
+		global.p_totem[1] = rpt3;
+		global.p_totem[2] = -1;
+		global.p_totem[3] = -1;
+		}
+	if rpt3 != -1 && rpt2 != -1 && rpt1 = -1
+		{
+		global.p_totem[1] = rpt2;
+		global.p_totem[2] = rpt3;
+		global.p_totem[3] = -1;
+		}
+	
 	if global.training = 4
 		{
 		global.p_totem[1] = 15;
@@ -1179,7 +1197,7 @@
 	totem_alpha_d = -1;
 	totem_x = -600;
 	
-	if global.p_totem[1] = -1
+	if global.p_totem[1] = -1 && global.p_totem[2] = -1 && global.p_totem[3] = -1
 		{
 		totem_py[1] = -200;
 		totem_py[2] = -200;
@@ -1187,15 +1205,15 @@
 		}
 	if global.p_totem[1] != -1 && global.p_totem[2] = -1 && global.p_totem[3] = -1
 		{
-		totem_py[1] = global.size / 2 + 470 * tss * 0.9;
-		totem_py[2] = 0;
-		totem_py[3] = 0;
+		totem_py[3] = global.size / 2 + 470 * tss * 0.9;
+		totem_py[2] = -200;
+		totem_py[1] = -200;
 		}
 	if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] = -1
 		{
-		totem_py[1] = global.size / 2;
+		totem_py[3] = global.size / 2;
 		totem_py[2] = global.size / 2 + 470 * tss * 0.9;
-		totem_py[3] = 0;
+		totem_py[1] = -200;
 		}
 	if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] != -1
 		{
@@ -1647,5 +1665,9 @@
 		{ global.hero_level = 1; }
 	atk *= (1 + 0.01 * global.hero_level);
 	hp *= (1 + 0.01 * global.hero_level);
+	maxhp = hp;
 	global.enemy_level = choose(global.hero_level - 1, global.hero_level - 1, global.hero_level + 1, global.hero_level);
+	e_atk *= (1 + 0.01 * global.enemy_level);
+	e_hp *= (1 + 0.01 * global.enemy_level);
+	e_maxhp = e_hp;
 #endregion

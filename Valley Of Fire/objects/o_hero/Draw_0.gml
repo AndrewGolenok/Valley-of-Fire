@@ -146,10 +146,10 @@ if !enemy
 				{
 				fire_time = room_speed;
 				
-				o_list.hp -= o_list.e_atk / 10;
+				o_list.hp -= o_list.e_atk / 5;
 				o_list.dop_i[1] = 7;
 				o_list.dop_text_color[1] = make_color_rgb(253,265,15);
-				o_list.dop_text[7] = "-" + string(round(o_list.e_atk / 10));
+				o_list.dop_text[7] = "-" + string(round(o_list.e_atk / 5));
 				if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 					{
 					stun = 0;
@@ -173,10 +173,10 @@ if !enemy
 			
 			if poisoned mod room_speed = 0
 				{
-				o_list.hp -= o_list.e_atk / 10;
+				o_list.hp -= o_list.e_atk / 5;
 				o_list.dop_i[1] = 7;
 				o_list.dop_text_color[1] = (global.enemy_object).hero_color;
-				o_list.dop_text[7] = "-" + string(round(o_list.e_atk / 10));
+				o_list.dop_text[7] = "-" + string(round(o_list.e_atk / 5));
 				if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 					{
 					stun = 0;

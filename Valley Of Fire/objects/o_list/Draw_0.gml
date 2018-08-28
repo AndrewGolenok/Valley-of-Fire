@@ -6524,7 +6524,7 @@ if global.hero = 1 && global.enemy_hero = 1
 						if global.tot = tt
 							{
 							if global.p_totem[i] = -1
-								{ global.tot += 0.5; totem_time = 10; }
+								{ global.tot += 0.5; totem_time = 20; }
 								else
 								{
 								if i = 1 or i = 2 or i = 3
@@ -6680,7 +6680,7 @@ if global.hero = 1 && global.enemy_hero = 1
 												}
 											}
 										}
-									totem_time = 10;
+									totem_time = 20;
 									}
 									else
 									{ totem_time -= 1; }
@@ -6707,7 +6707,7 @@ if global.hero = 1 && global.enemy_hero = 1
 					or ((global.tot = 2 or global.tot = 4 or global.tot = 6 or global.tot = 2.5 or global.tot = 4.5 or global.tot = 6.5) && totem_first = 1)
 						{
 						if global.e_totem[i] = -1
-							{ global.tot += 0.5; totem_time = 10; }
+							{ global.tot += 0.5; totem_time = 20; }
 							else
 							{
 							if i = 1 or i = 2 or i = 3
@@ -6718,7 +6718,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								}
 							}
 						if global.e_totem[i] = -1
-							{ global.tot += 0.5; totem_time = 10; }
+							{ global.tot += 0.5; totem_time = 20; }
 						if global.tot = tt
 							{
 							totem_ea[i] = 0;
@@ -6867,7 +6867,7 @@ if global.hero = 1 && global.enemy_hero = 1
 												}
 											}
 										}
-									totem_time = 10;
+									totem_time = 20;
 									}
 									else
 									{ totem_time -= 1; }
@@ -8752,17 +8752,18 @@ if global.hero = 1 && global.enemy_hero = 1
 			///////
 			if g_rank_stage = 7
 				{
-				global.playre_rank = skul_i;
+				global.player_rank = skul_i;
 				ini_open("Music.ini");
-					if !ini_section_exists("Game")
-						{
-						ini_write_string("Game", "lastgame2", string(global.last_game));
-						ini_write_string("Game", "lastgame", string(!(whowin - 1)));
-						}
+					ini_write_string("Game", "lastgame2", string(global.last_game));
+					ini_write_string("Game", "lastgame", string(!(whowin - 1)));
+					
+					ini_write_string("Ranks", "ranks", string(global.player_rank));
+					
+					global.rank_stars = ini_read_real("Ranks", "ranks", 0);
+					
 					global.last_game2 = ini_read_real("Game", "lastgame2", 0);
 					global.last_game  = ini_read_real("Game", "lastgame", 0);
 				ini_close();
-				
 				draw_set_font(global.game_font);
 				draw_text_transformed_t(640, global.size - 60 + fin_y, "TAP TO GO MENU", 0.2, 0.2, 0, global.color_white, c_black);
 				
