@@ -78,8 +78,8 @@
 		
 		var sc_scale;
 		sc_scale = 1;
-		if global.size < 0
-			{ sc_scale = 0.4 + 0.7 * (global.size / 960); }
+		//if global.size < 640
+			{ sc_scale = 0.4 + 0.6 * (global.size / 960); }
 		// ЛОГО
 		draw_sprite_ext(s_logo1_smartcowboys, 0, 640, 80, 0.35 * sc_scale, 0.35 * sc_scale, 0, c_white, 1);
 		draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 80 + 120 * sc_scale, 0.35 * sc_scale, 0.35 * sc_scale, 0, c_white, 1);
@@ -219,7 +219,7 @@
 		//БЫСТРАЯ ИГРА
 		
 		//// РАНКЕД ДУЭЛЬ
-		if point_in_rectangle(mouse_x, mouse_y, 640 - string_width("®RANKED®") * 0.22 / 2, global.size / 2 + 10, 640 + string_width("®RANKED®") * 0.22 / 2, global.size / 2 + string_height("®RANKED®") * 0.22 + 10)
+		if point_in_rectangle(mouse_x, mouse_y, 640 - string_width("®RANKED®") * 0.22 / 2, global.size / 2 + 25, 640 + string_width("®RANKED®") * 0.22 / 2, global.size / 2 + string_height("®RANKED®") * 0.22 + 25)
 			{
 			if mouse_check_button(mb_left)
 				{ ms6 = 1.1; }
@@ -230,7 +230,7 @@
 				}
 			}
 		
-		draw_text_transformed_t(640, global.size / 2 + string_height("®RANKED®") * 0.22 / 2 + 10, "®RANKED®", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black);
+		draw_text_transformed_t(640, global.size / 2 + string_height("®RANKED®") * 0.22 / 2 + 25, "®RANKED®", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black);
 		//РАНКЕД ДУЭЛЬ
 		}
 #endregion
@@ -1401,7 +1401,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 	if global.training_o != 1 && global.duel = 1
 		{
 		draw_set_alpha(0.45);
-		draw_rectangle_color(0, 0, 1280, global.size + training_back_y, c_black, c_black, c_black, c_black, 0);
+		draw_rectangle_color(0, training_back_y, 1280, global.size + training_back_y, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
 		
 		draw_text_ext_transformed_t(640 + prx, global.size / 2 + training_back_y + pry, "YOU HAVE NOT FINISHED TRAINING YET!", -1, 1200, 0.27 * go5, 0.27 * go5, -25, global.color_white, c_black);
@@ -1418,7 +1418,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 	if global.duel = 0
 		{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "T\nR\nA\nI\nN\nI\nN\nG", 0.22, 0.22, 0, col, c_black); }
 		else
-		{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "R\nA\nN\nK\nE\nD\n \nM\nO\nD\nE", 0.2, 0.2, 0, col, c_black); }
+		{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "®\nR\nA\nN\nK\nE\nD\n® ", 0.2, 0.2, 0, col, c_black); }
 	if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
 		{ sc_angle += sc_dir * sc_spd; }
 		else
