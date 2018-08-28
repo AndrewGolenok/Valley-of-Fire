@@ -195,43 +195,43 @@
 	daily_s[3] = 1;
 	
 	
-	cash_y   = 700;
-	gold_y   = 1000;
+	cash_y   = 900;
+	gold_y   = 1600;
 	
-	cash_txt[1] = "THE WAD OF CASH";
+	cash_txt[1] = "THE WAD\nOF CASH";
 	cash_val[1] = 50//80;
 	cash_pri[1] = "$0.99";
 	
-	cash_txt[2] = "A BAG OF CASH";
+	cash_txt[2] = "A BAG\nOF CASH";
 	cash_val[2] = 150//500;
 	cash_pri[2] = "$4.99";
 	
-	cash_txt[3] = "THE BOX OF CASH";
+	cash_txt[3] = "THE BOX\nOF CASH";
 	cash_val[3] = 400//1200;
 	cash_pri[3] = "$9.99";
 	
-	cash_txt[4] = "A CHEST OF CASH";
+	cash_txt[4] = "A CHEST\nOF CASH";
 	cash_val[4] = 850//2500;
 	cash_pri[4] = "$19.99";
 	
-	cash_txt[5] = "A BARREL OF CASH";
+	cash_txt[5] = "A BARREL\nOF CASH";
 	cash_val[5] = 1500//6500;
 	cash_pri[5] = "$49.99";
 	
-	cash_txt[6] = "A MOUNTAIN OF CASH";
+	cash_txt[6] = "A MOUNTAIN\nOF CASH";
 	cash_val[6] = 3000//14000;
 	cash_pri[6] = "$99.99";
 	
 	
-	gold_txt[1] = "A BAG OF CASH";
+	gold_txt[1] = "A BAG\nOF GOLD";
 	gold_val[1] = 100;
 	gold_pri[1] = 20;
 	
-	gold_txt[2] = "A BARREL OF CASH";
+	gold_txt[2] = "A BARREL\nOF GOLD";
 	gold_val[2] = 800;
 	gold_pri[2] = 150;
 	
-	gold_txt[3] = "A MOUNTAIN OF CASH";
+	gold_txt[3] = "A MOUNTAIN\nOF GOLD";
 	gold_val[3] = 5500;
 	gold_pri[3] = 1000;
 #endregion
