@@ -179,8 +179,15 @@
 			///
 		#endregion
 		#region Валюта
-			//global.reward = ini_read_real("Music.ini", "reward", 1); // Ранг
-			//global.dollars = ini_read_real("Music.ini", "dollars", 1); // Бабки
+			if !ini_section_exists("Sounds")
+			    {
+				ini_write_string("Sounds", "sound_on_g", "0");
+				ini_write_string("Sounds", "sound_false_c", "0");
+				}
+			//global.training_o = ini_read_real("Training", "training", 0);
+			
+			global.gold = ini_read_real("Sounds", "sound_on_g", 0);
+			global.cash = ini_read_real("Sounds", "sound_false_c", 0);
 		#endregion
 		#region Тотемы
 			for(i=0;i<=19;i++)
@@ -627,8 +634,8 @@
 	//global.player_level = 7;
 	//global.enemy_level  = 7;
 	
-	global.gold = 820;
-	global.cash = 500;
+	//global.gold = 820;
+	//global.cash = 500;
 #endregion
 
 #region Прочее

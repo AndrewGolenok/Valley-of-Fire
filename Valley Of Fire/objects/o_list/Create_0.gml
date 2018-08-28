@@ -905,6 +905,8 @@
 	
 	accuracy_true = 0;
 	accuracy_all  = 0;
+	
+	rank_stage = 0;
 #endregion
 #region Бот
 	for(i=1;i<=12;i++)

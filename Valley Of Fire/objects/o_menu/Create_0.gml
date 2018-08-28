@@ -230,6 +230,10 @@
 			{ hero_lvl[i] = 1; hero_now1[i] = global.heroes_have[i]; hero_need[i] = 2; }
 		}
 #endregion
+#region Ранг
+	global.g_rank_now = 0;
+	global.g_rank_now = 0;
+#endregion
 
 #region Главное меню (СТАРОЕ)
 	#region Мобайл / Планшет

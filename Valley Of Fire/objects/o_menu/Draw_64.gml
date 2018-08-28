@@ -105,7 +105,7 @@
 		}
 #endregion
 
-#region Тотемы
+#region Тотемы / Выбор тотемов
 if global.menu_now = "totem" or global.menu_next = "totem"
 	{
 	if global.menu_next = "totem"
@@ -326,6 +326,16 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 				if (totem_alp >= 1 && totem_adi = 1) or (totem_alp <= 0.5 && totem_adi = -1)
 					{ totem_adi = -totem_adi; }
 				totem_alp += 0.01 * totem_adi;
+				var go5;
+				go5 = 1;
+				if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - 150, global.size - 60 + training_back_y - 50, 1280 - 300 + 150, global.size - 60 + training_back_y + 50)
+					{
+					if mouse_check_button(mb_left)
+						{ go5 = 1.1; }
+					if mouse_check_button_released(mb_left)
+						{ room_goto_t("duel"); }
+					io_clear();
+					}
 				
 				if global.p_totem[1] != -1
 					{
@@ -385,7 +395,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 						{ totems_y[2] = 0; }
 					draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 10, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.5); 
 					if global.totem_have[global.p_totem[2]] = 1
-						{ draw_sprite_ext(s_totems_light, global.p_totem[2], 1280 - 300, totem_w * 0.8 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[2]], totem_alp); }
+						{ draw_sprite_ext(s_totems_light, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[2]], totem_alp); }
 					draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_white, 1);
 					if global.totem_have[global.p_totem[2]] = 0
 						{ draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.4); }
@@ -515,15 +525,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 				//		else
 				//		{ draw_sprite_ext(s_totems_eyes, global.p_totem[3], 1280 - 300, 2 * totem_w * 0.8 + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[3]], totem_alp); }
 				//	}
-				var go5;
-				go5 = 1;
-				if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - 150, global.size - 60 + training_back_y - 50, 1280 - 300 + 150, global.size - 60 + training_back_y + 50)
-					{
-					if mouse_check_button(mb_left)
-						{ go5 = 1.1; }
-					if mouse_check_button_released(mb_left)
-						{ room_goto_t("duel"); }
-					}
+				
 				draw_rectangle(1280 - 300 - 150, global.size - 60 + training_back_y - 50, 1280 - 300 + 150, global.size - 60 + training_back_y + 50, 1);
 				draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "START DUEL", 0.25 * go5, 0.25 * go5, 0, global.color_white, c_black);
 				}
@@ -597,7 +599,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 	draw_set_alpha(1);
 	}
 #endregion
-#region Персонажи
+#region Персонажи / Выбор Персонажа
 if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0)
 	{
 	if global.menu_next = "heroes"
@@ -917,146 +919,7 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 	draw_set_alpha(1);
 	}
 #endregion
-#region Магазин
-if global.menu_now = "store" or global.menu_next = "store"
-	{
-	if global.menu_next = "store"
-		{
-		if global.menu_now != "store"
-			{
-			if training_back_y - global.size / 12 > 0
-				{ training_back_y -= global.size / 12; }
-				else
-				{
-				global.menu_now = "store";
-				training_back_y = 0;
-				}
-			}
-		}
-		else
-		{
-		if training_back_y - global.size / 12 < global.size + 350
-			{ training_back_y += global.size / 12; }
-			else
-			{
-			global.menu_now = global.menu_next;
-			training_back_y = global.size + 350;
-			}
-		}
-		
-	var colb;
-	colb = make_color_rgb(123, 0, 28);
-	//draw_rectangle_color(0, training_back_y + global.size + 50, 1280, global.size, colb, colb, colb, colb, 0);
-	
-	var top;
-	top = ((sprite_get_height(s_store_back) * global.back_scale - global.size) / 2) * (sprite_get_width(s_store_back) / 1280); //sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
-	draw_sprite_part_ext(s_store_back, 1, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
-	
-	///////
-	
-	draw_sprite_part_ext(s_store_back, 0, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
-	
-	var yh, col;
-	yh = 0;
-	col = make_color_rgb(242, 232, 201);
-	if global.size < 700
-		{ yh = 30; }
-	
-	if point_in_rectangle(mouse_x, mouse_y, 0, global.size - 250, 250, global.size)
-		{
-		if mouse_check_button_pressed(mb_left)
-			{
-			if wl_spd < 15
-				{ wl_spd += 2.5; }
-			}
-		}
-	
-	wl_ang -= wl_spd;
-	
-	if wl_spd > 0
-		{ wl_spd -= 0.05; }
-		else
-		{ wl_spd = 0; }
-	
-	if wl_ang >= 360
-		{ wl_ang -= 360; }
-	draw_sprite_ext_t(s_store_weel, 2, 0 + prx, global.size + training_back_y - 10 + yh / 3 + pry, global.back_scale, global.back_scale, wl_ang, c_white, 1, c_white, c_black);
-	
-	draw_set_font(global.game_font);
-	draw_text_transformed_t(1170, global.size / 2 + training_back_y, "S\nT\nO\nR\nE", 0.25, 0.25, 0, col, c_black);
-			
-	if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
-		{ sc_angle += sc_dir * sc_spd; }
-		else
-		{ sc_dir = -sc_dir; sc_angle += sc_dir * sc_spd; }
-	if sc_spd > 0
-		{ sc_spd -= 0.05; }
-		else
-		{ sc_spd = 0; }
-	if sc_dist > 3
-		{ sc_dist -= 0.025; }
-	
-	draw_sprite_ext_t(s_store_back, 3, 640 + prx, global.size + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
-	
-	if point_in_rectangle(mouse_x, mouse_y, 280, global.size + top - 100 - 1200 * global.back_scale - 27, 1000, global.size + top + 500 - 1200 * global.back_scale - 27)
-		{
-		if mouse_check_button_pressed(mb_left)
-			{
-			sc_spd   = 2;
-			sc_dist  = 10;
-			}
-		}
-	if point_in_rectangle(mouse_x, mouse_y, 0, 0, 100, 100)
-		{
-		if mouse_check_button_pressed(mb_left)
-			{ global.menu_next = "main"; }
-		}
-	
-	draw_set_font(global.game_font);
-	draw_set_alpha(0.5);
-	draw_set_color(c_black);
-	draw_text_transformed(50, 50 + training_back_y, "X", 0.25, 0.25, 0);
-	draw_set_color(c_white);
-	draw_set_alpha(1);
-	
-	// ЗОЛОТО И КЭШ
-		#region Координаты и размеры
-			var menu_but_w, menu_but_s, menu_txt_s, menu_txt_w, menu_but_c, menu_txt_s1;
-			menu_but_w  = 140;
-			menu_but_s  = 0.9;
-			menu_txt_s  = 0.2;
-			menu_txt_s1 = 0.18;
-			menu_txt_w  = 240;
-			menu_but_c = make_color_rgb(230, 53, 70);
-			
-			var menu_stat_i, menu_stat_s, menu_plus_s, menu_setb_x, menu_setb_y, gold_col;
-			menu_stat_i = 3;
-			menu_stat_s = 0.9;
-			menu_plus_s = 1;
-			menu_setb_x = 80;
-			menu_setb_y = global.size + top - 50 - 1200 * global.back_scale;
-			
-			var menu_gold_t, menu_gold_x, menu_cash_x, menu_cash_t, menu_plus1_x, menu_plus2_x;
-			menu_gold_t = string(global.gold) + "©";
-			menu_cash_t = string(global.cash) + "ç";
-			menu_gold_x = 900 - menu_setb_x / 2 - menu_txt_s * string_width(menu_cash_t) / 2;
-			menu_cash_x = 900 - menu_setb_x / 2 - menu_txt_s * string_width(menu_cash_t) - menu_txt_s * string_width(menu_gold_t) / 2 - menu_setb_x;
-			
-			menu_plus1_x = menu_gold_x - menu_txt_s * string_width(menu_cash_t) / 2 - menu_setb_x / 2 - 10;
-			menu_plus2_x = menu_cash_x - menu_txt_s * string_width(menu_gold_t) / 2 - menu_setb_x / 2 - 10;
-			gold_col = make_color_rgb(252,232,131);
-		#endregion
-		//menu_setb_y - training_back_y + pry
-		//top - training_back_y + pry * 0.5 + sc_angle * 2 - 27
-		draw_text_transformed_t(menu_gold_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.color_hero[2], c_black);
-		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus1_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
-		
-		draw_text_transformed_t(menu_cash_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, gold_col, c_black);
-		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
-		// ЗОЛОТО И КЭШ
-	}
-#endregion
-#region Тренировка
+#region Тренировка / Ранкед
 if global.menu_now = "training" or global.menu_next = "training"
 	{
 	if global.menu_next = "training"
@@ -1428,6 +1291,145 @@ if global.menu_now = "training" or global.menu_next = "training"
 	draw_text_transformed(50, 50 + training_back_y, "X", 0.25, 0.25, 0);
 	draw_set_color(c_white);
 	draw_set_alpha(1);
+	}
+#endregion
+#region Магазин
+if global.menu_now = "store" or global.menu_next = "store"
+	{
+	if global.menu_next = "store"
+		{
+		if global.menu_now != "store"
+			{
+			if training_back_y - global.size / 12 > 0
+				{ training_back_y -= global.size / 12; }
+				else
+				{
+				global.menu_now = "store";
+				training_back_y = 0;
+				}
+			}
+		}
+		else
+		{
+		if training_back_y - global.size / 12 < global.size + 350
+			{ training_back_y += global.size / 12; }
+			else
+			{
+			global.menu_now = global.menu_next;
+			training_back_y = global.size + 350;
+			}
+		}
+		
+	var colb;
+	colb = make_color_rgb(123, 0, 28);
+	//draw_rectangle_color(0, training_back_y + global.size + 50, 1280, global.size, colb, colb, colb, colb, 0);
+	
+	var top;
+	top = ((sprite_get_height(s_store_back) * global.back_scale - global.size) / 2) * (sprite_get_width(s_store_back) / 1280); //sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
+	draw_sprite_part_ext(s_store_back, 1, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
+	
+	///////
+	
+	draw_sprite_part_ext(s_store_back, 0, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
+	
+	var yh, col;
+	yh = 0;
+	col = make_color_rgb(242, 232, 201);
+	if global.size < 700
+		{ yh = 30; }
+	
+	if point_in_rectangle(mouse_x, mouse_y, 0, global.size - 250, 250, global.size)
+		{
+		if mouse_check_button_pressed(mb_left)
+			{
+			if wl_spd < 15
+				{ wl_spd += 2.5; }
+			}
+		}
+	
+	wl_ang -= wl_spd;
+	
+	if wl_spd > 0
+		{ wl_spd -= 0.05; }
+		else
+		{ wl_spd = 0; }
+	
+	if wl_ang >= 360
+		{ wl_ang -= 360; }
+	draw_sprite_ext_t(s_store_weel, 2, 0 + prx, global.size + training_back_y - 10 + yh / 3 + pry, global.back_scale, global.back_scale, wl_ang, c_white, 1, c_white, c_black);
+	
+	draw_set_font(global.game_font);
+	draw_text_transformed_t(1170, global.size / 2 + training_back_y, "S\nT\nO\nR\nE", 0.25, 0.25, 0, col, c_black);
+			
+	if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
+		{ sc_angle += sc_dir * sc_spd; }
+		else
+		{ sc_dir = -sc_dir; sc_angle += sc_dir * sc_spd; }
+	if sc_spd > 0
+		{ sc_spd -= 0.05; }
+		else
+		{ sc_spd = 0; }
+	if sc_dist > 3
+		{ sc_dist -= 0.025; }
+	
+	draw_sprite_ext_t(s_store_back, 3, 640 + prx, global.size + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
+	
+	if point_in_rectangle(mouse_x, mouse_y, 280, global.size + top - 100 - 1200 * global.back_scale - 27, 1000, global.size + top + 500 - 1200 * global.back_scale - 27)
+		{
+		if mouse_check_button_pressed(mb_left)
+			{
+			sc_spd   = 2;
+			sc_dist  = 10;
+			}
+		}
+	if point_in_rectangle(mouse_x, mouse_y, 0, 0, 100, 100)
+		{
+		if mouse_check_button_pressed(mb_left)
+			{ global.menu_next = "main"; }
+		}
+	
+	draw_set_font(global.game_font);
+	draw_set_alpha(0.5);
+	draw_set_color(c_black);
+	draw_text_transformed(50, 50 + training_back_y, "X", 0.25, 0.25, 0);
+	draw_set_color(c_white);
+	draw_set_alpha(1);
+	
+	// ЗОЛОТО И КЭШ
+		#region Координаты и размеры
+			var menu_but_w, menu_but_s, menu_txt_s, menu_txt_w, menu_but_c, menu_txt_s1;
+			menu_but_w  = 140;
+			menu_but_s  = 0.9;
+			menu_txt_s  = 0.2;
+			menu_txt_s1 = 0.18;
+			menu_txt_w  = 240;
+			menu_but_c = make_color_rgb(230, 53, 70);
+			
+			var menu_stat_i, menu_stat_s, menu_plus_s, menu_setb_x, menu_setb_y, gold_col;
+			menu_stat_i = 3;
+			menu_stat_s = 0.9;
+			menu_plus_s = 1;
+			menu_setb_x = 80;
+			menu_setb_y = global.size + top - 50 - 1200 * global.back_scale;
+			
+			var menu_gold_t, menu_gold_x, menu_cash_x, menu_cash_t, menu_plus1_x, menu_plus2_x;
+			menu_gold_t = string(global.gold) + "©";
+			menu_cash_t = string(global.cash) + "ç";
+			menu_gold_x = 900 - menu_setb_x / 2 - menu_txt_s * string_width(menu_cash_t) / 2;
+			menu_cash_x = 900 - menu_setb_x / 2 - menu_txt_s * string_width(menu_cash_t) - menu_txt_s * string_width(menu_gold_t) / 2 - menu_setb_x;
+			
+			menu_plus1_x = menu_gold_x - menu_txt_s * string_width(menu_cash_t) / 2 - menu_setb_x / 2 - 10;
+			menu_plus2_x = menu_cash_x - menu_txt_s * string_width(menu_gold_t) / 2 - menu_setb_x / 2 - 10;
+			gold_col = make_color_rgb(252,232,131);
+		#endregion
+		//menu_setb_y - training_back_y + pry
+		//top - training_back_y + pry * 0.5 + sc_angle * 2 - 27
+		draw_text_transformed_t(menu_gold_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.color_hero[2], c_black);
+		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus1_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
+		
+		draw_text_transformed_t(menu_cash_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, gold_col, c_black);
+		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
+		// ЗОЛОТО И КЭШ
 	}
 #endregion
 

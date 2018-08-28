@@ -6948,35 +6948,36 @@ if global.hero = 1 && global.enemy_hero = 1
 			{ totem_alpha_d = -totem_alpha_d; }
 		totem_alpha += 0.01 * totem_alpha_d;
 		
+		totem_txt = "";
 		if totem_first = 1
 			{
-			if global.tot = 1
-				{ totem_txt = global.totem_name[global.p_totem[1]]; }
-			if global.tot = 2
-				{ totem_txt = global.totem_name[global.e_totem[1]]; }
-			if global.tot = 3
-				{ totem_txt = global.totem_name[global.p_totem[2]]; }
-			if global.tot = 4
-				{ totem_txt = global.totem_name[global.e_totem[2]]; }
-			if global.tot = 5
-				{ totem_txt = global.totem_name[global.p_totem[3]]; }
-			if global.tot = 6
-				{ totem_txt = global.totem_name[global.e_totem[3]]; }
+			if global.tot = 1 && global.p_totem[1] != -1 
+				{ totem_txt_i = global.p_totem[1]; totem_txt = global.totem_name[global.p_totem[1]]; }
+			if global.tot = 2 && global.e_totem[1] != -1 
+				{ totem_txt_i = global.e_totem[1]; totem_txt = global.totem_name[global.e_totem[1]]; }
+			if global.tot = 3 && global.p_totem[2] != -1 
+				{ totem_txt_i = global.p_totem[2]; totem_txt = global.totem_name[global.p_totem[2]]; }
+			if global.tot = 4 && global.e_totem[2] != -1 
+				{ totem_txt_i = global.e_totem[2]; totem_txt = global.totem_name[global.e_totem[2]]; }
+			if global.tot = 5 && global.p_totem[3] != -1 
+				{ totem_txt_i = global.p_totem[3]; totem_txt = global.totem_name[global.p_totem[3]]; }
+			if global.tot = 6 && global.e_totem[3] != -1 
+				{ totem_txt_i = global.e_totem[3]; totem_txt = global.totem_name[global.e_totem[3]]; }
 			}
 			else
 			{
-			if global.tot = 1
-				{ totem_txt = global.totem_name[global.e_totem[1]]; }
-			if global.tot = 2
-				{ totem_txt = global.totem_name[global.p_totem[1]]; }
-			if global.tot = 3
-				{ totem_txt = global.totem_name[global.e_totem[2]]; }
-			if global.tot = 4
-				{ totem_txt = global.totem_name[global.p_totem[2]]; }
-			if global.tot = 5
-				{ totem_txt = global.totem_name[global.e_totem[3]]; }
-			if global.tot = 6
-				{ totem_txt = global.totem_name[global.p_totem[3]]; }
+			if global.tot = 1 && global.e_totem[1] != -1 
+				{ totem_txt_i = global.e_totem[1]; totem_txt = global.totem_name[global.e_totem[1]]; }
+			if global.tot = 2 && global.p_totem[1] != -1 
+				{ totem_txt_i = global.p_totem[1]; totem_txt = global.totem_name[global.p_totem[1]]; }
+			if global.tot = 3 && global.e_totem[2] != -1 
+				{ totem_txt_i = global.e_totem[2]; totem_txt = global.totem_name[global.e_totem[2]]; }
+			if global.tot = 4 && global.p_totem[2] != -1 
+				{ totem_txt_i = global.p_totem[2]; totem_txt = global.totem_name[global.p_totem[2]]; }
+			if global.tot = 5 && global.e_totem[3] != -1 
+				{ totem_txt_i = global.e_totem[3]; totem_txt = global.totem_name[global.e_totem[3]]; }
+			if global.tot = 6 && global.p_totem[3] != -1 
+				{ totem_txt_i = global.p_totem[3]; totem_txt = global.totem_name[global.p_totem[3]]; }
 			}
 		
 		if global.tot != -1
@@ -8371,14 +8372,11 @@ if global.hero = 1 && global.enemy_hero = 1
 				}
 				else
 				{ win_plas += 0.4; draw_sprite_ext(s_plash_win_f, win_plas, 640, -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size * finplas, list_size, 0, c_white, 1); }
-			
+			var gold_c;
+			gold_c = make_color_rgb(252,232,131);
 			draw_set_font(global.game_font);//draw_set_font(f_win_regular);
-			draw_set_color(c_black);
-			draw_set_alpha(0.4);
-			draw_text_transformed(640 - 1, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "VICTORY!", finplas * 0.18, 0.18, 0);
-			draw_set_color(c_white);
-			draw_set_alpha(1);
-			draw_text_transformed(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "VICTORY!", finplas * 0.18, 0.18, 0);
+			
+			draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "VICTORY!", finplas * 0.18, 0.18, 0, gold_c, c_black);
 			}
 		if whowin = 2
 			{
@@ -8390,49 +8388,51 @@ if global.hero = 1 && global.enemy_hero = 1
 			draw_sprite_ext(s_plash_lose, 1, 640 - 418  * list_size * (1 - finplas), -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
 		
 			draw_set_font(global.game_font);//draw_set_font(f_win_regular);
-			draw_set_color(c_black);
-			draw_set_alpha(0.4);
-			draw_text_transformed(640 - 1, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0);
-			draw_set_color(c_white);
-			draw_set_alpha(1);
-			draw_text_transformed(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0);
+			//draw_set_color(c_black);
+			//draw_set_alpha(0.4);
+			//draw_text_transformed(640 - 1, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0);
+			//draw_set_color(c_white);
+			//draw_set_alpha(1);
+			draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0, global.color_white, c_black);
 			}
 			
-		draw_set_font(global.game_font);
-		draw_text_transformed_t(640, global.size / 2 + 200 + fin_y, "TAP TO RESTART", 0.2, 0.2, 0, c_white, c_black);
+		//draw_set_font(global.game_font);
+		//draw_text_transformed_t(640, global.size / 2 + 200 + fin_y, "TAP TO RESTART", 0.2, 0.2, 0, c_white, c_black);
 		
-		draw_set_color(c_black);
-		draw_set_alpha(0.4);
-		draw_text_transformed(640 - 1, 100 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "ACCURACY: " + string(round(100 * accuracy_true / accuracy_all)) + "%", finplas * 0.18, 0.18, 0);
-		draw_set_color(c_white);
-		draw_set_alpha(1);
-		draw_text_transformed(640, 100 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "ACCURACY: " + string(round(100 * accuracy_true / accuracy_all)) + "%", finplas * 0.18, 0.18, 0);
+		//draw_set_color(c_black);
+		//draw_set_alpha(0.4);
+		//draw_text_transformed(640 - 1, 100 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "ACCURACY: " + string(round(100 * accuracy_true / accuracy_all)) + "%", finplas * 0.18, 0.18, 0);
+		//draw_set_color(c_white);
+		//draw_set_alpha(1);
+		//draw_text_transformed(640, 100 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "ACCURACY: " + string(round(100 * accuracy_true / accuracy_all)) + "%", finplas * 0.18, 0.18, 0);
 		
-		var money, respect;
-		money = 25;
-		if whowin = 1
-			{ respect = "+1"; }
-			else
-			{ respect = "-1"; }
-		if roundskul[1] = 1
-			{ money += 25; }
-		if roundskul[2] = 1
-			{ money += 25; }
-		if roundskul[3] = 1 or (roundskul[3] = 0 && money > 25)
-			{ money += 25; }
-		draw_set_color(c_black);
-		draw_set_alpha(0.4);
-		draw_text_transformed(640 - 1, 200 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "MONEY +" + string(money) + "$", finplas * 0.18, 0.18, 0);
-		draw_set_color(c_white);
-		draw_set_alpha(1);
-		draw_text_transformed(640, 200 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "MONEY +" + string(money) + "$", finplas * 0.18, 0.18, 0);
+		//var money, respect;
+		//money = 25;
+		//if whowin = 1
+		//	{ respect = "+1"; }
+		//	else
+		//	{ respect = "-1"; }
+		//if roundskul[1] = 1
+		//	{ money += 25; }
+		//if roundskul[2] = 1
+		//	{ money += 25; }
+		//if roundskul[3] = 1 or (roundskul[3] = 0 && money > 25)
+		//	{ money += 25; }
+			
 		
-		draw_set_color(c_black);
-		draw_set_alpha(0.4);
-		draw_text_transformed(640 - 1, 300 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "RESPECT " + string(respect), finplas * 0.18, 0.18, 0);
-		draw_set_color(c_white);
-		draw_set_alpha(1);
-		draw_text_transformed(640, 300 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "RESPECT " + string(respect), finplas * 0.18, 0.18, 0);
+		//draw_set_color(c_black);
+		//draw_set_alpha(0.4);
+		//draw_text_transformed(640 - 1, 200 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "MONEY +" + string(money) + "$", finplas * 0.18, 0.18, 0);
+		//draw_set_color(c_white);
+		//draw_set_alpha(1);
+		//draw_text_transformed(640, 200 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "MONEY +" + string(money) + "$", finplas * 0.18, 0.18, 0);
+		
+		//draw_set_color(c_black);
+		//draw_set_alpha(0.4);
+		//draw_text_transformed(640 - 1, 300 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "RESPECT " + string(respect), finplas * 0.18, 0.18, 0);
+		//draw_set_color(c_white);
+		//draw_set_alpha(1);
+		//draw_text_transformed(640, 300 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "RESPECT " + string(respect), finplas * 0.18, 0.18, 0);
 		
 		if fin_y > 0
 			{ fin_y -= 40; }
@@ -8440,8 +8440,16 @@ if global.hero = 1 && global.enemy_hero = 1
 			{
 			if finplas < 1
 				{ finplas += 0.1; }
-			if mouse_check_button_pressed(mb_left)
-				{ room_goto_t("menu"); }
+				
+			if 0
+				{
+				if mouse_check_button_pressed(mb_left)
+					{ room_goto_t("menu"); }
+				
+				global.p_totem[1] = -1;
+				global.p_totem[2] = -1;
+				global.p_totem[3] = -1;
+				}
 			}
 		if o_control.back_spd > 0
 			{ o_control.back_spd -= 0.05; }
