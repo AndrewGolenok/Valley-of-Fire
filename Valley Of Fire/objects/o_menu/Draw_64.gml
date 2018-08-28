@@ -674,6 +674,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 	col = make_color_rgb(242, 232, 201);
 	if global.size < 700
 		{ yh = 30; }
+	draw_sprite_ext(s_totem_back, 2, 640 - 50 + 20, global.size + training_back_y + yh + 20 * (960 / global.size), global.back_scale, global.back_scale, 0, c_black, 0.5);
 	draw_sprite_ext_t(s_totem_back, 2, 640 - 50, global.size + training_back_y + yh + 20 * (960 / global.size), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 	
 	if global.duel = 1
@@ -706,7 +707,8 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 	if sc_dist > 3
 		{ sc_dist -= 0.025; }
 	
-	draw_sprite_ext_t(s_totem_back, 3, 640 + prx + 140, global.size - 150 + top -training_back_y + pry * 0.5 + sc_angle * 2 - 50, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_white, 1, c_white, c_black);
+	draw_sprite_ext(s_totem_back, 3, 640 + prx + 140 - 5, global.size - 150 + top - training_back_y + pry * 0.5 + sc_angle * 2 - 50 + 10, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_black, 0.5);
+	draw_sprite_ext_t(s_totem_back, 3, 640 + prx + 140, global.size - 150 + top - training_back_y + pry * 0.5 + sc_angle * 2 - 50, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_white, 1, c_white, c_black);
 	
 	if point_in_rectangle(mouse_x, mouse_y, 1020, 0, 1280, 250)
 		{
@@ -1414,6 +1416,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 	col = make_color_rgb(242, 232, 201);
 	if global.size < 700
 		{ yh = 30; }
+	draw_sprite_ext(s_training_back, 2, 640 + 10, global.size + training_back_y + yh + 5, global.back_scale, global.back_scale, 0,  c_black, 0.5);
 	draw_sprite_ext_t(s_training_back, 2, 640, global.size + training_back_y + yh, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 	
 	draw_set_font(global.game_font);
@@ -1431,6 +1434,9 @@ if global.menu_now = "training" or global.menu_next = "training"
 		{ sc_spd = 0.3; }
 	if sc_dist > 5
 		{ sc_dist -= 0.025; }
+	
+	draw_sprite_ext(s_training_rope, 0, 1130 + prx + 5, -training_back_y + pry * 0.5 + 10, 0.18, 0.18, sc_angle, c_black, 0.5);
+	draw_sprite_ext(s_training_sc, 0, 1130 + prx + lengthdir_x(300, sc_angle - 90) + 5, -training_back_y + lengthdir_y(300, sc_angle - 90) + pry * 0.7 + 10, 0.5, 0.5, 0, c_black, 0.5);
 	
 	draw_sprite_ext_t(s_training_rope, 0, 1130 + prx, -training_back_y + pry * 0.5, 0.18, 0.18, sc_angle, c_white, 1, c_white, c_black);
 	draw_sprite_ext_t(s_training_sc, 0, 1130 + prx + lengthdir_x(300, sc_angle - 90), -training_back_y + lengthdir_y(300, sc_angle - 90) + pry * 0.7, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
@@ -1497,27 +1503,28 @@ if global.menu_now = "store" or global.menu_next = "store"
 	//draw_rectangle_color(0, training_back_y + global.size + 50, 1280, global.size, colb, colb, colb, colb, 0);
 	
 	var top;
-	top = ((sprite_get_height(s_store_back) * global.back_scale - global.size) / 2) * (sprite_get_width(s_store_back) / 1280); //sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
+	top = ((sprite_get_height(s_store_back) * global.back_scale - global.size) / 2) * (sprite_get_width(s_store_back) / 1280);
+	//sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
 	draw_sprite_part_ext(s_store_back, 1, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
 	
 	////////
 	#region Кнопки магазина
 		//// ЛУТБОКСЫ
-		draw_sprite_ext(s_store_plash, 0, 640, top + 65 + lootbox_y + training_back_y + store_yy1 + pry + 10, 0.35, 0.35, 0, c_black, 0.5);
-		draw_sprite_ext(s_store_plash, 0, 640, top + 65 + lootbox_y + training_back_y + store_yy1 + pry, 0.35, 0.35, 0, c_white, 1);
+		draw_sprite_ext(s_store_plash, 0, 640, top + 65 + lootbox_y + training_back_y + store_yy1 + pry + 10, 0.4, 0.4, 0, c_black, 0.5);
+		draw_sprite_ext(s_store_plash, 0, 640, top + 65 + lootbox_y + training_back_y + store_yy1 + pry, 0.4, 0.4, 0, c_white, 1);
 		draw_text_transformed_t(640, top + 50 + lootbox_y + training_back_y + store_yy1 + pry, "LOOTBOXES", 0.2, 0.2, 0, global.color_white, c_black);
 		
-		draw_sprite_ext(s_lootbox1, 0, 640 - 150, top + 110 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.22, 0.22, 0, c_black, 0.5);
-		draw_sprite_ext(s_lootbox1, 0, 640 - 150, top + 110 + lootbox_y + training_back_y + pry + store_yy1     , 0.22, 0.22, 0, c_white, 1);
+		draw_sprite_ext(s_lootbox1, 0, 640 - 150, top + 140 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.22, 0.22, 0, c_black, 0.5);
+		draw_sprite_ext(s_lootbox1, 0, 640 - 150, top + 140 + lootbox_y + training_back_y + pry + store_yy1     , 0.22, 0.22, 0, c_white, 1);
 		
-		draw_sprite_ext(s_lootbox2, 0, 640 + 150, top + 110 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.22, 0.22, 0, c_black, 0.5);
-		draw_sprite_ext(s_lootbox2, 0, 640 + 150, top + 110 + lootbox_y + training_back_y + pry + store_yy1     , 0.22, 0.22, 0, c_white, 1);
+		draw_sprite_ext(s_lootbox2, 0, 640 + 150, top + 140 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.22, 0.22, 0, c_black, 0.5);
+		draw_sprite_ext(s_lootbox2, 0, 640 + 150, top + 140 + lootbox_y + training_back_y + pry + store_yy1     , 0.22, 0.22, 0, c_white, 1);
 		////
 		
 		////// ЕЖЕДНЕВНЫЕ ПОКУПКИ
-		draw_sprite_ext(s_store_plash, 0, 640, top + 65 + daily_y + training_back_y + pry + store_yy1 + 10, 0.35, 0.35, 0, c_black, 0.5);
-		draw_sprite_ext(s_store_plash, 0, 640, top + 65 + daily_y + training_back_y + pry + store_yy1, 0.35, 0.35, 0, c_white, 1);
-		draw_text_transformed_t(640, top + 50 + daily_y + training_back_y + pry + store_yy1, "DAILY ITEMS", 0.2, 0.2, 0, global.color_white, c_black);
+		draw_sprite_ext(s_store_plash, 0, 640, top + 30 + daily_y + training_back_y + pry + store_yy1 + 10, 0.4, 0.4, 0, c_black, 0.5);
+		draw_sprite_ext(s_store_plash, 0, 640, top + 30 + daily_y + training_back_y + pry + store_yy1, 0.4, 0.4, 0, c_white, 1);
+		draw_text_transformed_t(640, top + 30 + daily_y + training_back_y + pry + store_yy1, "DAILY ITEMS", 0.17, 0.17, 0, global.color_white, c_black);
 		
 		
 		draw_sprite_ext(s_wanted, 1, 640 - 200 + 5, top + 80 + daily_y + training_back_y + pry + store_yy1 + 10, 0.5, 0.5, 0, c_black, 0.5);
@@ -1530,19 +1537,33 @@ if global.menu_now = "store" or global.menu_next = "store"
 		///////
 		
 		////// ПОКУПКА ДОЛЛАРОВ
-		draw_sprite_ext(s_store_plash, 0, 640, top + 20 + cash_y + training_back_y + totem_yy1 + pry, 0.5, 0.5, 0, c_black, 0.5);
-		draw_sprite_ext(s_store_plash, 0, 640, top + 20 + cash_y + training_back_y + totem_yy1 + pry, 0.5, 0.5, 0, c_white, 1);
-		draw_text_transformed_t(640, top + 20 + cash_y + training_back_y + totem_yy1 + pry, "BANK OF CASH", 0.25, 0.25, 0, global.color_white, c_black);
+		draw_sprite_ext(s_store_plash, 0, 640, top + 20 + cash_y + training_back_y + store_yy1 + pry, 0.5, 0.5, 0, c_black, 0.5);
+		draw_sprite_ext(s_store_plash, 0, 640, top + 20 + cash_y + training_back_y + store_yy1 + pry, 0.5, 0.5, 0, c_white, 1);
+		draw_text_transformed_t(640, top + 20 + cash_y + training_back_y + store_yy1 + pry, "BANK OF CASH", 0.25, 0.25, 0, global.color_white, c_black);
 		
 		
-		draw_sprite_ext(s_currency_buy, 0, 640 - 200, top + 80 + cash_y + training_back_y + totem_yy1 + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		draw_text_transformed_t(640 - 200, top + 80 + cash_y + training_back_y + pry + store_yy1 - 200, cash_txt[1], 0.18, 0.18, 0, global.color_white, c_black);
+		draw_sprite_ext(s_currency_buy, 0, 640 - 200, top + 80 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		draw_text_transformed_t(640 - 200, top + 80 + cash_y + training_back_y + pry + store_yy1 - 100, string(cash_val[1]) + "ç", 0.18, 0.18, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 - 200, top + 80 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[1], 0.18, 0.18, 0, global.color_white, c_black);
+		
 		draw_sprite_ext(s_currency_buy, 1, 640, top + 80 + cash_y + training_back_y + totem_yy1 + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		draw_sprite_ext(s_currency_buy, 2, 640 + 200, top + 80 + cash_y + training_back_y + totem_yy1 + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		draw_sprite_ext(s_currency_buy, 3, 640 - 200, top + 80 + cash_y+ training_back_y + totem_yy1 + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		draw_sprite_ext(s_currency_buy, 4, 640, top + 80 + cash_y + training_back_y + totem_yy1 + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		draw_sprite_ext(s_currency_buy, 5, 640 + 200, top + 80 + cash_y + training_back_y + totem_yy1 + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		draw_sprite_ext(s_currency_buy, 2, 640 + 200, top + 80 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		
+		draw_sprite_ext(s_currency_buy, 3, 640 - 200, top + 80 + 220 + cash_y+ training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		draw_sprite_ext(s_currency_buy, 4, 640, top + 80 + 220 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		draw_sprite_ext(s_currency_buy, 5, 640 + 200, top + 80 + 220 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
 		///////
 		
+		////// ПОКУПКА ДОЛЛАРОВ
+		draw_sprite_ext(s_store_plash, 0, 640, top + 20 + gold_y + training_back_y + store_yy1 + pry, 0.5, 0.5, 0, c_black, 0.5);
+		draw_sprite_ext(s_store_plash, 0, 640, top + 20 + gold_y + training_back_y + store_yy1 + pry, 0.5, 0.5, 0, c_white, 1);
+		draw_text_transformed_t(640, top + 20 + gold_y + training_back_y + store_yy1 + pry, "BANK OF GOLD", 0.25, 0.25, 0, global.color_white, c_black);
+		
+		draw_sprite_ext(s_currency_buy, 6, 640 - 200, top + 80 + gold_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		draw_sprite_ext(s_currency_buy, 7, 640, top + 80 + gold_y + training_back_y + totem_yy1 + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		draw_sprite_ext(s_currency_buy, 8, 640 + 200, top + 80 + gold_y+ training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		////////
 		
 		if mouse_check_button(mb_left)
 		&& point_in_rectangle(mouse_x, mouse_y, 0, global.size / 2 - 270, 1280, global.size / 2 + 270)
@@ -1635,6 +1656,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 	
 	if wl_ang >= 360
 		{ wl_ang -= 360; }
+	draw_sprite_ext(s_store_weel, 2, 15 + prx, global.size + training_back_y - 10 + yh / 3 + pry + 10, global.back_scale, global.back_scale, wl_ang, c_black, 0.5);
 	draw_sprite_ext_t(s_store_weel, 2, 0 + prx, global.size + training_back_y - 10 + yh / 3 + pry, global.back_scale, global.back_scale, wl_ang, c_white, 1, c_white, c_black);
 	
 	draw_set_font(global.game_font);
@@ -1651,6 +1673,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 	if sc_dist > 3
 		{ sc_dist -= 0.025; }
 	
+	draw_sprite_ext(s_store_back, 3, 640 + prx, global.size + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27 + 8, global.back_scale, global.back_scale, 0, c_black, 0.5);
 	draw_sprite_ext_t(s_store_back, 3, 640 + prx, global.size + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 	
 	if point_in_rectangle(mouse_x, mouse_y, 280, global.size + top - 100 - 1200 * global.back_scale - 27, 1000, global.size + top + 500 - 1200 * global.back_scale - 27)

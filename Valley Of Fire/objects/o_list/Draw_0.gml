@@ -8503,7 +8503,30 @@ if global.hero = 1 && global.enemy_hero = 1
 						{ g_rank_stage = 1; }
 					}
 					else
-					{ g_rank_stage = 8; }
+					{
+					ini_open("Music.ini");
+					if whowin = 1
+						{
+						if roundskul_n[3] = 0
+							{
+							txt_gold = "+5©";
+							txt_cash = "";
+							global.gold += 5;
+							ini_write_string("Sounds", "sound_on_g", string(global.gold));
+							ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							}
+							else
+							{
+							txt_gold = "+2©";
+							txt_cash = "";
+							global.gold += 2;
+							ini_write_string("Sounds", "sound_on_g", string(global.gold));
+							ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							}
+						}
+					ini_close();
+					g_rank_stage = 8;
+					}
 				}
 			#region Какой ранг
 				var star_now, star_need, shield_i, skul_i, go5;
@@ -8816,27 +8839,6 @@ if global.hero = 1 && global.enemy_hero = 1
 					global.p_totem[3] = -1;
 					room_goto_t("menu");
 					}
-				ini_open("Music.ini");
-					if whowin = 1
-						{
-						if roundskul_n[3] = 0
-							{
-							txt_gold = "+5©";
-							txt_cash = "";
-							global.gold += 5;
-							ini_write_string("Sounds", "sound_on_g", string(global.gold));
-							ini_write_string("Sounds", "sound_false_c", string(global.cash));
-							}
-							else
-							{
-							txt_gold = "+2©";
-							txt_cash = "";
-							global.gold += 2;
-							ini_write_string("Sounds", "sound_on_g", string(global.gold));
-							ini_write_string("Sounds", "sound_false_c", string(global.cash));
-							}
-						}
-				ini_close();
 				}
 			//////
 			

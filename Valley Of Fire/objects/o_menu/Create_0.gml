@@ -195,8 +195,8 @@
 	daily_s[3] = 1;
 	
 	
-	cash_y   = 1000;
-	gold_y   = 2000;
+	cash_y   = 700;
+	gold_y   = 1000;
 	
 	cash_txt[1] = "THE WAD OF CASH";
 	cash_val[1] = 50//80;
