@@ -5335,7 +5335,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sprites\/s_wanted2\/s_wanted2.yy",
+                "resourcePath": "sprites\/s_currency_buy\/s_currency_buy.yy",
                 "resourceType": "GMSprite"
             }
         },
