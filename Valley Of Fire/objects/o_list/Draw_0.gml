@@ -8552,8 +8552,8 @@ if global.hero = 1 && global.enemy_hero = 1
 						if whowin = 1 && star_now + 1 + winstreak >= star_need
 							{ g_rank_type = 4; g_skul_y = 0; g_star_y = -global.size / 2 - 200;  }
 						}
-					draw_set_font(global.game_font);
-					draw_text_transformed_t(mouse_x, mouse_y, string(g_rank_stage) + "~" + string(g_rank_type) + "\n" + string(star_now) + "~" + string(star_need) + "\n" + string(global.last_game2) + "~" + string(global.last_game), 0.25, 0.25, 0, c_white, c_black);
+					//draw_set_font(global.game_font);
+					//draw_text_transformed_t(mouse_x, mouse_y, string(g_rank_stage) + "~" + string(g_rank_type) + "\n" + string(star_now) + "~" + string(star_need) + "\n" + string(global.last_game2) + "~" + string(global.last_game), 0.25, 0.25, 0, c_white, c_black);
 			#endregion
 			
 			if g_enemy_change = 0

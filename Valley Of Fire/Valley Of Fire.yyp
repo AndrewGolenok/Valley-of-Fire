@@ -1236,6 +1236,25 @@
             }
         },
         {
+            "Key": "252aae39-b79b-42fd-8e7e-48e03d4d5bb8",
+            "Value": {
+                "id": "b1bc93fe-7a9d-4401-959f-9080578832e3",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "views\/252aae39-b79b-42fd-8e7e-48e03d4d5bb8.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "263e8a20-7e18-422b-abb8-4c4cf17adc60",
             "Value": {
                 "id": "48ad1830-e55f-406e-9d8f-a8059af89763",
@@ -3113,6 +3132,25 @@
                     "default"
                 ],
                 "resourcePath": "sprites\/s_load\/s_load.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "610e9824-a964-43ab-8f52-d9a718a53872",
+            "Value": {
+                "id": "7b0a6567-cbc2-47e3-97df-2becebec23ee",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_lootbox1\/s_lootbox1.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -5698,6 +5736,25 @@
                 ],
                 "resourcePath": "scripts\/name_set_font\/name_set_font.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "b1d5650a-8d84-4057-bdbb-3c4f7ec1591b",
+            "Value": {
+                "id": "e79bd8c0-1c81-4b24-821a-f36f47854a95",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_lootbox2\/s_lootbox2.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

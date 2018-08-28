@@ -174,6 +174,9 @@
 	text_tot[4] = "LEGENDARY";
 	text_y[4]   = (totem_y[15] + totem_y[16]) / 2;
 #endregion
+#region Магазин
+	
+#endregion
 #region Персонажи
 	hero_now = 1;
 	hero_s   = 0.5;
