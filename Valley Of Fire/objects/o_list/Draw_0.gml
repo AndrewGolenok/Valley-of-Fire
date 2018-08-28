@@ -6523,12 +6523,17 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						if global.tot = tt
 							{
-							pcc = i;
-							totem_txt_i = global.p_totem[i];
-							totem_txt = global.totem_name[global.p_totem[i]];
-							
 							if global.p_totem[i] = -1
 								{ global.tot += 0.5; totem_time = 10; }
+								else
+								{
+								if i = 1 or i = 2 or i = 3
+									{
+									pcc = i;
+									totem_txt_i = global.p_totem[i];
+									totem_txt = global.totem_name[global.p_totem[i]];
+									}
+								}
 							totem_pa[i] = 0;
 							if totem_ps[i] < 1.15
 								{ totem_ps[i] += 0.03; }
@@ -6701,9 +6706,17 @@ if global.hero = 1 && global.enemy_hero = 1
 					if ((global.tot = 1 or global.tot = 3 or global.tot = 5 or global.tot = 1.5 or global.tot = 3.5 or global.tot = 5.5) && totem_first = 0)
 					or ((global.tot = 2 or global.tot = 4 or global.tot = 6 or global.tot = 2.5 or global.tot = 4.5 or global.tot = 6.5) && totem_first = 1)
 						{
-						pcc = i;
-						totem_txt_i = global.e_totem[i];
-						totem_txt = global.totem_name[global.e_totem[i]];
+						if global.e_totem[i] = -1
+							{ global.tot += 0.5; totem_time = 10; }
+							else
+							{
+							if i = 1 or i = 2 or i = 3
+								{
+								pcc = i;
+								totem_txt_i = global.e_totem[i];
+								totem_txt = global.totem_name[global.e_totem[i]];
+								}
+							}
 						if global.e_totem[i] = -1
 							{ global.tot += 0.5; totem_time = 10; }
 						if global.tot = tt
@@ -7007,8 +7020,9 @@ if global.hero = 1 && global.enemy_hero = 1
 		if global.tot != -1// && totem_nc = 1
 			{
 			draw_set_font(global.game_font);
-			draw_text_ext_transformed_t(640, global.size / 2, totem_txt, -1, 1000, 0.2, 0.2, 8, totem_pc[pcc], c_black);
+			draw_text_ext_transformed_t(640, global.size / 2, string_upper(totem_txt), -1, 1000, 0.2, 0.2, 8, totem_pc[pcc], c_black);
 			}
+		
 		/// ТОТЕМЫ
 		if global.p_totem[3] > -1
 			{ draw_sprite_ext(s_totems_light, global.p_totem[3], txx * 0.5 + totem_x, totem_py[3], tss * totem_ps[3], tss * totem_ps[3], 0, totem_pc[3], totem_alpha); }
@@ -9974,6 +9988,6 @@ if lines_true
 	//	{ shaker = !shaker; }
 #endregion
 #region Отладка
-	draw_set_font(global.game_font);
-	draw_text_transformed_t(mouse_x, mouse_y, string(global.tot), 0.25, 0.25, 0, c_white, c_black);
+	//draw_set_font(global.game_font);
+	//draw_text_transformed(mouse_x, mouse_y, string(totem_txt), 0.2, 0.2, 0);//draw_text_transformed_t(mouse_x, mouse_y, string(global.tot), 0.25, 0.25, 0, c_white, c_black);
 #endregion
