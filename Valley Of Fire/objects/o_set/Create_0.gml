@@ -193,7 +193,11 @@
 			for(i=0;i<=19;i++)
 				{
 				if !ini_section_exists("Totems")
-				    { ini_write_string("Totems", "totem" + string(i), "0"); }
+				    {
+					ini_write_string("Totems", "totem" + string(i), "0");
+					if i = 4
+						{ ini_write_string("Totems", "totem" + string(i), "0"); }
+					}
 				global.totem_have[i] = ini_read_real("Totems", "totem" + string(i), 0);
 				}
 		#endregion
@@ -631,6 +635,9 @@
 #endregion
 #region Переменные игрока
 	global.shomen = 0;
+	
+	global.gold_color = make_color_rgb(230, 53, 70);
+	global.cash_color = make_color_rgb(60 , 179, 113);
 	//global.player_level = 7;
 	//global.enemy_level  = 7;
 	

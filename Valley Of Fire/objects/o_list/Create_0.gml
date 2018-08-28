@@ -913,7 +913,8 @@
 	g_rank_y = 0;
 	g_skul_y = 0;
 	g_rank_s = 0;
-	g_skul_s = 0;
+	g_skul_s = 1;
+	g_star_s = 1;
 	
 	txt_gold = "";
 	txt_cash = "";
