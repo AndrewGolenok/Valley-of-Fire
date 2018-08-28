@@ -15,8 +15,7 @@
 	sc_dir   = 1;
 	sc_spd   = 0.3;
 	sc_dist  = 5;
-	
-	
+	hand_i = 0;
 	
 	wl_spd = 0;
 	wl_ang = 0;

@@ -193,8 +193,7 @@
 				{ ms5 = 1.1; }
 			if mouse_check_button_released(mb_left)
 				{
-				if global.training_o = 1
-					{ global.duel = 1; }
+				global.duel = 1;
 				global.menu_next = "training";
 				}
 			}
@@ -1181,7 +1180,14 @@ if global.menu_now = "training" or global.menu_next = "training"
 					{ draw_sprite_ext(s_light, 0, theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, 0.26, 0.26, 0, c_white, 0.55); }
 				draw_sprite_ext_t(s_themes_button, 0, theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, theme_s[i,j] * theme_sc * theme_ss[i,j], theme_s[i,j] * theme_sc, 0, global.color_hero[theme_t[i,j]], 1, c_white, c_black);
 				draw_sprite_ext_t(s_themes_ss, theme_t[i,j], theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, theme_s[i,j] * theme_sc * theme_ss[i,j], theme_s[i,j] * theme_sc, 0, global.color_white, 1, global.color_white, c_black);
-			
+				if theme_op[i,j] = 1 && theme_ot[i,j] = 1
+					{
+					if hand_i < 10
+						{ hand_i += 0.4; }
+						else
+						{ hand_i = 0; }
+					draw_sprite_ext(s_training_hand, hand_i, theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, 1, 1, 0, c_white, 1);
+					}
 				draw_set_font(global.game_font);
 				//draw_text_transformed_t(global.size / 2, 100 + training_back_y, "T\nR\nA\nI\nN\nI\nN\nG", 0.3, 0.3, 0, global.color_white, c_black);
 				if theme_op[i,j] = 1
@@ -1336,26 +1342,35 @@ if global.menu_now = "training" or global.menu_next = "training"
 		draw_text_transformed_t(640, global.size / 2 - 150 + training_back_y, string(skul_i), 0.27, 0.27, 5, global.color_white, c_black);
 		
 		go5 = 1;
-		if point_in_rectangle(mouse_x, mouse_y, 640 - 290, global.size / 2 - 60 + 150 + training_back_y, 640 + 290, global.size / 2 + 60 + 150 + training_back_y)
+		if global.training_o = 1
 			{
-			if mouse_check_button(mb_left)
-				{ go5 = 1.1; }
-			if mouse_check_button_released(mb_left)
+			if point_in_rectangle(mouse_x, mouse_y, 640 - 290, global.size / 2 - 60 + 150 + training_back_y, 640 + 290, global.size / 2 + 60 + 150 + training_back_y)
 				{
-				global.player_rank = skul_i;
-				global.duel = 1;
-				global.menu_now = "heroes"; global.menu_next = "heroes";
+				if mouse_check_button(mb_left)
+					{ go5 = 1.1; }
+				if mouse_check_button_released(mb_left)
+					{
+					global.player_rank = skul_i;
+					global.duel = 1;
+					global.menu_now = "heroes"; global.menu_next = "heroes";
+					}
 				}
+			//draw_rectangle(640 - 290, global.size / 2 - 60 + 150 + training_back_y, 640 + 290, global.size / 2 + 60 + 150 + training_back_y, 1);
+			draw_text_transformed_t(640, global.size / 2 + 150 + training_back_y, "CHOOSE HERO", 0.27 * go5, 0.27 * go5, 5, global.color_white, c_black);
+			//ИГРА
 			}
-		//draw_rectangle(640 - 290, global.size / 2 - 60 + 150 + training_back_y, 640 + 290, global.size / 2 + 60 + 150 + training_back_y, 1);
-		draw_text_transformed_t(640, global.size / 2 + 150 + training_back_y, "CHOOSE HERO", 0.27 * go5, 0.27 * go5, 5, global.color_white, c_black);
-		//ИГРА
-		
 		//global.g_rank_now = 0;
 		//global.g_stars_need = 0;
 		//global.g_stars_now = 0;
 		}
-	
+	if global.training_o != 1 && global.duel = 1
+		{
+		draw_set_alpha(0.5);
+		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+		draw_set_alpha(1);
+		
+		draw_text_ext_transformed_t(640, global.size / 2 + training_back_y, "YOU HAVE NOT FINISHED TRAINING YET!", -1, 1200, 0.27 * go5, 0.27 * go5, 25, global.color_white, c_black);
+		}
 	draw_sprite_part_ext(s_training_back, 0, 0, top, sprite_get_width(s_training_back), sprite_get_height(s_training_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 	var yh, col;
 	yh = 0;
