@@ -214,6 +214,15 @@
 				{ ini_write_string("Ranks", "ranks", "0"); }
 			global.rank_stars = ini_read_real("Ranks", "ranks", 0);
 		#endregion
+		#region Бо1
+			if !ini_section_exists("Game")
+				{
+				ini_write_string("Game", "lastgame", "0");
+				ini_write_string("Game", "lastgame2", "0");
+				}
+			global.last_game2 = ini_read_real("Game", "lastgame2", 0);
+			global.last_game  = ini_read_real("Game", "lastgame", 0);
+		#endregion
 	ini_close();
 #endregion
 #region Персонажи

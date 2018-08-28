@@ -916,6 +916,13 @@
 	g_skul_s = 1;
 	g_star_s = 1;
 	
+	if global.last_game = 1 && global.last_game2 = 1
+		{ winstreak = 1; }
+		else
+		{ winstreak = 0; }
+	
+	g_message = 0;
+	
 	txt_gold = "";
 	txt_cash = "";
 	

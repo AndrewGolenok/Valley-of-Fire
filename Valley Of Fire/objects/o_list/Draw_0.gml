@@ -8458,7 +8458,7 @@ if global.hero = 1 && global.enemy_hero = 1
 				}
 			#region Какой ранг
 				var star_now, star_need, shield_i, skul_i, go5;
-					if global.rank_stars < 70
+					if global.rank_stars <= 70
 						{ star_now = global.rank_stars - 69; star_need = -1; shield_i = 3; skul_i = 0;}
 					if global.rank_stars < 69
 						{ star_now = global.rank_stars - 63; star_need = 6; shield_i = 2; skul_i = 1;}
@@ -8497,13 +8497,13 @@ if global.hero = 1 && global.enemy_hero = 1
 							{ g_rank_type = 1; g_star_y = 0; }
 						if whowin = 0 && star_now - 1 >= 0
 							{ g_rank_type = 2; g_star_y = 0;  }
-						if whowin = 1 && star_now + 1 < star_need
+						if whowin = 1 && star_now + 1 + winstreak < star_need
 							{ g_rank_type = 3; g_star_y = -global.size / 2 - 50;  }
-						if whowin = 1 && star_now + 1 = star_need
+						if whowin = 1 && star_now + 1 + winstreak = star_need
 							{ g_rank_type = 4; g_star_y = -global.size / 2 - 50;  }
 						}
 					draw_set_font(global.game_font);
-	draw_text_transformed_t(mouse_x, mouse_y, string(g_rank_stage) + "~" + string(g_rank_type) + "\n" + string(star_now) + "~" + string(star_need), 0.25, 0.25, 0, c_white, c_black);
+					draw_text_transformed_t(mouse_x, mouse_y, string(g_rank_stage) + "~" + string(g_rank_type) + "\n" + string(star_now) + "~" + string(star_need) + "\n" + string(global.last_game2) + "~" + string(global.last_game), 0.25, 0.25, 0, c_white, c_black);
 			#endregion
 			
 			if g_enemy_change = 0
@@ -8548,7 +8548,17 @@ if global.hero = 1 && global.enemy_hero = 1
 				if g_rank_type = 2
 					{
 					if g_star_y = 0
-						{ global.rank_stars -= 1; }
+						{
+						if global.rank_stars != 0 && global.rank_stars != 16
+						&& global.rank_stars != 41 && global.rank_stars != 69
+						&& global.rank_stars != 70
+							{ global.rank_stars -= 1; }
+							else
+							{ g_message = 1; }
+						ini_open("Music.ini");
+							ini_write_string("Ranks", "ranks", string(global.rank_stars));
+						ini_close();
+						}
 					if g_star_y < global.size / 2 + 50
 						{ g_star_y += 15; }
 						else
@@ -8557,7 +8567,14 @@ if global.hero = 1 && global.enemy_hero = 1
 				if g_rank_type = 3
 					{
 					if g_star_y = -global.size / 2 - 50
-						{ global.rank_stars += 1; g_star_s = 30; }
+						{
+						if global.player_rank < 70
+							{ global.rank_stars += 1 + winstreak; }
+						g_star_s = 30;
+						ini_open("Music.ini");
+							ini_write_string("Ranks", "ranks", string(global.rank_stars));
+						ini_close();
+						}
 					g_star_y = 0;
 					if g_star_s > 1
 						{ g_star_s -= 0.5; }
@@ -8579,7 +8596,21 @@ if global.hero = 1 && global.enemy_hero = 1
 						if g_skul_y < global.size / 2 + 200
 							{ g_skul_y += 30; }
 							else
-							{ global.rank_stars -= 1; g_rank_stage = 5; g_skul_y = 0; g_skul_s = 0; }
+							{
+							if global.rank_stars != 0 && global.rank_stars != 16
+							&& global.rank_stars != 41 && global.rank_stars != 69
+							&& global.rank_stars != 70
+								{ global.rank_stars -= 1; }
+								else
+								{ g_message = 1; }
+							g_rank_stage = 5;
+							g_skul_y = 0;
+							g_skul_s = 0;
+							
+							ini_open("Music.ini");
+								ini_write_string("Ranks", "ranks", string(global.rank_stars));
+							ini_close();
+							}
 						}
 					}
 				//if g_rank_type = 2
@@ -8597,7 +8628,16 @@ if global.hero = 1 && global.enemy_hero = 1
 						if g_skul_y > -global.size / 2 - 200
 							{ g_skul_y -= 50; }
 							else
-							{ global.rank_stars += 1; g_rank_stage = 5; g_skul_y = 0; g_skul_s = 30; }
+							{
+							if global.player_rank < 70
+								{ global.rank_stars += 1 + winstreak; }
+							g_rank_stage = 5;
+							g_skul_y = 0;
+							g_skul_s = 30;
+							ini_open("Music.ini");
+								ini_write_string("Ranks", "ranks", string(global.rank_stars));
+							ini_close();
+							}
 						}
 					}
 				}
@@ -8623,31 +8663,66 @@ if global.hero = 1 && global.enemy_hero = 1
 			if g_rank_stage = 6
 				{
 				ini_open("Music.ini");
-					//if g_rank_type = 1
-					//	{ g_rank_stage = 7; }
+					if g_rank_type = 1
+						{
+						if roundskul_n[3] != 0
+							{
+							txt_gold = "+5©";
+							global.gold += 5;
+							ini_write_string("Sounds", "sound_on_g", string(global.gold));
+							}
+						//g_rank_stage = 7;
+						}
 					if g_rank_type = 2
 						{
-						txt_gold = "+5©"
-						global.gold += 5;
-						ini_write_string("Sounds", "sound_on_g", string(global.gold));
+						if roundskul_n[3] != 0
+							{
+							txt_gold = "+5©";
+							global.gold += 5;
+							ini_write_string("Sounds", "sound_on_g", string(global.gold));
+							}
 						}
 					if g_rank_type = 3
 						{
-						txt_gold = "+10©";
-						txt_cash = "+1ç";
-						global.gold += 10;
-						global.cash += 1;
-						ini_write_string("Sounds", "sound_on_g", string(global.gold));
-						ini_write_string("Sounds", "sound_false_c", string(global.cash));
+						if roundskul_n[3] = 0
+							{
+							txt_gold = "+10©";
+							txt_cash = "+1ç";
+							global.gold += 10;
+							global.cash += 1;
+							ini_write_string("Sounds", "sound_on_g", string(global.gold));
+							ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							}
+							else
+							{
+							txt_gold = "+15©";
+							txt_cash = "+2ç";
+							global.gold += 15;
+							global.cash += 2;
+							ini_write_string("Sounds", "sound_on_g", string(global.gold));
+							ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							}
 						}
 					if g_rank_type = 4
 						{
-						txt_gold = "+15©";
-						txt_cash = "+2ç";
-						global.gold += 15;
-						global.cash += 2;
-						ini_write_string("Sounds", "sound_on_g", string(global.gold));
-						ini_write_string("Sounds", "sound_false_c", string(global.cash));
+						if roundskul_n[3] = 0
+							{
+							txt_gold = "+10(+10)©";
+							txt_cash = "+1(+3)ç";
+							global.gold += 20;
+							global.cash += 4;
+							ini_write_string("Sounds", "sound_on_g", string(global.gold));
+							ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							}
+							else
+							{
+							txt_gold = "+15(+10)©";
+							txt_cash = "+2(+3)ç";
+							global.gold += 25;
+							global.cash += 5;
+							ini_write_string("Sounds", "sound_on_g", string(global.gold));
+							ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							}
 						}
 				ini_close();
 				g_rank_stage = 7;
@@ -8655,6 +8730,16 @@ if global.hero = 1 && global.enemy_hero = 1
 			///////
 			if g_rank_stage = 7
 				{
+				ini_open("Music.ini");
+					if !ini_section_exists("Game")
+						{
+						ini_write_string("Game", "lastgame2", string(global.last_game));
+						ini_write_string("Game", "lastgame", string(whowin));
+						}
+					global.last_game2 = ini_read_real("Game", "lastgame2", 0);
+					global.last_game  = ini_read_real("Game", "lastgame", 0);
+				ini_close();
+				
 				draw_set_font(global.game_font);
 				draw_text_transformed_t(640, global.size - 60 + fin_y, "TAP TO GO MENU", 0.2, 0.2, 0, global.color_white, c_black);
 				
