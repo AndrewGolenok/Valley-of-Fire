@@ -645,7 +645,7 @@
 #region Переменные игрока
 	global.shomen = 0;
 	
-	global.gold_color = make_color_rgb(230, 53, 70);
+	global.gold_color = make_color_rgb(252,232,131);
 	global.cash_color = make_color_rgb(60 , 179, 113);
 	//global.player_level = 7;
 	//global.enemy_level  = 7;

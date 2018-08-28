@@ -1147,7 +1147,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 			draw_sprite_ext_t(s_rank_star, 0, 640 + 30, global.size / 2 + 35 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
 			
 			if star_now > 0
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 30, global.size / 2 + 35 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 30, global.size / 2 + 35 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			//if star_now > 1
 			//	{ draw_sprite_ext(s_rank_star, 0, 640 + 30, global.size / 2 + 35, 0.3, 0.3, 0, c_white, 1); }
 			}
@@ -1158,9 +1158,9 @@ if global.menu_now = "training" or global.menu_next = "training"
 			draw_sprite_ext_t(s_rank_star, 0, 640 + 70, global.size / 2+ training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
 			
 			if star_now > 0
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 70, global.size / 2 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 70, global.size / 2 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			if star_now > 1
-				{ draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 70 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 70 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			//if star_now > 2
 			//	{ draw_sprite_ext(s_rank_star, 0, 640 + 30, global.size / 2 + 35, 0.3, 0.3, 0, c_white, 1); }
 			}
@@ -1172,11 +1172,11 @@ if global.menu_now = "training" or global.menu_next = "training"
 			draw_sprite_ext_t(s_rank_star, 0, 640 + 110, global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
 			
 			if star_now > 0
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 110, global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 110, global.size / 2 - 40 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			if star_now > 1
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			if star_now > 2
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 + 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 + 50, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			}
 		if star_need = 5
 			{
@@ -1187,13 +1187,13 @@ if global.menu_now = "training" or global.menu_next = "training"
 			draw_sprite_ext_t(s_rank_star, 0, 640 + 100, global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
 			
 			if star_now > 0
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 100, global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 100, global.size / 2 - 45 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			if star_now > 1
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			if star_now > 2
-				{ draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			if star_now > 3
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 + 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 + 60, global.size / 2 + 15 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			}
 		if star_need = 6
 			{
@@ -1205,15 +1205,15 @@ if global.menu_now = "training" or global.menu_next = "training"
 			draw_sprite_ext_t(s_rank_star, 0, 640 + 120, global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);
 			
 			if star_now > 0
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 120, global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 120, global.size / 2 - 30 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			if star_now > 1
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			if star_now > 2
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 - 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			if star_now > 3
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 + 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 + 40, global.size / 2 + 60 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			if star_now > 4
-				{ draw_sprite_ext_t(s_rank_star, 0, 640 + 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, c_white, 1, global.color_white, c_black); }
+				{ draw_sprite_ext_t(s_rank_star, 0, 640 + 80, global.size / 2 + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 			}
 		
 		draw_text_transformed_t(640, global.size / 2 - 150 + training_back_y, string(skul_i), 0.27, 0.27, 5, global.color_white, c_black);
