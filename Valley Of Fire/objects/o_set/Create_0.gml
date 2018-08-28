@@ -223,6 +223,11 @@
 			global.last_game2 = ini_read_real("Game", "lastgame2", 0);
 			global.last_game  = ini_read_real("Game", "lastgame", 0);
 		#endregion
+		#region Лаг
+			if !ini_section_exists("Lug")
+				{ ini_write_string("Lug", "lug", "0"); }
+			global.lug = ini_read_real("Lug", "lug", 0);
+		#endregion
 	ini_close();
 #endregion
 #region Персонажи
@@ -644,7 +649,6 @@
 #endregion
 #region Прочие переменные
 	global.shomen = 0;
-	global.lug = 0;
 	global.gold_color = make_color_rgb(252,232,131);
 	global.cash_color = make_color_rgb(60 , 179, 113);
 #endregion

@@ -175,7 +175,39 @@
 	text_y[4]   = (totem_y[15] + totem_y[16]) / 2;
 #endregion
 #region Магазин
+	lootbox_y = 0;
+	daily_y   = 300;
 	
+	cash_y   = 700;
+	gold_y   = 1200;
+	
+	cash_txt[1] = "THE WAD OF CASH";
+	cash_val[1] = 80;
+	
+	cash_txt[2] = "A BAG OF CASH";
+	cash_val[2] = 80;
+	
+	cash_txt[3] = "THE BOX OF CASH";
+	cash_val[3] = 80;
+	
+	cash_txt[4] = "A CHEST OF CASH";
+	cash_val[4] = 80;
+	
+	cash_txt[5] = "A BARREL OF CASH";
+	cash_val[5] = 80;
+	
+	cash_txt[6] = "A MOUNTAIN OF CASH";
+	cash_val[6] = 80;
+	
+	
+	cash_txt[1] = "A BAG OF CASH";
+	cash_val[1] = 80;
+	
+	cash_txt[1] = "A BARREL OF CASH";
+	cash_val[1] = 80;
+	
+	cash_txt[1] = "A MOUNTAIN OF CASH";
+	cash_val[1] = 80;
 #endregion
 #region Персонажи
 	hero_now = 1;

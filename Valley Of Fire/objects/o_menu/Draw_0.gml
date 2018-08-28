@@ -28,7 +28,11 @@
 		else
 		{
 		if global.fps_mental / global.fps_col < 40
-			{ global.lug = 1; }
+			{
+			if !ini_section_exists("Lug")
+				{ ini_write_string("Lug", "lug", "1"); }
+			global.lug = 1;
+			}
 		}
 #endregion
 
