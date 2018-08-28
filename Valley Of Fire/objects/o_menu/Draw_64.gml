@@ -1524,7 +1524,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 		////// ЕЖЕДНЕВНЫЕ ПОКУПКИ
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 0.4, 0.4, 0, c_black, 0.5);
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top - 90 + daily_y + training_back_y + pry + store_yy1, 0.4, 0.4, 0, c_white, 1);
-		draw_text_transformed_t(640 + prx, top - 120 + daily_y + training_back_y + pry + store_yy1, "DAILY ITEMS", 0.17, 0.17, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx, top - 110 + daily_y + training_back_y + pry + store_yy1, "DAILY ITEMS", 0.17, 0.17, 0, global.color_white, c_black);
 		
 		
 		draw_sprite_ext(s_wanted, 1, 640 + prx - 200 + 5, top + 80 + daily_y + training_back_y + pry + store_yy1 + 10, 0.5, 0.5, 0, c_black, 0.5);
@@ -1537,31 +1537,25 @@ if global.menu_now = "store" or global.menu_next = "store"
 		///////
 		
 		////// ПОКУПКА ДОЛЛАРОВ
-		draw_sprite_ext(s_store_plash, 0, 640 + prx - 100, top + 20 + cash_y + training_back_y + store_yy1 + pry, 0.4, 0.4, 0, c_black, 0.5);
-		draw_sprite_ext(s_store_plash, 0, 640 + prx - 100, top + 20 + cash_y + training_back_y + store_yy1 + pry, 0.4, 0.4, 0, c_white, 1);
-		draw_text_transformed_t(640 + prx - 120, top + 20 + cash_y + training_back_y + store_yy1 + pry, "BANK OF CASH", 0.17, 0.17, 0, global.color_white, c_black);
+		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_black, 0.5);
+		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_white, 1);
+		draw_text_transformed_t(640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120, "BANK OF CASH", 0.17, 0.17, 0, global.color_white, c_black);
 		
-		draw_text_transformed_t(640 + prx - 200, top + 80 + cash_y + training_back_y + pry + store_yy1 - 100, cash_txt[1], 0.11, 0.11, 0, global.color_white, c_black);
-		draw_sprite_ext_t(s_currency_buy, 0, 640 + prx - 200, top + 80 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
-		draw_text_transformed_t(640 + prx - 200, top + 80 + cash_y + training_back_y + pry + store_yy1 - 70, string(cash_val[1]), 0.18, 0.18, 0, global.cash_color, c_black);
-		draw_text_transformed_t(640 + prx - 200, top + 80 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[1], 0.18, 0.18, 0, global.color_white, c_black);
+		draw_sprite_ext_t(s_currency_buy, 0, 640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[1], 0.11, 0.11, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[1]), 0.18, 0.18, 0, global.cash_color, c_black);
+		draw_text_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[1], 0.2, 0.2, 0, global.color_white, c_black);
 		
-		draw_sprite_ext(s_currency_buy, 1, 640 + prx, top + 80 + cash_y + training_back_y + totem_yy1 + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		draw_sprite_ext(s_currency_buy, 2, 640 + prx + 200, top + 80 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		//draw_sprite_ext(s_currency_buy, 1, 640 + prx, top + 80 + cash_y + training_back_y + totem_yy1 + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		//draw_sprite_ext(s_currency_buy, 2, 640 + prx + 200, top + 80 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
 		
-		draw_sprite_ext(s_currency_buy, 3, 640 + prx - 200, top + 80 + 220 + cash_y+ training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		draw_sprite_ext(s_currency_buy, 4, 640 + prx, top + 80 + 220 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		draw_sprite_ext(s_currency_buy, 5, 640 + prx + 200, top + 80 + 220 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		//draw_sprite_ext(s_currency_buy, 3, 640 + prx - 200, top + 80 + 220 + cash_y+ training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		//draw_sprite_ext(s_currency_buy, 4, 640 + prx, top + 80 + 220 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		//draw_sprite_ext(s_currency_buy, 5, 640 + prx + 200, top + 80 + 220 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
 		///////
 		
-		////// ПОКУПКА ДОЛЛАРОВ
-		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 20 + gold_y + training_back_y + store_yy1 + pry, 0.5, 0.5, 0, c_black, 0.5);
-		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 20 + gold_y + training_back_y + store_yy1 + pry, 0.5, 0.5, 0, c_white, 1);
-		draw_text_transformed_t(640 + prx, top + 20 + gold_y + training_back_y + store_yy1 + pry, "BANK OF GOLD", 0.25, 0.25, 0, global.color_white, c_black);
+		////// ПОКУПКА ГОЛДЫ
 		
-		draw_sprite_ext(s_currency_buy, 6, 640 + prx - 200, top + 80 + gold_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		draw_sprite_ext(s_currency_buy, 7, 640 + prx, top + 80 + gold_y + training_back_y + totem_yy1 + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		draw_sprite_ext(s_currency_buy, 8, 640 + prx + 200, top + 80 + gold_y+ training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
 		////////
 		
 		if mouse_check_button(mb_left)

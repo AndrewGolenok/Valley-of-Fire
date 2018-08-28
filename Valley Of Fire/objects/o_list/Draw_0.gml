@@ -8504,27 +8504,30 @@ if global.hero = 1 && global.enemy_hero = 1
 					}
 					else
 					{
-					ini_open("Music.ini");
-					if whowin = 1
+					if g_rank_stage != 8
 						{
-						if roundskul_n[3] = 0
+						ini_open("Music.ini");
+						if whowin = 1
 							{
-							txt_gold = "+5©";
-							txt_cash = "";
-							global.gold += 5;
-							ini_write_string("Sounds", "sound_on_g", string(global.gold));
-							ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							if roundskul_n[3] = 0
+								{
+								txt_gold = "+5©";
+								txt_cash = "";
+								global.gold += 5;
+								ini_write_string("Sounds", "sound_on_g", string(global.gold));
+								ini_write_string("Sounds", "sound_false_c", string(global.cash));
+								}
+								else
+								{
+								txt_gold = "+2©";
+								txt_cash = "";
+								global.gold += 2;
+								ini_write_string("Sounds", "sound_on_g", string(global.gold));
+								ini_write_string("Sounds", "sound_false_c", string(global.cash));
+								}
 							}
-							else
-							{
-							txt_gold = "+2©";
-							txt_cash = "";
-							global.gold += 2;
-							ini_write_string("Sounds", "sound_on_g", string(global.gold));
-							ini_write_string("Sounds", "sound_false_c", string(global.cash));
-							}
+						ini_close();
 						}
-					ini_close();
 					g_rank_stage = 8;
 					}
 				}
@@ -8844,12 +8847,15 @@ if global.hero = 1 && global.enemy_hero = 1
 			
 			////////
 			draw_set_font(global.game_font);
-			if txt_cash = ""
-				{ draw_text_transformed_t(640, global.size - 150 + fin_y, txt_gold, 0.18, 0.18, 0, global.gold_color, c_black); }
-				else
+			if global.quick = 0
 				{
-				draw_text_transformed_t(640 - (string_width(txt_gold) * 0.18 / 2 - 5), global.size - 150 + fin_y, txt_gold, 0.18, 0.18, 0, global.gold_color, c_black);	
-				draw_text_transformed_t(640 + string_width(txt_cash) * 0.18 / 2 + 5, global.size - 150 + fin_y, txt_cash, 0.18, 0.18, 0, global.cash_color, c_black);
+				if txt_cash = ""
+					{ draw_text_transformed_t(640, global.size - 150 + fin_y, txt_gold, 0.18, 0.18, 0, global.gold_color, c_black); }
+					else
+					{
+					draw_text_transformed_t(640 - (string_width(txt_gold) * 0.18 / 2 - 5), global.size - 150 + fin_y, txt_gold, 0.18, 0.18, 0, global.gold_color, c_black);	
+					draw_text_transformed_t(640 + string_width(txt_cash) * 0.18 / 2 + 5, global.size - 150 + fin_y, txt_cash, 0.18, 0.18, 0, global.cash_color, c_black);
+					}
 				}
 			////////
 			if g_message = 1
@@ -8962,6 +8968,8 @@ if global.hero = 1 && global.enemy_hero = 1
 					{
 					draw_sprite_ext(s_sunmoon, 0, 640, global.size / 2 - 50 + 15, 0.5, 0.5, 0, c_black, 0.5);
 					draw_sprite_ext_t(s_sunmoon, 0, 640, global.size / 2 - 50, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
+					
+					draw_text_transformed_t(640, global.size / 2 - 50, txt_gold, 0.18, 0.18, 0, global.gold_color, c_black);
 					}
 				}	
 			}
