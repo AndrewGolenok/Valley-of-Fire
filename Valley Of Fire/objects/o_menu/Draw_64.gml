@@ -526,7 +526,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 				//		{ draw_sprite_ext(s_totems_eyes, global.p_totem[3], 1280 - 300, 2 * totem_w * 0.8 + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[3]], totem_alp); }
 				//	}
 				
-				draw_rectangle(1280 - 300 - 150, global.size - 60 + training_back_y - 50, 1280 - 300 + 150, global.size - 60 + training_back_y + 50, 1);
+				//draw_rectangle(1280 - 300 - 150, global.size - 60 + training_back_y - 50, 1280 - 300 + 150, global.size - 60 + training_back_y + 50, 1);
 				draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "START DUEL", 0.25 * go5, 0.25 * go5, 0, global.color_white, c_black);
 				}
 		#endregion
@@ -2242,6 +2242,6 @@ if 0
 	}
 	
 #region Отладка
-	//draw_set_font(global.game_font);
-	//draw_text_transformed_t(mouse_x, mouse_y, string(totems_y[1]) + "~" + string(totems_y[2]) + "~" + string(totems_y[3]) + "\n" + string(totems_x[1]) + "~" + string(totems_x[2]) + "~" + string(totems_x[3]), 0.25, 0.25, 0, c_white, c_black);
+	draw_set_font(global.game_font);
+	draw_text_transformed_t(mouse_x, mouse_y, string(global.fps_mental / global.fps_col), 0.25, 0.25, 0, c_white, c_black);
 #endregion

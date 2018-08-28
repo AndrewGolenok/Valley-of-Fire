@@ -6948,39 +6948,42 @@ if global.hero = 1 && global.enemy_hero = 1
 			{ totem_alpha_d = -totem_alpha_d; }
 		totem_alpha += 0.01 * totem_alpha_d;
 		
-		totem_txt = "";
+		var totem_nc;
+		totem_nc = 0;
+		totem_txt   = "";
+		totem_txt_i = 1;
 		if totem_first = 1
 			{
 			if global.tot = 1 && global.p_totem[1] != -1 
-				{ totem_txt_i = global.p_totem[1]; totem_txt = global.totem_name[global.p_totem[1]]; }
+				{ totem_txt_i = global.p_totem[1]; totem_txt = global.totem_name[global.p_totem[1]]; totem_nc = 1; }
 			if global.tot = 2 && global.e_totem[1] != -1 
-				{ totem_txt_i = global.e_totem[1]; totem_txt = global.totem_name[global.e_totem[1]]; }
+				{ totem_txt_i = global.e_totem[1]; totem_txt = global.totem_name[global.e_totem[1]]; totem_nc = 1; }
 			if global.tot = 3 && global.p_totem[2] != -1 
-				{ totem_txt_i = global.p_totem[2]; totem_txt = global.totem_name[global.p_totem[2]]; }
+				{ totem_txt_i = global.p_totem[2]; totem_txt = global.totem_name[global.p_totem[2]]; totem_nc = 1; }
 			if global.tot = 4 && global.e_totem[2] != -1 
-				{ totem_txt_i = global.e_totem[2]; totem_txt = global.totem_name[global.e_totem[2]]; }
+				{ totem_txt_i = global.e_totem[2]; totem_txt = global.totem_name[global.e_totem[2]]; totem_nc = 1; }
 			if global.tot = 5 && global.p_totem[3] != -1 
-				{ totem_txt_i = global.p_totem[3]; totem_txt = global.totem_name[global.p_totem[3]]; }
+				{ totem_txt_i = global.p_totem[3]; totem_txt = global.totem_name[global.p_totem[3]]; totem_nc = 1; }
 			if global.tot = 6 && global.e_totem[3] != -1 
-				{ totem_txt_i = global.e_totem[3]; totem_txt = global.totem_name[global.e_totem[3]]; }
+				{ totem_txt_i = global.e_totem[3]; totem_txt = global.totem_name[global.e_totem[3]]; totem_nc = 1; }
 			}
 			else
 			{
 			if global.tot = 1 && global.e_totem[1] != -1 
-				{ totem_txt_i = global.e_totem[1]; totem_txt = global.totem_name[global.e_totem[1]]; }
+				{ totem_txt_i = global.e_totem[1]; totem_txt = global.totem_name[global.e_totem[1]]; totem_nc = 1; }
 			if global.tot = 2 && global.p_totem[1] != -1 
-				{ totem_txt_i = global.p_totem[1]; totem_txt = global.totem_name[global.p_totem[1]]; }
+				{ totem_txt_i = global.p_totem[1]; totem_txt = global.totem_name[global.p_totem[1]]; totem_nc = 1; }
 			if global.tot = 3 && global.e_totem[2] != -1 
-				{ totem_txt_i = global.e_totem[2]; totem_txt = global.totem_name[global.e_totem[2]]; }
+				{ totem_txt_i = global.e_totem[2]; totem_txt = global.totem_name[global.e_totem[2]]; totem_nc = 1; }
 			if global.tot = 4 && global.p_totem[2] != -1 
-				{ totem_txt_i = global.p_totem[2]; totem_txt = global.totem_name[global.p_totem[2]]; }
+				{ totem_txt_i = global.p_totem[2]; totem_txt = global.totem_name[global.p_totem[2]]; totem_nc = 1; }
 			if global.tot = 5 && global.e_totem[3] != -1 
-				{ totem_txt_i = global.e_totem[3]; totem_txt = global.totem_name[global.e_totem[3]]; }
+				{ totem_txt_i = global.e_totem[3]; totem_txt = global.totem_name[global.e_totem[3]]; totem_nc = 1; }
 			if global.tot = 6 && global.p_totem[3] != -1 
-				{ totem_txt_i = global.p_totem[3]; totem_txt = global.totem_name[global.p_totem[3]]; }
+				{ totem_txt_i = global.p_totem[3]; totem_txt = global.totem_name[global.p_totem[3]]; totem_nc = 1; }
 			}
 		
-		if global.tot != -1
+		if global.tot != -1 && totem_nc = 1
 			{
 			draw_set_alpha(0.45);
 			draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
@@ -8606,22 +8609,34 @@ if global.hero = 1 && global.enemy_hero = 1
 			///////
 			if g_rank_stage = 6
 				{
-				//if g_rank_type = 1
-				//	{ g_rank_stage = 7; }
-				if g_rank_type = 2
-					{
-					txt_gold = "+5©"
-					}
-				if g_rank_type = 3
-					{
-					txt_gold = "+10©";
-					txt_cash = "+1ç";
-					}
-				if g_rank_type = 4
-					{
-					txt_gold = "+15©";
-					txt_cash = "+2ç";
-					}
+				ini_open("Music.ini");
+					//if g_rank_type = 1
+					//	{ g_rank_stage = 7; }
+					if g_rank_type = 2
+						{
+						txt_gold = "+5©"
+						global.gold += 5;
+						ini_write_string("Sounds", "sound_on_g", string(global.gold));
+						}
+					if g_rank_type = 3
+						{
+						txt_gold = "+10©";
+						txt_cash = "+1ç";
+						global.gold += 10;
+						global.cash += 1;
+						ini_write_string("Sounds", "sound_on_g", string(global.gold));
+						ini_write_string("Sounds", "sound_false_c", string(global.cash));
+						}
+					if g_rank_type = 4
+						{
+						txt_gold = "+15©";
+						txt_cash = "+2ç";
+						global.gold += 15;
+						global.cash += 2;
+						ini_write_string("Sounds", "sound_on_g", string(global.gold));
+						ini_write_string("Sounds", "sound_false_c", string(global.cash));
+						}
+				ini_close();
 				g_rank_stage = 7;
 				}
 			///////
@@ -8638,6 +8653,9 @@ if global.hero = 1 && global.enemy_hero = 1
 					room_goto_t("menu");
 					}
 				}
+			////////
+			draw_set_font(global.game_font);
+			draw_text_transformed_t(640, global.size - 130 + fin_y, txt_gold + " " + txt_cash, 0.12, 0.12, 0, c_white, c_black);	
 			////////
 			
 			if g_rank_stage >= 1

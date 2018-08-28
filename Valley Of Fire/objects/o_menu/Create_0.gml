@@ -1,4 +1,6 @@
 #region Меню
+	global.fps_mental = 0;
+	global.fps_col = 0;
 	global.lug = 0;
 	global.lug_time = 0;
 	global.duel = 0;

@@ -23,10 +23,13 @@
 		draw_surface(application_surface, -7.5, -7.5);
 		draw_set_alpha(1);
 		}
-	if fps_real < 60
-		{ global.lug = 1; }
+	if fps_col < room_speed * 5
+		{ fps_mental += fps_real; }
 		else
-		{ global.lug = 0; }
+		{
+		if fps_mental / fps_col < 40
+			{ global.lug = 1; }
+		}
 #endregion
 
 if 0
