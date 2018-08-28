@@ -1207,15 +1207,15 @@
 		}
 	if global.p_totem[1] != -1 && global.p_totem[2] = -1 && global.p_totem[3] = -1
 		{
-		totem_py[3] = global.size / 2 + 470 * tss * 0.9;
+		totem_py[1] = global.size / 2 + 470 * tss * 0.9;
 		totem_py[2] = -200;
-		totem_py[1] = -200;
+		totem_py[3] = -200;
 		}
 	if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] = -1
 		{
-		totem_py[3] = global.size / 2;
+		totem_py[1] = global.size / 2;
 		totem_py[2] = global.size / 2 + 470 * tss * 0.9;
-		totem_py[1] = -200;
+		totem_py[3] = -200;
 		}
 	if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] != -1
 		{

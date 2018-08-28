@@ -288,7 +288,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 			{
 			draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, 160 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + 10 + pry, totem_s, totem_s, 0, c_black, 0.5); 
 			draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, 160 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + pry, totem_s * totems_ss[i], totem_s * totems_ss[i], 0, c_white, 1);
-			if global.totem_have[i] = 0
+			if global.totem_have[i] = 0 or (global.duel = 1 && (global.p_totem[1] = i or global.p_totem[2] = i or global.p_totem[3] = i))
 				{ draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, 160 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + pry, totem_s * totems_ss[i], totem_s * totems_ss[i], 0, c_black, 0.4); }
 				else
 				{ draw_sprite_ext(s_totems_eyes, i, 290 + totem_x[i] + prx, 160 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + pry, totem_s * totems_ss[i], totem_s * totems_ss[i], 0, totem_c[i], totem_alp); }
@@ -324,10 +324,10 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 			totemy = totem_yy1;
 			totem_yy1 = totem_yy + mouse_y;
 			
-			if totem_yy1 > 100
-				{ totem_yy1 = 100; }
-			if totem_yy1 < -1000
-				{ totem_yy1 = -1000; }
+			if totem_yy1 > 200
+				{ totem_yy1 = 200; }
+			if totem_yy1 < -1100
+				{ totem_yy1 = -1100; }
 			
 			if totem_yy1 != totemy
 				{ totem_pr = 0; }
@@ -514,7 +514,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 								}
 								else
 								{
-								if global.p_totem[1] != -1
+								if global.p_totem[2] != -1
 									{
 									totems_y[3] = totems_y[2];
 									totems_y[2] = totems_y[1];
@@ -526,7 +526,10 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 									totems_y[1] = -(global.size / 2 - 100);
 									}
 									else
-									{ totems_y[1] = -(global.size / 2 - 100); }
+									{
+									totems_x[3] = 350;
+									totems_y[3] = -(global.size / 2 - 100 + totem_w * 2);
+									}
 								}
 								
 								//else
@@ -780,10 +783,9 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 	colb = make_color_rgb(123, 0, 28);
 	//draw_rectangle_color(0, training_back_y + global.size + 50, 1280, global.size, colb, colb, colb, colb, 0);
 	
-	var top;
+	var top, top;
 	top = ((sprite_get_height(s_heroes_back) * global.back_scale - global.size) / 2) * (sprite_get_width(s_heroes_back) / 1280); //sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
 	draw_sprite_part_ext(s_heroes_back, 1, 0, top, sprite_get_width(s_heroes_back), sprite_get_height(s_heroes_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
-	
 	///////
 	#region Листовки
 		for(i=1;i<=7;i++)
@@ -794,13 +796,13 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 				{ draw_sprite_ext(s_wanted, i, 330 + hero_xx[i] + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + pry, hero_s * hero_ss[i], hero_s * hero_ss[i], 0, c_black, 0.5); }
 			
 			draw_set_alpha(0.5);
-			draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15 + pry, 330 + hero_xx[i] + hero_w * hero_s * 1.1 + prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15+ pry, c_black, c_black, c_black, c_black, 0);
+			draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15 + pry, 330 + hero_xx[i] + hero_w * hero_s * 1.1 + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15 + pry, c_black, c_black, c_black, c_black, 0);
 			draw_set_alpha(1);
 			
-			draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15 + pry, 330 + hero_xx[i] - hero_w * hero_s * 1.1 + (2 * hero_w * hero_s * 1.1) * (hero_now1[i] / hero_need[i])+ prx, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15 + pry, global.color_hero[i], global.color_hero[i], global.color_hero[i], global.color_hero[i], 0);
+			draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15 + pry, 330 + hero_xx[i] - hero_w * hero_s * 1.1 + (2 * hero_w * hero_s * 1.1) * (hero_now1[i] / hero_need[i])+ prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15 + pry, global.color_hero[i], global.color_hero[i], global.color_hero[i], global.color_hero[i], 0);
 			
 			draw_sprite_ext_t(s_themes_ss, i, 330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx + 20, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 - hero_h * hero_s * 1.1 + pry + 20, 0.3, 0.3, 0, global.color_hero[i], 1, global.color_hero[i], c_black);
-			draw_text_transformed_t(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx + 20, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 - hero_h * hero_s * 1.1 + pry + 20, string(hero_lvl[i]) + "", 0.18, 0.18, 0, global.color_white, c_black);
+			draw_text_transformed_t(330 + hero_xx[i] - hero_w * hero_s * 1.1 + prx + 20, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 - hero_h * hero_s * 1.1 + pry + 20, string(hero_lvl[i]) + "", 0.18, 0.18, 0, global.color_white, c_black);
 			
 			draw_text_transformed_t(330 + hero_xx[i] + prx, 160 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + pry, "(" + string(hero_now1[i]) + "~" + string(hero_need[i]) + ")", 0.1, 0.1, 0, global.color_white, c_black);
 			}
@@ -813,10 +815,10 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 			totemy = hero_yy1;
 			hero_yy1 = hero_yy + mouse_y;
 			
-			if hero_yy1 > 100
-				{ hero_yy1 = 100; }
-			if hero_yy1 < -850
-				{ hero_yy1 = -850; }
+			if hero_yy1 > 200
+				{ hero_yy1 = 200; }
+			if hero_yy1 < -950
+				{ hero_yy1 = -950; }
 			
 			if hero_yy1 != totemy
 				{ hero_pr = 0; }
@@ -1418,7 +1420,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 	if global.duel = 0
 		{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "T\nR\nA\nI\nN\nI\nN\nG", 0.22, 0.22, 0, col, c_black); }
 		else
-		{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "®\nR\nA\nN\nK\nE\nD\n® ", 0.2, 0.2, 0, col, c_black); }
+		{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "®\nR\nA\nN\nK\nE\nD\n®\n ", 0.2, 0.2, 0, col, c_black); }
 	if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
 		{ sc_angle += sc_dir * sc_spd; }
 		else
@@ -2409,6 +2411,8 @@ if 0
 	}
 	
 #region Отладка
-	draw_set_font(global.game_font);
-	draw_text_transformed_t(mouse_x, mouse_y, string(global.fps_mental / global.fps_col), 0.25, 0.25, 0, c_white, c_black);
+	//draw_set_font(global.game_font);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(global.p_totem[1]) + ":" + string(global.p_totem[2]) + ":" + string(global.p_totem[3]), 0.25, 0.25, 0, c_white, c_black);
+	//draw_set_font(global.game_font);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(global.fps_mental / global.fps_col), 0.25, 0.25, 0, c_white, c_black);
 #endregion

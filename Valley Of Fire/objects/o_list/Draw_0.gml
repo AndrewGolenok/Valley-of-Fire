@@ -7020,7 +7020,7 @@ if global.hero = 1 && global.enemy_hero = 1
 		if global.tot != -1// && totem_nc = 1
 			{
 			draw_set_font(global.game_font);
-			draw_text_ext_transformed_t(640, global.size / 2, string_upper(totem_txt), -1, 1000, 0.2, 0.2, 8, totem_pc[pcc], c_black);
+			draw_text_ext_transformed_t(640, global.size / 2, string_upper(global.totem_name[totem_txt_i]), -1, 1000, 0.2, 0.2, 8, totem_pc[pcc], c_black);
 			}
 		
 		/// ТОТЕМЫ
@@ -8783,8 +8783,6 @@ if global.hero = 1 && global.enemy_hero = 1
 			////////
 			if g_rank_stage = 8
 				{
-				global.player_rank = skul_i;
-				
 				draw_set_font(global.game_font);
 				draw_text_transformed_t(640, global.size - 60 + fin_y, "TAP TO GO MENU", 0.2, 0.2, 0, global.color_white, c_black);
 				
@@ -8829,10 +8827,10 @@ if global.hero = 1 && global.enemy_hero = 1
 				draw_text_transformed_t(640 + string_width(txt_cash) * 0.18 / 2 + 5, global.size - 150 + fin_y, txt_cash, 0.18, 0.18, 0, global.cash_color, c_black);
 				}
 			////////
-			if g_message
+			if g_message = 1
 				{
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(640, global.size / 2 + 170 + fin_y, "TAP TO GO MENU", 0.17, 0.7, 0, global.color_white, c_black);
+				draw_text_transformed_t(640, global.size / 2 - 170 + fin_y, "YOU DO NOT LOSE\nA STAR ON\nTHIS RANK", 0.15, 0.5, 0, global.color_white, c_black);
 				}
 			
 			if g_rank_stage >= 1
@@ -8884,7 +8882,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								if star_now > 1
 									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 50, g_star_y + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 2
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 50, g_star_y + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_whitec_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 50, g_star_y + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 3
 									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 110, g_star_y + global.size / 2 - 40, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
 								}
