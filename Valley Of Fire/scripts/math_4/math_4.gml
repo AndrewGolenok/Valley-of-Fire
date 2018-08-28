@@ -108,8 +108,8 @@ if d < 0
 	{ d = 0; cd = c + d; }
 	
 if ab = cd
-	{ vtrue[2] = 1; }
+	{ vtrue[2] = 1; vtrue[3] = 0; }
 	else
-	{ vtrue[3] = 1; }
+	{ vtrue[3] = 1; vtrue[2] = 0; }
 			
 equation_text = string(a) + sgn1 + string(b) + "?" + string(c) + sgn2 + string(d);

@@ -337,104 +337,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 					io_clear();
 					}
 				
-				if global.p_totem[1] != -1
-					{
-					totems_p[1] = global.p_totem[1];
-					totems_x[1] = 0;
-					if totems_y[1] < 0
-						{ totems_y[1] += 60; }
-						else
-						{ totems_y[1] = 0; }
-					draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300, totems_y[1] + global.size / 2 - 130 + training_back_y + 10, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.5); 
-					if global.totem_have[global.p_totem[1]] = 1
-						{ draw_sprite_ext(s_totems_light, global.p_totem[1], 1280 - 300, totems_y[1] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[1]], totem_alp); }
-					draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300, totems_y[1] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_white, 1);
-					if global.totem_have[global.p_totem[1]] = 0
-						{ draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300, totems_y[1] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.4); }
-						else
-						{ draw_sprite_ext(s_totems_eyes, global.p_totem[1], 1280 - 300, totems_y[1] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[1]], totem_alp); }
-					
-					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - totem_w / 2, totems_y[1] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2, 1280 - 300 + totem_w / 2, totems_y[1] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2)
-						{
-						if mouse_check_button_pressed(mb_left)
-							{ global.p_totem[1] = -1; }
-						}
-					//draw_rectangle(1280 - 300 - totem_w / 2, global.size / 2 - 100 + training_back_y + 30 - totem_w / 2, 1280 - 300 + totem_w / 2, global.size / 2 - 100 + training_back_y + 30 + totem_w / 2, 1);
-					}
-					else
-					{
-					if totems_y[1] = 0
-						{
-						if totems_x[1] < 300
-							{
-							totems_x[1] += 50;
-							//draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300 + totems_x[1], global.size / 2 - 100 + training_back_y + 30, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.5); 
-							//if global.totem_have[global.p_totem[1]] = 1
-							//	{ draw_sprite_ext(s_totems_light, global.p_totem[1], 1280 - 300 + totems_x[1], global.size / 2 - 100 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[1]], totem_alp); }
-							draw_sprite_ext(s_totems, totems_p[1], 1280 - 300 + totems_x[1], global.size / 2 - 100 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_white, 1);
-							//if global.totem_have[global.p_totem[1]] = 0
-							//	{ draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300 + totems_x[1], global.size / 2 - 100 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.4); }
-							//	else
-							//	{ draw_sprite_ext(s_totems_eyes, global.p_totem[1], 1280 - 300 + totems_x[1], global.size / 2 - 100 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[1]], totem_alp); }
-							}
-							else
-							{
-							totems_y[1] = -global.size / 2;
-							totems_x[1] = 0;
-							}
-						}
-					}
-				
-				if global.p_totem[2] != -1
-					{
-					totems_p[2] = global.p_totem[2];
-					totems_x[2] = 0;
-					if totems_y[2] < 0
-						{ totems_y[2] += 60; }
-						else
-						{ totems_y[2] = 0; }
-					draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 10, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.5); 
-					if global.totem_have[global.p_totem[2]] = 1
-						{ draw_sprite_ext(s_totems_light, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[2]], totem_alp); }
-					draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_white, 1);
-					if global.totem_have[global.p_totem[2]] = 0
-						{ draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.4); }
-						else
-						{ draw_sprite_ext(s_totems_eyes, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[2]], totem_alp); }
-					
-					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - totem_w / 2, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2, 1280 - 300 + totem_w / 2, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2)
-						{
-						if mouse_check_button_pressed(mb_left)
-							{ global.p_totem[2] = -1; }
-						}
-					//draw_rectangle(1280 - 300 - totem_w / 2, totem_w * 0.8 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2, 1280 - 300 + totem_w / 2, totem_w * 0.8 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2, 1);
-					}
-					else
-					{
-					if totems_y[2] = 0
-						{
-						if totems_x[2] < 300
-							{
-							totems_x[2] += 50;
-							//draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300 + totems_x[2], totem_w * 0.8 + global.size / 2 - 130 + training_back_y + 30, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.5); 
-							//if global.totem_have[global.p_totem[2]] = 1
-							//	{ draw_sprite_ext(s_totems_light, global.p_totem[2], 1280 - 300 + totems_x[2], totem_w * 0.8 + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[2]], totem_alp); }
-							draw_sprite_ext(s_totems, totems_p[2], 1280 - 300 + totems_x[2], totem_w * 0.8 + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_white, 1);
-							//if global.totem_have[global.p_totem[2]] = 0
-							//	{ draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300 + totems_x[2], totem_w * 0.8 + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.4); }
-							//	else
-							//	{ draw_sprite_ext(s_totems_eyes, global.p_totem[2], 1280 - 300 + totems_x[2], totem_w * 0.8 + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[2]], totem_alp); }
-							}
-							else
-							{
-							if global.p_totem[1] != -1
-								{ totems_y[2] = totems_y[1]; totems_x[1] = 350; totems_y[1] = -(global.size / 2); global.p_totem[2] = global.p_totem[1]; global.p_totem[1] = -1; }
-								else
-								{ totems_y[2] = -(global.size / 2 - 100 + totem_w); totems_x[2] = 0; }
-							}
-						}
-					}
-				
+				/////////////
 				if global.p_totem[3] != -1
 					{
 					totems_p[3] = global.p_totem[3];
@@ -501,6 +404,106 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 							}
 						}
 					}
+				///////////
+				if global.p_totem[2] != -1
+					{
+					totems_p[2] = global.p_totem[2];
+					totems_x[2] = 0;
+					if totems_y[2] < 0
+						{ totems_y[2] += 60; }
+						else
+						{ totems_y[2] = 0; }
+					draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 10, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.5); 
+					if global.totem_have[global.p_totem[2]] = 1
+						{ draw_sprite_ext(s_totems_light, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[2]], totem_alp); }
+					draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_white, 1);
+					if global.totem_have[global.p_totem[2]] = 0
+						{ draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.4); }
+						else
+						{ draw_sprite_ext(s_totems_eyes, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[2]], totem_alp); }
+					
+					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - totem_w / 2, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2, 1280 - 300 + totem_w / 2, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2)
+						{
+						if mouse_check_button_pressed(mb_left)
+							{ global.p_totem[2] = -1; }
+						}
+					//draw_rectangle(1280 - 300 - totem_w / 2, totem_w * 0.8 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2, 1280 - 300 + totem_w / 2, totem_w * 0.8 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2, 1);
+					}
+					else
+					{
+					if totems_y[2] = 0
+						{
+						if totems_x[2] < 300
+							{
+							totems_x[2] += 50;
+							//draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300 + totems_x[2], totem_w * 0.8 + global.size / 2 - 130 + training_back_y + 30, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.5); 
+							//if global.totem_have[global.p_totem[2]] = 1
+							//	{ draw_sprite_ext(s_totems_light, global.p_totem[2], 1280 - 300 + totems_x[2], totem_w * 0.8 + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[2]], totem_alp); }
+							draw_sprite_ext(s_totems, totems_p[2], 1280 - 300 + totems_x[2], totem_w * 0.8 + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_white, 1);
+							//if global.totem_have[global.p_totem[2]] = 0
+							//	{ draw_sprite_ext(s_totems, global.p_totem[2], 1280 - 300 + totems_x[2], totem_w * 0.8 + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.4); }
+							//	else
+							//	{ draw_sprite_ext(s_totems_eyes, global.p_totem[2], 1280 - 300 + totems_x[2], totem_w * 0.8 + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[2]], totem_alp); }
+							}
+							else
+							{
+							if global.p_totem[1] != -1
+								{ totems_y[2] = totems_y[1]; totems_x[1] = 350; totems_y[1] = -(global.size / 2); global.p_totem[2] = global.p_totem[1]; global.p_totem[1] = -1; }
+								else
+								{ totems_y[2] = -(global.size / 2 - 100 + totem_w); totems_x[2] = 0; }
+							}
+						}
+					}
+				///////////
+				if global.p_totem[1] != -1
+					{
+					totems_p[1] = global.p_totem[1];
+					totems_x[1] = 0;
+					if totems_y[1] < 0
+						{ totems_y[1] += 60; }
+						else
+						{ totems_y[1] = 0; }
+					draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300, totems_y[1] + global.size / 2 - 130 + training_back_y + 10, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.5); 
+					if global.totem_have[global.p_totem[1]] = 1
+						{ draw_sprite_ext(s_totems_light, global.p_totem[1], 1280 - 300, totems_y[1] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[1]], totem_alp); }
+					draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300, totems_y[1] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_white, 1);
+					if global.totem_have[global.p_totem[1]] = 0
+						{ draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300, totems_y[1] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.4); }
+						else
+						{ draw_sprite_ext(s_totems_eyes, global.p_totem[1], 1280 - 300, totems_y[1] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[1]], totem_alp); }
+					
+					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - totem_w / 2, totems_y[1] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2, 1280 - 300 + totem_w / 2, totems_y[1] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2)
+						{
+						if mouse_check_button_pressed(mb_left)
+							{ global.p_totem[1] = -1; }
+						}
+					//draw_rectangle(1280 - 300 - totem_w / 2, global.size / 2 - 100 + training_back_y + 30 - totem_w / 2, 1280 - 300 + totem_w / 2, global.size / 2 - 100 + training_back_y + 30 + totem_w / 2, 1);
+					}
+					else
+					{
+					if totems_y[1] = 0
+						{
+						if totems_x[1] < 300
+							{
+							totems_x[1] += 50;
+							//draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300 + totems_x[1], global.size / 2 - 100 + training_back_y + 30, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.5); 
+							//if global.totem_have[global.p_totem[1]] = 1
+							//	{ draw_sprite_ext(s_totems_light, global.p_totem[1], 1280 - 300 + totems_x[1], global.size / 2 - 100 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[1]], totem_alp); }
+							draw_sprite_ext(s_totems, totems_p[1], 1280 - 300 + totems_x[1], global.size / 2 - 100 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_white, 1);
+							//if global.totem_have[global.p_totem[1]] = 0
+							//	{ draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300 + totems_x[1], global.size / 2 - 100 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.4); }
+							//	else
+							//	{ draw_sprite_ext(s_totems_eyes, global.p_totem[1], 1280 - 300 + totems_x[1], global.size / 2 - 100 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[1]], totem_alp); }
+							}
+							else
+							{
+							totems_y[1] = -global.size / 2;
+							totems_x[1] = 0;
+							}
+						}
+					}
+				////////////
+				
 				
 				//////////////
 				//if global.p_totem[2] != -1

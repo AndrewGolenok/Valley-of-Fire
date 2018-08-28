@@ -8019,25 +8019,6 @@
             }
         },
         {
-            "Key": "f4e7b09e-70d0-413c-9cf1-1c051f1267ea",
-            "Value": {
-                "id": "697a4125-b1fc-49f9-ad80-ae283c0e87bc",
-                "modelName": "GMResourceInfo",
-                "mvc": "1.0",
-                "configDeltaFiles": [
-                    
-                ],
-                "configDeltas": [
-                    
-                ],
-                "resourceCreationConfigs": [
-                    "default"
-                ],
-                "resourcePath": "objects\/o_set_hero\/o_set_hero.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "f596ba17-e2d2-41ce-bbd9-9ace3c160962",
             "Value": {
                 "id": "772b91b0-440c-47af-aed8-a003277e5bbf",

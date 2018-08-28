@@ -18,10 +18,6 @@ alarm[1] = room_speed / 10;
 			//with(o_padpiska)
 			//	{ instance_destroy(); }
 		break;
-		//case "sethero":
-		//	with(o_set_hero)
-		//		{ instance_destroy(); }
-		//break;
 		case "duel":
 			with(o_control)
 				{ instance_destroy(); }
