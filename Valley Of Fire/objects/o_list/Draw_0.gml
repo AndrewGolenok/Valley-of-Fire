@@ -8475,8 +8475,13 @@ if global.hero = 1 && global.enemy_hero = 1
 				{ finplas += 0.1; }
 				else
 				{
-				if g_rank_stage = 0
-					{ g_rank_stage = 1; }
+				if global.quick = 0
+					{
+					if g_rank_stage = 0
+						{ g_rank_stage = 1; }
+					}
+					else
+					{ g_rank_stage = 8; }
 				}
 			#region Какой ранг
 				var star_now, star_need, shield_i, skul_i, go5;
@@ -8524,8 +8529,8 @@ if global.hero = 1 && global.enemy_hero = 1
 						if whowin = 1 && star_now + 1 + winstreak = star_need
 							{ g_rank_type = 4; g_skul_y = 0; g_star_y = -global.size / 2 - 200;  }
 						}
-					draw_set_font(global.game_font);
-					draw_text_transformed_t(mouse_x, mouse_y, string(g_rank_stage) + "~" + string(g_rank_type) + "\n" + string(star_now) + "~" + string(star_need) + "\n" + string(global.last_game2) + "~" + string(global.last_game), 0.25, 0.25, 0, c_white, c_black);
+					//draw_set_font(global.game_font);
+					//draw_text_transformed_t(mouse_x, mouse_y, string(g_rank_stage) + "~" + string(g_rank_type) + "\n" + string(star_now) + "~" + string(star_need) + "\n" + string(global.last_game2) + "~" + string(global.last_game), 0.25, 0.25, 0, c_white, c_black);
 			#endregion
 			
 			if g_enemy_change = 0
@@ -8776,6 +8781,45 @@ if global.hero = 1 && global.enemy_hero = 1
 					}
 				}
 			////////
+			if g_rank_stage = 8
+				{
+				global.player_rank = skul_i;
+				
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(640, global.size - 60 + fin_y, "TAP TO GO MENU", 0.2, 0.2, 0, global.color_white, c_black);
+				
+				if mouse_check_button_pressed(mb_left)
+					{
+					global.p_totem[1] = -1;
+					global.p_totem[2] = -1;
+					global.p_totem[3] = -1;
+					room_goto_t("menu");
+					}
+				ini_open("Music.ini");
+					if whowin = 1
+						{
+						if roundskul_n[3] = 0
+							{
+							txt_gold = "+5©";
+							txt_cash = "";
+							global.gold += 5;
+							ini_write_string("Sounds", "sound_on_g", string(global.gold));
+							ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							}
+							else
+							{
+							txt_gold = "+2©";
+							txt_cash = "";
+							global.gold += 2;
+							ini_write_string("Sounds", "sound_on_g", string(global.gold));
+							ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							}
+						}
+				ini_close();
+				}
+			//////
+			
+			////////
 			draw_set_font(global.game_font);
 			if txt_cash = ""
 				{ draw_text_transformed_t(640, global.size - 150 + fin_y, txt_gold, 0.18, 0.18, 0, global.gold_color, c_black); }
@@ -8793,111 +8837,109 @@ if global.hero = 1 && global.enemy_hero = 1
 			
 			if g_rank_stage >= 1
 				{
-				#region Ранг
-					draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50 + 15, 1 * g_rank_s, 1 * g_rank_s, 0, c_black, 0.5);
-					draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50, 1 * g_rank_s, 1 * g_rank_s, 0, c_white, 1);
+				if global.quick = 0
+					{
+					#region Ранг
+						draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50 + 15, 1 * g_rank_s, 1 * g_rank_s, 0, c_black, 0.5);
+						draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50, 1 * g_rank_s, 1 * g_rank_s, 0, c_white, 1);
 		
-					draw_sprite_ext(s_rank_skul, skul_i, 640, g_skul_y + global.size / 2 - 50 + 15, 1 * g_rank_s * g_skul_s, 1 * g_rank_s * g_skul_s, 0, c_black, 0.5);
-					draw_sprite_ext(s_rank_skul, skul_i, 640, g_skul_y + global.size / 2 - 50, 1 * g_rank_s * g_skul_s, 1 * g_rank_s * g_skul_s, 0, c_white, 1);	
+						draw_sprite_ext(s_rank_skul, skul_i, 640, g_skul_y + global.size / 2 - 50 + 15, 1 * g_rank_s * g_skul_s, 1 * g_rank_s * g_skul_s, 0, c_black, 0.5);
+						draw_sprite_ext(s_rank_skul, skul_i, 640, g_skul_y + global.size / 2 - 50, 1 * g_rank_s * g_skul_s, 1 * g_rank_s * g_skul_s, 0, c_white, 1);	
 		
-					if g_rank_stage >= 2 && (g_rank_stage != 4 or g_rank_type != 1)
-						{
-						draw_set_alpha(g_star_a );
-						if star_need = 2
+						if g_rank_stage >= 2 && (g_rank_stage != 4 or g_rank_type != 1)
 							{
-							draw_sprite_ext_t(s_rank_star, 0, 640 - 30, g_skul_y + global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 + 30, global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+							draw_set_alpha(g_star_a );
+							if star_need = 2
+								{
+								draw_sprite_ext_t(s_rank_star, 0, 640 - 30, g_skul_y + global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 + 30, global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
 							
-							if star_now > 0
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 30, g_star_y + global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 1
-								{ draw_sprite_ext(s_rank_star, 0, 640 + 30, g_star_y + global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1); }
-							}
-						if star_need = 3
-							{
-							draw_sprite_ext_t(s_rank_star, 0, 640 - 70, global.size / 2, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 70, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 + 70, global.size / 2, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								if star_now > 0
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 30, g_star_y + global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 1
+									{ draw_sprite_ext(s_rank_star, 0, 640 + 30, g_star_y + global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1); }
+								}
+							if star_need = 3
+								{
+								draw_sprite_ext_t(s_rank_star, 0, 640 - 70, global.size / 2, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 70, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 + 70, global.size / 2, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
 			
-							if star_now > 0
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 70, g_star_y + global.size / 2, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 1
-								{ draw_sprite_ext_t(s_rank_star, 0, 640, g_star_y + global.size / 2 + 70, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 2
-								{ draw_sprite_ext(s_rank_star, 0, 640 + 30, g_star_y + global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_white, 1); }
-							}
-						if star_need = 4
-							{
-							draw_sprite_ext_t(s_rank_star, 0, 640 - 110, global.size / 2 - 40, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 - 50, global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 + 50, global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 + 110, global.size / 2 - 40, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								if star_now > 0
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 70, g_star_y + global.size / 2, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 1
+									{ draw_sprite_ext_t(s_rank_star, 0, 640, g_star_y + global.size / 2 + 70, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 2
+									{ draw_sprite_ext(s_rank_star, 0, 640 + 30, g_star_y + global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_white, 1); }
+								}
+							if star_need = 4
+								{
+								draw_sprite_ext_t(s_rank_star, 0, 640 - 110, global.size / 2 - 40, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 - 50, global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 + 50, global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 + 110, global.size / 2 - 40, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
 			
-							if star_now > 0
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 110, g_star_y + global.size / 2 - 40, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 1
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 50, g_star_y + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 2
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 50, g_star_y + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_whitec_white, 1, global.color_white, c_black); }
-							if star_now > 3
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 110, g_star_y + global.size / 2 - 40, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							}
-						if star_need = 5
-							{
-							draw_sprite_ext_t(s_rank_star, 0, 640 - 100, global.size / 2 - 45, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 - 60, global.size / 2 + 15, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 + 60, global.size / 2 + 15, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 + 100, global.size / 2 - 45, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								if star_now > 0
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 110, g_star_y + global.size / 2 - 40, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 1
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 50, g_star_y + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 2
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 50, g_star_y + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_whitec_white, 1, global.color_white, c_black); }
+								if star_now > 3
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 110, g_star_y + global.size / 2 - 40, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								}
+							if star_need = 5
+								{
+								draw_sprite_ext_t(s_rank_star, 0, 640 - 100, global.size / 2 - 45, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 - 60, global.size / 2 + 15, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640, global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 + 60, global.size / 2 + 15, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 + 100, global.size / 2 - 45, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
 			
-							if star_now > 0
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 100, g_star_y + global.size / 2 - 45, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 1
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 60, g_star_y + global.size / 2 + 15, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 2
-								{ draw_sprite_ext_t(s_rank_star, 0, 640, g_star_y + global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 3
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 60, g_star_y + global.size / 2 + 15, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 4
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 100, g_star_y + global.size / 2 - 45, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							}
-						if star_need = 6
-							{
-							draw_sprite_ext_t(s_rank_star, 0, 640 - 120, global.size / 2 - 30, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 - 80, global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 - 40, global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 + 40, global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 + 80, global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
-							draw_sprite_ext_t(s_rank_star, 0, 640 + 120, global.size / 2 - 30, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								if star_now > 0
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 100, g_star_y + global.size / 2 - 45, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 1
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 60, g_star_y + global.size / 2 + 15, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 2
+									{ draw_sprite_ext_t(s_rank_star, 0, 640, g_star_y + global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 3
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 60, g_star_y + global.size / 2 + 15, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 4
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 100, g_star_y + global.size / 2 - 45, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								}
+							if star_need = 6
+								{
+								draw_sprite_ext_t(s_rank_star, 0, 640 - 120, global.size / 2 - 30, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 - 80, global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 - 40, global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 + 40, global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 + 80, global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
+								draw_sprite_ext_t(s_rank_star, 0, 640 + 120, global.size / 2 - 30, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
 			
-							if star_now > 0
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 120, g_star_y + global.size / 2 - 30, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 1
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 80, g_star_y + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 2
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 - 40, g_star_y + global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 3
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 40, g_star_y + global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 4
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 80, g_star_y + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
-							if star_now > 5
-								{ draw_sprite_ext_t(s_rank_star, 0, 640 + 120, g_star_y + global.size / 2 - 30, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 0
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 120, g_star_y + global.size / 2 - 30, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 1
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 80, g_star_y + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 2
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 40, g_star_y + global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 3
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 40, g_star_y + global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 4
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 80, g_star_y + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								if star_now > 5
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 120, g_star_y + global.size / 2 - 30, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+								}
+							draw_set_alpha(1);
 							}
-						draw_set_alpha(1);
-						}
-					draw_text_transformed_t(640, global.size / 2 - 150, string(skul_i), 0.27 * g_rank_s, 0.27 * g_rank_s, 5, global.color_white, c_black);
-				#endregion
+						draw_text_transformed_t(640, global.size / 2 - 150, string(skul_i), 0.27 * g_rank_s, 0.27 * g_rank_s, 5, global.color_white, c_black);
+					#endregion
+					}
+					else
+					{
+					draw_sprite_ext(s_sunmoon, 0, 640, global.size / 2 - 50 + 15, 0.5, 0.5, 0, c_black, 0.5);
+					draw_sprite_ext(s_sunmoon, 0, 640, global.size / 2 - 50, 0.5, 0.5, 0, c_white, 1);
+					}
 				}	
-				
-			if 0
-				{
-				if mouse_check_button_pressed(mb_left)
-					{ room_goto_t("menu"); }
-				
-				global.p_totem[1] = -1;
-				global.p_totem[2] = -1;
-				global.p_totem[3] = -1;
-				}
 			}
 		if o_control.back_spd > 0
 			{ o_control.back_spd -= 0.05; }
@@ -9059,10 +9101,15 @@ if global.hero = 1 && global.enemy_hero = 1
 			if global.player_rank = 0
 				{ rank_i = 3; rank = "LEGEND"; rank_yy = -45; }
 		
-		draw_sprite_ext_t(s_rank_shield, rank_i, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_scale, gui_size * 0.8 * health_scale, 0 + restart_angle, c_white, 1, c_white, c_black);
-		if global.player_rank <= 3
-			{ draw_sprite_ext_t(s_rank_skul_1, anim_skul, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_scale, gui_size * 0.8 * health_scale, 0 + restart_angle, c_white, 1, c_white, c_black); }
-		draw_sprite_ext_t(s_rank_skul, skul, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_scale, gui_size * 0.8 * health_scale, 0 + restart_angle, c_white, 1, c_white, c_black);
+		if global.quick = 0
+			{
+			draw_sprite_ext_t(s_rank_shield, rank_i, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_scale, gui_size * 0.8 * health_scale, 0 + restart_angle, c_white, 1, c_white, c_black);
+			if global.player_rank <= 3
+				{ draw_sprite_ext_t(s_rank_skul_1, anim_skul, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_scale, gui_size * 0.8 * health_scale, 0 + restart_angle, c_white, 1, c_white, c_black); }
+			draw_sprite_ext_t(s_rank_skul, skul, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_scale, gui_size * 0.8 * health_scale, 0 + restart_angle, c_white, 1, c_white, c_black);
+			}
+			else
+			{ draw_sprite_ext_t(s_sunmoon, 0, 10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_scale * 0.2, gui_size * 0.8 * health_scale * 0.2, 0 + restart_angle, c_white, 1, c_white, c_black); }
 		
 		draw_set_font(global.game_font);
 		draw_text_transformed_t(10 + sprite_get_width(s_rank_shield) * gui_size / 2, h_y + 35 + h_y1 + rank_yy, string(rank), 0.09 * health_scale, 0.09 * health_scale, 0, global.color_white, c_black);

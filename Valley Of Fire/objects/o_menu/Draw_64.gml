@@ -91,7 +91,103 @@
 		//draw_set_color(c_white);
 		//draw_set_alpha(1);
 		
-		if point_in_rectangle(mouse_x, mouse_y, 640 - 90, global.size / 2 - 60, 640 + 90, global.size / 2 + 60)
+		//// БЫСТРАЯ ИГРА
+		if point_in_rectangle(mouse_x, mouse_y, 640 - 30, global.size / 2 + 20 - 60, 640 + string_width("QUICK PLAY") * 0.27 - 30, global.size / 2 + 20 + 60)
+			{
+			if mouse_check_button(mb_left)
+				{ ms5 = 1.1; }
+			if mouse_check_button_released(mb_left)
+				{
+				var heroes, r_heroes;
+				heroes = "";
+				for(i=1;i<=7;i++)
+					{
+					if global.heroes_have[i] > 0
+						{ heroes += string(i); }
+					}
+				r_heroes = real(string_copy(heroes, irandom_range(1, string_length(heroes)), 1));
+				
+				var totems, r_t1, r_t2, r_t3, n_totem;
+				totems = "";
+				n_totem = irandom(1)
+				
+				if n_totem = 1
+					{
+					for(i=1;i<=9;i++)
+						{
+						if global.totem_have[i] > 0
+							{ totems += string(i); }
+						}
+					if string_length(totems) >= 3
+						{
+						r_t3 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
+						r_t2 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
+						r_t1 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						}
+					if string_length(totems) = 2
+						{
+						r_t3 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
+						r_t2 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						r_t1 = -1;
+						}
+					if string_length(totems) = 1
+						{
+						r_t3 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
+						r_t2 = -1;
+						r_t1 = -1;
+						}
+					}
+					else
+					{
+					for(i=1;i<=9;i++)
+						{
+						if global.totem_have[i + 9] > 0
+							{ totems += string(i + 9); }
+						}
+					if string_length(totems) >= 3
+						{
+						r_t3 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
+						r_t2 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
+						r_t1 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						}
+					if string_length(totems) = 2
+						{
+						r_t3 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
+						r_t2 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						r_t1 = -1;
+						}
+					if string_length(totems) = 1
+						{
+						r_t3 = real(string_copy(totems, irandom_range(1, string_length(totems)), 1));
+						totems = string_delete(totems, irandom_range(1, string_length(totems)), 1);
+						r_t2 = -1;
+						r_t1 = -1;
+						}
+					}
+				
+				global.hero = r_heroes;
+				global.p_totem[1] = r_t1;
+				global.p_totem[2] = r_t2;
+				global.p_totem[3] = r_t3;
+				if global.player_rank != 15
+					{ global.player_rank = irandom_range(global.player_rank - 1, 15); }
+				global.quick = 1;
+				room_goto_t("duel");
+				}
+			}
+		
+		draw_text_transformed_t(640 - string_width("QUICK PLAY") * 0.27 - 30, global.size / 2 + 20, "QUICK PLAY", 0.27 * ms5, 0.27 * ms5, 5, global.color_white, c_black);
+		//БЫСТРАЯ ИГРА
+		
+		//// РАНКЕД ДУЭЛЬ
+		if point_in_rectangle(mouse_x, mouse_y, 640 + 30, global.size / 2 + 20 - 60, 640 - string_width("RANKED DUEL") * 0.27 + 30, global.size / 2 + 20 + 60)
 			{
 			if mouse_check_button(mb_left)
 				{ ms5 = 1.1; }
@@ -102,9 +198,9 @@
 				global.menu_next = "training";
 				}
 			}
-		//draw_rectangle(640 - 90, global.size / 2 - 45, 640 + 90, global.size / 2 + 45, 1);
-		draw_text_transformed_t(640, global.size / 2, "PLAY", 0.27 * ms5, 0.27 * ms5, 5, global.color_white, c_black);
-		//ИГРА
+		
+		draw_text_transformed_t(640 + string_width("RANKED DUEL") * 0.27 + 30, global.size / 2 + 20, "RANKED DUEL", 0.27 * ms5, 0.27 * ms5, 5, global.color_white, c_black);
+		//РАНКЕД ДУЭЛЬ
 		}
 #endregion
 
@@ -336,7 +432,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 					if mouse_check_button(mb_left)
 						{ go5 = 1.1; }
 					if mouse_check_button_released(mb_left)
-						{ room_goto_t("duel"); }
+						{ global.quick = 0; room_goto_t("duel"); }
 					io_clear();
 					}
 				
