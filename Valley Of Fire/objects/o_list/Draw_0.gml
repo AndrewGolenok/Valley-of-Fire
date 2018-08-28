@@ -5475,6 +5475,13 @@ if global.hero = 1 && global.enemy_hero = 1
 			#region Враг
 			if global.bot_answer != -1 && bot_go != 0 && e_question <= 9
 				{
+				if global.player_rank = 15
+					{
+					var trtt;
+					trtt = choose(1, 0, 0);
+					if trtt = 1
+						{ global.bot_answer = 1; }
+					}
 				if global.bill_abil > 0
 					{
 					if irandom(9) != 0
@@ -6948,8 +6955,9 @@ if global.hero = 1 && global.enemy_hero = 1
 			{ totem_alpha_d = -totem_alpha_d; }
 		totem_alpha += 0.01 * totem_alpha_d;
 		
-		var totem_nc;
+		var totem_nc, pcc;
 		totem_nc = 0;
+		pcc = 1;
 		totem_txt   = "";
 		totem_txt_i = 1;
 		if totem_first = 1
@@ -6970,27 +6978,26 @@ if global.hero = 1 && global.enemy_hero = 1
 			else
 			{
 			if global.tot = 1 && global.e_totem[1] != -1 
-				{ totem_txt_i = global.e_totem[1]; totem_txt = global.totem_name[global.e_totem[1]]; totem_nc = 1; }
+				{ pcc = 1; totem_txt_i = global.e_totem[1]; totem_txt = global.totem_name[global.e_totem[1]]; totem_nc = 1; }
 			if global.tot = 2 && global.p_totem[1] != -1 
-				{ totem_txt_i = global.p_totem[1]; totem_txt = global.totem_name[global.p_totem[1]]; totem_nc = 1; }
+				{ pcc = 1; totem_txt_i = global.p_totem[1]; totem_txt = global.totem_name[global.p_totem[1]]; totem_nc = 1; }
 			if global.tot = 3 && global.e_totem[2] != -1 
-				{ totem_txt_i = global.e_totem[2]; totem_txt = global.totem_name[global.e_totem[2]]; totem_nc = 1; }
+				{ pcc = 2; totem_txt_i = global.e_totem[2]; totem_txt = global.totem_name[global.e_totem[2]]; totem_nc = 1; }
 			if global.tot = 4 && global.p_totem[2] != -1 
-				{ totem_txt_i = global.p_totem[2]; totem_txt = global.totem_name[global.p_totem[2]]; totem_nc = 1; }
+				{ pcc = 2; totem_txt_i = global.p_totem[2]; totem_txt = global.totem_name[global.p_totem[2]]; totem_nc = 1; }
 			if global.tot = 5 && global.e_totem[3] != -1 
-				{ totem_txt_i = global.e_totem[3]; totem_txt = global.totem_name[global.e_totem[3]]; totem_nc = 1; }
+				{ pcc = 3; totem_txt_i = global.e_totem[3]; totem_txt = global.totem_name[global.e_totem[3]]; totem_nc = 1; }
 			if global.tot = 6 && global.p_totem[3] != -1 
-				{ totem_txt_i = global.p_totem[3]; totem_txt = global.totem_name[global.p_totem[3]]; totem_nc = 1; }
+				{ pcc = 3; totem_txt_i = global.p_totem[3]; totem_txt = global.totem_name[global.p_totem[3]]; totem_nc = 1; }
 			}
 		
+		draw_set_alpha(0.45);
+		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+		draw_set_alpha(1);
 		if global.tot != -1 && totem_nc = 1
 			{
-			draw_set_alpha(0.45);
-			draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
-			draw_set_alpha(1);
-			
 			draw_set_font(global.game_font);
-			draw_text_transformed_t(640, global.size / 2, totem_txt, 0.2, 0.2, 8, totem_pc[totem_txt_i], c_black);
+			draw_text_transformed_t(640, global.size / 2, totem_txt, 0.2, 0.2, 8, totem_pc[pcc], c_black);
 			}
 		/// ТОТЕМЫ
 		if global.p_totem[3] > -1
@@ -8773,7 +8780,10 @@ if global.hero = 1 && global.enemy_hero = 1
 #region Хелсбар
 	var gui_size;
 	gui_size = 0.45;
-	
+	if hp > maxhp
+		{ maxhp = hp; }
+	if e_hp > e_maxhp
+		{ e_maxhp = e_hp; }
 	if hp < 0
 		{ hp = 0; }
 	if e_hp < 0
