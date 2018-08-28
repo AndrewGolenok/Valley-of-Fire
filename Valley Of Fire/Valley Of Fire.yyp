@@ -2015,6 +2015,25 @@
             }
         },
         {
+            "Key": "4052c516-06e2-4d7e-a9b2-e7efadd403e0",
+            "Value": {
+                "id": "5ad7d7d3-b6d7-4ec3-ae81-998dbe07b063",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_plash_lose1\/s_plash_lose1.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "4070d29b-b286-4eba-b5f3-8645db1db433",
             "Value": {
                 "id": "65241c80-a0c1-4d00-9d23-593d393e53ab",

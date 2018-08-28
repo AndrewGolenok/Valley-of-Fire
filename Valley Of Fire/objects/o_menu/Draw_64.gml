@@ -1500,6 +1500,80 @@ if global.menu_now = "store" or global.menu_next = "store"
 	top = ((sprite_get_height(s_store_back) * global.back_scale - global.size) / 2) * (sprite_get_width(s_store_back) / 1280); //sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
 	draw_sprite_part_ext(s_store_back, 1, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
 	
+	////////
+	#region Кнопки магазина
+		draw_text_transformed(640, top + 20 + lootbox_y + training_back_y + totem_yy1 + pry + 10, "LOOTBOXES", 0.25, 0.25, 0);
+		
+		draw_sprite_ext(s_lootbox1, 0, 640 - 250, top + 80 + lootbox_y + training_back_y + totem_yy1 + pry + 10, 0.5, 0.5, 0, c_black, 0.5);
+		draw_sprite_ext(s_lootbox1, 0, 640 - 250, top + 80 + lootbox_y + training_back_y + totem_yy1 + pry     , 0.5, 0.5, 0, c_white, 1);
+		
+		draw_sprite_ext(s_lootbox2, 0, 640 + 250, top + 80 + lootbox_y + training_back_y + totem_yy1 + pry + 10, 0.5, 0.5, 0, c_black, 0.5);
+		draw_sprite_ext(s_lootbox2, 0, 640 + 250, top + 80 + lootbox_y + training_back_y + totem_yy1 + pry     , 0.5, 0.5, 0, c_white, 1);
+		
+		
+		if mouse_check_button(mb_left)
+		&& point_in_rectangle(mouse_x, mouse_y, 120, global.size / 2 - 270, 720, global.size / 2 + 270)
+			{
+			if store_yy = 0
+				{ store_yy = store_yy1 - mouse_y; }
+			var totemy;
+			totemy = store_yy1;
+			store_yy1 = store_yy + mouse_y;
+			
+			if store_yy1 > 200
+				{ store_yy1 = 200; }
+			if store_yy1 < -1100
+				{ store_yy1 = -1100; }
+			
+			if store_yy1 != totemy
+				{ store_pr = 0; }
+			
+			if abs(store_yy1 - totemy) > 50
+				{
+				hold_dr = sign(store_yy1 - totemy);
+				hold_sp = abs(totemy - store_yy1) / 2;
+				hold_ti = room_speed / 4;
+				hold_do = (hold_sp / 2) / 20;
+				}
+			if hold_ti > 0
+				{ hold_ti -= 1; }
+				else
+				{ hold_sp = 0; }
+			}
+			else
+			{
+			store_yy = 0;
+			
+			if abs(hold_sp) > 0
+				{
+				if hold_dr = 1
+					{
+					store_yy1 += hold_sp;
+					hold_sp -= hold_do;
+					if hold_sp < 0
+						{ hold_sp = 0  }
+					}
+				if hold_dr = -1
+					{
+					store_yy1 -= hold_sp;
+					hold_sp -= hold_do;
+					if hold_sp < 0
+						{ hold_sp = 0; }
+					}
+				if store_yy1 > 100
+					{ hold_sp = 0; }
+				if store_yy1 < -1040
+					{ hold_sp = 0; }
+				}
+				else
+				{
+				if store_yy1 > 0
+					{ store_yy1 -= 10; }
+				if store_yy1 < -940
+					{ store_yy1 += 10; }
+				}
+			}
+	#endregion
 	///////
 	
 	draw_sprite_part_ext(s_store_back, 0, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);

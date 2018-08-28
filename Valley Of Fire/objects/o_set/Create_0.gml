@@ -228,6 +228,25 @@
 				{ ini_write_string("Lug", "lug", "0"); }
 			global.lug = ini_read_real("Lug", "lug", 0);
 		#endregion
+		#region Ежедневные покупки
+			if !ini_section_exists("Daily")
+				{
+				ini_write_string("Daily", "daily_t1", "0");
+				ini_write_string("Daily", "daily_t2", "0");
+				ini_write_string("Daily", "daily_t3", "0");
+				
+				ini_write_string("Daily", "daily_n1", "0");
+				ini_write_string("Daily", "daily_n2", "0");
+				ini_write_string("Daily", "daily_n3", "0");
+				}
+			global.daily_t1 = ini_read_real("Daily", "daily_t1", 0);
+			global.daily_t2 = ini_read_real("Daily", "daily_t2", 0);
+			global.daily_t3 = ini_read_real("Daily", "daily_t3", 0);
+			
+			global.daily_t1 = ini_read_real("Daily", "daily_t1", 0);
+			global.daily_t2 = ini_read_real("Daily", "daily_t2", 0);
+			global.daily_t3 = ini_read_real("Daily", "daily_t3", 0);
+		#endregion
 	ini_close();
 #endregion
 #region Персонажи
