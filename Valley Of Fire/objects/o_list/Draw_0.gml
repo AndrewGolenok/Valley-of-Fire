@@ -6514,7 +6514,7 @@ if global.hero = 1 && global.enemy_hero = 1
 				if global.tot >= 5
 					{ i = 3; }
 				totem_txt   = "";
-				totem_txt_i = 1;
+				totem_txt_i = -1;
 				for(tt=1;tt<=6;tt++)
 					{
 					#region Игрок
@@ -6529,7 +6529,18 @@ if global.hero = 1 && global.enemy_hero = 1
 								{
 								if i = 1 or i = 2 or i = 3
 									{
-									pcc = i;
+									if global.p_totem[i] <= 6
+										{ pcc = c_white; }
+									
+									if global.p_totem[i] > 6 && global.p_totem[i] <= 11
+										{ pcc = c_aqua; }
+									
+									if global.p_totem[i] > 11 && global.p_totem[i] <= 15
+										{ pcc = c_fuchsia; }
+									
+									if global.p_totem[i] > 15
+										{ pcc = c_orange; }
+									
 									totem_txt_i = global.p_totem[i];
 									totem_txt = global.totem_name[global.p_totem[i]];
 									}
@@ -6712,7 +6723,18 @@ if global.hero = 1 && global.enemy_hero = 1
 							{
 							if i = 1 or i = 2 or i = 3
 								{
-								pcc = i;
+								if global.e_totem[i] <= 6
+									{ pcc = c_white; }
+								
+								if global.e_totem[i] > 6 && global.e_totem[i] <= 11
+									{ pcc = c_aqua; }
+								
+								if global.e_totem[i] > 11 && global.e_totem[i] <= 15
+									{ pcc = c_fuchsia; }
+								
+								if global.e_totem[i] > 15
+									{ pcc = c_orange; }
+								
 								totem_txt_i = global.e_totem[i];
 								totem_txt = global.totem_name[global.e_totem[i]];
 								}
@@ -6900,17 +6922,17 @@ if global.hero = 1 && global.enemy_hero = 1
 					{ totem_pc[i] = c_white; }
 				if global.e_totem[i] <= 6
 					{ totem_ec[i] = c_white; }
-		
+				
 				if global.p_totem[i] > 6 && global.p_totem[i] <= 11
 					{ totem_pc[i] = c_aqua; }
 				if global.e_totem[i] > 6 && global.e_totem[i] <= 11
 					{ totem_ec[i] = c_aqua; }
-		
+				
 				if global.p_totem[i] > 11 && global.p_totem[i] <= 15
 					{ totem_pc[i] = c_fuchsia; }
 				if global.e_totem[i] > 11 && global.e_totem[i] <= 15
 					{ totem_ec[i] = c_fuchsia; }
-		
+				
 				if global.p_totem[i] > 15
 					{ totem_pc[i] = c_orange; }
 				if global.e_totem[i] > 15
@@ -7017,10 +7039,10 @@ if global.hero = 1 && global.enemy_hero = 1
 		draw_set_alpha(0.45);
 		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
-		if global.tot != -1// && totem_nc = 1
+		if global.tot != -1 && global.tot < 7 && totem_txt_i != -1// && totem_nc = 1
 			{
 			draw_set_font(global.game_font);
-			draw_text_ext_transformed_t(640, global.size / 2, string_upper(global.totem_name[totem_txt_i]), -1, 1000, 0.2, 0.2, 8, totem_pc[pcc], c_black);
+			draw_text_ext_transformed_t(640, global.size / 2, string_upper(global.totem_name[totem_txt_i]), -1, 1000, 0.2, 0.2, 8, pcc, c_black);
 			}
 		
 		/// ТОТЕМЫ
@@ -8518,6 +8540,7 @@ if global.hero = 1 && global.enemy_hero = 1
 					if global.rank_stars < 2
 						{ star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15;}
 					
+					winstreak = 0;
 					if g_rank_type = -1
 						{
 						if whowin = 2 && star_now - 1 < 0
@@ -8526,11 +8549,11 @@ if global.hero = 1 && global.enemy_hero = 1
 							{ g_rank_type = 2; g_star_y = 0;  }
 						if whowin = 1 && star_now + 1 + winstreak < star_need
 							{ g_rank_type = 3; g_star_y = -global.size / 2 - 200;  }
-						if whowin = 1 && star_now + 1 + winstreak = star_need
+						if whowin = 1 && star_now + 1 + winstreak >= star_need
 							{ g_rank_type = 4; g_skul_y = 0; g_star_y = -global.size / 2 - 200;  }
 						}
-					//draw_set_font(global.game_font);
-					//draw_text_transformed_t(mouse_x, mouse_y, string(g_rank_stage) + "~" + string(g_rank_type) + "\n" + string(star_now) + "~" + string(star_need) + "\n" + string(global.last_game2) + "~" + string(global.last_game), 0.25, 0.25, 0, c_white, c_black);
+					draw_set_font(global.game_font);
+					draw_text_transformed_t(mouse_x, mouse_y, string(g_rank_stage) + "~" + string(g_rank_type) + "\n" + string(star_now) + "~" + string(star_need) + "\n" + string(global.last_game2) + "~" + string(global.last_game), 0.25, 0.25, 0, c_white, c_black);
 			#endregion
 			
 			if g_enemy_change = 0
@@ -8593,9 +8616,9 @@ if global.hero = 1 && global.enemy_hero = 1
 					}
 				if g_rank_type = 3
 					{
-					if g_star_y = -global.size / 2 - 200
+					if g_star_y != 0
 						{
-						if global.player_rank < 70
+						if global.rank_stars < 70
 							{ global.rank_stars += 1 + winstreak; }
 						g_star_s = 30;
 						ini_open("Music.ini");
@@ -8610,6 +8633,8 @@ if global.hero = 1 && global.enemy_hero = 1
 					}
 				if g_rank_type = 4
 					{
+					if global.rank_stars < 70
+						{ global.rank_stars += 1 + winstreak; }
 					g_rank_stage = 4;
 					}
 				}
@@ -8630,7 +8655,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								{ global.rank_stars -= 1; }
 								else
 								{ g_message = 1; }
-							g_rank_stage = 6; //5;
+							g_rank_stage = 5;
 							g_skul_y = 0;
 							g_skul_s = 0;
 							
@@ -8656,14 +8681,9 @@ if global.hero = 1 && global.enemy_hero = 1
 							{ g_skul_s -= 0.05; }
 							else
 							{
-							if global.player_rank < 70
-								{ global.rank_stars += 1 + winstreak; }
 							g_rank_stage = 5;
 							g_skul_y = 0;
 							g_skul_s = 30;
-							ini_open("Music.ini");
-								ini_write_string("Ranks", "ranks", string(global.rank_stars));
-							ini_close();
 							}
 						}
 					}
@@ -8671,13 +8691,13 @@ if global.hero = 1 && global.enemy_hero = 1
 			////
 			if g_rank_stage = 5
 				{
-				//if g_rank_type = 1
-				//	{
-				//	if g_skul_s < 1
-				//		{ g_skul_s += 0.2; }
-				//		else
-				//		{ g_skul_s = 1; g_rank_stage = 6; }
-				//	}
+				if g_rank_type = 1
+					{
+					if g_skul_s < 1
+						{ g_skul_s += 0.2; }
+						else
+						{ g_skul_s = 1; g_rank_stage = 6; }
+					}
 				if g_rank_type = 4
 					{
 					if g_skul_s > 1
@@ -8764,11 +8784,14 @@ if global.hero = 1 && global.enemy_hero = 1
 					
 					ini_write_string("Ranks", "ranks", string(global.player_rank));
 					
+					ini_write_string("Ranks", "ranks", string(global.rank_stars));
+					
 					global.rank_stars = ini_read_real("Ranks", "ranks", 0);
 					
 					global.last_game2 = ini_read_real("Game", "lastgame2", 0);
 					global.last_game  = ini_read_real("Game", "lastgame", 0);
 				ini_close();
+				
 				draw_set_font(global.game_font);
 				draw_text_transformed_t(640, global.size - 60 + fin_y, "TAP TO GO MENU", 0.2, 0.2, 0, global.color_white, c_black);
 				
@@ -8829,8 +8852,9 @@ if global.hero = 1 && global.enemy_hero = 1
 			////////
 			if g_message = 1
 				{
+				//g_skul_y = 0;
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(640, global.size / 2 - 170 + fin_y, "YOU DO NOT LOSE\nA STAR ON\nTHIS RANK", 0.15, 0.5, 0, global.color_white, c_black);
+				draw_text_transformed_t(640, global.size / 2 - 50, "YOU DO NOT LOSE\nA STAR ON THIS RANK", 0.15, 0.15, 0, global.color_white, c_black);
 				}
 			
 			if g_rank_stage >= 1
