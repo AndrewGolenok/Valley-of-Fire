@@ -264,6 +264,12 @@
 			{ time_s = -time_s; }
 		draw_text_transformed_t(string_width(time) / 2 * 0.2 + 10, string_height(time) / 2 * 0.2 + 10, time, 0.2, 0.2, 0, global.color_white, c_black);
 		///
+		#region  Музыка
+			if !ini_section_exists("Music.ini")
+			    { ini_write_string("Music", "music", "1"); }
+			global.music = ini_read_real("Music", "music", 1);
+		#endregion
+		////
 		}
 #endregion
 

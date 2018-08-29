@@ -139,13 +139,9 @@
 #region Ини сохранения
 	ini_open("Music.ini");
 		#region Музыка
-			if !ini_section_exists("Music.ini")
-			    {
-				ini_write_string("Music.ini", "music", "1");
-				//ini_write_string("Music.ini", "reward", "1500");
-				//ini_write_string("Music.ini", "dollars", "0");
-				}
-			global.music = 0; //ini_read_real("Music.ini", "Music.ini", 1); // Музыка
+			if !ini_section_exists("Music")
+			    { ini_write_string("Music", "music", "1"); }
+			global.music = ini_read_real("Music", "music", 1);
 		#endregion
 		#region Обучение
 			///
