@@ -1236,6 +1236,25 @@
             }
         },
         {
+            "Key": "24e1e158-08d2-4452-a8f6-be4698c5bf43",
+            "Value": {
+                "id": "ce06aa13-99ad-4c34-a4d4-e191d5a50b77",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "views\/24e1e158-08d2-4452-a8f6-be4698c5bf43.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "252aae39-b79b-42fd-8e7e-48e03d4d5bb8",
             "Value": {
                 "id": "b1bc93fe-7a9d-4401-959f-9080578832e3",
@@ -1631,6 +1650,25 @@
                     "default"
                 ],
                 "resourcePath": "sprites\/s_train_back1\/s_train_back1.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "334f867a-fa25-418d-b89d-4cf9eba2decf",
+            "Value": {
+                "id": "17386737-e56a-439d-9fd5-7899c1033b24",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_music\/s_music.yy",
                 "resourceType": "GMSprite"
             }
         },

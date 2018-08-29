@@ -10,7 +10,7 @@
 	time_h = "";
 	time_m = "";
 	time_t = room_speed;
-	time_s = 1;
+	time_s = -1;
 	//global.menu_prev = "training";
 #endregion
 #region Тренировка

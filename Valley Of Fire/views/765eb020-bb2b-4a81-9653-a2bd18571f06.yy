@@ -6,15 +6,7 @@
     "children": [
         "ad5ec2cc-9fa7-4b11-83a1-81fae6e422de",
         "9a0c8e06-8dfd-4183-99dd-69b70137f4a9",
-        "336a3622-908b-4a1a-a6c9-77f45e176482",
-        "d620974d-c4b2-4245-9a1f-05aebb675aca",
-        "67920f18-97c3-455a-beeb-1db4cd08ac4c",
-        "7f6e4ea2-e446-4121-8b75-3cae40f89829",
-        "d6af9b29-24c6-48bf-b0dd-c85595b0f133",
-        "d9183195-b28c-47cc-b6cb-165fcd3a8c4c",
-        "23bec328-a7ae-48df-b04f-084e6586a5cb",
-        "1a42347f-ce4c-4301-bc31-d7d3dd5325ba",
-        "17739c4f-2670-447c-90dd-f17b7f4b1680"
+        "24e1e158-08d2-4452-a8f6-be4698c5bf43"
     ],
     "filterType": "GMSprite",
     "folderName": "Menu",

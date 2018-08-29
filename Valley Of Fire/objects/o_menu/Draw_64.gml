@@ -116,6 +116,9 @@
 				var totems, r_t1, r_t2, r_t3, n_totem, ti;
 				totems = "";
 				n_totem = irandom(1)
+				r_t1 = -1;
+				r_t2 = -1;
+				r_t3 = -1;
 				
 				if n_totem = 1
 					{
@@ -251,8 +254,6 @@
 		var time;
 		time_h = string(o_control.day_hour);
 		time_m = string(o_control.day_minute);
-		time_t = room_speed;
-		time_s = 1;
 		if time_s = -1
 			{ time = string(o_control.day_hour) + ":" + string(o_control.day_minute); }
 			else
@@ -3048,4 +3049,5 @@ if 0
 	//draw_set_font(global.game_font);
 	//draw_text_transformed_t(mouse_x, mouse_y, string(store_yy1), 0.25, 0.25, 0, c_white, c_black);
 #endregion
+
 
