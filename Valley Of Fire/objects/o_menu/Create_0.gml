@@ -177,6 +177,7 @@
 #region Магазин
 	store_yy  = 0;
 	store_yy1 = 0;
+	store_pr  = 0;
 	
 	lootbox_y = 0;
 	
