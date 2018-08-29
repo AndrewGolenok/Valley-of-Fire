@@ -1777,7 +1777,6 @@ if global.menu_now = "store" or global.menu_next = "store"
 				#endregion
 			#endregion
 		#endregion
-		
 		////// ПОКУПКА ГОЛДЫ
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_black, 0.5);
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_white, 1);
