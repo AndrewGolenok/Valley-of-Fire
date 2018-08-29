@@ -8511,8 +8511,10 @@ if global.hero = 1 && global.enemy_hero = 1
 							{
 							if roundskul_n[3] = 0
 								{
-								global.gold += 15 - global.player_rank + 5;
-								txt_gold = "+" + string(global.gold) + "©";
+								var pg;
+								pg = 15 - global.player_rank + 5;
+								global.gold += pg;
+								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "";
 								
 								ini_write_string("Sounds", "sound_on_g", string(global.gold));
@@ -8520,9 +8522,12 @@ if global.hero = 1 && global.enemy_hero = 1
 								}
 								else
 								{
-								global.gold += round((15 - global.player_rank) / 2) + 2;
-								txt_gold = "+" + string(global.gold) + "©";
+								var pg;
+								pg = 15 - global.player_rank + 5;
+								global.gold += pg;
+								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "";
+								
 								ini_write_string("Sounds", "sound_on_g", string(global.gold));
 								ini_write_string("Sounds", "sound_false_c", string(global.cash));
 								}
