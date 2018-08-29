@@ -8511,17 +8511,18 @@ if global.hero = 1 && global.enemy_hero = 1
 							{
 							if roundskul_n[3] = 0
 								{
-								txt_gold = "+5©";
+								global.gold += 15 - global.player_rank + 5;
+								txt_gold = "+" + string(global.gold) + "©";
 								txt_cash = "";
-								global.gold += 5;
+								
 								ini_write_string("Sounds", "sound_on_g", string(global.gold));
 								ini_write_string("Sounds", "sound_false_c", string(global.cash));
 								}
 								else
 								{
-								txt_gold = "+2©";
+								global.gold += round((15 - global.player_rank) / 2) + 2;
+								txt_gold = "+" + string(global.gold) + "©";
 								txt_cash = "";
-								global.gold += 2;
 								ini_write_string("Sounds", "sound_on_g", string(global.gold));
 								ini_write_string("Sounds", "sound_false_c", string(global.cash));
 								}
@@ -8740,8 +8741,13 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						if roundskul_n[3] != 0
 							{
-							txt_gold = "+5©";
-							global.gold += 5;
+							//txt_gold = "+5©";
+							//global.gold += 5;
+							var pg;
+							pg = 15 - global.player_rank + 5;
+							global.gold += pg;
+							txt_gold = "+" + string(pg) + "©";
+							txt_cash = "";
 							ini_write_string("Sounds", "sound_on_g", string(global.gold));
 							}
 						//g_rank_stage = 7;
@@ -8750,8 +8756,11 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						if roundskul_n[3] != 0
 							{
-							txt_gold = "+5©";
-							global.gold += 5;
+							var pg;
+							pg = 15 - global.player_rank + 5;
+							global.gold += pg;
+							txt_gold = "+" + string(pg) + "©";
+							txt_cash = "";
 							ini_write_string("Sounds", "sound_on_g", string(global.gold));
 							}
 						}
@@ -8759,19 +8768,92 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						if roundskul_n[3] = 0
 							{
-							txt_gold = "+10©";
-							txt_cash = "+1ç";
-							global.gold += 10;
-							global.cash += 1;
+							var pg, pc, pc1;
+							pg = 15 - global.player_rank + 15;
+							global.gold += pg;
+							pc  = 2;
+							pc1 = 0;
+							if global.player_rank <= 10
+								{ pc1 += 2; }
+							if global.player_rank <= 5
+								{ pc1 += 3; }
+							if global.player_rank <= 3
+								{ pc1 += 4; }
+							if global.player_rank <= 2
+								{ pc1 += 4; }
+							if global.player_rank <= 1
+								{ pc1 += 5; }
+							if global.player_rank <= 0
+								{ pc1 += 10; }
+							
+							global.cash += pc + pc1;
+							
+							if pc1 > 0
+								{
+								txt_gold = "+" + string(pg) + "©";
+								txt_cash = "+" + string(pc) + "ç";
+								}
+								else
+								{
+								txt_gold = "+" + string(pg) + "©";
+								txt_cash = "+" + string(pc) + "(" + string(pc1) + ")" + "ç";
+								}
+							//txt_gold = "+10©";
+							//txt_cash = "+1ç";
+							
 							ini_write_string("Sounds", "sound_on_g", string(global.gold));
 							ini_write_string("Sounds", "sound_false_c", string(global.cash));
 							}
 							else
 							{
-							txt_gold = "+15©";
-							txt_cash = "+2ç";
-							global.gold += 15;
-							global.cash += 2;
+							
+							var pg, pc, pc1;
+							pg = 15 - global.player_rank + 10;
+							global.gold += pg;
+							pc  = 1;
+							pc1 = 0;
+							if global.player_rank <= 10
+								{ pc1 += 2; }
+							if global.player_rank <= 5
+								{ pc1 += 3; }
+							if global.player_rank <= 3
+								{ pc1 += 4; }
+							if global.player_rank <= 2
+								{ pc1 += 4; }
+							if global.player_rank <= 1
+								{ pc1 += 5; }
+							if global.player_rank <= 0
+								{ pc1 += 10; }
+							
+							global.cash += pc + pc1;
+							
+							if pc1 > 0
+								{
+								txt_gold = "+" + string(pg) + "©";
+								txt_cash = "+" + string(pc) + "ç";
+								}
+								else
+								{
+								txt_gold = "+" + string(pg) + "©";
+								txt_cash = "+" + string(pc) + "(" + string(pc1) + ")" + "ç";
+								}
+							//global.gold += 15 - global.player_rank + 10;
+							//global.cash += 1;
+							//if global.player_rank <= 10
+							//	{ global.cash += 2; }
+							//if global.player_rank <= 5
+							//	{ global.cash += 3; }
+							//if global.player_rank <= 3
+							//	{ global.cash += 4; }
+							//if global.player_rank <= 2
+							//	{ global.cash += 4; }
+							//if global.player_rank <= 1
+							//	{ global.cash += 5; }
+							//if global.player_rank <= 0
+							//	{ global.cash += 10; }
+							
+							//txt_gold = "+" + string(global.gold) + "©";
+							//txt_cash = "+" + string(global.cash) + "ç";
 							ini_write_string("Sounds", "sound_on_g", string(global.gold));
 							ini_write_string("Sounds", "sound_false_c", string(global.cash));
 							}
@@ -8780,19 +8862,82 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						if roundskul_n[3] = 0
 							{
-							txt_gold = "+10 (+10)©";
-							txt_cash = "+1 (+3)ç";
-							global.gold += 20;
-							global.cash += 4;
+							var pg, pc, pc1;
+							pg = 15 - global.player_rank + 20;
+							global.gold += pg;
+							pc  = 3;
+							pc1 = 0;
+							if global.player_rank <= 10
+								{ pc1 += 2; }
+							if global.player_rank <= 5
+								{ pc1 += 3; }
+							if global.player_rank <= 3
+								{ pc1 += 4; }
+							if global.player_rank <= 2
+								{ pc1 += 4; }
+							if global.player_rank <= 1
+								{ pc1 += 5; }
+							if global.player_rank <= 0
+								{ pc1 += 10; }
+							
+							global.cash += pc + pc1;
+							
+							if pc1 > 0
+								{
+								txt_gold = "+" + string(pg) + "©";
+								txt_cash = "+" + string(pc) + "ç";
+								}
+								else
+								{
+								txt_gold = "+" + string(pg) + "©";
+								txt_cash = "+" + string(pc) + "(" + string(pc1) + ")" + "ç";
+								}
+							
+							//txt_gold = "+" + string(pg) + "©";
+							//txt_cash = "+" + string(pc) + "ç";
+							//txt_gold = "+10 (+10)©";
+							//txt_cash = "+1 (+3)ç";
+							//global.gold += 20;
+							//global.cash += 4;
 							ini_write_string("Sounds", "sound_on_g", string(global.gold));
 							ini_write_string("Sounds", "sound_false_c", string(global.cash));
 							}
 							else
 							{
-							txt_gold = "+15 (+10)©";
-							txt_cash = "+2 (+3)ç";
-							global.gold += 25;
-							global.cash += 5;
+							var pg, pc, pc1;
+							pg = 15 - global.player_rank + 15;
+							global.gold += pg;
+							pc  = 2;
+							pc1 = 0;
+							if global.player_rank <= 10
+								{ pc1 += 2; }
+							if global.player_rank <= 5
+								{ pc1 += 3; }
+							if global.player_rank <= 3
+								{ pc1 += 4; }
+							if global.player_rank <= 2
+								{ pc1 += 4; }
+							if global.player_rank <= 1
+								{ pc1 += 5; }
+							if global.player_rank <= 0
+								{ pc1 += 10; }
+							
+							global.cash += pc + pc1;
+							
+							if pc1 > 0
+								{
+								txt_gold = "+" + string(pg) + "©";
+								txt_cash = "+" + string(pc) + "ç";
+								}
+								else
+								{
+								txt_gold = "+" + string(pg) + "©";
+								txt_cash = "+" + string(pc) + "(" + string(pc1) + ")" + "ç";
+								}
+							//txt_gold = "+15 (+10)©";
+							//txt_cash = "+2 (+3)ç";
+							//global.gold += 25;
+							//global.cash += 5;
 							ini_write_string("Sounds", "sound_on_g", string(global.gold));
 							ini_write_string("Sounds", "sound_false_c", string(global.cash));
 							}
