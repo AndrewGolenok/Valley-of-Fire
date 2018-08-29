@@ -254,6 +254,8 @@
 		var time;
 		time_h = string(o_control.day_hour);
 		time_m = string(o_control.day_minute);
+		if real(time_m) < 10
+			{ time_m = "0" + time_m; }
 		if time_s = -1
 			{ time = string(o_control.day_hour) + ":" + string(o_control.day_minute); }
 			else
@@ -262,16 +264,23 @@
 			{ time_t += time_s; }
 			else
 			{ time_s = -time_s; }
-		draw_text_transformed_t(120 + string_width(time) / 2 * 0.2 + 10, string_height(time) / 2 * 0.2 + 10, time, 0.2, 0.2, 0, global.color_white, c_black);
+		draw_text_transformed_t(120 + string_width(time) / 2 * 0.2 + 10, string(global.cash) + "ç", time, 0.2, 0.2, 0, global.color_white, c_black);
 		///
 		#region  Музыка
-			draw_sprite_ext_t(s_music, music, 40, 40, 0.4, 0.4, 10, global.color_white, 1, global.color_white, c_black);
+			draw_sprite_ext_t(s_music, music, 80, 60, 0.4, 0.4, 10, global.color_white, 1, global.color_white, c_black);
 			if mouse_check_button_pressed(mb_left)
 				{
 				if point_in_rectangle(mouse_x, mouse_y, 0, 0, 120, 120)
-					{ global.music = !global.music; }
+					{
+					global.music = !global.music;
+					ini_open("Music.ini");
+						if !ini_section_exists("Music.ini")
+						    { ini_write_string("Music", "music", "1"); }
+						global.music = ini_read_real("Music", "music", 1);
+					ini_close();
+					}
 				}
-			draw_rectangle(0, 0, 120, 120, 1);
+			//draw_rectangle(0, 0, 120, 120, 1);
 			
 			if global.music = 1
 				{
@@ -287,9 +296,6 @@
 					else
 					{ music = 16; }
 				}
-			//if !ini_section_exists("Music.ini")
-			//    { ini_write_string("Music", "music", "1"); }
-			//global.music = ini_read_real("Music", "music", 1);
 		#endregion
 		////
 		}
