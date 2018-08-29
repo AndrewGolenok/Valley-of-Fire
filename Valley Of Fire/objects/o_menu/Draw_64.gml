@@ -243,12 +243,25 @@
 				store_yy1 = -785;
 				}
 			}
-		draw_text_transformed_t(1280 - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") / 2 * 0.2 - 10, string_height(string(global.gold) + "©") + 10, string(global.gold) + "©", 0.2, 0.2, 0, global.gold_color, c_black);
-		draw_text_transformed_t(1280 - string_width(string(global.cash) + "ç") / 2 * 0.2 - 10, string_height(string(global.gold) + "©") + 10, string(global.cash) + "ç", 0.2, 0.2, 0, global.cash_color, c_black);
+		draw_text_transformed_t(1280 - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") / 2 * 0.2 - 10, string_height(string(global.gold) + "©") * 0.2 + 10, string(global.gold) + "©", 0.2, 0.2, 0, global.gold_color, c_black);
+		draw_text_transformed_t(1280 - string_width(string(global.cash) + "ç") / 2 * 0.2 - 10, string_height(string(global.gold) + "©") * 0.2 + 10, string(global.cash) + "ç", 0.2, 0.2, 0, global.cash_color, c_black);
 		// Голда и Кэш
 		
 		///
-		draw_text_transformed_t(10, 10, string(global.cash), 0.2, 0.2, 0, global.cash_color, c_black);
+		var time;
+		time_h = string(o_control.day_hour);
+		time_m = string(o_control.day_minute);
+		time_t = room_speed;
+		time_s = 1;
+		if time_s = -1
+			{ time = string(o_control.day_hour) + ":" + string(o_control.day_minute); }
+			else
+			{ time = string(o_control.day_hour) + " " + string(o_control.day_minute); }
+		if (time_t > 0 && time_s = -1) or (time_t < room_speed && time_s = 1)
+			{ time_t += time_s; }
+			else
+			{ time_s = -time_s; }
+		draw_text_transformed_t(string_width(time) / 2 * 0.2 + 10, string_height(time) / 2 * 0.2 + 10, time, 0.2, 0.2, 0, global.color_white, c_black);
 		///
 		}
 #endregion

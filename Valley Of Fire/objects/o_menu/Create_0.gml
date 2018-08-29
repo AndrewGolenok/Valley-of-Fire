@@ -6,7 +6,11 @@
 	global.duel = 0;
 	global.menu_now   = "main"; //"main";
 	global.back_scale = 1280 / 2092; //global.size / 1024;
-	global.menu_next = "main"; 
+	global.menu_next = "main";
+	time_h = "";
+	time_m = "";
+	time_t = room_speed;
+	time_s = 1;
 	//global.menu_prev = "training";
 #endregion
 #region Тренировка
