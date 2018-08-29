@@ -180,8 +180,7 @@
 	store_pr  = 0;
 	store_tap = 1;
 	
-	var y_ind;
-	y_ind = 40;
+	y_ind = 0;
 	
 	lootbox_y = 0 + y_ind;
 	

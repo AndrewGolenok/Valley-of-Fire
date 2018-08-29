@@ -1222,6 +1222,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 						{ hand_i += 0.4; }
 						else
 						{ hand_i = 0; }
+					draw_sprite_ext(s_training_hand, hand_i, theme_x[i,j] + prx - 8, theme_y[i,j] + training_back_y + pry + 10, 1, 1, 0, c_black, 0.5);
 					draw_sprite_ext_t(s_training_hand, hand_i, theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
 					}
 				draw_set_font(global.game_font);
@@ -1506,7 +1507,18 @@ if global.menu_now = "store" or global.menu_next = "store"
 	top = ((sprite_get_height(s_store_back) * global.back_scale - global.size) / 2) * (sprite_get_width(s_store_back) / 1280);
 	//sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
 	draw_sprite_part_ext(s_store_back, 1, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
+	//
+	// top - 90 + daily_y + training_back_y + pry + store_yy1 + 10
+	// top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40
 	
+	draw_set_alpha(0.5);
+		draw_rectangle_color(0, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 1280, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40, c_black, c_black, c_black, c_black, 0);
+		draw_rectangle_color(0, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40, 1280, top + 40 + gold_y + training_back_y + store_yy1 + pry - 120, c_black, c_black, c_black, c_black, 0);
+	draw_set_alpha(1);
+	
+	//300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40
+	//top + 40 + gold_y + training_back_y + store_yy1 + pry - 120
+	///
 	////////
 	#region Кнопки магазина
 		//// ЛУТБОКСЫ
@@ -1901,8 +1913,8 @@ if global.menu_now = "store" or global.menu_next = "store"
 			
 			if store_yy1 > 200
 				{ store_yy1 = 200; }
-			if store_yy1 < -1700
-				{ store_yy1 = -1700; }
+			if store_yy1 < -1700 - y_ind
+				{ store_yy1 = -1700 - y_ind; }
 			
 			if store_yy1 != totemy
 				{ store_pr = 0; store_tap = 0; }
@@ -1942,14 +1954,14 @@ if global.menu_now = "store" or global.menu_next = "store"
 					}
 				if store_yy1 > 100
 					{ hold_sp = 0; }
-				if store_yy1 < -1650
+				if store_yy1 < -1650 - y_ind
 					{ hold_sp = 0; }
 				}
 				else
 				{
 				if store_yy1 > 0
 					{ store_yy1 -= 10; }
-				if store_yy1 < -1540
+				if store_yy1 < -1540 - y_ind
 					{ store_yy1 += 10; }
 				}
 			}

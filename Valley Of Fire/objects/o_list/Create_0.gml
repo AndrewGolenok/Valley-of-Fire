@@ -1296,7 +1296,16 @@
 	if global.shomen = 1
 		{ global.training = 7; }
 	if global.shomen = 2
-		{ global.training = -1; }
+		{
+		ini_open("Music.ini");
+			global.heroes_have[global.hero] = 0
+				{
+				ini_write_string("Heroes", "heroes" + string(global.hero), "1");
+				global.heroes_have[global.hero] = ini_read_real("Heroes", "heroes" + string(global.hero), 0);
+				}
+		ini_close();
+		global.training = -1;
+		}
 	global.training_stage[1] = -1;
 	global.training_stage[2] = -1;
 	global.training_stage[3] = -1;
