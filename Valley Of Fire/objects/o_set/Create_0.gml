@@ -209,7 +209,7 @@
 				}
 		#endregion
 		#region Ранг и звёзды
-			if !ini_section_exists("Rank")
+			if !ini_section_exists("Ranks")
 				{ ini_write_string("Ranks", "ranks", "0"); }
 			global.rank_stars = ini_read_real("Ranks", "ranks", 0);
 		#endregion
@@ -250,7 +250,7 @@
 #endregion
 #region Персонажи
 	//global.hero = 1;
-	global.player_rank = 15;
+	//global.player_rank = 15;
 	global.heroes_val  = 7;
 	global.weapon = "standard";
 	

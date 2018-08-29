@@ -474,7 +474,7 @@
 #endregion
 #region СТАРЫЙ ОБЪЕКТ
 	menu_stage = "heroes1"; //"dificult";
-	global.player_rank = 15; //irandom_range(1, 15);
+	//global.player_rank = 15; //irandom_range(1, 15);
 	anim_skul = 0;
 
 	lag = 0;
