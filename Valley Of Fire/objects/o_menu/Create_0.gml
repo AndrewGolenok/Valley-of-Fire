@@ -243,6 +243,9 @@
 	gold_buy_s[2] = 0;
 	gold_buy_s[3] = 0;
 	
+	gold_noten[1] = 0;
+	gold_noten[2] = 0;
+	gold_noten[3] = 0;
 #endregion
 #region Персонажи
 	hero_now = 1;

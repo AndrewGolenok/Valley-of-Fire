@@ -1593,7 +1593,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 					///////
 					if point_in_rectangle(mouse_x, mouse_y, cx1 - 75, cy1 - 105, cx1 + 75, cy1 + 105)
 						{
-						if mouse_check_button_pressed(mb_left)
+						if mouse_check_button_released(mb_left) && store_yy <= 0 && gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0
 							{
 							if os_type = os_macosx
 								{
@@ -1624,7 +1624,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 					/////////
 					if point_in_rectangle(mouse_x, mouse_y, cx2 - 75, cy1 - 105, cx2 + 75, cy1 + 105)
 						{
-						if mouse_check_button_pressed(mb_left)
+						if mouse_check_button_released(mb_left) && store_yy <= 0 && gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0
 							{
 							if os_type = os_macosx
 								{
@@ -1655,7 +1655,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 					////////
 					if point_in_rectangle(mouse_x, mouse_y, cx3 - 75, cy1 - 105, cx3 + 75, cy1 + 105)
 						{
-						if mouse_check_button_pressed(mb_left)
+						if mouse_check_button_released(mb_left) && store_yy <= 0 && gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0
 							{
 							if os_type = os_macosx
 								{
@@ -1686,7 +1686,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 					///////
 					if point_in_rectangle(mouse_x, mouse_y, cx1 - 75, cy2 - 105, cx1 + 75, cy2 + 105)
 						{
-						if mouse_check_button_pressed(mb_left)
+						if mouse_check_button_released(mb_left) && store_yy <= 0 && gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0
 							{
 							if os_type = os_macosx
 								{
@@ -1717,7 +1717,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 				/////
 					if point_in_rectangle(mouse_x, mouse_y, cx2 - 75, cy2 - 105, cx2 + 75, cy2 + 105)
 						{
-						if mouse_check_button_pressed(mb_left)
+						if mouse_check_button_released(mb_left) && store_yy <= 0 && gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0
 							{
 							if os_type = os_macosx
 								{
@@ -1748,7 +1748,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 				////////
 					if point_in_rectangle(mouse_x, mouse_y, cx3 - 75, cy2 - 105, cx3 + 75, cy2 + 105)
 						{
-						if mouse_check_button_pressed(mb_left)
+						if mouse_check_button_released(mb_left) && store_yy <= 0 && gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0
 							{
 							if os_type = os_macosx
 								{
@@ -1777,29 +1777,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 				#endregion
 			#endregion
 		#endregion
-		////// ПОКУПКА ГОЛДЫ
-		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_black, 0.5);
-		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_white, 1);
-		draw_text_transformed_t(640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 120, "BANK OF GOLD", 0.17, 0.17, 0, global.color_white, c_black);
-		
-		/////////
-		draw_sprite_ext_t(s_currency_buy, 6, 640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
-		draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[1], 0.11, 0.11, 0, global.color_white, c_black);
-		draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 57, string(gold_val[1]), 0.18, 0.18, 0, global.gold_color, c_black);
-		draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[1]) + "ç", 0.2, 0.2, 0, global.cash_color, c_black);
-		
-		draw_sprite_ext_t(s_currency_buy, 7, 640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
-		draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[2], 0.11, 0.11, 0, global.color_white, c_black);
-		draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 - 57, string(gold_val[2]), 0.18, 0.18, 0, global.gold_color, c_black);
-		draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[2]) + "ç", 0.2, 0.2, 0, global.cash_color, c_black);
-		
-		draw_sprite_ext_t(s_currency_buy, 8, 640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
-		draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[3], 0.11, 0.11, 0, global.color_white, c_black);
-		draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 57, string(gold_val[3]), 0.18, 0.18, 0, global.gold_color, c_black);
-		draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[3]) + "ç", 0.2, 0.2, 0, global.cash_color, c_black);
-		
-		//////
-		////////ПОКУПКА ГОЛДЫ
+		//////////
 		#region Нажатие на покупку ГОЛДЫ
 			var gx1, gx2, gx3, gy, sg1, sg2, sg3;
 			gx1 = 640 - 200;
@@ -1828,9 +1806,9 @@ if global.menu_now = "store" or global.menu_next = "store"
 					}
 				#region Покупка 1
 					///////
-					if point_in_rectangle(mouse_x, mouse_y, cx1 - 75, cy1 - 105, cx1 + 75, cy1 + 105)
+					if point_in_rectangle(mouse_x, mouse_y, gx1 - 75, gy - 105, gx1 + 75, gy + 105)
 						{
-						if mouse_check_button_released(mb_left)
+						if mouse_check_button_released(mb_left) && store_yy <= 0
 							{
 							if gold_buy[1] = 0
 								{
@@ -1849,9 +1827,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 											ini_write_string("Sounds", "sound_on_g", string(global.gold));
 											ini_write_string("Sounds", "sound_false_c", string(global.cash));
 										ini_close();
+										gold_buy[1] = 0;
 										}
 										else
-										{ gold_buy[1] = 0; }
+										{ gold_noten[1] = room_speed * 2; gold_buy[1] = 0; }
 									}
 									else
 									{ gold_buy[1] = 0; }
@@ -1872,9 +1851,37 @@ if global.menu_now = "store" or global.menu_next = "store"
 				#endregion
 			#endregion
 		#endregion
+		////// ПОКУПКА ГОЛДЫ
+		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_black, 0.5);
+		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_white, 1);
+		draw_text_transformed_t(640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 120, "BANK OF GOLD", 0.17, 0.17, 0, global.color_white, c_black);
+		
+		/////////
+		if gold_buy_s[1] = 0
+			{
+			draw_sprite_ext_t(s_currency_buy, 6, 640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg1, 0.5 * sg1, 0, c_white, 1, c_white, c_black);
+			draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[1], 0.11 * sg1, 0.11 * sg1, 0, global.color_white, c_black);
+			draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 57, string(gold_val[1]), 0.18 * sg1, 0.18 * sg1, 0, global.gold_color, c_black);
+			draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[1]) + "ç", 0.2 * sg1, 0.2 * sg1, 0, global.cash_color, c_black);
+			draw_sprite_ext_t(s_buy, 6, 640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, 0.5, 0.5 * gold_buy_s[1], 0, c_white, 1, c_white, c_black);
+			}
+		
+		draw_sprite_ext_t(s_currency_buy, 7, 640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg2, 0.5 * sg2, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[2], 0.11 * sg2, 0.11 * sg2, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 - 57, string(gold_val[2]), 0.18 * sg2, 0.18 * sg2, 0, global.gold_color, c_black);
+		draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[2]) + "ç", 0.2 * sg2, 0.2 * sg2, 0, global.cash_color, c_black);
+		
+		draw_sprite_ext_t(s_currency_buy, 8, 640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg3, 0.5 * sg3, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[3], 0.11 * sg3, 0.11 * sg3, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 57, string(gold_val[3]), 0.18 * sg3, 0.18 * sg3, 0, global.gold_color, c_black);
+		draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[3]) + "ç", 0.2 * sg3, 0.2 * sg3, 0, global.cash_color, c_black);
+		
+		//////
+		////////ПОКУПКА ГОЛДЫ
+		
 		/////
 		#region Свайпы
-		if mouse_check_button(mb_left)
+		if mouse_check_button(mb_left) && gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0
 		&& point_in_rectangle(mouse_x, mouse_y, 0, global.size / 2 - 270, 1280, global.size / 2 + 270)
 			{
 			if store_yy = 0
@@ -2046,6 +2053,21 @@ if global.menu_now = "store" or global.menu_next = "store"
 		draw_text_transformed_t(menu_cash_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, gold_col, c_black);
 		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
 		// ЗОЛОТО И КЭШ
+	
+	////////// ЗОЛОТО ПОВЕРХ
+	if gold_buy_s[1] != 0
+		{
+		draw_set_alpha(0.5);
+		draw_rectangle_color(0, 0 + training_back_y, 1280, global.size + training_back_y, c_black, c_black, c_black, c_black, 0);
+		draw_set_alpha(1);
+		
+		draw_sprite_ext_t(s_currency_buy, 6, 640 - 200, top + 157 + gold_y + training_back_y + store_yy1, 0.5 * sg1 * 1.2, 0.5 * sg1 * 1.2, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(640 - 200, top + 157 + gold_y + training_back_y + store_yy1 - 135, gold_txt[1], 0.11 * sg1 * 1.2, 0.11 * sg1 * 1.2, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 - 200, top + 157 + gold_y + training_back_y + store_yy1 - 57, string(gold_val[1]), 0.18 * sg1 * 1.2, 0.18 * sg1 * 1.2, 0, global.gold_color, c_black);
+		draw_text_transformed_t(640 - 200, top + 157 + gold_y + training_back_y + store_yy1 + 100, string(gold_pri[1]) + "ç", 0.2 * sg1 * 1.2, 0.2 * sg1 * 1.2, 0, global.cash_color, c_black);
+		draw_sprite_ext_t(s_buy, 6, 640 - 200, top + 157 + gold_y + training_back_y + store_yy1 + 100, 0.5 * 1.2, 0.5 * gold_buy_s[1] * 1.2, 0, c_white, 1, c_white, c_black);
+		}
+	////////// ЗОЛОТО ПОВЕРХ
 	}
 #endregion
 
