@@ -1446,7 +1446,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 		{
 		if mouse_check_button_pressed(mb_left)
 			{
-			if mouse_x > 1130 + lengthdir_x(300, sc_angle - 90)
+			if mouse_x > 1130
 				{ sc_dir = -1; }
 				else
 				{ sc_dir = 1; }
