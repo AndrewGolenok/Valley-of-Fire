@@ -1575,38 +1575,48 @@ if global.menu_now = "store" or global.menu_next = "store"
 		draw_text_transformed_t(640 + prx + 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[6], 0.2, 0.2, 0, global.color_white, c_black);
 		///////////
 		#region Нажатие на покупку КЭША
-			var cx1, cx2, cx3, cy1, cy2;
+			var cx1, cx2, cx3, cy1, cy2, sc1, sc2, sc3, sc4, sc5, sc6;
 			cx1 = 640 - 200;
 			cx2 = 640;
 			cx3 = 640 + 200;
 			cy1 = top + 127 + cash_y + training_back_y + pry + store_yy1;
 			cy2 = 300 + top + cy1;
 			
-			if mouse_check_button_pressed(mb_left)
-				{
+			sc1 = 1;
+			sc2 = 1;
+			sc3 = 1;
+			sc4 = 1;
+			sc5 = 1;
+			
+			#region Покупки
 				#region Покупка 1
 					///////
 					if point_in_rectangle(mouse_x, mouse_y, cx1 - 75, cy1 - 105, cx1 + 75, cy1 + 105)
 						{
-						if os_type = os_macosx
+						if mouse_check_button_pressed(mb_left)
 							{
-							global.cash += cash_val[1];
-							ini_open("Music.ini");
-								ini_write_string("Sounds", "sound_false_c", string(global.cash));
-							ini_close();
+							if os_type = os_macosx
+								{
+								global.cash += cash_val[1];
+								ini_open("Music.ini");
+									ini_write_string("Sounds", "sound_false_c", string(global.cash));
+								ini_close();
+								}
+							if os_type = os_ios
+								{
+								#region Покупка
+									if iap_status() == iap_status_available
+									   {
+									   var product = "vip_test";
+									   iap_acquire(product, "");
+									   }
+									   else
+									   { show_message_async("Store is not available."); }
+								#endregion
+								}
 							}
-						if os_type = os_ios
-							{
-							#region Покупка
-								if iap_status() == iap_status_available
-								   {
-								   var product = "vip_test";
-								   iap_acquire(product, "");
-								   }
-								   else
-								   { show_message_async("Store is not available."); }
-							#endregion
-							}
+						if mouse_check_button(mb_left)
+							{ sc1 = 1.1; }
 						}
 					///////
 				#endregion
@@ -1614,25 +1624,30 @@ if global.menu_now = "store" or global.menu_next = "store"
 					/////////
 					if point_in_rectangle(mouse_x, mouse_y, cx2 - 75, cy1 - 105, cx2 + 75, cy1 + 105)
 						{
-						if os_type = os_macosx
+						if mouse_check_button_pressed(mb_left)
 							{
-							global.cash += cash_val[2];
-							ini_open("Music.ini");
-								ini_write_string("Sounds", "sound_false_c", string(global.cash));
-							ini_close();
+							if os_type = os_macosx
+								{
+								global.cash += cash_val[2];
+								ini_open("Music.ini");
+									ini_write_string("Sounds", "sound_false_c", string(global.cash));
+								ini_close();
+								}
+							if os_type = os_ios
+								{
+								#region Покупка
+									if iap_status() == iap_status_available
+									   {
+									   var product = "vip_test";
+									   iap_acquire(product, "");
+									   }
+									   else
+									   { show_message_async("Store is not available."); }
+								#endregion
+								}
 							}
-						if os_type = os_ios
-							{
-							#region Покупка
-								if iap_status() == iap_status_available
-								   {
-								   var product = "vip_test";
-								   iap_acquire(product, "");
-								   }
-								   else
-								   { show_message_async("Store is not available."); }
-							#endregion
-							}
+						if mouse_check_button(mb_left)
+							{ sc2 = 1.1; }
 						}
 					/////////
 				#endregion
@@ -1640,25 +1655,30 @@ if global.menu_now = "store" or global.menu_next = "store"
 					////////
 					if point_in_rectangle(mouse_x, mouse_y, cx3 - 75, cy1 - 105, cx3 + 75, cy1 + 105)
 						{
-						if os_type = os_macosx
+						if mouse_check_button_pressed(mb_left)
 							{
-							global.cash += cash_val[3];
-							ini_open("Music.ini");
-								ini_write_string("Sounds", "sound_false_c", string(global.cash));
-							ini_close();
+							if os_type = os_macosx
+								{
+								global.cash += cash_val[3];
+								ini_open("Music.ini");
+									ini_write_string("Sounds", "sound_false_c", string(global.cash));
+								ini_close();
+								}
+							if os_type = os_ios
+								{
+								#region Покупка
+									if iap_status() == iap_status_available
+									   {
+									   var product = "vip_test";
+									   iap_acquire(product, "");
+									   }
+									   else
+									   { show_message_async("Store is not available."); }
+								#endregion
+								}
 							}
-						if os_type = os_ios
-							{
-							#region Покупка
-								if iap_status() == iap_status_available
-								   {
-								   var product = "vip_test";
-								   iap_acquire(product, "");
-								   }
-								   else
-								   { show_message_async("Store is not available."); }
-							#endregion
-							}
+						if mouse_check_button(mb_left)
+							{ sc3 = 1.1; }
 						}
 					//////////
 				#endregion
@@ -1666,25 +1686,30 @@ if global.menu_now = "store" or global.menu_next = "store"
 					///////
 					if point_in_rectangle(mouse_x, mouse_y, cx1 - 75, cy2 - 105, cx1 + 75, cy2 + 105)
 						{
-						if os_type = os_macosx
+						if mouse_check_button_pressed(mb_left)
 							{
-							global.cash += cash_val[4];
-							ini_open("Music.ini");
-								ini_write_string("Sounds", "sound_false_c", string(global.cash));
-							ini_close();
+							if os_type = os_macosx
+								{
+								global.cash += cash_val[4];
+								ini_open("Music.ini");
+									ini_write_string("Sounds", "sound_false_c", string(global.cash));
+								ini_close();
+								}
+							if os_type = os_ios
+								{
+								#region Покупка
+									if iap_status() == iap_status_available
+									   {
+									   var product = "vip_test";
+									   iap_acquire(product, "");
+									   }
+									   else
+									   { show_message_async("Store is not available."); }
+								#endregion
+								}
 							}
-						if os_type = os_ios
-							{
-							#region Покупка
-								if iap_status() == iap_status_available
-								   {
-								   var product = "vip_test";
-								   iap_acquire(product, "");
-								   }
-								   else
-								   { show_message_async("Store is not available."); }
-							#endregion
-							}
+						if mouse_check_button(mb_left)
+							{ sc4 = 1.1; }
 						}
 					///////
 				#endregion
@@ -1692,25 +1717,30 @@ if global.menu_now = "store" or global.menu_next = "store"
 				/////
 					if point_in_rectangle(mouse_x, mouse_y, cx2 - 75, cy2 - 105, cx2 + 75, cy2 + 105)
 						{
-						if os_type = os_macosx
+						if mouse_check_button_pressed(mb_left)
 							{
-							global.cash += cash_val[5];
-							ini_open("Music.ini");
-								ini_write_string("Sounds", "sound_false_c", string(global.cash));
-							ini_close();
+							if os_type = os_macosx
+								{
+								global.cash += cash_val[5];
+								ini_open("Music.ini");
+									ini_write_string("Sounds", "sound_false_c", string(global.cash));
+								ini_close();
+								}
+							if os_type = os_ios
+								{
+								#region Покупка
+									if iap_status() == iap_status_available
+									   {
+									   var product = "vip_test";
+									   iap_acquire(product, "");
+									   }
+									   else
+									   { show_message_async("Store is not available."); }
+								#endregion
+								}
 							}
-						if os_type = os_ios
-							{
-							#region Покупка
-								if iap_status() == iap_status_available
-								   {
-								   var product = "vip_test";
-								   iap_acquire(product, "");
-								   }
-								   else
-								   { show_message_async("Store is not available."); }
-							#endregion
-							}
+						if mouse_check_button(mb_left)
+							{ sc5 = 1.1; }
 						}
 					/////////
 				#endregion
@@ -1718,29 +1748,34 @@ if global.menu_now = "store" or global.menu_next = "store"
 				////////
 					if point_in_rectangle(mouse_x, mouse_y, cx3 - 75, cy2 - 105, cx3 + 75, cy2 + 105)
 						{
-						if os_type = os_macosx
+						if mouse_check_button_pressed(mb_left)
 							{
-							global.cash += cash_val[6];
-							ini_open("Music.ini");
-								ini_write_string("Sounds", "sound_false_c", string(global.cash));
-							ini_close();
+							if os_type = os_macosx
+								{
+								global.cash += cash_val[6];
+								ini_open("Music.ini");
+									ini_write_string("Sounds", "sound_false_c", string(global.cash));
+								ini_close();
+								}
+							if os_type = os_ios
+								{
+								#region Покупка
+									if iap_status() == iap_status_available
+									   {
+									   var product = "vip_test";
+									   iap_acquire(product, "");
+									   }
+									   else
+									   { show_message_async("Store is not available."); }
+								#endregion
+								}
 							}
-						if os_type = os_ios
-							{
-							#region Покупка
-								if iap_status() == iap_status_available
-								   {
-								   var product = "vip_test";
-								   iap_acquire(product, "");
-								   }
-								   else
-								   { show_message_async("Store is not available."); }
-							#endregion
-							}
+						if mouse_check_button(mb_left)
+							{ sc6 = 1.1; }
 						}
 					/////////
 				#endregion
-				}
+			#endregion
 		#endregion
 		
 		////// ПОКУПКА ГОЛДЫ
