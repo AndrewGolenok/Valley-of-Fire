@@ -1800,7 +1800,79 @@ if global.menu_now = "store" or global.menu_next = "store"
 		
 		//////
 		////////ПОКУПКА ГОЛДЫ
-		
+		#region Нажатие на покупку ГОЛДЫ
+			var gx1, gx2, gx3, gy, sg1, sg2, sg3;
+			gx1 = 640 - 200;
+			gx2 = 640;
+			gx3 = 640 + 200;
+			gy = top + 157 + gold_y + training_back_y + pry + store_yy1;
+			
+			sg1 = 1;
+			sg2 = 1;
+			sg3 = 1;
+			
+			#region Покупки
+				if gold_buy[1] = 1
+					{
+					if gold_buy_s[1] < 1
+						{ gold_buy_s[1] += 0.1; }
+						else
+						{ gold_buy_s[1] = 1; }
+					}
+					else
+					{
+					if gold_buy_s[1] > 0
+						{ gold_buy_s[1] -= 0.1; }
+						else
+						{ gold_buy_s[1] = 0; }
+					}
+				#region Покупка 1
+					///////
+					if point_in_rectangle(mouse_x, mouse_y, cx1 - 75, cy1 - 105, cx1 + 75, cy1 + 105)
+						{
+						if mouse_check_button_released(mb_left)
+							{
+							if gold_buy[1] = 0
+								{
+								if gold_buy_s[1] = 0
+									{ gold_buy[1] = 1; }
+								}
+								else
+								{
+								if point_in_rectangle(mouse_x, mouse_y, gx1 - 75, gy + 30, gx1 + 75, gy + 105)
+									{
+									if global.cash >= gold_pri[1]
+										{
+										global.gold += gold_val[1];
+										global.cash -= gold_pri[1];
+										ini_open("Music.ini");
+											ini_write_string("Sounds", "sound_on_g", string(global.gold));
+											ini_write_string("Sounds", "sound_false_c", string(global.cash));
+										ini_close();
+										}
+										else
+										{ gold_buy[1] = 0; }
+									}
+									else
+									{ gold_buy[1] = 0; }
+								}
+							}
+						if mouse_check_button(mb_left)
+							{ sg1 = 1.1; }
+						}
+						else
+						{
+						if mouse_check_button_pressed(mb_left)
+							{
+							if gold_buy[1] = 1// && gold_buy_s[1] = 1
+								{ gold_buy[1] = 0; }
+							}
+						}
+					///////
+				#endregion
+			#endregion
+		#endregion
+		/////
 		#region Свайпы
 		if mouse_check_button(mb_left)
 		&& point_in_rectangle(mouse_x, mouse_y, 0, global.size / 2 - 270, 1280, global.size / 2 + 270)

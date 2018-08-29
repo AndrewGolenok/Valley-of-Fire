@@ -200,27 +200,27 @@
 	
 	cash_txt[1] = "THE WAD\nOF CASH";
 	cash_val[1] = 50//80;
-	cash_pri[1] = "$0.99";
+	cash_pri[1] = "$0.99"; // "75₽"
 	
 	cash_txt[2] = "A BAG\nOF CASH";
 	cash_val[2] = 270//500;
-	cash_pri[2] = "$4.99";
+	cash_pri[2] = "$4.99"; //"75₽"
 	
 	cash_txt[3] = "THE BOX\nOF CASH";
 	cash_val[3] = 550//1200;
-	cash_pri[3] = "$9.99";
+	cash_pri[3] = "$9.99"; //"75₽"
 	
 	cash_txt[4] = "A CHEST\nOF CASH";
 	cash_val[4] = 1200//2500;
-	cash_pri[4] = "$19.99";
+	cash_pri[4] = "$19.99"; //"75₽"
 	
 	cash_txt[5] = "A BARREL\nOF CASH";
 	cash_val[5] = 2500//6500;
-	cash_pri[5] = "$49.99";
+	cash_pri[5] = "$49.99"; //"75₽"
 	
 	cash_txt[6] = "A MOUNTAIN\nOF CASH";
 	cash_val[6] = 5500//14000;
-	cash_pri[6] = "$99.99";
+	cash_pri[6] = "$99.99"; //"75₽"
 	
 	
 	gold_txt[1] = "A BAG\nOF GOLD";
@@ -234,6 +234,15 @@
 	gold_txt[3] = "A MOUNTAIN\nOF GOLD";
 	gold_val[3] = 5500;
 	gold_pri[3] = 1000;
+	
+	gold_buy[1] = 0;
+	gold_buy[2] = 0;
+	gold_buy[3] = 0;
+	
+	gold_buy_s[1] = 0;
+	gold_buy_s[2] = 0;
+	gold_buy_s[3] = 0;
+	
 #endregion
 #region Персонажи
 	hero_now = 1;
