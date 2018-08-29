@@ -270,7 +270,7 @@
 		draw_text_transformed_t(120 + string_width(time) / 2 * 0.2 + 10, string_height(string(global.gold) + "©") * 0.2 + 10, time, 0.2, 0.2, 0, global.color_white, c_black);
 		///
 		#region  Музыка
-			draw_sprite_ext(s_music, music, 72, 60 + 5, 0.4, 0.4, 10, global.color_white, 0.5);
+			draw_sprite_ext_t(s_music, music, 72, 60 + 8, 0.4, 0.4, 10, global.color_white, 0.5, global.color_white, c_black);
 			draw_sprite_ext_t(s_music, music, 72, 60, 0.4, 0.4, 10, global.color_white, 1, global.color_white, c_black);
 			if mouse_check_button_pressed(mb_left)
 				{
@@ -750,12 +750,12 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 		if global.size >= 640
 			{
 			draw_set_font(global.game_font);
-			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE YOUR TOTEMS", 0.22, 0.22, 0, col, c_black);
+			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE TOTEMS", 0.22, 0.22, 0, col, c_black);
 			}
 			else
 			{
 			draw_set_font(global.game_font);
-			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 60, "CHOOSE YOUR TOTEMS", 0.22, 0.22, 0, col, c_black);
+			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 60, "CHOOSE TOTEMS", 0.22, 0.22, 0, col, c_black);
 			}
 		}
 		else
@@ -1073,19 +1073,20 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 	if global.duel = 0
 		{
 		draw_set_font(global.game_font);
-		draw_text_transformed_t(80, global.size / 2 + training_back_y - 40, "H\nE\nR\nO\nE\nS", 0.22, 0.22, 0, col, c_black);
+		draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "HEROES", 0.22, 0.22, 0, col, c_black);
+		//draw_text_transformed_t(80, global.size / 2 + training_back_y - 40, "H\nE\nR\nO\nE\nS", 0.22, 0.22, 0, col, c_black);
 		}
 		else
 		{
 		if global.size  >= 640
 			{
 			draw_set_font(global.game_font);
-			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE YOUR HERO", 0.22, 0.22, 0, col, c_black);
+			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE A HERO", 0.22, 0.22, 0, col, c_black);
 			}
 			else
 			{
 			draw_set_font(global.game_font);
-			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "CHOOSE YOUR HERO", 0.22, 0.22, 0, col, c_black);
+			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "CHOOSE A HERO", 0.22, 0.22, 0, col, c_black);
 			}
 		}
 	if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)

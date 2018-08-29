@@ -8572,7 +8572,7 @@ if global.hero = 1 && global.enemy_hero = 1
 					if global.rank_stars < 2
 						{ star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15;}
 					
-					winstreak = 0;
+					//winstreak = 0;
 					if g_rank_type = -1
 						{
 						if whowin = 2 && star_now - 1 < 0
@@ -8793,7 +8793,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							
 							global.cash += pc + pc1;
 							
-							if pc1 > 0
+							if pc1 < 0
 								{
 								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "+" + string(pc) + "ç";
@@ -8832,7 +8832,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							
 							global.cash += pc + pc1;
 							
-							if pc1 > 0
+							if pc1 < 0
 								{
 								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "+" + string(pc) + "ç";
@@ -8887,7 +8887,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							
 							global.cash += pc + pc1;
 							
-							if pc1 > 0
+							if pc1 < 0
 								{
 								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "+" + string(pc) + "ç";
@@ -8929,7 +8929,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							
 							global.cash += pc + pc1;
 							
-							if pc1 > 0
+							if pc1 < 0
 								{
 								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "+" + string(pc) + "ç";

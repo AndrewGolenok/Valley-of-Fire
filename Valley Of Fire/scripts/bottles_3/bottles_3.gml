@@ -20,7 +20,7 @@ for(i=1;i<=6;i++)
 		{ bottle_all = 4; bottle_spd[i] = global.size / 40; bottle_r[i] = choose(0, 0, 0, 1); min_time[2,3] = 50; min_wait[2,3] = 40; }
 	if global.player_rank >= 15
 		{ bottle_all = 3; bottle_spd[i] = global.size / 45; bottle_r[i] = 0; min_time[2,3] = 20; min_wait[2,3] = 40; }
-	
+	bottle_r[i] = 0;
 	bottle_red_a += bottle_r[i];
 	if bottle_red_a > 2
 		{ bottle_r[i] = 0; bottle_red_a -= 1; }
