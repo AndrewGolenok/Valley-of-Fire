@@ -232,6 +232,24 @@
 		
 		draw_text_transformed_t(640, global.size / 2 + string_height("®RANKED®") * 0.22 / 2 + 25, "®RANKED®", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black);
 		//РАНКЕД ДУЭЛЬ
+		
+		/// Голда и Кэш
+		if mouse_check_button_released(mb_left)
+			{
+			if point_in_rectangle(mouse_x, mouse_y, 1280 - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") * 0.2 - 10, string_height(string(global.gold) + "©") + 10, 1280, string_height(string(global.gold) + "©") + 10)
+				{
+				global.menu_next = "store";
+				global.menu_now = "store";
+				store_yy1 = -785;
+				}
+			}
+		draw_text_transformed_t(1280 - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") / 2 * 0.2 - 10, string_height(string(global.gold) + "©") + 10, string(global.gold) + "©", 0.2, 0.2, 0, global.gold_color, c_black);
+		draw_text_transformed_t(1280 - string_width(string(global.cash) + "ç") / 2 * 0.2 - 10, string_height(string(global.gold) + "©") + 10, string(global.cash) + "ç", 0.2, 0.2, 0, global.cash_color, c_black);
+		// Голда и Кэш
+		
+		///
+		draw_text_transformed_t(10, 10, string(global.cash), 0.2, 0.2, 0, global.cash_color, c_black);
+		///
 		}
 #endregion
 
