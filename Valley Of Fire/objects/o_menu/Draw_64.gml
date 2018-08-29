@@ -1827,7 +1827,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 						///////
 						if point_in_rectangle(mouse_x, mouse_y, gx1 - 75, gy - 105, gx1 + 75, gy + 105)
 							{
-							if mouse_check_button_released(mb_left) && store_yy <= 0
+							if mouse_check_button_released(mb_left)// && store_yy <= 0
 								{
 								if gold_buy[1] = 0
 									{
@@ -1836,23 +1836,23 @@ if global.menu_now = "store" or global.menu_next = "store"
 									}
 									else
 									{
-									if point_in_rectangle(mouse_x, mouse_y, gx1 - 75, gy + 30, gx1 + 75, gy + 105)
-										{
-										if global.cash >= gold_pri[1]
-											{
-											global.gold += gold_val[1];
-											global.cash -= gold_pri[1];
-											ini_open("Music.ini");
-												ini_write_string("Sounds", "sound_on_g", string(global.gold));
-												ini_write_string("Sounds", "sound_false_c", string(global.cash));
-											ini_close();
-											gold_buy[1] = 0;
-											}
-											else
-											{ gold_noten[1] = room_speed * 2; gold_buy[1] = 0; }
-										}
-										else
-										{ gold_buy[1] = 0; }
+									//if point_in_rectangle(mouse_x, mouse_y, gx1 - 75, gy + 30, gx1 + 75, gy + 105)
+									//	{
+									//	if global.cash >= gold_pri[1]
+									//		{
+									//		global.gold += gold_val[1];
+									//		global.cash -= gold_pri[1];
+									//		ini_open("Music.ini");
+									//			ini_write_string("Sounds", "sound_on_g", string(global.gold));
+									//			ini_write_string("Sounds", "sound_false_c", string(global.cash));
+									//		ini_close();
+									//		gold_buy[1] = 0;
+									//		}
+									//		else
+									//		{ gold_noten[1] = room_speed * 2; gold_buy[1] = 0; }
+									//	}
+									//	else
+									//	{ gold_buy[1] = 0; }
 									}
 								}
 							if mouse_check_button(mb_left)
@@ -1860,11 +1860,11 @@ if global.menu_now = "store" or global.menu_next = "store"
 							}
 							else
 							{
-							if mouse_check_button_pressed(mb_left)
-								{
-								if gold_buy[1] = 1// && gold_buy_s[1] = 1
-									{ gold_buy[1] = 0; }
-								}
+							//if mouse_check_button_pressed(mb_left)
+							//	{
+							//	if gold_buy[1] = 1// && gold_buy_s[1] = 1
+							//		{ gold_buy[1] = 0; }
+							//	}
 							}
 						///////
 					#endregion
@@ -1878,7 +1878,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 		draw_text_transformed_t(640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 120, "BANK OF GOLD", 0.17, 0.17, 0, global.color_white, c_black);
 		
 		/////////
-		if gold_buy_s[1] = 0
+		if gold_buy[1] = 0
 			{
 			draw_sprite_ext_t(s_currency_buy, 6, 640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg1, 0.5 * sg1, 0, c_white, 1, c_white, c_black);
 			draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[1], 0.11 * sg1, 0.11 * sg1, 0, global.color_white, c_black);
@@ -2083,24 +2083,54 @@ if global.menu_now = "store" or global.menu_next = "store"
 		//		io_clear();
 		//		}
 		//	}
-		// ЗОЛОТО И КЭШ
+	// ЗОЛОТО И КЭШ
 	
-	////////// ЗОЛОТО ПОВЕРХ
-	if gold_buy_s[1] != 0
-		{
-		var upsc;
-		upsc = 1.5;
-		draw_set_alpha(0.5);
-		draw_rectangle_color(0, 0 + training_back_y, 1280, global.size + training_back_y, c_black, c_black, c_black, c_black, 0);
-		draw_set_alpha(1);
+	#region Золото поверх
+		////////// ЗОЛОТО ПОВЕРХ
+		if gold_buy[1] = 1 // && gold_buy_s[1] != 0
+			{
+			var upsc, minn, miny;
+			upsc = 1.5;
+			minn = 0.7;
+			miny = 30;
+			draw_set_alpha(0.7);
+			draw_rectangle_color(0, 0 + training_back_y, 1280, global.size + training_back_y, c_black, c_black, c_black, c_black, 0);
+			draw_set_alpha(1);
 		
-		draw_sprite_ext_t(s_currency_buy, 6, 640, global.size / 2, 0.5 * sg1 * upsc, 0.5 * sg1 * upsc, 0, c_white, 1, c_white, c_black);
-		draw_sprite_ext_t(s_buy, 6, 640, global.size / 2 + 100, 0.5 * upsc * 0.85, 0.5 * gold_buy_s[1] * upsc * 0.85, 0, c_white, 1, c_white, c_black);
-		draw_text_transformed_t(640, global.size / 2 - 135, gold_txt[1], 0.11 * sg1 * upsc, 0.11 * sg1 * upsc, 0, global.color_white, c_black);
-		draw_text_transformed_t(640, global.size / 2 - 57, string(gold_val[1]), 0.18 * sg1 * upsc, 0.18 * sg1 * upsc, 0, global.gold_color, c_black);
-		draw_text_transformed_t(640, global.size / 2 + 100, string(gold_pri[1]) + "ç", 0.2 * sg1 * upsc, 0.2 * sg1 * upsc, 0, global.cash_color, c_black);
-		}
-	////////// ЗОЛОТО ПОВЕРХ
+			draw_sprite_ext_t(s_currency_buy, 6, 640, global.size / 2, 0.5 * sg1 * upsc, 0.5 * sg1 * upsc, 0, c_white, 1, c_white, c_black);
+			draw_sprite_ext_t(s_buy, 6, 640, global.size / 2 + 120, 0.45 * upsc * 0.85, 0.45 * gold_buy_s[1] * upsc * 0.85, 0, c_white, 1, c_white, c_black);
+			
+			draw_text_transformed_t(640, global.size / 2 - 135, gold_txt[1], 0.11 * sg1 * upsc, 0.11 * sg1 * upsc, 0, global.color_white, c_black);
+			draw_text_transformed_t(640, global.size / 2 - 57, string(gold_val[1]), 0.18 * sg1 * upsc, 0.18 * sg1 * upsc, 0, global.gold_color, c_black);
+			
+			draw_text_transformed_t(640 - string_width(string(gold_pri[1]) + "ç") * 0.2 * sg1 * upsc / 2, global.size / 2 + 140, string(gold_pri[1]) + "ç", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[1] * minn, 0, global.cash_color, c_black);
+			draw_text_transformed_t(640 + string_width("BUY") * 0.2 * sg1 * upsc / 2 - 20, global.size / 2 + 140, "BUY", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[1] * minn, 0, global.cash_color, c_black);
+			
+			draw_rectangle(640 - 150, global.size / 2 + 160 - 60, 640 + 150, global.size / 2 + 160 + 60, 1);
+			if mouse_check_button_pressed(mb_left)
+				{
+				if point_in_rectangle(mouse_x, mouse_y, 640 - 150, global.size / 2 + 160 - 60, 640 + 150, global.size / 2 + 160 + 60) && gold_buy_s[1] = 1 
+					{
+					if global.cash >= gold_pri[1]
+						{
+						global.gold += gold_val[1];
+						global.cash -= gold_pri[1];
+						ini_open("Music.ini");
+							ini_write_string("Sounds", "sound_on_g", string(global.gold));
+							ini_write_string("Sounds", "sound_false_c", string(global.cash));
+						ini_close();
+						gold_buy[1] = 0;
+						}
+						else
+						{ gold_noten[1] = room_speed * 2; gold_buy[1] = 0; }
+					}
+					else
+					{ gold_buy[1] = 0; }
+				io_clear();
+				}
+			}
+		////////// ЗОЛОТО ПОВЕРХ
+	#endregion
 	}
 #endregion
 
