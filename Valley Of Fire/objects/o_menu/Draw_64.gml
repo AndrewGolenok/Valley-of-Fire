@@ -1222,7 +1222,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 						{ hand_i += 0.4; }
 						else
 						{ hand_i = 0; }
-					draw_sprite_ext(s_training_hand, hand_i, theme_x[i,j] + prx - 8, theme_y[i,j] + training_back_y + pry + 10, 1, 1, 0, c_black, 0.5);
+					draw_sprite_ext(s_training_hand, hand_i, theme_x[i,j] + prx - 5, theme_y[i,j] + training_back_y + pry + 15, 1, 1, 0, c_black, 0.5);
 					draw_sprite_ext_t(s_training_hand, hand_i, theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
 					}
 				draw_set_font(global.game_font);
@@ -1511,7 +1511,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 	// top - 90 + daily_y + training_back_y + pry + store_yy1 + 10
 	// top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40
 	
-	draw_set_alpha(0.5);
+	draw_set_alpha(0.35);
 		draw_rectangle_color(0, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 1280, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40, c_black, c_black, c_black, c_black, 0);
 		draw_rectangle_color(0, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40, 1280, top + 40 + gold_y + training_back_y + store_yy1 + pry - 120, c_black, c_black, c_black, c_black, 0);
 	draw_set_alpha(1);
@@ -2070,10 +2070,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 		//menu_setb_y - training_back_y + pry
 		//top - training_back_y + pry * 0.5 + sc_angle * 2 - 27
 		draw_text_transformed_t(menu_gold_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.color_hero[2], c_black);
-		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus1_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
+		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus1_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, global.gold_color, 1, global.gold_color, c_black);
 		
 		draw_text_transformed_t(menu_cash_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, gold_col, c_black);
-		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, c_white, 1, c_white, c_black);
+		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, global.cash_colore, 1, global.gold_color, c_black);
 		// ЗОЛОТО И КЭШ
 	
 	////////// ЗОЛОТО ПОВЕРХ

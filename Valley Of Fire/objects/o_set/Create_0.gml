@@ -205,7 +205,10 @@
 			for(i=1;i<=7;i++)
 				{
 				if !ini_section_exists("Heroes")
-				    { ini_write_string("Heroes", "heroes" + string(i), "0"); }
+				    {
+					ini_write_string("Heroes", "heroes" + string(i), "0");
+					ini_write_string("Heroes", "heroes4", "1");
+					}
 				global.heroes_have[i] = ini_read_real("Heroes", "heroes" + string(i), 0);
 				}
 		#endregion
