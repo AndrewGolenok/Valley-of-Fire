@@ -257,17 +257,39 @@
 		if time_s = -1
 			{ time = string(o_control.day_hour) + ":" + string(o_control.day_minute); }
 			else
-			{ time = string(o_control.day_hour) + " " + string(o_control.day_minute); }
+			{ time = string(o_control.day_hour) + "µ" + string(o_control.day_minute); }
 		if (time_t > 0 && time_s = -1) or (time_t < room_speed && time_s = 1)
 			{ time_t += time_s; }
 			else
 			{ time_s = -time_s; }
-		draw_text_transformed_t(string_width(time) / 2 * 0.2 + 10, string_height(time) / 2 * 0.2 + 10, time, 0.2, 0.2, 0, global.color_white, c_black);
+		draw_text_transformed_t(120 + string_width(time) / 2 * 0.2 + 10, string_height(time) / 2 * 0.2 + 10, time, 0.2, 0.2, 0, global.color_white, c_black);
 		///
 		#region  Музыка
-			if !ini_section_exists("Music.ini")
-			    { ini_write_string("Music", "music", "1"); }
-			global.music = ini_read_real("Music", "music", 1);
+			draw_sprite_ext_t(s_music, music, 40, 40, 0.4, 0.4, 10, global.color_white, 1, global.color_white, c_black);
+			if mouse_check_button_pressed(mb_left)
+				{
+				if point_in_rectangle(mouse_x, mouse_y, 0, 0, 120, 120)
+					{ global.music = !global.music; }
+				}
+			draw_rectangle(0, 0, 120, 120, 1);
+			
+			if global.music = 1
+				{
+				if music > 0
+					{ music -= 1; }
+					else
+					{ music = 0; }
+				}
+				else
+				{
+				if music < 16
+					{ music += 1; }
+					else
+					{ music = 16; }
+				}
+			//if !ini_section_exists("Music.ini")
+			//    { ini_write_string("Music", "music", "1"); }
+			//global.music = ini_read_real("Music", "music", 1);
 		#endregion
 		////
 		}

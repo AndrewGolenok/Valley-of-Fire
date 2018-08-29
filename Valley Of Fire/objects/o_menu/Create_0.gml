@@ -11,6 +11,11 @@
 	time_m = "";
 	time_t = room_speed;
 	time_s = -1;
+	
+	if global.music = 1
+		{ music = 0; }
+		else
+		{ music = 16; }
 	//global.menu_prev = "training";
 #endregion
 #region Тренировка
