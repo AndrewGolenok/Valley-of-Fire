@@ -1513,7 +1513,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 	
 	draw_set_alpha(0.35);
 		draw_rectangle_color(0, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 1280, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40, c_black, c_black, c_black, c_black, 0);
-		draw_rectangle_color(0, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40, 1280, top + 40 + gold_y + training_back_y + store_yy1 + pry - 120, c_black, c_black, c_black, c_black, 0);
+		draw_rectangle_color(0, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40, 1280, top + 40 + gold_y + training_back_y + store_yy1 + pry - 135, c_black, c_black, c_black, c_black, 0);
 	draw_set_alpha(1);
 	
 	//300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40
@@ -2070,18 +2070,19 @@ if global.menu_now = "store" or global.menu_next = "store"
 		//menu_setb_y - training_back_y + pry
 		//top - training_back_y + pry * 0.5 + sc_angle * 2 - 27
 		draw_text_transformed_t(640 - string_width(string(global.gold) + "©") / 2 * menu_txt_s, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, global.gold_color, c_black);
-		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, global.gold_color, 1, global.gold_color, c_black);
+		//draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, global.gold_color, 1, global.gold_color, c_black);
 		
 		draw_text_transformed_t(640 + string_width(string(global.cash) + "ç") / 2 * menu_txt_s, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.cash_color, c_black);
-		draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus1_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, global.cash_color, 1, global.cash_color, c_black);
+		//draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus1_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, global.cash_color, 1, global.cash_color, c_black);
 		
-		if mouse_check_button_pressed(mb_left)
-			{
-			if point_in_rectangle(mouse_x, mouse_y, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2)
-				{
-				
-				}
-			}
+		//if mouse_check_button_pressed(mb_left)
+		//	{
+		//	if point_in_rectangle(mouse_x, mouse_y, 640 - string_width(string(global.gold) + "©") * menu_txt_s, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2 - 30, 640 * menu_txt_s, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2 + 20)
+		//		{
+		//		//store_yy1 = 0;
+		//		io_clear();
+		//		}
+		//	}
 		// ЗОЛОТО И КЭШ
 	
 	////////// ЗОЛОТО ПОВЕРХ
@@ -2912,5 +2913,5 @@ if 0
 	//draw_set_font(global.game_font);
 	//draw_text_transformed_t(mouse_x, mouse_y, string(global.p_totem[1]) + ":" + string(global.p_totem[2]) + ":" + string(global.p_totem[3]), 0.25, 0.25, 0, c_white, c_black);
 	//draw_set_font(global.game_font);
-	//draw_text_transformed_t(mouse_x, mouse_y, string(global.fps_mental / global.fps_col), 0.25, 0.25, 0, c_white, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(store_yy1), 0.25, 0.25, 0, c_white, c_black);
 #endregion
