@@ -1001,6 +1001,8 @@
 	view_go_right = 0;
 	view_go_down = 0;
 	
+	bot_type = 0;
+	
 	if global.player_rank = 15
 		{ bot_type = choose(0, 0, 1, irandom(3)); }
 	if global.player_rank < 15 && global.player_rank >= 13
@@ -1018,7 +1020,7 @@
 	if global.player_rank = 1
 		{ bot_type = choose(2, 3, irandom_range(2, 3), irandom(3), irandom(3)); }
 	if global.player_rank = 0
-		{ choose(3, 3, irandom_range(2, 3), irandom(3), irandom(3)); }
+		{ bot_type = choose(3, 3, irandom_range(2, 3), irandom(3), irandom(3)); }
 	
 	
 	bot_go = 0;

@@ -5359,6 +5359,25 @@
             }
         },
         {
+            "Key": "a1fb8186-7e7c-48cc-99cf-e7512ec86264",
+            "Value": {
+                "id": "3e2f6971-83d7-4ad4-86df-979e173acab8",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_lootbox11\/s_lootbox11.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "a30ad2a4-54a2-4169-9e74-610870d6db66",
             "Value": {
                 "id": "729939f1-36dc-4e01-a1fb-f7ab577392fb",

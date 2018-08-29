@@ -193,6 +193,32 @@
 	
 	lootbox_y = 0 + y_ind;
 	
+	lootbox_s = 0; // Стейдж
+	lootbox_a = 0; // Угол
+	lootbox_d = 1; // Направление угла
+	lootbox_t = 0; // Время тряски
+	lootbox_i = 0; // Индекс кадра для анимации
+						
+						
+	lootbox_item_x[1] = 0;
+	lootbox_item_x[2] = 0;
+	lootbox_item_x[3] = 0; 
+						
+	lootbox_item_y[1] = 0;
+	lootbox_item_y[2] = 0;
+	lootbox_item_y[3] = 0; /// Координаты
+						
+	lootbox_item_t[1] = 0;
+	lootbox_item_t[2] = 0;
+	lootbox_item_t[3] = 0; /// Тип - тотем или листовка
+						
+	lootbox_item_i[1] = 0;
+	lootbox_item_i[2] = 0;
+	lootbox_item_i[3] = 0; //// Номера (тотема или персонажа)
+						
+	lootbox_item_o[1] = 0;
+	lootbox_item_o[2] = 0;
+	lootbox_item_o[3] = 0; ///// Открыто или нет
 	//lootbox_pri[1] = 100;
 	//lootbox_pri[2] = 50;
 	

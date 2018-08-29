@@ -2369,20 +2369,22 @@ if global.menu_now = "store" or global.menu_next = "store"
 	#endregion
 	#region Лутбоксы поверх
 		////////// ЛУТБОКСЫ ПОВЕРХ
+		var upsc, minn, miny;
+		upsc = 1.5;
+		minn = 0.7;
+		miny = 30;
 		for(i=1;i<=2;i++)
 			{
 			if i = 1
 				{
-				if lootbox_buy[i] = 1 // && gold_buy_s[1] != 0
+				if lootbox_buy[i] > 0
 					{
-					var upsc, minn, miny;
-					upsc = 1.5;
-					minn = 0.7;
-					miny = 30;
 					draw_set_alpha(0.7);
 					draw_rectangle_color(0, 0 + training_back_y, 1280, global.size + training_back_y, c_black, c_black, c_black, c_black, 0);
 					draw_set_alpha(1);
-					
+					}
+				if lootbox_buy[i] = 1 // && gold_buy_s[1] != 0
+					{
 					draw_sprite_ext_t(s_lootbox1, 0, 640, global.size / 2 - 120 + 65, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, 0, c_white, 1, c_white, c_black);
 					draw_sprite_ext_t(s_buy, 5 + i, 640, global.size / 2 + 90 + 60, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_white, 1, c_white, c_black);
 					
@@ -2398,10 +2400,73 @@ if global.menu_now = "store" or global.menu_next = "store"
 						if point_in_rectangle(mouse_x, mouse_y, 640 - 150, global.size / 2 + 160 - 60 + 60, 640 + 150, global.size / 2 + 160 + 80 + 60) && lootbox_buy_s[i] = 1 
 							{
 							lootbox_buy[i] = 2;
+							lootbox_s = 0;
 							}
 							else
 							{ lootbox_buy[i] = 0; }
 						io_clear();
+						}
+					}
+				if lootbox_buy[i] = 2
+					{
+					draw_sprite_ext_t(s_lootbox1, lootbox_i, 640, global.size / 2 - 120 + 65, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, lootbox_a, c_white, 1, c_white, c_black);
+					if lootbox_s = 0
+						{
+						if lootbox_t < room_speed * 2
+							{
+							lootbox_t += 1;
+							if (lootbox_d = 1 && lootbox_a < 8) or (lootbox_d = -1 && lootbox_a > -8)
+								{ lootbox_a += lootbox_d * 1; }
+								else
+								{ lootbox_d = -lootbox_d; lootbox_a += lootbox_d * 0.5; }
+							}
+							else
+							{ lootbox_s = 1; }
+						}
+					if lootbox_s = 1
+						{
+						if lootbox_a > 0
+							{ lootbox_a -= 1; }
+						if lootbox_a < 0
+							{ lootbox_a += 1; }
+						if lootbox_a = 0
+							{ lootbox_s = 2; }
+						}
+					if lootbox_s = 2
+						{
+						if lootbox_i < 6
+							{ lootbox_i += 0.5; }
+							else
+							{ lootbox_s = 3; lootbox_i = 6; }
+						}
+					if 0
+						{
+						lootbox_s = 0; // Стейдж
+						lootbox_a = 0; // Угол
+						lootbox_d = 0; // Направление угла
+						lootbox_t = 0; // Время тряски
+						lootbox_i = 0; // Индекс кадра для анимации
+						
+						
+						lootbox_item_x[1] = 0;
+						lootbox_item_x[2] = 0;
+						lootbox_item_x[3] = 0; 
+						
+						lootbox_item_y[1] = 0;
+						lootbox_item_y[2] = 0;
+						lootbox_item_y[3] = 0; /// Координаты
+						
+						lootbox_item_t[1] = 0;
+						lootbox_item_t[2] = 0;
+						lootbox_item_t[3] = 0; /// Тип - тотем или листовка
+						
+						lootbox_item_i[1] = 0;
+						lootbox_item_i[2] = 0;
+						lootbox_item_i[3] = 0; //// Номера (тотема или персонажа)
+						
+						lootbox_item_o[1] = 0;
+						lootbox_item_o[2] = 0;
+						lootbox_item_o[3] = 0; ///// Открыто или нет
 						}
 					}
 				}
