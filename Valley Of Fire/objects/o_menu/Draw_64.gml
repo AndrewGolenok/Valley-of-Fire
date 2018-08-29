@@ -1514,11 +1514,11 @@ if global.menu_now = "store" or global.menu_next = "store"
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 70 + lootbox_y + training_back_y + store_yy1 + pry, 0.4, 0.4, 0, c_white, 1);
 		draw_text_transformed_t(640 + prx, top + 50 + lootbox_y + training_back_y + store_yy1 + pry, "LOOTBOXES", 0.2, 0.2, 0, global.color_white, c_black);
 		
-		draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.22, 0.22, 0, c_black, 0.5);
-		draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 0.22, 0.22, 0, c_white, 1);
+		draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.24, 0.24, 0, c_black, 0.5);
+		draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 0.24, 0.24, 0, c_white, 1);
 		
-		draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.22, 0.22, 0, c_black, 0.5);
-		draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 0.22, 0.22, 0, c_white, 1);
+		draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.24, 0.24, 0, c_black, 0.5);
+		draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 0.24, 0.24, 0, c_white, 1);
 		////
 		
 		////// ЕЖЕДНЕВНЫЕ ПОКУПКИ
@@ -1541,23 +1541,233 @@ if global.menu_now = "store" or global.menu_next = "store"
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_white, 1);
 		draw_text_transformed_t(640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120, "BANK OF CASH", 0.17, 0.17, 0, global.color_white, c_black);
 		
+		/////////
 		draw_sprite_ext_t(s_currency_buy, 0, 640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
 		draw_text_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[1], 0.11, 0.11, 0, global.color_white, c_black);
 		draw_text_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[1]), 0.18, 0.18, 0, global.cash_color, c_black);
 		draw_text_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[1], 0.2, 0.2, 0, global.color_white, c_black);
 		
-		//draw_sprite_ext(s_currency_buy, 1, 640 + prx, top + 80 + cash_y + training_back_y + totem_yy1 + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		//draw_sprite_ext(s_currency_buy, 2, 640 + prx + 200, top + 80 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
+		draw_sprite_ext_t(s_currency_buy, 1, 640 + prx, top + 127 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(640 + prx, top + 127 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[2], 0.11, 0.11, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx, top + 127 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[2]), 0.18, 0.18, 0, global.cash_color, c_black);
+		draw_text_transformed_t(640 + prx, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[2], 0.2, 0.2, 0, global.color_white, c_black);
 		
-		//draw_sprite_ext(s_currency_buy, 3, 640 + prx - 200, top + 80 + 220 + cash_y+ training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		//draw_sprite_ext(s_currency_buy, 4, 640 + prx, top + 80 + 220 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		//draw_sprite_ext(s_currency_buy, 5, 640 + prx + 200, top + 80 + 220 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1);
-		///////
+		draw_sprite_ext_t(s_currency_buy, 2, 640 + prx + 200, top + 127 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(640 + prx + 200, top + 127 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[3], 0.11, 0.11, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx + 200, top + 127 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[3]), 0.18, 0.18, 0, global.cash_color, c_black);
+		draw_text_transformed_t(640 + prx + 200, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[3], 0.2, 0.2, 0, global.color_white, c_black);
+		
+		//////
+		
+		draw_sprite_ext_t(s_currency_buy, 3, 640 + prx - 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(640 + prx - 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[4], 0.11, 0.11, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx - 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[4]), 0.18, 0.18, 0, global.cash_color, c_black);
+		draw_text_transformed_t(640 + prx - 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[4], 0.2, 0.2, 0, global.color_white, c_black);
+		
+		draw_sprite_ext_t(s_currency_buy, 4, 640 + prx, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(640 + prx, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[5], 0.11, 0.11, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[5]), 0.18, 0.18, 0, global.cash_color, c_black);
+		draw_text_transformed_t(640 + prx, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[5], 0.2, 0.2, 0, global.color_white, c_black);
+		
+		draw_sprite_ext_t(s_currency_buy, 5, 640 + prx + 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(640 + prx + 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[6], 0.11, 0.11, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx + 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[6]), 0.18, 0.18, 0, global.cash_color, c_black);
+		draw_text_transformed_t(640 + prx + 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[6], 0.2, 0.2, 0, global.color_white, c_black);
+		///////////
+		#region Нажатие на покупку КЭША
+			var cx1, cx2, cx3, cy1, cy2;
+			cx1 = 640 - 200;
+			cx2 = 640;
+			cx3 = 640 + 200;
+			cy1 = top + 127 + cash_y + training_back_y + pry + store_yy1;
+			cy2 = 300 + top + cy1;
+			
+			if mouse_check_button_pressed(mb_left)
+				{
+				#region Покупка 1
+					///////
+					if point_in_rectangle(mouse_x, mouse_y, cx1 - 75, cy1 - 105, cx1 + 75, cy1 + 105)
+						{
+						if os_type = os_macosx
+							{
+							global.cash += cash_val[1];
+							ini_open("Music.ini");
+								ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							ini_close();
+							}
+						if os_type = os_ios
+							{
+							#region Покупка
+								if iap_status() == iap_status_available
+								   {
+								   var product = "vip_test";
+								   iap_acquire(product, "");
+								   }
+								   else
+								   { show_message_async("Store is not available."); }
+							#endregion
+							}
+						}
+					///////
+				#endregion
+				#region Покупка 2
+					/////////
+					if point_in_rectangle(mouse_x, mouse_y, cx2 - 75, cy1 - 105, cx2 + 75, cy1 + 105)
+						{
+						if os_type = os_macosx
+							{
+							global.cash += cash_val[2];
+							ini_open("Music.ini");
+								ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							ini_close();
+							}
+						if os_type = os_ios
+							{
+							#region Покупка
+								if iap_status() == iap_status_available
+								   {
+								   var product = "vip_test";
+								   iap_acquire(product, "");
+								   }
+								   else
+								   { show_message_async("Store is not available."); }
+							#endregion
+							}
+						}
+					/////////
+				#endregion
+				#region Покупка 3
+					////////
+					if point_in_rectangle(mouse_x, mouse_y, cx3 - 75, cy1 - 105, cx3 + 75, cy1 + 105)
+						{
+						if os_type = os_macosx
+							{
+							global.cash += cash_val[3];
+							ini_open("Music.ini");
+								ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							ini_close();
+							}
+						if os_type = os_ios
+							{
+							#region Покупка
+								if iap_status() == iap_status_available
+								   {
+								   var product = "vip_test";
+								   iap_acquire(product, "");
+								   }
+								   else
+								   { show_message_async("Store is not available."); }
+							#endregion
+							}
+						}
+					//////////
+				#endregion
+				#region Покупка 4
+					///////
+					if point_in_rectangle(mouse_x, mouse_y, cx1 - 75, cy2 - 105, cx1 + 75, cy2 + 105)
+						{
+						if os_type = os_macosx
+							{
+							global.cash += cash_val[4];
+							ini_open("Music.ini");
+								ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							ini_close();
+							}
+						if os_type = os_ios
+							{
+							#region Покупка
+								if iap_status() == iap_status_available
+								   {
+								   var product = "vip_test";
+								   iap_acquire(product, "");
+								   }
+								   else
+								   { show_message_async("Store is not available."); }
+							#endregion
+							}
+						}
+					///////
+				#endregion
+				#region Покупка 5
+				/////
+					if point_in_rectangle(mouse_x, mouse_y, cx2 - 75, cy2 - 105, cx2 + 75, cy2 + 105)
+						{
+						if os_type = os_macosx
+							{
+							global.cash += cash_val[5];
+							ini_open("Music.ini");
+								ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							ini_close();
+							}
+						if os_type = os_ios
+							{
+							#region Покупка
+								if iap_status() == iap_status_available
+								   {
+								   var product = "vip_test";
+								   iap_acquire(product, "");
+								   }
+								   else
+								   { show_message_async("Store is not available."); }
+							#endregion
+							}
+						}
+					/////////
+				#endregion
+				#region Покупка 6
+				////////
+					if point_in_rectangle(mouse_x, mouse_y, cx3 - 75, cy2 - 105, cx3 + 75, cy2 + 105)
+						{
+						if os_type = os_macosx
+							{
+							global.cash += cash_val[6];
+							ini_open("Music.ini");
+								ini_write_string("Sounds", "sound_false_c", string(global.cash));
+							ini_close();
+							}
+						if os_type = os_ios
+							{
+							#region Покупка
+								if iap_status() == iap_status_available
+								   {
+								   var product = "vip_test";
+								   iap_acquire(product, "");
+								   }
+								   else
+								   { show_message_async("Store is not available."); }
+							#endregion
+							}
+						}
+					/////////
+				#endregion
+				}
+		#endregion
 		
 		////// ПОКУПКА ГОЛДЫ
+		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_black, 0.5);
+		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_white, 1);
+		draw_text_transformed_t(640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 120, "BANK OF GOLD", 0.17, 0.17, 0, global.color_white, c_black);
 		
-		////////
+		/////////
+		draw_sprite_ext_t(s_currency_buy, 6, 640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[1], 0.11, 0.11, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 57, string(gold_val[1]), 0.18, 0.18, 0, global.gold_color, c_black);
+		draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[1]) + "ç", 0.2, 0.2, 0, global.cash_color, c_black);
 		
+		draw_sprite_ext_t(s_currency_buy, 7, 640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[2], 0.11, 0.11, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 - 57, string(gold_val[2]), 0.18, 0.18, 0, global.gold_color, c_black);
+		draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[2]) + "ç", 0.2, 0.2, 0, global.cash_color, c_black);
+		
+		draw_sprite_ext_t(s_currency_buy, 8, 640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
+		draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[3], 0.11, 0.11, 0, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 57, string(gold_val[3]), 0.18, 0.18, 0, global.gold_color, c_black);
+		draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[3]) + "ç", 0.2, 0.2, 0, global.cash_color, c_black);
+		
+		//////
+		////////ПОКУПКА ГОЛДЫ
+		
+		#region Свайпы
 		if mouse_check_button(mb_left)
 		&& point_in_rectangle(mouse_x, mouse_y, 0, global.size / 2 - 270, 1280, global.size / 2 + 270)
 			{
@@ -1569,8 +1779,8 @@ if global.menu_now = "store" or global.menu_next = "store"
 			
 			if store_yy1 > 200
 				{ store_yy1 = 200; }
-			if store_yy1 < -1100
-				{ store_yy1 = -1100; }
+			if store_yy1 < -1700
+				{ store_yy1 = -1700; }
 			
 			if store_yy1 != totemy
 				{ store_pr = 0; }
@@ -1609,17 +1819,18 @@ if global.menu_now = "store" or global.menu_next = "store"
 					}
 				if store_yy1 > 100
 					{ hold_sp = 0; }
-				if store_yy1 < -1040
+				if store_yy1 < -1650
 					{ hold_sp = 0; }
 				}
 				else
 				{
 				if store_yy1 > 0
 					{ store_yy1 -= 10; }
-				if store_yy1 < -940
+				if store_yy1 < -1540
 					{ store_yy1 += 10; }
 				}
 			}
+		#endregion
 	#endregion
 	///////
 	

@@ -196,30 +196,30 @@
 	
 	
 	cash_y   = 900;
-	gold_y   = 1600;
+	gold_y   = 1600 + 30;
 	
 	cash_txt[1] = "THE WAD\nOF CASH";
 	cash_val[1] = 50//80;
 	cash_pri[1] = "$0.99";
 	
 	cash_txt[2] = "A BAG\nOF CASH";
-	cash_val[2] = 150//500;
+	cash_val[2] = 270//500;
 	cash_pri[2] = "$4.99";
 	
 	cash_txt[3] = "THE BOX\nOF CASH";
-	cash_val[3] = 400//1200;
+	cash_val[3] = 550//1200;
 	cash_pri[3] = "$9.99";
 	
 	cash_txt[4] = "A CHEST\nOF CASH";
-	cash_val[4] = 850//2500;
+	cash_val[4] = 1200//2500;
 	cash_pri[4] = "$19.99";
 	
 	cash_txt[5] = "A BARREL\nOF CASH";
-	cash_val[5] = 1500//6500;
+	cash_val[5] = 2500//6500;
 	cash_pri[5] = "$49.99";
 	
 	cash_txt[6] = "A MOUNTAIN\nOF CASH";
-	cash_val[6] = 3000//14000;
+	cash_val[6] = 5500//14000;
 	cash_pri[6] = "$99.99";
 	
 	
