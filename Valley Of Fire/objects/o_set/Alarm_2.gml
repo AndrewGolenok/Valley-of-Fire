@@ -4,8 +4,8 @@
 	buy_cash_270
 	buy_cash_550
 	buy_cash_1200
-	buy_cash_2500
-	buy_cash_5500
+	buy_cash_3000
+	buy_cash_7000
 	*/
 #endregion
 
@@ -82,34 +82,34 @@
 #region Пятая покупка
 	var purchaseList, no_ads;
 	purchaseList = ds_list_create();
-	buy_cash_2500 = ds_map_create();
+	buy_cash_3000 = ds_map_create();
 
-	ds_map_add(buy_cash_, "id", "buy_cash_2500"); 
-	ds_map_add(buy_cash_, "title", "A BARREL OF CASH"); 
-	ds_map_add(buy_cash_, "description", "2500 CASH"); 
-	ds_map_add(buy_cash_, "price", "$49.99");
+	ds_map_add(buy_cash_3000, "id", "buy_cash_3000"); 
+	ds_map_add(buy_cash_3000, "title", "A BARREL OF CASH"); 
+	ds_map_add(buy_cash_3000, "description", "3000 CASH"); 
+	ds_map_add(buy_cash_3000, "price", "$49.99");
 
-	ds_list_add(purchaseList, buy_cash_2500); 
+	ds_list_add(purchaseList, buy_cash_3000); 
 
 	iap_activate(purchaseList);
 
-	ds_map_destroy(buy_cash_2500); 
+	ds_map_destroy(buy_cash_3000); 
 	ds_list_destroy(purchaseList);
 #endregion
 #region Шестая покупка
 	var purchaseList, no_ads;
 	purchaseList  = ds_list_create();
-	buy_cash_5500 = ds_map_create();
+	buy_cash_7000 = ds_map_create();
 
-	ds_map_add(buy_cash_5500, "id", "buy_cash_5500"); 
-	ds_map_add(buy_cash_5500, "title", "A MOUNTAIN OF CASH"); 
-	ds_map_add(buy_cash_5500, "description", "5500 CASH"); 
-	ds_map_add(buy_cash_5500, "price", "$99.99");
+	ds_map_add(buy_cash_7000, "id", "buy_cash_7000"); 
+	ds_map_add(buy_cash_7000, "title", "A MOUNTAIN OF CASH"); 
+	ds_map_add(buy_cash_7000, "description", "7000 CASH"); 
+	ds_map_add(buy_cash_7000, "price", "$99.99");
 
-	ds_list_add(purchaseList, buy_cash_5500); 
+	ds_list_add(purchaseList, buy_cash_7000); 
 
 	iap_activate(purchaseList);
 
-	ds_map_destroy(buy_cash_5500); 
+	ds_map_destroy(buy_cash_7000); 
 	ds_list_destroy(purchaseList);
 #endregion

@@ -671,6 +671,14 @@
 	global.gold_color = make_color_rgb(252,232,131);
 	global.cash_color = make_color_rgb(60 , 179, 113);
 #endregion
+#region Покупки
+	//buy_cash_50 = 0;
+	//buy_cash_270 = 0;
+	//buy_cash_550 = 0;
+	//buy_cash_1200 = 0;
+	//buy_cash_3000 = 0;
+	//buy_cash_7000 = 0;
+#endregion
 
 #region Прочее
 	randomize(); // Включаем рандом

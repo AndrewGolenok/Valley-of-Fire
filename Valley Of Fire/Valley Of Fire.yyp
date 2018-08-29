@@ -3174,25 +3174,6 @@
             }
         },
         {
-            "Key": "616247a6-2392-4ed3-bd18-baf34ec759af",
-            "Value": {
-                "id": "474ca7bf-1806-4ff6-978e-47f81e36ed1a",
-                "modelName": "GMResourceInfo",
-                "mvc": "1.0",
-                "configDeltaFiles": [
-                    
-                ],
-                "configDeltas": [
-                    
-                ],
-                "resourceCreationConfigs": [
-                    "default"
-                ],
-                "resourcePath": "objects\/o_padpiska\/o_padpiska.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "6253275f-8f24-4489-a7bb-da8ee7a47881",
             "Value": {
                 "id": "c5db8186-5795-46d6-ab86-1ba60e58a16d",

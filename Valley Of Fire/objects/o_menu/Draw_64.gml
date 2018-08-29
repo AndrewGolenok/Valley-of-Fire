@@ -1554,6 +1554,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 			sc3 = 1;
 			sc4 = 1;
 			sc5 = 1;
+			sc6 = 1;
 			
 			if store_tap = 1
 				{
@@ -1793,7 +1794,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 			sg2 = 1;
 			sg3 = 1;
 			
-			if store_pr = 0
+			if store_tap = 1
 				{
 				#region Покупки
 					if gold_buy[1] = 1
