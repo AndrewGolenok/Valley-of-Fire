@@ -1555,7 +1555,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 			sc4 = 1;
 			sc5 = 1;
 			
-			if store_pr = 0
+			if store_tap = 1
 				{
 				#region Покупки
 					#region Покупка 1
@@ -1904,7 +1904,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 				{ store_yy1 = -1700; }
 			
 			if store_yy1 != totemy
-				{ store_pr = 0; }
+				{ store_pr = 0; store_tap = 0; }
 			
 			if abs(store_yy1 - totemy) > 50
 				{
@@ -1920,6 +1920,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 			}
 			else
 			{
+			store_tap = 1;
 			store_yy = 0;
 			
 			if abs(hold_sp) > 0

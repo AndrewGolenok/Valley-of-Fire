@@ -178,10 +178,14 @@
 	store_yy  = 0;
 	store_yy1 = 0;
 	store_pr  = 0;
+	store_tap = 1;
 	
-	lootbox_y = 0;
+	var y_ind;
+	y_ind = 40;
 	
-	daily_y   = 500;
+	lootbox_y = 0 + y_ind;
+	
+	daily_y   = 500 + y_ind;
 	
 	daily_t[1] = 0;
 	daily_t[2] = 0;
@@ -196,8 +200,8 @@
 	daily_s[3] = 1;
 	
 	
-	cash_y   = 900;
-	gold_y   = 1600 + 30;
+	cash_y   = 900 + y_ind;
+	gold_y   = 1600 + 30 + y_ind;
 	
 	cash_txt[1] = "THE WAD\nOF CASH";
 	cash_val[1] = 50//80;
