@@ -178,7 +178,7 @@
 			if !ini_section_exists("Sounds")
 			    {
 				ini_write_string("Sounds", "sound_on_g", "0");
-				ini_write_string("Sounds", "sound_false_c", "0");
+				ini_write_string("Sounds", "sound_false_c", "45");
 				}
 			//global.training_o = ini_read_real("Training", "training", 0);
 			

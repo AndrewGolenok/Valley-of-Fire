@@ -264,19 +264,17 @@
 			{ time_t += time_s; }
 			else
 			{ time_s = -time_s; }
-		draw_text_transformed_t(120 + string_width(time) / 2 * 0.2 + 10, string(global.cash) + "ç", time, 0.2, 0.2, 0, global.color_white, c_black);
+		draw_text_transformed_t(120 + string_width(time) / 2 * 0.2 + 10, string_height(string(global.gold) + "©") * 0.2 + 10, time, 0.2, 0.2, 0, global.color_white, c_black);
 		///
 		#region  Музыка
-			draw_sprite_ext_t(s_music, music, 80, 60, 0.4, 0.4, 10, global.color_white, 1, global.color_white, c_black);
+			draw_sprite_ext_t(s_music, music, 72, 60, 0.4, 0.4, 10, global.color_white, 1, global.color_white, c_black);
 			if mouse_check_button_pressed(mb_left)
 				{
 				if point_in_rectangle(mouse_x, mouse_y, 0, 0, 120, 120)
 					{
 					global.music = !global.music;
 					ini_open("Music.ini");
-						if !ini_section_exists("Music.ini")
-						    { ini_write_string("Music", "music", "1"); }
-						global.music = ini_read_real("Music", "music", 1);
+						ini_write_string("Music", "music", string(global.music));
 					ini_close();
 					}
 				}
@@ -1846,7 +1844,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 		
 		//////
 		
-		draw_sprite_ext(s_currency_buy, 3, 640 + prx - 200 + 5, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 10, 0.5 * sc4, 0.5 * sc4, 0, c_white, 0.5);
+		draw_sprite_ext(s_currency_buy, 3, 640 + prx - 200 + 5, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 10, 0.5 * sc4, 0.5 * sc4, 0, c_black, 0.5);
 		draw_sprite_ext_t(s_currency_buy, 3, 640 + prx - 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1, 0.5 * sc4, 0.5 * sc4, 0, c_white, 1, c_white, c_black);
 		draw_text_transformed_t(640 + prx - 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[4], 0.11 * sc4, 0.11 * sc4, 0, global.color_white, c_black);
 		draw_text_transformed_t(640 + prx - 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[4]), 0.18 * sc4, 0.18 * sc4, 0, global.cash_color, c_black);
@@ -1994,7 +1992,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 			if global.cash < gold_pri[1]
 				{
 				draw_sprite_ext(s_currency_buy, 6, 640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg1, 0.5 * sg1, 0, c_black, 0.5);
-				draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, "NOT\nENOUGH\nMONEY", 0.12, 0.12, 0, global.color_white, c_black);
+				draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, "NOT\nENOUGH\nCASH", 0.12, 0.12, 0, global.color_white, c_black);
 				}
 			draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[1]) + "ç", 0.2 * sg1, 0.2 * sg1, 0, global.cash_color, c_black);
 			}
@@ -2006,7 +2004,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 			if global.cash < gold_pri[2]
 				{
 				draw_sprite_ext(s_currency_buy, 7, 640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg2, 0.5 * sg2, 0, c_black, 0.5);
-				draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, "NOT\nENOUGH\nMONEY", 0.12, 0.12, 0, global.color_white, c_black);
+				draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, "NOT\nENOUGH\nCASH", 0.12, 0.12, 0, global.color_white, c_black);
 				}
 			draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[2]) + "ç", 0.2 * sg2, 0.2 * sg2, 0, global.cash_color, c_black);
 			}
@@ -2018,7 +2016,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 			if global.cash < gold_pri[3]
 				{
 				draw_sprite_ext(s_currency_buy, 8, 640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg3, 0.5 * sg3, 0, c_black, 0.5);
-				draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, "NOT\nENOUGH\nMONEY", 0.12, 0.12, 0, global.color_white, c_black);
+				draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, "NOT\nENOUGH\nCASH", 0.12, 0.12, 0, global.color_white, c_black);
 				}
 			draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[3]) + "ç", 0.2 * sg3, 0.2 * sg3, 0, global.cash_color, c_black);
 			}
@@ -3083,5 +3081,3 @@ if 0
 	//draw_set_font(global.game_font);
 	//draw_text_transformed_t(mouse_x, mouse_y, string(store_yy1), 0.25, 0.25, 0, c_white, c_black);
 #endregion
-
-
