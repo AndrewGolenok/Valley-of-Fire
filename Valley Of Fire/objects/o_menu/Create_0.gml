@@ -193,6 +193,15 @@
 	
 	lootbox_y = 0 + y_ind;
 	
+	//lootbox_pri[1] = 100;
+	//lootbox_pri[2] = 50;
+	
+	lootbox_buy[1] = 0;
+	lootbox_buy[2] = 0;
+	
+	lootbox_buy_s[1] = 0;
+	lootbox_buy_s[2] = 0;
+	
 	daily_y   = 500 + y_ind;
 	
 	daily_t[1] = 0;
@@ -206,7 +215,6 @@
 	daily_s[1] = 1;
 	daily_s[2] = 1;
 	daily_s[3] = 1;
-	
 	
 	cash_y   = 900 + y_ind;
 	gold_y   = 1600 + 30 + y_ind;

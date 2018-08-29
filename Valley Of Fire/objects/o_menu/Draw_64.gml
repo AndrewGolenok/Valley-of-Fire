@@ -254,12 +254,15 @@
 		var time;
 		time_h = string(o_control.day_hour);
 		time_m = string(o_control.day_minute);
-		if real(time_m) < 10
-			{ time_m = "0" + time_m; }
+		if o_control.day_hour < 10
+			{ time_h = "0" + string(o_control.day_hour); }
+		if o_control.day_minute < 10
+			{ time_m = "0" + string(o_control.day_minute); }
+		
 		if time_s = -1
-			{ time = string(o_control.day_hour) + ":" + string(o_control.day_minute); }
+			{ time = time_h + ":" + time_m; }
 			else
-			{ time = string(o_control.day_hour) + "µ" + string(o_control.day_minute); }
+			{ time = time_h + "µ" + time_m; }
 		if (time_t > 0 && time_s = -1) or (time_t < room_speed && time_s = 1)
 			{ time_t += time_s; }
 			else
@@ -1586,16 +1589,104 @@ if global.menu_now = "store" or global.menu_next = "store"
 	////////
 	#region Кнопки магазина
 		//// ЛУТБОКСЫ
+		#region Нажатие на ящик
+			var lbs1, lbs2;
+			if store_tap = 1
+				{
+				for(i=1;i<=2;i++)
+					{
+					if lootbox_buy[i] = 1
+						{
+						if lootbox_buy_s[i] < 1
+							{ lootbox_buy_s[i] += 0.1; }
+							else
+							{ lootbox_buy_s[i] = 1; }
+						}
+						else
+						{
+						if lootbox_buy_s[i] > 0
+							{ lootbox_buy_s[i] -= 0.1; }
+							else
+							{ lootbox_buy_s[i] = 0; }
+						}
+					}
+				if lootbox_buy_s[1] = 0 && lootbox_buy_s[2] = 0
+					&& lootbox_buy[1] = 0 && lootbox_buy[2] = 0
+						{
+						#region Покупка 1
+							///////
+							if point_in_rectangle(mouse_x, mouse_y, gx1 - 75, gy - 105, gx1 + 75, gy + 105)
+								{
+								if (global.gold >= 100)
+									{
+									if mouse_check_button_released(mb_left) // && store_yy <= 0
+										{
+										if lootbox_buy[1] = 0
+											{
+											if lootbox_buy_s[1] = 0
+												{ lootbox_buy[1] = 1; }
+											}
+										}
+									}
+									else
+									{
+									if mouse_check_button_released(mb_left) // && store_yy <= 0
+										{ store_yy1 = -1540; }
+									}
+								if mouse_check_button(mb_left)
+									{ lbs1 = 1.1; }
+								}
+							///////
+						#endregion
+						#region Покупка 2
+							///////
+							if point_in_rectangle(mouse_x, mouse_y, gx1 - 75, gy - 105, gx1 + 75, gy + 105)
+								{
+								if (global.cash >= 50)
+									{
+									if mouse_check_button_released(mb_left) // && store_yy <= 0
+										{
+										if lootbox_buy[2] = 0
+											{
+											if lootbox_buy_s[2] = 0
+												{ lootbox_buy[2] = 1; }
+											}
+										}
+									}
+									else
+									{
+									if mouse_check_button_released(mb_left) // && store_yy <= 0
+										{ store_yy1 = -785; }
+									}
+								if mouse_check_button(mb_left)
+									{ lbs2 = 1.1; }
+								}
+							///////
+						#endregion
+						}
+				}
+		#endregion
+		
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 70 + lootbox_y + training_back_y + store_yy1 + pry + 10, 0.4, 0.4, 0, c_black, 0.5);
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 70 + lootbox_y + training_back_y + store_yy1 + pry, 0.4, 0.4, 0, c_white, 1);
 		draw_text_transformed_t(640 + prx, top + 50 + lootbox_y + training_back_y + store_yy1 + pry, "LOOTBOXES", 0.2, 0.2, 0, global.color_white, c_black);
 		
 		draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.24, 0.24, 0, c_black, 0.5);
-		draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 0.24, 0.24, 0, c_white, 1);
+		draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 0.24 * lbs2, 0.21 * lbs1, 0, c_white, 1);
 		
 		draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.24, 0.24, 0, c_black, 0.5);
-		draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 0.24, 0.24, 0, c_white, 1);
-		////
+		draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 0.24 * lbs2, 0.24 * lbs2, 0, c_white, 1);
+		////// Названия
+		draw_text_transformed_t(640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 45, "WOOD BOX", 0.13 * lbs1, 0.13 * lbs1, 5, global.color_white, c_black);
+		draw_text_transformed_t(640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 45, "ELITE BOX", 0.13 * lbs2, 0.13 * lbs2, 5, global.gold_color, c_black);
+		//// Названия
+		
+		////// Цена
+		draw_text_transformed_t(640 + prx - 150 + 15, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 140, "100©", 0.25 * lbs1, 0.25 * lbs1, 0, global.gold_color, c_black);
+		draw_text_transformed_t(640 + prx + 150 + 15, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 140, "50ç", 0.25 * lbs2, 0.25 * lbs2, 0, global.cash_color, c_black);
+		///// Цена
+		//////
+		
 		
 		////// ЕЖЕДНЕВНЫЕ ПОКУПКИ
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 0.4, 0.4, 0, c_black, 0.5);
@@ -1948,7 +2039,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 								}
 							///////
 						#endregion
-						#region Покупка 2
+						#region Покупка 3
 							///////
 							if point_in_rectangle(mouse_x, mouse_y, gx3 - 75, gy - 105, gx3 + 75, gy + 105)
 								{
