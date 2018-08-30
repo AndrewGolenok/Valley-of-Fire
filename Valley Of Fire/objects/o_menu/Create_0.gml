@@ -473,7 +473,7 @@
 #endregion
 #region Титры
 	global.titles = 0;
-	title_yy = 1280 + 100;
+	title_yy = global.size - 50;
 	for(i=1;i<=24;i++)
 		{
 		title_text[i]  = "";
@@ -486,9 +486,9 @@
 	title_text[4]  = "";
 	
 	title_text[5]  = "GAME DESIGN:";
-	title_text[6]  = "ANDREW GOLENOK\nARTEM SHUMEYKO\nNIKOLAY SAUTIN";
-	title_text[7]  = "";
-	title_text[8]  = "";
+	title_text[6]  = "ANDREW GOLENOK";
+	title_text[7]  = "ARTEM SHUMEYKO";
+	title_text[8]  = "NIKOLAY SAUTIN";
 	title_text[9]  = "";
 	
 	title_text[10]  = "ART:";
@@ -505,10 +505,9 @@
 	title_text[18]  = "DANILA";
 	title_text[19]  = "";
 	title_text[20]  = "";
-	title_text[21]  = "";
-	title_text[22]  = "THANK YOU!";
+	title_text[21]  = "THANK YOU!";
+	title_text[22]  = "";
 	title_text[23]  = "";
-	title_text[24]  = "";
 	
 	//// SPECIAL THANKS
 #endregion
