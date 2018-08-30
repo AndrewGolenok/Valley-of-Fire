@@ -140,8 +140,12 @@
 	ini_open("Music.ini");
 		#region Музыка
 			if !ini_section_exists("Music")
-			    { ini_write_string("Music", "music", "1"); }
+			    {
+				ini_write_string("Music", "music", "1");
+				ini_write_string("Music", "sound", "1");
+				}
 			global.music = ini_read_real("Music", "music", 1);
+			global.sound = ini_read_real("Music", "sound", 1);
 		#endregion
 		#region Обучение
 			///

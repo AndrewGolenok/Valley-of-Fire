@@ -16,6 +16,11 @@
 		{ music = 0; }
 		else
 		{ music = 16; }
+	
+	if global.sound = 1
+		{ sound = 0; }
+		else
+		{ sound = 16; }
 		
 	var topp;
 	topp = 0;
@@ -465,6 +470,47 @@
 			{ skul_i = 15;}
 		global.player_rank = skul_i;
 	#endregion
+#endregion
+#region Титры
+	global.titles = 0;
+	title_yy = 1280 + 100;
+	for(i=1;i<=24;i++)
+		{
+		title_text[i]  = "";
+		title_scale[i] = 0.2;
+		title_y[i] = 150 * i;
+		}
+	title_text[1]  = "VALLEY\nOF\nFIRE";
+	title_text[2]  = "";
+	title_text[3]  = "";
+	title_text[4]  = "";
+	
+	title_text[5]  = "GAME DESIGN:";
+	title_text[6]  = "ANDREW GOLENOK\nARTEM SHUMEYKO\nNIKOLAY SAUTIN";
+	title_text[7]  = "";
+	title_text[8]  = "";
+	title_text[9]  = "";
+	
+	title_text[10]  = "ART:";
+	title_text[11]  = "NIKOLAY SAUTIN";
+	
+	title_text[12]  = "PROGRAMMING:";
+	title_text[13]  = "ANDREW GOLENOK:";
+	
+	title_text[14]  = "TASK DESIGN:";
+	title_text[15]  = "ALEX STRELNIKOV";
+	title_text[16]  = "ANDREW GOLENOK";
+	
+	title_text[17]  = "MUSIC:";
+	title_text[18]  = "DANILA";
+	title_text[19]  = "";
+	title_text[20]  = "";
+	title_text[21]  = "";
+	title_text[22]  = "THANK YOU!";
+	title_text[23]  = "";
+	title_text[24]  = "";
+	
+	//// SPECIAL THANKS
 #endregion
 
 #region Главное меню (СТАРОЕ)
