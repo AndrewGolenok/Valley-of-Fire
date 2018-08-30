@@ -474,7 +474,7 @@
 #region Титры
 	global.titles = 0;
 	title_yy = global.size - 50;
-	for(i=1;i<=24;i++)
+	for(i=1;i<=25;i++)
 		{
 		title_text[i]  = "";
 		title_scale[i] = 0.2;
@@ -502,12 +502,15 @@
 	title_text[16]  = "ANDREW GOLENOK";
 	
 	title_text[17]  = "MUSIC:";
-	title_text[18]  = "DANILA";
-	title_text[19]  = "";
-	title_text[20]  = "";
-	title_text[21]  = "THANK YOU!";
-	title_text[22]  = "";
+	title_text[18]  = "DANILA BARANOV";
+	
+	title_text[19]  = "SPECIAL THANKS:";
+	title_text[20]  = "AKIM KASABULATOV";
+	title_text[21]  = "KRISTINA ZIMAREVA";
+	title_text[22]  = "VADIM DAVLETSHIN";
 	title_text[23]  = "";
+	title_text[24]  = "";
+	title_text[25]  = "THANK YOU!";
 	
 	//// SPECIAL THANKS
 #endregion

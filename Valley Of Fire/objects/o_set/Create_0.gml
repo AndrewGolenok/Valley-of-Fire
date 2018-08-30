@@ -684,7 +684,16 @@
 	//buy_cash_3000 = 0;
 	//buy_cash_7000 = 0;
 #endregion
-
+#region Мызыка
+	global.music_gain = 1;
+	global.music_pere = 0;
+	
+	global.back_prev  = 0;
+	global.room_pere  = 0;
+	
+	global.room_rm    = 0;
+	global.room_rmp   = 0;
+#endregion
 #region Прочее
 	randomize(); // Включаем рандом
 	//

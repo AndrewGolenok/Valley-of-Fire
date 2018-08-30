@@ -4,20 +4,20 @@
 	pry = global.paral_y * global.paral_sy
 #endregion
 #region Время и прочие характеристики
-	if global.music
-		{
-		if !audio_is_playing(sd_back_train)
-			{ audio_play_sound(sd_back_train, 0, 1);  }
-		if !audio_is_playing(sd_music)
-			{ audio_play_sound(sd_music, 1, 1);  }
-		}
-		else
-		{
-		if audio_is_playing(sd_back_train)
-			{ audio_stop_sound(sd_back_train);  }
-		if audio_is_playing(sd_music)
-			{ audio_stop_sound(sd_music);  }
-		}
+	//if global.music
+	//	{
+	//	if !audio_is_playing(sd_back_train)
+	//		{ audio_play_sound(sd_back_train, 0, 1);  }
+	//	if !audio_is_playing(sd_music)
+	//		{ audio_play_sound(sd_music, 1, 1);  }
+	//	}
+	//	else
+	//	{
+	//	if audio_is_playing(sd_back_train)
+	//		{ audio_stop_sound(sd_back_train);  }
+	//	if audio_is_playing(sd_music)
+	//		{ audio_stop_sound(sd_music);  }
+	//	}
 		
 	if day_hour = 24
 		{ day_hour = 0; }

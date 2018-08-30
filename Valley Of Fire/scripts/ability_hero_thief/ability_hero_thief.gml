@@ -107,7 +107,7 @@ if global.swipe_ability = 1 && ((global.enemy_hero = 5 && !enemy) or(global.hero
 		super = 0;
 		global.super_ability = 0;
 		global.bill_abil = 10 * room_speed;
-		if global.music { audio_play_sound(sd_bow, 1, 0); }
+		//if global.music { audio_play_sound(sd_bow, 1, 0); }
 		}
 	}
 
@@ -129,7 +129,7 @@ if (round(image_index) = 10 or round(image_index) = 9) && skeleton_animation_get
 	if global.swipe_ability = 1 && ((global.enemy_hero = 2 && !enemy) or(global.hero = 2 && enemy)) && super = 1
 		{ shoot = 2; }
 	bullet_index = 4;
-	if global.music { audio_play_sound(sd_bow, 1, 0); }
+	//if global.music { audio_play_sound(sd_bow, 1, 0); }
 	}
 if shoot = 2 or shoot = 3
 	{

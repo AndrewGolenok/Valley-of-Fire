@@ -3587,7 +3587,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 			{
 			global.titles = 0;
 			title_yy = global.size - 50;
-			for(i=1;i<=24;i++)
+			for(i=1;i<=25;i++)
 				{
 				title_text[i]  = "";
 				title_scale[i] = 0.2;
@@ -3595,7 +3595,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 				}
 			}
 		
-		for(i=1;i<=24;i++)
+		for(i=1;i<=25;i++)
 			{
 			if title_yy + title_y[i] < global.size + 50 && title_yy + title_y[i] > - 50
 				{ title_scale[i] += 0.0005; }

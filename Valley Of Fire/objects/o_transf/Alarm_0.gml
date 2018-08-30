@@ -19,6 +19,7 @@ alarm[1] = room_speed / 10;
 			//	{ instance_destroy(); }
 		break;
 		case "duel":
+			global.back_prev = global.background;
 			with(o_control)
 				{ instance_destroy(); }
 			with(o_list)
@@ -57,3 +58,9 @@ alarm[1] = room_speed / 10;
 		}
 	global.room_to_go = rm;
 #endregion
+
+global.room_rm  = rm;
+global.room_rmp = rmp;
+
+if rmp != "logo"
+	{ global.music_pere = 1; }

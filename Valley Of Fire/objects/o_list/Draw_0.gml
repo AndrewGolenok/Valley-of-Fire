@@ -268,7 +268,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{ b_pressed_s[1] = 1; }
 													if device_mouse_check_button_released(dev, mb_left)
 														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
+														if global.sound { audio_play_sound(sd_text, 2, 0); }
 														if vtrue[1] = 1
 															{ global.answer = 1; }
 															else
@@ -310,7 +310,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{ b_pressed_s[3] = 1; }
 													if device_mouse_check_button_released(dev, mb_left)
 														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
+														if global.sound { audio_play_sound(sd_text, 2, 0); }
 														/*audio_play_sound(sd_revolver, 1, 0);*/
 														if vtrue[3] = 1
 															{ global.answer = 1; }
@@ -331,7 +331,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{ b_pressed_s[4] = 1; }
 													if device_mouse_check_button_released(dev, mb_left)
 														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
+														if global.sound { audio_play_sound(sd_text, 2, 0); }
 														/*audio_play_sound(sd_revolver, 1, 0);*/
 														if vtrue[4] = 1
 															{ global.answer = 1; }
@@ -359,7 +359,7 @@ if global.hero = 1 && global.enemy_hero = 1
 																{ b_pressed_s[1] = 1; }
 															if device_mouse_check_button_released(dev, mb_left)
 																{
-																if global.music { audio_play_sound(sd_text, 2, 0); }
+																if global.sound { audio_play_sound(sd_text, 2, 0); }
 																if vtrue[1] = 1
 																	{ global.answer = 1; }
 																	else
@@ -407,7 +407,7 @@ if global.hero = 1 && global.enemy_hero = 1
 																{ b_pressed_s[3] = 1; }
 															if device_mouse_check_button_released(dev, mb_left)
 																{
-																if global.music { audio_play_sound(sd_text, 2, 0); }
+																if global.sound { audio_play_sound(sd_text, 2, 0); }
 																/*audio_play_sound(sd_revolver, 1, 0);*/
 																if vtrue[3] = 1
 																	{ global.answer = 1; }
@@ -431,7 +431,7 @@ if global.hero = 1 && global.enemy_hero = 1
 																{ b_pressed_s[4] = 1; }
 															if device_mouse_check_button_released(dev, mb_left)
 																{
-																if global.music { audio_play_sound(sd_text, 2, 0); }
+																if global.sound { audio_play_sound(sd_text, 2, 0); }
 																/*audio_play_sound(sd_revolver, 1, 0);*/
 																if vtrue[4] = 1
 																	{ global.answer = 1; }
@@ -572,7 +572,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{ b_pressed_s[1] = 1; }
 													if device_mouse_check_button_released(dev, mb_left)
 														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
+														if global.sound { audio_play_sound(sd_text, 2, 0); }
 														/*audio_play_sound(sd_revolver, 1, 0);*/
 														if vtrue[1] = 1
 															{ global.answer = 1; }
@@ -593,7 +593,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{ b_pressed_s[2] = 1; }
 													if device_mouse_check_button_released(dev, mb_left)
 														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
+														if global.sound { audio_play_sound(sd_text, 2, 0); }
 														/*audio_play_sound(sd_revolver, 1, 0);*/
 														if vtrue[2] = 1
 															{ global.answer = 1; }
@@ -614,7 +614,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{ b_pressed_s[3] = 1; }
 													if device_mouse_check_button_released(dev, mb_left)
 														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
+														if global.sound { audio_play_sound(sd_text, 2, 0); }
 														/*audio_play_sound(sd_revolver, 1, 0);*/
 														if vtrue[3] = 1
 															{ global.answer = 1; }
@@ -635,7 +635,7 @@ if global.hero = 1 && global.enemy_hero = 1
 													{ b_pressed_s[4] = 1; }
 												if device_mouse_check_button_released(dev, mb_left)
 													{
-													if global.music { audio_play_sound(sd_text, 2, 0); }
+													if global.sound { audio_play_sound(sd_text, 2, 0); }
 													/*audio_play_sound(sd_revolver, 1, 0);*/
 													if vtrue[4] = 1
 														{ global.answer = 1; }
@@ -663,7 +663,7 @@ if global.hero = 1 && global.enemy_hero = 1
 																{ b_pressed_s[1] = 1; }
 															if device_mouse_check_button_released(dev, mb_left)
 																{
-																if global.music { audio_play_sound(sd_text, 2, 0); }
+																if global.sound { audio_play_sound(sd_text, 2, 0); }
 																/*audio_play_sound(sd_revolver, 1, 0);*/
 																if vtrue[1] = 1
 																	{ global.answer = 1; }
@@ -687,7 +687,7 @@ if global.hero = 1 && global.enemy_hero = 1
 																{ b_pressed_s[2] = 1; }
 															if device_mouse_check_button_released(dev, mb_left)
 																{
-																if global.music { audio_play_sound(sd_text, 2, 0); }
+																if global.sound { audio_play_sound(sd_text, 2, 0); }
 																/*audio_play_sound(sd_revolver, 1, 0);*/
 																if vtrue[2] = 1
 																	{ global.answer = 1; }
@@ -711,7 +711,7 @@ if global.hero = 1 && global.enemy_hero = 1
 																{ b_pressed_s[3] = 1; }
 															if device_mouse_check_button_released(dev, mb_left)
 																{
-																if global.music { audio_play_sound(sd_text, 2, 0); }
+																if global.sound { audio_play_sound(sd_text, 2, 0); }
 																/*audio_play_sound(sd_revolver, 1, 0);*/
 																if vtrue[3] = 1
 																	{ global.answer = 1; }
@@ -735,7 +735,7 @@ if global.hero = 1 && global.enemy_hero = 1
 															{ b_pressed_s[4] = 1; }
 														if device_mouse_check_button_released(dev, mb_left)
 															{
-															if global.music { audio_play_sound(sd_text, 2, 0); }
+															if global.sound { audio_play_sound(sd_text, 2, 0); }
 															/*audio_play_sound(sd_revolver, 1, 0);*/
 															if vtrue[4] = 1
 																{ global.answer = 1; }
@@ -876,7 +876,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{ b_pressed_s[2] = 1; }
 													if device_mouse_check_button_released(dev, mb_left)
 														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
+														if global.sound { audio_play_sound(sd_text, 2, 0); }
 														/*audio_play_sound(sd_revolver, 1, 0);*/
 														if vtrue[2] = 1
 															{ global.answer = 1; }
@@ -897,7 +897,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{ b_pressed_s[3] = 1; }
 													if device_mouse_check_button_released(dev, mb_left)
 														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
+														if global.sound { audio_play_sound(sd_text, 2, 0); }
 														/*audio_play_sound(sd_revolver, 1, 0);*/
 														if vtrue[3] = 1
 															{ global.answer = 1; }
@@ -925,7 +925,7 @@ if global.hero = 1 && global.enemy_hero = 1
 																{ b_pressed_s[2] = 1; }
 															if device_mouse_check_button_released(dev, mb_left)
 																{
-																if global.music { audio_play_sound(sd_text, 2, 0); }
+																if global.sound { audio_play_sound(sd_text, 2, 0); }
 																/*audio_play_sound(sd_revolver, 1, 0);*/
 																if vtrue[2] = 1
 																	{ global.answer = 1; }
@@ -949,7 +949,7 @@ if global.hero = 1 && global.enemy_hero = 1
 																{ b_pressed_s[3] = 1; }
 															if device_mouse_check_button_released(dev, mb_left)
 																{
-																if global.music { audio_play_sound(sd_text, 2, 0); }
+																if global.sound { audio_play_sound(sd_text, 2, 0); }
 																/*audio_play_sound(sd_revolver, 1, 0);*/
 																if vtrue[3] = 1
 																	{ global.answer = 1; }
@@ -1083,7 +1083,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{ b_pressed_s[2] = 1; }
 													if device_mouse_check_button_released(dev, mb_left)
 														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
+														if global.sound { audio_play_sound(sd_text, 2, 0); }
 														/*audio_play_sound(sd_revolver, 1, 0);*/
 														if vtrue[2] = 1
 															{ global.answer = 1; }
@@ -1104,7 +1104,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{ b_pressed_s[3] = 1; }
 													if device_mouse_check_button_released(dev, mb_left)
 														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
+														if global.sound { audio_play_sound(sd_text, 2, 0); }
 														/*audio_play_sound(sd_revolver, 1, 0);*/
 														if vtrue[3] = 1
 															{ global.answer = 1; }
@@ -1132,7 +1132,7 @@ if global.hero = 1 && global.enemy_hero = 1
 																{ b_pressed_s[2] = 1; }
 															if device_mouse_check_button_released(dev, mb_left)
 																{
-																if global.music { audio_play_sound(sd_text, 2, 0); }
+																if global.sound { audio_play_sound(sd_text, 2, 0); }
 																/*audio_play_sound(sd_revolver, 1, 0);*/
 																if vtrue[2] = 1
 																	{ global.answer = 1; }
@@ -1156,7 +1156,7 @@ if global.hero = 1 && global.enemy_hero = 1
 																{ b_pressed_s[3] = 1; }
 															if device_mouse_check_button_released(dev, mb_left)
 																{
-																if global.music { audio_play_sound(sd_text, 2, 0); }
+																if global.sound { audio_play_sound(sd_text, 2, 0); }
 																/*audio_play_sound(sd_revolver, 1, 0);*/
 																if vtrue[3] = 1
 																	{ global.answer = 1; }
@@ -1370,7 +1370,7 @@ if global.hero = 1 && global.enemy_hero = 1
 													color[dev] = c_green;
 													if bottle_destroy[i] = 0
 														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
+														if global.sound { audio_play_sound(sd_text, 2, 0); }
 														//bottle_destroy[i] = 1;
 														if global.training < 1 or global.training_question != 0
 															{
@@ -1534,7 +1534,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{
 														if bottle_destroy[i] = 0
 															{
-															if global.music { audio_play_sound(sd_text, 2, 0); }
+															if global.sound { audio_play_sound(sd_text, 2, 0); }
 															bottle_destroy[i] = 1;
 															if bottle_s + 1 = bottle_n[i]
 																{
@@ -1551,7 +1551,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{
 														if bottle_destroy[i] = 0
 															{
-															if global.music { audio_play_sound(sd_text, 2, 0); }
+															if global.sound { audio_play_sound(sd_text, 2, 0); }
 															global.training_hand_s += 1;
 															if bottle_s + 1 = bottle_n[i]
 																{
@@ -1746,7 +1746,7 @@ if global.hero = 1 && global.enemy_hero = 1
 												{
 												if device_mouse_check_button_pressed(dev, mb_left) && bottle_destroy[i] = 0
 													{
-													if global.music { audio_play_sound(sd_text, 2, 0); }
+													if global.sound { audio_play_sound(sd_text, 2, 0); }
 												
 													if global.training < 1  or global.training_question != 0
 														{
@@ -1895,7 +1895,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if device_mouse_check_button_pressed(dev, mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												for(i=1;i<=bottle_all;i++)
 													{
 													if global.training < 1 or global.training_question != 0
@@ -2140,7 +2140,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if device_mouse_check_button_pressed(dev, mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												if global.training < 1 or global.training_question > 1
 													{
 													if hand_now = hand_count
@@ -2283,7 +2283,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if device_mouse_check_button_pressed(dev, mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 											
 												if global.training < 1 or global.training_question != 0
 													{
@@ -2411,7 +2411,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{
 														if hand_now = hand_count
 															{
-															if global.music { audio_play_sound(sd_text, 2, 0); }
+															if global.sound { audio_play_sound(sd_text, 2, 0); }
 													
 															if abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) < 30 or abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) > 329
 																{ global.answer = 1; }
@@ -2430,7 +2430,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														}
 														else
 														{
-														if global.music { audio_play_sound(sd_text, 2, 0); }
+														if global.sound { audio_play_sound(sd_text, 2, 0); }
 													
 														if abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) < 30 or abs(hand_true[hand_now] - point_direction(hand_s_x, hand_s_y, mouse_x1, mouse_y1)) > 329
 															{ global.answer = 1; move_3(); hand_scale = 0.5; }
@@ -2515,7 +2515,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if mouse_check_button_pressed(mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												global.answer = 1;
 												}
 											}
@@ -2523,7 +2523,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if mouse_check_button_pressed(mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												global.answer = 0;
 												}
 											}
@@ -2669,21 +2669,21 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if point_in_rectangle(mouse_x1, mouse_y1, hat_x[2] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[2] + 120 * hat_scale, hat_yy + hat_y[2] + 200 * hat_scale)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												hat_end = 2;
 												hat_res = 1;
 												hat_stage = 4;
 												}
 											if point_in_rectangle(mouse_x1, mouse_y1, hat_x[1] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[1] + 120 * hat_scale, hat_yy + hat_y[1] + 200 * hat_scale)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												hat_end = 1;
 												hat_res = 0;
 												hat_stage = 4;
 												}
 											if point_in_rectangle(mouse_x1, mouse_y1, hat_x[3] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[3] + 120 * hat_scale, hat_yy + hat_y[3] + 200 * hat_scale)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												hat_end = 3;
 												hat_res = 0;
 												hat_stage = 4;
@@ -2693,19 +2693,19 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if point_in_rectangle(mouse_x1, mouse_y1, hat_x[2] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[2] + 120 * hat_scale, hat_yy + hat_y[2] + 200 * hat_scale)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												hat_end = 2;
 												hat_res = 1;
 												hat_stage = 4;
 												}
 											if point_in_rectangle(mouse_x1, mouse_y1, hat_x[1] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[1] + 120 * hat_scale, hat_yy + hat_y[1] + 200 * hat_scale)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												global.training_gb = "TRY AGAIN";
 												}
 											if point_in_rectangle(mouse_x1, mouse_y1, hat_x[3] - 120 * hat_scale, hat_yy - 200 * hat_scale, hat_x[3] + 120 * hat_scale, hat_yy + hat_y[3] + 200 * hat_scale)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												global.training_gb = "TRY AGAIN";
 												}
 											}
@@ -2823,7 +2823,7 @@ if global.hero = 1 && global.enemy_hero = 1
 										mouse_y1 = device_mouse_y(dev);
 										if mouse_check_button_pressed(mb_left)
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
+											if global.sound { audio_play_sound(sd_text, 2, 0); }
 										
 											for(j=1;j<=3;j++)
 												{
@@ -3086,7 +3086,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if device_mouse_check_button_pressed(dev, mb_left) && horse_death = 0
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 											
 												if global.training < 1 or global.training_question > 1
 													{
@@ -3287,7 +3287,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if mouse_check_button_pressed(mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												global.answer = 1;
 												}
 											}
@@ -3295,7 +3295,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if mouse_check_button_pressed(mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												global.answer = 0;
 												}
 											}
@@ -3431,7 +3431,7 @@ if global.hero = 1 && global.enemy_hero = 1
 																	else
 																	{ break; }
 																}
-															if global.music { audio_play_sound(sd_text, 2, 0); }
+															if global.sound { audio_play_sound(sd_text, 2, 0); }
 															if fir_i = 0 && fir_j = 0
 																{
 																fir_i = i;
@@ -3715,7 +3715,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														
 																//}
 														
-															if global.music { audio_play_sound(sd_text, 2, 0); }
+															if global.sound { audio_play_sound(sd_text, 2, 0); }
 															if fir_i = 0 && fir_j = 0
 																{
 																fir_i = i;
@@ -3994,7 +3994,7 @@ if global.hero = 1 && global.enemy_hero = 1
 									
 										if device_mouse_check_button_pressed(dev, mb_left)
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
+											if global.sound { audio_play_sound(sd_text, 2, 0); }
 										
 											for(i=1;i<=cards_all;i++)
 												{
@@ -4094,7 +4094,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if mouse_check_button_pressed(mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												global.answer = 1;
 												}
 											}
@@ -4102,7 +4102,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if mouse_check_button_pressed(mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												global.answer = 0;
 												}
 											}
@@ -4255,7 +4255,7 @@ if global.hero = 1 && global.enemy_hero = 1
 												{
 												if device_mouse_check_button_pressed(dev,mb_left) && aim_d[i] = 0
 													{
-													if global.music { audio_play_sound(sd_text, 2, 0); }
+													if global.sound { audio_play_sound(sd_text, 2, 0); }
 													if global.training < 1 or global.training_question != 0
 														{
 														if aim_now = i
@@ -4402,7 +4402,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if device_mouse_check_button_pressed(dev, mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												if global.training < 1 or global.training_question != 0
 													{
 													if target_iii = 0
@@ -4640,7 +4640,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if device_mouse_check_button_pressed(dev,mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												if global.training < 1 or global.training_question != 0
 													{
 													if knife_d[knife_now] = 0
@@ -4728,7 +4728,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if mouse_check_button_pressed(mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												global.answer = 1;
 												}
 											}
@@ -4736,7 +4736,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if mouse_check_button_pressed(mb_left)
 												{
-												if global.music { audio_play_sound(sd_text, 2, 0); }
+												if global.sound { audio_play_sound(sd_text, 2, 0); }
 												global.answer = 0;
 												}
 											}
@@ -4781,7 +4781,7 @@ if global.hero = 1 && global.enemy_hero = 1
 										{
 										if mouse_check_button_pressed(mb_left)
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
+											if global.sound { audio_play_sound(sd_text, 2, 0); }
 											global.answer = 1;
 											}
 										}
@@ -4789,7 +4789,7 @@ if global.hero = 1 && global.enemy_hero = 1
 										{
 										if mouse_check_button_pressed(mb_left)
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
+											if global.sound { audio_play_sound(sd_text, 2, 0); }
 											global.answer = 0;
 											}
 										}
@@ -4824,7 +4824,7 @@ if global.hero = 1 && global.enemy_hero = 1
 										{
 										if mouse_check_button_pressed(mb_left)
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
+											if global.sound { audio_play_sound(sd_text, 2, 0); }
 											global.answer = 1;
 											}
 										}
@@ -4832,7 +4832,7 @@ if global.hero = 1 && global.enemy_hero = 1
 										{
 										if mouse_check_button_pressed(mb_left)
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
+											if global.sound { audio_play_sound(sd_text, 2, 0); }
 											global.answer = 0;
 											}
 										}
@@ -4867,7 +4867,7 @@ if global.hero = 1 && global.enemy_hero = 1
 										{
 										if mouse_check_button_pressed(mb_left)
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
+											if global.sound { audio_play_sound(sd_text, 2, 0); }
 											global.answer = 1;
 											}
 										}
@@ -4875,7 +4875,7 @@ if global.hero = 1 && global.enemy_hero = 1
 										{
 										if mouse_check_button_pressed(mb_left)
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
+											if global.sound { audio_play_sound(sd_text, 2, 0); }
 											global.answer = 0;
 											}
 										}
@@ -4910,7 +4910,7 @@ if global.hero = 1 && global.enemy_hero = 1
 										{
 										if mouse_check_button_pressed(mb_left)
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
+											if global.sound { audio_play_sound(sd_text, 2, 0); }
 											global.answer = 1;
 											}
 										}
@@ -4918,7 +4918,7 @@ if global.hero = 1 && global.enemy_hero = 1
 										{
 										if mouse_check_button_pressed(mb_left)
 											{
-											if global.music { audio_play_sound(sd_text, 2, 0); }
+											if global.sound { audio_play_sound(sd_text, 2, 0); }
 											global.answer = 0;
 											}
 										}
@@ -7121,7 +7121,10 @@ if global.hero = 1 && global.enemy_hero = 1
 		if coin_stage = 0
 			{
 			if coin_y = global.size + 100
-				{ audio_play_sound(sd_coin,1,0); }
+				{
+				if global.sound = 1
+					{ audio_play_sound(sd_coin,1,0); }
+				}
 			if coin_y > global.size / 2 - 100
 				{
 				coin_y -= coin_spd;

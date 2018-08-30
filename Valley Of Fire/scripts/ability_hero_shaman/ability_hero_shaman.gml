@@ -52,7 +52,7 @@ if round(image_index) = 15 && skeleton_animation_get() = "shoot" && shoot = 0
 	knife_i = 0;
 	shoot = 1;
 	bullet_index = 4;
-	if global.music { audio_play_sound(sd_bow, 1, 0); }
+	//if global.sound { audio_play_sound(sd_bow, 1, 0); }
 	}
 
 //if shoot = 2 or shoot = 3
