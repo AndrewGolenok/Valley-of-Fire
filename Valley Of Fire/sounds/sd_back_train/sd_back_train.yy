@@ -1,5 +1,5 @@
 {
-    "id": "b06e20d9-2154-453c-9d6e-360eb46dd1ec",
+    "id": "b1527049-27ac-4b7d-ae55-d516e24277b2",
     "modelName": "GMSound",
     "mvc": "1.0",
     "name": "sd_back_train",
@@ -10,5 +10,5 @@
     "preload": false,
     "sampleRate": 44100,
     "type": 0,
-    "volume": 0.3
+    "volume": 0.36
 }

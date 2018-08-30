@@ -22,6 +22,13 @@
 		ms6 = 1;
 		if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 125,  global.size - 30 - 125, 640 - 150 + 125, global.size - 30 + 125)
 			{
+			//// КЛАЦ
+			if mouse_check_button_pressed(mb_left)
+				{
+				if global.sound
+					{ audio_play_sound(sd_text, 2, 0); }
+				}
+			//// КЛАЦ
 			if mouse_check_button(mb_left)
 				{ ms2 = 1.1; }
 			if mouse_check_button_released(mb_left)
@@ -36,13 +43,30 @@
 			}
 		if point_in_rectangle(mouse_x, mouse_y, 640 + 150 - 125,  global.size - 30 - 150, 640 + 150 + 125, global.size - 30 + 125)
 			{
+			//// КЛАЦ
+			if mouse_check_button_pressed(mb_left)
+				{
+				if global.sound
+					{ audio_play_sound(sd_text, 2, 0); }
+				}
+			//// КЛАЦ
 			if mouse_check_button(mb_left)
 				{ ms3 = 1.1; }
 			if mouse_check_button_released(mb_left)
-				{ global.menu_next = "store"; }
+				{
+				if global.sound { audio_play_sound(sd_store, 3, 0); }
+				global.menu_next = "store";
+				}
 			}
 		if point_in_rectangle(mouse_x, mouse_y, 1130 - 125,  global.size - 30 - 150, 1130 + 125, global.size - 30 + 125)
 			{
+			//// КЛАЦ
+			if mouse_check_button_pressed(mb_left)
+				{
+				if global.sound
+					{ audio_play_sound(sd_text, 2, 0); }
+				}
+			//// КЛАЦ
 			if mouse_check_button(mb_left)
 				{ ms4 = 1.1; }
 			if mouse_check_button_released(mb_left)
@@ -50,6 +74,13 @@
 			}
 		if point_in_rectangle(mouse_x, mouse_y, 150 - 125,  global.size - 30 - 150, 150 + 125, global.size - 30 + 125)
 			{
+			//// КЛАЦ
+			if mouse_check_button_pressed(mb_left)
+				{
+				if global.sound
+					{ audio_play_sound(sd_text, 2, 0); }
+				}
+			//// КЛАЦ
 			if mouse_check_button(mb_left)
 				{ ms1 = 1.1; }
 			if mouse_check_button_released(mb_left)
@@ -107,6 +138,13 @@
 			{
 			if point_in_rectangle(mouse_x, mouse_y, 640 - 100, 0, 640 + 100, y + 200)
 				{
+				//// КЛАЦ
+				if mouse_check_button_pressed(mb_left)
+					{
+					if global.sound
+						{ audio_play_sound(sd_text, 2, 0); }
+					}
+				//// КЛАЦ
 				if global.titles = 0
 					{ global.titles = 1; io_clear(); }
 				}
@@ -123,6 +161,13 @@
 		//// БЫСТРАЯ ИГРА
 		if point_in_rectangle(mouse_x, mouse_y, 640 - string_width("œQUICK PLAYœ") * 0.22 / 2, global.size / 2 - string_height("œQUICK PLAYœ") * 0.22 - 10, 640 + string_width("œQUICK PLAYœ") * 0.22 / 2, global.size / 2 - 10)
 			{
+			//// КЛАЦ
+			if mouse_check_button_pressed(mb_left)
+				{
+				if global.sound
+					{ audio_play_sound(sd_text, 2, 0); }
+				}
+			//// КЛАЦ
 			if mouse_check_button(mb_left)
 				{ ms5 = 1.1; }
 			if mouse_check_button_released(mb_left)
@@ -249,6 +294,13 @@
 		//// РАНКЕД ДУЭЛЬ
 		if point_in_rectangle(mouse_x, mouse_y, 640 - string_width("®RANKED®") * 0.22 / 2, global.size / 2 + 25, 640 + string_width("®RANKED®") * 0.22 / 2, global.size / 2 + string_height("®RANKED®") * 0.22 + 25)
 			{
+			//// КЛАЦ
+			if mouse_check_button_pressed(mb_left)
+				{
+				if global.sound
+					{ audio_play_sound(sd_text, 2, 0); }
+				}
+			//// КЛАЦ
 			if mouse_check_button(mb_left)
 				{ ms6 = 1.1; }
 			if mouse_check_button_released(mb_left)
@@ -266,6 +318,13 @@
 			{
 			if point_in_rectangle(mouse_x, mouse_y, 1280 - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") * 0.2 - 10, 0, 1280, string_height(string(global.gold) + "©") + 10)
 				{
+				//// КЛАЦ
+				if mouse_check_button_pressed(mb_left)
+					{
+					if global.sound
+						{ audio_play_sound(sd_text, 2, 0); }
+					}
+				//// КЛАЦ
 				global.menu_next = "store";
 				global.menu_now = "store";
 				store_yy1 = -785;
@@ -306,6 +365,13 @@
 				{
 				if point_in_rectangle(mouse_x, mouse_y, 0, 0, 120, 120)
 					{
+					//// КЛАЦ
+					if mouse_check_button_pressed(mb_left)
+						{
+						if global.sound
+							{ audio_play_sound(sd_text, 2, 0); }
+						}
+					//// КЛАЦ
 					global.music = !global.music;
 					ini_open("Music.ini");
 						ini_write_string("Music", "music", string(global.music));
@@ -336,7 +402,21 @@
 				{
 				if point_in_rectangle(mouse_x, mouse_y, 72 * 1.6 + 15, 0, 120 + 72 * 1.6, 125)
 					{
+					//// КЛАЦ
+					if mouse_check_button_pressed(mb_left)
+						{
+						if global.sound
+							{ audio_play_sound(sd_text, 2, 0); }
+						}
+					//// КЛАЦ
 					global.sound = !global.sound;
+					//// КЛАЦ
+					if mouse_check_button_pressed(mb_left)
+						{
+						if global.sound
+							{ audio_play_sound(sd_text, 2, 0); }
+						}
+					//// КЛАЦ
 					ini_open("Music.ini");
 						ini_write_string("Music", "sound", string(global.sound));
 					ini_close();
@@ -515,6 +595,13 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 			totems_ss[i] = 1;
 			if point_in_rectangle(mouse_x, mouse_y, 290 + totem_x[i] - totem_s * totem_w, 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + 10 - totem_s * totem_w, 290 + totem_x[i] + totem_s * totem_w, 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + 10 + totem_s * totem_w)
 				{
+				//// КЛАЦ
+				if mouse_check_button_pressed(mb_left)
+					{
+					if global.sound
+						{ audio_play_sound(sd_text, 2, 0); }
+					}
+				//// КЛАЦ
 				if mouse_check_button(mb_left) && totem_pr != 0
 					{ totems_ss[i] = 1.1; }
 				if mouse_check_button_pressed(mb_left) && totem_pr = 0
@@ -599,6 +686,13 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 				go5 = 1;
 				if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - 150, global.size - 60 + training_back_y - 50, 1280 - 300 + 150, global.size - 60 + training_back_y + 50)
 					{
+					//// КЛАЦ
+					if mouse_check_button_pressed(mb_left)
+						{
+						if global.sound
+							{ audio_play_sound(sd_text, 2, 0); }
+						}
+					//// КЛАЦ
 					if mouse_check_button(mb_left)
 						{ go5 = 1.1; }
 					if mouse_check_button_released(mb_left)
@@ -628,6 +722,13 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 					
 					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - 61 - totem_w / 2, 2 * totem_w * 0.7 + totems_y[3] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2 - 0, 1280 - 300 - 61 + totem_w / 2, 2 * totem_w * 0.7 + totems_y[3] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2 - 70)
 						{
+						//// КЛАЦ
+						if mouse_check_button_pressed(mb_left)
+							{
+							if global.sound
+								{ audio_play_sound(sd_text, 2, 0); }
+							}
+						//// КЛАЦ
 						if mouse_check_button_pressed(mb_left)
 							{ global.p_totem[3] = -1; }
 						}
@@ -1250,6 +1351,11 @@ if global.menu_now = "training" or global.menu_next = "training"
 				{ training_back_y -= global.size / 12; }
 				else
 				{
+				if global.duel = 1
+					{
+					if global.sound
+						{ audio_play_sound(sd_ranked, 3, 0); }
+					}
 				global.menu_now = "training";
 				training_back_y = 0;
 				}
@@ -2471,6 +2577,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 								ini_write_string("Sounds", "sound_false_c", string(global.cash));
 							ini_close();
 							gold_buy[i] = 0;
+							if global.sound { audio_play_sound(sd_gold, 3, 0); }
 							}
 							else
 							{ gold_noten[i] = room_speed * 2; gold_buy[i] = 0; }
@@ -2681,6 +2788,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 									#endregion
 									}
 								}
+							if global.sound { audio_play_sound(sd_lootbox, 2, 0); }
 							lootbox_s = 1;
 							}
 						if lootbox_s = 1
@@ -3203,6 +3311,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 										#endregion
 										}
 									}
+								if global.sound { audio_play_sound(sd_lootbox, 2, 0); }
 								lootbox_s = 1;
 								}
 							if lootbox_s = 1
@@ -3574,6 +3683,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 	#endregion
 	}
 #endregion
+
 #region Титры
 	if global.titles = 1
 		{

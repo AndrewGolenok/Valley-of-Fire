@@ -8515,7 +8515,22 @@ if global.hero = 1 && global.enemy_hero = 1
 			else
 			{
 			if finplas < 1
-				{ finplas += 0.1; }
+				{
+				finplas += 0.1;
+				if finplas = 1
+					{
+					if whowin = 1
+						{
+						if global.sound
+							{ audio_play_sound(sd_win, 2, 0); }
+						}
+						else
+						{
+						if global.sound
+							{ audio_play_sound(sd_lose, 2, 0); }
+						}
+					}
+				}
 				else
 				{
 				if global.quick = 0
@@ -8674,6 +8689,7 @@ if global.hero = 1 && global.enemy_hero = 1
 						if global.rank_stars < 70
 							{ global.rank_stars += 1 + winstreak; }
 						g_star_s = 30;
+						if global.sound { audio_play_sound(sd_star, 2, 0); }
 						ini_open("Music.ini");
 							ini_write_string("Ranks", "ranks", string(global.rank_stars));
 						ini_close();
@@ -10205,6 +10221,10 @@ if lines_true
 		if !audio_is_playing(musica)
 			{
 			audio_stop_all();
+			if global.background = "train"
+				{ audio_play_sound(sd_back_train, 0, true); }
+			if global.background = "waterfall"
+				{ audio_play_sound(sd_back_waterfall, 0, true); }
 			audio_play_sound(musica, 1, true);
 			}
 		}

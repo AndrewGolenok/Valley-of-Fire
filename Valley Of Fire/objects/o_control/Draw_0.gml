@@ -375,6 +375,9 @@
 		draw_set_alpha(1);
 		}
 #endregion
+#region
+
+#endregion
 #region Старый код
 /*
 #region Линии видов разрешения
