@@ -241,11 +241,13 @@
 		/// Голда и Кэш
 		if mouse_check_button_released(mb_left)
 			{
-			if point_in_rectangle(mouse_x, mouse_y, 1280 - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") * 0.2 - 10, string_height(string(global.gold) + "©") + 10, 1280, string_height(string(global.gold) + "©") + 10)
+			if point_in_rectangle(mouse_x, mouse_y, 1280 - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") * 0.2 - 10, 0, 1280, string_height(string(global.gold) + "©") + 10)
 				{
 				global.menu_next = "store";
 				global.menu_now = "store";
 				store_yy1 = -785;
+				store_yy  = 0;
+				io_clear();
 				}
 			}
 		draw_text_transformed_t(1280 - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") / 2 * 0.2 - 10, string_height(string(global.gold) + "©") * 0.2 + 10, string(global.gold) + "©", 0.2, 0.2, 0, global.gold_color, c_black);
@@ -1637,7 +1639,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 									else
 									{
 									if mouse_check_button_released(mb_left) // && store_yy <= 0
-										{ store_yy1 = -1540; }
+										{ store_yy1 = -1540; io_clear(); }
 									}
 								if mouse_check_button(mb_left)
 									{ lbs1 = 1.1; }
@@ -1662,7 +1664,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 									else
 									{
 									if mouse_check_button_released(mb_left) // && store_yy <= 0
-										{ store_yy1 = -785; }
+										{ store_yy1 = -785; io_clear(); }
 									}
 								if mouse_check_button(mb_left)
 									{ lbs2 = 1.1; }
@@ -2424,8 +2426,18 @@ if global.menu_now = "store" or global.menu_next = "store"
 							{
 							for(j=1;j<=2;j++)
 								{
-								var tr;
-								tr = choose(1, 2, 3, 4);
+								var rand, tr;
+								rand = irandom_range(1, 100);
+								
+								if rand <= 50
+									{ tr = 1; }
+								if rand > 50 && rand <= 80
+									{ tr = 2; }
+								if rand > 80 && rand <= 95
+									{ tr = 3; }
+								if rand > 95
+									{ tr = 4; }
+								
 								lootbox_item_t[j] = choose(0, 1, 1, 1);
 							
 								if lootbox_item_t[j] = 0
@@ -2927,9 +2939,17 @@ if global.menu_now = "store" or global.menu_next = "store"
 								{
 								for(j=1;j<=3;j++)
 									{
-									var tr;
-									tr = choose(1, 2, 3, 4);
-									lootbox_item_t[j] = choose(0, 1, 1, 1);
+									var rand, tr;
+									rand = irandom_range(1, 100);
+									
+									if rand <= 50
+										{ tr = 2; }
+									if rand > 50 && rand <= 85
+										{ tr = 3; }
+									if rand > 85
+										{ tr = 4; }
+									
+									lootbox_item_t[j] = choose(0, 1);
 							
 									if lootbox_item_t[j] = 0
 										{
@@ -3101,19 +3121,19 @@ if global.menu_now = "store" or global.menu_next = "store"
 									}
 									else
 									{
-									if lootbox_item_s[3] < 1
+									if lootbox_item_s[2] < 1
 										{
-										lootbox_item_s[3] += 0.1;
-										lootbox_item_x[3] += 40;
-										lootbox_item_y[3] -= 2;
+										lootbox_item_s[2] += 0.1;
+										lootbox_item_x[2] += 0;
+										lootbox_item_y[2] -= 8;
 										}
 										else
 										{
-										if lootbox_item_s[2] < 1
+										if lootbox_item_s[3] < 1
 											{
-											lootbox_item_s[2] += 0.1;
-											lootbox_item_x[2] += 0;
-											lootbox_item_y[2] -= 8;
+											lootbox_item_s[3] += 0.1;
+											lootbox_item_x[3] += 40;
+											lootbox_item_y[3] -= 2;
 											}
 											else
 											{ lootbox_s = 4; }
@@ -3162,7 +3182,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 								if lootbox_item_ss[3] > 1
 									{ lootbox_item_ss[3] -= 0.2; }
 									else
-									{ lootbox_item_o[3] = 3; lootbox_item_ss[3] = 1; }
+									{ lootbox_item_o[3] = 2; lootbox_item_ss[3] = 1; }
 								}
 							
 							if lootbox_item_o[1] = 2 && lootbox_item_o[2] = 2 && lootbox_item_o[3] = 2
@@ -3293,17 +3313,17 @@ if global.menu_now = "store" or global.menu_next = "store"
 									{
 									if lootbox_item_t[r] = 0
 										{
-										draw_sprite_ext(s_totems_light, 1, 640 - 10 - lootbox_item_x[r] + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.45 * lootbox_item_s[r], 0.45 * lootbox_item_s[r], 0, lootbox_item_c[r], 0.5);
-										draw_sprite_ext(s_totems, 1, 640 - 10 - lootbox_item_x[r] + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.45 * lootbox_item_s[r], 0.45 * lootbox_item_s[r], 0, c_black, 1);
-										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], "?", 0.5 * lootbox_item_s[r], 0.5 * lootbox_item_s[r], 0, global.color_white, c_black);
-										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + 100, "TAP", 0.17 * lootbox_item_s[r], 0.17 * lootbox_item_s[r], 0, global.color_white, c_black);
+										draw_sprite_ext(s_totems_light, 1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.45 * lootbox_item_s[r], 0.45 * lootbox_item_s[r], 0, lootbox_item_c[r], 0.5);
+										draw_sprite_ext(s_totems, 1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.45 * lootbox_item_s[r], 0.45 * lootbox_item_s[r], 0, c_black, 1);
+										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], "?", 0.5 * lootbox_item_s[r], 0.5 * lootbox_item_s[r], 0, global.color_white, c_black);
+										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + 100, "TAP", 0.17 * lootbox_item_s[r], 0.17 * lootbox_item_s[r], 0, global.color_white, c_black);
 										}
 										else
 										{
-										draw_sprite_ext(s_wanted2,  1, 640 - 10 - lootbox_item_x[r] + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, lootbox_item_c[r], 0.5);
-										draw_sprite_ext(s_wanted, 1, 640 - 10 - lootbox_item_x[r] + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, c_black, 1);
-										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], "?", 0.5 * lootbox_item_s[r], 0.5 * lootbox_item_s[1], 0, global.color_white, c_black);
-										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + 100, "TAP", 0.17 * lootbox_item_s[r], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black);
+										draw_sprite_ext(s_wanted2,  1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, lootbox_item_c[r], 0.5);
+										draw_sprite_ext(s_wanted, 1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, c_black, 1);
+										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], "?", 0.5 * lootbox_item_s[r], 0.5 * lootbox_item_s[1], 0, global.color_white, c_black);
+										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + 100, "TAP", 0.17 * lootbox_item_s[r], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black);
 										}
 									}
 								}
