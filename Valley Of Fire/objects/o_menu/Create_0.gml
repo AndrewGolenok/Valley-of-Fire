@@ -247,8 +247,6 @@
 	lootbox_item_v[1] = 0;
 	lootbox_item_v[2] = 0;
 	lootbox_item_v[3] = 0; //// Количество (листовок)
-	
-	levelup = global.heroes_have[i];
 	/*
 	if global.p_totem[i] <= 6
 		{ totem_pc[i] = global.color_white; }
@@ -382,6 +380,7 @@
 			hero_yyy[i]  = (hero_h + hero_r) * 3;
 			hero_lvl[i] = 0;
 			}
+		
 		if global.heroes_have[i] < 42 + 26 + 16 + 10 + 6 + 4 + 2
 			{ hero_lvl[i] = 7; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16 - 26; hero_need[i] = 42 + 26 + 16 + 10 + 6 + 4 + 2; }
 		if global.heroes_have[i] < 26 + 16 + 10 + 6 + 4 + 2
@@ -396,6 +395,8 @@
 			{ hero_lvl[i] = 2; hero_now1[i] = global.heroes_have[i] - 2; hero_need[i] = 4 + 2; }
 		if global.heroes_have[i] < 2
 			{ hero_lvl[i] = 1; hero_now1[i] = global.heroes_have[i]; hero_need[i] = 2; }
+		
+		levelup = global.heroes_have[i];
 		}
 #endregion
 #region Ранг
