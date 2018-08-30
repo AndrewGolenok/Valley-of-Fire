@@ -340,7 +340,7 @@
 	gold_val[3] = 5500;
 	gold_pri[3] = 1000;
 	
-	if os_get_region() = "ru"
+	if os_get_region() = "RU"
 		{
 		cash_pri[1] = "15₽";
 		cash_pri[2] = "399₽";
@@ -363,7 +363,7 @@
 	gold_noten[3] = 0;
 #endregion
 #region Персонажи
-	hero_now = 1;
+	hero_now = 4;
 	hero_s   = 0.5;
 	hero_yy  = 0;
 	hero_yy1 = 1;
