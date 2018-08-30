@@ -321,7 +321,7 @@ draw_sprite_ext(s_train_back1, 0, 640, global.size, 0.512, 0.512, 0, c_white, da
 
 if stage >= 14
 	{
-	load_go += 1; //choose(0, 0, random(3), random(10), 0, 0, 0);
+	load_go += 1.5; //choose(0, 0, random(3), random(10), 0, 0, 0);
 	//if fire_alpha > 0.65
 	//	{ fire_alpha -= 0.02; }
 	if load_go >= 100

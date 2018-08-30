@@ -192,6 +192,7 @@
 	y_ind = 0;
 	
 	lootbox_y = 0 + y_ind;
+	
 	lootbox_alpha = 0; // Темный фон
 	lootbox_aa = 0; // Альфа вспышки
 	
@@ -396,7 +397,9 @@
 		if global.heroes_have[i] < 2
 			{ hero_lvl[i] = 1; hero_now1[i] = global.heroes_have[i]; hero_need[i] = 2; }
 		
-		levelup = global.heroes_have[i];
+		levelup[1] = global.heroes_have[i];
+		levelup[2] = global.heroes_have[i];
+		levelup[3] = global.heroes_have[i];
 		}
 #endregion
 #region Ранг
