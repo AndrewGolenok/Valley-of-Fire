@@ -274,6 +274,10 @@
 	lootbox_buy_s[1] = 0;
 	lootbox_buy_s[2] = 0;
 	
+	lvlup[1] = 0;
+	lvlup[2] = 0;
+	lvlup[3] = 0;
+	
 	daily_y   = 500 + y_ind;
 	
 	daily_t[1] = 0;
