@@ -949,6 +949,7 @@
 			}
 		}
 	///
+	global.jr_e = 0;
 	
 	min_time[1,1] = 10;
 	min_time[1,2] = 10;
@@ -1043,6 +1044,7 @@
 		{ global.enemy_name = choose("DRUNK JOE", "DOZY MO", "OLD RICK"); }
 	if bot_type = 3
 		{ global.enemy_name = choose("LUCKY BOY", "GOLD JACK", "MAD DOC"); }
+	
 	if global.training > 0
 		{ global.enemy_name = "MR. SMART"; }
 	if global.shomen

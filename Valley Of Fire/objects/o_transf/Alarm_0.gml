@@ -8,6 +8,11 @@ alarm[1] = room_speed / 10;
 				{ instance_destroy(); }
 		break;
 		case "menu":
+			//if global.music = 1
+			//	{
+			//	if audio_is_playing(sd_menu)
+			//		{ audio_pause_sound(sd_menu); }
+			//	}
 			if rm != "duel"
 				{
 				with(o_control)
@@ -19,7 +24,13 @@ alarm[1] = room_speed / 10;
 			//	{ instance_destroy(); }
 		break;
 		case "duel":
-			global.back_prev = global.background;
+			//if global.music = 1
+			//	{
+			//	var musica;
+			//	musica = asset_get_index("sd_" + string(global.background));
+			//	if audio_is_playing(musica)
+			//		{ audio_stop_sound(musica); }
+			//	}
 			with(o_control)
 				{ instance_destroy(); }
 			with(o_list)
@@ -36,6 +47,16 @@ alarm[1] = room_speed / 10;
 			instance_create_depth(0, 0, 0, o_logo);
 		break;
 		case "menu":
+			//if global.music = 1
+			//	{
+			//	if audio_is_paused(sd_menu)
+			//		{ audio_resume_sound(sd_menu); }
+			//	}
+			//	else
+			//	{
+			//	if audio_is_playing(sd_menu)
+			//		{ audio_pause_sound(sd_menu); }
+			//	}
 			instance_create_depth(0, 0, 0, o_control);
 			instance_create_depth(0, 0, -1, o_menu);
 			//instance_create_depth(0, 0, -3, o_padpiska);
@@ -47,6 +68,14 @@ alarm[1] = room_speed / 10;
 		case "duel":
 			if rmp != "menu"
 				{ instance_create_depth(0, 0, -1, o_control); }
+			
+			//if global.music = 1
+			//	{
+			//	var musica;
+			//	musica = asset_get_index("sd_" + string(global.background));
+			//	if audio_is_playing(musica)
+			//		{ audio_stop_sound(musica); }
+			//	}
 			
 			instance_create_depth(0, 0, -1, o_list);
 			

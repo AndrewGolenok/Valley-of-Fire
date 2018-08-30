@@ -327,10 +327,12 @@ if !enemy
 				{
 				if o_list.e_hp <= o_list.e_maxhp / 2
 					{
-					if global.hero = 5
-						{ global.enemy_name = global.enemy_name + " JR."; }
+					//if global.hero = 5
+					//	{ global.enemy_name = global.enemy_name + " JR."; }
 					if bill_stage = 0
 						{
+						if global.jr_e = 0
+							{ global.jr_e = 1; }
 						global.super_ability = 1;
 						sprite_index = s_sbill1;
 						hero_sprite  = s_sbill1;

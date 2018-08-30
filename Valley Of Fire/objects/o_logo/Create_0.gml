@@ -11,8 +11,11 @@ scale = 1//0.2;
 //hero_right[2] = asset_get_index("s_huntress");
 //hero_right[3] = asset_get_index("s_chief");
 
-if !audio_is_playing(sd_menu)
-	{ audio_play_sound(sd_menu, 1, true); }
+if global.music = 1
+	{
+	if !audio_is_playing(sd_menu)
+		{ audio_play_sound(sd_menu, 1, true); }
+	}
 
 n = 0;
 

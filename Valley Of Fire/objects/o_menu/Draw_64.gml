@@ -3619,11 +3619,18 @@ if global.menu_now = "store" or global.menu_next = "store"
 #region Музыка
 	if global.music = 1
 		{
+		if !audio_is_playing(sd_menu)
+			{
+			audio_stop_all();
+			audio_play_sound(sd_menu, 1, true);
+			}
 		if audio_is_paused(sd_menu)
 			{ audio_resume_sound(sd_menu); }
-		
-		if !audio_is_playing(sd_menu)
-			{ audio_play_sound(sd_menu, 1, true); }
+		//if !audio_is_playing(sd_menu)
+		//	{
+		//	audio_stop_all();
+		//	audio_play_sound(sd_menu, 1, true);
+		//	}
 		}
 		else
 		{

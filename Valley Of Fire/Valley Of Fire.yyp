@@ -58,6 +58,25 @@
             }
         },
         {
+            "Key": "011cd126-449f-4773-af57-30cc4d691144",
+            "Value": {
+                "id": "9c9914c9-b772-4a54-9ab1-b3e1800e161b",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sounds\/sd_bottle\/sd_bottle.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
             "Key": "012c84df-6210-4847-bb1b-50e546d3762a",
             "Value": {
                 "id": "3450ba2c-9c0e-46b6-b81e-335c4172ea5a",
@@ -376,7 +395,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sounds\/sd_saloon\/sd_saloon.yy",
+                "resourcePath": "sounds\/sd_menu\/sd_menu.yy",
                 "resourceType": "GMSound"
             }
         },
@@ -1540,6 +1559,25 @@
             }
         },
         {
+            "Key": "375bba03-edaf-4b70-9c39-35cca21056e3",
+            "Value": {
+                "id": "fe8af73b-c55d-45e3-95dc-c70cdc5e0cd1",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sounds\/sd_pistol\/sd_pistol.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
             "Key": "37b2574a-d4bb-43d9-9284-8da1fe95cf34",
             "Value": {
                 "id": "81c63597-02c3-4b4c-9086-3d1650d74156",
@@ -1917,6 +1955,25 @@
                 ],
                 "resourcePath": "views\/450f6b83-0b91-4814-b94a-f0ed230030f3.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "45994531-d313-45d5-a542-9b338ce00a1e",
+            "Value": {
+                "id": "6cbc17aa-a790-41f1-8f5a-3f899f92e779",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sounds\/sd_spear\/sd_spear.yy",
+                "resourceType": "GMSound"
             }
         },
         {
@@ -3264,7 +3321,7 @@
                 "resourceCreationConfigs": [
                     "default"
                 ],
-                "resourcePath": "sounds\/sd_menu\/sd_menu.yy",
+                "resourcePath": "sounds\/sd_saloon\/sd_saloon.yy",
                 "resourceType": "GMSound"
             }
         },
@@ -6382,6 +6439,25 @@
                 ],
                 "resourcePath": "scripts\/shooting_3\/shooting_3.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "d98e6c91-bb07-4ba4-b910-cddaf15e0350",
+            "Value": {
+                "id": "950e9936-0570-4ac8-8657-b9d234057f0d",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sounds\/sd_knife\/sd_knife.yy",
+                "resourceType": "GMSound"
             }
         },
         {

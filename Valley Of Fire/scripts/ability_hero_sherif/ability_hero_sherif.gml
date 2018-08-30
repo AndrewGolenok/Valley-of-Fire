@@ -22,7 +22,7 @@ if image_index = 32 && skeleton_animation_get() = "super"
 		{ global.critical = 3 - 1 * global.p_totem_a[3]; }
 		else
 		{ global.e_critical = 3 - 1 * global.e_totem_a[3]; }
-	if global.music { audio_play_sound(sd_revolver, 1, 0); }
+	if global.sound { audio_play_sound(sd_revolver, 1, 0); }
 	}
 
 if image_index = 20 && skeleton_animation_get() = "shoot"
@@ -32,7 +32,7 @@ if image_index = 20 && skeleton_animation_get() = "shoot"
 	
 	shoot = 1;
 	
-	if global.music { audio_play_sound(sd_revolver, 1, 0); }
+	if global.sound { audio_play_sound(sd_revolver, 1, 0); }
 	//if enemy
 		//{ audio_play_sound(sd_revolver, 1, 0); }
 	}

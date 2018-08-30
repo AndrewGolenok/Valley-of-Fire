@@ -5817,7 +5817,8 @@ if global.hero = 1 && global.enemy_hero = 1
 			//if point_in_rectangle(mouse_x1, mouse_y1, 640 - 80 + sprite_get_width(s_super) / 2 - 20, global.size - 50 - 80 + super_x + super_zhopa, 640 + 80 + sprite_get_width(s_super) / 2 - 20, global.size - 50 + 80 + super_zhopa)
 			if point_in_rectangle(mouse_x1, mouse_y1, 640 * 2 - 80 - sprite_get_width(s_super) / 2, global.size - 50 - 80 + super_zhopa - 20, 640 * 2 + 80 - sprite_get_width(s_super) / 2, global.size - 50 + 80 + super_zhopa - 20)
 				{
-				audio_play_sound(sd_text, 2, 0);
+				if global.sound = 1
+					{ audio_play_sound(sd_text, 2, 0); }
 				if global.hand = -1
 					{
 					if super_now = super_need && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && !(global.hero = 1 && global.enemy_hero = 1)// && (global.enemy_object).shoot = 0
@@ -7323,7 +7324,8 @@ if global.hero = 1 && global.enemy_hero = 1
 							//theme_a[numnum] = 0;
 							theme_click = numnum;
 							theme_g = 1;
-							audio_play_sound(sd_text, 2, 0);
+							if global.sound = 1
+								{ audio_play_sound(sd_text, 2, 0); }
 							theme_round[global.rounds] = theme_t[numnum];
 							//if theme_t[i] = 7 { global.storm = 1; storm_1(); }
 							}
@@ -7360,7 +7362,8 @@ if global.hero = 1 && global.enemy_hero = 1
 								//theme_a[i]  = 0;
 								theme_click = i;
 								theme_g = 1;
-								audio_play_sound(sd_text, 2, 0);
+								if global.sound = 1
+									{ audio_play_sound(sd_text, 2, 0); }
 								theme_round[global.rounds] = theme_t[i];
 								//if theme_round[global.rounds] = 7 { global.storm = 1; storm_1(); }
 								}
@@ -7535,7 +7538,8 @@ if global.hero = 1 && global.enemy_hero = 1
 						//theme_a[numnum] = 0;
 						theme_click = numnum;
 						theme_g = 1;
-						audio_play_sound(sd_text, 2, 0);
+						if global.sound = 1
+							{ audio_play_sound(sd_text, 2, 0); }
 						theme_round[global.rounds] = theme_t[numnum];
 						//if theme_t[i] = 7 { global.storm = 1; storm_1(); }
 						}
@@ -7577,7 +7581,8 @@ if global.hero = 1 && global.enemy_hero = 1
 					
 				theme_click = numnum;
 				theme_g = 1;
-				audio_play_sound(sd_text, 2, 0);
+				if global.sound = 1
+					{ audio_play_sound(sd_text, 2, 0); }
 				theme_round[global.rounds] = theme_t[numnum];
 				}
 			
@@ -7728,6 +7733,7 @@ if global.hero = 1 && global.enemy_hero = 1
 	#endregion
 	if theme_choose = 2
 		{
+		global.jr_e = 0;
 		for(i=1;i<=3;i++)
 			{
 			global.idol_x[i] = 0;
@@ -9378,7 +9384,10 @@ if global.hero = 1 && global.enemy_hero = 1
 			{ draw_sprite_ext_t(s_sunmoon, 0, 1280 - 10 - sprite_get_width(s_rank_shield) * gui_size / 2, h_y - 5 + h_y1, gui_size * 0.8 * health_e_scale * 0.6, gui_size * 0.8 * health_e_scale * 0.6, 0 + restart_angle, c_white, 1, c_white, c_black); }
 		
 		draw_set_font(global.game_font);
-		draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name)) * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name), 0.1, 0.1, 0, global.color_white, c_black);
+		if global.jr_e = 1
+			{ draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name)) * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name) + " JR.", 0.1, 0.1, 0, global.color_white, c_black); }
+			else
+			{ draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name)) * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name), 0.1, 0.1, 0, global.color_white, c_black); }
 		
 		//for(i=1; i<=3; i++)
 		//	{
@@ -9611,7 +9620,8 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						if enemy_smile = -1
 							{
-							audio_play_sound(sd_text, 2, 0);
+							if global.sound = 1
+								{ audio_play_sound(sd_text, 2, 0); }
 							enemy_smile_chance = choose(0,1);
 							if enemy_smile_chance = 1
 								{
@@ -10189,17 +10199,20 @@ if lines_true
 		musica = asset_get_index("sd_" + string(global.background));
 	if global.music = 1
 		{
-		if audio_is_paused(musica)
-			{ audio_resume_sound(musica); }
+		//if audio_is_paused(musica)
+		//	{ audio_stop_sound(musica); }
 		
 		if !audio_is_playing(musica)
-			{ audio_play_sound(musica, 1, true); }
+			{
+			audio_stop_all();
+			audio_play_sound(musica, 1, true);
+			}
 		}
-		else
-		{
-		if audio_is_playing(musica)
-			{ audio_pause_sound(musica); }
-		}
+		//else
+		//{
+		//if audio_is_playing(musica)
+		//	{ audio_pause_sound(musica); }
+		//}
 #endregion
 
 #region Словечки
