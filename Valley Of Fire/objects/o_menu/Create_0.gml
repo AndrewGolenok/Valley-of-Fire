@@ -193,6 +193,8 @@
 	store_tap = 1;
 	
 	y_ind = 0;
+	if global.size <= 640
+		{ y_ind = 90; }
 	
 	lootbox_y = 0 + y_ind + topp;
 	
