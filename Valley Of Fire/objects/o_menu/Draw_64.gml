@@ -583,7 +583,8 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 						else
 						{ draw_sprite_ext(s_totems_eyes, global.p_totem[3], 1280 - 300, 2 * totem_w * 0.7 + totems_y[3] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[3]], totem_alp); }
 					
-					//draw_rectangle( 1280 - 300 - totem_w / 2, 2 * totem_w * 0.7 + totems_y[3] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2 - 0, 1280 - 300 + totem_w / 2, 2 * totem_w * 0.7 + totems_y[3] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2 - 20, 1);
+					draw_text_ext_transformed_t(1280 - string_width(string_upper(global.totem_name[global.p_totem[3]])) * 0.09 - 5,  2 * totem_w * 0.7 + totems_y[3] + global.size / 2 - 130 + training_back_y, string_upper(global.totem_name[global.p_totem[3]]), -1, 1000, 0.09, 0.09, 0, totem_c[global.p_totem[3]], c_black);
+					
 					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - totem_w / 2, 2 * totem_w * 0.7 + totems_y[3] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2 - 0, 1280 - 300 + totem_w / 2, 2 * totem_w * 0.7 + totems_y[3] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2 - 70)
 						{
 						if mouse_check_button_pressed(mb_left)
@@ -655,7 +656,8 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 						else
 						{ draw_sprite_ext(s_totems_eyes, global.p_totem[2], 1280 - 300, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[2]], totem_alp); }
 					
-					//draw_rectangle(1280 - 300 - totem_w / 2, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2 - 0, 1280 - 300 + totem_w / 2, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2 - 20, 1);
+					draw_text_ext_transformed_t(1280 - string_width(string_upper(global.totem_name[global.p_totem[2]])) * 0.09 - 5,  2 * totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y, string_upper(global.totem_name[global.p_totem[2]]), -1, 1000, 0.09, 0.09, 0, totem_c[global.p_totem[2]], c_black);
+					
 					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - totem_w / 2, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2 - 0, 1280 - 300 + totem_w / 2, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2 - 70)
 						{
 						if mouse_check_button_pressed(mb_left)
@@ -704,6 +706,8 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 						{ draw_sprite_ext(s_totems, global.p_totem[1], 1280 - 300, totems_y[1] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, c_black, 0.4); }
 						else
 						{ draw_sprite_ext(s_totems_eyes, global.p_totem[1], 1280 - 300, totems_y[1] + global.size / 2 - 130 + training_back_y, totem_s * 1.2, totem_s * 1.2, 0, totem_c[global.p_totem[1]], totem_alp); }
+					
+					draw_text_ext_transformed_t(1280 - string_width(string_upper(global.totem_name[global.p_totem[1]])) * 0.09 - 5,  2 * totem_w * 0.7 + totems_y[1] + global.size / 2 - 130 + training_back_y, string_upper(global.totem_name[global.p_totem[1]]), -1, 1000, 0.09, 0.09, 0, totem_c[global.p_totem[1]], c_black);
 					
 					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - totem_w / 2, totems_y[1] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2 - 0, 1280 - 300 + totem_w / 2, totems_y[1] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2 - 70)
 						{
@@ -1657,7 +1661,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 						{
 						#region Покупка 1
 							///////
-							if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 75, 640 - 150 + 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 160)
+							if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 75, 640 - 150 + 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 190)
 								{
 								if (global.gold >= 100)
 									{
@@ -1682,7 +1686,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 						#endregion
 						#region Покупка 2
 							///////
-							if point_in_rectangle(mouse_x, mouse_y, 640 + 150 - 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 75, 640 + 150 + 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 160)
+							if point_in_rectangle(mouse_x, mouse_y, 640 + 150 - 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 75, 640 + 150 + 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 190)
 								{
 								if (global.cash >= 50)
 									{
@@ -2822,7 +2826,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 								else
 								{
 								draw_sprite_ext(s_wanted2,  1, 640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + theme_y1[1], 0.65 * lootbox_item_s[1], 0.65 * lootbox_item_s[1], 0, lootbox_item_c[1], 0.5);
-								draw_sprite_ext(s_wanted, 1, 640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + theme_y1[1], 0.65 * lootbox_item_s[1], 0.65 * lootbox_item_s[1], 0, c_black, 1);
+								draw_sprite_ext(s_wanted, 6, 640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + theme_y1[1], 0.65 * lootbox_item_s[1], 0.65 * lootbox_item_s[1], 0, c_black, 1);
 								draw_text_transformed_t(640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + theme_y1[1], "?", 0.5 * lootbox_item_s[1], 0.5 * lootbox_item_s[1], 0, global.color_white, c_black);
 								draw_text_transformed_t(640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + 100, "TAP", 0.17 * lootbox_item_s[1], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black);
 								}
@@ -2840,7 +2844,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 								else
 								{
 								draw_sprite_ext(s_wanted2,  1, 640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + theme_y1[2], 0.65 * lootbox_item_s[2], 0.65 * lootbox_item_s[2], 0, lootbox_item_c[2], 0.5);
-								draw_sprite_ext(s_wanted, 1, 640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + theme_y1[2], 0.65 * lootbox_item_s[2], 0.65 * lootbox_item_s[2], 0, c_black, 1);
+								draw_sprite_ext(s_wanted, 6, 640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + theme_y1[2], 0.65 * lootbox_item_s[2], 0.65 * lootbox_item_s[2], 0, c_black, 1);
 								draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + theme_y1[2], "?", 0.5 * lootbox_item_s[2], 0.5 * lootbox_item_s[2], 0, global.color_white, c_black);
 								draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + 100, "TAP", 0.17 * lootbox_item_s[2], 0.17 * lootbox_item_s[2], 0, global.color_white, c_black);
 								}
@@ -2986,7 +2990,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 								{
 								for(j=1;j<=3;j++)
 									{
-									var rand, tr;
+									var rand, tr, rand2;
 									rand = irandom_range(1, 100);
 									
 									if rand <= 50
@@ -2996,7 +3000,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 									if rand > 85
 										{ tr = 4; }
 									
-									lootbox_item_t[j] = choose(0, 1);
+									lootbox_item_t[j] = choose(0, 0, 1, 1, 1);
 							
 									if lootbox_item_t[j] = 0
 										{
@@ -3371,7 +3375,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 										else
 										{
 										draw_sprite_ext(s_wanted2,  1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, lootbox_item_c[r], 0.5);
-										draw_sprite_ext(s_wanted, 1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, c_black, 1);
+										draw_sprite_ext(s_wanted, 6, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, c_black, 1);
 										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], "?", 0.5 * lootbox_item_s[r], 0.5 * lootbox_item_s[1], 0, global.color_white, c_black);
 										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + 100, "TAP", 0.17 * lootbox_item_s[r], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black);
 										}

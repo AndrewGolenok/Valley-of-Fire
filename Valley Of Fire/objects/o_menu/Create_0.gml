@@ -340,6 +340,16 @@
 	gold_val[3] = 5500;
 	gold_pri[3] = 1000;
 	
+	if os_get_region() = "ru"
+		{
+		cash_pri[1] = "15₽";
+		cash_pri[2] = "399₽";
+		cash_pri[3] = "749₽";
+		cash_pri[4] = "1490₽";
+		cash_pri[5] = "3790₽";
+		cash_pri[6] = "7490₽";
+		}
+	
 	gold_buy[1] = 0;
 	gold_buy[2] = 0;
 	gold_buy[3] = 0;
