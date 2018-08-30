@@ -693,6 +693,8 @@
 	
 	global.room_rm    = 0;
 	global.room_rmp   = 0;
+	
+	depth = -100000;
 #endregion
 #region Прочее
 	randomize(); // Включаем рандом

@@ -514,6 +514,21 @@
 	
 	//// SPECIAL THANKS
 #endregion
+#region Музыка
+	//if global.music = 1
+	//	{
+	//	if audio_is_paused(sd_menu)
+	//		{ audio_resume_sound(sd_menu); }
+		
+	//	if !audio_is_playing(sd_menu)
+	//		{ audio_play_sound(sd_menu, 3, true); }
+	//	}
+	//	else
+	//	{
+	//	if audio_is_playing(sd_menu)
+	//		{ audio_pause_sound(sd_menu); }
+	//	}
+#endregion
 
 #region Главное меню (СТАРОЕ)
 	#region Мобайл / Планшет

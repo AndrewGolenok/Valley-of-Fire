@@ -10184,6 +10184,23 @@ if lines_true
 		//	}
 		}
 #endregion
+#region Музыка
+	var musica;
+		musica = asset_get_index("sd_" + string(global.background));
+	if global.music = 1
+		{
+		if audio_is_paused(musica)
+			{ audio_resume_sound(musica); }
+		
+		if !audio_is_playing(musica)
+			{ audio_play_sound(musica, 1, true); }
+		}
+		else
+		{
+		if audio_is_playing(musica)
+			{ audio_pause_sound(musica); }
+		}
+#endregion
 
 #region Словечки
 	if global.training_gb != ""

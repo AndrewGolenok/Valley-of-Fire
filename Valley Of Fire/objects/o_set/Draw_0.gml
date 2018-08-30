@@ -194,140 +194,127 @@
 	#endregion
 #endregion
 #region Музыка
-	if global.music_pere = 1
-		{
-		if global.music_gain > 0
-			{ global.music_gain -= 0.02; }
-			else
-			{ global.music_pere = 0; }
-		}
-		else
-		{
-		if global.music_gain < 1
-			{ global.music_gain += 0.02; }
-		}
-	
-	if global.room_rm = "logo"
-		{
-		if !audio_is_playing(sd_menu)
-			{ audio_play_sound(sd_menu, 1, 1); }
-		}
-	if global.music = 1
-		{
-		if (global.room_rm  = "menu" && global.room_pere = 0)
-		or (global.room_rmp = "menu" && global.room_pere = 1)
-			{
-			if audio_is_playing(sd_train)
-				{ audio_stop_sound(sd_train); }
-			if audio_is_playing(sd_mine)
-				{ audio_stop_sound(sd_mine); }
-			if audio_is_playing(sd_waterfall)
-				{ audio_stop_sound(sd_waterfall); }
-			if audio_is_playing(sd_saloon)
-				{ audio_stop_sound(sd_saloon); }
+	//if global.room_rm = "logo"
+	//	{
+	//	if !audio_is_playing(sd_menu)
+	//		{ audio_play_sound(sd_menu, 1, 1); }
+	//	}
+	//if global.music = 1
+	//	{
+	//	if (global.room_rm  = "menu" && global.room_pere = 0)
+	//	or (global.room_rmp = "menu" && global.room_pere = 1)
+	//		{
+	//		if audio_is_playing(sd_train)
+	//			{ audio_stop_sound(sd_train); }
+	//		if audio_is_playing(sd_mine)
+	//			{ audio_stop_sound(sd_mine); }
+	//		if audio_is_playing(sd_waterfall)
+	//			{ audio_stop_sound(sd_waterfall); }
+	//		if audio_is_playing(sd_saloon)
+	//			{ audio_stop_sound(sd_saloon); }
 			
 			
-			audio_sound_get_gain(global.music_gain);
-			if audio_is_paused(sd_menu)
-				{ audio_resume_sound(sd_menu); }
-				else
-				{
-				if !audio_is_playing(sd_menu)
-					{ audio_play_sound(sd_menu, 1, 1); }
-				}
-			}
+	//		audio_sound_gain(sd_menu, global.music_gain, 10);
+	//		if audio_is_paused(sd_menu)
+	//			{ audio_resume_sound(sd_menu); }
+	//			else
+	//			{
+	//			if !audio_is_playing(sd_menu)
+	//				{ audio_play_sound(sd_menu, 1, 1); }
+	//			}
+	//		}
 		
-		if (global.room_rm  = "duel" && global.room_pere = 0)
-		or (global.room_rmp = "duel" && global.room_pere = 1)
-			{
-			if global.background = "train" or global.back_prev = "train"
-				{
-				if audio_is_playing(sd_train)
-					{ audio_stop_sound(sd_train); }
-				if audio_is_playing(sd_mine)
-					{ audio_stop_sound(sd_mine); }
-				if audio_is_playing(sd_waterfall)
-					{ audio_stop_sound(sd_waterfall); }
-				if audio_is_playing(sd_saloon)
-					{ audio_stop_sound(sd_saloon); }
+	//	if (global.room_rm  = "duel" && global.room_pere = 0)
+	//	or (global.room_rmp = "duel" && global.room_pere = 1)
+	//		{
+	//		if global.background = "train" or global.back_prev = "train"
+	//			{
+	//			if audio_is_playing(sd_train)
+	//				{ audio_stop_sound(sd_train); }
+	//			if audio_is_playing(sd_mine)
+	//				{ audio_stop_sound(sd_mine); }
+	//			if audio_is_playing(sd_waterfall)
+	//				{ audio_stop_sound(sd_waterfall); }
+	//			if audio_is_playing(sd_saloon)
+	//				{ audio_stop_sound(sd_saloon); }
 			
-				audio_sound_get_gain(global.music_gain);
-				if audio_is_paused(sd_train)
-					{ audio_resume_sound(sd_train); }
-					else
-					{
-					if !audio_is_playing(sd_train)
-						{ audio_play_sound(sd_train, 1, 1); }
-					}
-				}
-			if global.background = "mine" or global.back_prev = "mine"
-				{
-				if audio_is_playing(sd_train)
-					{ audio_stop_sound(sd_train); }
-				if audio_is_playing(sd_menu)
-					{ audio_stop_sound(sd_menu); }
-				if audio_is_playing(sd_waterfall)
-					{ audio_stop_sound(sd_waterfall); }
-				if audio_is_playing(sd_saloon)
-					{ audio_stop_sound(sd_saloon); }
+	//			audio_sound_gain(sd_train, global.music_gain, 10);
+	//			if audio_is_paused(sd_train)
+	//				{ audio_resume_sound(sd_train); }
+	//				else
+	//				{
+	//				if !audio_is_playing(sd_train)
+	//					{ audio_play_sound(sd_train, 1, 1); }
+	//				}
+	//			}
+	//		if global.background = "mine" or global.back_prev = "mine"
+	//			{
+	//			if audio_is_playing(sd_train)
+	//				{ audio_stop_sound(sd_train); }
+	//			if audio_is_playing(sd_menu)
+	//				{ audio_stop_sound(sd_menu); }
+	//			if audio_is_playing(sd_waterfall)
+	//				{ audio_stop_sound(sd_waterfall); }
+	//			if audio_is_playing(sd_saloon)
+	//				{ audio_stop_sound(sd_saloon); }
 			
-				audio_sound_get_gain(global.music_gain);
-				if audio_is_paused(sd_mine)
-					{ audio_resume_sound(sd_mine); }
-					else
-					{
-					if !audio_is_playing(sd_mine)
-						{ audio_play_sound(sd_mine, 1, 1); }
-					}
-				}
-			if global.background = "waterfall" or global.back_prev = "waterfall"
-				{
-				if audio_is_playing(sd_train)
-					{ audio_stop_sound(sd_train); }
-				if audio_is_playing(sd_mine)
-					{ audio_stop_sound(sd_mine); }
-				if audio_is_playing(sd_menu)
-					{ audio_stop_sound(sd_menu); }
-				if audio_is_playing(sd_saloon)
-					{ audio_stop_sound(sd_saloon); }
+	//			audio_sound_gain(sd_mine, global.music_gain, 10);
+	//			if audio_is_paused(sd_mine)
+	//				{ audio_resume_sound(sd_mine); }
+	//				else
+	//				{
+	//				if !audio_is_playing(sd_mine)
+	//					{ audio_play_sound(sd_mine, 1, 1); }
+	//				}
+	//			}
+	//		if global.background = "waterfall" or global.back_prev = "waterfall"
+	//			{
+	//			if audio_is_playing(sd_train)
+	//				{ audio_stop_sound(sd_train); }
+	//			if audio_is_playing(sd_mine)
+	//				{ audio_stop_sound(sd_mine); }
+	//			if audio_is_playing(sd_menu)
+	//				{ audio_stop_sound(sd_menu); }
+	//			if audio_is_playing(sd_saloon)
+	//				{ audio_stop_sound(sd_saloon); }
 			
-				audio_sound_get_gain(global.music_gain);
-				if audio_is_paused(sd_waterfall)
-					{ audio_resume_sound(sd_waterfall); }
-					else
-					{
-					if !audio_is_playing(sd_waterfall)
-						{ audio_play_sound(sd_waterfall, 1, 1); }
-					}
-				}
-			if global.background = "saloon" or global.back_prev = "saloon"
-				{
-				if audio_is_playing(sd_train)
-					{ audio_stop_sound(sd_train); }
-				if audio_is_playing(sd_mine)
-					{ audio_stop_sound(sd_mine); }
-				if audio_is_playing(sd_waterfall)
-					{ audio_stop_sound(sd_waterfall); }
-				if audio_is_playing(sd_menu)
-					{ audio_stop_sound(sd_menu); }
+	//			audio_sound_gain(sd_waterfall, global.music_gain, 10);
+	//			if audio_is_paused(sd_waterfall)
+	//				{ audio_resume_sound(sd_waterfall); }
+	//				else
+	//				{
+	//				if !audio_is_playing(sd_waterfall)
+	//					{ audio_play_sound(sd_waterfall, 1, 1); }
+	//				}
+	//			}
+	//		if global.background = "saloon" or global.back_prev = "saloon"
+	//			{
+	//			if audio_is_playing(sd_train)
+	//				{ audio_stop_sound(sd_train); }
+	//			if audio_is_playing(sd_mine)
+	//				{ audio_stop_sound(sd_mine); }
+	//			if audio_is_playing(sd_waterfall)
+	//				{ audio_stop_sound(sd_waterfall); }
+	//			if audio_is_playing(sd_menu)
+	//				{ audio_stop_sound(sd_menu); }
 			
-				audio_sound_get_gain(global.music_gain);
-				if audio_is_paused(sd_saloon)
-					{ audio_resume_sound(sd_saloon); }
-					else
-					{
-					if !audio_is_playing(sd_saloon)
-						{ audio_play_sound(sd_saloon, 1, 1); }
-					}
-				}
-			}
-		}
-		else
-		{
-		audio_pause_all();
-		}
+	//			audio_sound_gain(sd_saloon, global.music_gain, 10);
+	//			if audio_is_paused(sd_saloon)
+	//				{ audio_resume_sound(sd_saloon); }
+	//				else
+	//				{
+	//				if !audio_is_playing(sd_saloon)
+	//					{ audio_play_sound(sd_saloon, 1, 1); }
+	//				}
+	//			}
+	//		}
+	//	}
+	//	else
+	//	{
+	//	audio_pause_all();
+	//	}
 #endregion
 #region Отладка
 	//draw_set_font(global.game_font);
-	//draw_text_transformed_t(mouse_x, mouse_y, string(global.room_to_go), 0.25, 0.25, 0, c_white, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(global.room_rmp) + "~" + string(global.room_rm), 0.25, 0.25, 0, c_white, c_black);
 #endregion
