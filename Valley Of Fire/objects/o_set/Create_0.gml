@@ -102,7 +102,7 @@
 	application_surface_enable(1);
 	
 	device_mouse_dbclick_enable(0);
-	global.size = 720; //640; // 720; //800; //960;
+	global.size = 960; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
@@ -193,8 +193,10 @@
 					ini_write_string("Totems", "totem" + string(i), "0");
 					if i = 4
 						{ ini_write_string("Totems", "totem" + string(i), "0"); }
+					ini_write_string("Totems", "totem_n" + string(i), "0");
 					}
 				global.totem_have[i] = ini_read_real("Totems", "totem" + string(i), 0);
+				global.totem_new[i]  = ini_read_real("Totems", "totem_n" + string(i), 0);
 				}
 		#endregion
 		#region Листовки

@@ -359,6 +359,8 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 		for(i=1;i<=18;i++)
 			{
 			draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, 160 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + 10 + pry, totem_s, totem_s, 0, c_black, 0.5); 
+			if global.totem_new[i] = 1
+				{ draw_sprite_ext(s_light, 0, 290 + totem_x[i] + prx, 160 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + 10 + pry, totem_s, totem_s, 0, c_white, 0.5);  }
 			draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, 160 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + pry, totem_s * totems_ss[i], totem_s * totems_ss[i], 0, c_white, 1);
 			if global.totem_have[i] = 0 or (global.duel = 1 && (global.p_totem[1] = i or global.p_totem[2] = i or global.p_totem[3] = i))
 				{ draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, 160 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + pry, totem_s * totems_ss[i], totem_s * totems_ss[i], 0, c_black, 0.4); }
@@ -463,6 +465,13 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 					{
 					if global.duel = 0
 						{
+						if global.totem_new[i] = 1
+							{
+							ini_open("Music.ini");
+								ini_write_string("Totems", "totem_n" + string(i), "2");
+								global.totem_new[i]  = ini_read_real("Totems", "totem_n" + string(i), 0);
+							ini_close();
+							}
 						if totem_pr = i// && hold_sp = 0// && totem_yy = 0
 							{ totem_pr = 0; totem_re = 0; totem_now = i; }
 							else
@@ -1076,9 +1085,17 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 	
 	if global.duel = 0
 		{
-		draw_set_font(global.game_font);
-		draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "HEROES", 0.22, 0.22, 0, col, c_black);
-		//draw_text_transformed_t(80, global.size / 2 + training_back_y - 40, "H\nE\nR\nO\nE\nS", 0.22, 0.22, 0, col, c_black);
+		if global.size  >= 640
+			{
+			draw_set_font(global.game_font);
+			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "HEROES", 0.22, 0.22, 0, col, c_black);
+			}
+			else
+			{
+			draw_set_font(global.game_font);
+			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "HEROES", 0.22, 0.22, 0, col, c_black);
+			}
+			//draw_text_transformed_t(80, global.size / 2 + training_back_y - 40, "H\nE\nR\nO\nE\nS", 0.22, 0.22, 0, col, c_black);
 		}
 		else
 		{
@@ -1577,9 +1594,9 @@ if global.menu_now = "store" or global.menu_next = "store"
 	//draw_rectangle_color(0, training_back_y + global.size + 50, 1280, global.size, colb, colb, colb, colb, 0);
 	
 	var top;
-	top = ((sprite_get_height(s_store_back) * global.back_scale - global.size) / 2) * (sprite_get_width(s_store_back) / 1280);
-	//sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
+	top = sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
 	draw_sprite_part_ext(s_store_back, 1, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
+	
 	//
 	// top - 90 + daily_y + training_back_y + pry + store_yy1 + 10
 	// top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40
@@ -2306,10 +2323,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 		#endregion
 		//menu_setb_y - training_back_y + pry
 		//top - training_back_y + pry * 0.5 + sc_angle * 2 - 27
-		draw_text_transformed_t(640 - string_width(string(global.gold) + "©") / 2 * menu_txt_s, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, global.gold_color, c_black);
+		draw_text_transformed_t(640 - string_width(string(global.gold) + "©") / 2 * menu_txt_s, - training_back_y + pry * 0.5 + sc_angle * 2 - top / 2, string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, global.gold_color, c_black);
 		//draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, global.gold_color, 1, global.gold_color, c_black);
 		
-		draw_text_transformed_t(640 + string_width(string(global.cash) + "ç") / 2 * menu_txt_s, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.cash_color, c_black);
+		draw_text_transformed_t(640 + string_width(string(global.cash) + "ç") / 2 * menu_txt_s, - training_back_y + pry * 0.5 + sc_angle * 2 - top / 2, string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.cash_color, c_black);
 		//draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus1_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, global.cash_color, 1, global.cash_color, c_black);
 		
 		//if mouse_check_button_pressed(mb_left)
@@ -2550,11 +2567,14 @@ if global.menu_now = "store" or global.menu_next = "store"
 											{ lootbox_item_i[j] = 11 + real(string_copy(totems, ti, 1)); }
 										if tr = 4
 											{ lootbox_item_i[j] = 15 + real(string_copy(totems, ti, 1)); }
+										
 										ini_open("Music.ini");
 											ini_write_string("Totems", "totem" + string(lootbox_item_i[j]), "1");
+											ini_write_string("Totems", "totem_n" + string(lootbox_item_i[j]), "1");
 											global.totem_have[lootbox_item_i[j]] = 1;
+											global.totem_new[lootbox_item_i[j]]  = ini_read_real("Totems", "totem_n" + string(i), 0);
 										ini_close();
-									
+										
 										if lootbox_item_i[j] <= 6
 											{ lootbox_item_c[j] = global.color_white; }
 										if lootbox_item_i[j] > 6 && lootbox_item_i[j] <= 11
@@ -2819,8 +2839,16 @@ if global.menu_now = "store" or global.menu_next = "store"
 									draw_sprite_ext(s_totems_eyes, lootbox_item_i[k], 640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] + theme_y1[k], 0.45 * lootbox_item_s[k] * lootbox_item_ss[k], 0.45 * lootbox_item_s[k] * lootbox_item_ss[k], 0, lootbox_item_c[k], 0.5);
 									if lootbox_item_ss[k] = 1
 										{ draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] - 160, string_upper(global.totem_name[lootbox_item_i[k]]), -1, 1000, 0.22 * lootbox_item_s[k], 0.22 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black); }
-									if lootbox_item_ss[k] = 1 && lootbox_item_i[k] != 13
-										{ draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height(string_upper(global.totem_desc[lootbox_item_i[k]])) * 0.12 * lootbox_item_s[k] / 2, string_upper(global.totem_desc[lootbox_item_i[k]]), -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black); }
+									if lootbox_item_i[k] != 13
+										{
+										if lootbox_item_ss[k] = 1
+											{ draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height(string_upper(global.totem_desc[lootbox_item_i[k]])) * 0.12 * lootbox_item_s[k] / 2, string_upper(global.totem_desc[lootbox_item_i[k]]), -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black); }
+										}
+										else
+										{
+										if lootbox_item_ss[k] = 1
+											{ draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height("DEAL DAMAGE TO RIVAL HERO AND...") * 0.12 * lootbox_item_s[k] / 2, "DEAL DAMAGE TO RIVAL HERO AND...", -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black); }
+										}
 									}
 									else
 									{
@@ -3061,9 +3089,12 @@ if global.menu_now = "store" or global.menu_next = "store"
 												{ lootbox_item_i[j] = 11 + real(string_copy(totems, ti, 1)); }
 											if tr = 4
 												{ lootbox_item_i[j] = 15 + real(string_copy(totems, ti, 1)); }
+											
 											ini_open("Music.ini");
 												ini_write_string("Totems", "totem" + string(lootbox_item_i[j]), "1");
+												ini_write_string("Totems", "totem_n" + string(lootbox_item_i[j]), "1");
 												global.totem_have[lootbox_item_i[j]] = 1;
+												global.totem_new[lootbox_item_i[j]]  = ini_read_real("Totems", "totem_n" + string(i), 0);
 											ini_close();
 									
 											if lootbox_item_i[j] <= 6
@@ -3358,8 +3389,16 @@ if global.menu_now = "store" or global.menu_next = "store"
 										draw_sprite_ext(s_totems_eyes, lootbox_item_i[k], 640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 3) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] + theme_y1[k], 0.45 * lootbox_item_s[k] * lootbox_item_ss[k], 0.45 * lootbox_item_s[k] * lootbox_item_ss[k], 0, lootbox_item_c[k], 0.5);
 										if lootbox_item_ss[k] = 1
 											{ draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 3) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] - 160, string_upper(global.totem_name[lootbox_item_i[k]]), -1, 1000, 0.22 * lootbox_item_s[k], 0.22 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black); }
-										if lootbox_item_ss[k] = 1 && lootbox_item_i[k] != 13
-											{ draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 3) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height(string_upper(global.totem_desc[lootbox_item_i[k]])) * 0.12 * lootbox_item_s[k] / 2, string_upper(global.totem_desc[lootbox_item_i[k]]), -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black); }
+										if lootbox_item_i[k] != 13
+											{
+											if lootbox_item_ss[k] = 1
+												{ draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height(string_upper(global.totem_desc[lootbox_item_i[k]])) * 0.12 * lootbox_item_s[k] / 2, string_upper(global.totem_desc[lootbox_item_i[k]]), -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black); }
+											}
+											else
+											{
+											if lootbox_item_ss[k] = 1
+												{ draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height("DEAL DAMAGE TO RIVAL HERO AND...") * 0.12 * lootbox_item_s[k] / 2, "DEAL DAMAGE TO RIVAL HERO AND...", -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black); }
+											}
 										}
 										else
 										{

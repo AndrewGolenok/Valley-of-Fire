@@ -16,6 +16,9 @@
 		{ music = 0; }
 		else
 		{ music = 16; }
+		
+	var topp;
+	topp = -((720 - global.size) + 30 * sign((720 - global.size)));
 	//global.menu_prev = "training";
 #endregion
 #region Тренировка
@@ -191,7 +194,7 @@
 	
 	y_ind = 0;
 	
-	lootbox_y = 0 + y_ind;
+	lootbox_y = 0 + y_ind + topp;
 	
 	lootbox_alpha = 0; // Темный фон
 	lootbox_aa = 0; // Альфа вспышки
@@ -278,7 +281,7 @@
 	lvlup[2] = 0;
 	lvlup[3] = 0;
 	
-	daily_y   = 500 + y_ind;
+	daily_y   = 500 + y_ind + topp;
 	
 	daily_t[1] = 0;
 	daily_t[2] = 0;
@@ -292,8 +295,8 @@
 	daily_s[2] = 1;
 	daily_s[3] = 1;
 	
-	cash_y   = 900 + y_ind;
-	gold_y   = 1600 + 30 + y_ind;
+	cash_y   = 900 + y_ind + topp;
+	gold_y   = 1600 + 30 + y_ind + topp;
 	
 	cash_txt[1] = "THE WAD\nOF CASH";
 	cash_val[1] = 50//80;

@@ -122,7 +122,10 @@
 				for(i=0;i<=19;i++)
 					{
 					ini_write_string("Totems", "totem" + string(i), "1");
+					ini_write_string("Totems", "totem_n" + string(i), "2");
+					
 					global.totem_have[i] = ini_read_real("Totems", "totem" + string(i), 0);
+					global.totem_new[i]  = ini_read_real("Totems", "totem_n" + string(i), 0);
 					}
 			ini_close();
 			}
@@ -137,7 +140,11 @@
 						{ ini_write_string("Totems", "totem" + string(i), "1"); }
 						else
 						{ ini_write_string("Totems", "totem" + string(i), "0"); }
+					
+					ini_write_string("Totems", "totem_n" + string(i), "0");
+					
 					global.totem_have[i] = ini_read_real("Totems", "totem" + string(i), 0);
+					global.totem_new[i]  = ini_read_real("Totems", "totem_n" + string(i), 0);
 					}
 			ini_close();
 			}
