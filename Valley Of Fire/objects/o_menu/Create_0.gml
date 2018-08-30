@@ -18,7 +18,10 @@
 		{ music = 16; }
 		
 	var topp;
-	topp = -((720 - global.size) + 30 * sign((720 - global.size)));
+	topp = 0;
+	if abs(720 - global.size) > 0
+		{ topp = -((720 - global.size) + 30 * sign((720 - global.size))); }
+	topp = -(720 - global.size) / 2;
 	//global.menu_prev = "training";
 #endregion
 #region Тренировка
@@ -193,8 +196,8 @@
 	store_tap = 1;
 	
 	y_ind = 0;
-	if global.size <= 640
-		{ y_ind = 90; }
+	//if global.size <= 640
+	//	{ y_ind = 90; }
 	
 	lootbox_y = 0 + y_ind + topp;
 	
