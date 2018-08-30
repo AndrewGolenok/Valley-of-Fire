@@ -247,6 +247,8 @@
 	lootbox_item_v[1] = 0;
 	lootbox_item_v[2] = 0;
 	lootbox_item_v[3] = 0; //// Количество (листовок)
+	
+	levelup = global.heroes_have[i];
 	/*
 	if global.p_totem[i] <= 6
 		{ totem_pc[i] = global.color_white; }
