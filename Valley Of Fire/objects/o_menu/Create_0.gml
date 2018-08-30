@@ -1,4 +1,9 @@
 #region Меню
+	tr_ang  = 0;
+	tr_dir  = 1;
+	tr_time = room_speed * 2;
+	tr_timm = room_speed * 4;
+	
 	global.fps_mental = 0;
 	global.fps_col = 0;
 	//global.lug = 0;

@@ -288,7 +288,7 @@ if global.hero = 1 && global.enemy_hero = 1
 														{ b_pressed_s[2] = 1; }
 													if device_mouse_check_button_released(dev, mb_left)
 														{
-														if global.music
+														if global.sound
 															{ audio_play_sound(sd_text, 2, 0); }
 														/*audio_play_sound(sd_revolver, 1, 0);*/
 														if vtrue[2] = 1

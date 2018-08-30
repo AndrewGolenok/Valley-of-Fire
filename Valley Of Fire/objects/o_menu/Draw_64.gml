@@ -802,6 +802,13 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 					
 					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - 61 - totem_w / 2, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2 - 0, 1280 - 300 + totem_w / 2, totem_w * 0.7 + totems_y[2] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2 - 70)
 						{
+						//// КЛАЦ
+						if mouse_check_button_pressed(mb_left)
+							{
+							if global.sound
+								{ audio_play_sound(sd_text, 2, 0); }
+							}
+						//// КЛАЦ
 						if mouse_check_button_pressed(mb_left)
 							{ global.p_totem[2] = -1; }
 						}
@@ -853,6 +860,13 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 					
 					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - 61 - totem_w / 2, totems_y[1] + global.size / 2 - 130 + training_back_y + 30 - totem_w / 2 - 0, 1280 - 300 + totem_w / 2, totems_y[1] + global.size / 2 - 130 + training_back_y + 30 + totem_w / 2 - 70)
 						{
+						//// КЛАЦ
+						if mouse_check_button_pressed(mb_left)
+							{
+							if global.sound
+								{ audio_play_sound(sd_text, 2, 0); }
+							}
+						//// КЛАЦ
 						if mouse_check_button_pressed(mb_left)
 							{ global.p_totem[1] = -1; }
 						}
@@ -910,7 +924,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 				
 				//draw_rectangle(1280 - 300 - 150, global.size - 60 + training_back_y - 50, 1280 - 300 + 150, global.size - 60 + training_back_y + 50, 1);
 				draw_sprite_ext(s_light, 0, 1280 - 300, global.size - 60 + training_back_y, 0.6, 0.3, 0, c_white, 0.7);
-				draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "START", 0.25 * go5, 0.25 * go5, 0, global.color_white, c_black);
+				draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "START", 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black);
 				}
 		#endregion
 	
@@ -957,6 +971,13 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 	
 	if point_in_rectangle(mouse_x, mouse_y, 1020, 0, 1280, 250)
 		{
+		//// КЛАЦ
+		if mouse_check_button_pressed(mb_left)
+			{
+			if global.sound
+				{ audio_play_sound(sd_text, 2, 0); }
+			}
+		//// КЛАЦ
 		if mouse_check_button_pressed(mb_left)
 			{
 			sc_spd   = 3;
@@ -967,6 +988,13 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 		{
 		if mouse_check_button_pressed(mb_left)
 			{
+			//// КЛАЦ
+			if mouse_check_button_pressed(mb_left)
+				{
+				if global.sound
+					{ audio_play_sound(sd_text, 2, 0); }
+				}
+			//// КЛАЦ
 			if global.duel = 1
 				{ global.menu_now = "heroes"; global.menu_next = "heroes"; io_clear(); }
 				else
@@ -1128,6 +1156,13 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 			hero_ss[i] = 1;
 			if point_in_rectangle(mouse_x, mouse_y, 290 + hero_xx[i] - hero_s * hero_w + 40, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + 10 - hero_s * hero_h, 290 + hero_xx[i] + hero_s * hero_w + 40, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + 10 + hero_s * hero_h)
 				{
+				//// КЛАЦ
+				if mouse_check_button_pressed(mb_left)
+					{
+					if global.sound
+						{ audio_play_sound(sd_text, 2, 0); }
+					}
+				//// КЛАЦ
 				if mouse_check_button(mb_left) && hero_pr != 0
 					{ hero_ss[i] = 1.1; }
 				if mouse_check_button_pressed(mb_left) && hero_pr = 0
@@ -1220,6 +1255,13 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 					//draw_rectangle(1280 - 300 - 100, global.size / 2 - 30 + training_back_y + 230 - 70, 1280 - 300 + 100, global.size / 2 - 30 + training_back_y + 230 + 70, 1);
 					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - 150, global.size / 2 - 30 + training_back_y + 150 - 70 + 36, 1280 - 300 + 150, global.size / 2 - 30 + training_back_y + 150 + 70 + 36)
 						{
+						//// КЛАЦ
+						if mouse_check_button_pressed(mb_left)
+							{
+							if global.sound
+								{ audio_play_sound(sd_text, 2, 0); }
+							}
+						//// КЛАЦ
 						if mouse_check_button(mb_left)
 							{ go5 = 1.1; }
 						if mouse_check_button_released(mb_left) && global.heroes_have[i] > 0
@@ -1234,7 +1276,7 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 							}
 						}
 					draw_sprite_ext(s_light, 0, 1280 - 300, global.size / 2 - 30 + training_back_y + 130 + 20 + 36, 0.65, 0.4, 0, c_white, 0.7);
-					draw_text_transformed_t(1280 - 300, global.size / 2 - 30 + training_back_y + 130 + 20 + 36, "CHOOSE\n" + himher, 0.3 * go5, 0.3 * go5, 0, global.color_white, c_black);
+					draw_text_transformed_t(1280 - 300, global.size / 2 - 30 + training_back_y + 130 + 20 + 36, "CHOOSE\n" + himher, 0.3 * go5, 0.3 * go5, tr_ang, global.color_white, c_black);
 					}
 				//draw_set_alpha(0.5);
 				//draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15, 330 + hero_xx[i] + hero_w * hero_s * 1.1, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15, c_black, c_black, c_black, c_black, 0);
@@ -1302,6 +1344,13 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 	
 	if point_in_rectangle(mouse_x, mouse_y, 1160, 0, 1280, 380)
 		{
+		//// КЛАЦ
+		if mouse_check_button_pressed(mb_left)
+			{
+			if global.sound
+				{ audio_play_sound(sd_text, 2, 0); }
+			}
+		//// КЛАЦ
 		if mouse_check_button_pressed(mb_left)
 			{
 			sc_spd   = 2;
@@ -1310,6 +1359,13 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 		}
 	if point_in_rectangle(mouse_x, mouse_y, 0, 0, 100, 100)
 		{
+		//// КЛАЦ
+		if mouse_check_button_pressed(mb_left)
+			{
+			if global.sound
+				{ audio_play_sound(sd_text, 2, 0); }
+			}
+		//// КЛАЦ
 		if mouse_check_button_pressed(mb_left)
 			{
 			hold_sp   = 0;
@@ -1399,7 +1455,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 						{
 						if mouse_check_button_pressed(mb_left)
 							{
-							//if global.music
+							if global.sound
 								{ audio_play_sound(sd_text, 2, 0); }
 							theme_s[i,j] = 1.1;
 							}
@@ -1480,7 +1536,18 @@ if global.menu_now = "training" or global.menu_next = "training"
 								if theme_s[i,j] > 1
 									{ theme_s[i,j] -= 0.05 + (0.05 * (theme_ot[i,j] == 2)); }
 									else
-									{ theme_stage[i,j] = 0; theme_ss[i,j] = 1;  tr_yes = 1; }
+									{
+									//// КЛАЦ
+									if mouse_check_button_pressed(mb_left)
+										{
+										if global.sound
+											{ audio_play_sound(sd_text, 2, 0); }
+										}
+									//// КЛАЦ
+									theme_stage[i,j] = 0;
+									theme_ss[i,j] = 1; 
+									tr_yes = 1;
+									}
 								}
 							}
 						}
@@ -1659,6 +1726,13 @@ if global.menu_now = "training" or global.menu_next = "training"
 			{
 			if point_in_rectangle(mouse_x, mouse_y, 640 - 290, global.size / 2 - 60 + 150 + training_back_y, 640 + 290, global.size / 2 + 60 + 150 + training_back_y)
 				{
+				//// КЛАЦ
+				if mouse_check_button_pressed(mb_left)
+					{
+					if global.sound
+						{ audio_play_sound(sd_text, 2, 0); }
+					}
+				//// КЛАЦ
 				if mouse_check_button(mb_left)
 					{ go5 = 1.1; }
 				if mouse_check_button_released(mb_left)
@@ -1718,6 +1792,13 @@ if global.menu_now = "training" or global.menu_next = "training"
 	
 	if point_in_rectangle(mouse_x, mouse_y, - 60 + 1130 + lengthdir_x(300, sc_angle - 90), - 100 -training_back_y + lengthdir_y(300, sc_angle - 90), 60 + 1130 + lengthdir_x(300, sc_angle - 90), 100 -training_back_y + lengthdir_y(300, sc_angle - 90))
 		{
+		//// КЛАЦ
+		if mouse_check_button_pressed(mb_left)
+			{
+			if global.sound
+				{ audio_play_sound(sd_text, 2, 0); }
+			}
+		//// КЛАЦ
 		if mouse_check_button_pressed(mb_left)
 			{
 			if mouse_x > 1130
@@ -1730,6 +1811,13 @@ if global.menu_now = "training" or global.menu_next = "training"
 		}
 	if point_in_rectangle(mouse_x, mouse_y, 0, 0, 100, 100)
 		{
+		//// КЛАЦ
+		if mouse_check_button_pressed(mb_left)
+			{
+			if global.sound
+				{ audio_play_sound(sd_text, 2, 0); }
+			}
+		//// КЛАЦ
 		if mouse_check_button_pressed(mb_left)
 			{
 			//if global.duel = 1
@@ -1826,6 +1914,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 							///////
 							if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 75, 640 - 150 + 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 190)
 								{
+								//// КЛАЦ
+								if mouse_check_button_pressed(mb_left)
+									{
+									if global.sound
+										{ audio_play_sound(sd_text, 2, 0); }
+									}
+								//// КЛАЦ
 								if (global.gold >= 100)
 									{
 									if mouse_check_button_released(mb_left) // && store_yy <= 0
@@ -1839,6 +1934,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 									}
 									else
 									{
+									//// КЛАЦ
+									if mouse_check_button_pressed(mb_left)
+										{
+										if global.sound
+											{ audio_play_sound(sd_text, 2, 0); }
+										}
+									//// КЛАЦ
 									if mouse_check_button_released(mb_left) // && store_yy <= 0
 										{ store_yy1 = -1540; io_clear(); }
 									}
@@ -1851,6 +1953,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 							///////
 							if point_in_rectangle(mouse_x, mouse_y, 640 + 150 - 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 75, 640 + 150 + 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 190)
 								{
+								//// КЛАЦ
+								if mouse_check_button_pressed(mb_left)
+									{
+									if global.sound
+										{ audio_play_sound(sd_text, 2, 0); }
+									}
+								//// КЛАЦ
 								if (global.cash >= 50)
 									{
 									if mouse_check_button_released(mb_left) // && store_yy <= 0
@@ -1864,6 +1973,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 									}
 									else
 									{
+									//// КЛАЦ
+									if mouse_check_button_pressed(mb_left)
+										{
+										if global.sound
+											{ audio_play_sound(sd_text, 2, 0); }
+										}
+									//// КЛАЦ
 									if mouse_check_button_released(mb_left) // && store_yy <= 0
 										{ store_yy1 = -785; io_clear(); }
 									}
@@ -2426,6 +2542,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 	if point_in_rectangle(mouse_x, mouse_y, 0, global.size - 250, 250, global.size)
 	&& (gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0 && lootbox_buy[1] = 0 && lootbox_buy[2] = 0)
 		{
+		//// КЛАЦ
+		if mouse_check_button_pressed(mb_left)
+			{
+			if global.sound
+				{ audio_play_sound(sd_text, 2, 0); }
+			}
+		//// КЛАЦ
 		if mouse_check_button_pressed(mb_left)
 			{
 			if wl_spd < 15
@@ -2466,6 +2589,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 	if point_in_rectangle(mouse_x, mouse_y, 280, global.size + top - 100 - 1200 * global.back_scale - 27, 1000, global.size + top + 500 - 1200 * global.back_scale - 27)
 	&& (gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0 && lootbox_buy[1] = 0 && lootbox_buy[2] = 0)
 		{
+		//// КЛАЦ
+		if mouse_check_button_pressed(mb_left)
+			{
+			if global.sound
+				{ audio_play_sound(sd_text, 2, 0); }
+			}
+		//// КЛАЦ
 		if mouse_check_button_pressed(mb_left)
 			{
 			sc_spd   = 2;
@@ -2477,6 +2607,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 		{
 		if mouse_check_button_pressed(mb_left)
 			{
+			//// КЛАЦ
+			if mouse_check_button_pressed(mb_left)
+				{
+				if global.sound
+					{ audio_play_sound(sd_text, 2, 0); }
+				}
+			//// КЛАЦ
 			hold_sp   = 0;
 			hold_ti   = 0;
 			hold_dr   = 1;
@@ -2566,6 +2703,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 				//draw_rectangle(640 - 150, global.size / 2 + 160 - 60, 640 + 150, global.size / 2 + 160 + 80, 1);
 				if mouse_check_button_pressed(mb_left)
 					{
+					//// КЛАЦ
+					if mouse_check_button_pressed(mb_left)
+						{
+						if global.sound
+							{ audio_play_sound(sd_text, 2, 0); }
+						}
+					//// КЛАЦ
 					if point_in_rectangle(mouse_x, mouse_y, 640 - 150, global.size / 2 + 160 - 60, 640 + 150, global.size / 2 + 160 + 80) && gold_buy_s[i] = 1 
 						{
 						if global.cash >= gold_pri[i]
@@ -2627,6 +2771,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 							{
 							if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 20, global.size / 2 + 160 - 80 + 60 + 70, 640 + 150 + 20, global.size / 2 + 160 + 80 + 60 + 70) && lootbox_buy_s[i] = 1 
 								{
+								//// КЛАЦ
+								if mouse_check_button_pressed(mb_left)
+									{
+									if global.sound
+										{ audio_play_sound(sd_text, 2, 0); }
+									}
+								//// КЛАЦ
 								ini_open("Music.ini");
 									global.gold -= 100;
 									ini_write_string("Sounds", "sound_on_g", string(global.gold));
@@ -2846,6 +2997,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 							}
 						if lootbox_s = 4
 							{
+							//// КЛАЦ
+							if mouse_check_button_pressed(mb_left)
+								{
+								if global.sound
+									{ audio_play_sound(sd_text, 2, 0); }
+								}
+							//// КЛАЦ
 							if mouse_check_button_released(mb_left)
 								{
 								if mouse_x < 640
@@ -3152,6 +3310,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 								{
 								if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 20, global.size / 2 + 160 - 80 + 60 + 70, 640 + 150 + 20, global.size / 2 + 160 + 80 + 60 + 70) && lootbox_buy_s[i] = 1 
 									{
+									//// КЛАЦ
+									if mouse_check_button_pressed(mb_left)
+										{
+										if global.sound
+											{ audio_play_sound(sd_text, 2, 0); }
+										}
+									//// КЛАЦ
 									ini_open("Music.ini");
 										global.cash -= 50;
 										ini_write_string("Sounds", "sound_false_c", string(global.cash));
@@ -3380,6 +3545,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 								{
 								if mouse_check_button_released(mb_left)
 									{
+									//// КЛАЦ
+									if mouse_check_button_pressed(mb_left)
+										{
+										if global.sound
+											{ audio_play_sound(sd_text, 2, 0); }
+										}
+									//// КЛАЦ
 									if mouse_x <= 426
 										{
 										if lootbox_item_o[1] = 0
@@ -3715,6 +3887,13 @@ if global.menu_now = "store" or global.menu_next = "store"
 	
 		if mouse_check_button_pressed(mb_left)
 			{
+			//// КЛАЦ
+			if mouse_check_button_pressed(mb_left)
+				{
+				if global.sound
+					{ audio_play_sound(sd_text, 2, 0); }
+				}
+			//// КЛАЦ
 			global.titles = 0;
 			title_yy = global.size - 50;
 			for(i=1;i<=24;i++)
@@ -3746,6 +3925,31 @@ if global.menu_now = "store" or global.menu_next = "store"
 		{
 		if audio_is_playing(sd_menu)
 			{ audio_pause_sound(sd_menu); }
+		}
+#endregion
+#region Тряска
+	if tr_timm > 0
+		{ tr_timm -= 1; }
+		else
+		{
+		if tr_time > 0
+			{
+			tr_time -= 1;
+			if (tr_ang < 10 && tr_dir = 1)
+			or (tr_ang > -10 && tr_dir = -1)
+				{ tr_ang += 1 * tr_dir; }
+				else
+				{ tr_dir = -tr_dir; tr_ang += 1 * tr_dir; }
+			}
+			else
+			{
+			if abs(tr_ang - 1) > 0
+				{
+				tr_ang += 1 * tr_dir;
+				}
+				else
+				{ tr_ang = 0; tr_time = room_speed * 2; tr_timm = room_speed * irandom_range(3,6); }
+			}
 		}
 #endregion
 
