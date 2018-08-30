@@ -8793,7 +8793,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							
 							global.cash += pc + pc1;
 							
-							if pc1 < 0
+							if pc1 <= 0
 								{
 								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "+" + string(pc) + "ç";
@@ -8801,7 +8801,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								else
 								{
 								txt_gold = "+" + string(pg) + "©";
-								txt_cash = "+" + string(pc) + "(" + string(pc1) + ")" + "ç";
+								txt_cash = "+" + string(pc) + "(+" + string(pc1) + ")" + "ç";
 								}
 							//txt_gold = "+10©";
 							//txt_cash = "+1ç";
@@ -8811,7 +8811,6 @@ if global.hero = 1 && global.enemy_hero = 1
 							}
 							else
 							{
-							
 							var pg, pc, pc1;
 							pg = 15 - global.player_rank + 10;
 							global.gold += pg;
@@ -8832,7 +8831,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							
 							global.cash += pc + pc1;
 							
-							if pc1 < 0
+							if pc1 <= 0
 								{
 								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "+" + string(pc) + "ç";
@@ -8840,7 +8839,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								else
 								{
 								txt_gold = "+" + string(pg) + "©";
-								txt_cash = "+" + string(pc) + "(" + string(pc1) + ")" + "ç";
+								txt_cash = "+" + string(pc) + "(+" + string(pc1) + ")" + "ç";
 								}
 							//global.gold += 15 - global.player_rank + 10;
 							//global.cash += 1;
@@ -8887,7 +8886,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							
 							global.cash += pc + pc1;
 							
-							if pc1 < 0
+							if pc1 <= 0
 								{
 								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "+" + string(pc) + "ç";
@@ -8895,7 +8894,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								else
 								{
 								txt_gold = "+" + string(pg) + "©";
-								txt_cash = "+" + string(pc) + "(" + string(pc1) + ")" + "ç";
+								txt_cash = "+" + string(pc) + "(+" + string(pc1) + ")" + "ç";
 								}
 							
 							//txt_gold = "+" + string(pg) + "©";
@@ -8929,7 +8928,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							
 							global.cash += pc + pc1;
 							
-							if pc1 < 0
+							if pc1 <= 0
 								{
 								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "+" + string(pc) + "ç";
@@ -8937,7 +8936,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								else
 								{
 								txt_gold = "+" + string(pg) + "©";
-								txt_cash = "+" + string(pc) + "(" + string(pc1) + ")" + "ç";
+								txt_cash = "+" + string(pc) + "(+" + string(pc1) + ")" + "ç";
 								}
 							//txt_gold = "+15 (+10)©";
 							//txt_cash = "+2 (+3)ç";

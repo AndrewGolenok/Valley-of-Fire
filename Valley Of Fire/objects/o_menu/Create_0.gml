@@ -192,14 +192,38 @@
 	y_ind = 0;
 	
 	lootbox_y = 0 + y_ind;
+	lootbox_alpha = 0; // Темный фон
+	lootbox_aa = 0; // Альфа вспышки
+	
 	
 	lootbox_s = 0; // Стейдж
 	lootbox_a = 0; // Угол
 	lootbox_d = 1; // Направление угла
 	lootbox_t = 0; // Время тряски
 	lootbox_i = 0; // Индекс кадра для анимации
-						
-						
+		
+	/////////
+	theme_a1[1] = 0;
+	theme_x1[1] = 0;
+	theme_y1[1] = 0;
+	
+	theme_a1[2] = 0;
+	theme_x1[2] = 0;
+	theme_y1[2] = 0;
+	
+	theme_a1[3] = 0;
+	theme_x1[3] = 0;
+	theme_y1[3] = 0;
+	//////
+	
+	lootbox_item_s[1] = 0;
+	lootbox_item_s[2] = 0;
+	lootbox_item_s[3] = 0; /// Скейл ?
+	
+	lootbox_item_ss[1] = 0;
+	lootbox_item_ss[2] = 0;
+	lootbox_item_ss[3] = 0; /// Скейл I
+	
 	lootbox_item_x[1] = 0;
 	lootbox_item_x[2] = 0;
 	lootbox_item_x[3] = 0; 
@@ -215,7 +239,28 @@
 	lootbox_item_i[1] = 0;
 	lootbox_item_i[2] = 0;
 	lootbox_item_i[3] = 0; //// Номера (тотема или персонажа)
-						
+	
+	lootbox_item_c[1] = 0;
+	lootbox_item_c[2] = 0;
+	lootbox_item_c[3] = 0; //// Цвет
+	
+	lootbox_item_v[1] = 0;
+	lootbox_item_v[2] = 0;
+	lootbox_item_v[3] = 0; //// Количество (листовок)
+	/*
+	if global.p_totem[i] <= 6
+		{ totem_pc[i] = global.color_white; }
+	
+	if global.p_totem[i] > 6 && global.p_totem[i] <= 11
+		{ totem_pc[i] = c_aqua; }
+	
+	if global.p_totem[i] > 11 && global.p_totem[i] <= 15
+		{ totem_pc[i] = c_fuchsia; }
+	
+	if global.p_totem[i] > 15
+		{ totem_pc[i] = c_orange; }
+	*/
+	
 	lootbox_item_o[1] = 0;
 	lootbox_item_o[2] = 0;
 	lootbox_item_o[3] = 0; ///// Открыто или нет

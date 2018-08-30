@@ -605,7 +605,7 @@
 	global.totem_desc[6] = "gives 20% ATK bonus if your rival next attack is mortal";
 	
 	global.totem_name[7] = "joyful totem";
-	global.totem_desc[7] = "you are to choose the theme";
+	global.totem_desc[7] = "you are to choose the theme always";
 	
 	global.totem_name[8] = "inaccessible totem";
 	global.totem_desc[8] = "gives immunity to being stunned";
@@ -614,7 +614,7 @@
 	global.totem_desc[9] = "gives 5% possibility to avoid damage";
 	
 	global.totem_name[10] = "odd frog";
-	global.totem_desc[10] = "turns into other random totem whose power will work";
+	global.totem_desc[10] = "turns into other random totem and its power works";
 	
 	global.totem_name[11] = "happy lion";
 	global.totem_desc[11] = "destroys all totems of either player";
