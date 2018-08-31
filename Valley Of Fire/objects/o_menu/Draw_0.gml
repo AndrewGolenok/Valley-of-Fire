@@ -37,6 +37,9 @@
 		}
 	*/
 #endregion
+#region Типа Шейдер
+	draw_sprite(s_tipasheder, 0, 640, global.size / 2);
+#endregion
 
 #region Параллакс
 	var prx, pry;
@@ -151,10 +154,10 @@
 			draw_set_font(global.game_font);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_bottom);
-				draw_text_transformed_t(150,  global.size - 25, "HEROES", 0.15, 0.15, 5, global.color_white, c_black);
-				draw_text_transformed_t(640 - 150,  global.size - 25, "TOTEMS", 0.15, 0.15, 5, global.color_white, c_black);
-				draw_text_transformed_t(640 + 150,  global.size - 25, "STORE", 0.15, 0.15, 5, global.color_white, c_black);
-				draw_text_transformed_t(1130, global.size - 25,  "TRAINING", 0.15, 0.15, 5, global.color_white, c_black);	
+			draw_text_transformed_t(150,  global.size - 25, "HEROES", 0.15, 0.15, 5, global.color_white, c_black);
+			draw_text_transformed_t(640 - 150,  global.size - 25, "TOTEMS", 0.15, 0.15, 5, global.color_white, c_black);
+			draw_text_transformed_t(640 + 150,  global.size - 25, "STORE", 0.15, 0.15, 5, global.color_white, c_black);
+			draw_text_transformed_t(1130, global.size - 25,  "TRAINING", 0.15, 0.15, 5, global.color_white, c_black);	
 		draw_set_alpha(1);
 		// КНОПКИ
 		
@@ -180,8 +183,7 @@
 					{ audio_play_sound(sd_text, 2, 0); }
 				//// КЛАЦ
 				
-				url_open("itms-apps://itunes.apple.com/app/apple-store/id1400010051?mt=8");
-				
+				//requestReview();
 				
 				if global.titles = 0
 					{ global.titles = 1; io_clear(); }
@@ -627,7 +629,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 		for(i=1;i<=18;i++)
 			{
 			totems_ss[i] = 1;
-			if point_in_rectangle(mouse_x, mouse_y, 290 + totem_x[i] - totem_s * totem_w, 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + 10 - totem_s * totem_w, 290 + totem_x[i] + totem_s * totem_w, 140 + 360 - top + totem_y[i] + training_back_y + totem_yy1 + 10 + totem_s * totem_w)
+			if point_in_rectangle(mouse_x, mouse_y, 290 + totem_x[i] - totem_s * totem_w, 140 + 360 + popka - top + totem_y[i] + training_back_y + totem_yy1 + 10 - totem_s * totem_w, 290 + totem_x[i] + totem_s * totem_w, 140 + 360 - top + popka + totem_y[i] + training_back_y + totem_yy1 + 10 + totem_s * totem_w)
 				{
 				//// КЛАЦ
 				if mouse_check_button_pressed(mb_left)
@@ -662,6 +664,13 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 						}
 						else
 						{
+						if global.totem_new[i] = 1
+							{
+							ini_open("Music.ini");
+								ini_write_string("Totems", "totem_n" + string(i), "2");
+								global.totem_new[i]  = ini_read_real("Totems", "totem_n" + string(i), 0);
+							ini_close();
+							}
 						if global.totem_have[i] = 1
 							{
 							if global.p_totem[3] = -1
@@ -1202,7 +1211,7 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 		for(i=1;i<=7;i++)
 			{
 			hero_ss[i] = 1;
-			if point_in_rectangle(mouse_x, mouse_y, 290 + hero_xx[i] - hero_s * hero_w + 40, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + 10 - hero_s * hero_h, 290 + hero_xx[i] + hero_s * hero_w + 40, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + 10 + hero_s * hero_h)
+			if point_in_rectangle(mouse_x, mouse_y, 290 + hero_xx[i] - hero_s * hero_w + 40, 140 + 360 - top + popka + hero_yyy[i] + training_back_y + hero_yy1 + 10 - hero_s * hero_h, 290 + hero_xx[i] + hero_s * hero_w + 40, 140 + 360 - top + popka + hero_yyy[i] + training_back_y + hero_yy1 + 10 + hero_s * hero_h)
 				{
 				//// КЛАЦ
 				if mouse_check_button_pressed(mb_left)
@@ -1423,6 +1432,18 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 			hold_do   = 1;
 			if global.duel != 1
 				{
+				hero_yy  = 0;
+				hero_yy1 = 0;
+				//hold_my   = 0;
+				
+				hold_sp   = 0;
+				hold_ti   = 0;
+				hold_dr   = 1;
+				hold_do   = 1;
+				
+				hero_pr = 0;
+				hero_re = 0;
+				
 				hero_i = 0;
 				hero_yy1 = 0;
 				global.menu_next = "main";
@@ -2028,6 +2049,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 						}
 				}
 		#endregion
+		top = 0;
 		
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 70 + lootbox_y + training_back_y + store_yy1 + pry + 10, 0.4, 0.4, 0, c_black, 0.5);
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 70 + lootbox_y + training_back_y + store_yy1 + pry, 0.4, 0.4, 0, c_white, 1);
@@ -2106,10 +2128,12 @@ if global.menu_now = "store" or global.menu_next = "store"
 									}
 								if os_type = os_ios
 									{
+									if global.sound
+										{ audio_play_sound(sd_text, 2, 0); }
 									#region Покупка
 										if iap_status() == iap_status_available
 										   {
-										   var product = "vip_test";
+										   var product = "buy_cash_50";
 										   iap_acquire(product, "");
 										   }
 										   else
@@ -2131,16 +2155,21 @@ if global.menu_now = "store" or global.menu_next = "store"
 								if os_type = os_macosx
 									{
 									global.cash += cash_val[2];
+									if global.sound
+										{ audio_play_sound(sd_text, 2, 0); }
+									GoogleAnalytics_SendEvent("CASH","Игрок купил 270 кэша!");
 									ini_open("Music.ini");
 										ini_write_string("Sounds", "sound_false_c", string(global.cash));
 									ini_close();
 									}
 								if os_type = os_ios
 									{
+									if global.sound
+										{ audio_play_sound(sd_text, 2, 0); }
 									#region Покупка
 										if iap_status() == iap_status_available
 										   {
-										   var product = "vip_test";
+										   var product = "buy_cash_270";
 										   iap_acquire(product, "");
 										   }
 										   else
@@ -2162,16 +2191,21 @@ if global.menu_now = "store" or global.menu_next = "store"
 								if os_type = os_macosx
 									{
 									global.cash += cash_val[3];
+									if global.sound
+										{ audio_play_sound(sd_text, 2, 0); }
+									GoogleAnalytics_SendEvent("CASH","Игрок купил 550 кэша!");
 									ini_open("Music.ini");
 										ini_write_string("Sounds", "sound_false_c", string(global.cash));
 									ini_close();
 									}
 								if os_type = os_ios
 									{
+									if global.sound
+										{ audio_play_sound(sd_text, 2, 0); }
 									#region Покупка
 										if iap_status() == iap_status_available
 										   {
-										   var product = "vip_test";
+										   var product = "buy_cash_550";
 										   iap_acquire(product, "");
 										   }
 										   else
@@ -2199,10 +2233,12 @@ if global.menu_now = "store" or global.menu_next = "store"
 									}
 								if os_type = os_ios
 									{
+									if global.sound
+										{ audio_play_sound(sd_text, 2, 0); }
 									#region Покупка
 										if iap_status() == iap_status_available
 										   {
-										   var product = "vip_test";
+										   var product = "buy_cash_1200";
 										   iap_acquire(product, "");
 										   }
 										   else
@@ -2231,9 +2267,11 @@ if global.menu_now = "store" or global.menu_next = "store"
 								if os_type = os_ios
 									{
 									#region Покупка
+										if global.sound
+											{ audio_play_sound(sd_text, 2, 0); }
 										if iap_status() == iap_status_available
 										   {
-										   var product = "vip_test";
+										   var product = "buy_cash_3000";
 										   iap_acquire(product, "");
 										   }
 										   else
@@ -2262,9 +2300,11 @@ if global.menu_now = "store" or global.menu_next = "store"
 								if os_type = os_ios
 									{
 									#region Покупка
+										if global.sound
+											{ audio_play_sound(sd_text, 2, 0); }
 										if iap_status() == iap_status_available
 										   {
-										   var product = "vip_test";
+										   var product = "buy_cash_7000";
 										   iap_acquire(product, "");
 										   }
 										   else
@@ -2368,6 +2408,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 										{
 										if gold_buy[1] = 0
 											{
+											GoogleAnalytics_SendEvent("CASH","Игрок купил 100 кэша!");
 											if gold_buy_s[1] = 0
 												{ gold_buy[1] = 1; }
 											}
@@ -2393,6 +2434,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 										{
 										if gold_buy[2] = 0
 											{
+											GoogleAnalytics_SendEvent("CASH","Игрок купил 800 кэша!");
 											if gold_buy_s[2] = 0
 												{ gold_buy[2] = 1; }
 											}
@@ -2418,6 +2460,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 										{
 										if gold_buy[3] = 0
 											{
+											GoogleAnalytics_SendEvent("CASH","Игрок купил 5500 кэша!");
 											if gold_buy_s[3] = 0
 												{ gold_buy[3] = 1; }
 											}
@@ -2567,6 +2610,8 @@ if global.menu_now = "store" or global.menu_next = "store"
 		#endregion
 	#endregion
 	///////
+	var top;
+	top = sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
 	
 	draw_sprite_part_ext(s_store_back, 0, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 	
@@ -2620,19 +2665,12 @@ if global.menu_now = "store" or global.menu_next = "store"
 	if sc_dist > 3
 		{ sc_dist -= 0.025; }
 	
-	draw_sprite_ext(s_store_back, 3, 640, global.size + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27 + 8, global.back_scale, global.back_scale, 0, c_black, 0.5);
-	draw_sprite_ext_t(s_store_back, 3, 640 + prx, global.size + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
+	draw_sprite_ext(s_store_back, 3, 640, global.size / 2 + 1300 * global.back_scale / 1.5 - training_back_y + pry * 0.5 + sc_angle + 10, global.back_scale, global.back_scale, 0, c_black, 0.5);
+	draw_sprite_ext_t(s_store_back, 3, 640 + prx, global.size / 2 + 1300 * global.back_scale / 1.5 - training_back_y + pry * 0.5 + sc_angle/* global.size + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27*/, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 	
 	if point_in_rectangle(mouse_x, mouse_y, 280, global.size + top - 100 - 1200 * global.back_scale - 27, 1000, global.size + top + 500 - 1200 * global.back_scale - 27)
 	&& (gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0 && lootbox_buy[1] = 0 && lootbox_buy[2] = 0)
 		{
-		//// КЛАЦ
-		if mouse_check_button_pressed(mb_left)
-			{
-			if global.sound
-				{ audio_play_sound(sd_text, 2, 0); }
-			}
-		//// КЛАЦ
 		if mouse_check_button_pressed(mb_left)
 			{
 			sc_spd   = 2;
@@ -2698,10 +2736,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 		#endregion
 		//menu_setb_y - training_back_y + pry
 		//top - training_back_y + pry * 0.5 + sc_angle * 2 - 27
-		draw_text_transformed_t(640 - string_width(string(global.gold) + "©") / 2 * menu_txt_s, top + 150 + lootbox_y + training_back_y + 10 - 270 + sc_angle, string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, global.gold_color, c_black);
+		draw_text_transformed_t(640 - string_width(string(global.gold) + "©") / 2 * menu_txt_s, /* top + popka + 150*/  global.size / 2 - 300 + 50 - training_back_y + pry * 0.5 + sc_angle , string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, global.gold_color, c_black);
 		//draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, global.gold_color, 1, global.gold_color, c_black);
 		
-		draw_text_transformed_t(640 + string_width(string(global.cash) + "ç") / 2 * menu_txt_s, top + 150 + lootbox_y + training_back_y + 10 - 270 + sc_angle, string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.cash_color, c_black);
+		draw_text_transformed_t(640 + string_width(string(global.cash) + "ç") / 2 * menu_txt_s, /* top + popka + 150*/  global.size / 2 - 300 + 50 - training_back_y + pry * 0.5 + sc_angle , string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.cash_color, c_black);
 		//draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus1_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, global.cash_color, 1, global.cash_color, c_black);
 		
 		//if mouse_check_button_pressed(mb_left)
@@ -2812,7 +2850,6 @@ if global.menu_now = "store" or global.menu_next = "store"
 								if global.sound
 									{ audio_play_sound(sd_text, 2, 0); }
 								//// КЛАЦ
-								if global.sound { audio_play_sound(sd_lootbox, 2, 0); }
 								ini_open("Music.ini");
 									global.gold -= 100;
 									ini_write_string("Sounds", "sound_on_g", string(global.gold));
@@ -2851,6 +2888,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 									ta = 0;
 									for(l=1;l<=18;l++)
 										{ ta += global.totem_have[l]; }
+									
 									if ta = 18
 										{ lootbox_item_t[j] = 1; }
 									}
@@ -2865,7 +2903,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 										if tr = 3
 											{ lootbox_item_c[j] = c_fuchsia; lootbox_item_v[j] = 8; }
 										if tr = 4
-											{ lootbox_item_c[j] = c_orange; lootbox_item_v[j] = 10; }
+											{ lootbox_item_c[j] = c_orange; lootbox_item_v[j] = 16; }
 										
 										var ran;
 										ran = irandom_range(1, string_length(heror));
@@ -2980,7 +3018,14 @@ if global.menu_now = "store" or global.menu_next = "store"
 						if lootbox_s = 1
 							{
 							if lootbox_alpha < 0.15
-								{ lootbox_alpha += 0.05 }
+								{
+								lootbox_alpha += 0.05;
+								if lootbox_alpha >= 0.15
+									{
+									if global.sound
+										{ audio_play_sound(sd_lootbox, 2, 0); }
+									}
+								}
 								else
 								{
 								if lootbox_i < 18
@@ -3032,15 +3077,12 @@ if global.menu_now = "store" or global.menu_next = "store"
 							}
 						if lootbox_s = 4
 							{
-							//// КЛАЦ
-							if mouse_check_button_pressed(mb_left)
-								{
-								if global.sound
-									{ audio_play_sound(sd_text, 2, 0); }
-								}
-							//// КЛАЦ
 							if mouse_check_button_released(mb_left)
 								{
+								//// КЛАЦ
+								if global.sound
+									{ audio_play_sound(sd_text, 2, 0); }
+								//// КЛАЦ
 								if mouse_x < 640
 									{
 									if lootbox_item_o[1] = 0
@@ -3348,8 +3390,8 @@ if global.menu_now = "store" or global.menu_next = "store"
 									//// КЛАЦ
 									if mouse_check_button_pressed(mb_left)
 										{
-										if global.sound
-											{ audio_play_sound(sd_text, 2, 0); }
+										//if global.sound
+										//	{ audio_play_sound(sd_text, 2, 0); }
 										}
 									//// КЛАЦ
 									ini_open("Music.ini");
@@ -3402,7 +3444,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 											if tr = 3
 												{ lootbox_item_c[j] = c_fuchsia; lootbox_item_v[j] = 8; }
 											if tr = 4
-												{ lootbox_item_c[j] = c_orange; lootbox_item_v[j] = 10; }
+												{ lootbox_item_c[j] = c_orange; lootbox_item_v[j] = 16; }
 									
 											var ran;
 											ran = irandom_range(1, string_length(heror));
@@ -3516,8 +3558,27 @@ if global.menu_now = "store" or global.menu_next = "store"
 								}
 							if lootbox_s = 1
 								{
+								//if lootbox_alpha >= 0.15
+								//	{
+								//	//if global.sound
+								//	//	{ audio_play_sound(sd_lootbox, 2, 0); }
+								//	}
+								//	else
+								//	{
+								//	if lootbox_i < 18
+								//		{ lootbox_i += 0.5; }
+								//		else
+								//		{ lootbox_s = 2; lootbox_i = 18; }
+								//	}
 								if lootbox_alpha < 0.15
-									{ lootbox_alpha += 0.05 }
+									{
+									lootbox_alpha += 0.05;
+									if lootbox_alpha >= 0.15
+										{
+										if global.sound
+											{ audio_play_sound(sd_lootbox, 2, 0); }
+										}
+									}
 									else
 									{
 									if lootbox_i < 18
@@ -3581,11 +3642,8 @@ if global.menu_now = "store" or global.menu_next = "store"
 								if mouse_check_button_released(mb_left)
 									{
 									//// КЛАЦ
-									if mouse_check_button_pressed(mb_left)
-										{
-										if global.sound
-											{ audio_play_sound(sd_text, 2, 0); }
-										}
+									if global.sound
+										{ audio_play_sound(sd_text, 2, 0); }
 									//// КЛАЦ
 									if mouse_x <= 426
 										{
@@ -3906,7 +3964,6 @@ if global.menu_now = "store" or global.menu_next = "store"
 			title_yy = global.size - 50;
 			for(i=1;i<=25;i++)
 				{
-				title_text[i]  = "";
 				title_scale[i] = 0.2;
 				title_y[i] = 150 * i;
 				}
@@ -3917,9 +3974,9 @@ if global.menu_now = "store" or global.menu_next = "store"
 			if title_yy + title_y[i] < global.size + 50 && title_yy + title_y[i] > - 50
 				{ title_scale[i] += 0.0005; }
 			if title_yy + title_y[i] > -400
-				{ draw_text_transformed_t(640, title_yy + title_y[i], title_text[i], title_scale[i], title_scale[i], 0, global.color_white, c_black); }
+				{ draw_text_transformed_t(640, title_yy + title_y[i], title_text[i], title_scale[i], title_scale[i], 0, title_coll[i], c_black); }
 			}
-	
+		
 		if mouse_check_button_released(mb_left)
 			{
 			if global.sound
@@ -3927,9 +3984,8 @@ if global.menu_now = "store" or global.menu_next = "store"
 			
 			global.titles = 0;
 			title_yy = global.size - 50;
-			for(i=1;i<=24;i++)
+			for(i=1;i<=25;i++)
 				{
-				title_text[i]  = "";
 				title_scale[i] = 0.2;
 				title_y[i] = 150 * i;
 				}
@@ -3980,10 +4036,6 @@ if global.menu_now = "store" or global.menu_next = "store"
 			tr_timm = room_speed * irandom_range(3,6);
 			}
 		}
-#endregion
-
-#region Типа Шейдер
-	draw_sprite(s_tipasheder, 0, 640, global.size / 2);
 #endregion
 
 #region Старое

@@ -5,7 +5,6 @@
 //if mouse_check_button_pressed(mb_left)
 //	{ click = instance_position(mouse_x, mouse_y, id); }
 	
-	
 //if instance_position(mouse_x, mouse_y, id) && mouse_check_button_pressed(mb_left)
 //	{ click = 1; }
 //if !instance_position(mouse_x, mouse_y, id) && mouse_check_button_pressed(mb_left)
@@ -43,20 +42,20 @@
 //		{ image_index -= 0.1; }
 //	}
 	
-	//var map = ds_map_create();
-	//var ntf = push_get_first_local_notification(map);
-	//while(ntf >= 0)
-	//   {
-	//   var data = ds_map_find_value(map, "data");
-	//   if data == "daily_reward 1" or data == "daily_reward 3" or data == "daily_reward 5" or data == "daily_reward 7"
-	//      {
-	//      push_cancel_local_notification(ntf);
-	//      }
-	//   ntf = push_get_next_local_notification(map);
-	//   }
-	//ds_map_destroy(map);
+	var map = ds_map_create();
+	var ntf = push_get_first_local_notification(map);
+	while(ntf >= 0)
+	   {
+	   var data = ds_map_find_value(map, "data");
+	   if data == "d1" or data == "d2" or data == "d3" or data == "d4"
+	      {
+	      push_cancel_local_notification(ntf);
+	      }
+	   ntf = push_get_next_local_notification(map);
+	   }
+	ds_map_destroy(map);
 
-	//alarm[0]=2;
+	alarm[0]=2;
 #endregion
 #region Реклама
 	#region UnityADS
@@ -102,7 +101,7 @@
 	application_surface_enable(1);
 	
 	device_mouse_dbclick_enable(0);
-	global.size = 640; //640; // 720; //800; //960;
+	global.size = 960; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
@@ -182,7 +181,7 @@
 			if !ini_section_exists("Sounds")
 			    {
 				ini_write_string("Sounds", "sound_on_g", "0");
-				ini_write_string("Sounds", "sound_false_c", "45");
+				ini_write_string("Sounds", "sound_false_c", "20");
 				}
 			//global.training_o = ini_read_real("Training", "training", 0);
 			

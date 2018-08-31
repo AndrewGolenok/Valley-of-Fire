@@ -5221,7 +5221,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								if bot_type = 3
 									{ bot_time = random_range(0, 1) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
 								}
-							bot_time2 = e_time[e_question];//6 * room_speed;
+							bot_time2 = e_time[e_question]; //6 * room_speed;
 							bot_wait  = min_wait[theme_round[global.rounds],round_task[global.rounds,global.task]];
 							}
 							else
@@ -5257,9 +5257,9 @@ if global.hero = 1 && global.enemy_hero = 1
 											{ bot_time2 -= 1; }
 											else
 											{
-											bot_time = -1;
-											(global.player_object).answer = -1
-											(global.enemy_object).stun = 1;
+											//bot_time = -1;
+											//(global.player_object).answer = -1
+											//(global.enemy_object).stun = 1;
 											global.bot_answer = 0;
 											}
 										}
@@ -8526,8 +8526,8 @@ if global.hero = 1 && global.enemy_hero = 1
 						}
 						else
 						{
-						if global.sound
-							{ audio_play_sound(sd_lose, 2, 0); }
+						//if global.sound
+						//	{ audio_play_sound(sd_lose, 2, 0); }
 						}
 					}
 				}
@@ -8535,11 +8535,21 @@ if global.hero = 1 && global.enemy_hero = 1
 				{
 				if global.quick = 0
 					{
+					if whowin = 2 && g_rank_stage = 0
+						{
+						if global.sound
+							{ audio_play_sound(sd_lose, 2, 0); }
+						}
 					if g_rank_stage = 0
 						{ g_rank_stage = 1; }
 					}
 					else
 					{
+					if whowin = 2 && g_rank_stage != 8
+						{
+						if global.sound
+							{ audio_play_sound(sd_lose, 2, 0); }
+						}
 					if g_rank_stage != 8
 						{
 						ini_open("Music.ini");
@@ -9044,21 +9054,26 @@ if global.hero = 1 && global.enemy_hero = 1
 								var a;
 								a = requestReview();
 								
-								GoogleAnalytics_SendEvent("REQUEST","Игрок нажал на отзыв!");
 								if a = 1
-									{ global.request = 1; }
+									{
+									GoogleAnalytics_SendEvent("REQUEST","Игрок нажал на отзыв!");
+									global.request = 1;
+									}
 								}
 							global.wins += 1;
 							
 							ini_open("Music.ini");
-								ini_write_string("Request", "request", "0");
-								ini_write_string("Request", "wins", "0");
-							ini_close();
-
+								ini_write_string("Request", "request", string(global.request));
+								ini_write_string("Request", "wins", string(global.wins));
+							
 							global.request = ini_read_real("Request", "request", 0);
 							global.wins    = ini_read_real("Request", "wins", 0);
+							
+							//global.request = 0;
+							
+							req = 1;
+							ini_close();
 							}
-						req = 1;
 						}
 					}
 					else
@@ -10076,7 +10091,17 @@ if lines_true
 					global.training_stage[global.training] += 1;
 					
 					if global.training = 7 && global.training_stage[7] = 6
-						{ global.shomen = 2; room_goto_t("duel"); }
+						{
+						global.shomen = 2;
+						room_goto_t("duel");
+						
+						ini_open("Music.ini");
+							global.gold += 150;
+							global.cash += 15;
+							ini_write_string("Sounds", "sound_on_g", string(global.gold));
+							ini_write_string("Sounds", "sound_false_c", string(global.cash));
+						ini_close();
+						}
 					global.text_ne = 1;
 					global.text_go = 0;
 					}

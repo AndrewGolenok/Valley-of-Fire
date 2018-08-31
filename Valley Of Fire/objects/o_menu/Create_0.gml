@@ -209,7 +209,7 @@
 	//if global.size <= 640
 	//	{ y_ind = 90; }
 	
-	lootbox_y = 0 + y_ind + topp;
+	lootbox_y = global.size / 2 - 100 - 100; //0 + y_ind + topp;
 	
 	lootbox_alpha = 0; // Темный фон
 	lootbox_aa = 0; // Альфа вспышки
@@ -296,7 +296,7 @@
 	lvlup[2] = 0;
 	lvlup[3] = 0;
 	
-	daily_y   = 500 + y_ind + topp;
+	daily_y   = global.size / 2 - 100 + 500 - 100; //500 + y_ind + topp;
 	
 	daily_t[1] = 0;
 	daily_t[2] = 0;
@@ -310,8 +310,8 @@
 	daily_s[2] = 1;
 	daily_s[3] = 1;
 	
-	cash_y   = 900 + y_ind + topp;
-	gold_y   = 1600 + 30 + y_ind + topp;
+	cash_y   = global.size / 2 - 100 + 900 - 100; //900 + y_ind + topp;
+	gold_y   = global.size / 2 - 100 + 1600 + 30 - 100; //1600 + 30 + y_ind + topp;
 	
 	cash_txt[1] = "THE WAD\nOF CASH";
 	cash_val[1] = 50//80;
@@ -474,6 +474,8 @@
 		if global.rank_stars < 2
 			{ skul_i = 15;}
 		global.player_rank = skul_i;
+		
+		GoogleAnalytics_SendEvent("PLAY","Ранг игрока: " + string(global.player_rank));
 	#endregion
 #endregion
 #region Титры
@@ -482,6 +484,7 @@
 	for(i=1;i<=25;i++)
 		{
 		title_text[i]  = "";
+		title_coll[i]  = global.color_white;
 		title_scale[i] = 0.2;
 		title_y[i] = 150 * i;
 		}
@@ -489,6 +492,15 @@
 	title_text[2]  = "";
 	title_text[3]  = "";
 	title_text[4]  = "";
+	
+	title_coll[1]   = c_orange;
+	title_coll[5]   = c_orange;
+	title_coll[10]  = c_orange;
+	title_coll[12]  = c_orange;
+	title_coll[14]  = c_orange;
+	title_coll[17]  = c_orange;
+	title_coll[19]  = c_orange;
+	title_coll[25]  = c_orange;
 	
 	title_text[5]  = "GAME DESIGN:";
 	title_text[6]  = "ANDREW GOLENOK";
