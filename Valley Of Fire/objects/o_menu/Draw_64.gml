@@ -139,11 +139,8 @@
 			if point_in_rectangle(mouse_x, mouse_y, 640 - 100, 0, 640 + 100, y + 200)
 				{
 				//// КЛАЦ
-				if mouse_check_button_pressed(mb_left)
-					{
-					if global.sound
-						{ audio_play_sound(sd_text, 2, 0); }
-					}
+				if global.sound
+					{ audio_play_sound(sd_text, 2, 0); }
 				//// КЛАЦ
 				if global.titles = 0
 					{ global.titles = 1; io_clear(); }
@@ -319,11 +316,8 @@
 			if point_in_rectangle(mouse_x, mouse_y, 1280 - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") * 0.2 - 10, 0, 1280, string_height(string(global.gold) + "©") + 10)
 				{
 				//// КЛАЦ
-				if mouse_check_button_pressed(mb_left)
-					{
 					if global.sound
 						{ audio_play_sound(sd_text, 2, 0); }
-					}
 				//// КЛАЦ
 				global.menu_next = "store";
 				global.menu_now = "store";
@@ -403,19 +397,13 @@
 				if point_in_rectangle(mouse_x, mouse_y, 72 * 1.6 + 15, 0, 120 + 72 * 1.6, 125)
 					{
 					//// КЛАЦ
-					if mouse_check_button_pressed(mb_left)
-						{
-						if global.sound
-							{ audio_play_sound(sd_text, 2, 0); }
-						}
+					if global.sound
+						{ audio_play_sound(sd_text, 2, 0); }
 					//// КЛАЦ
 					global.sound = !global.sound;
 					//// КЛАЦ
-					if mouse_check_button_pressed(mb_left)
-						{
-						if global.sound
-							{ audio_play_sound(sd_text, 2, 0); }
-						}
+					if global.sound
+						{ audio_play_sound(sd_text, 2, 0); }
 					//// КЛАЦ
 					ini_open("Music.ini");
 						ini_write_string("Music", "sound", string(global.sound));
@@ -494,7 +482,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 	#region Сами тотемы
 		for(i=1;i<=18;i++)
 			{
-			draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, (160 + 360 + popka) - top + totem_y[i] + training_back_y + totem_yy1 + 10 + pry, totem_s, totem_s, 0, c_black, 0.5); 
+			draw_sprite_ext(s_totems, i, 290 + totem_x[i], (160 + 360 + popka) - top + totem_y[i] + training_back_y + totem_yy1 + 10 + pry, totem_s, totem_s, 0, c_black, 0.5); 
 			if global.totem_new[i] = 1
 				{ draw_sprite_ext(s_light, 0, 290 + totem_x[i] + prx, (160 + 360 + popka) - top + totem_y[i] + training_back_y + totem_yy1 + 10 + pry, totem_s, totem_s, 0, c_white, 0.7);  }
 			draw_sprite_ext(s_totems, i, 290 + totem_x[i] + prx, (160 + 360 + popka) - top + totem_y[i] + training_back_y + totem_yy1 + pry, totem_s * totems_ss[i], totem_s * totems_ss[i], 0, c_white, 1);
@@ -966,7 +954,7 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 	if sc_dist > 3
 		{ sc_dist -= 0.025; }
 	
-	draw_sprite_ext(s_totem_back, 3, 640 + prx + 140 - 5, global.size - 150 + top - training_back_y + pry * 0.5 + sc_angle * 2 - 50 + 10, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_black, 0.5);
+	draw_sprite_ext(s_totem_back, 3, 640 + 140 - 5, global.size - 150 + top - training_back_y + pry * 0.5 + sc_angle * 2 - 50 + 10, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_black, 0.5);
 	draw_sprite_ext_t(s_totem_back, 3, 640 + prx + 140, global.size - 150 + top - training_back_y + pry * 0.5 + sc_angle * 2 - 50, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_white, 1, c_white, c_black);
 	
 	if point_in_rectangle(mouse_x, mouse_y, 1020, 0, 1280, 250)
@@ -999,11 +987,20 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 				{ global.menu_now = "heroes"; global.menu_next = "heroes"; io_clear(); }
 				else
 				{ global.menu_next = "main"; }
+			totem_yy  = 0;
+			totem_yy1 = 0;
+			//hold_my   = 0;
+			
 			hold_sp   = 0;
 			hold_ti   = 0;
 			hold_dr   = 1;
 			hold_do   = 1;
-			totem_yy1 = 0;
+			
+			totem_alp = 0.5;
+			totem_adi = 1;
+			
+			totem_pr = 0;
+			totem_re = 0;
 			//global.menu_next = "main";
 			}
 		}
@@ -1339,7 +1336,7 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 		{ sc_dist -= 0.025; }
 	
 	
-	draw_sprite_ext(s_heroes_back, 3, 640 + prx + 140 + 6, global.size - 150 + top - training_back_y + pry * 0.5 - sc_angle * 2 - 50 + 20, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_black, 0.5);
+	draw_sprite_ext(s_heroes_back, 3, 640 + 140 + 6, global.size - 150 + top - training_back_y + pry * 0.5 - sc_angle * 2 - 50 + 20, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_black, 0.5);
 	draw_sprite_ext_t(s_heroes_back, 3, 640 + prx + 140, global.size - 150 + top - training_back_y + pry * 0.5 - sc_angle * 2 - 50, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_white, 1, c_white, c_black);
 	
 	if point_in_rectangle(mouse_x, mouse_y, 1160, 0, 1280, 380)
@@ -1563,7 +1560,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 						{ hand_i += 0.4; }
 						else
 						{ hand_i = 0; }
-					draw_sprite_ext(s_training_hand, hand_i, theme_x[i,j] + prx - 5, theme_y[i,j] + training_back_y + pry + 15, 1, 1, 0, c_black, 0.5);
+					draw_sprite_ext(s_training_hand, hand_i, theme_x[i,j]- 5, theme_y[i,j] + training_back_y + pry + 15, 1, 1, 0, c_black, 0.5);
 					draw_sprite_ext_t(s_training_hand, hand_i, theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
 					}
 				draw_set_font(global.game_font);
@@ -1641,7 +1638,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 			draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 + pry - 50 + 15 + training_back_y, 1, 1, 0, c_black, 0.5);
 			draw_sprite_ext(s_rank_shield, 0, 640 + prx, global.size / 2 + pry - 50 + training_back_y, 1, 1, 0, c_white, 1);
 			
-			draw_sprite_ext(s_rank_skul, skul_i, 640 + prx, global.size / 2 + pry - 50 + 15 + training_back_y, 1, 1, 0, c_black, 0.5);
+			draw_sprite_ext(s_rank_skul, skul_i, 640, global.size / 2 + pry - 50 + 15 + training_back_y, 1, 1, 0, c_black, 0.5);
 			draw_sprite_ext(s_rank_skul, skul_i, 640 + prx, global.size / 2 + pry - 50 + training_back_y, 1, 1, 0, c_white, 1);	
 			
 			if star_need = 2
@@ -1784,10 +1781,10 @@ if global.menu_now = "training" or global.menu_next = "training"
 	if sc_dist > 5
 		{ sc_dist -= 0.025; }
 	
-	draw_sprite_ext(s_training_rope, 0, 1130 + prx + 5, -training_back_y + pry * 0.5 + 10, 0.18, 0.18, sc_angle, c_black, 0.5);
+	draw_sprite_ext(s_training_rope, 0, 1130 + 5, -training_back_y + pry * 0.5 + 10, 0.18, 0.18, sc_angle, c_black, 0.5);
 	draw_sprite_ext(s_training_sc, 0, 1130 + prx + lengthdir_x(300, sc_angle - 90) + 5, -training_back_y + lengthdir_y(300, sc_angle - 90) + pry * 0.7 + 10, 0.5, 0.5, 0, c_black, 0.5);
 	
-	draw_sprite_ext_t(s_training_rope, 0, 1130 + prx, -training_back_y + pry * 0.5, 0.18, 0.18, sc_angle, c_white, 1, c_white, c_black);
+	draw_sprite_ext_t(s_training_rope, 0, 1130, -training_back_y + pry * 0.5, 0.18, 0.18, sc_angle, c_white, 1, c_white, c_black);
 	draw_sprite_ext_t(s_training_sc, 0, 1130 + prx + lengthdir_x(300, sc_angle - 90), -training_back_y + lengthdir_y(300, sc_angle - 90) + pry * 0.7, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
 	
 	if point_in_rectangle(mouse_x, mouse_y, - 60 + 1130 + lengthdir_x(300, sc_angle - 90), - 100 -training_back_y + lengthdir_y(300, sc_angle - 90), 60 + 1130 + lengthdir_x(300, sc_angle - 90), 100 -training_back_y + lengthdir_y(300, sc_angle - 90))
@@ -2565,7 +2562,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 	
 	if wl_ang >= 360
 		{ wl_ang -= 360; }
-	draw_sprite_ext(s_store_weel, 2, 15 + prx, global.size + training_back_y - 10 + yh / 3 + pry + 10, global.back_scale, global.back_scale, wl_ang, c_black, 0.5);
+	draw_sprite_ext(s_store_weel, 2, 15, global.size + training_back_y - 10 + yh / 3 + pry + 10, global.back_scale, global.back_scale, wl_ang, c_black, 0.5);
 	draw_sprite_ext_t(s_store_weel, 2, 0 + prx, global.size + training_back_y - 10 + yh / 3 + pry, global.back_scale, global.back_scale, wl_ang, c_white, 1, c_white, c_black);
 	
 	draw_set_font(global.game_font);
@@ -2583,7 +2580,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 	if sc_dist > 3
 		{ sc_dist -= 0.025; }
 	
-	draw_sprite_ext(s_store_back, 3, 640 + prx, global.size + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27 + 8, global.back_scale, global.back_scale, 0, c_black, 0.5);
+	draw_sprite_ext(s_store_back, 3, 640, global.size + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27 + 8, global.back_scale, global.back_scale, 0, c_black, 0.5);
 	draw_sprite_ext_t(s_store_back, 3, 640 + prx, global.size + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 	
 	if point_in_rectangle(mouse_x, mouse_y, 280, global.size + top - 100 - 1200 * global.back_scale - 27, 1000, global.size + top + 500 - 1200 * global.back_scale - 27)
@@ -2772,12 +2769,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 							if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 20, global.size / 2 + 160 - 80 + 60 + 70, 640 + 150 + 20, global.size / 2 + 160 + 80 + 60 + 70) && lootbox_buy_s[i] = 1 
 								{
 								//// КЛАЦ
-								if mouse_check_button_pressed(mb_left)
-									{
-									if global.sound
-										{ audio_play_sound(sd_text, 2, 0); }
-									}
+								if global.sound
+									{ audio_play_sound(sd_text, 2, 0); }
 								//// КЛАЦ
+								if global.sound { audio_play_sound(sd_lootbox, 2, 0); }
 								ini_open("Music.ini");
 									global.gold -= 100;
 									ini_write_string("Sounds", "sound_on_g", string(global.gold));
@@ -2939,7 +2934,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 									#endregion
 									}
 								}
-							if global.sound { audio_play_sound(sd_lootbox, 2, 0); }
+							
 							lootbox_s = 1;
 							}
 						if lootbox_s = 1
@@ -3885,15 +3880,11 @@ if global.menu_now = "store" or global.menu_next = "store"
 				{ draw_text_transformed_t(640, title_yy + title_y[i], title_text[i], title_scale[i], title_scale[i], 0, global.color_white, c_black); }
 			}
 	
-		if mouse_check_button_pressed(mb_left)
+		if mouse_check_button_released(mb_left)
 			{
-			//// КЛАЦ
-			if mouse_check_button_pressed(mb_left)
-				{
-				if global.sound
-					{ audio_play_sound(sd_text, 2, 0); }
-				}
-			//// КЛАЦ
+			if global.sound
+				{ audio_play_sound(sd_text, 2, 0); }
+			
 			global.titles = 0;
 			title_yy = global.size - 50;
 			for(i=1;i<=24;i++)
@@ -3902,6 +3893,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 				title_scale[i] = 0.2;
 				title_y[i] = 150 * i;
 				}
+			io_clear();
 			}
 		}
 #endregion
@@ -3935,20 +3927,17 @@ if global.menu_now = "store" or global.menu_next = "store"
 		if tr_time > 0
 			{
 			tr_time -= 1;
-			if (tr_ang < 10 && tr_dir = 1)
-			or (tr_ang > -10 && tr_dir = -1)
-				{ tr_ang += 1 * tr_dir; }
-				else
+			if (tr_ang > 8 && tr_dir = 1)
+			or (tr_ang < -8 && tr_dir = -1)
 				{ tr_dir = -tr_dir; tr_ang += 1 * tr_dir; }
+				else
+				{ tr_ang += 1 * tr_dir; }
 			}
 			else
 			{
-			if abs(tr_ang - 1) > 0
-				{
-				tr_ang += 1 * tr_dir;
-				}
-				else
-				{ tr_ang = 0; tr_time = room_speed * 2; tr_timm = room_speed * irandom_range(3,6); }
+			tr_ang = 0;
+			tr_time = room_speed * 2;
+			tr_timm = room_speed * irandom_range(3,6);
 			}
 		}
 #endregion

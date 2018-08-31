@@ -1293,6 +1293,25 @@
             }
         },
         {
+            "Key": "2ce8a7d3-23a5-4470-ac0c-e6d4b2ef464b",
+            "Value": {
+                "id": "4da1e6d1-e5a9-4247-bce7-027896a0bc28",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "datafiles_yy\/Request Review Extension.gmez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "2f0e3031-a8a9-4e58-92d1-d7ee55505314",
             "Value": {
                 "id": "ffdd004e-fcd9-4b26-ba9c-b08e42dee971",
@@ -1917,6 +1936,25 @@
                 ],
                 "resourcePath": "sprites\/s_chief\/s_chief.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "438afcd7-487b-4dfb-b6e5-d8417aa76233",
+            "Value": {
+                "id": "02f9fd6b-20be-42fb-8c84-7060175c74f7",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/macros\/macros.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -2620,6 +2658,25 @@
                 ],
                 "resourcePath": "sprites\/s_healthbar_hp\/s_healthbar_hp.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "56d07bd7-614f-48f1-96e9-dce67d917fdf",
+            "Value": {
+                "id": "da16d6ae-2c01-44e1-95e5-d49eb9f5b511",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "scripts\/requestReview\/requestReview.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -4273,6 +4330,25 @@
                 ],
                 "resourcePath": "sprites\/s_botle122\/s_botle122.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "8f42f4a1-d266-42b2-a32d-534eab6827f0",
+            "Value": {
+                "id": "c7bfa4a0-da4d-4b93-91a6-fb7e2b61810e",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "rooms\/r_main\/r_main.yy",
+                "resourceType": "GMRoom"
             }
         },
         {
@@ -6841,6 +6917,25 @@
             }
         },
         {
+            "Key": "e431a8e6-f0c5-4643-830c-2127c2b1b31d",
+            "Value": {
+                "id": "af21f014-19f8-4065-8cb4-50f02de6966a",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "extensions\/GoogleAnalyticsExt\/GoogleAnalyticsExt.yy",
+                "resourceType": "GMExtension"
+            }
+        },
+        {
             "Key": "e4d0a29c-5264-4120-9e99-d5c242188bea",
             "Value": {
                 "id": "32fb6089-d1a3-4272-9afe-538e66af1e54",
@@ -7669,7 +7764,9 @@
         "7dd535ae-ff97-46ba-9a46-b33f2e1ce7e9",
         "679fdfa0-470f-4bbf-b56b-88b03e0bf320",
         "f454f9bb-3903-4b1f-8b29-a9faa081b979",
-        "e61dfcf1-a477-40b2-bf4e-9b2413078670"
+        "e61dfcf1-a477-40b2-bf4e-9b2413078670",
+        "438afcd7-487b-4dfb-b6e5-d8417aa76233",
+        "56d07bd7-614f-48f1-96e9-dce67d917fdf"
     ],
     "tutorial": ""
 }

@@ -88,8 +88,8 @@ alarm[1] = room_speed / 10;
 	global.room_to_go = rm;
 #endregion
 
-global.room_rm  = rm;
-global.room_rmp = rmp;
+//global.room_rm  = rm;
+//global.room_rmp = rmp;
 
-if rmp != "logo"
-	{ global.music_pere = 1; }
+//if rmp != "logo"
+//	{ global.music_pere = 1; }

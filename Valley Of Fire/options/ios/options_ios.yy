@@ -32,7 +32,7 @@
     "option_ios_orientation_landscape_flipped": true,
     "option_ios_orientation_portrait": false,
     "option_ios_orientation_portrait_flipped": false,
-    "option_ios_output_dir": "~\/GameMakerStudio2\/iOS",
+    "option_ios_output_dir": "~\/GameMakerStudio2\/iOS2",
     "option_ios_push_notifications": false,
     "option_ios_scale": 0,
     "option_ios_splash_time": 0,
@@ -52,15 +52,15 @@
     "option_ios_splashscreen_iphone_ios8_47_portrait": "${base_options_dir}\/ios\/splash\/iphone_8_47_portrait.png",
     "option_ios_splashscreen_iphone_ios8_55_landscape": "${base_options_dir}\/ios\/splash\/iphone_8_55_landscape.png",
     "option_ios_splashscreen_iphone_ios8_55_portrait": "${base_options_dir}\/ios\/splash\/iphone_8_55_portrait.png",
-    "option_ios_splashscreen_iphone_x_landscape": "${base_options_dir}\/ios\/splash\/iphone_x_landscape.png",
-    "option_ios_splashscreen_iphone_x_portrait": "${base_options_dir}\/ios\/splash\/iphone_x_portrait.png",
+    "option_ios_splashscreen_iphone_x_landscape": "${options_dir}\/ios\/splash\/iphone_x_landscape.png",
+    "option_ios_splashscreen_iphone_x_portrait": "${options_dir}\/ios\/splash\/iphone_x_portrait.png",
     "option_ios_team_id": "8YZF2ZZDSD",
     "option_ios_texture_page": "1024x1024",
     "option_ios_use_facebook": false,
     "option_ios_version": {
-        "build": 306,
+        "build": 0,
         "major": 1,
-        "minor": 0,
+        "minor": 1,
         "revision": 0
     }
 }

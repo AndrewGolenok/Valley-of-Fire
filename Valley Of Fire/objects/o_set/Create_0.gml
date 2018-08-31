@@ -233,6 +233,15 @@
 				{ ini_write_string("Lug", "lug", "0"); }
 			global.lug = ini_read_real("Lug", "lug", 0);
 		#endregion
+		#region Реквест - Отзыв
+			if !ini_section_exists("Request")
+				{
+				ini_write_string("Request", "request", "0");
+				ini_write_string("Request", "wins", "0");
+				}
+			global.request = ini_read_real("Request", "request", 0);
+			global.wins    = ini_read_real("Request", "wins", 0);
+		#endregion
 		#region Ежедневные покупки
 			if !ini_section_exists("Daily")
 				{
@@ -684,7 +693,7 @@
 	//buy_cash_3000 = 0;
 	//buy_cash_7000 = 0;
 #endregion
-#region Мызыка
+#region Музыка
 	global.music_gain = 1;
 	global.music_pere = 0;
 	
@@ -706,3 +715,5 @@
 	global.room_to_go = "set";
 	room_goto_t("logo"); // Переход
 #endregion
+
+//requestReview();
