@@ -106,7 +106,10 @@
             "init": "",
             "kind": 4,
             "order": [
-                
+                "cf1a01f2-c724-4dbd-88e5-5eded4f8cd89",
+                "23ed04eb-342a-4f30-9031-933bad482fff",
+                "9dbc6cf7-57e4-4744-92cb-eb476e01688d",
+                "6781517f-7da1-4a88-af42-caf9ce4ffa5b"
             ],
             "origname": "extensions\\GoogleAnalyticsExt.ext",
             "uncompress": false

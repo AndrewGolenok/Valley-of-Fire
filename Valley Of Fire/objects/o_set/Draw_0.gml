@@ -30,8 +30,8 @@
 
 	if os_type != os_macosx
 		{
-		global.paral_x = device_get_tilt_y();
-		global.paral_y = device_get_tilt_x();
+		global.paral_x = -device_get_tilt_y();
+		global.paral_y = -device_get_tilt_x();
 		}
 #endregion
 #region Ини-файлы

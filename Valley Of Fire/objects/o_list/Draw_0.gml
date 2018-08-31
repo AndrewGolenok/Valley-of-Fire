@@ -9030,7 +9030,40 @@ if global.hero = 1 && global.enemy_hero = 1
 					}
 				}
 			//////
-			
+			if g_rank_stage >= 7
+				{
+				if whowin = 1
+					{
+					GoogleAnalytics_SendEvent("WIN-LOSE","Игрок победил!");
+					if global.request = 0
+						{
+						if req = 0
+							{
+							if global.wins = 2 or global.wins = 5 or global.wins = 9 or global.wins = 19
+								{
+								var a;
+								a = requestReview();
+								
+								GoogleAnalytics_SendEvent("REQUEST","Игрок нажал на отзыв!");
+								if a = 1
+									{ global.request = 1; }
+								}
+							global.wins += 1;
+							
+							ini_open("Music.ini");
+								ini_write_string("Request", "request", "0");
+								ini_write_string("Request", "wins", "0");
+							ini_close();
+
+							global.request = ini_read_real("Request", "request", 0);
+							global.wins    = ini_read_real("Request", "wins", 0);
+							}
+						req = 1;
+						}
+					}
+					else
+					{ GoogleAnalytics_SendEvent("WIN-LOSE","Игрок проиграл!"); }
+				}
 			////////
 			draw_set_font(global.game_font);
 			if global.quick = 0

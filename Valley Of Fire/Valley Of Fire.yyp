@@ -723,6 +723,25 @@
             }
         },
         {
+            "Key": "1910ef39-c874-47fd-81ac-f3549d88f37a",
+            "Value": {
+                "id": "21f514c5-d636-43f8-8278-72b2a5125040",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/sprite204\/sprite204.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "19a1e636-d16e-43a7-9f27-e5562f866e14",
             "Value": {
                 "id": "6af09396-de25-45b5-9ab9-b122ec315015",
@@ -6784,6 +6803,25 @@
             }
         },
         {
+            "Key": "df7ee5b4-8c29-4837-8fc8-deeb8cd8acf3",
+            "Value": {
+                "id": "fa6acf96-9473-42aa-b498-469326a6216a",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_tipasheder\/s_tipasheder.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "e000f10a-e9ed-4978-bdb6-5310adf200ea",
             "Value": {
                 "id": "0e4998a1-6f51-46f0-a8ba-b370fb1d76a8",
@@ -7446,6 +7484,25 @@
                 ],
                 "resourcePath": "sprites\/s_diego2\/s_diego2.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "f628d731-85f6-479c-ac33-76689a6b27a0",
+            "Value": {
+                "id": "2f9a7b4f-57dc-48d4-afbf-229e9225d41f",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "extensions\/Request_Review_Extension\/Request_Review_Extension.yy",
+                "resourceType": "GMExtension"
             }
         },
         {

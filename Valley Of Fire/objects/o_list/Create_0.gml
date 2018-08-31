@@ -940,6 +940,8 @@
 	u_question = 1;
 	e_question = 1;
 	global.sraka = 0; // Никто не атакует
+	req = 0;
+	
 	for(i=1;i<=8;i++)
 		{
 		for(j=1;j<=4;j++)

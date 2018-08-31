@@ -43,20 +43,20 @@
 //		{ image_index -= 0.1; }
 //	}
 	
-	var map = ds_map_create();
-	var ntf = push_get_first_local_notification(map);
-	while(ntf >= 0)
-	   {
-	   var data = ds_map_find_value(map, "data");
-	   if data == "daily_reward 1" or data == "daily_reward 3" or data == "daily_reward 5" or data == "daily_reward 7"
-	      {
-	      push_cancel_local_notification(ntf);
-	      }
-	   ntf = push_get_next_local_notification(map);
-	   }
-	ds_map_destroy(map);
+	//var map = ds_map_create();
+	//var ntf = push_get_first_local_notification(map);
+	//while(ntf >= 0)
+	//   {
+	//   var data = ds_map_find_value(map, "data");
+	//   if data == "daily_reward 1" or data == "daily_reward 3" or data == "daily_reward 5" or data == "daily_reward 7"
+	//      {
+	//      push_cancel_local_notification(ntf);
+	//      }
+	//   ntf = push_get_next_local_notification(map);
+	//   }
+	//ds_map_destroy(map);
 
-	alarm[0]=2;
+	//alarm[0]=2;
 #endregion
 #region Реклама
 	#region UnityADS
@@ -582,8 +582,8 @@
 #region Параллакс
 	global.paral_x = 0;
 	global.paral_y = 0;
-	global.paral_sx = 12;
-	global.paral_sy = 25;
+	global.paral_sx = 15;
+	global.paral_sy = 20;
 #endregion
 #region Тотемы
 	global.p_totem[1] = -1;
@@ -705,6 +705,10 @@
 	
 	depth = -100000;
 #endregion
+#region Аналитика
+	GoogleAnalytics_Init("UA-125015160-1", false);
+	GoogleAnalytics_SendEvent("PLAY","Игрок зашёл в игру!");
+#endregion
 #region Прочее
 	randomize(); // Включаем рандом
 	//
@@ -715,5 +719,3 @@
 	global.room_to_go = "set";
 	room_goto_t("logo"); // Переход
 #endregion
-
-//requestReview();
