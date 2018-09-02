@@ -5,7 +5,10 @@
 		global.enemy_rank  = 15;
 		
 		bot_type = 3;
-		global.enemy_name  = "SHAMAN";
+		if os_get_language() = "ru"
+			{ global.enemy_name  = "ЧОКНУТЫЙ ШАМАН"; }
+			else
+			{ global.enemy_name  = "CRAZY SHAMAN"; }
 		global.hero = choose(1, 2, 3, 4, 6);
 		global.enemy_hero = 7;
 		}
@@ -20,6 +23,20 @@
 		{ global.player_name = "DRUNK JOE"; }
 	if global.hero = 5
 		{ global.player_name = "BILL SR."; }
+	
+	if os_get_language() = "ru"
+		{
+		switch(global.hero)
+			{
+			case 1: global.player_name = "ВОРИШКА"; break;
+			case 2: global.player_name = "ВЕСЁЛЫЙ ДЖО"; break;
+			case 3: global.player_name = "ОХОТНИЦА"; break;
+			case 4: global.player_name = "ДИЕГО"; break;
+			case 5: global.player_name = "БИЛЛ СТ."; break;
+			case 6: global.player_name = "ШЕРИФ"; break;
+			case 7: global.player_name = "ШАМАН"; break;
+			}
+		}
 	
 	if global.enemy_rank > 15
 		{ global.enemy_rank = 15; }
@@ -1070,19 +1087,38 @@
 	
 	timer_y = 0;
 	
-	if bot_type = 0
-		{ global.enemy_name = choose("DUMB BOB", "SILLY SAM", "BAD BOY"); }
-	if bot_type = 1
-		{ global.enemy_name = choose("SPEED GUY", "JOLLY JIM"); }
-	if bot_type = 2
-		{ global.enemy_name = choose("DRUNK JOE", "DOZY MO", "OLD RICK"); }
-	if bot_type = 3
-		{ global.enemy_name = choose("LUCKY BOY", "GOLD JACK", "MAD DOC"); }
-	
-	if global.training > 0
-		{ global.enemy_name = "MR. SMART"; }
-	if global.shomen
-		{ global.enemy_name = "CRAZY SHAMAN"; }
+	if os_get_language() = "ru"
+		{
+		if bot_type = 0
+			{ global.enemy_name = choose("DUMB BOB", "SILLY SAM", "BAD BOY"); }
+		if bot_type = 1
+			{ global.enemy_name = choose("SPEED GUY", "JOLLY JIM", "RANDOM PHILL"); }
+		if bot_type = 2
+			{ global.enemy_name = choose("DRUNK JOE", "DOZY MO", "OLD RICK"); }
+		if bot_type = 3
+			{ global.enemy_name = choose("LUCKY BOY", "GOLD JACK", "MAD DOC"); }
+		
+		if global.training > 0
+			{ global.enemy_name = "MR. SMART"; }
+		if global.shomen
+			{ global.enemy_name = "CRAZY SHAMAN"; }
+		}
+		else
+		{
+		if bot_type = 0
+			{ global.enemy_name = choose("ГЛУПЫЙ БОБ", "БЫСТРЫЙ СЭМ", "ПЛОХОЙ ПАРЕНЬ"); }
+		if bot_type = 1
+			{ global.enemy_name = choose("БЫСТРЫЙ РИК", "ЧУДНОЙ ДЖИМ", "НЕТЕРПЕЛИВЫЙ ФИЛ"); }
+		if bot_type = 2
+			{ global.enemy_name = choose("ПЬЯНЫЙ ДЖО", "СОННЫЙ МО", "СТАРИК ГРАМС"); }
+		if bot_type = 3
+			{ global.enemy_name = choose("ВЕЗУЧИЙ ПАРЕНЬ", "ЗОЛОТОЙ ДЖЕК", "БЕЗУМНЫЙ ДОК"); }
+		
+		if global.training > 0
+			{ global.enemy_name = "МИСТЕР УМНИК"; }
+		if global.shomen
+			{ global.enemy_name = "ЧОКНУТЫЙ ШАМАН"; }
+		}
 #endregion
 #region Отладка
 	ongle = 0;
@@ -1899,9 +1935,9 @@
 		
 		bot_type = 3;
 		if os_get_language() = "ru"
-			{ global.enemy_name  = "ШАМАН"; }
+			{ global.enemy_name  = "ЧОКНУТЫЙ ШАМАН"; }
 			else
-			{ global.enemy_name  = "SHAMAN"; }
+			{ global.enemy_name  = "CRAZY SHAMAN"; }
 		//global.hero = choose(1, 2, 3, 4, 6);
 		global.enemy_hero = 7;
 		}

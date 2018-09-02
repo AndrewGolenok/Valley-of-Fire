@@ -187,6 +187,7 @@
 		if i > 15
 			{ totem_c[i] = c_orange; }
 		}
+	
 	text_tot[1] = "COMMON";
 	text_y[1]   = -totem_r * 1.5;
 	
@@ -198,6 +199,14 @@
 	
 	text_tot[4] = "LEGENDARY";
 	text_y[4]   = (totem_y[15] + totem_y[16]) / 2;
+	
+	if os_get_language() = "ru"
+		{
+		text_tot[1] = "ОБЫЧНАЯ";
+		text_tot[2] = "РЕДКАЯ";
+		text_tot[3] = "ЭПИЧЕСКАЯ";
+		text_tot[4] = "ЛЕГЕНДАРНАЯ";
+		}
 #endregion
 #region Магазин
 	store_yy  = 0;
@@ -313,6 +322,7 @@
 	cash_y   = global.size / 2 - 100 + 900 - 100; //900 + y_ind + topp;
 	gold_y   = global.size / 2 - 100 + 1600 + 30 - 100; //1600 + 30 + y_ind + topp;
 	
+	
 	cash_txt[1] = "THE WAD\nOF CASH";
 	cash_val[1] = 50//80;
 	cash_pri[1] = "$0.99"; // "15,00₽"
@@ -358,6 +368,20 @@
 		cash_pri[4] = "1490₽";
 		cash_pri[5] = "3790₽";
 		cash_pri[6] = "7490₽";
+		}
+	
+	if os_get_language() = "ru"
+		{
+		cash_txt[1] = "ПАЧКА\nКЭША";
+		cash_txt[2] = "МЕШОК\nКЭША";
+		cash_txt[3] = "ЯЩИК\nКЭША";
+		cash_txt[4] = "СУНДУК\nКЭША";
+		cash_txt[5] = "БОЧКА\nКЭША";
+		cash_txt[6] = "ГОРА\nКЭША";
+		
+		gold_txt[1] = "МЕШОК\nЗОЛОТА";
+		gold_txt[2] = "БОЧКА\nЗОЛОТА";
+		gold_txt[3] = "ГОРА\nЗОЛОТА";
 		}
 	
 	gold_buy[1] = 0;

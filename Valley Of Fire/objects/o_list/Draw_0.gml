@@ -9522,7 +9522,12 @@ if global.hero = 1 && global.enemy_hero = 1
 		
 		draw_set_font(global.game_font);
 		if global.jr_e = 1
-			{ draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name)) * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name) + " JR.", 0.1, 0.1, 0, global.color_white, c_black); }
+			{
+			if os_get_language() = "ru"
+				{ draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name)) * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name) + " JR.", 0.1, 0.1, 0, global.color_white, c_black); }
+				else
+				{ draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name) + " МЛ.") * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name) + " МЛ.", 0.1, 0.1, 0, global.color_white, c_black); }
+			}
 			else
 			{ draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name)) * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name), 0.1, 0.1, 0, global.color_white, c_black); }
 		

@@ -1307,6 +1307,20 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 				if i = 5
 					{ name = "BILL SR."; }
 				
+				if os_get_language() = "ru"
+					{
+					switch(i)
+						{
+						case 1: name = "ВОРИШКА"; break;
+						case 2: name = "ВЕСЁЛЫЙ ДЖО"; break;
+						case 3: name = "ОХОТНИЦА"; break;
+						case 4: name = "ДИЕГО"; break;
+						case 5: name = "БИЛЛ СТ."; break;
+						case 6: name = "ШЕРИФ"; break;
+						case 7: name = "ШАМАН"; break;
+						}
+					}
+				
 				draw_text_transformed_t(1280 - 300, global.size / 2 - 30 + training_back_y + 30, name, 0.2, 0.2, 0, global.color_hero[i], c_black);
 				
 				if global.duel = 0
@@ -3046,10 +3060,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 							{
 							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 20, "ШАНСЫ\nНАЙТИ:", 0.2, 0.2, 5, global.color_white, c_black);
 							
-							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20, "ЛЕГЕНДАРНАЯ - 5%", 0.12, 0.12, 5, c_orange, c_black);
-							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 3, "ЭПИК - 15%", 0.12, 0.12, 5, c_fuchsia, c_black);
-							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 5, "РЕДКАЯ - 30%", 0.12, 0.12, 5, c_aqua, c_black);
-							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 7, "ОБЫЧНАЯ - 50%", 0.12, 0.12, 5, c_white, c_black);
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20, text_tot[4] + " - 5%", 0.12, 0.12, 5, c_orange, c_black);
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 3, text_tot[3] + " - 15%", 0.12, 0.12, 5, c_fuchsia, c_black);
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 5, text_tot[2] + " - 30%", 0.12, 0.12, 5, c_aqua, c_black);
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 7, text_tot[1] + " - 50%", 0.12, 0.12, 5, c_white, c_black);
 							}
 						//////////////
 						
@@ -3065,7 +3079,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 							else
 							{ draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100, "WOOD BOX", 0.2 * lbs1 * upsc, 0.2 * lbs1 * upsc, 5, global.color_white, c_black); }
 						//draw_text_transformed_t(640, global.size / 2 - 57, string(gold_val[i]), 0.18 * sg1 * upsc, 0.18 * sg1 * upsc, 0, global.gold_color, c_black);
-					
+						
 						draw_text_transformed_t(640 - string_width("100©") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 + 60 + 70/*+ 60*/, "100©", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
 						if os_get_language() = "ru"
 							{ draw_text_transformed_t(640 + string_width("КУП.") * 0.2 * lbs1 * upsc / 2 - 20, global.size / 2 + 140 + 60 + 70, "КУП.", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black); }
@@ -3611,6 +3625,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 				#region Элитный сундук
 					if i = 2
 						{
+						
 						//if lootbox_s <= 3
 							//{
 							draw_set_alpha(0.65 + lootbox_alpha);
@@ -3620,45 +3635,121 @@ if global.menu_now = "store" or global.menu_next = "store"
 						
 						if lootbox_buy[i] = 1 // && gold_buy_s[1] != 0
 							{
-							///////////
-							draw_set_alpha(0.4);
-							draw_rectangle_color(0, global.size / 2 - 120 + 65 - 50, 400, global.size / 2 - 120 + 65 + 200 + 70, c_black, c_black, c_black, c_black, 0);
-							draw_set_alpha(1);
+							if 0
+							{
+							#region Старое
+								///////////
+								draw_set_alpha(0.4);
+								draw_rectangle_color(0, global.size / 2 - 120 + 65 - 50, 400, global.size / 2 - 120 + 65 + 200 + 70, c_black, c_black, c_black, c_black, 0);
+								draw_set_alpha(1);
 							
-							draw_sprite_ext_t(s_menu_buttons, 1, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
-							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65, "HEROES", 0.2, 0.2, 5, global.color_white, c_black);
-							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 50, "CHANCE 60%", 0.12, 0.12, 5, global.color_white, c_black);
+								draw_sprite_ext_t(s_menu_buttons, 1, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
+								draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65, "HEROES", 0.2, 0.2, 5, global.color_white, c_black);
+								draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 50, "CHANCE 60%", 0.12, 0.12, 5, global.color_white, c_black);
 							
-							draw_sprite_ext_t(s_menu_buttons, 2, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65+ 150 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
-							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150, "TOTEMS", 0.2, 0.2, 5, global.color_white, c_black);
-							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150 + 50, "CHANCE 40%", 0.12, 0.12, 5, global.color_white, c_black);
+								draw_sprite_ext_t(s_menu_buttons, 2, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65+ 150 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
+								draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150, "TOTEMS", 0.2, 0.2, 5, global.color_white, c_black);
+								draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150 + 50, "CHANCE 40%", 0.12, 0.12, 5, global.color_white, c_black);
 							
-							//////////////
+								//////////////
 							
-							///////////////
-							draw_set_alpha(0.4);
-							draw_rectangle_color(1280 - 400, global.size / 2 - 120 + 65 - 50, 1280, global.size / 2 - 120 + 65 + 200 + 70, c_black, c_black, c_black, c_black, 0);
-							draw_set_alpha(1);
+								///////////////
+								draw_set_alpha(0.4);
+								draw_rectangle_color(1280 - 400, global.size / 2 - 120 + 65 - 50, 1280, global.size / 2 - 120 + 65 + 200 + 70, c_black, c_black, c_black, c_black, 0);
+								draw_set_alpha(1);
 							
-							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 20, "RARITY\nCHANCES:", 0.2, 0.2, 5, global.color_white, c_black);
-							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20, "LEGENDARY - 15%", 0.12, 0.12, 5, c_orange, c_black);
-							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 3, "EPIC - 30%", 0.12, 0.12, 5, c_fuchsia, c_black);
-							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 5, "RARE - 50%", 0.12, 0.12, 5, c_aqua, c_black);
-							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 7, "COOMON - 5%", 0.12, 0.12, 5, c_white, c_black);
-							//////////////
+								draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 20, "RARITY\nCHANCES:", 0.2, 0.2, 5, global.color_white, c_black);
+								draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20, "LEGENDARY - 15%", 0.12, 0.12, 5, c_orange, c_black);
+								draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 3, "EPIC - 30%", 0.12, 0.12, 5, c_fuchsia, c_black);
+								draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 5, "RARE - 50%", 0.12, 0.12, 5, c_aqua, c_black);
+								draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 7, "COOMON - 5%", 0.12, 0.12, 5, c_white, c_black);
+								//////////////
 							
-							draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100 + 80, "*3 ITEMS", 0.2, 0.2, 5, global.cash_color, c_black);
+								draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100 + 80, "*3 ITEMS", 0.2, 0.2, 5, global.cash_color, c_black);
 							
-							draw_sprite_ext_t(s_lootbox2, 0, 640 - 10, global.size / 2 - 120 + 65 + 70, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, 0, c_white, 1, c_white, c_black);
-							draw_sprite_ext_t(s_buy, 5 + i, 640, global.size / 2 + 90 + 60 + 70, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_white, 1, c_white, c_black);
+								draw_sprite_ext_t(s_lootbox2, 0, 640 - 10, global.size / 2 - 120 + 65 + 70, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, 0, c_white, 1, c_white, c_black);
+								draw_sprite_ext_t(s_buy, 5 + i, 640, global.size / 2 + 90 + 60 + 70, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_white, 1, c_white, c_black);
 							
-							draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100, "ELITE BOX", 0.2 * lbs1 * upsc, 0.2 * lbs1 * upsc, 5, global.gold_color, c_black);
-							//draw_text_transformed_t(640, global.size / 2 - 57, string(gold_val[i]), 0.18 * sg1 * upsc, 0.18 * sg1 * upsc, 0, global.gold_color, c_black);
+								draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100, "ELITE BOX", 0.2 * lbs1 * upsc, 0.2 * lbs1 * upsc, 5, global.gold_color, c_black);
+								//draw_text_transformed_t(640, global.size / 2 - 57, string(gold_val[i]), 0.18 * sg1 * upsc, 0.18 * sg1 * upsc, 0, global.gold_color, c_black);
 							
-							draw_text_transformed_t(640 - string_width("50ç") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 /*+ 6*/ + 60 + 70/*+ 60*/, "50ç", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.cash_color, c_black);
-							draw_text_transformed_t(640 + string_width("BUY") * 0.2 * lbs1 * upsc / 2 - 20, global.size / 2 + 140 + 60 + 70, "BUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.cash_color, c_black);
+								draw_text_transformed_t(640 - string_width("50ç") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 /*+ 6*/ + 60 + 70/*+ 60*/, "50ç", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.cash_color, c_black);
+								draw_text_transformed_t(640 + string_width("BUY") * 0.2 * lbs1 * upsc / 2 - 20, global.size / 2 + 140 + 60 + 70, "BUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.cash_color, c_black);
+							#endregion
+							}
+							#region Новое
+								///////////
+								draw_set_alpha(0.4);
+								draw_rectangle_color(0, global.size / 2 - 120 + 65 - 50, 400, global.size / 2 - 120 + 65 + 200 + 70, c_black, c_black, c_black, c_black, 0);
+								draw_set_alpha(1);
+								
+								if os_get_language() = "ru"
+									{
+									draw_sprite_ext_t(s_menu_buttons, 1, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
+									draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65, "ГЕРОИ", 0.2, 0.2, 5, global.color_white, c_black);
+									draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 50, "ШАНС 60%", 0.12, 0.12, 5, global.color_white, c_black);
 							
-							//draw_rectangle(640 - 150, global.size / 2 + 160 - 60 + 60 + 70, 640 + 150, global.size / 2 + 160 + 80 + 60 + 70, 1);
+									draw_sprite_ext_t(s_menu_buttons, 2, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65+ 150 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
+									draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150, "ТОТЕМЫ", 0.2, 0.2, 5, global.color_white, c_black);
+									draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150 + 50, "ШАНС 40%", 0.12, 0.12, 5, global.color_white, c_black);
+									}
+									else
+									{
+									draw_sprite_ext_t(s_menu_buttons, 1, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
+									draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65, "HEROES", 0.2, 0.2, 5, global.color_white, c_black);
+									draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 50, "CHANCE 60%", 0.12, 0.12, 5, global.color_white, c_black);
+									
+									draw_sprite_ext_t(s_menu_buttons, 2, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65+ 150 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
+									draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150, "TOTEMS", 0.2, 0.2, 5, global.color_white, c_black);
+									draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150 + 50, "CHANCE 40%", 0.12, 0.12, 5, global.color_white, c_black);
+									}
+								//////////////
+									
+								///////////////
+								draw_set_alpha(0.4);
+								draw_rectangle_color(1280 - 400, global.size / 2 - 120 + 65 - 50, 1280, global.size / 2 - 120 + 65 + 200 + 70, c_black, c_black, c_black, c_black, 0);
+								draw_set_alpha(1);
+								
+								if os_get_language() = "ru"
+									{
+									draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 20, "RARITY\nCHANCES:", 0.2, 0.2, 5, global.color_white, c_black);
+									
+									draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20, "LEGENDARY - 15%", 0.12, 0.12, 5, c_orange, c_black);
+									draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 3, "EPIC - 30%", 0.12, 0.12, 5, c_fuchsia, c_black);
+									draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 5, "RARE - 50%", 0.12, 0.12, 5, c_aqua, c_black);
+									draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 7, "COOMON - 5%", 0.12, 0.12, 5, c_white, c_black);
+									}
+									else
+									{
+									draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 20, "ШАНСЫ\nНАЙТИ:", 0.2, 0.2, 5, global.color_white, c_black);
+									
+									draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20, text_tot[4] + " - 15%", 0.12, 0.12, 5, c_orange, c_black);
+									draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 3, text_tot[3] + " - 30%", 0.12, 0.12, 5, c_fuchsia, c_black);
+									draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 5, text_tot[2] + " - 50%", 0.12, 0.12, 5, c_aqua, c_black);
+									draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 7, text_tot[1] + " - 5%", 0.12, 0.12, 5, c_white, c_black);
+									}
+								//////////////
+								
+								if os_get_language() = "ru"
+									{ draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100 + 80, "*3 ВЕЩЕЙ", 0.2, 0.2, 5, global.cash_color, c_black); }
+									else
+									{ draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100 + 80, "*3 ITEMS", 0.2, 0.2, 5, global.cash_color, c_black); }
+								draw_sprite_ext_t(s_lootbox1, 0, 640 - 10, global.size / 2 - 120 + 65 + 70, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, 0, c_white, 1, c_white, c_black);
+								draw_sprite_ext_t(s_buy, 5 + i, 640, global.size / 2 + 90 + 60 + 70, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_white, 1, c_white, c_black);
+								
+								if os_get_language() = "ru"
+									{ draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100, "ЭЛИТНЫЙ ЯЩИК", 0.15 * lbs1 * upsc, 0.15 * lbs1 * upsc, 5, global.gold_color, c_black); }
+									else
+									{ draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100, "ELITE BOX", 0.2 * lbs1 * upsc, 0.2 * lbs1 * upsc, 5, global.gold_color, c_black); }
+								//draw_text_transformed_t(640, global.size / 2 - 57, string(gold_val[i]), 0.18 * sg1 * upsc, 0.18 * sg1 * upsc, 0, global.gold_color, c_black);
+								
+								draw_text_transformed_t(640 - string_width("50ç") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 + 60 + 70/*+ 60*/, "50ç", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
+								if os_get_language() = "ru"
+									{ draw_text_transformed_t(640 + string_width("КУП.") * 0.2 * lbs1 * upsc / 2 - 20, global.size / 2 + 140 + 60 + 70, "КУП.", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black); }
+									else
+									{ draw_text_transformed_t(640 + string_width("BUY") * 0.2 * lbs1 * upsc / 2 - 20, global.size / 2 + 140 + 60 + 70, "BUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black); }
+							#endregion
+							
 							if mouse_check_button_pressed(mb_left)
 								{
 								if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 20, global.size / 2 + 160 - 80 + 60 + 70, 640 + 150 + 20, global.size / 2 + 160 + 80 + 60 + 70) && lootbox_buy_s[i] = 1 
