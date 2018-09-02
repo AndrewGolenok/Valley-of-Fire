@@ -9085,16 +9085,19 @@ if global.hero = 1 && global.enemy_hero = 1
 				{
 				if whowin = 1
 					{
+					global.wins += 1;
 					GoogleAnalytics_SendEvent("WIN-LOSE","Игрок победил!");
 					if global.request = 0
 						{
 						if req = 0
 							{
-							global.wins += 1;
 							if global.wins = 3 or global.wins = 6 or global.wins = 10 or global.wins = 20
 								{
 								var a;
 								a = requestReview();
+								requestReview();
+								
+								//global.request = 1;
 								
 								if a = 1
 									{
@@ -9102,18 +9105,17 @@ if global.hero = 1 && global.enemy_hero = 1
 									global.request = 1;
 									}
 								}
-							
-							ini_open("Music.ini");
-								ini_write_string("Request", "request", string(global.request));
-								ini_write_string("Request", "wins", string(global.wins));
-							
-							global.request = ini_read_real("Request", "request", 0);
-							global.wins    = ini_read_real("Request", "wins", 0);
-							
 							req = 1;
-							ini_close();
 							}
 						}
+					ini_open("Music.ini");
+						ini_write_string("Request", "request", string(global.request));
+						ini_write_string("Request", "wins", string(global.wins));
+							
+					global.request = ini_read_real("Request", "request", 0);
+					global.wins    = ini_read_real("Request", "wins", 0);
+							
+					ini_close();
 					}
 					else
 					{ GoogleAnalytics_SendEvent("WIN-LOSE","Игрок проиграл!"); }
