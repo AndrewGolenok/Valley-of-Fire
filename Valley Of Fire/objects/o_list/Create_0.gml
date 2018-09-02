@@ -348,11 +348,22 @@
 		theme_s2 = 1;
 		theme_s3 = 1;
 		
-		coin_you[1]  = "YOU";
-		coin_you[0]  = "ENEMY";
-		coin_you[2]  = "FIRST"
-		coin_text1 = "GET READY?";
-		coin_text2 = "GO!";
+		if os_get_language() != "ru"
+			{
+			coin_you[1]  = "YOU";
+			coin_you[0]  = "ENEMY";
+			coin_you[2]  = "FIRST"
+			coin_text1 = "GET READY?";
+			coin_text2 = "GO!";
+			}
+			else
+			{
+			coin_you[1]  = "ВЫ";
+			coin_you[0]  = "ВРАГ";
+			coin_you[2]  = "ПЕРВЫЙ"
+			coin_text1 = "ВЫ ГОТОВЫ?";
+			coin_text2 = "ДУЭЛЬ!";
+			}
 		
 		coin_text1_a = 0;
 		coin_text2_a = 0;
@@ -898,7 +909,10 @@
 	shaker_ang = 0;
 	go_hp = 0;
 	
-	super_text = "SUPER";
+	if os_get_language() = "ru"
+		{ super_text = "СУПЕР"; }
+		else
+		{ super_text = "SUPER"; }
 #endregion
 #region Финиш Дуэли
 	whowin  = 0;
@@ -1871,7 +1885,12 @@
 		}
 	
 	if global.training = 6
-		{ super_text = "USE SUPER!"; }
+		{
+		if os_get_language() = "ru"
+			{ super_text = "ЖМИ НА СУПЕР!"; }
+			else
+			{ super_text = "USE SUPER!"; }
+		}
 	
 	if global.training = -1
 		{
@@ -1879,7 +1898,10 @@
 		global.enemy_rank  = 15;
 		
 		bot_type = 3;
-		global.enemy_name  = "SHAMAN";
+		if os_get_language() = "ru"
+			{ global.enemy_name  = "ШАМАН"; }
+			else
+			{ global.enemy_name  = "SHAMAN"; }
 		//global.hero = choose(1, 2, 3, 4, 6);
 		global.enemy_hero = 7;
 		}

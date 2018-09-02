@@ -159,10 +159,20 @@
 			draw_set_font(global.game_font);
 			draw_set_halign(fa_center);
 			draw_set_valign(fa_bottom);
-			draw_text_transformed_t(150,  global.size - 25, "HEROES", 0.15, 0.15, 5, global.color_white, c_black);
-			draw_text_transformed_t(640 - 150,  global.size - 25, "TOTEMS", 0.15, 0.15, 5, global.color_white, c_black);
-			draw_text_transformed_t(640 + 150,  global.size - 25, "STORE", 0.15, 0.15, 5, global.color_white, c_black);
-			draw_text_transformed_t(1130, global.size - 25,  "TRAINING", 0.15, 0.15, 5, global.color_white, c_black);	
+			if os_get_language() = "ru"
+				{
+				draw_text_transformed_t(150,  global.size - 25, "ГЕРОИ", 0.15, 0.15, 5, global.color_white, c_black);
+				draw_text_transformed_t(640 - 150,  global.size - 25, "ТОТЕМЫ", 0.15, 0.15, 5, global.color_white, c_black);
+				draw_text_transformed_t(640 + 150,  global.size - 25, "МАГАЗИН", 0.15, 0.15, 5, global.color_white, c_black);
+				draw_text_transformed_t(1130, global.size - 25,  "ТЕРЕНИРОВКА", 0.15, 0.15, 5, global.color_white, c_black);	
+				}
+				else
+				{
+				draw_text_transformed_t(150,  global.size - 25, "HEROES", 0.15, 0.15, 5, global.color_white, c_black);
+				draw_text_transformed_t(640 - 150,  global.size - 25, "TOTEMS", 0.15, 0.15, 5, global.color_white, c_black);
+				draw_text_transformed_t(640 + 150,  global.size - 25, "STORE", 0.15, 0.15, 5, global.color_white, c_black);
+				draw_text_transformed_t(1130, global.size - 25,  "TRAINING", 0.15, 0.15, 5, global.color_white, c_black);	
+				}
 		draw_set_alpha(1);
 		// КНОПКИ
 		
@@ -334,11 +344,15 @@
 				}
 			}
 		//draw_rectangle(640 - string_width("QUICK PLAY") * 0.22 - 30, global.size / 2 + 20, 640 - 30, global.size / 2 + 20, 1);
-		draw_text_transformed_t(640, global.size / 2 - string_height("œQUICK PLAYœ") * 0.22 / 2 - 10, "œQUICK PLAYœ", 0.22 * ms5, 0.22 * ms5, 5, global.color_white, c_black);
+		if os_get_language() = "ru"
+			{ draw_text_transformed_t(640, global.size / 2 - string_height("œQUICK PLAYœ") * 0.22 / 2 - 10, "œБЫСТРАЯ ИГРАœ", 0.22 * ms5, 0.22 * ms5, 5, global.color_white, c_black); }
+			else
+			{ draw_text_transformed_t(640, global.size / 2 - string_height("œQUICK PLAYœ") * 0.22 / 2 - 10, "œQUICK PLAYœ", 0.22 * ms5, 0.22 * ms5, 5, global.color_white, c_black); }
+			
 		//БЫСТРАЯ ИГРА
 		
 		//// РАНКЕД ДУЭЛЬ
-		if point_in_rectangle(mouse_x, mouse_y, 640 - string_width("®RANKED®") * 0.22 / 2, global.size / 2 + 25, 640 + string_width("®RANKED®") * 0.22 / 2, global.size / 2 + string_height("®RANKED®") * 0.22 + 25)
+		if point_in_rectangle(mouse_x, mouse_y, 640 - string_width("®РАНГОВЫЙ МАТЧ®") * 0.22 / 2, global.size / 2 + 25, 640 + string_width("®RANKED®") * 0.22 / 2, global.size / 2 + string_height("®РАНГОВЫЙ МАТЧ®") * 0.22 + 25)
 			{
 			GoogleAnalytics_SendEvent("PLAY","Игрок выбрал RANKED");
 			//// КЛАЦ
@@ -357,7 +371,10 @@
 				}
 			}
 		
-		draw_text_transformed_t(640, global.size / 2 + string_height("®RANKED®") * 0.22 / 2 + 25, "®RANKED®", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black);
+		if os_get_language() = "ru"
+			{ draw_text_transformed_t(640, global.size / 2 + string_height("®РАНГОВЫЙ МАТЧ®") * 0.22 / 2 + 25, "®РАНГОВЫЙ МАТЧ®", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black); }
+			else
+			{ draw_text_transformed_t(640, global.size / 2 + string_height("®RANKED®") * 0.22 / 2 + 25, "®RANKED®", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black); }
 		//РАНКЕД ДУЭЛЬ
 		
 		/// Голда и Кэш
@@ -976,7 +993,10 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 				
 				//draw_rectangle(1280 - 300 - 150, global.size - 60 + training_back_y - 50, 1280 - 300 + 150, global.size - 60 + training_back_y + 50, 1);
 				draw_sprite_ext(s_light, 0, 1280 - 300, global.size - 60 + training_back_y, 0.6, 0.3, 0, c_white, 0.7);
-				draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "START", 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black);
+				if os_get_language() = "ru"
+					{ draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "START", 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black); }
+					else
+					{ draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "СТАРТ", 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black); }
 				}
 		#endregion
 	
@@ -988,25 +1008,48 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 	draw_sprite_ext(s_totem_back, 2, 640 - 50 + 20, global.size + training_back_y + yh + 20 * (960 / global.size), global.back_scale, global.back_scale, 0, c_black, 0.5);
 	draw_sprite_ext_t(s_totem_back, 2, 640 - 50, global.size + training_back_y + yh + 20 * (960 / global.size), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 	
-	if global.duel = 1
+	if os_get_language() = "ru"
 		{
-		if global.size >= 700
+		if global.duel = 1
 			{
-			draw_set_font(global.game_font);
-			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE TOTEMS", 0.22, 0.22, 0, col, c_black);
+			if global.size >= 700
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "ВЫБЕРИ ТОТЕМЫ", 0.22, 0.22, 0, col, c_black);
+				}
+				else
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 60, "ВЫБЕРИ ТОТЕМЫ", 0.22, 0.22, 0, col, c_black);
+				}
 			}
 			else
 			{
 			draw_set_font(global.game_font);
-			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 60, "CHOOSE TOTEMS", 0.22, 0.22, 0, col, c_black);
+			draw_text_transformed_t(780, global.size / 2 + training_back_y, "Т\nО\nТ\nЕ\nМ\nЫ", 0.22, 0.22, 0, col, c_black);
 			}
 		}
 		else
 		{
-		draw_set_font(global.game_font);
-		draw_text_transformed_t(780, global.size / 2 + training_back_y, "T\nO\nT\nE\nM\nS", 0.22, 0.22, 0, col, c_black);
+		if global.duel = 1
+			{
+			if global.size >= 700
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE TOTEMS", 0.22, 0.22, 0, col, c_black);
+				}
+				else
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 60, "CHOOSE TOTEMS", 0.22, 0.22, 0, col, c_black);
+				}
+			}
+			else
+			{
+			draw_set_font(global.game_font);
+			draw_text_transformed_t(780, global.size / 2 + training_back_y, "T\nO\nT\nE\nM\nS", 0.22, 0.22, 0, col, c_black);
+			}
 		}
-	
 	if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
 		{ sc_angle += sc_dir * sc_spd; }
 		else
@@ -1148,8 +1191,10 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 			draw_text_transformed_t(330 + hero_xx[i] + prx, (160 + 360 + popka) - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + pry, "(" + string(hero_now1[i]) + "~" + string(hero_need[i]) + ")", 0.1, 0.1, 0, global.color_white, c_black);
 			}
 		draw_sprite_ext(s_wanted, 6, 330 + hero_xx[2] + prx, (160 + 360 + popka) - top + hero_yyy[7] + training_back_y + hero_yy1 + 10 + pry, hero_s * hero_ss[2], hero_s * hero_ss[2], 0, c_black, 0.5);
-		draw_text_transformed_t( 330 + hero_xx[2] + prx, (160 + 360 + popka) - top + hero_yyy[7] + training_back_y + hero_yy1 + 10 + pry, "APPEAR\nSOON", 0.15, 0.15, 10, global.color_white, c_black);
-		
+		if os_get_language() = "ru"
+			{ draw_text_transformed_t( 330 + hero_xx[2] + prx, (160 + 360 + popka) - top + hero_yyy[7] + training_back_y + hero_yy1 + 10 + pry, "APPEAR\nSOON", 0.15, 0.15, 10, global.color_white, c_black); }
+			else
+			{ draw_text_transformed_t( 330 + hero_xx[2] + prx, (160 + 360 + popka) - top + hero_yyy[7] + training_back_y + hero_yy1 + 10 + pry, "УЖЕ\nСКОРО!", 0.15, 0.15, 10, global.color_white, c_black); }
 		if mouse_check_button(mb_left)
 		&& point_in_rectangle(mouse_x, mouse_y, 0, global.size / 2 - 270, 720, global.size / 2 + 270)
 			{
@@ -1261,6 +1306,7 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 					{ name = "DRUNK JOE"; }
 				if i = 5
 					{ name = "BILL SR."; }
+				
 				draw_text_transformed_t(1280 - 300, global.size / 2 - 30 + training_back_y + 30, name, 0.2, 0.2, 0, global.color_hero[i], c_black);
 				
 				if global.duel = 0
@@ -1309,10 +1355,20 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 					draw_set_halign(fa_center);
 					
 					var himher, go5;
-					if i = 1 or i = 3
-						{ himher = "HER"; }
+					if os_get_language() = "ru"
+						{
+						if i = 1 or i = 3
+							{ himher = "HER"; }
+							else
+							{ himher = "HIM"; }
+						}
 						else
-						{ himher = "HIM"; }
+						{
+						if i = 1 or i = 3
+							{ himher = "ЕЁ"; }
+							else
+							{ himher = "ЕГО"; }
+						}
 					go5 = 1;
 					//draw_rectangle(1280 - 300 - 100, global.size / 2 - 30 + training_back_y + 230 - 70, 1280 - 300 + 100, global.size / 2 - 30 + training_back_y + 230 + 70, 1);
 					if point_in_rectangle(mouse_x, mouse_y, 1280 - 300 - 150, global.size / 2 - 30 + training_back_y + 150 - 70 + 36, 1280 - 300 + 150, global.size / 2 - 30 + training_back_y + 150 + 70 + 36)
@@ -1339,7 +1395,10 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 							}
 						}
 					draw_sprite_ext(s_light, 0, 1280 - 300, global.size / 2 - 30 + training_back_y + 130 + 20 + 36, 0.65, 0.4, 0, c_white, 0.7);
-					draw_text_transformed_t(1280 - 300, global.size / 2 - 30 + training_back_y + 130 + 20 + 36, "CHOOSE\n" + himher, 0.3 * go5, 0.3 * go5, tr_ang, global.color_white, c_black);
+					if os_get_language() = "ru"
+						{ draw_text_transformed_t(1280 - 300, global.size / 2 - 30 + training_back_y + 130 + 20 + 36, "ВЫБРАТЬ\n" + himher, 0.3 * go5, 0.3 * go5, tr_ang, global.color_white, c_black); }
+						else
+						{ draw_text_transformed_t(1280 - 300, global.size / 2 - 30 + training_back_y + 130 + 20 + 36, "CHOOSE\n" + himher, 0.3 * go5, 0.3 * go5, tr_ang, global.color_white, c_black); }
 					}
 				//draw_set_alpha(0.5);
 				//draw_rectangle_color(330 + hero_xx[i] - hero_w * hero_s * 1.1, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s - 15, 330 + hero_xx[i] + hero_w * hero_s * 1.1, 140 + 360 - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + 15, c_black, c_black, c_black, c_black, 0);
@@ -1366,31 +1425,64 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 	
 	draw_sprite_ext(s_heroes_back, 4, 640, global.size + training_back_y + yh + 40 * (960 / global.size) + 10, global.back_scale, global.back_scale, 0, c_black, 0.5);
 	draw_sprite_ext_t(s_heroes_back, 4, 640, global.size + training_back_y + yh + 40 * (960 / global.size), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
-	if global.duel = 0
+	if os_get_language() = "ru"
 		{
-		if global.size  >= 700
+		if global.duel = 0
 			{
-			draw_set_font(global.game_font);
-			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "HEROES", 0.22, 0.22, 0, col, c_black);
+			if global.size  >= 700
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "ГЕРОИ", 0.22, 0.22, 0, col, c_black);
+				}
+				else
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "ГЕРОИ", 0.22, 0.22, 0, col, c_black);
+				}
+				//draw_text_transformed_t(80, global.size / 2 + training_back_y - 40, "H\nE\nR\nO\nE\nS", 0.22, 0.22, 0, col, c_black);
 			}
 			else
 			{
-			draw_set_font(global.game_font);
-			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "HEROES", 0.22, 0.22, 0, col, c_black);
+			if global.size  >= 700
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "ВЫБЕРИ ГЕРОЯ", 0.22, 0.22, 0, col, c_black);
+				}
+				else
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "ВЫБЕРИ ГЕРОЯ", 0.22, 0.22, 0, col, c_black);
+				}
 			}
-			//draw_text_transformed_t(80, global.size / 2 + training_back_y - 40, "H\nE\nR\nO\nE\nS", 0.22, 0.22, 0, col, c_black);
 		}
 		else
 		{
-		if global.size  >= 700
+		if global.duel = 0
 			{
-			draw_set_font(global.game_font);
-			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE A HERO", 0.22, 0.22, 0, col, c_black);
+			if global.size  >= 700
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "HEROES", 0.22, 0.22, 0, col, c_black);
+				}
+				else
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "HEROES", 0.22, 0.22, 0, col, c_black);
+				}
+				//draw_text_transformed_t(80, global.size / 2 + training_back_y - 40, "H\nE\nR\nO\nE\nS", 0.22, 0.22, 0, col, c_black);
 			}
 			else
 			{
-			draw_set_font(global.game_font);
-			draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "CHOOSE A HERO", 0.22, 0.22, 0, col, c_black);
+			if global.size  >= 700
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE A HERO", 0.22, 0.22, 0, col, c_black);
+				}
+				else
+				{
+				draw_set_font(global.game_font);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "CHOOSE A HERO", 0.22, 0.22, 0, col, c_black);
+				}
 			}
 		}
 	if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
@@ -1821,7 +1913,10 @@ if global.menu_now = "training" or global.menu_next = "training"
 					}
 				}
 			//draw_rectangle(640 - 290, global.size / 2 - 60 + 150 + training_back_y, 640 + 290, global.size / 2 + 60 + 150 + training_back_y, 1);
-			draw_text_transformed_t(640, global.size / 2 + 150 + training_back_y, "CHOOSE HERO", 0.27 * go5, 0.27 * go5, 5, global.color_white, c_black);
+			if os_get_language() = "ru"
+				{ draw_text_transformed_t(640, global.size / 2 + 150 + training_back_y, "CHOOSE HERO", 0.27 * go5, 0.27 * go5, 5, global.color_white, c_black); }
+				else
+				{ draw_text_transformed_t(640, global.size / 2 + 150 + training_back_y, "ВЫБРАТЬ ГЕРОЯ", 0.27 * go5, 0.27 * go5, 5, global.color_white, c_black); }
 			//ИГРА
 			}
 		//global.g_rank_now = 0;
@@ -1835,7 +1930,10 @@ if global.menu_now = "training" or global.menu_next = "training"
 		draw_rectangle_color(0, training_back_y, 1280, global.size + training_back_y, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
 		
-		draw_text_ext_transformed_t(640 + prx, global.size / 2 + training_back_y + pry, "YOU HAVE NOT FINISHED TRAINING YET!", -1, 1200, 0.27 * go5, 0.27 * go5, -25, global.color_white, c_black);
+		if os_get_language() = "ru"
+			{ draw_text_ext_transformed_t(640 + prx, global.size / 2 + training_back_y + pry, "ВЫ ЕЩЁ НЕ ЗАКОНЧИЛИ ТРЕНИРОВКУ!", -1, 1200, 0.27 * go5, 0.27 * go5, -25, global.color_white, c_black); }
+			else
+			{ draw_text_ext_transformed_t(640 + prx, global.size / 2 + training_back_y + pry, "YOU HAVE NOT FINISHED TRAINING YET!", -1, 1200, 0.27 * go5, 0.27 * go5, -25, global.color_white, c_black); }
 		}
 	draw_sprite_part_ext(s_training_back, 0, 0, top, sprite_get_width(s_training_back), sprite_get_height(s_training_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 	var yh, col;
@@ -1850,10 +1948,21 @@ if global.menu_now = "training" or global.menu_next = "training"
 	draw_sprite_ext_t(s_training_back, 4, 640, global.size + training_back_y + yh, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 	
 	draw_set_font(global.game_font);
-	if global.duel = 0
-		{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "T\nR\nA\nI\nN\nI\nN\nG", 0.22, 0.22, 0, col, c_black); }
+	
+	if os_get_language() != "ru"
+		{
+		if global.duel = 0
+			{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "T\nR\nA\nI\nN\nI\nN\nG", 0.22, 0.22, 0, col, c_black); }
+			else
+			{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "®\nR\nA\nN\nK\nE\nD\n®\n ", 0.2, 0.2, 0, col, c_black); }
+		}
 		else
-		{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "®\nR\nA\nN\nK\nE\nD\n®\n ", 0.2, 0.2, 0, col, c_black); }
+		{
+		if global.duel = 0
+			{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "Т\nР\nЕ\nН\nИ\nР\nО\nВ\nК\nА", 0.22, 0.22, 0, col, c_black); }
+			else
+			{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "®\nР\nА\nН\nК\nE\nД\n®\n ", 0.2, 0.2, 0, col, c_black); }
+		}
 	if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
 		{ sc_angle += sc_dir * sc_spd; }
 		else
@@ -2068,7 +2177,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 		
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 70 + lootbox_y + training_back_y + store_yy1 + pry + 10, 0.4, 0.4, 0, c_black, 0.5);
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 70 + lootbox_y + training_back_y + store_yy1 + pry, 0.4, 0.4, 0, c_white, 1);
-		draw_text_transformed_t(640 + prx, top + 50 + lootbox_y + training_back_y + store_yy1 + pry, "LOOTBOXES", 0.2, 0.2, 0, global.color_white, c_black);
+		if os_get_language() = "ru"
+			{ draw_text_transformed_t(640 + prx, top + 50 + lootbox_y + training_back_y + store_yy1 + pry, "LOOTBOXES", 0.2, 0.2, 0, global.color_white, c_black); }
+			else
+			{ draw_text_transformed_t(640 + prx, top + 50 + lootbox_y + training_back_y + store_yy1 + pry, "ЛУТБОКСЫ", 0.2, 0.2, 0, global.color_white, c_black); }
 		
 		draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.24, 0.24, 0, c_black, 0.5);
 		if lootbox_buy[1] = 0
@@ -2078,8 +2190,16 @@ if global.menu_now = "store" or global.menu_next = "store"
 		if lootbox_buy[2] = 0
 			{ draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 0.24 * lbs2, 0.24 * lbs2, 0, c_white, 1); }
 		////// Названия
-		draw_text_transformed_t(640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 45, "WOOD BOX", 0.13 * lbs1, 0.13 * lbs1, 5, global.color_white, c_black);
-		draw_text_transformed_t(640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 45, "ELITE BOX", 0.13 * lbs2, 0.13 * lbs2, 5, global.gold_color, c_black);
+		if os_get_language() = "ru"
+			{
+			draw_text_transformed_t(640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 45, "ОБЫЧНЫЙ ЯЩИК", 0.13 * lbs1, 0.13 * lbs1, 5, global.color_white, c_black);
+			draw_text_transformed_t(640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 45, "ЭЛИТНЫЙ ЯЩИК", 0.13 * lbs2, 0.13 * lbs2, 5, global.gold_color, c_black);
+			}
+			else
+			{
+			draw_text_transformed_t(640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 45, "WOOD BOX", 0.13 * lbs1, 0.13 * lbs1, 5, global.color_white, c_black);
+			draw_text_transformed_t(640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 45, "ELITE BOX", 0.13 * lbs2, 0.13 * lbs2, 5, global.gold_color, c_black);
+			}
 		//// Названия
 		
 		////// Цена
@@ -2092,8 +2212,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 		////// ЕЖЕДНЕВНЫЕ ПОКУПКИ
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 0.4, 0.4, 0, c_black, 0.5);
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top - 90 + daily_y + training_back_y + pry + store_yy1, 0.4, 0.4, 0, c_white, 1);
-		draw_text_transformed_t(640 + prx, top - 110 + daily_y + training_back_y + pry + store_yy1, "DAILY ITEMS", 0.17, 0.17, 0, global.color_white, c_black);
-		
+		if os_get_language() = "ru"
+			{ draw_text_transformed_t(640 + prx, top - 110 + daily_y + training_back_y + pry + store_yy1, "DAILY ITEMS", 0.17, 0.17, 0, global.color_white, c_black); }
+			else
+			{ draw_text_transformed_t(640 + prx, top - 110 + daily_y + training_back_y + pry + store_yy1, "ЕЖЕДНЕВНЫЕ ВЕЩИ", 0.17, 0.17, 0, global.color_white, c_black); }
 		draw_sprite_ext(s_wanted, 1, 640 + prx - 200 + 5, top + 80 + daily_y + training_back_y + pry + store_yy1 + 10, 0.5, 0.5, 0, c_black, 0.5);
 		draw_sprite_ext(s_wanted, 2, 640 + prx + 5, top + 80 + daily_y + training_back_y + pry + store_yy1 + 10, 0.5, 0.5, 0, c_black, 0.5);
 		draw_sprite_ext(s_wanted, 3, 640 + prx + 200 + 5, top + 80 + daily_y + training_back_y + pry + store_yy1 + 10, 0.5, 0.5, 0, c_black, 0.5);
@@ -2101,13 +2223,19 @@ if global.menu_now = "store" or global.menu_next = "store"
 		draw_sprite_ext_t(s_wanted, 1, 640 + prx - 200, top + 80 + daily_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
 		draw_sprite_ext_t(s_wanted, 2, 640 + prx, top + 80 + daily_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
 		draw_sprite_ext_t(s_wanted, 3, 640 + prx + 200, top + 80 + daily_y + training_back_y + pry + store_yy1, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
-		draw_text_transformed_t(640 + prx, top + 80 + daily_y + training_back_y + pry + store_yy1, "APPEAR SOON", 0.2, 0.2, 10, global.color_white, c_black);
+		if os_get_language() = "ru"
+			{ draw_text_transformed_t(640 + prx, top + 80 + daily_y + training_back_y + pry + store_yy1, "УЖЕ СКОРО!", 0.2, 0.2, 10, global.color_white, c_black); }
+			else
+			{ draw_text_transformed_t(640 + prx, top + 80 + daily_y + training_back_y + pry + store_yy1, "APPEAR SOON", 0.2, 0.2, 10, global.color_white, c_black); }
 		///////
 		
 		////// ПОКУПКА ДОЛЛАРОВ
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 100 + 10, 0.4, 0.4, 0, c_black, 0.5);
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_white, 1);
-		draw_text_transformed_t(640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120, "BANK OF CASH", 0.17, 0.17, 0, global.color_white, c_black);
+		if os_get_language() = "ru"
+			{ draw_text_transformed_t(640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120, "БАНК КЭША", 0.17, 0.17, 0, global.color_white, c_black); }
+			else
+			{ draw_text_transformed_t(640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120, "BANK OF CASH", 0.17, 0.17, 0, global.color_white, c_black); }
 		/////////
 		#region Нажатие на покупку КЭША
 			var cx1, cx2, cx3, cy1, cy2, sc1, sc2, sc3, sc4, sc5, sc6;
@@ -2342,7 +2470,12 @@ if global.menu_now = "store" or global.menu_next = "store"
 		draw_text_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[1]), 0.18 * sc1, 0.18 * sc1, 0, global.cash_color, c_black);
 		draw_text_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[1], 0.2 * sc1, 0.2 * sc1, 0, global.color_white, c_black);
 		if os_get_region() = "RU"
-			{ draw_text_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100 - string_height(cash_pri[1]) * 0.2 * sc1 - 5, "SPECIAL\nPRICE!", 0.08 * sc1, 0.08 * sc1, 0, global.color_white, c_black); }
+			{
+			if os_get_language() = "ru"
+				{ draw_text_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100 - string_height(cash_pri[1]) * 0.2 * sc1 - 5, "СПЕЦИАЛЬНАЯ\nЦЕНА!", 0.08 * sc1, 0.08 * sc1, 0, global.color_white, c_black); }
+				else
+				{ draw_text_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100 - string_height(cash_pri[1]) * 0.2 * sc1 - 5, "SPECIAL\nPRICE!", 0.08 * sc1, 0.08 * sc1, 0, global.color_white, c_black); }
+			}
 		
 		draw_sprite_ext(s_currency_buy, 1, 640 + prx + 5, top + 127 + cash_y + training_back_y + pry + store_yy1 + 10, 0.5 * sc2, 0.5 * sc2, 0, c_black, 0.5);
 		draw_sprite_ext_t(s_currency_buy, 1, 640 + prx, top + 127 + cash_y + training_back_y + pry + store_yy1, 0.5 * sc2, 0.5 * sc2, 0, c_white, 1, c_white, c_black);
@@ -2499,8 +2632,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 		////// ПОКУПКА ГОЛДЫ
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 100 + 10, 0.4, 0.4, 0, c_black, 0.5);
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_white, 1);
-		draw_text_transformed_t(640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 120, "BANK OF GOLD", 0.17, 0.17, 0, global.color_white, c_black);
-		
+		if os_get_language() = "ru"
+			{ draw_text_transformed_t(640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 120, "БАНК ЗОЛОТА", 0.17, 0.17, 0, global.color_white, c_black); }
+			else
+			{ draw_text_transformed_t(640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 120, "BANK OF GOLD", 0.17, 0.17, 0, global.color_white, c_black); }
 		/////////
 		draw_sprite_ext(s_currency_buy, 6, 640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 10, 0.5 * sg1, 0.5 * sg1, 0, c_black, 0.5);
 		if gold_buy[1] = 0
@@ -2511,7 +2646,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 			if global.cash < gold_pri[1]
 				{
 				draw_sprite_ext(s_currency_buy, 6, 640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg1, 0.5 * sg1, 0, c_black, 0.5);
-				draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, "NOT\nENOUGH\nCASH", 0.12, 0.12, 0, global.color_white, c_black);
+				if os_get_language() = "ru"
+					{ draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, "НЕТ\nСТОЛЬКО\nКЭША", 0.12, 0.12, 0, global.color_white, c_black); }
+					else
+					{ draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, "NOT\nENOUGH\nCASH", 0.12, 0.12, 0, global.color_white, c_black); }
 				}
 			draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[1]) + "ç", 0.2 * sg1, 0.2 * sg1, 0, global.cash_color, c_black);
 			}
@@ -2524,7 +2662,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 			if global.cash < gold_pri[2]
 				{
 				draw_sprite_ext(s_currency_buy, 7, 640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg2, 0.5 * sg2, 0, c_black, 0.5);
-				draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, "NOT\nENOUGH\nCASH", 0.12, 0.12, 0, global.color_white, c_black);
+				if os_get_language() = "ru"
+					 { draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, "НЕТ\nСТОЛЬКО\nКЭША", 0.12, 0.12, 0, global.color_white, c_black); }
+					 else
+					 { draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, "NOT\nENOUGH\nCASH", 0.12, 0.12, 0, global.color_white, c_black); }
 				}
 			draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[2]) + "ç", 0.2 * sg2, 0.2 * sg2, 0, global.cash_color, c_black);
 			}
@@ -2537,7 +2678,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 			if global.cash < gold_pri[3]
 				{
 				draw_sprite_ext(s_currency_buy, 8, 640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg3, 0.5 * sg3, 0, c_black, 0.5);
-				draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, "NOT\nENOUGH\nCASH", 0.12, 0.12, 0, global.color_white, c_black);
+				if os_get_language() = "ru"
+					{ draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, "НЕТ\nСТОЛЬКО\nКЭША", 0.12, 0.12, 0, global.color_white, c_black); }
+					else
+					{ draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, "NOT\nENOUGH\nCASH", 0.12, 0.12, 0, global.color_white, c_black); }
 				}
 			draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[3]) + "ç", 0.2 * sg3, 0.2 * sg3, 0, global.cash_color, c_black);
 			}
@@ -2666,8 +2810,16 @@ if global.menu_now = "store" or global.menu_next = "store"
 	draw_sprite_ext_t(s_store_weel, 2, 0 + prx, global.size + training_back_y - 10 + yh / 3 + pry, global.back_scale, global.back_scale, wl_ang, c_white, 1, c_white, c_black);
 	
 	draw_set_font(global.game_font);
-	draw_text_transformed_t(1024, global.size / 2 + training_back_y, "S\nT\nO\nR\nE", 0.25, 0.25, 0, col, c_black);
-	draw_text_transformed_t(256, global.size / 2 + training_back_y, "S\nT\nO\nR\nE", 0.25, 0.25, 0, col, c_black);	
+	if os_get_language() = "ru"
+		{
+		draw_text_transformed_t(1024, global.size / 2 + training_back_y, "S\nT\nO\nR\nE", 0.25, 0.25, 0, col, c_black);
+		draw_text_transformed_t(256, global.size / 2 + training_back_y, "S\nT\nO\nR\nE", 0.25, 0.25, 0, col, c_black);	
+		}
+		else
+		{
+		draw_text_transformed_t(1024, global.size / 2 + training_back_y, "М\nА\nГ\nА\nЗ\nИ\nН", 0.25, 0.25, 0, col, c_black);
+		draw_text_transformed_t(256, global.size / 2 + training_back_y, "М\nА\nГ\nА\nЗ\nИ\nН", 0.25, 0.25, 0, col, c_black);	
+		}
 	
 	if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
 		{ sc_angle += sc_dir * sc_spd; }
@@ -2788,8 +2940,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 				draw_text_transformed_t(640, global.size / 2 - 57, string(gold_val[i]), 0.18 * sg1 * upsc, 0.18 * sg1 * upsc, 0, global.gold_color, c_black);
 				
 				draw_text_transformed_t(640 - string_width(string(gold_pri[i]) + "ç") * 0.2 * sg1 * upsc / 2, global.size / 2 + 140, string(gold_pri[i]) + "ç", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[i] * minn, 0, global.cash_color, c_black);
-				draw_text_transformed_t(640 + string_width("BUY") * 0.2 * sg1 * upsc / 2 - 20, global.size / 2 + 140, "BUY", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[i] * minn, 0, global.cash_color, c_black);
-				
+				if os_get_language() = "ru"
+					{ draw_text_transformed_t(640 + string_width("КУП.") * 0.2 * sg1 * upsc / 2 - 20, global.size / 2 + 140, "КУП.", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[i] * minn, 0, global.cash_color, c_black); }
+					else
+					{ draw_text_transformed_t(640 + string_width("BUY") * 0.2 * sg1 * upsc / 2 - 20, global.size / 2 + 140, "BUY", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[i] * minn, 0, global.cash_color, c_black); }
 				//draw_rectangle(640 - 150, global.size / 2 + 160 - 60, 640 + 150, global.size / 2 + 160 + 80, 1);
 				if mouse_check_button_pressed(mb_left)
 					{
@@ -2852,14 +3006,26 @@ if global.menu_now = "store" or global.menu_next = "store"
 						draw_rectangle_color(0, global.size / 2 - 120 + 65 - 50, 400, global.size / 2 - 120 + 65 + 200 + 70, c_black, c_black, c_black, c_black, 0);
 						draw_set_alpha(1);
 						
-						draw_sprite_ext_t(s_menu_buttons, 1, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
-						draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65, "HEROES", 0.2, 0.2, 5, global.color_white, c_black);
-						draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 50, "CHANCE 75%", 0.12, 0.12, 5, global.color_white, c_black);
-						
-						draw_sprite_ext_t(s_menu_buttons, 2, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65+ 150 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
-						draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150, "TOTEMS", 0.2, 0.2, 5, global.color_white, c_black);
-						draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150 + 50, "CHANCE 25%", 0.12, 0.12, 5, global.color_white, c_black);
-						
+						if os_get_language() = "ru"
+							{
+							draw_sprite_ext_t(s_menu_buttons, 1, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
+							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65, "ГЕРОИ", 0.2, 0.2, 5, global.color_white, c_black);
+							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 50, "ШАНС 75%", 0.12, 0.12, 5, global.color_white, c_black);
+							
+							draw_sprite_ext_t(s_menu_buttons, 2, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65+ 150 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
+							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150, "ТОТЕМЫ", 0.2, 0.2, 5, global.color_white, c_black);
+							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150 + 50, "ШАНС 25%", 0.12, 0.12, 5, global.color_white, c_black);
+							}
+							else
+							{
+							draw_sprite_ext_t(s_menu_buttons, 1, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
+							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65, "HEROES", 0.2, 0.2, 5, global.color_white, c_black);
+							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 50, "CHANCE 75%", 0.12, 0.12, 5, global.color_white, c_black);
+							
+							draw_sprite_ext_t(s_menu_buttons, 2, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65+ 150 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
+							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150, "TOTEMS", 0.2, 0.2, 5, global.color_white, c_black);
+							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - 120 + 65 + 150 + 50, "CHANCE 25%", 0.12, 0.12, 5, global.color_white, c_black);
+							}
 						//////////////
 						
 						///////////////
@@ -2867,24 +3033,44 @@ if global.menu_now = "store" or global.menu_next = "store"
 						draw_rectangle_color(1280 - 400, global.size / 2 - 120 + 65 - 50, 1280, global.size / 2 - 120 + 65 + 200 + 70, c_black, c_black, c_black, c_black, 0);
 						draw_set_alpha(1);
 						
-						draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 20, "RARITY\nCHANCES:", 0.2, 0.2, 5, global.color_white, c_black);
-						draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20, "LEGENDARY - 5%", 0.12, 0.12, 5, c_orange, c_black);
-						draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 3, "EPIC - 15%", 0.12, 0.12, 5, c_fuchsia, c_black);
-						draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 5, "RARE - 30%", 0.12, 0.12, 5, c_aqua, c_black);
-						draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 7, "COOMON - 50%", 0.12, 0.12, 5, c_white, c_black);
+						if os_get_language() = "ru"
+							{
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 20, "RARITY\nCHANCES:", 0.2, 0.2, 5, global.color_white, c_black);
+							
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20, "LEGENDARY - 5%", 0.12, 0.12, 5, c_orange, c_black);
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 3, "EPIC - 15%", 0.12, 0.12, 5, c_fuchsia, c_black);
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 5, "RARE - 30%", 0.12, 0.12, 5, c_aqua, c_black);
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 7, "COOMON - 50%", 0.12, 0.12, 5, c_white, c_black);
+							}
+							else
+							{
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 20, "ШАНСЫ\nНАЙТИ:", 0.2, 0.2, 5, global.color_white, c_black);
+							
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20, "ЛЕГЕНДАРНАЯ - 5%", 0.12, 0.12, 5, c_orange, c_black);
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 3, "ЭПИК - 15%", 0.12, 0.12, 5, c_fuchsia, c_black);
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 5, "РЕДКАЯ - 30%", 0.12, 0.12, 5, c_aqua, c_black);
+							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 7, "ОБЫЧНАЯ - 50%", 0.12, 0.12, 5, c_white, c_black);
+							}
 						//////////////
 						
-						draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100 + 80, "*2 ITEMS", 0.2, 0.2, 5, global.gold_color, c_black);
-						
+						if os_get_language() = "ru"
+							{ draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100 + 80, "*2 ВЕЩЕЙ", 0.2, 0.2, 5, global.gold_color, c_black); }
+							else
+							{ draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100 + 80, "*2 ITEMS", 0.2, 0.2, 5, global.gold_color, c_black); }
 						draw_sprite_ext_t(s_lootbox1, 0, 640 - 10, global.size / 2 - 120 + 65 + 70, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, 0, c_white, 1, c_white, c_black);
 						draw_sprite_ext_t(s_buy, 5 + i, 640, global.size / 2 + 90 + 60 + 70, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_white, 1, c_white, c_black);
 						
-						draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100, "WOOD BOX", 0.2 * lbs1 * upsc, 0.2 * lbs1 * upsc, 5, global.color_white, c_black);
+						if os_get_language() = "ru"
+							{ draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100, "ОБЫЧНЫЙ ЯЩИК", 0.15 * lbs1 * upsc, 0.15 * lbs1 * upsc, 5, global.color_white, c_black); }
+							else
+							{ draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100, "WOOD BOX", 0.2 * lbs1 * upsc, 0.2 * lbs1 * upsc, 5, global.color_white, c_black); }
 						//draw_text_transformed_t(640, global.size / 2 - 57, string(gold_val[i]), 0.18 * sg1 * upsc, 0.18 * sg1 * upsc, 0, global.gold_color, c_black);
 					
 						draw_text_transformed_t(640 - string_width("100©") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 + 60 + 70/*+ 60*/, "100©", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
-						draw_text_transformed_t(640 + string_width("BUY") * 0.2 * lbs1 * upsc / 2 - 20, global.size / 2 + 140 + 60 + 70, "BUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
-					
+						if os_get_language() = "ru"
+							{ draw_text_transformed_t(640 + string_width("КУП.") * 0.2 * lbs1 * upsc / 2 - 20, global.size / 2 + 140 + 60 + 70, "КУП.", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black); }
+							else
+							{ draw_text_transformed_t(640 + string_width("BUY") * 0.2 * lbs1 * upsc / 2 - 20, global.size / 2 + 140 + 60 + 70, "BUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black); }
 						//draw_rectangle(640 - 150, global.size / 2 + 160 - 60 + 60 + 70, 640 + 150, global.size / 2 + 160 + 80 + 60 + 70, 1);
 						if mouse_check_button_pressed(mb_left)
 							{
@@ -3280,14 +3466,20 @@ if global.menu_now = "store" or global.menu_next = "store"
 								draw_sprite_ext(s_totems_light, 1, 640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + theme_y1[1], 0.45 * lootbox_item_s[1], 0.45 * lootbox_item_s[1], 0, lootbox_item_c[1], 0.5);
 								draw_sprite_ext(s_totems, 1, 640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + theme_y1[1], 0.45 * lootbox_item_s[1], 0.45 * lootbox_item_s[1], 0, c_black, 1);
 								draw_text_transformed_t(640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + theme_y1[1], "?", 0.5 * lootbox_item_s[1], 0.5 * lootbox_item_s[1], 0, global.color_white, c_black);
-								draw_text_transformed_t(640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + 100, "TAP", 0.17 * lootbox_item_s[1], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black);
+								if os_get_language() != "ru"
+									{ draw_text_transformed_t(640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + 100, "TAP", 0.17 * lootbox_item_s[1], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black); }
+									else
+									{ draw_text_transformed_t(640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + 100, "НАЖМИ", 0.17 * lootbox_item_s[1], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black); }
 								}
 								else
 								{
 								draw_sprite_ext(s_wanted2,  1, 640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + theme_y1[1], 0.65 * lootbox_item_s[1], 0.65 * lootbox_item_s[1], 0, lootbox_item_c[1], 0.5);
 								draw_sprite_ext(s_wanted, 6, 640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + theme_y1[1], 0.65 * lootbox_item_s[1], 0.65 * lootbox_item_s[1], 0, c_black, 1);
 								draw_text_transformed_t(640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + theme_y1[1], "?", 0.5 * lootbox_item_s[1], 0.5 * lootbox_item_s[1], 0, global.color_white, c_black);
-								draw_text_transformed_t(640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + 100, "TAP", 0.17 * lootbox_item_s[1], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black);
+								if os_get_language() != "ru"
+									{ draw_text_transformed_t(640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + 100, "TAP", 0.17 * lootbox_item_s[1], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black); }
+									else
+									{ draw_text_transformed_t(640 - 10 - lootbox_item_x[1] + theme_x1[1], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[1] + 100, "НАЖМИ", 0.17 * lootbox_item_s[1], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black); }
 								}
 							}
 						//lootbox_item_t[j]
@@ -3298,14 +3490,20 @@ if global.menu_now = "store" or global.menu_next = "store"
 								draw_sprite_ext(s_totems_light,  1, 640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + theme_y1[2], 0.45 * lootbox_item_s[2], 0.45 * lootbox_item_s[2], 0, lootbox_item_c[2], 0.5);
 								draw_sprite_ext(s_totems, 1, 640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + theme_y1[2], 0.45 * lootbox_item_s[2], 0.45 * lootbox_item_s[2], 0, c_black, 1);
 								draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + theme_y1[2], "?", 0.5 * lootbox_item_s[2], 0.5 * lootbox_item_s[2], 0, global.color_white, c_black);
-								draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + 100, "TAP", 0.17 * lootbox_item_s[2], 0.17 * lootbox_item_s[2], 0, global.color_white, c_black);
+								if os_get_language() != "ru"
+									{ draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + 100, "TAP", 0.17 * lootbox_item_s[2], 0.17 * lootbox_item_s[2], 0, global.color_white, c_black); }
+									else
+									{ draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + 100, "НАЖМИ", 0.17 * lootbox_item_s[2], 0.17 * lootbox_item_s[2], 0, global.color_white, c_black); }
 								}
 								else
 								{
 								draw_sprite_ext(s_wanted2,  1, 640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + theme_y1[2], 0.65 * lootbox_item_s[2], 0.65 * lootbox_item_s[2], 0, lootbox_item_c[2], 0.5);
 								draw_sprite_ext(s_wanted, 6, 640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + theme_y1[2], 0.65 * lootbox_item_s[2], 0.65 * lootbox_item_s[2], 0, c_black, 1);
 								draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + theme_y1[2], "?", 0.5 * lootbox_item_s[2], 0.5 * lootbox_item_s[2], 0, global.color_white, c_black);
-								draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + 100, "TAP", 0.17 * lootbox_item_s[2], 0.17 * lootbox_item_s[2], 0, global.color_white, c_black);
+								if os_get_language() != "ru"
+									{ draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + 100, "НАЖМИ", 0.17 * lootbox_item_s[2], 0.17 * lootbox_item_s[2], 0, global.color_white, c_black); }
+									else
+									{ draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + 100, "TAP", 0.17 * lootbox_item_s[2], 0.17 * lootbox_item_s[2], 0, global.color_white, c_black); }
 								}
 							}
 					
@@ -3329,7 +3527,12 @@ if global.menu_now = "store" or global.menu_next = "store"
 										else
 										{
 										if lootbox_item_ss[k] = 1
-											{ draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height("DEAL DAMAGE TO RIVAL HERO AND...") * 0.12 * lootbox_item_s[k] / 2, "DEAL DAMAGE TO RIVAL HERO AND...", -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black); }
+											{
+											if os_get_language() != "ru"
+												{ draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height("DEAL DAMAGE TO RIVAL HERO AND...") * 0.12 * lootbox_item_s[k] / 2, "DEAL DAMAGE TO RIVAL HERO AND...", -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black); }
+												else
+												{ draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height("НАНОСИТ УРОН ВРАГУ И 50% НАНОСИТ ВАМ") * 0.12 * lootbox_item_s[k] / 2, "НАНОСИТ УРОН ВРАГУ И 50% НАНОСИТ ВАМ", -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black); }
+											}
 										}
 									}
 									else

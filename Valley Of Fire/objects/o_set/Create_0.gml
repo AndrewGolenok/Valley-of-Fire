@@ -613,7 +613,7 @@
 		{
 		//global.totem_have[i] = 0;
 		global.totem_name[i] = "TOTEM NAME";
-		global.totem_desc[i] = "causes damage to the rival hero at the beginning and may damage your hero as well with the 50% possibility";
+		global.totem_desc[i] = "";
 		}
 	
 	global.totem_name[1] = "FRIENDLY TOTEM";
@@ -712,7 +712,7 @@
 		global.totem_desc[12] = "С ВЕРОЯТНОСТЬ 35% БЛОКИРУЕТ СМЕРТЕЛЬНЫЙ УРОН";
 		
 		global.totem_name[13] = "НЕОДНОЗНАЧНАЯ ПАНТЕРА";
-		global.totem_desc[13] = "В НАЧАЛЕ РАУНДА НАНОСИТ УРОН (АТК) ПРОТИВНИКУ И С ВЕРОЯТНОСТЬЮ 50% НАНОСИТ УРОН ИГРОКУ";
+		global.totem_desc[13] = "ВНАЧАЛЕ РАУНДА НАНОСИТ УРОН ПРОТИВНИКУ И 50% ВЕРОЯТНОСТЬ, ЧТО НАНЕСЁТ УРОН ВАМ";
 		
 		global.totem_name[14] = "ВСЕВИДЯЩАЯ СОВА";
 		global.totem_desc[14] = "ВСЕ ТЕМЫ СТАНОВЯТСЯ ТЕМАМИ ВАШЕГО ПЕРСОНАЖА";

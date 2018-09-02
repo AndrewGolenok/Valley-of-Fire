@@ -5005,9 +5005,19 @@ if global.hero = 1 && global.enemy_hero = 1
 				if global.training < 1
 					{
 					if global.answer = 1
-						{ global.training_gb = choose("GOOD!", "AWESOME", "PERFECT!", "EXELLENT"); }
+						{
+						if os_get_language() = "ru"
+							{ global.training_gb = choose("ХОРОШО!", "ОТЛИЧНО!", "КРУТО!", "ИДЕАЛЬНО!"); }
+							else
+							{ global.training_gb = choose("GOOD!", "AWESOME", "PERFECT!", "EXELLENT"); }
+						}
 						else
-						{ global.training_gb = choose("MISS", "FAULT", "GAFFE", "MISTAKE"); }
+						{
+						if os_get_language() = "ru"
+							{ global.training_gb = choose("ПРОМАХ", "ОШИБКА", "НЕУДАЧА", "НЕВЕЗУХА"); }
+							else
+							{ global.training_gb = choose("MISS", "FAULT", "GAFFE", "MISTAKE"); }
+						}
 					}
 					
 				if global.training < 1
@@ -5109,13 +5119,28 @@ if global.hero = 1 && global.enemy_hero = 1
 						{ global.question += 1; }
 						else
 						{
+						//if global.answer = 1
+						//	{
+						//	global.training_question += 1;
+						//	global.training_gb = choose("GOOD!", "AWESOME", "PERFECT!", "EXELLENT");
+						//	}
+						//	else
+						//	{ global.training_gb = "TRY AGAIN"; }
 						if global.answer = 1
 							{
 							global.training_question += 1;
-							global.training_gb = choose("GOOD!", "AWESOME", "PERFECT!", "EXELLENT");
+							if os_get_language() = "ru"
+								{ global.training_gb = choose("ХОРОШО!", "ОТЛИЧНО!", "КРУТО!", "ИДЕАЛЬНО!"); }
+								else
+								{ global.training_gb = choose("GOOD!", "AWESOME", "PERFECT!", "EXELLENT"); }
 							}
 							else
-							{ global.training_gb = "TRY AGAIN"; }
+							{
+							if os_get_language() = "ru"
+								{ global.training_gb = choose("ПРОМАХ", "ОШИБКА", "НЕУДАЧА", "НЕВЕЗУХА"); }
+								else
+								{ global.training_gb = choose("MISS", "FAULT", "GAFFE", "MISTAKE"); }
+							}
 						}
 					if global.storm = 1 { storm_1(); }
 					}
@@ -9954,7 +9979,10 @@ if lines_true
 	//	}
 	
 	draw_set_font(global.game_font);
-	draw_text_transformed_t(critical_x, global.size / 2 + critical_y, "CRITICAL", 0.2 * critical_s, 0.2 * critical_s, 0, (global.player_object).hero_color, c_black);
+	if os_get_language() != "ru"
+		{ draw_text_transformed_t(critical_x, global.size / 2 + critical_y, "CRITICAL", 0.2 * critical_s, 0.2 * critical_s, 0, (global.player_object).hero_color, c_black); }
+		else
+		{ draw_text_transformed_t(critical_x, global.size / 2 + critical_y, "КРИТ УРОН", 0.2 * critical_s, 0.2 * critical_s, 0, (global.player_object).hero_color, c_black); }
 	//draw_text_transformed_t((global.enemy_object).x - 250 , global.size - 22 - sprite_get_height(s_healthbar_hp) * gui_size + global.critical_y_e, "CRITICAL", 0.1, 0.1, 0, (global.enemy_object).hero_color , c_black);
 #endregion
 #region Верно или нет
@@ -10403,7 +10431,15 @@ if lines_true
 		colorr = global.color_hero[2];
 		if global.training_gb = "TRY AGAIN"
 			{ colorr = global.color_hero[4]; }
-		draw_text_transformed_t(640, global.training_gb_y, global.training_gb, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, colorr, c_black);
+		if global.training_gb = "TRY AGAIN"
+			{
+			if os_get_language() = "ru"
+				{ draw_text_transformed_t(640, global.training_gb_y, "ПОПРОБУЙ ЕЩЁ!", 0.18 * global.text_sc, 0.18 * global.text_sc, 8, colorr, c_black); }
+				else
+				{ draw_text_transformed_t(640, global.training_gb_y, global.training_gb, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, colorr, c_black); }
+			}
+			else
+			{ draw_text_transformed_t(640, global.training_gb_y, global.training_gb, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, colorr, c_black); }
 		}
 #endregion
 #region Шэйк-эффект
