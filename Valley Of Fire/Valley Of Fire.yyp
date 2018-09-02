@@ -400,25 +400,6 @@
             }
         },
         {
-            "Key": "0e176f1b-d642-4742-90cc-8ea11a8dd8fe",
-            "Value": {
-                "id": "5dfe9bb1-5588-4729-99c3-d313107036cd",
-                "modelName": "GMResourceInfo",
-                "mvc": "1.0",
-                "configDeltaFiles": [
-                    
-                ],
-                "configDeltas": [
-                    
-                ],
-                "resourceCreationConfigs": [
-                    "default"
-                ],
-                "resourcePath": "sprites\/s_heroes_back2\/s_heroes_back2.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
             "Key": "0fa2cd16-5ea2-4600-964a-7b3a7880ee0a",
             "Value": {
                 "id": "dc92dcc7-8abc-4e63-95aa-d2795cc14aca",
@@ -720,25 +701,6 @@
                 ],
                 "resourcePath": "views\/175db9ba-fa2b-4484-bcd6-4ed60384fb20.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "1910ef39-c874-47fd-81ac-f3549d88f37a",
-            "Value": {
-                "id": "21f514c5-d636-43f8-8278-72b2a5125040",
-                "modelName": "GMResourceInfo",
-                "mvc": "1.0",
-                "configDeltaFiles": [
-                    
-                ],
-                "configDeltas": [
-                    
-                ],
-                "resourceCreationConfigs": [
-                    "default"
-                ],
-                "resourcePath": "sprites\/sprite204\/sprite204.yy",
-                "resourceType": "GMSprite"
             }
         },
         {
