@@ -562,13 +562,36 @@
 	global.count_themes = 7;
 	ini_open("Language/" + string(global.lang) + "/theme_name_" + string(global.lang) + ".ini");
 	
-	global.theme_name[1] = "CARDS";
-	global.theme_name[2] = "BOTTLES";
-	global.theme_name[3] = "MOVE";
-	global.theme_name[4] = "ATTENTION";
-	global.theme_name[5] = "SHOOTING";
-	global.theme_name[6] = "MATH";
-	global.theme_name[7] = "STORM";
+	if os_get_language() = "ru"
+		{
+		global.theme_name[1] = "КАРТЫ";
+		global.theme_name[2] = "БУТЫЛКИ";
+		global.theme_name[3] = "ДВИЖЕНИЕ";
+		global.theme_name[4] = "ВНИМАНИЕ";
+		global.theme_name[5] = "СТРЕЛЬБА";
+		global.theme_name[6] = "МАТЕМАТИКА";
+		global.theme_name[7] = "ШТОРМ";
+		}
+		else
+		{
+		global.theme_name[1] = "CARDS";
+		global.theme_name[2] = "BOTTLES";
+		global.theme_name[3] = "MOVE";
+		global.theme_name[4] = "ATTENTION";
+		global.theme_name[5] = "SHOOTING";
+		global.theme_name[6] = "MATH";
+		global.theme_name[7] = "STORM";
+		}
+	switch(i)
+		{
+		case 1: theme = "КАРТЫ"; break;
+		case 2: theme = "БУТЫЛКИ"; break;
+		case 3: theme = "ДВИЖЕНИЕ"; break;
+		case 4: theme = "ВНИМАНИЕ"; break;
+		case 5: theme = "СТРЕЛЬБА"; break;
+		case 6: theme = "МАТЕМ."; break;
+		case 7: theme = "ШТОРМ"; break;
+		}
 	
 	global.color_white = make_color_rgb(255, 248, 220);
 	ini_close();

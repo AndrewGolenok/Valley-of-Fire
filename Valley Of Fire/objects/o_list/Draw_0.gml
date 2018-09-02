@@ -8482,8 +8482,10 @@ if global.hero = 1 && global.enemy_hero = 1
 			var gold_c;
 			gold_c = make_color_rgb(252,232,131);
 			draw_set_font(global.game_font);//draw_set_font(f_win_regular);
-			
-			draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "VICTORY!", finplas * 0.18, 0.18, 0, gold_c, c_black);
+			if os_get_language() = "ru"
+				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "ПОБЕДА!", finplas * 0.18, 0.18, 0, gold_c, c_black); }
+				else
+				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "VICTORY!", finplas * 0.18, 0.18, 0, gold_c, c_black); }
 			}
 		if whowin = 2
 			{
@@ -8500,7 +8502,10 @@ if global.hero = 1 && global.enemy_hero = 1
 			//draw_text_transformed(640 - 1, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0);
 			//draw_set_color(c_white);
 			//draw_set_alpha(1);
-			draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0, global.color_white, c_black);
+			if os_get_language() = "ru"
+				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0, global.color_white, c_black); }
+				else
+				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "ПОРАЖЕНИЕ", finplas * 0.18, 0.18, 0, global.color_white, c_black); }
 			}
 			
 		//draw_set_font(global.game_font);

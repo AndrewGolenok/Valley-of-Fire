@@ -264,21 +264,27 @@
 	
 		enemy_timer = -1;
 	
-		ini_open("Language/" + string_lower(string(global.lang)) + "/other_text_" + string_lower(string(global.lang)) + ".ini");
+		//ini_open("Language/" + string_lower(string(global.lang)) + "/other_text_" + string_lower(string(global.lang)) + ".ini");
 		ini_open("other_text_en.ini")
+		if os_get_language() = "ru"
+			{ ini_open("other_text_ru.ini"); }
+			else
+			{ ini_open("other_text_en.ini"); }
+			
 		hand_text[0] = ini_read_string("Text", "hand_text_0", "");
 		hand_text[1] = ini_read_string("Text", "hand_text_1", "");
 		hand_text[2] = ini_read_string("Text", "hand_text_2", "");
-	
+			
 		theme_text[0] = ini_read_string("Text", "theme_text_0", "");
 		theme_text[1] = ini_read_string("Text", "theme_text_1", "");
-	
+			
 		win_text[0] = ini_read_string("Text", "win_text_0", "");
 		win_text[1] = ini_read_string("Text", "win_text_1", "");
-	
+			
 		end_text[0] = ini_read_string("Text", "end_text_0", "");
 		end_text[1] = ini_read_string("Text", "end_text_1", "");
-	
+		
+		
 		for(i=0;i<=2;i++)
 			{
 			dop_i[i] = -1;
@@ -433,9 +439,18 @@
 	theme_timer = room_speed * 14;
 #endregion
 #region Объявление раунда
-	round_text[1] = "ROUND";
-	round_text[2] = "READY?";
-	round_text[3] = "GO!";
+	if os_get_language() != "ru"
+		{
+		round_text[1] = "ROUND";
+		round_text[2] = "READY?";
+		round_text[3] = "GO!";
+		}
+		else
+		{
+		round_text[1] = "РАУНД";
+		round_text[2] = "ГОТОВ?";
+		round_text[3] = "ДАВАЙ!";
+		}
 	
 	round_x[1] = 300;
 	round_y[1] = global.size / 2 - 150;
@@ -1087,7 +1102,7 @@
 	
 	timer_y = 0;
 	
-	if os_get_language() = "ru"
+	if os_get_language() != "ru"
 		{
 		if bot_type = 0
 			{ global.enemy_name = choose("DUMB BOB", "SILLY SAM", "BAD BOY"); }

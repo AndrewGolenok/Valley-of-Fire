@@ -1065,6 +1065,25 @@
             }
         },
         {
+            "Key": "26ab1fac-4b36-42cc-8bfc-3df23e00ceb1",
+            "Value": {
+                "id": "2698f03b-b3de-424f-bd57-c8aa0f5676c6",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "datafiles_yy\/other_text_ru.ini.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "283f2ce3-9deb-4baa-a79a-85d8416eb7e9",
             "Value": {
                 "id": "9c91fa49-c9a5-485e-85b1-3b0f7861975c",
