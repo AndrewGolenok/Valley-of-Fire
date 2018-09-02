@@ -1331,6 +1331,25 @@
             }
         },
         {
+            "Key": "2ea29375-732a-4b1c-a45d-bb0c93820123",
+            "Value": {
+                "id": "c0b5f63f-ee8d-46a8-9784-78c602344da5",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sounds\/sd_text\/sd_text.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
             "Key": "2f0e3031-a8a9-4e58-92d1-d7ee55505314",
             "Value": {
                 "id": "ffdd004e-fcd9-4b26-ba9c-b08e42dee971",
@@ -4767,25 +4786,6 @@
                 ],
                 "resourcePath": "sprites\/s_knife1\/s_knife1.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "9d649e8f-da32-4910-9a6f-d59dbb4f3a3f",
-            "Value": {
-                "id": "5002340d-e378-4558-8781-2d7dad98db7c",
-                "modelName": "GMResourceInfo",
-                "mvc": "1.0",
-                "configDeltaFiles": [
-                    
-                ],
-                "configDeltas": [
-                    
-                ],
-                "resourceCreationConfigs": [
-                    "default"
-                ],
-                "resourcePath": "sounds\/sd_text\/sd_text.yy",
-                "resourceType": "GMSound"
             }
         },
         {

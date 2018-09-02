@@ -17,7 +17,7 @@
     "androidsourcedir": "",
     "author": "",
     "classname": "RequestReviewBridge",
-    "copyToTargets": -1,
+    "copyToTargets": 153720560310812846,
     "date": "2018-46-31 07:08:44",
     "description": "",
     "extensionName": "",
@@ -85,5 +85,16 @@
     "packageID": "",
     "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
     "sourcedir": "",
+    "tvosProps": false,
+    "tvosSystemFrameworkEntries": [
+        
+    ],
+    "tvosThirdPartyFrameworkEntries": [
+        
+    ],
+    "tvosclassname": null,
+    "tvosmaccompilerflags": null,
+    "tvosmaclinkerflags": null,
+    "tvosplistinject": null,
     "version": "1.0.0"
 }

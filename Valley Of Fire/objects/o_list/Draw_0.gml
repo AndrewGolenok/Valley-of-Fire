@@ -9049,7 +9049,8 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						if req = 0
 							{
-							if global.wins = 2 or global.wins = 5 or global.wins = 9 or global.wins = 19
+							global.wins += 1;
+							if global.wins = 3 or global.wins = 6 or global.wins = 10 or global.wins = 20
 								{
 								var a;
 								a = requestReview();
@@ -9060,7 +9061,6 @@ if global.hero = 1 && global.enemy_hero = 1
 									global.request = 1;
 									}
 								}
-							global.wins += 1;
 							
 							ini_open("Music.ini");
 								ini_write_string("Request", "request", string(global.request));
@@ -9068,8 +9068,6 @@ if global.hero = 1 && global.enemy_hero = 1
 							
 							global.request = ini_read_real("Request", "request", 0);
 							global.wins    = ini_read_real("Request", "wins", 0);
-							
-							//global.request = 0;
 							
 							req = 1;
 							ini_close();
