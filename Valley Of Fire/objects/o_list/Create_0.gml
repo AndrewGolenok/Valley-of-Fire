@@ -925,6 +925,13 @@
 	g_star_yy[5] = 0;
 	g_star_yy[6] = 0;
 	
+	g_star_ss[1] = 1;
+	g_star_ss[2] = 1;
+	g_star_ss[3] = 1;
+	g_star_ss[4] = 1;
+	g_star_ss[5] = 1;
+	g_star_ss[6] = 1;
+	
 	g_star_yn = 1;
 	
 	if global.last_game = 1 && global.last_game2 = 1

@@ -8639,6 +8639,12 @@ if global.hero = 1 && global.enemy_hero = 1
 						g_star_yy[5] = 0;
 						g_star_yy[6] = 0;
 						
+						g_star_ss[1] = 1;
+						g_star_ss[2] = 1;
+						g_star_ss[3] = 1;
+						g_star_ss[4] = 1;
+						g_star_ss[5] = 1;
+						g_star_ss[6] = 1;
 						if whowin = 2 && star_now - 1 < 0
 							{ g_rank_type = 1; g_skul_y = 0; g_star_yn = star_now; g_star_yy[g_star_yn] = 0; }
 						if whowin = 2 && star_now - 1 >= 0
@@ -8705,7 +8711,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							ini_write_string("Ranks", "ranks", string(global.rank_stars));
 						ini_close();
 						}
-					if g_star_yy[g_star_yn] < global.size / 2 + 200
+					if g_star_yy[g_star_yn] < global.size / 2 + 300
 						{ g_star_yy[g_star_yn] += 15; }
 						else
 						{ g_rank_stage = 6; }//{ g_rank_stage = 4; }
@@ -8716,7 +8722,7 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						if global.rank_stars < 70
 							{ global.rank_stars += 1 + winstreak; }
-						g_star_s = 30;
+						g_star_ss[g_star_yn] = 30;
 						if global.sound
 							{ audio_play_sound(sd_star, 4, 0); }
 						ini_open("Music.ini");
@@ -8724,13 +8730,15 @@ if global.hero = 1 && global.enemy_hero = 1
 						ini_close();
 						}
 					g_star_yy[g_star_yn] = 0;
-					if g_star_s > 1
-						{ g_star_s -= 3; }
+					if g_star_ss[g_star_yn] > 1
+						{ g_star_ss[g_star_yn] -= 3; }
 						else
-						{ g_star_s = 1; g_rank_stage = 6; } //{ g_rank_stage = 4; }
+						{ g_star_ss[g_star_yn] = 1; g_rank_stage = 6; } //{ g_rank_stage = 4; }
 					}
 				if g_rank_type = 4
 					{
+					if global.sound
+						{ audio_play_sound(sd_star, 4, 0); }
 					if global.rank_stars < 70
 						{ global.rank_stars += 1 + winstreak; }
 					g_rank_stage = 4;
@@ -8744,7 +8752,7 @@ if global.hero = 1 && global.enemy_hero = 1
 					//if g_skul_s > 0
 						{
 						if g_skul_y < global.size / 2 + 200
-							{ g_skul_y += 30; }
+							{ g_skul_y += 20; }
 							else
 							{
 							if global.rank_stars != 0 && global.rank_stars != 16
@@ -8781,7 +8789,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							{
 							g_rank_stage = 5;
 							g_skul_y = 0;
-							g_skul_s = 5;
+							g_skul_s = 20;
 							}
 						}
 					}
@@ -8799,7 +8807,7 @@ if global.hero = 1 && global.enemy_hero = 1
 				if g_rank_type = 4
 					{
 					if g_skul_s > 1
-						{ g_skul_s -= 0.5; }
+						{ g_skul_s -= 2; }
 						else
 						{ g_skul_s = 1; g_rank_stage = 6; }
 					}
@@ -9148,9 +9156,9 @@ if global.hero = 1 && global.enemy_hero = 1
 								draw_sprite_ext_t(s_rank_star, 0, 640 + 30, global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
 							
 								if star_now > 0
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 30, g_star_yy[1] + global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 30, g_star_yy[1] + global.size / 2 + 35, 0.3 * g_star_ss[1], 0.3 * g_star_ss[1], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 1
-									{ draw_sprite_ext(s_rank_star, 0, 640 + 30, g_star_yy[2] + global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1); }
+									{ draw_sprite_ext(s_rank_star, 0, 640 + 30, g_star_yy[2] + global.size / 2 + 35, 0.3 * g_star_ss[2], 0.3 * g_star_ss[2], 0, global.color_white, 1); }
 								}
 							if star_need = 3
 								{
@@ -9159,11 +9167,11 @@ if global.hero = 1 && global.enemy_hero = 1
 								draw_sprite_ext_t(s_rank_star, 0, 640 + 70, global.size / 2, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
 			
 								if star_now > 0
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 70, g_star_yy[1] + global.size / 2, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 70, g_star_yy[1] + global.size / 2, 0.3 * g_star_ss[1], 0.3 * g_star_ss[1], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 1
-									{ draw_sprite_ext_t(s_rank_star, 0, 640, g_star_yy[2] + global.size / 2 + 70, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640, g_star_yy[2] + global.size / 2 + 70, 0.3 * g_star_ss[2], 0.3 * g_star_ss[2], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 2
-									{ draw_sprite_ext(s_rank_star, 0, 640 + 30, g_star_yy[3] + global.size / 2 + 35, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_white, 1); }
+									{ draw_sprite_ext(s_rank_star, 0, 640 + 30, g_star_yy[3] + global.size / 2 + 35, 0.3 * g_star_ss[3], 0.3 * g_star_ss[3], 0, c_white, 1); }
 								}
 							if star_need = 4
 								{
@@ -9173,13 +9181,13 @@ if global.hero = 1 && global.enemy_hero = 1
 								draw_sprite_ext_t(s_rank_star, 0, 640 + 110, global.size / 2 - 40, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
 			
 								if star_now > 0
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 110, g_star_yy[1] + global.size / 2 - 40, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 110, g_star_yy[1] + global.size / 2 - 40, 0.3 * g_star_ss[1], 0.3 * g_star_ss[1], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 1
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 50, g_star_yy[2] + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 50, g_star_yy[2] + global.size / 2 + 20, 0.3 * g_star_ss[2], 0.3 * g_star_ss[2], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 2
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 50, g_star_yy[3] + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 50, g_star_yy[3] + global.size / 2 + 20, 0.3 * g_star_ss[3], 0.3 * g_star_ss[3], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 3
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 110, g_star_yy[4] + global.size / 2 - 40, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 110, g_star_yy[4] + global.size / 2 - 40, 0.3 * g_star_ss[4], 0.3 * g_star_ss[4], 0, global.color_white, 1, global.color_white, c_black); }
 								}
 							if star_need = 5
 								{
@@ -9190,15 +9198,15 @@ if global.hero = 1 && global.enemy_hero = 1
 								draw_sprite_ext_t(s_rank_star, 0, 640 + 100, global.size / 2 - 45, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
 			
 								if star_now > 0
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 100, g_star_yy[1] + global.size / 2 - 45, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 100, g_star_yy[1] + global.size / 2 - 45, 0.3 * g_star_ss[1], 0.3 * g_star_ss[1], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 1
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 60, g_star_yy[2] + global.size / 2 + 15, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 60, g_star_yy[2] + global.size / 2 + 15, 0.3 * g_star_ss[2], 0.3 * g_star_ss[2], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 2
-									{ draw_sprite_ext_t(s_rank_star, 0, 640, g_star_yy[3] + global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640, g_star_yy[3] + global.size / 2 + 60, 0.3 * g_star_ss[3], 0.3 * g_star_ss[3], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 3
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 60, g_star_yy[4] + global.size / 2 + 15, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 60, g_star_yy[4] + global.size / 2 + 15, 0.3 * g_star_ss[4], 0.3 * g_star_ss[4], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 4
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 100, g_star_yy[5] + global.size / 2 - 45, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 100, g_star_yy[5] + global.size / 2 - 45, 0.3 * g_star_ss[5], 0.3 * g_star_ss[5], 0, global.color_white, 1, global.color_white, c_black); }
 								}
 							if star_need = 6
 								{
@@ -9210,17 +9218,17 @@ if global.hero = 1 && global.enemy_hero = 1
 								draw_sprite_ext_t(s_rank_star, 0, 640 + 120, global.size / 2 - 30, 0.3 * g_star_s, 0.3 * g_star_s, 0, c_black, 0.5, global.color_white, c_black);
 			
 								if star_now > 0
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 120, g_star_yy[1] + global.size / 2 - 30, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 120, g_star_yy[1] + global.size / 2 - 30, 0.3 * g_star_ss[1], 0.3 * g_star_ss[1], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 1
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 80, g_star_yy[2] + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 80, g_star_yy[2] + global.size / 2 + 20, 0.3 * g_star_ss[2], 0.3 * g_star_ss[2], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 2
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 40, g_star_yy[3] + global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 - 40, g_star_yy[3] + global.size / 2 + 60, 0.3 * g_star_ss[3], 0.3 * g_star_ss[3], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 3
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 40, g_star_yy[4] + global.size / 2 + 60, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 40, g_star_yy[4] + global.size / 2 + 60, 0.3 * g_star_ss[4], 0.3 * g_star_ss[4], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 4
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 80, g_star_yy[5] + global.size / 2 + 20, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 80, g_star_yy[5] + global.size / 2 + 20, 0.3 * g_star_ss[5], 0.3 * g_star_ss[5], 0, global.color_white, 1, global.color_white, c_black); }
 								if star_now > 5
-									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 120, g_star_yy[6] + global.size / 2 - 30, 0.3 * g_star_s, 0.3 * g_star_s, 0, global.color_white, 1, global.color_white, c_black); }
+									{ draw_sprite_ext_t(s_rank_star, 0, 640 + 120, g_star_yy[6] + global.size / 2 - 30, 0.3 * g_star_ss[6], 0.3 * g_star_ss[6], 0, global.color_white, 1, global.color_white, c_black); }
 								}
 							draw_set_alpha(1);
 							}

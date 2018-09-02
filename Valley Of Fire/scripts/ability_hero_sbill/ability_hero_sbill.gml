@@ -26,7 +26,10 @@ if (round(image_index) = 10 or round(image_index) = 9) && skeleton_animation_get
 	if super = 0
 		{
 		sx = x;
-		sy = y;
+		if hero_sprite != s_jbill
+			{ sy = y; }
+			else
+			{ sy = y + 70; }
 	
 		knife_i = 0;
 		shoot = 1;
