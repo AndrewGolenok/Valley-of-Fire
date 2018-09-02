@@ -7,7 +7,7 @@ switch os_type
 	    if !reviewDisplayed
 			{
 			var ddd;
-			ddd = show_question_async("Did you enjoy the game? Write a review!");
+			ddd = show_question_async("Do you like this game? Please rate in the AppStore!");
 			if ddd
 				{ url_open("itms-apps://itunes.apple.com/app/apple-store/id1400010051?mt=8"); }
 			}
