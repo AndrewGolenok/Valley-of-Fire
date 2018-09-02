@@ -25,7 +25,7 @@ if image_index = 15 && skeleton_animation_get() = "shoot" && shoot = 0
 	if global.super_ability = 1
 		{ shoot = 2; }
 	bullet_index = 4;
-	if global.sound { audio_play_sound(sd_bottle, 1, 0); }
+	if global.sound { audio_play_sound(sd_bottle, 3, 0); }
 	}
 
 if shoot = 2 or shoot = 3

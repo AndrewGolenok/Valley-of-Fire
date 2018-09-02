@@ -10,6 +10,8 @@
 		global.enemy_hero = 7;
 		}
 	
+	room_gt = 0;
+	writein = 0;
 	anim_skul = 0;
 	global.player_name = string_upper(global.hero_code_name[global.hero]); //choose("Andrew", "Artem", "Nikolay");
 	global.enemy_rank  = choose(global.player_rank - 1, global.player_rank + 1, global.player_rank + 1, global.player_rank, global.player_rank, global.player_rank, global.player_rank, global.player_rank)
@@ -915,6 +917,15 @@
 	g_rank_s = 0;
 	g_skul_s = 1;
 	g_star_s = 1;
+	
+	g_star_yy[1] = 0;
+	g_star_yy[2] = 0;
+	g_star_yy[3] = 0;
+	g_star_yy[4] = 0;
+	g_star_yy[5] = 0;
+	g_star_yy[6] = 0;
+	
+	g_star_yn = 1;
 	
 	if global.last_game = 1 && global.last_game2 = 1
 		{ winstreak = 1; }

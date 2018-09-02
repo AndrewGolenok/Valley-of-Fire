@@ -49,6 +49,10 @@
 		popka = (720 - global.size) / 2;
 	if popka > 0
 		{ popka = 0; }
+	var popka2;
+		popka2 = (960 - global.size) / 2;
+	if popka2 > 0
+		{ popka2 = 0; }
 #endregion
 
 #region Главное меню
@@ -1944,8 +1948,8 @@ if global.menu_now = "store" or global.menu_next = "store"
 	// top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40
 	
 	draw_set_alpha(0.35);
-		draw_rectangle_color(0, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 1280, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40, c_black, c_black, c_black, c_black, 0);
-		draw_rectangle_color(0, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40, 1280, top + 40 + gold_y + training_back_y + store_yy1 + pry - 135, c_black, c_black, c_black, c_black, 0);
+		draw_rectangle_color(0, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10 + popka2, 1280, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40 + popka2, c_black, c_black, c_black, c_black, 0);
+		draw_rectangle_color(0, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40 + popka2, 1280, top + 40 + gold_y + training_back_y + store_yy1 + pry - 135 + popka2, c_black, c_black, c_black, c_black, 0);
 	draw_set_alpha(1);
 	
 	//300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40
