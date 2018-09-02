@@ -9079,8 +9079,10 @@ if global.hero = 1 && global.enemy_hero = 1
 					writein = 1;
 					}
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(640, global.size - 60 + fin_y, "TAP TO GO MENU", 0.2, 0.2, 0, global.color_white, c_black);
-				
+				if os_get_language() = "ru"
+					{ draw_text_transformed_t(640, global.size - 60 + fin_y, "ВЕРНУТЬСЯ В МЕНЮ", 0.2, 0.2, 0, global.color_white, c_black); }
+					else
+					{ draw_text_transformed_t(640, global.size - 60 + fin_y, "TAP TO GO MENU", 0.2, 0.2, 0, global.color_white, c_black); }
 				if mouse_check_button_pressed(mb_left)
 					{
 					global.p_totem[1] = -1;
@@ -9094,7 +9096,10 @@ if global.hero = 1 && global.enemy_hero = 1
 			if g_rank_stage = 8
 				{
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(640, global.size - 60 + fin_y, "TAP TO GO MENU", 0.2, 0.2, 0, global.color_white, c_black);
+				if os_get_language() = "ru"
+					{ draw_text_transformed_t(640, global.size - 60 + fin_y, "ВЕРНУТЬСЯ В МЕНЮ", 0.2, 0.2, 0, global.color_white, c_black); }
+					else
+					{ draw_text_transformed_t(640, global.size - 60 + fin_y, "TAP TO GO MENU", 0.2, 0.2, 0, global.color_white, c_black); }
 				
 				if mouse_check_button_pressed(mb_left)
 					{
@@ -9162,7 +9167,19 @@ if global.hero = 1 && global.enemy_hero = 1
 				{
 				//g_skul_y = 0;
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(640, global.size - 180 + fin_y, "YOU DO NOT LOSE\nA STAR ON THIS RANK", 0.15, 0.15, 0, global.color_white, c_black);
+				if os_get_language() = "ru"
+					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "ВЫ НЕ ТЕРЯЕТЕ ЗВЕЗДУ\nНА ЭТОМ РАНГЕ", 0.15, 0.15, 0, global.cash_color, c_black); }
+					else
+					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "YOU DO NOT LOSE\nA STAR ON THIS RANK", 0.15, 0.15, 0, global.cash_color, c_black); }
+				}
+				
+			if winstreak > 0
+				{
+				draw_set_font(global.game_font);
+				if os_get_language() = "ru"
+					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "СЕРИЯ ПОБЕД!", 0.15, 0.15, 0, c_orange, c_black); }
+					else
+					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "WIN STREAK!", 0.15, 0.15, 0, c_orange, c_black); }
 				}
 			
 			if g_rank_stage >= 1

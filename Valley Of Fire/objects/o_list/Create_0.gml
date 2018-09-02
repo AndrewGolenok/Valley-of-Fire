@@ -29,7 +29,7 @@
 		switch(global.hero)
 			{
 			case 1: global.player_name = "ВОРИШКА"; break;
-			case 2: global.player_name = "ВЕСЁЛЫЙ ДЖО"; break;
+			case 2: global.player_name = "ПЬЯН. ДЖО"; break;
 			case 3: global.player_name = "ОХОТНИЦА"; break;
 			case 4: global.player_name = "ДИЕГО"; break;
 			case 5: global.player_name = "БИЛЛ СТ."; break;

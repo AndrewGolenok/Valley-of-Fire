@@ -202,10 +202,10 @@
 	
 	if os_get_language() = "ru"
 		{
-		text_tot[1] = "ОБЫЧНАЯ";
-		text_tot[2] = "РЕДКАЯ";
-		text_tot[3] = "ЭПИЧЕСКАЯ";
-		text_tot[4] = "ЛЕГЕНДАРНАЯ";
+		text_tot[1] = "ОБЫЧНЫЕ";
+		text_tot[2] = "РЕДКИЕ";
+		text_tot[3] = "ЭПИЧЕСКИЕ";
+		text_tot[4] = "ЛЕГЕНДАРНЫЕ";
 		}
 #endregion
 #region Магазин

@@ -352,7 +352,7 @@
 		//БЫСТРАЯ ИГРА
 		
 		//// РАНКЕД ДУЭЛЬ
-		if point_in_rectangle(mouse_x, mouse_y, 640 - string_width("®РАНГОВЫЙ МАТЧ®") * 0.22 / 2, global.size / 2 + 25, 640 + string_width("®RANKED®") * 0.22 / 2, global.size / 2 + string_height("®РАНГОВЫЙ МАТЧ®") * 0.22 + 25)
+		if point_in_rectangle(mouse_x, mouse_y, 640 - string_width("®РАНГ ДУЭЛЬ®") * 0.22 / 2, global.size / 2 + 25, 640 + string_width("®РАНГ ДУЭЛЬ®") * 0.22 / 2, global.size / 2 + string_height("®РАНГ ДУЭЛЬ®") * 0.22 + 25)
 			{
 			GoogleAnalytics_SendEvent("PLAY","Игрок выбрал RANKED");
 			//// КЛАЦ
@@ -1191,7 +1191,7 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 			draw_text_transformed_t(330 + hero_xx[i] + prx, (160 + 360 + popka) - top + hero_yyy[i] + training_back_y + hero_yy1 + hero_h * 1.1 * hero_s + pry, "(" + string(hero_now1[i]) + "~" + string(hero_need[i]) + ")", 0.1, 0.1, 0, global.color_white, c_black);
 			}
 		draw_sprite_ext(s_wanted, 6, 330 + hero_xx[2] + prx, (160 + 360 + popka) - top + hero_yyy[7] + training_back_y + hero_yy1 + 10 + pry, hero_s * hero_ss[2], hero_s * hero_ss[2], 0, c_black, 0.5);
-		if os_get_language() = "ru"
+		if os_get_language() != "ru"
 			{ draw_text_transformed_t( 330 + hero_xx[2] + prx, (160 + 360 + popka) - top + hero_yyy[7] + training_back_y + hero_yy1 + 10 + pry, "APPEAR\nSOON", 0.15, 0.15, 10, global.color_white, c_black); }
 			else
 			{ draw_text_transformed_t( 330 + hero_xx[2] + prx, (160 + 360 + popka) - top + hero_yyy[7] + training_back_y + hero_yy1 + 10 + pry, "УЖЕ\nСКОРО!", 0.15, 0.15, 10, global.color_white, c_black); }
@@ -1312,7 +1312,7 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 					switch(i)
 						{
 						case 1: name = "ВОРИШКА"; break;
-						case 2: name = "ВЕСЁЛЫЙ ДЖО"; break;
+						case 2: name = "ПЬЯН. ДЖО"; break;
 						case 3: name = "ОХОТНИЦА"; break;
 						case 4: name = "ДИЕГО"; break;
 						case 5: name = "БИЛЛ СТ."; break;
@@ -1340,18 +1340,44 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 					draw_sprite_ext_t(s_themes_button, 0, 1280 - 300 + 75, global.size / 2 - 30 + training_back_y + 165, 0.3, 0.3, 0, global.color_hero[i], 1, global.color_hero[i], c_black);
 					draw_sprite_ext_t(s_super, i + 1, 1280 - 300 + 75, global.size / 2 - 30 + training_back_y + 165, 0.45, 0.45, 0, global.color_white, 1, global.color_white, c_black);
 					
-					theme = string_upper(global.hero_code_theme[i]);
-					if i = 4
-						{ theme = "ATTENTION"; }
-					switch(i)
+					if os_get_language() = "ru"
 						{
-						case 1: supert = "THEFT"; break;
-						case 2: supert = "STUN"; break;
-						case 3: supert = "POISON"; break;
-						case 4: supert = "BOOM"; break;
-						case 5: supert = "HAZE"; break;
-						case 6: supert = "CRITICAL"; break;
-						case 7: supert = "IDOLS"; break;
+						theme = string_upper(global.hero_code_theme[i]);
+						if i = 4
+							{ theme = "ATTENTION"; }
+						switch(i)
+							{
+							case 1: supert = "THEFT"; break;
+							case 2: supert = "STUN"; break;
+							case 3: supert = "POISON"; break;
+							case 4: supert = "BOOM"; break;
+							case 5: supert = "HAZE"; break;
+							case 6: supert = "CRITICAL"; break;
+							case 7: supert = "IDOLS"; break;
+							}
+						}
+						else
+						{
+						switch(i)
+							{
+							case 1: theme = "КАРТЫ"; break;
+							case 2: theme = "БУТЫЛКИ"; break;
+							case 3: theme = "ДВЖЕНИЕ"; break;
+							case 4: theme = "ВНИМАНИЕ"; break;
+							case 5: theme = "СТРЕЛЬБА"; break;
+							case 6: theme = "МАТЕМАТИКА"; break;
+							case 7: theme = "ШТОРМ"; break;
+							}
+						switch(i)
+							{
+							case 1: supert = "ВОР"; break;
+							case 2: supert = "ОГЛУШКА"; break;
+							case 3: supert = "ЯД"; break;
+							case 4: supert = "БУУМ"; break;
+							case 5: supert = "ДЫМКА"; break;
+							case 6: supert = "КРИТ"; break;
+							case 7: supert = "ИДОЛЫ"; break;
+							}
 						}
 					draw_text_transformed_t(1280 - 300 - 75, global.size / 2 - 30 + training_back_y + 165 + 50, theme, 0.12, 0.12, 0, global.color_white, c_black);
 					draw_text_transformed_t(1280 - 300 + 75, global.size / 2 - 30 + training_back_y + 165 + 50, supert, 0.12, 0.12, 0, global.color_white, c_black);
@@ -1927,7 +1953,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 					}
 				}
 			//draw_rectangle(640 - 290, global.size / 2 - 60 + 150 + training_back_y, 640 + 290, global.size / 2 + 60 + 150 + training_back_y, 1);
-			if os_get_language() = "ru"
+			if os_get_language() != "ru"
 				{ draw_text_transformed_t(640, global.size / 2 + 150 + training_back_y, "CHOOSE HERO", 0.27 * go5, 0.27 * go5, 5, global.color_white, c_black); }
 				else
 				{ draw_text_transformed_t(640, global.size / 2 + 150 + training_back_y, "ВЫБРАТЬ ГЕРОЯ", 0.27 * go5, 0.27 * go5, 5, global.color_white, c_black); }
@@ -2191,7 +2217,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 		
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 70 + lootbox_y + training_back_y + store_yy1 + pry + 10, 0.4, 0.4, 0, c_black, 0.5);
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 70 + lootbox_y + training_back_y + store_yy1 + pry, 0.4, 0.4, 0, c_white, 1);
-		if os_get_language() = "ru"
+		if os_get_language() != "ru"
 			{ draw_text_transformed_t(640 + prx, top + 50 + lootbox_y + training_back_y + store_yy1 + pry, "LOOTBOXES", 0.2, 0.2, 0, global.color_white, c_black); }
 			else
 			{ draw_text_transformed_t(640 + prx, top + 50 + lootbox_y + training_back_y + store_yy1 + pry, "ЛУТБОКСЫ", 0.2, 0.2, 0, global.color_white, c_black); }
@@ -2226,7 +2252,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 		////// ЕЖЕДНЕВНЫЕ ПОКУПКИ
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 0.4, 0.4, 0, c_black, 0.5);
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top - 90 + daily_y + training_back_y + pry + store_yy1, 0.4, 0.4, 0, c_white, 1);
-		if os_get_language() = "ru"
+		if os_get_language() != "ru"
 			{ draw_text_transformed_t(640 + prx, top - 110 + daily_y + training_back_y + pry + store_yy1, "DAILY ITEMS", 0.17, 0.17, 0, global.color_white, c_black); }
 			else
 			{ draw_text_transformed_t(640 + prx, top - 110 + daily_y + training_back_y + pry + store_yy1, "ЕЖЕДНЕВНЫЕ ВЕЩИ", 0.17, 0.17, 0, global.color_white, c_black); }
@@ -2824,7 +2850,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 	draw_sprite_ext_t(s_store_weel, 2, 0 + prx, global.size + training_back_y - 10 + yh / 3 + pry, global.back_scale, global.back_scale, wl_ang, c_white, 1, c_white, c_black);
 	
 	draw_set_font(global.game_font);
-	if os_get_language() = "ru"
+	if os_get_language() != "ru"
 		{
 		draw_text_transformed_t(1024, global.size / 2 + training_back_y, "S\nT\nO\nR\nE", 0.25, 0.25, 0, col, c_black);
 		draw_text_transformed_t(256, global.size / 2 + training_back_y, "S\nT\nO\nR\nE", 0.25, 0.25, 0, col, c_black);	
@@ -2955,7 +2981,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 				
 				draw_text_transformed_t(640 - string_width(string(gold_pri[i]) + "ç") * 0.2 * sg1 * upsc / 2, global.size / 2 + 140, string(gold_pri[i]) + "ç", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[i] * minn, 0, global.cash_color, c_black);
 				if os_get_language() = "ru"
-					{ draw_text_transformed_t(640 + string_width("КУП.") * 0.2 * sg1 * upsc / 2 - 20, global.size / 2 + 140, "КУП.", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[i] * minn, 0, global.cash_color, c_black); }
+					{ draw_text_transformed_t(640 + string_width("КУП") * 0.2 * sg1 * upsc / 2 - 20, global.size / 2 + 140, "КУП.", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[i] * minn, 0, global.cash_color, c_black); }
 					else
 					{ draw_text_transformed_t(640 + string_width("BUY") * 0.2 * sg1 * upsc / 2 - 20, global.size / 2 + 140, "BUY", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[i] * minn, 0, global.cash_color, c_black); }
 				//draw_rectangle(640 - 150, global.size / 2 + 160 - 60, 640 + 150, global.size / 2 + 160 + 80, 1);
@@ -3047,7 +3073,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 						draw_rectangle_color(1280 - 400, global.size / 2 - 120 + 65 - 50, 1280, global.size / 2 - 120 + 65 + 200 + 70, c_black, c_black, c_black, c_black, 0);
 						draw_set_alpha(1);
 						
-						if os_get_language() = "ru"
+						if os_get_language() != "ru"
 							{
 							draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 20, "RARITY\nCHANCES:", 0.2, 0.2, 5, global.color_white, c_black);
 							
@@ -3515,9 +3541,9 @@ if global.menu_now = "store" or global.menu_next = "store"
 								draw_sprite_ext(s_wanted, 6, 640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + theme_y1[2], 0.65 * lootbox_item_s[2], 0.65 * lootbox_item_s[2], 0, c_black, 1);
 								draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + theme_y1[2], "?", 0.5 * lootbox_item_s[2], 0.5 * lootbox_item_s[2], 0, global.color_white, c_black);
 								if os_get_language() != "ru"
-									{ draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + 100, "НАЖМИ", 0.17 * lootbox_item_s[2], 0.17 * lootbox_item_s[2], 0, global.color_white, c_black); }
-									else
 									{ draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + 100, "TAP", 0.17 * lootbox_item_s[2], 0.17 * lootbox_item_s[2], 0, global.color_white, c_black); }
+									else
+									{ draw_text_transformed_t(640 - 10 + lootbox_item_x[2] + theme_x1[2], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[2] + 100, "НАЖМИ", 0.17 * lootbox_item_s[2], 0.17 * lootbox_item_s[2], 0, global.color_white, c_black); }
 								}
 							}
 					
@@ -3604,16 +3630,38 @@ if global.menu_now = "store" or global.menu_next = "store"
 											
 											draw_text_transformed_t(hx + 100, hy - 130, "*" + string(floor(lootbox_item_v[k])), 0.2 * lootbox_item_s[k], 0.2 * lootbox_item_s[k], 0, global.color_white, c_black);
 											
-											if lvlup[k] = 1
-												{ draw_text_transformed_t(hx, hy + 240, "LEVEL UP!", 0.2, 0.2, 0, global.color_white, c_black); }
+											if os_get_language() = "ru"
+												{
+												if lvlup[k] = 1
+													{ draw_text_transformed_t(hx, hy + 240, "LEVEL UP!", 0.2, 0.2, 0, global.color_white, c_black); }
+												}
+												else
+												{
+												if lvlup[k] = 1
+													{ draw_text_transformed_t(hx, hy + 240, "НОВЫЙ УРОВЕНЬ!", 0.2, 0.2, 0, global.color_white, c_black); }
+												}
 										#endregion
 										
 										var name;
-										name = string_upper(global.hero_code_name[lootbox_item_i[k]]);
-										if lootbox_item_i[k] = 2
-											{ name = "JOE"; }
-										if lootbox_item_i[k] = 5
+										name = string_upper(global.hero_code_name[i]);
+										if i = 2
+											{ name = "DRUNK JOE"; }
+										if i = 5
 											{ name = "BILL SR."; }
+										
+										if os_get_language() = "ru"
+											{
+											switch(i)
+												{
+												case 1: name = "ВОРИШКА"; break;
+												case 2: name = "ПЬЯН. ДЖО"; break;
+												case 3: name = "ОХОТНИЦА"; break;
+												case 4: name = "ДИЕГО"; break;
+												case 5: name = "БИЛЛ СТ."; break;
+												case 6: name = "ШЕРИФ"; break;
+												case 7: name = "ШАМАН"; break;
+												}
+											}
 										draw_text_transformed_t(hx, hy + 180, name, 0.17 * lootbox_item_s[k], 0.17 * lootbox_item_s[k], 0, global.color_hero[lootbox_item_i[k]], c_black);
 										}
 									}
@@ -3710,7 +3758,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 								draw_rectangle_color(1280 - 400, global.size / 2 - 120 + 65 - 50, 1280, global.size / 2 - 120 + 65 + 200 + 70, c_black, c_black, c_black, c_black, 0);
 								draw_set_alpha(1);
 								
-								if os_get_language() = "ru"
+								if os_get_language() != "ru"
 									{
 									draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.size / 2 - 120 + 65 + 70 - 70 + 20, "RARITY\nCHANCES:", 0.2, 0.2, 5, global.color_white, c_black);
 									
@@ -3745,7 +3793,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 								
 								draw_text_transformed_t(640 - string_width("50ç") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 + 60 + 70/*+ 60*/, "50ç", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
 								if os_get_language() = "ru"
-									{ draw_text_transformed_t(640 + string_width("КУП.") * 0.2 * lbs1 * upsc / 2 - 20, global.size / 2 + 140 + 60 + 70, "КУП.", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black); }
+									{ draw_text_transformed_t(640 + string_width("КУП") * 0.2 * lbs1 * upsc / 2 - 20, global.size / 2 + 140 + 60 + 70, "КУП.", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black); }
 									else
 									{ draw_text_transformed_t(640 + string_width("BUY") * 0.2 * lbs1 * upsc / 2 - 20, global.size / 2 + 140 + 60 + 70, "BUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black); }
 							#endregion
@@ -4178,19 +4226,39 @@ if global.menu_now = "store" or global.menu_next = "store"
 								{
 								if lootbox_item_o[r] < 2
 									{
-									if lootbox_item_t[r] = 0
+									if os_get_language() != "ru"
 										{
-										draw_sprite_ext(s_totems_light, 1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.45 * lootbox_item_s[r], 0.45 * lootbox_item_s[r], 0, lootbox_item_c[r], 0.5);
-										draw_sprite_ext(s_totems, 1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.45 * lootbox_item_s[r], 0.45 * lootbox_item_s[r], 0, c_black, 1);
-										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], "?", 0.5 * lootbox_item_s[r], 0.5 * lootbox_item_s[r], 0, global.color_white, c_black);
-										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + 100, "TAP", 0.17 * lootbox_item_s[r], 0.17 * lootbox_item_s[r], 0, global.color_white, c_black);
+										if lootbox_item_t[r] = 0
+											{
+											draw_sprite_ext(s_totems_light, 1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.45 * lootbox_item_s[r], 0.45 * lootbox_item_s[r], 0, lootbox_item_c[r], 0.5);
+											draw_sprite_ext(s_totems, 1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.45 * lootbox_item_s[r], 0.45 * lootbox_item_s[r], 0, c_black, 1);
+											draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], "?", 0.5 * lootbox_item_s[r], 0.5 * lootbox_item_s[r], 0, global.color_white, c_black);
+											draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + 100, "TAP", 0.17 * lootbox_item_s[r], 0.17 * lootbox_item_s[r], 0, global.color_white, c_black);
+											}
+											else
+											{
+											draw_sprite_ext(s_wanted2,  1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, lootbox_item_c[r], 0.5);
+											draw_sprite_ext(s_wanted, 6, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, c_black, 1);
+											draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], "?", 0.5 * lootbox_item_s[r], 0.5 * lootbox_item_s[1], 0, global.color_white, c_black);
+											draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + 100, "TAP", 0.17 * lootbox_item_s[r], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black);
+											}
 										}
 										else
 										{
-										draw_sprite_ext(s_wanted2,  1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, lootbox_item_c[r], 0.5);
-										draw_sprite_ext(s_wanted, 6, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, c_black, 1);
-										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], "?", 0.5 * lootbox_item_s[r], 0.5 * lootbox_item_s[1], 0, global.color_white, c_black);
-										draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + 100, "TAP", 0.17 * lootbox_item_s[r], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black);
+										if lootbox_item_t[r] = 0
+											{
+											draw_sprite_ext(s_totems_light, 1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.45 * lootbox_item_s[r], 0.45 * lootbox_item_s[r], 0, lootbox_item_c[r], 0.5);
+											draw_sprite_ext(s_totems, 1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.45 * lootbox_item_s[r], 0.45 * lootbox_item_s[r], 0, c_black, 1);
+											draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], "?", 0.5 * lootbox_item_s[r], 0.5 * lootbox_item_s[r], 0, global.color_white, c_black);
+											draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + 100, "НАЖМИ", 0.17 * lootbox_item_s[r], 0.17 * lootbox_item_s[r], 0, global.color_white, c_black);
+											}
+											else
+											{
+											draw_sprite_ext(s_wanted2,  1, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, lootbox_item_c[r], 0.5);
+											draw_sprite_ext(s_wanted, 6, 640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], 0.65 * lootbox_item_s[r], 0.65 * lootbox_item_s[1], 0, c_black, 1);
+											draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + theme_y1[r], "?", 0.5 * lootbox_item_s[r], 0.5 * lootbox_item_s[1], 0, global.color_white, c_black);
+											draw_text_transformed_t(640 - 10 - lootbox_item_x[r] * (r == 1) + lootbox_item_x[r] * (r == 3) + theme_x1[r], global.size / 2 - 120 + 65 + 70 + lootbox_item_y[r] + 100, "НАЖМИ", 0.17 * lootbox_item_s[r], 0.17 * lootbox_item_s[1], 0, global.color_white, c_black);
+											}
 										}
 									}
 								}
@@ -4290,17 +4358,39 @@ if global.menu_now = "store" or global.menu_next = "store"
 												draw_text_transformed_t(hx, hy + 140, "(" + string(hero_now1[lootbox_item_i[k]]) + "~" + string(hero_need[lootbox_item_i[k]]) + ")", 0.1 * 1.8 * ls, 0.1 * 1.8 * ls, 0, global.color_white, c_black);
 											
 												draw_text_transformed_t(hx + 100, hy - 130, "*" + string(floor(lootbox_item_v[k])), 0.2 * lootbox_item_s[k], 0.2 * lootbox_item_s[k], 0, global.color_white, c_black);
-											
-												if lvlup[k] = 1
-													{ draw_text_transformed_t(hx, hy + 240, "LEVEL UP!", 0.2, 0.2, 0, global.color_white, c_black); }
+												
+												if os_get_language() = "ru"
+													{
+													if lvlup[k] = 1
+														{ draw_text_transformed_t(hx, hy + 240, "LEVEL UP!", 0.2, 0.2, 0, global.color_white, c_black); }
+													}
+													else
+													{
+													if lvlup[k] = 1
+														{ draw_text_transformed_t(hx, hy + 240, "НОВЫЙ УРОВЕНЬ!", 0.2, 0.2, 0, global.color_white, c_black); }
+													}
 											#endregion
 										
 											var name;
-											name = string_upper(global.hero_code_name[lootbox_item_i[k]]);
-											if lootbox_item_i[k] = 2
-												{ name = "JOE"; }
-											if lootbox_item_i[k] = 5
+											name = string_upper(global.hero_code_name[i]);
+											if i = 2
+												{ name = "DRUNK JOE"; }
+											if i = 5
 												{ name = "BILL SR."; }
+											
+											if os_get_language() = "ru"
+												{
+												switch(i)
+													{
+													case 1: name = "ВОРИШКА"; break;
+													case 2: name = "ПЬЯН. ДЖО"; break;
+													case 3: name = "ОХОТНИЦА"; break;
+													case 4: name = "ДИЕГО"; break;
+													case 5: name = "БИЛЛ СТ."; break;
+													case 6: name = "ШЕРИФ"; break;
+													case 7: name = "ШАМАН"; break;
+													}
+												}
 											draw_text_transformed_t(hx, hy + 180, name, 0.17 * lootbox_item_s[k], 0.17 * lootbox_item_s[k], 0, global.color_hero[lootbox_item_i[k]], c_black);
 											}
 										}
