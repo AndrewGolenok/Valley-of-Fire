@@ -49,8 +49,9 @@
 		popka = (720 - global.size) / 2;
 	if popka > 0
 		{ popka = 0; }
+	
 	var popka2;
-		popka2 = (960 - global.size) / 2;
+		popka2 = (960 - global.size) * 1.5;
 	if popka2 > 0
 		{ popka2 = 0; }
 #endregion
@@ -1360,8 +1361,11 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 	col = make_color_rgb(242, 232, 201);
 	if global.size < 700
 		{ yh = 30; }
+	draw_sprite_ext(s_heroes_back, 2, 640, global.size + training_back_y + yh + 40 * (960 / global.size) + 10, global.back_scale, global.back_scale, 0, c_black, 0.5);
 	draw_sprite_ext_t(s_heroes_back, 2, 640, global.size + training_back_y + yh + 40 * (960 / global.size), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 	
+	draw_sprite_ext(s_heroes_back, 4, 640, global.size + training_back_y + yh + 40 * (960 / global.size) + 10, global.back_scale, global.back_scale, 0, c_black, 0.5);
+	draw_sprite_ext_t(s_heroes_back, 4, 640, global.size + training_back_y + yh + 40 * (960 / global.size), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 	if global.duel = 0
 		{
 		if global.size  >= 700
@@ -1842,6 +1846,9 @@ if global.menu_now = "training" or global.menu_next = "training"
 	draw_sprite_ext(s_training_back, 2, 640 + 10, global.size + training_back_y + yh + 5, global.back_scale, global.back_scale, 0,  c_black, 0.5);
 	draw_sprite_ext_t(s_training_back, 2, 640, global.size + training_back_y + yh, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 	
+	draw_sprite_ext(s_training_back, 4, 640 + 10, global.size + training_back_y + yh + 5, global.back_scale, global.back_scale, 0,  c_black, 0.5);
+	draw_sprite_ext_t(s_training_back, 4, 640, global.size + training_back_y + yh, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
+	
 	draw_set_font(global.game_font);
 	if global.duel = 0
 		{ draw_text_transformed_t(150, global.size / 2 + training_back_y, "T\nR\nA\nI\nN\nI\nN\nG", 0.22, 0.22, 0, col, c_black); }
@@ -1939,6 +1946,11 @@ if global.menu_now = "store" or global.menu_next = "store"
 	colb = make_color_rgb(123, 0, 28);
 	//draw_rectangle_color(0, training_back_y + global.size + 50, 1280, global.size, colb, colb, colb, colb, 0);
 	
+	draw_set_alpha(0.35);
+		draw_rectangle_color(0, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 1280, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40, c_black, c_black, c_black, c_black, 0);
+		draw_rectangle_color(0, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40, 1280, top + 40 + gold_y + training_back_y + store_yy1 + pry - 135, c_black, c_black, c_black, c_black, 0);
+	draw_set_alpha(1);
+	
 	var top;
 	top = sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
 	draw_sprite_part_ext(s_store_back, 1, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
@@ -1947,10 +1959,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 	// top - 90 + daily_y + training_back_y + pry + store_yy1 + 10
 	// top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40
 	
-	draw_set_alpha(0.35);
-		draw_rectangle_color(0, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10 + popka2, 1280, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40 + popka2, c_black, c_black, c_black, c_black, 0);
-		draw_rectangle_color(0, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40 + popka2, 1280, top + 40 + gold_y + training_back_y + store_yy1 + pry - 135 + popka2, c_black, c_black, c_black, c_black, 0);
-	draw_set_alpha(1);
+	//draw_set_alpha(0.35);
+	//	draw_rectangle_color(0, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 1280, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40, c_black, c_black, c_black, c_black, 0);
+	//	draw_rectangle_color(0, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40, 1280, top + 40 + gold_y + training_back_y + store_yy1 + pry - 135, c_black, c_black, c_black, c_black, 0);
+	//draw_set_alpha(1);
 	
 	//300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40
 	//top + 40 + gold_y + training_back_y + store_yy1 + pry - 120

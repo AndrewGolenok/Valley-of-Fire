@@ -8545,7 +8545,11 @@ if global.hero = 1 && global.enemy_hero = 1
 						if global.sound
 							{ audio_play_sound(sd_lose, 2, 0); }
 						}
-					
+					//if whowin = 1 && g_rank_stage = 0
+					//	{
+					//	if global.sound
+					//		{ audio_play_sound(sd_star, 0, 0); }
+					//	}
 					if g_rank_stage = 0
 						{ g_rank_stage = 1; }
 					}
@@ -8724,7 +8728,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							{ global.rank_stars += 1 + winstreak; }
 						g_star_ss[g_star_yn] = 30;
 						if global.sound
-							{ audio_play_sound(sd_star, 4, 0); }
+							{ audio_play_sound(sd_star, 0, 0); }
 						ini_open("Music.ini");
 							ini_write_string("Ranks", "ranks", string(global.rank_stars));
 						ini_close();
@@ -8738,7 +8742,7 @@ if global.hero = 1 && global.enemy_hero = 1
 				if g_rank_type = 4
 					{
 					if global.sound
-						{ audio_play_sound(sd_star, 4, 0); }
+						{ audio_play_sound(sd_star, 0, 0); }
 					if global.rank_stars < 70
 						{ global.rank_stars += 1 + winstreak; }
 					g_rank_stage = 4;
@@ -9131,7 +9135,7 @@ if global.hero = 1 && global.enemy_hero = 1
 				{
 				//g_skul_y = 0;
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(640, global.size / 2 - 50, "YOU DO NOT LOSE\nA STAR ON THIS RANK", 0.15, 0.15, 0, global.color_white, c_black);
+				draw_text_transformed_t(640, global.size - 180 + fin_y, "YOU DO NOT LOSE\nA STAR ON THIS RANK", 0.15, 0.15, 0, global.color_white, c_black);
 				}
 			
 			if g_rank_stage >= 1
