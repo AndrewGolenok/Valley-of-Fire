@@ -10345,6 +10345,36 @@ if lines_true
 		//	{ audio_pause_sound(musica); }
 		//}
 #endregion
+#region Проверка на слив
+	global.notend = 0;
+	if roundskul[1] = 0 && roundskul[2] = 0 && roundskul[3] = 0
+		{
+		if (hp / maxhp) < (e_hp / e_maxhp)
+			{ global.notend = 1; }
+		}
+	if roundskul[1] = 1 && roundskul[2] = 2 && roundskul[3] = 0
+		{
+		if (hp / maxhp) < (e_hp / e_maxhp)
+			{ global.notend = 1; }
+		}
+	if roundskul[1] = 2 && roundskul[2] = 1 && roundskul[3] = 0
+		{
+		if (hp / maxhp) < (e_hp / e_maxhp)
+			{ global.notend = 1; }
+		}
+	if roundskul[1] = 2 && roundskul[2] = 0 && roundskul[3] = 0
+		{ global.notend = 1; }
+	if roundskul[1] = 2 && roundskul[2] = 2 && roundskul[3] = 0
+		{ global.notend = 1; }
+	if roundskul[1] = 2 && roundskul[2] = 1 && roundskul[3] = 2
+		{ global.notend = 1; }
+	if roundskul[1] = 1 && roundskul[2] = 2 && roundskul[3] = 2
+		{ global.notend = 1; }
+	
+	ini_open("Music.ini")
+		ini_write_string("Musica", "back", string(global.notend));
+	ini_close();
+#endregion
 
 #region Словечки
 	if global.training_gb != ""

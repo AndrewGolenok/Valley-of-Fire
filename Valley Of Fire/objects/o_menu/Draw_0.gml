@@ -1946,15 +1946,14 @@ if global.menu_now = "store" or global.menu_next = "store"
 	colb = make_color_rgb(123, 0, 28);
 	//draw_rectangle_color(0, training_back_y + global.size + 50, 1280, global.size, colb, colb, colb, colb, 0);
 	
-	draw_set_alpha(0.35);
-		draw_rectangle_color(0, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 1280, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40, c_black, c_black, c_black, c_black, 0);
-		draw_rectangle_color(0, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40, 1280, top + 40 + gold_y + training_back_y + store_yy1 + pry - 135, c_black, c_black, c_black, c_black, 0);
-	draw_set_alpha(1);
-	
 	var top;
 	top = sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
 	draw_sprite_part_ext(s_store_back, 1, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
 	
+	draw_set_alpha(0.35);
+		draw_rectangle_color(0, -90 + daily_y + training_back_y + pry + store_yy1 + 10, 1280, 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40, c_black, c_black, c_black, c_black, 0);
+		draw_rectangle_color(0, 300 + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40, 1280, 40 + gold_y + training_back_y + store_yy1 + pry - 135, c_black, c_black, c_black, c_black, 0);
+	draw_set_alpha(1);
 	//
 	// top - 90 + daily_y + training_back_y + pry + store_yy1 + 10
 	// top + 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40
