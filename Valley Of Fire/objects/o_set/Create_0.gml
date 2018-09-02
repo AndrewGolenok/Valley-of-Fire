@@ -672,6 +672,66 @@
 	
 	global.totem_name[19] = "RAT";
 	global.totem_desc[19] = "(DO NOTHING)";
+	
+	if os_get_language() = "ru"
+		{
+		global.totem_name[1] = "ДРУЖЕЛЮБНЫЙ ТОТЕМ";
+		global.totem_desc[1] = "УВЕЛИЧИВАЕТ HP ПЕРСОНАЖА НА 5%";
+		
+		global.totem_name[2] = "ВРАЖДЕБНЫЙ ТОТЕМ";
+		global.totem_desc[2] = "УВЕЛИЧИВАЕТ ATK ПЕРСОНАЖА НА 5%";
+		
+		global.totem_name[3] = "ТОТЕМ СИЛЫ";
+		global.totem_desc[3] = "КРИТ ТРЕБУЕТ ВСЕГО 1 ВЕРНЫЙ ОТВЕТ";
+		
+		global.totem_name[4] = "ВДУМЧИВЫЙ ТОТЕМ";
+		global.totem_desc[4] = "ДАЁТ +3 СЕКУНДЫ НА ОТВЕТ";
+		
+		global.totem_name[5] = "СЕРДИТЫЙ ТОТЕМ";
+		global.totem_desc[5] = "КРИТ *2";
+		
+		global.totem_name[6] = "ПОСЛЕДНИЙ ШАНС";
+		global.totem_desc[6] = "ЕСЛИ СЛЕДУЮЩИЙ УРОН ВРАГА БУДЕТ СМЕРТЕЛЬНЫМ - +20% ATK";
+		
+		global.totem_name[7] = "ВЕСЕЛЫЙ ТОТЕМ";
+		global.totem_desc[7] = "ТЕМУ ВСЕГДА ВЫБИРАЕТЕ ВЫ";
+		
+		global.totem_name[8] = "НЕПРИСТУПНЫЙ ТОТЕМ";
+		global.totem_desc[8] = "ВЫ НЕ МОЖЕТЕ БЫТЬ ОГЛУШЕНЫ";
+		
+		global.totem_name[9] = "ТОТЕМ УКЛОНЕНИЯ";
+		global.totem_desc[9] = "ВЕРОЯТНОСТЬ УКЛОНИТЬСЯ ОТ УРОНА 5%";
+		
+		global.totem_name[10] = "СТРАННАЯ ЛЯГУХА";
+		global.totem_desc[10] = "ПРЕВРАЩАЕТСЯ В ДРУГОЙ СЛУЧАЙНЫ ТОТЕМ, ЕГО ЭФФЕКТ СРАБАТЫВАЕТ";
+		
+		global.totem_name[11] = "ВЕСЕЛЫЙ ЛЕВ";
+		global.totem_desc[11] = "УНИЧТОЖАЕТ ВСЕ ТОТЕМЫ У КАЖДОГО ИГРОКА";
+		
+		global.totem_name[12] = "СТАЛЬНОЙ БУЙВОЛ";
+		global.totem_desc[12] = "С ВЕРОЯТНОСТЬ 35% БЛОКИРУЕТ СМЕРТЕЛЬНЫЙ УРОН";
+		
+		global.totem_name[13] = "НЕОДНОЗНАЧНАЯ ПАНТЕРА";
+		global.totem_desc[13] = "В НАЧАЛЕ РАУНДА НАНОСИТ УРОН (АТК) ПРОТИВНИКУ И С ВЕРОЯТНОСТЬЮ 50% НАНОСИТ УРОН ИГРОКУ";
+		
+		global.totem_name[14] = "ВСЕВИДЯЩАЯ СОВА";
+		global.totem_desc[14] = "ВСЕ ТЕМЫ СТАНОВЯТСЯ ТЕМАМИ ВАШЕГО ПЕРСОНАЖА";
+		
+		global.totem_name[15] = "ПУРПУРНЫЙ ЛИС";
+		global.totem_desc[15] = "СУПЕР ТРЕБУЕТ НА ОДИН ВЕРНЫЙ ОТВЕТ МЕЬШЕ";
+		
+		global.totem_name[16] = "КРЫС ВОРИШКА";
+		global.totem_desc[16] = "МЕНЯЕТСЯ МЕСТАМИ С ТОТЕМОМ ПРОТИВНИКА, ЕГО ЭФФЕКТ СРАБАТЫВАЕТ";
+		
+		global.totem_name[17] = "КОВАРНЫЙ СВИН";
+		global.totem_desc[17] = "ПРЕВРАЩАЕТ ВСЕ ТОТЕМЫ ИГРОКОВ В СЛУЧАЙНЫЕ";
+		
+		global.totem_name[18] = "КОБРА КОРОЛЬ";
+		global.totem_desc[18] = "ВАШЕ ОРУЖИЕ ПОЛУЧАЕТ ЯД ПРИ КАЖДОМ ПРОМАХЕ ПРОТИВНИКА";
+		
+		global.totem_name[19] = "КРЫС";
+		global.totem_desc[19] = "(НИЧЕГО НЕ ВОРУЕТ)";
+		}
 	//// 1 - Увеличивает ХП  персонажа на 5%
 	//// 2 - Увеличивает АТК персонажа на 5%
 	// 3 - КРИТ требует всего 1 верный ответ
