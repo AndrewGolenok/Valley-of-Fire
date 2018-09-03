@@ -372,12 +372,12 @@
 	
 	if os_get_language() = "ru"
 		{
-		cash_txt[1] = "ПАЧКА\nКЭША";
-		cash_txt[2] = "МЕШОК\nКЭША";
-		cash_txt[3] = "ЯЩИК\nКЭША";
-		cash_txt[4] = "СУНДУК\nКЭША";
-		cash_txt[5] = "БОЧКА\nКЭША";
-		cash_txt[6] = "ГОРА\nКЭША";
+		cash_txt[1] = "ПАЧКА\nДЕНЕГ";
+		cash_txt[2] = "МЕШОК\nДЕНЕГ";
+		cash_txt[3] = "ЯЩИК\nДЕНЕГ";
+		cash_txt[4] = "СУНДУК\nДЕНЕГ";
+		cash_txt[5] = "БОЧКА\nДЕНЕГ";
+		cash_txt[6] = "ГОРА\nДЕНЕГ";
 		
 		gold_txt[1] = "МЕШОК\nЗОЛОТА";
 		gold_txt[2] = "БОЧКА\nЗОЛОТА";

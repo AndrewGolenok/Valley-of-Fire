@@ -5001,7 +5001,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							}
 						}
 					}
-					
+				
 				if global.training < 1
 					{
 					if global.answer = 1
@@ -7535,7 +7535,7 @@ if global.hero = 1 && global.enemy_hero = 1
 				if string_length(theme_nn[i]) < 7
 					{ draw_text_transformed_t(theme_x[i], theme_y[i] + 100, theme_nn[i], theme_s[i] * 0.2, theme_s[i] * 0.2, 0, global.color_white, c_black); }
 					else
-					{ draw_text_transformed_t(theme_x[i], theme_y[i] + 100, theme_nn[i], theme_s[i] * 0.18, theme_s[i] * 0.18, 0, global.color_white, c_black); }
+					{ draw_text_transformed_t(theme_x[i], theme_y[i] + 100, theme_nn[i], theme_s[i] * 0.15, theme_s[i] * 0.15, 0, global.color_white, c_black); }
 				}
 			if choose_y <= global.size - 80
 				{
@@ -8208,7 +8208,10 @@ if global.hero = 1 && global.enemy_hero = 1
 					{
 					whowin_c1 = c_orange;
 					whowin_c2 = c_black;
-					whowin_text = "YOU WIN";
+					if os_get_language() != "ru"
+						{ whowin_text = "YOU WIN"; }
+						else
+						{ whowin_text = "ТЫ ВЫИГРАЛ"; }
 					if whowin_s1 < 1.6
 						{ whowin_s1 += 0.07; }
 						else
@@ -8236,7 +8239,10 @@ if global.hero = 1 && global.enemy_hero = 1
 					{
 					whowin_c2 = c_orange;
 					whowin_c1 = c_black;
-					whowin_text = "YOU LOSE";
+					if os_get_language() = "ru"
+						{ whowin_text = "ТЫ ПРОИГРАЛ"; }
+						else
+						{ whowin_text = "YOU LOSE"; }
 					if whowin_s2 < 1.6
 						{ whowin_s2 += 0.1; }
 						else
@@ -8585,15 +8591,19 @@ if global.hero = 1 && global.enemy_hero = 1
 					}
 					else
 					{
-					if whowin = 2 && g_rank_stage != 8
+					if music_off = 0
 						{
-						if global.sound
-							{ audio_play_sound(sd_lose, 2, 0); }
-						}
-					if whowin = 1 & g_rank_stage != 8
-						{
-						if global.sound
-							{ audio_play_sound(sd_win, 2, 0); } 
+						if whowin = 2
+							{
+							if global.sound
+								{ audio_play_sound(sd_lose, 2, 0); }
+							}
+						if whowin = 1
+							{
+							if global.sound
+								{ audio_play_sound(sd_win, 2, 0); } 
+							}
+						music_off = 1;
 						}
 					if g_rank_stage != 8
 						{
@@ -9178,7 +9188,7 @@ if global.hero = 1 && global.enemy_hero = 1
 					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "YOU DO NOT LOSE\nA STAR ON THIS RANK", 0.15, 0.15, 0, global.cash_color, c_black); }
 				}
 				
-			if winstreak > 0
+			if winstreak > 0 && whowin = 1 //global.quick = 0
 				{
 				draw_set_font(global.game_font);
 				if os_get_language() = "ru"
@@ -10456,7 +10466,11 @@ if lines_true
 			}
 		var colorr;
 		colorr = global.color_hero[2];
-		if global.training_gb = "TRY AGAIN"
+		if global.training_gb = "TRY AGAIN" or global.training_gb = "MISS"
+		or global.training_gb = "FAULT" or global.training_gb = "GAFFE"
+		or global.training_gb = "MISTAKE" or global.training_gb = "ПРОМАХ"
+		or global.training_gb = "ОШИБКА" or global.training_gb = "НЕУДАЧА"
+		or global.training_gb = "НЕВЕЗУХА"
 			{ colorr = global.color_hero[4]; }
 		if global.training_gb = "TRY AGAIN"
 			{
@@ -10467,6 +10481,13 @@ if lines_true
 			}
 			else
 			{ draw_text_transformed_t(640, global.training_gb_y, global.training_gb, 0.18 * global.text_sc, 0.18 * global.text_sc, 8, colorr, c_black); }
+		
+		/*
+		if os_get_language() = "ru"
+			{ global.training_gb = choose("ПРОМАХ", "ОШИБКА", "НЕУДАЧА", "НЕВЕЗУХА"); }
+			else
+			{ global.training_gb = choose("MISS", "FAULT", "GAFFE", "MISTAKE"); }
+		*/
 		}
 #endregion
 #region Шэйк-эффект
