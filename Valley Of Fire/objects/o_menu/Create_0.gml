@@ -218,7 +218,7 @@
 	//if global.size <= 640
 	//	{ y_ind = 90; }
 	
-	lootbox_y = global.size / 2 - 100 - 100; //0 + y_ind + topp;
+	lootbox_y = global.size / 2 - 100 - 100 + 30; //0 + y_ind + topp;
 	
 	lootbox_alpha = 0; // Темный фон
 	lootbox_aa = 0; // Альфа вспышки
@@ -305,7 +305,7 @@
 	lvlup[2] = 0;
 	lvlup[3] = 0;
 	
-	daily_y   = global.size / 2 - 100 + 500 - 100; //500 + y_ind + topp;
+	daily_y   = global.size / 2 - 100 + 500 - 100 + 30; //500 + y_ind + topp;
 	
 	daily_t[1] = 0;
 	daily_t[2] = 0;
@@ -319,8 +319,8 @@
 	daily_s[2] = 1;
 	daily_s[3] = 1;
 	
-	cash_y   = global.size / 2 - 100 + 900 - 100; //900 + y_ind + topp;
-	gold_y   = global.size / 2 - 100 + 1600 + 30 - 100; //1600 + 30 + y_ind + topp;
+	cash_y   = global.size / 2 - 100 + 900 - 100 + 30; //900 + y_ind + topp;
+	gold_y   = global.size / 2 - 100 + 1600 + 30 - 100 + 30; //1600 + 30 + y_ind + topp;
 	
 	
 	cash_txt[1] = "THE WAD\nOF CASH";
