@@ -466,38 +466,39 @@
 	anim_skul = 0;
 	#region ПЕРЕМЕННЫЕ
 		var skul_i;
+		skul_i = 15;
 		if global.rank_stars < 70
-			{ skul_i = 0;}
+			{ skul_i = 0; }
 		if global.rank_stars < 69
-			{ skul_i = 1;}
+			{ skul_i = 1; }
 		if global.rank_stars < 63
-			{ skul_i = 2;}
+			{ skul_i = 2; }
 		if global.rank_stars < 57
-			{ skul_i = 3;}
+			{ skul_i = 3; }
 		if global.rank_stars < 51
-			{ skul_i = 4;}
+			{ skul_i = 4; }
 		if global.rank_stars < 46
-			{ skul_i = 5;}
+			{ skul_i = 5; }
 		if global.rank_stars < 41
-			{ skul_i = 6;}
+			{ skul_i = 6; }
 		if global.rank_stars < 36
-			{ skul_i = 7;}
+			{ skul_i = 7; }
 		if global.rank_stars < 31
-			{ skul_i = 8;}
+			{ skul_i = 8; }
 		if global.rank_stars < 26
-			{ skul_i = 9;}
+			{ skul_i = 9; }
 		if global.rank_stars < 21
-			{ skul_i = 10;}
+			{ skul_i = 10; }
 		if global.rank_stars < 16
-			{ skul_i = 11;}
+			{ skul_i = 11; }
 		if global.rank_stars < 12
-			{ skul_i = 12;}
+			{ skul_i = 12; }
 		if global.rank_stars < 8
 			{ skul_i = 13;}
 		if global.rank_stars < 5
-			{ skul_i = 14;}
+			{ skul_i = 14; }
 		if global.rank_stars < 2
-			{ skul_i = 15;}
+			{ skul_i = 15; }
 		global.player_rank = skul_i;
 		
 		GoogleAnalytics_SendEvent("PLAY","Ранг игрока: " + string(global.player_rank));

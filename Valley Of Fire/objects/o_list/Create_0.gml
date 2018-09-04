@@ -981,7 +981,7 @@
 	
 	g_star_yn = 1;
 	
-	if global.last_game = 1 && global.last_game2 = 1 && global.player_rank < 5
+	if global.last_game = 1 && global.last_game2 = 1 && global.player_rank > 5
 		{ winstreak = 1; }
 		else
 		{ winstreak = 0; }

@@ -1829,6 +1829,8 @@ if global.menu_now = "training" or global.menu_next = "training"
 		//global.rank_stars = 0;
 		var star_now, star_need, shield_i, skul_i, go5;
 		shield_i = 0;
+		skul_i   = 15;
+		star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15; 
 		if global.rank_stars < 70
 			{ star_now = global.rank_stars - 69; star_need = -1; shield_i = 3; skul_i = 0;}
 		if global.rank_stars < 69
@@ -1860,7 +1862,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 		if global.rank_stars < 5
 			{ star_now = global.rank_stars - 2; star_need = 3; shield_i = 0; skul_i = 14;}
 		if global.rank_stars < 2
-			{ star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15;}
+			{ star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15; }
 		
 		if global.training_o = 1
 			{
@@ -1870,20 +1872,20 @@ if global.menu_now = "training" or global.menu_next = "training"
 				{ anim_skul = 0; }
 			draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 + pry - 50 + 15 + training_back_y, 1, 1, 0, c_black, 0.5);
 			draw_sprite_ext(s_rank_shield, shield_i, 640 + prx, global.size / 2 + pry - 50 + training_back_y, 1, 1, 0, c_white, 1);
-			if global.player_rank <= 3
+			if skul_i <= 3
 				{ draw_sprite_ext_t(s_rank_skul_1, anim_skul, 640, global.size / 2 + pry - 50 + 15 + training_back_y, 1, 1, 0, c_white, 1, c_white, c_black); }
 			draw_sprite_ext(s_rank_skul, skul_i, 640, global.size / 2 + pry - 50 + 15 + training_back_y, 1, 1, 0, c_black, 0.5);
 			draw_sprite_ext(s_rank_skul, skul_i, 640 + prx, global.size / 2 + pry - 50 + training_back_y, 1, 1, 0, c_white, 1);	
 			
 			if os_get_language() != "ru"
 				{
-				if global.player_rank = 0
-					{ draw_text_transformed_t(640, global.size / 2 + pry - 50 + 15 + training_back_y - 60, "LEGEND", 0.6, 0.6, 0, global.color_white, c_black); }
+				if skul_i = 0
+					{ draw_text_transformed_t(640, global.size / 2 + pry - 50 + 15 + training_back_y - 60, "LEGEND", 0.2, 0.2, 0, global.color_white, c_black); }
 				}
 				else
 				{
-				if global.player_rank = 0
-					{ draw_text_transformed_t(640, global.size / 2 + pry - 50 + 15 + training_back_y - 60, "ЛЕГЕНДА", 0.6, 0.6, 0, global.color_white, c_black); }
+				if skul_i = 0
+					{ draw_text_transformed_t(640, global.size / 2 + pry - 50 + 15 + training_back_y - 60, "ЛЕГЕНДА", 0.2, 0.2, 0, global.color_white, c_black); }
 				}
 			if star_need = 2
 				{
@@ -1892,8 +1894,6 @@ if global.menu_now = "training" or global.menu_next = "training"
 			
 				if star_now > 0
 					{ draw_sprite_ext_t(s_rank_star, 0, 640 + prx - 30, global.size / 2 + pry + 35 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-				//if star_now > 1
-				//	{ draw_sprite_ext(s_rank_star, 0, 640 + 30, global.size / 2 + 35, 0.3, 0.3, 0, c_white, 1); }
 				}
 			if star_need = 3
 				{
@@ -1905,8 +1905,6 @@ if global.menu_now = "training" or global.menu_next = "training"
 					{ draw_sprite_ext_t(s_rank_star, 0, 640 + prx - 70, global.size / 2 + pry + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 				if star_now > 1
 					{ draw_sprite_ext_t(s_rank_star, 0, 640 + prx, global.size / 2 + pry + 70 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
-				//if star_now > 2
-				//	{ draw_sprite_ext(s_rank_star, 0, 640 + 30, global.size / 2 + 35, 0.3, 0.3, 0, c_white, 1); }
 				}
 			if star_need = 4
 				{
@@ -1959,9 +1957,10 @@ if global.menu_now = "training" or global.menu_next = "training"
 				if star_now > 4
 					{ draw_sprite_ext_t(s_rank_star, 0, 640 + prx + 80, global.size / 2 + pry + 20 + training_back_y, 0.3, 0.3, 0, global.color_white, 1, global.color_white, c_black); }
 				}
-			
-			draw_text_transformed_t(640 + prx, global.size / 2 + pry - 150 + training_back_y, string(skul_i), 0.27, 0.27, 5, global.color_white, c_black);
+			if skul_i != 0
+				{ draw_text_transformed_t(640 + prx, global.size / 2 + pry - 150 + training_back_y, string(skul_i), 0.27, 0.27, 5, global.color_white, c_black); }
 			}
+		
 		go5 = 1;
 		if global.training_o = 1
 			{
@@ -1983,7 +1982,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 					global.menu_now = "heroes"; global.menu_next = "heroes";
 					}
 				}
-			//draw_rectangle(640 - 290, global.size / 2 - 60 + 150 + training_back_y, 640 + 290, global.size / 2 + 60 + 150 + training_back_y, 1);
+			
 			if os_get_language() != "ru"
 				{ draw_text_transformed_t(640, global.size / 2 + 150 + training_back_y, "CHOOSE HERO", 0.27 * go5, 0.27 * go5, 5, global.color_white, c_black); }
 				else

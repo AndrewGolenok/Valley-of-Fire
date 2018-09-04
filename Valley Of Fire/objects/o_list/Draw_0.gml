@@ -7840,6 +7840,14 @@ if global.hero = 1 && global.enemy_hero = 1
 		{
 		with(o_hero)
 			{
+			if global.hero = 5
+				{
+				if os_get_language() = "ru"
+					{ global.player_name = "БИЛЛ МЛ."; }
+					else
+					{ global.player_name = "BILL JR."; }
+				}
+			global.jr_e = 0;
 			//if enemy
 			//	{
 			//	if hero = 1
@@ -8475,6 +8483,7 @@ if global.hero = 1 && global.enemy_hero = 1
 		draw_set_alpha(0.65);
 		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
+		
 		if whowin = 1
 			{
 			if finplas < 1
@@ -8502,12 +8511,8 @@ if global.hero = 1 && global.enemy_hero = 1
 			draw_sprite_ext(s_plash_lose, 0, 640 + 418  * list_size * (1 - finplas), -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
 			draw_sprite_ext(s_plash_lose, 1, 640 - 418  * list_size * (1 - finplas), -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
 		
-			draw_set_font(global.game_font);//draw_set_font(f_win_regular);
-			//draw_set_color(c_black);
-			//draw_set_alpha(0.4);
-			//draw_text_transformed(640 - 1, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0);
-			//draw_set_color(c_white);
-			//draw_set_alpha(1);
+			draw_set_font(global.game_font);
+			
 			if os_get_language() = "ru"
 				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0, global.color_white, c_black); }
 				else
@@ -8581,11 +8586,7 @@ if global.hero = 1 && global.enemy_hero = 1
 						if global.sound
 							{ audio_play_sound(sd_lose, 2, 0); }
 						}
-					//if whowin = 1 && g_rank_stage = 0
-					//	{
-					//	if global.sound
-					//		{ audio_play_sound(sd_star, 0, 0); }
-					//	}
+					
 					if g_rank_stage = 0
 						{ g_rank_stage = 1; }
 					}
@@ -8638,69 +8639,75 @@ if global.hero = 1 && global.enemy_hero = 1
 					g_rank_stage = 8;
 					}
 				}
+			
 			#region Какой ранг
 				var star_now, star_need, shield_i, skul_i, go5;
 				shield_i = 0;
-					if global.rank_stars <= 70
-						{ star_now = global.rank_stars - 69; star_need = -1; shield_i = 3; skul_i = 0; }
-					if global.rank_stars < 69
-						{ star_now = global.rank_stars - 63; star_need = 6; shield_i = 2; skul_i = 1; }
-					if global.rank_stars < 63
-						{ star_now = global.rank_stars - 57; star_need = 6; shield_i = 2; skul_i = 2; }
-					if global.rank_stars < 57
-						{ star_now = global.rank_stars - 51; star_need = 6; shield_i = 2; skul_i = 3; }
-					if global.rank_stars < 51
-						{ star_now = global.rank_stars - 46; star_need = 5; shield_i = 2; skul_i = 4; }
-					if global.rank_stars < 46
-						{ star_now = global.rank_stars - 41; star_need = 5; shield_i = 2; skul_i = 5; }
-					if global.rank_stars < 41
-						{ star_now = global.rank_stars - 36; star_need = 5; shield_i = 1; skul_i = 6; }
-					if global.rank_stars < 36
-						{ star_now = global.rank_stars - 31; star_need = 5; shield_i = 1; skul_i = 7; }
-					if global.rank_stars < 31
-						{ star_now = global.rank_stars - 26; star_need = 5; shield_i = 1; skul_i = 8; }
-					if global.rank_stars < 26
-						{ star_now = global.rank_stars - 21; star_need = 5; shield_i = 1; skul_i = 9; }
-					if global.rank_stars < 21
-						{ star_now = global.rank_stars - 16; star_need = 5; shield_i = 1; skul_i = 10; }
-					if global.rank_stars < 16
-						{ star_now = global.rank_stars - 12; star_need = 4; shield_i = 0; skul_i = 11; }
-					if global.rank_stars < 12
-						{ star_now = global.rank_stars - 8; star_need = 4; shield_i = 0; skul_i = 12; }
-					if global.rank_stars < 8
-						{ star_now = global.rank_stars - 5; star_need = 3; shield_i = 0; skul_i = 13; }
-					if global.rank_stars < 5
-						{ star_now = global.rank_stars - 2; star_need = 3; shield_i = 0; skul_i = 14; }
-					if global.rank_stars < 2
-						{ star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15; }
+				skul_i   = 15;
+				star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15; 
+				if global.rank_stars <= 70
+					{ star_now = global.rank_stars - 69; star_need = -1; shield_i = 3; skul_i = 0; }
+				if global.rank_stars < 69
+					{ star_now = global.rank_stars - 63; star_need = 6; shield_i = 2; skul_i = 1; }
+				if global.rank_stars < 63
+					{ star_now = global.rank_stars - 57; star_need = 6; shield_i = 2; skul_i = 2; }
+				if global.rank_stars < 57
+					{ star_now = global.rank_stars - 51; star_need = 6; shield_i = 2; skul_i = 3; }
+				if global.rank_stars < 51
+					{ star_now = global.rank_stars - 46; star_need = 5; shield_i = 2; skul_i = 4; }
+				if global.rank_stars < 46
+					{ star_now = global.rank_stars - 41; star_need = 5; shield_i = 2; skul_i = 5; }
+				if global.rank_stars < 41
+					{ star_now = global.rank_stars - 36; star_need = 5; shield_i = 1; skul_i = 6; }
+				if global.rank_stars < 36
+					{ star_now = global.rank_stars - 31; star_need = 5; shield_i = 1; skul_i = 7; }
+				if global.rank_stars < 31
+					{ star_now = global.rank_stars - 26; star_need = 5; shield_i = 1; skul_i = 8; }
+				if global.rank_stars < 26
+					{ star_now = global.rank_stars - 21; star_need = 5; shield_i = 1; skul_i = 9; }
+				if global.rank_stars < 21
+					{ star_now = global.rank_stars - 16; star_need = 5; shield_i = 1; skul_i = 10; }
+				if global.rank_stars < 16
+					{ star_now = global.rank_stars - 12; star_need = 4; shield_i = 0; skul_i = 11; }
+				if global.rank_stars < 12
+					{ star_now = global.rank_stars - 8; star_need = 4; shield_i = 0; skul_i = 12; }
+				if global.rank_stars < 8
+					{ star_now = global.rank_stars - 5; star_need = 3; shield_i = 0; skul_i = 13; }
+				if global.rank_stars < 5
+					{ star_now = global.rank_stars - 2; star_need = 3; shield_i = 0; skul_i = 14; }
+				if global.rank_stars < 2
+					{ star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15; }
 					
-					//winstreak = 0;
-					if g_rank_type = -1
-						{
-						g_star_yy[1] = 0;
-						g_star_yy[2] = 0;
-						g_star_yy[3] = 0;
-						g_star_yy[4] = 0;
-						g_star_yy[5] = 0;
-						g_star_yy[6] = 0;
+				//winstreak = 0;
+				if g_rank_type = -1
+					{
+					g_star_yy[1] = 0;
+					g_star_yy[2] = 0;
+					g_star_yy[3] = 0;
+					g_star_yy[4] = 0;
+					g_star_yy[5] = 0;
+					g_star_yy[6] = 0;
 						
-						g_star_ss[1] = 1;
-						g_star_ss[2] = 1;
-						g_star_ss[3] = 1;
-						g_star_ss[4] = 1;
-						g_star_ss[5] = 1;
-						g_star_ss[6] = 1;
-						if whowin = 2 && star_now - 1 < 0
-							{ g_rank_type = 1; g_skul_y = 0; g_star_yn = star_now; g_star_yy[g_star_yn] = 0; }
-						if whowin = 2 && star_now - 1 >= 0
-							{ g_rank_type = 2; g_star_yn = star_now; g_star_yy[g_star_yn] = 0;  }
-						if whowin = 1 && star_now + 1 + winstreak < star_need
-							{ g_rank_type = 3; g_star_yn = star_now + 1; g_star_yy[g_star_yn]= -global.size / 2 - 200;  }
-						if whowin = 1 && star_now + 1 + winstreak >= star_need
-							{ g_rank_type = 4; g_skul_y = 0; g_star_yn = star_now + 1; g_star_yy[g_star_yn] = -global.size / 2 - 200;  }
-						}
-					//draw_set_font(global.game_font);
-					//draw_text_transformed_t(mouse_x, mouse_y, string(g_rank_stage) + "~" + string(g_rank_type) + "\n" + string(star_now) + "~" + string(star_need) + "\n" + string(global.last_game2) + "~" + string(global.last_game), 0.25, 0.25, 0, c_white, c_black);
+					g_star_ss[1] = 1;
+					g_star_ss[2] = 1;
+					g_star_ss[3] = 1;
+					g_star_ss[4] = 1;
+					g_star_ss[5] = 1;
+					g_star_ss[6] = 1;
+					if whowin = 2 && star_now - 1 < 0
+						{ g_rank_type = 1; g_skul_y = 0; g_star_yn = star_now; g_star_yy[g_star_yn] = 0; }
+					if whowin = 2 && star_now - 1 >= 0
+						{ g_rank_type = 2; g_star_yn = star_now; g_star_yy[g_star_yn] = 0;  }
+					if whowin = 1 && star_now + 1 + winstreak < star_need
+						{ g_rank_type = 3; g_star_yn = star_now + 1; g_star_yy[g_star_yn]= -global.size / 2 - 200;  }
+					if whowin = 1 && star_now + 1 + winstreak >= star_need
+						{ g_rank_type = 4; g_skul_y = 0; g_star_yn = star_now + 1; g_star_yy[g_star_yn] = -global.size / 2 - 200;  }
+					}
+				
+				if global.last_game = 1 && global.last_game2 = 1 && global.player_rank > 5
+					{ winstreak = 1; }
+					else
+					{ winstreak = 0; }
 			#endregion
 			
 			if g_enemy_change = 0
@@ -9179,24 +9186,6 @@ if global.hero = 1 && global.enemy_hero = 1
 					}
 				}
 			////////
-			if g_message = 1
-				{
-				//g_skul_y = 0;
-				draw_set_font(global.game_font);
-				if os_get_language() = "ru"
-					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "ВЫ НЕ ТЕРЯЕТЕ ЗВЕЗДУ\nНА ЭТОМ РАНГЕ", 0.15, 0.15, 0, global.cash_color, c_black); }
-					else
-					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "YOU DO NOT LOSE\nA STAR ON THIS RANK", 0.15, 0.15, 0, global.cash_color, c_black); }
-				}
-				
-			if winstreak > 0 && whowin = 1 //global.quick = 0
-				{
-				draw_set_font(global.game_font);
-				if os_get_language() = "ru"
-					{ draw_text_transformed_t(640, global.size - 180 + fin_y - 40, "СЕРИЯ ПОБЕД!", 0.15, 0.15, 0, c_orange, c_black); }
-					else
-					{ draw_text_transformed_t(640, global.size - 180 + fin_y - 40, "WIN STREAK!", 0.15, 0.15, 0, c_orange, c_black); }
-				}
 			
 			if g_rank_stage >= 1
 				{
@@ -9205,17 +9194,17 @@ if global.hero = 1 && global.enemy_hero = 1
 					#region Ранг
 						draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50 + 15, 1 * g_rank_s, 1 * g_rank_s, 0, c_black, 0.5);
 						draw_sprite_ext(s_rank_shield, shield_i, 640, global.size / 2 - 50, 1 * g_rank_s, 1 * g_rank_s, 0, c_white, 1);
-						if global.player_rank <= 3
+						if skul_i <= 3
 							{ draw_sprite_ext_t(s_rank_skul_1, anim_skul, 640, global.size / 2 - 50 + 15, g_rank_s, g_rank_s, 0 + restart_angle, c_white, 1, c_white, c_black); }
 						if os_get_language() != "ru"
 							{
-							if global.player_rank = 0
-								{ draw_text_transformed_t(640, global.size / 2 - 50 + 15, "LEGEND", 0.6, 0.6, 0, global.color_white, c_black); }
+							if skul_i = 0
+								{ draw_text_transformed_t(640, global.size / 2 - 50 + 15, "LEGEND", 0.2, 0.2, 0, global.color_white, c_black); }
 							}
 							else
 							{
-							if global.player_rank = 0
-								{ draw_text_transformed_t(640, global.size / 2 - 50 + 15, "ЛЕГЕНДА", 0.6, 0.6, 0, global.color_white, c_black); }
+							if skul_i = 0
+								{ draw_text_transformed_t(640, global.size / 2 - 50 + 15, "ЛЕГЕНДА", 0.2, 0.2, 0, global.color_white, c_black); }
 							}
 						if g_skul_s = 1
 							{
@@ -9308,7 +9297,10 @@ if global.hero = 1 && global.enemy_hero = 1
 								}
 							draw_set_alpha(1);
 							}
-						draw_text_transformed_t(640, global.size / 2 - 150, string(skul_i), 0.27 * g_rank_s, 0.27 * g_rank_s, 5, global.color_white, c_black);
+						
+						if skul_i != 0
+							{ draw_text_transformed_t(640, global.size / 2 - 150, string(skul_i), 0.27 * g_rank_s, 0.27 * g_rank_s, 5, global.color_white, c_black); }
+						
 						if g_skul_s != 1
 							{
 							draw_sprite_ext(s_rank_skul, skul_i, 640, g_skul_y + global.size / 2 - 50 + 15, 1 * g_rank_s * g_skul_s, 1 * g_rank_s * g_skul_s, 0, c_black, 0.5);
@@ -9324,6 +9316,24 @@ if global.hero = 1 && global.enemy_hero = 1
 					draw_text_transformed_t(640, global.size / 2 - 50, txt_gold, 0.18, 0.18, 0, global.gold_color, c_black);
 					}
 				}	
+			if g_message = 1
+				{
+				//g_skul_y = 0;
+				draw_set_font(global.game_font);
+				if os_get_language() = "ru"
+					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "ВЫ НЕ ТЕРЯЕТЕ ЗВЕЗДУ\nНА ЭТОМ РАНГЕ", 0.15, 0.15, 0, global.cash_color, c_black); }
+					else
+					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "YOU DO NOT LOSE\nA STAR ON THIS RANK", 0.15, 0.15, 0, global.cash_color, c_black); }
+				}
+				
+			if winstreak > 0 && whowin = 1 //global.quick = 0
+				{
+				draw_set_font(global.game_font);
+				if os_get_language() = "ru"
+					{ draw_text_transformed_t(640, global.size - 180 + fin_y - 40, "СЕРИЯ ПОБЕД!", 0.15, 0.15, 0, c_orange, c_black); }
+					else
+					{ draw_text_transformed_t(640, global.size - 180 + fin_y - 40, "WIN STREAK!", 0.15, 0.15, 0, c_orange, c_black); }
+				}
 			}
 		if o_control.back_spd > 0
 			{ o_control.back_spd -= 0.05; }
