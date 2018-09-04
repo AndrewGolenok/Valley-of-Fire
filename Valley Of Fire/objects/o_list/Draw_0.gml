@@ -8791,7 +8791,9 @@ if global.hero = 1 && global.enemy_hero = 1
 							{ g_message = 1; }
 						if global.rank_stars = 69 or global.rank_stars = 70
 							{
-							global.legend_rank -= irandom_range(1, 10);
+							global.legend_rank += irandom_range(1, 10);
+								if global.ledend_rank > 100
+									{ global.legend_rank += 1; }
 							ini_open("Music.ini");
 								ini_write_string("Eho", "eho", string(global.legend_rank));
 							ini_close();
@@ -8814,7 +8816,9 @@ if global.hero = 1 && global.enemy_hero = 1
 						
 						if global.rank_stars = 69 or global.rank_stars = 70
 							{
-							global.legend_rank += irandom_range(1, 10);
+							global.legend_rank -= irandom_range(1, 10);
+							if global.ledend_rank < 1
+								{ global.legend_rank = 1; }
 							ini_open("Music.ini");
 								ini_write_string("Eho", "eho", string(global.legend_rank));
 							ini_close();
@@ -8840,7 +8844,9 @@ if global.hero = 1 && global.enemy_hero = 1
 						{ global.rank_stars += 1 + winstreak; }
 					if global.rank_stars = 69 or global.rank_stars = 70
 							{
-							global.legend_rank += irandom_range(1, 10);
+							global.legend_rank -= irandom_range(1, 10);
+							if global.ledend_rank < 1
+								{ global.legend_rank = 1; }
 							ini_open("Music.ini");
 								ini_write_string("Eho", "eho", string(global.legend_rank));
 							ini_close();
@@ -8867,7 +8873,9 @@ if global.hero = 1 && global.enemy_hero = 1
 								{ g_message = 1; }
 							if global.rank_stars = 69 or global.rank_stars = 70
 								{
-								global.legend_rank -= irandom_range(1, 10);
+								global.legend_rank += irandom_range(1, 10);
+								if global.ledend_rank > 100
+									{ global.legend_rank += 1; }
 								ini_open("Music.ini");
 									ini_write_string("Eho", "eho", string(global.legend_rank));
 								ini_close();

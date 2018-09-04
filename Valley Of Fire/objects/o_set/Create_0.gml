@@ -274,7 +274,9 @@
 				{
 				if global.rank_stars = 69 or global.rank_stars = 70
 					{
-					global.legend_rank -= irandom_range(1, 10);
+					global.legend_rank += irandom_range(1, 10);
+					if global.ledend_rank > 100
+						{ global.legend_rank += 1; }
 					ini_write_string("Eho", "eho", string(global.legend_rank));
 					}
 				if global.rank_stars != 0 && global.rank_stars != 16
