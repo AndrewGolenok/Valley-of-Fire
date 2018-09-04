@@ -2310,14 +2310,14 @@ if global.hero = 1 && global.enemy_hero = 1
 									if global.training = 3
 										{
 										if (global.training_stage[3] = 10 or global.training_stage[3] = 11
-										or (global.training_stage[3] = 12 && global.training_question = 0))
+										or (global.training_stage[3] = 12/* && global.training_question = 0*/))
 											{
 											draw_set_alpha(0.45);
 											draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										
 											draw_sprite_ext(s_directions, 0, 200, global.size / 2, 0.5, 0.5, 0, global.color_white, 1);
-											draw_text_transformed_t(200 + 130, global.size / 2, "0°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
+											draw_text_transformed_t(200 + 130, global.size / 2, "360°\n0°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
 											draw_text_transformed_t(200, global.size / 2 - 130, "90°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
 											draw_text_transformed_t(200 - 130, global.size / 2, "180°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
 											draw_text_transformed_t(200, global.size / 2 + 130, "270°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
@@ -5846,7 +5846,7 @@ if global.hero = 1 && global.enemy_hero = 1
 					{ audio_play_sound(sd_text, 2, 0); }
 				if global.hand = -1
 					{
-					if super_now = super_need && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && !(global.hero = 1 && global.enemy_hero = 1)// && (global.enemy_object).shoot = 0
+					if super_now = super_need && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0 && !(global.hero = 1 && global.enemy_hero = 1)// && (global.enemy_object).shoot = 0
 						{
 						super_now  = 0;
 						super_need += 3;
@@ -6593,70 +6593,70 @@ if global.hero = 1 && global.enemy_hero = 1
 									if global.p_totem[i] = 17
 										{
 										#region Случайные тотемы Врага
-										if global.e_totem[3] != -1 && global.e_totem[2] = -1 && global.e_totem[1] = -1
-											{ global.p_totem[3] = irandom_range(1, 18); }
-										if global.e_totem[3] != -1 && global.e_totem[2] != -1 && global.e_totem[1] = -1
+										if global.e_totem[1] != -1 && global.e_totem[2] = -1 && global.e_totem[3] = -1
+											{ global.e_totem[1] = irandom_range(1, 18); }
+										if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] = -1
 											{
-											global.e_totem[3] = irandom_range(1, 18);
+											global.e_totem[1] = irandom_range(1, 18);
 							
-											if global.e_totem[3] != 1
-												{ global.e_totem[2] = irandom_range(1, global.e_totem[3]); }
+											if global.e_totem[1] != 1
+												{ global.e_totem[2] = irandom_range(1, global.e_totem[1]); }
 												else
 												{ global.e_totem[2] = irandom_range(2, 18); }
 											}
-										if global.e_totem[3] != -1 && global.e_totem[2] != -1 && global.e_totem[1] != -1
+										if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] != -1
 											{
-											global.e_totem[3] = irandom_range(1, 18);
+											global.e_totem[1] = irandom_range(1, 18);
 		
-											if global.e_totem[3] != 1
+											if global.e_totem[1] != 1
 												{
-												global.e_totem[2] = irandom_range(1, global.p_totem[3]);
+												global.e_totem[2] = irandom_range(1, global.e_totem[1]);
 												if global.e_totem[2] != 1
-													{ global.e_totem[1] = irandom_range(1, global.e_totem[2]); }
+													{ global.e_totem[3] = irandom_range(1, global.e_totem[2]); }
 													else
-													{ global.e_totem[1] = irandom_range(2, global.e_totem[3]); }
+													{ global.e_totem[3] = irandom_range(2, global.e_totem[1]); }
 												}
 												else
 												{
 												global.e_totem[2] = irandom_range(2, 18); 
 												if global.e_totem[2] != 2
-													{ global.e_totem[1] = irandom_range(2, global.e_totem[2]); }
+													{ global.e_totem[3] = irandom_range(2, global.e_totem[2]); }
 													else
-													{ global.e_totem[1] = irandom_range(3, 18); }
+													{ global.e_totem[3] = irandom_range(3, 18); }
 												}
 											}
 									#endregion
 										#region Случайные тотемы Игрока
-										if global.p_totem[3] != -1 && global.p_totem[2] = -1 && global.p_totem[1] = -1
-											{ global.p_totem[3] = irandom_range(1, 18); }
-										if global.p_totem[3] != -1 && global.p_totem[2] != -1 && global.p_totem[1] = -1
+										if global.p_totem[1] != -1 && global.p_totem[2] = -1 && global.p_totem[3] = -1
+											{ global.p_totem[1] = irandom_range(1, 18); }
+										if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] = -1
 											{
-											global.p_totem[3] = irandom_range(1, 18);
+											global.p_totem[1] = irandom_range(1, 18);
 							
-											if global.p_totem[3] != 1
-												{ global.p_totem[2] = irandom_range(1, global.p_totem[3]); }
+											if global.p_totem[1] != 1
+												{ global.p_totem[2] = irandom_range(1, global.p_totem[1]); }
 												else
 												{ global.p_totem[2] = irandom_range(2, 18); }
 											}
-										if global.p_totem[3] != -1 && global.p_totem[2] != -1 && global.p_totem[1] != -1
+										if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] != -1
 											{
-											global.p_totem[3] = irandom_range(1, 18);
+											global.p_totem[1] = irandom_range(1, 18);
 		
-											if global.p_totem[3] != 1
+											if global.p_totem[1] != 1
 												{
-												global.p_totem[2] = irandom_range(1, global.p_totem[3]);
+												global.p_totem[2] = irandom_range(1, global.p_totem[1]);
 												if global.p_totem[2] != 1
-													{ global.p_totem[1] = irandom_range(1, global.p_totem[2]); }
+													{ global.p_totem[3] = irandom_range(1, global.p_totem[2]); }
 													else
-													{ global.p_totem[1] = irandom_range(2, global.p_totem[3]); }
+													{ global.p_totem[3] = irandom_range(2, global.p_totem[1]); }
 												}
 												else
 												{
 												global.p_totem[2] = irandom_range(2, 18); 
 												if global.p_totem[2] != 2
-													{ global.p_totem[1] = irandom_range(2, global.p_totem[2]); }
+													{ global.p_totem[3] = irandom_range(2, global.p_totem[2]); }
 													else
-													{ global.p_totem[1] = irandom_range(3, 18); }
+													{ global.p_totem[3] = irandom_range(3, 18); }
 												}
 											}
 									#endregion
@@ -6679,7 +6679,7 @@ if global.hero = 1 && global.enemy_hero = 1
 												en_tot = 1;
 												if global.e_totem[2] != -1
 													{ en_tot = choose(1, 2); }
-												if global.e_totem[1] != -1
+												if global.e_totem[3] != -1
 													{ en_tot = choose(3, 2, 1); }
 												global.p_totem[i] = global.e_totem[en_tot];
 												global.e_totem[en_tot] = 19;
@@ -6829,73 +6829,73 @@ if global.hero = 1 && global.enemy_hero = 1
 											#endregion
 											}
 										#region Случайные тотемы Врага
-											if global.e_totem[3] != -1 && global.e_totem[2] = -1 && global.e_totem[1] = -1
-												{ global.p_totem[3] = irandom_range(1, 18); }
-											if global.e_totem[3] != -1 && global.e_totem[2] != -1 && global.e_totem[1] = -1
-												{
-												global.e_totem[3] = irandom_range(1, 18);
-											
-												if global.e_totem[3] != 1
-													{ global.e_totem[2] = irandom_range(1, global.e_totem[3]); }
-													else
-													{ global.e_totem[2] = irandom_range(2, 18); }
-												}
-											if global.e_totem[3] != -1 && global.e_totem[2] != -1 && global.e_totem[1] != -1
-												{
-												global.e_totem[3] = irandom_range(1, 18);
-		
-												if global.e_totem[3] != 1
-													{
-													global.e_totem[2] = irandom_range(1, global.p_totem[3]);
-													if global.e_totem[2] != 1
-														{ global.e_totem[1] = irandom_range(1, global.e_totem[2]); }
-														else
-														{ global.e_totem[1] = irandom_range(2, global.e_totem[3]); }
-													}
-													else
-													{
-													global.e_totem[2] = irandom_range(2, 18); 
-													if global.e_totem[2] != 2
-														{ global.e_totem[1] = irandom_range(2, global.e_totem[2]); }
-														else
-														{ global.e_totem[1] = irandom_range(3, 18); }
-													}
-												}
-										#endregion
-										#region Случайные тотемы Игрока
-											if global.p_totem[3] != -1 && global.p_totem[2] = -1 && global.p_totem[1] = -1
-												{ global.p_totem[3] = irandom_range(1, 18); }
-											if global.p_totem[3] != -1 && global.p_totem[2] != -1 && global.p_totem[1] = -1
-												{
-												global.p_totem[3] = irandom_range(1, 18);
+										if global.e_totem[1] != -1 && global.e_totem[2] = -1 && global.e_totem[3] = -1
+											{ global.e_totem[1] = irandom_range(1, 18); }
+										if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] = -1
+											{
+											global.e_totem[1] = irandom_range(1, 18);
 							
-												if global.p_totem[3] != 1
-													{ global.p_totem[2] = irandom_range(1, global.p_totem[3]); }
-													else
-													{ global.p_totem[2] = irandom_range(2, 18); }
-												}
-											if global.p_totem[3] != -1 && global.p_totem[2] != -1 && global.p_totem[1] != -1
-												{
-												global.p_totem[3] = irandom_range(1, 18);
+											if global.e_totem[1] != 1
+												{ global.e_totem[2] = irandom_range(1, global.e_totem[1]); }
+												else
+												{ global.e_totem[2] = irandom_range(2, 18); }
+											}
+										if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] != -1
+											{
+											global.e_totem[1] = irandom_range(1, 18);
 		
-												if global.p_totem[3] != 1
-													{
-													global.p_totem[2] = irandom_range(1, global.p_totem[3]);
-													if global.p_totem[2] != 1
-														{ global.p_totem[1] = irandom_range(1, global.p_totem[2]); }
-														else
-														{ global.p_totem[1] = irandom_range(2, global.p_totem[3]); }
-													}
+											if global.e_totem[1] != 1
+												{
+												global.e_totem[2] = irandom_range(1, global.e_totem[1]);
+												if global.e_totem[2] != 1
+													{ global.e_totem[3] = irandom_range(1, global.e_totem[2]); }
 													else
-													{
-													global.p_totem[2] = irandom_range(2, 18); 
-													if global.p_totem[2] != 2
-														{ global.p_totem[1] = irandom_range(2, global.p_totem[2]); }
-														else
-														{ global.p_totem[1] = irandom_range(3, 18); }
-													}
+													{ global.e_totem[3] = irandom_range(2, global.e_totem[1]); }
 												}
-										#endregion
+												else
+												{
+												global.e_totem[2] = irandom_range(2, 18); 
+												if global.e_totem[2] != 2
+													{ global.e_totem[3] = irandom_range(2, global.e_totem[2]); }
+													else
+													{ global.e_totem[3] = irandom_range(3, 18); }
+												}
+											}
+									#endregion
+										#region Случайные тотемы Игрока
+										if global.p_totem[1] != -1 && global.p_totem[2] = -1 && global.p_totem[3] = -1
+											{ global.p_totem[1] = irandom_range(1, 18); }
+										if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] = -1
+											{
+											global.p_totem[1] = irandom_range(1, 18);
+							
+											if global.p_totem[1] != 1
+												{ global.p_totem[2] = irandom_range(1, global.p_totem[1]); }
+												else
+												{ global.p_totem[2] = irandom_range(2, 18); }
+											}
+										if global.p_totem[1] != -1 && global.p_totem[2] != -1 && global.p_totem[3] != -1
+											{
+											global.p_totem[1] = irandom_range(1, 18);
+		
+											if global.p_totem[1] != 1
+												{
+												global.p_totem[2] = irandom_range(1, global.p_totem[1]);
+												if global.p_totem[2] != 1
+													{ global.p_totem[3] = irandom_range(1, global.p_totem[2]); }
+													else
+													{ global.p_totem[3] = irandom_range(2, global.p_totem[1]); }
+												}
+												else
+												{
+												global.p_totem[2] = irandom_range(2, 18); 
+												if global.p_totem[2] != 2
+													{ global.p_totem[3] = irandom_range(2, global.p_totem[2]); }
+													else
+													{ global.p_totem[3] = irandom_range(3, 18); }
+												}
+											}
+									#endregion
 										totem_es[i] = 0.8;
 										//global.tot = 1;
 										}
@@ -6915,7 +6915,7 @@ if global.hero = 1 && global.enemy_hero = 1
 												pn_tot = 1;
 												if global.p_totem[2] != -1
 													{ pn_tot = choose(1, 2); }
-												if global.p_totem[1] != -1
+												if global.p_totem[3] != -1
 													{ pn_tot = choose(3, 2, 1); }
 												global.e_totem[i] = global.p_totem[pn_tot];
 												global.p_totem[pn_tot] = 19;
