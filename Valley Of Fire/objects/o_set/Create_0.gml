@@ -271,6 +271,11 @@
 				&& global.rank_stars != 41 && global.rank_stars != 69
 				&& global.rank_stars != 70
 					{ global.rank_stars -= 1; }
+				ini_write_string("Game", "lastgame", "0");
+				ini_write_string("Game", "lastgame2", string(global.last_game));
+				
+				global.last_game2 = ini_read_real("Game", "lastgame2", 0);
+				global.last_game  = ini_read_real("Game", "lastgame", 0);
 				}
 			
 			ini_write_string("Musica", "back", "0");

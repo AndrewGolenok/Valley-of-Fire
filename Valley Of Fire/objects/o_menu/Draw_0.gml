@@ -1828,6 +1828,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 		{
 		//global.rank_stars = 0;
 		var star_now, star_need, shield_i, skul_i, go5;
+		shield_i = 0;
 		if global.rank_stars < 70
 			{ star_now = global.rank_stars - 69; star_need = -1; shield_i = 3; skul_i = 0;}
 		if global.rank_stars < 69
@@ -1863,12 +1864,27 @@ if global.menu_now = "training" or global.menu_next = "training"
 		
 		if global.training_o = 1
 			{
+			if anim_skul < 3
+				{ anim_skul += 0.5; }
+				else
+				{ anim_skul = 0; }
 			draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 + pry - 50 + 15 + training_back_y, 1, 1, 0, c_black, 0.5);
-			draw_sprite_ext(s_rank_shield, 0, 640 + prx, global.size / 2 + pry - 50 + training_back_y, 1, 1, 0, c_white, 1);
-			
+			draw_sprite_ext(s_rank_shield, shield_i, 640 + prx, global.size / 2 + pry - 50 + training_back_y, 1, 1, 0, c_white, 1);
+			if global.player_rank <= 3
+				{ draw_sprite_ext_t(s_rank_skul_1, anim_skul, 640, global.size / 2 + pry - 50 + 15 + training_back_y, 1, 1, 0, c_white, 1, c_white, c_black); }
 			draw_sprite_ext(s_rank_skul, skul_i, 640, global.size / 2 + pry - 50 + 15 + training_back_y, 1, 1, 0, c_black, 0.5);
 			draw_sprite_ext(s_rank_skul, skul_i, 640 + prx, global.size / 2 + pry - 50 + training_back_y, 1, 1, 0, c_white, 1);	
 			
+			if os_get_language() != "ru"
+				{
+				if global.player_rank = 0
+					{ draw_text_transformed_t(640, global.size / 2 + pry - 50 + 15 + training_back_y - 60, "LEGEND", 0.6, 0.6, 0, global.color_white, c_black); }
+				}
+				else
+				{
+				if global.player_rank = 0
+					{ draw_text_transformed_t(640, global.size / 2 + pry - 50 + 15 + training_back_y - 60, "ЛЕГЕНДА", 0.6, 0.6, 0, global.color_white, c_black); }
+				}
 			if star_need = 2
 				{
 				draw_sprite_ext_t(s_rank_star, 0, 640 + prx - 30, global.size / 2 + pry + 35 + training_back_y, 0.3, 0.3, 0, c_black, 0.5, global.color_white, c_black);

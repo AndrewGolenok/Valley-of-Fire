@@ -8640,38 +8640,39 @@ if global.hero = 1 && global.enemy_hero = 1
 				}
 			#region Какой ранг
 				var star_now, star_need, shield_i, skul_i, go5;
+				shield_i = 0;
 					if global.rank_stars <= 70
-						{ star_now = global.rank_stars - 69; star_need = -1; shield_i = 3; skul_i = 0;}
+						{ star_now = global.rank_stars - 69; star_need = -1; shield_i = 3; skul_i = 0; }
 					if global.rank_stars < 69
-						{ star_now = global.rank_stars - 63; star_need = 6; shield_i = 2; skul_i = 1;}
+						{ star_now = global.rank_stars - 63; star_need = 6; shield_i = 2; skul_i = 1; }
 					if global.rank_stars < 63
-						{ star_now = global.rank_stars - 57; star_need = 6; shield_i = 2; skul_i = 2;}
+						{ star_now = global.rank_stars - 57; star_need = 6; shield_i = 2; skul_i = 2; }
 					if global.rank_stars < 57
-						{ star_now = global.rank_stars - 51; star_need = 6; shield_i = 2; skul_i = 3;}
+						{ star_now = global.rank_stars - 51; star_need = 6; shield_i = 2; skul_i = 3; }
 					if global.rank_stars < 51
-						{ star_now = global.rank_stars - 46; star_need = 5; shield_i = 2; skul_i = 4;}
+						{ star_now = global.rank_stars - 46; star_need = 5; shield_i = 2; skul_i = 4; }
 					if global.rank_stars < 46
-						{ star_now = global.rank_stars - 41; star_need = 5; shield_i = 2; skul_i = 5;}
+						{ star_now = global.rank_stars - 41; star_need = 5; shield_i = 2; skul_i = 5; }
 					if global.rank_stars < 41
-						{ star_now = global.rank_stars - 36; star_need = 5; shield_i = 1; skul_i = 6;}
+						{ star_now = global.rank_stars - 36; star_need = 5; shield_i = 1; skul_i = 6; }
 					if global.rank_stars < 36
-						{ star_now = global.rank_stars - 31; star_need = 5; shield_i = 1; skul_i = 7;}
+						{ star_now = global.rank_stars - 31; star_need = 5; shield_i = 1; skul_i = 7; }
 					if global.rank_stars < 31
-						{ star_now = global.rank_stars - 26; star_need = 5; shield_i = 1; skul_i = 8;}
+						{ star_now = global.rank_stars - 26; star_need = 5; shield_i = 1; skul_i = 8; }
 					if global.rank_stars < 26
-						{ star_now = global.rank_stars - 21; star_need = 5; shield_i = 1; skul_i = 9;}
+						{ star_now = global.rank_stars - 21; star_need = 5; shield_i = 1; skul_i = 9; }
 					if global.rank_stars < 21
-						{ star_now = global.rank_stars - 16; star_need = 5; shield_i = 1; skul_i = 10;}
+						{ star_now = global.rank_stars - 16; star_need = 5; shield_i = 1; skul_i = 10; }
 					if global.rank_stars < 16
-						{ star_now = global.rank_stars - 12; star_need = 4; shield_i = 0; skul_i = 11;}
+						{ star_now = global.rank_stars - 12; star_need = 4; shield_i = 0; skul_i = 11; }
 					if global.rank_stars < 12
-						{ star_now = global.rank_stars - 8; star_need = 4; shield_i = 0; skul_i = 12;}
+						{ star_now = global.rank_stars - 8; star_need = 4; shield_i = 0; skul_i = 12; }
 					if global.rank_stars < 8
-						{ star_now = global.rank_stars - 5; star_need = 3; shield_i = 0; skul_i = 13;}
+						{ star_now = global.rank_stars - 5; star_need = 3; shield_i = 0; skul_i = 13; }
 					if global.rank_stars < 5
-						{ star_now = global.rank_stars - 2; star_need = 3; shield_i = 0; skul_i = 14;}
+						{ star_now = global.rank_stars - 2; star_need = 3; shield_i = 0; skul_i = 14; }
 					if global.rank_stars < 2
-						{ star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15;}
+						{ star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15; }
 					
 					//winstreak = 0;
 					if g_rank_type = -1
@@ -9173,8 +9174,8 @@ if global.hero = 1 && global.enemy_hero = 1
 					{ draw_text_transformed_t(640, global.size - 150 + fin_y, txt_gold, 0.18, 0.18, 0, global.gold_color, c_black); }
 					else
 					{
-					draw_text_transformed_t(640 - (string_width(txt_gold) * 0.18 / 2 - 5), global.size - 150 + fin_y, txt_gold, 0.18, 0.18, 0, global.gold_color, c_black);	
-					draw_text_transformed_t(640 + string_width(txt_cash) * 0.18 / 2 + 5, global.size - 150 + fin_y, txt_cash, 0.18, 0.18, 0, global.cash_color, c_black);
+					draw_text_transformed_t(640 - (string_width(txt_gold) * 0.18 / 2 - 5) + (string_width(txt_gold) - string_width(txt_cash)) * 0.18 / 2, global.size - 150 + fin_y, txt_gold, 0.18, 0.18, 0, global.gold_color, c_black);	
+					draw_text_transformed_t(640 + (string_width(txt_cash) * 0.18 / 2 + 5) + (string_width(txt_gold) - string_width(txt_cash)) * 0.18 / 2, global.size - 150 + fin_y, txt_cash, 0.18, 0.18, 0, global.cash_color, c_black);
 					}
 				}
 			////////
@@ -9192,9 +9193,9 @@ if global.hero = 1 && global.enemy_hero = 1
 				{
 				draw_set_font(global.game_font);
 				if os_get_language() = "ru"
-					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "СЕРИЯ ПОБЕД!", 0.15, 0.15, 0, c_orange, c_black); }
+					{ draw_text_transformed_t(640, global.size - 180 + fin_y - 40, "СЕРИЯ ПОБЕД!", 0.15, 0.15, 0, c_orange, c_black); }
 					else
-					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "WIN STREAK!", 0.15, 0.15, 0, c_orange, c_black); }
+					{ draw_text_transformed_t(640, global.size - 180 + fin_y - 40, "WIN STREAK!", 0.15, 0.15, 0, c_orange, c_black); }
 				}
 			
 			if g_rank_stage >= 1
@@ -9203,13 +9204,25 @@ if global.hero = 1 && global.enemy_hero = 1
 					{
 					#region Ранг
 						draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50 + 15, 1 * g_rank_s, 1 * g_rank_s, 0, c_black, 0.5);
-						draw_sprite_ext(s_rank_shield, 0, 640, global.size / 2 - 50, 1 * g_rank_s, 1 * g_rank_s, 0, c_white, 1);
-						
+						draw_sprite_ext(s_rank_shield, shield_i, 640, global.size / 2 - 50, 1 * g_rank_s, 1 * g_rank_s, 0, c_white, 1);
+						if global.player_rank <= 3
+							{ draw_sprite_ext_t(s_rank_skul_1, anim_skul, 640, global.size / 2 - 50 + 15, g_rank_s, g_rank_s, 0 + restart_angle, c_white, 1, c_white, c_black); }
+						if os_get_language() != "ru"
+							{
+							if global.player_rank = 0
+								{ draw_text_transformed_t(640, global.size / 2 - 50 + 15, "LEGEND", 0.6, 0.6, 0, global.color_white, c_black); }
+							}
+							else
+							{
+							if global.player_rank = 0
+								{ draw_text_transformed_t(640, global.size / 2 - 50 + 15, "ЛЕГЕНДА", 0.6, 0.6, 0, global.color_white, c_black); }
+							}
 						if g_skul_s = 1
 							{
 							draw_sprite_ext(s_rank_skul, skul_i, 640, g_skul_y + global.size / 2 - 50 + 15, 1 * g_rank_s * g_skul_s, 1 * g_rank_s * g_skul_s, 0, c_black, 0.5);
 							draw_sprite_ext(s_rank_skul, skul_i, 640, g_skul_y + global.size / 2 - 50, 1 * g_rank_s * g_skul_s, 1 * g_rank_s * g_skul_s, 0, c_white, 1);	
 							}
+						
 						if g_rank_stage >= 2 && (g_rank_stage != 4 or g_rank_type != 1)
 							{
 							draw_set_alpha(g_star_a );
@@ -9470,7 +9483,14 @@ if global.hero = 1 && global.enemy_hero = 1
 			if global.player_rank > 10
 				{ rank_i = 0; }
 			if global.player_rank = 0
-				{ rank_i = 3; rank = "LEGEND"; rank_yy = -45; }
+				{
+				rank_i = 3;
+				if os_get_language() != "ru"
+					{ rank = "LEGEND"; }
+					else
+					{ rank = "ЛЕГЕНДА"; }
+				rank_yy = -45;
+				}
 		
 		draw_set_font(global.game_font);
 		
@@ -9537,7 +9557,14 @@ if global.hero = 1 && global.enemy_hero = 1
 			if global.enemy_rank > 10
 				{ e_rank_i = 0; }
 			if global.enemy_rank = 0
-				{ e_rank_i = 3; e_rank = "LEGEND"; e_rank_yy = -45; }
+				{
+				e_rank_i = 3;
+				if os_get_language() != "ru"
+					{ e_rank = "LEGEND"; }
+					else
+					{ e_rank = "ЛЕГЕНДА"; }
+				e_rank_yy = -45;
+				}
 		
 		if global.quick = 0
 			{
@@ -9555,7 +9582,7 @@ if global.hero = 1 && global.enemy_hero = 1
 		draw_set_font(global.game_font);
 		if global.jr_e = 1
 			{
-			if os_get_language() = "ru"
+			if os_get_language() != "ru"
 				{ draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name)) * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name) + " JR.", 0.1, 0.1, 0, global.color_white, c_black); }
 				else
 				{ draw_text_transformed_t(1280 - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name) + " МЛ.") * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name) + " МЛ.", 0.1, 0.1, 0, global.color_white, c_black); }

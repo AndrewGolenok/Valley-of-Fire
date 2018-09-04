@@ -463,6 +463,7 @@
 	global.g_stars_need = 0;
 	global.g_stars_now = 0;
 	global.quick = 0;
+	anim_skul = 0;
 	#region ПЕРЕМЕННЫЕ
 		var skul_i;
 		if global.rank_stars < 70
