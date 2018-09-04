@@ -83,7 +83,7 @@
 			//// КЛАЦ
 			if mouse_check_button(mb_left)
 				{ ms2 = 1.1; }
-			if mouse_check_button_released(mb_left)
+			if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now= "main"
 				{
 				totem_yy  = 0;
 				totem_yy1 = 0;
@@ -91,13 +91,15 @@
 				global.p_totem[2] = -1;
 				global.p_totem[3] = -1;
 				global.menu_next = "totem";
+				
+				GoogleAnalytics_SendEvent("MENU","Игрок зашёл в TOTEMS");
 				}
 			}
 		if point_in_rectangle(mouse_x, mouse_y, 640 + 150 - 125,  global.size - 30 - 150, 640 + 150 + 125, global.size - 30 + 125)
 			{
 			if mouse_check_button(mb_left)
 				{ ms3 = 1.1; }
-			if mouse_check_button_released(mb_left)
+			if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now= "main"
 				{
 				if global.sound { audio_play_sound(sd_store, 3, 0); }
 				global.menu_next = "store";
@@ -116,7 +118,7 @@
 			//// КЛАЦ
 			if mouse_check_button(mb_left)
 				{ ms4 = 1.1; }
-			if mouse_check_button_released(mb_left)
+			if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now= "main"
 				{ global.menu_next = "training"; }
 			GoogleAnalytics_SendEvent("MENU","Игрок зашёл в TRAINING");
 			}
@@ -132,7 +134,7 @@
 			//// КЛАЦ
 			if mouse_check_button(mb_left)
 				{ ms1 = 1.1; }
-			if mouse_check_button_released(mb_left)
+			if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now= "main"
 				{
 				hero_yy  = 0;
 				hero_yy1 = 0;
@@ -230,7 +232,7 @@
 			//// КЛАЦ
 			if mouse_check_button(mb_left)
 				{ ms5 = 1.1; }
-			if mouse_check_button_released(mb_left)
+			if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now= "main"
 				{
 				#region Рандом тотемов
 					var heroes, r_heroes;
@@ -379,7 +381,7 @@
 			//// КЛАЦ
 			if mouse_check_button(mb_left)
 				{ ms6 = 1.1; }
-			if mouse_check_button_released(mb_left)
+			if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now= "main"
 				{
 				global.duel = 1;
 				global.menu_next = "training";
@@ -3111,8 +3113,9 @@ if global.menu_now = "store" or global.menu_next = "store"
 					if lootbox_buy[i] = 1
 						{
 						///////////
-						draw_set_alpha(0.4);
-						draw_rectangle_color(0, global.size / 2 - 120 + 65 - 50 - nizco, 400, global.size / 2 - 120 + 65 + 200 + 70 - nizco, c_black, c_black, c_black, c_black, 0);
+						
+						draw_set_alpha(0.5);
+						draw_rectangle_color(0, global.size / 2 - nizco - 120 + 65 - 50, 1280, global.size / 2 - nizco - 120 + 65 + 200 + 70, c_black, c_black, c_black, c_black, 0);
 						draw_set_alpha(1);
 						
 						if os_get_language() = "ru"
@@ -3131,7 +3134,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - nizco - 120 + 65, "HEROES", 0.2, 0.2, 5, global.color_white, c_black);
 							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - nizco - 120 + 65 + 50, "CHANCE 75%", 0.12, 0.12, 5, global.color_white, c_black);
 							
-							draw_sprite_ext_t(s_menu_buttons, 2, 640 - 10 - 180 * 3 + 15, global.size / 2 - 120 + 65+ 150 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
+							draw_sprite_ext_t(s_menu_buttons, 2, 640 - 10 - 180 * 3 + 15, global.size / 2 - nizco - 120 + 65+ 150 + 50, 0.6, 0.6, 0, c_white, 1, c_white, c_black);
 							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - nizco - 120 + 65 + 150, "TOTEMS", 0.2, 0.2, 5, global.color_white, c_black);
 							draw_text_transformed_t(640 - 10 - 180 * 2, global.size / 2 - nizco - 120 + 65 + 150 + 50, "CHANCE 25%", 0.12, 0.12, 5, global.color_white, c_black);
 							}
@@ -3889,10 +3892,10 @@ if global.menu_now = "store" or global.menu_next = "store"
 								draw_sprite_ext_t(s_lootbox2, 0, 640 - 10, global.size / 2 - nizco - 120 + 65 + 70, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, 0, c_white, 1, c_white, c_black);
 								//draw_sprite_ext_t(s_buy, 5 + i, 640, global.size / 2 + 90 + 60 + 70, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_white, 1, c_white, c_black);
 								
-								//if os_get_language() = "ru"
-								//	{ draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100, "ЭЛИТНЫЙ ЯЩИК", 0.15 * lbs1 * upsc, 0.15 * lbs1 * upsc, 5, global.gold_color, c_black); }
-								//	else
-								//	{ draw_text_transformed_t(640, global.size / 2 + 140 + 60 - 80 + 70 - 210 - 100, "ELITE BOX", 0.2 * lbs1 * upsc, 0.2 * lbs1 * upsc, 5, global.gold_color, c_black); }
+								if os_get_language() = "ru"
+									{ draw_text_transformed_t(640, global.size / 2 - nizco + 140 + 60 - 80 + 70 - 210 - 100, "ЭЛИТНЫЙ ЯЩИК", 0.15 * lbs1 * upsc, 0.15 * lbs1 * upsc, 5, global.gold_color, c_black); }
+									else
+									{ draw_text_transformed_t(640, global.size / 2 - nizco + 140 + 60 - 80 + 70 - 210 - 100, "ELITE BOX", 0.2 * lbs1 * upsc, 0.2 * lbs1 * upsc, 5, global.gold_color, c_black); }
 								////draw_text_transformed_t(640, global.size / 2 - 57, string(gold_val[i]), 0.18 * sg1 * upsc, 0.18 * sg1 * upsc, 0, global.gold_color, c_black);
 								
 								//draw_text_transformed_t(640 - string_width("50ç") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 + 60 + 70/*+ 60*/, "50ç", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
