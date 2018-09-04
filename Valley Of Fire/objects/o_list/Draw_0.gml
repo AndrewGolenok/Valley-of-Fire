@@ -8789,6 +8789,13 @@ if global.hero = 1 && global.enemy_hero = 1
 							{ global.rank_stars -= 1; }
 							else
 							{ g_message = 1; }
+						if global.rank_stars = 69 or global.rank_stars = 70
+							{
+							global.legend_rank -= irandom_range(1, 10);
+							ini_open("Music.ini");
+								ini_write_string("Eho", "eho", string(global.legend_rank));
+							ini_close();
+							}
 						ini_open("Music.ini");
 							ini_write_string("Ranks", "ranks", string(global.rank_stars));
 						ini_close();
@@ -8802,8 +8809,16 @@ if global.hero = 1 && global.enemy_hero = 1
 					{
 					if g_star_yy[g_star_yn] != 0
 						{
-						if global.rank_stars < 70
+						if global.rank_stars < 69//70
 							{ global.rank_stars += 1 + winstreak; }
+						
+						if global.rank_stars = 69 or global.rank_stars = 70
+							{
+							global.legend_rank += irandom_range(1, 10);
+							ini_open("Music.ini");
+								ini_write_string("Eho", "eho", string(global.legend_rank));
+							ini_close();
+							}
 						g_star_ss[g_star_yn] = 30;
 						if global.sound
 							{ audio_play_sound(sd_star, 0, 0); }
@@ -8821,8 +8836,15 @@ if global.hero = 1 && global.enemy_hero = 1
 					{
 					if global.sound
 						{ audio_play_sound(sd_star, 0, 0); }
-					if global.rank_stars < 70
+					if global.rank_stars < 69//70
 						{ global.rank_stars += 1 + winstreak; }
+					if global.rank_stars = 69 or global.rank_stars = 70
+							{
+							global.legend_rank += irandom_range(1, 10);
+							ini_open("Music.ini");
+								ini_write_string("Eho", "eho", string(global.legend_rank));
+							ini_close();
+							}
 					g_rank_stage = 4;
 					}
 				}
@@ -8843,6 +8865,13 @@ if global.hero = 1 && global.enemy_hero = 1
 								{ global.rank_stars -= 1; }
 								else
 								{ g_message = 1; }
+							if global.rank_stars = 69 or global.rank_stars = 70
+								{
+								global.legend_rank -= irandom_range(1, 10);
+								ini_open("Music.ini");
+									ini_write_string("Eho", "eho", string(global.legend_rank));
+								ini_close();
+								}
 							g_rank_stage = 5;
 							g_skul_y = 0;
 							g_skul_s = 0;
@@ -9229,12 +9258,18 @@ if global.hero = 1 && global.enemy_hero = 1
 						if os_get_language() != "ru"
 							{
 							if skul_i = 0
-								{ draw_text_transformed_t(640, global.size / 2 - 50 + 15, "LEGEND", 0.2, 0.2, 0, global.color_white, c_black); }
+								{
+								draw_text_transformed_t(640, global.size / 2 - 50 + 15, "LEGEND", 0.2, 0.2, 0, global.color_white, c_black);
+								draw_text_transformed_t(640, global.size / 2 - 50 + 15 + 5 + string_height("LEGEND") * 0.2, string(global.legend_rank), 0.2, 0.2, 0, global.color_white, c_black);
+								}
 							}
 							else
 							{
 							if skul_i = 0
-								{ draw_text_transformed_t(640, global.size / 2 - 50 + 15, "ЛЕГЕНДА", 0.2, 0.2, 0, global.color_white, c_black); }
+								{
+								draw_text_transformed_t(640, global.size / 2 - 50 + 15, "ЛЕГЕНДА", 0.2, 0.2, 0, global.color_white, c_black);
+								draw_text_transformed_t(640, global.size / 2 - 50 + 15 + 5 + string_height("ЛЕГЕНДА") * 0.2, string(global.legend_rank), 0.2, 0.2, 0, global.color_white, c_black);
+								}
 							}
 						if g_skul_s = 1
 							{
@@ -10483,19 +10518,20 @@ if lines_true
 	global.notend = 0;
 	if roundskul[1] = 0 && roundskul[2] = 0 && roundskul[3] = 0
 		{
-		if (hp / maxhp) < (e_hp / e_maxhp)
+		if ((hp + e_atk * 2) / maxhp) < (e_hp / e_maxhp)
 			{ global.notend = 1; }
 		}
 	if roundskul[1] = 1 && roundskul[2] = 2 && roundskul[3] = 0
 		{
-		if (hp / maxhp) < (e_hp / e_maxhp)
+		if ((hp + e_atk * 2) / maxhp) < (e_hp / e_maxhp)
 			{ global.notend = 1; }
 		}
 	if roundskul[1] = 2 && roundskul[2] = 1 && roundskul[3] = 0
 		{
-		if (hp / maxhp) < (e_hp / e_maxhp)
+		if ((hp + e_atk * 2) / maxhp) < (e_hp / e_maxhp)
 			{ global.notend = 1; }
 		}
+	
 	if roundskul[1] = 2 && roundskul[2] = 0 && roundskul[3] = 0
 		{ global.notend = 1; }
 	if roundskul[1] = 2 && roundskul[2] = 2 && roundskul[3] = 0

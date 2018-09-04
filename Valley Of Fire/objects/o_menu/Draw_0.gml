@@ -1882,12 +1882,18 @@ if global.menu_now = "training" or global.menu_next = "training"
 			if os_get_language() != "ru"
 				{
 				if skul_i = 0
-					{ draw_text_transformed_t(640, global.size / 2 + pry - 50 + 15 + training_back_y - 60, "LEGEND", 0.2, 0.2, 0, global.color_white, c_black); }
+					{
+					draw_text_transformed_t(640, global.size / 2 + pry - 50 + 15 + training_back_y - 60, "LEGEND", 0.2, 0.2, 0, global.color_white, c_black);
+					draw_text_transformed_t(640, global.size / 2 + pry - 50 + 15 + training_back_y - 60 + 5 + string_height("LEGEND"), string(global.legend_rank), 0.2, 0.2, 0, global.color_white, c_black);
+					}
 				}
 				else
 				{
 				if skul_i = 0
-					{ draw_text_transformed_t(640, global.size / 2 + pry - 50 + 15 + training_back_y - 60, "ЛЕГЕНДА", 0.2, 0.2, 0, global.color_white, c_black); }
+					{
+					draw_text_transformed_t(640, global.size / 2 + pry - 50 + 15 + training_back_y - 60, "ЛЕГЕНДА", 0.2, 0.2, 0, global.color_white, c_black);
+					draw_text_transformed_t(640, global.size / 2 + pry - 50 + 15 + training_back_y - 60 + 5 + string_height("ЛЕГЕНДА"), string(global.legend_rank), 0.2, 0.2, 0, global.color_white, c_black);
+					}
 				}
 			if star_need = 2
 				{

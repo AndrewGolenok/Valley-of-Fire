@@ -260,6 +260,11 @@
 			global.daily_t2 = ini_read_real("Daily", "daily_t2", 0);
 			global.daily_t3 = ini_read_real("Daily", "daily_t3", 0);
 		#endregion
+		#region Ранг легенды
+			if !ini_section_exists("Eho")
+				{ ini_write_string("Eho", "eho", "100"); }
+			global.legend_rank = ini_read_real("eho", "eho", 0);
+		#endregion
 		#region Проверка на слив
 			if !ini_section_exists("Musica")
 				{ ini_write_string("Musica", "back", "0"); }
@@ -267,6 +272,11 @@
 			
 			if global.notend = 1
 				{
+				if global.rank_stars = 69 or global.rank_stars = 70
+					{
+					global.legend_rank -= irandom_range(1, 10);
+					ini_write_string("Eho", "eho", string(global.legend_rank));
+					}
 				if global.rank_stars != 0 && global.rank_stars != 16
 				&& global.rank_stars != 41 && global.rank_stars != 69
 				&& global.rank_stars != 70
