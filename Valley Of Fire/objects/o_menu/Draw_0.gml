@@ -2188,7 +2188,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 										{ audio_play_sound(sd_text, 2, 0); }
 									}
 								//// КЛАЦ
-								if (global.gold >= 100)
+								if 1//(global.gold >= 100)
 									{
 									if mouse_check_button_released(mb_left) // && store_yy <= 0
 										{
@@ -2221,7 +2221,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 										{ audio_play_sound(sd_text, 2, 0); }
 									}
 								//// КЛАЦ
-								if (global.cash >= 50)
+								if 1//(global.cash >= 50)
 									{
 									if mouse_check_button_released(mb_left) // && store_yy <= 0
 										{
@@ -2233,11 +2233,11 @@ if global.menu_now = "store" or global.menu_next = "store"
 											}
 										}
 									}
-									else
-									{
-									if mouse_check_button_released(mb_left) // && store_yy <= 0
-										{ store_yy1 = -785; io_clear(); }
-									}
+									//else
+									//{
+									//if mouse_check_button_released(mb_left) // && store_yy <= 0
+									//	{ store_yy1 = -785; io_clear(); }
+									//}
 								if mouse_check_button(mb_left)
 									{ lbs2 = 1.1; }
 								}
@@ -3189,21 +3189,41 @@ if global.menu_now = "store" or global.menu_next = "store"
 							draw_text_transformed_t(640 - 25/* + string_width("100© BUY") * 0.2 * lbs1 * upsc / 2 - 20*/, global.size / 2 + 140 - nizco + 60 + 70 + xxxx, "100© BUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
 							//draw_text_transformed_t(640 - string_width("100©") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 + 60 + 70/*+ 60*/, "100©", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
 							}
-						
+						//////
+						if global.gold < 100
+							{
+							if os_get_language() = "ru"
+								{
+								draw_sprite_ext(s_buy, 2, 640 - 25, global.size / 2 - nizco + 90 + 60 + 70 + xxxx, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_black, 0.4);
+								}
+								else
+								{
+								draw_sprite_ext(s_buy, 1, 640 - 25, global.size / 2 - nizco + 90 + 60 + 70 + xxxx, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_black, 0.4);
+								}
+							}
+						////////
 						if mouse_check_button_pressed(mb_left)
 							{
-							if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 20, global.size / 2 - nizco + 160 - 80 + 60 + 70, 640 + 150 + 20, global.size / 2 + 160 + 80 + 60 + 70) && lootbox_buy_s[i] = 1 
+							if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 20 - 30, global.size / 2 - nizco + 160 - 80 + 60 + 70, 640 + 150 + 20 + 30, global.size / 2 - nizco + 160 + 80 + 60 + 70) && lootbox_buy_s[i] = 1 
 								{
 								//// КЛАЦ
 								if global.sound
 									{ audio_play_sound(sd_text, 2, 0); }
 								//// КЛАЦ
-								ini_open("Music.ini");
-									global.gold -= 100;
-									ini_write_string("Sounds", "sound_on_g", string(global.gold));
-								ini_close();
-								lootbox_buy[i] = 2;
-								lootbox_s = 0;
+								if global.gold >= 100
+									{
+									ini_open("Music.ini");
+										global.gold -= 100;
+										ini_write_string("Sounds", "sound_on_g", string(global.gold));
+									ini_close();
+									lootbox_buy[i] = 2;
+									lootbox_s = 0;
+									}
+									else
+									{
+									lootbox_buy[i] = 0;
+									store_yy1 = -1540;
+									}
 								}
 								else
 								{ lootbox_buy[i] = 0; }
@@ -3716,7 +3736,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 												else
 												{
 												if lvlup[k] = 1
-													{ draw_text_transformed_t(hx, hy + 240, "НОВЫ\nУРОВЕНЬ!", 0.18, 0.18, 0, global.color_white, c_black); }
+													{ draw_text_transformed_t(hx, hy + 240, "НОВЫЙ\nУРОВЕНЬ!", 0.18, 0.18, 0, global.color_white, c_black); }
 												}
 										#endregion
 										
@@ -3917,18 +3937,32 @@ if global.menu_now = "store" or global.menu_next = "store"
 								//	}
 							#endregion
 							
+							//////
+							if global.cash < 50
+								{
+								if os_get_language() = "ru"
+									{
+									draw_sprite_ext(s_buy, 2, 640 - 25, global.size / 2 - nizco + 90 + 60 + 70 + xxxx, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_black, 0.4);
+									}
+									else
+									{
+									draw_sprite_ext(s_buy, 1, 640 - 25, global.size / 2 - nizco + 90 + 60 + 70 + xxxx, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_black, 0.4);
+									}
+								}
+							////////
 							if mouse_check_button_pressed(mb_left)
 								{
-								if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 20, global.size / 2 + 160 - 80 + 60 + 70, 640 + 150 + 20, global.size / 2 + 160 + 80 + 60 + 70) && lootbox_buy_s[i] = 1 
+								if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 20 - 30, global.size / 2 - nizco + 160 - 80 + 60 + 70, 640 + 150 + 20 + 30, global.size / 2 - nizco + 160 + 80 + 60 + 70) && lootbox_buy_s[i] = 1 
 									{
 									//// КЛАЦ
 									if mouse_check_button_pressed(mb_left)
 										{
-										//if global.sound
-										//	{ audio_play_sound(sd_text, 2, 0); }
+										if global.sound
+											{ audio_play_sound(sd_text, 2, 0); }
 										}
 									//// КЛАЦ
-									
+									if global.cash >= 50
+										{
 										//if os_get_language() = "ru"
 										//	{
 										//	draw_sprite_ext_t(s_buy, 2, 640, global.size / 2 + 90 + 60 + 70 - 25, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85 + 25, 0, c_white, 1, c_white, c_black);
@@ -3941,12 +3975,18 @@ if global.menu_now = "store" or global.menu_next = "store"
 										//	draw_text_transformed_t(640 + string_width("BUY") * 0.2 * lbs1 * upsc / 2 - 20, global.size / 2 + 140 + 60 + 70, "BUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.cash_color, c_black);
 										//	draw_text_transformed_t(640 - string_width("50ç") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 + 60 + 70/*+ 60*/, "50ç", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.cash_color, c_black);
 										//	}
-									ini_open("Music.ini");
-										global.cash -= 50;
-										ini_write_string("Sounds", "sound_false_c", string(global.cash));
-									ini_close();
-									lootbox_buy[i] = 2;
-									lootbox_s = 0;
+										ini_open("Music.ini");
+											global.cash -= 50;
+											ini_write_string("Sounds", "sound_false_c", string(global.cash));
+										ini_close();
+										lootbox_buy[i] = 2;
+										lootbox_s = 0;
+										}
+										else
+										{
+										lootbox_buy[i] = 0;
+										store_yy1 = -785;
+										}
 									}
 									else
 									{ lootbox_buy[i] = 0; }
