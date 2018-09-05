@@ -39,7 +39,7 @@
 		//		else
 		//		{ global.idol[i] = -1; }
 		//	}
-		draw_sprite_ext_t(s_idols, i - 1, global.idol_x[i], (global.idol_h[i]==1) * o_control.back_train_y1 + (global.idol_h[i]==1) * o_control.back_train_y2 + global.idol_y[i], 1 * o_hero.scale * 1.3, global.idol_s[i] * o_hero.scale * 1.3, 0, c_white, 1, c_white, c_black);	
+		draw_sprite_ext_t(s_idols, i - 1, global.idol_x[i], (global.idol_h[i]==0) * o_control.back_train_y1 + (global.idol_h[i]==1) * o_control.back_train_y2 + global.idol_y[i], 1 * o_hero.scale * 1.3, global.idol_s[i] * o_hero.scale * 1.3, 0, c_white, 1, c_white, c_black);	
 			for(j=0;j<=1;j++)
 				{
 				if global.anim[i,j] > -1
@@ -5293,6 +5293,14 @@ if global.hero = 1 && global.enemy_hero = 1
 							}
 						}
 					}
+				
+				if bot_time > 10 * room_speed
+					{ bot_time = 10 * room_speed; }
+				if bot_time2 > 6 * room_speed
+					{ bot_time = 6 * room_speed; }
+				if bot_wait > room_speed * 6
+					{ bot_wait = room_speed * 6; }
+				
 				if e_super_now1 < e_super_now
 					{ e_super_now1 += 1 / room_speed; }
 				if e_super_now = 0
@@ -6675,15 +6683,20 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if global.p_totem[i] = 16
 												{
-												var en_tot;
-												en_tot = 1;
-												if global.e_totem[2] != -1
-													{ en_tot = choose(1, 2); }
-												if global.e_totem[3] != -1
-													{ en_tot = choose(3, 2, 1); }
-												global.p_totem[i] = global.e_totem[en_tot];
-												global.e_totem[en_tot] = 19;
-												totem_ps[i] = 0.8;
+												if global.e_totem[1] != -1
+													{
+													var en_tot;
+													en_tot = 1;
+													if global.e_totem[2] != -1
+														{ en_tot = choose(1, 2); }
+													if global.e_totem[3] != -1
+														{ en_tot = choose(3, 2, 1); }
+													global.p_totem[i] = global.e_totem[en_tot];
+													global.e_totem[en_tot] = 19;
+													totem_ps[i] = 0.8;
+													}
+													else
+													{ totem_ps[i] = 0.8; global.tot += 0.5; }
 												//totem_es[en_tot] = 0.8;
 												//global.tot = 1; global.tot += 0.5;
 												}
@@ -6911,15 +6924,23 @@ if global.hero = 1 && global.enemy_hero = 1
 											{
 											if global.e_totem[i] = 16
 												{
-												var pn_tot;
-												pn_tot = 1;
 												if global.p_totem[2] != -1
-													{ pn_tot = choose(1, 2); }
-												if global.p_totem[3] != -1
-													{ pn_tot = choose(3, 2, 1); }
-												global.e_totem[i] = global.p_totem[pn_tot];
-												global.p_totem[pn_tot] = 19;
-												totem_es[i] = 0.8;
+													{
+													var pn_tot;
+													pn_tot = 1;
+													if global.p_totem[2] != -1
+														{ pn_tot = choose(1, 2); }
+													if global.p_totem[3] != -1
+														{ pn_tot = choose(3, 2, 1); }
+													global.e_totem[i] = global.p_totem[pn_tot];
+													global.p_totem[pn_tot] = 19;
+													totem_es[i] = 0.8;
+													}
+													else
+													{
+													totem_es[i] = 0.8;
+													global.tot += 0.5;
+													}
 												//totem_ps[pn_tot] = 0.8;
 												//global.tot = 1; global.tot += 0.5;
 												}
@@ -7794,6 +7815,13 @@ if global.hero = 1 && global.enemy_hero = 1
 	if theme_choose = 2
 		{
 		global.jr_e = 0;
+		if global.hero = 5
+			{
+			if os_get_language() = "ru"
+				{ global.player_name = "БИЛЛ СТ."; }
+				else
+				{ global.player_name = "BILL SR."; }
+			}
 		for(i=1;i<=3;i++)
 			{
 			global.idol_x[i] = 0;
@@ -8734,10 +8762,10 @@ if global.hero = 1 && global.enemy_hero = 1
 						{ g_rank_type = 4; g_skul_y = 0; g_star_yn = star_now + 1; g_star_yy[g_star_yn] = -global.size / 2 - 200;  }
 					}
 				
-				if global.last_game = 1 && global.last_game2 = 1 && global.player_rank > 5
-					{ winstreak = 1; }
-					else
-					{ winstreak = 0; }
+				//if global.last_game = 1 && global.last_game2 = 1 && global.player_rank > 5
+				//	{ winstreak = 1; }
+				//	else
+				//	{ winstreak = 0; }
 			#endregion
 			
 			if g_enemy_change = 0
@@ -8802,7 +8830,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							ini_write_string("Ranks", "ranks", string(global.rank_stars));
 						ini_close();
 						}
-					if g_star_yy[g_star_yn] < global.size / 2 + 300
+					if g_star_yy[g_star_yn] < 300
 						{ g_star_yy[g_star_yn] += 15; }
 						else
 						{ g_rank_stage = 6; }//{ g_rank_stage = 4; }
@@ -9399,7 +9427,7 @@ if global.hero = 1 && global.enemy_hero = 1
 					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "YOU DO NOT LOSE\nA STAR ON THIS RANK", 0.15, 0.15, 0, global.cash_color, c_black); }
 				}
 				
-			if winstreak > 0 && whowin = 1 //global.quick = 0
+			if winstreak > 0 && whowin = 1 && global.quick = 0
 				{
 				draw_set_font(global.game_font);
 				if os_get_language() = "ru"
@@ -10524,31 +10552,33 @@ if lines_true
 #endregion
 #region Проверка на слив
 	global.notend = 0;
-	if roundskul[1] = 0 && roundskul[2] = 0 && roundskul[3] = 0
+	if global.quick = 0
 		{
-		if ((hp + e_atk * 2) / maxhp) < (e_hp / e_maxhp)
+		if roundskul[1] = 0 && roundskul[2] = 0 && roundskul[3] = 0
+			{
+			if ((hp + e_atk * 2) / maxhp) < (e_hp / e_maxhp)
+				{ global.notend = 1; }
+			}
+		if roundskul[1] = 1 && roundskul[2] = 2 && roundskul[3] = 0
+			{
+			if ((hp + e_atk * 2) / maxhp) < (e_hp / e_maxhp)
+				{ global.notend = 1; }
+			}
+		if roundskul[1] = 2 && roundskul[2] = 1 && roundskul[3] = 0
+			{
+			if ((hp + e_atk * 2) / maxhp) < (e_hp / e_maxhp)
+				{ global.notend = 1; }
+			}
+		
+		if roundskul[1] = 2 && roundskul[2] = 0 && roundskul[3] = 0
+			{ global.notend = 1; }
+		if roundskul[1] = 2 && roundskul[2] = 2 && roundskul[3] = 0
+			{ global.notend = 1; }
+		if roundskul[1] = 2 && roundskul[2] = 1 && roundskul[3] = 2
+			{ global.notend = 1; }
+		if roundskul[1] = 1 && roundskul[2] = 2 && roundskul[3] = 2
 			{ global.notend = 1; }
 		}
-	if roundskul[1] = 1 && roundskul[2] = 2 && roundskul[3] = 0
-		{
-		if ((hp + e_atk * 2) / maxhp) < (e_hp / e_maxhp)
-			{ global.notend = 1; }
-		}
-	if roundskul[1] = 2 && roundskul[2] = 1 && roundskul[3] = 0
-		{
-		if ((hp + e_atk * 2) / maxhp) < (e_hp / e_maxhp)
-			{ global.notend = 1; }
-		}
-	
-	if roundskul[1] = 2 && roundskul[2] = 0 && roundskul[3] = 0
-		{ global.notend = 1; }
-	if roundskul[1] = 2 && roundskul[2] = 2 && roundskul[3] = 0
-		{ global.notend = 1; }
-	if roundskul[1] = 2 && roundskul[2] = 1 && roundskul[3] = 2
-		{ global.notend = 1; }
-	if roundskul[1] = 1 && roundskul[2] = 2 && roundskul[3] = 2
-		{ global.notend = 1; }
-	
 	ini_open("Music.ini")
 		ini_write_string("Musica", "back", string(global.notend));
 	ini_close();

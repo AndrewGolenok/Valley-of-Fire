@@ -2980,22 +2980,12 @@ if global.menu_now = "store" or global.menu_next = "store"
 			menu_plus2_x = menu_cash_x - menu_txt_s * string_width(menu_gold_t) / 2 - menu_setb_x / 2 - 10;
 			gold_col = make_color_rgb(252,232,131);
 		#endregion
-		//menu_setb_y - training_back_y + pry
-		//top - training_back_y + pry * 0.5 + sc_angle * 2 - 27
-		draw_text_transformed_t(640 - string_width(string(global.gold) + "©") / 2 * menu_txt_s, /* top + popka + 150*/  global.size / 2 - 300 + 50 - training_back_y + pry * 0.5 + sc_angle , string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, global.gold_color, c_black);
-		//draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus2_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, global.gold_color, 1, global.gold_color, c_black);
 		
-		draw_text_transformed_t(640 + string_width(string(global.cash) + "ç") / 2 * menu_txt_s, /* top + popka + 150*/  global.size / 2 - 300 + 50 - training_back_y + pry * 0.5 + sc_angle , string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.cash_color, c_black);
-		//draw_sprite_ext_t(s_menu_settings_p, 0, menu_plus1_x + prx, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2, menu_plus_s, menu_plus_s, 0, global.cash_color, 1, global.cash_color, c_black);
+		draw_text_transformed_t(640 - string_width(string(global.gold) + "©") / 2 * menu_txt_s + (string_width(string(global.gold) + "©") - string_width(string(global.cash) + "ç")) / 2 * menu_txt_s, global.size / 2 - 300 + 50 - training_back_y + pry * 0.5 + sc_angle , string(global.gold) + "©", menu_txt_s, menu_txt_s, 0, global.gold_color, c_black);
 		
-		//if mouse_check_button_pressed(mb_left)
-		//	{
-		//	if point_in_rectangle(mouse_x, mouse_y, 640 - string_width(string(global.gold) + "©") * menu_txt_s, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2 - 30, 640 * menu_txt_s, top / 2 - training_back_y + pry * 0.5 + sc_angle * 2 + 20)
-		//		{
-		//		//store_yy1 = 0;
-		//		io_clear();
-		//		}
-		//	}
+		//640 - (string_width(txt_gold) * 0.18 / 2 - 5) + (string_width(txt_gold) - string_width(txt_cash)) * 0.18 / 2
+		draw_text_transformed_t(640 + string_width(string(global.cash) + "ç") / 2 * menu_txt_s + (string_width(string(global.gold) + "©") - string_width(string(global.cash) + "ç")) / 2 * menu_txt_s, /* top + popka + 150*/  global.size / 2 - 300 + 50 - training_back_y + pry * 0.5 + sc_angle , string(global.cash) + "ç", menu_txt_s, menu_txt_s, 0, global.cash_color, c_black);
+		
 	// ЗОЛОТО И КЭШ
 	
 	#region Золото поверх
@@ -3040,7 +3030,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 					else
 					{
 					draw_sprite_ext_t(s_buy, i - 1, 640, global.size / 2 + 90, 0.45 * upsc * 0.85, 0.45 * gold_buy_s[i] * upsc * 0.85, 0, c_white, 1, c_white, c_black);
-					draw_text_transformed_t(640/* - string_width(string(gold_pri[i]) + "ç BUY") * 0.2 * sg1 * upsc / 2 - 20*/, global.size / 2 + 140, string(gold_pri[i]) + "ç BUY", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[i] * minn, 0, global.cash_color, c_black);
+					draw_text_transformed_t(640/* - string_width(string(gold_pri[i]) + "ç BUY") * 0.2 * sg1 * upsc / 2 - 20*/, global.size / 2 + 140, string(gold_pri[i]) + "çBUY", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[i] * minn, 0, global.cash_color, c_black);
 					//draw_text_transformed_t(640 - string_width(string(gold_pri[i]) + "ç") * 0.2 * sg1 * upsc / 2, global.size / 2 + 140, string(gold_pri[i]) + "ç", 0.2 * sg1 * upsc * minn, 0.2 * sg1 * upsc * gold_buy_s[i] * minn, 0, global.cash_color, c_black);
 					}
 				//draw_rectangle(640 - 150, global.size / 2 + 160 - 60, 640 + 150, global.size / 2 + 160 + 80, 1);
@@ -3192,7 +3182,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 							else
 							{
 							draw_sprite_ext_t(s_buy, 1, 640 - 25, global.size / 2 - nizco + 90 + 60 + 70 + xxxx, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_white, 1, c_white, c_black);
-							draw_text_transformed_t(640 - 25/* + string_width("100© BUY") * 0.2 * lbs1 * upsc / 2 - 20*/, global.size / 2 + 140 - nizco + 60 + 70 + xxxx, "100© BUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
+							draw_text_transformed_t(640 - 25/* + string_width("100© BUY") * 0.2 * lbs1 * upsc / 2 - 20*/, global.size / 2 + 140 - nizco + 60 + 70 + xxxx, "100©BUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
 							//draw_text_transformed_t(640 - string_width("100©") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 + 60 + 70/*+ 60*/, "100©", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
 							}
 						//////
@@ -3912,7 +3902,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 									else
 									{
 									draw_sprite_ext_t(s_buy, 1, 640 - 25, global.size / 2 - nizco + 90 + 60 + 70 + xxxx, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_white, 1, c_white, c_black);
-									draw_text_transformed_t(640 - 25/* + string_width("100© BUY") * 0.2 * lbs1 * upsc / 2 - 20*/, global.size / 2 - nizco + 140 + 60 + 70 + xxxx, "50ç BUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.cash_color, c_black);
+									draw_text_transformed_t(640 - 25/* + string_width("100© BUY") * 0.2 * lbs1 * upsc / 2 - 20*/, global.size / 2 - nizco + 140 + 60 + 70 + xxxx, "50çBUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.cash_color, c_black);
 									//draw_text_transformed_t(640 - string_width("100©") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 + 60 + 70/*+ 60*/, "100©", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
 									}
 								draw_sprite_ext_t(s_lootbox2, 0, 640 - 10, global.size / 2 - nizco - 120 + 65 + 70, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, 0, c_white, 1, c_white, c_black);

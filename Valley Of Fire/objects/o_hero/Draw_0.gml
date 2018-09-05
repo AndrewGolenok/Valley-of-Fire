@@ -347,15 +347,15 @@ if !enemy
 			{
 			if hero = 5
 				{
-				if global.hero = 5
-					{
-					if os_get_language() = "ru"
-						{ global.player_name = "БИЛЛ МЛ."; }
-						else
-						{ global.player_name = "BILL JR."; }
-					}
 				if o_list.hp <= o_list.maxhp / 2
 					{
+					if global.hero = 5
+						{
+						if os_get_language() = "ru"
+							{ global.player_name = "БИЛЛ МЛ."; }
+							else
+							{ global.player_name = "BILL JR."; }
+						}
 					if bill_stage = 0
 						{
 						global.super_ability = 1;
