@@ -538,7 +538,7 @@
 	title_text[11]  = "NIKOLAY SAUTIN";
 	
 	title_text[12]  = "PROGRAMMING:";
-	title_text[13]  = "ANDREW GOLENOK:";
+	title_text[13]  = "ANDREW GOLENOK";
 	
 	title_text[14]  = "TASK DESIGN:";
 	title_text[15]  = "ALEX STRELNIKOV";
@@ -555,6 +555,49 @@
 	title_text[24]  = "";
 	title_text[25]  = "THANK YOU!";
 	
+	if os_get_language() = "ru"
+		{
+		title_text[1]  = "VALLEY\nOF\nFIRE";
+		title_text[2]  = "";
+		title_text[3]  = "";
+		title_text[4]  = "";
+		
+		title_coll[1]   = c_orange;
+		title_coll[5]   = c_orange;
+		title_coll[10]  = c_orange;
+		title_coll[12]  = c_orange;
+		title_coll[14]  = c_orange;
+		title_coll[17]  = c_orange;
+		title_coll[19]  = c_orange;
+		title_coll[25]  = c_orange;
+		
+		title_text[5]  = "ГЕЙМ ДИЗАЙН:";
+		title_text[6]  = "АНДРЕЙ ГОЛЕНОК";
+		title_text[7]  = "АРТЁМ ШУМЕЙКО";
+		title_text[8]  = "НИКОЛАЙ САУТИН";
+		title_text[9]  = "";
+		
+		title_text[10]  = "ХУДОЖНИК:";
+		title_text[11]  = "НИКОЛАЙ САУТИН";
+		
+		title_text[12]  = "ПРОГРАММИСТ:";
+		title_text[13]  = "АНДРЕЙ ГОЛЕНОК";
+		
+		title_text[14]  = "ДИЗАЙН ЗАДАЧ:";
+		title_text[15]  = "АЛЕКСАНДР СТРЕЛЬНИКОВ";
+		title_text[16]  = "АНДРЕЙ ГОЛЕНОК";
+		
+		title_text[17]  = "МУЗЫКА:";
+		title_text[18]  = "ДАНИЛА БАРАНОВ";
+		
+		title_text[19]  = "ОТДЕЛЬНОЕ СПАСИБО:";
+		title_text[20]  = "АКИМ КАСАБУЛАТОВ";
+		title_text[21]  = "КРИСТИНА ЗИМАРЁВА";
+		title_text[22]  = "ВАДИМ ДАВЛЕТШИН";
+		title_text[23]  = "";
+		title_text[24]  = "";
+		title_text[25]  = "СПАСИБО ТЕБЕ!";
+		}
 	//// SPECIAL THANKS
 #endregion
 #region Музыка

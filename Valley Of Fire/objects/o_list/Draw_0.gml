@@ -7873,9 +7873,9 @@ if global.hero = 1 && global.enemy_hero = 1
 			if global.hero = 5
 				{
 				if os_get_language() = "ru"
-					{ global.player_name = "БИЛЛ МЛ."; }
+					{ global.player_name = "БИЛЛ СТ."; }
 					else
-					{ global.player_name = "BILL JR."; }
+					{ global.player_name = "BILL SR."; }
 				}
 			global.jr_e = 0;
 			//if enemy
@@ -8543,7 +8543,7 @@ if global.hero = 1 && global.enemy_hero = 1
 		
 			draw_set_font(global.game_font);
 			
-			if os_get_language() = "ru"
+			if os_get_language() != "ru"
 				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0, global.color_white, c_black); }
 				else
 				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "ПОРАЖЕНИЕ", finplas * 0.18, 0.18, 0, global.color_white, c_black); }
