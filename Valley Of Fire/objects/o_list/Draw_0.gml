@@ -6696,7 +6696,7 @@ if global.hero = 1 && global.enemy_hero = 1
 													totem_ps[i] = 0.8;
 													}
 													else
-													{ totem_ps[i] = 0.8; global.tot += 0.5; }
+													{ totem_ps[i] = 1; global.tot += 0.5; }
 												//totem_es[en_tot] = 0.8;
 												//global.tot = 1; global.tot += 0.5;
 												}
@@ -6938,7 +6938,7 @@ if global.hero = 1 && global.enemy_hero = 1
 													}
 													else
 													{
-													totem_es[i] = 0.8;
+													totem_es[i] = 1;
 													global.tot += 0.5;
 													}
 												//totem_ps[pn_tot] = 0.8;
