@@ -275,25 +275,10 @@
 	lootbox_item_v[1] = 0;
 	lootbox_item_v[2] = 0;
 	lootbox_item_v[3] = 0; //// Количество (листовок)
-	/*
-	if global.p_totem[i] <= 6
-		{ totem_pc[i] = global.color_white; }
-	
-	if global.p_totem[i] > 6 && global.p_totem[i] <= 11
-		{ totem_pc[i] = c_aqua; }
-	
-	if global.p_totem[i] > 11 && global.p_totem[i] <= 15
-		{ totem_pc[i] = c_fuchsia; }
-	
-	if global.p_totem[i] > 15
-		{ totem_pc[i] = c_orange; }
-	*/
 	
 	lootbox_item_o[1] = 0;
 	lootbox_item_o[2] = 0;
 	lootbox_item_o[3] = 0; ///// Открыто или нет
-	//lootbox_pri[1] = 100;
-	//lootbox_pri[2] = 50;
 	
 	lootbox_buy[1] = 0;
 	lootbox_buy[2] = 0;
@@ -305,48 +290,593 @@
 	lvlup[2] = 0;
 	lvlup[3] = 0;
 	
-	daily_y   = global.size / 2 - 100 + 500 - 100 + 30; //500 + y_ind + topp;
+	daily_y = global.size / 2 - 100 + 500 - 100 + 30;
 	
-	daily_t[1] = 0;
-	daily_t[2] = 0;
-	daily_t[3] = 0;
+	#region Дейли
+		ini_open("Music.ini");
 	
-	daily_n[1] = 0;
-	daily_n[2] = 0;
-	daily_n[3] = 0;
+		if !ini_section_exists("Design")
+			{
+			#region Рандом Дейли
+				var d_t1, d_n1, d_p1, d_r1, dasd1,
+					d_t2, d_n2, d_p2, d_r2, dasd2,
+					d_t3, d_n3, d_p3, d_r3, dasd3;
+				
+				dasd1 = 0;
+				dasd2 = 0;
+				dasd3 = 0;
+			
+				////////
+			
+				d_t1 = choose(1, 1, 1, 1, 0);
+				d_t2 = choose(1, 1, 1, 1, 0);
+			
+				if d_t1 = 0 && d_t2 = 0
+					{ d_t3 = 1; }
+					else
+					{
+					if 0//d_t1 = 1 && d_t2 = 1
+						{ d_t3 = 0; }
+						else
+						{ d_t3 = choose(1, 1, 1, 1, 0); }
+					}
+			
+				var ta;
+					ta = 0;
+					for(l=1;l<=18;l++)
+						{ ta += global.totem_have[l]; }
+									
+					if ta = 18
+						{ d_t1 = 1; d_t2 = 1; d_t3 = 1; }
+				////////
+			
+				d_p1 = choose(1, 0);
+				d_p2 = choose(1, 0);
+			
+				if d_p1 = 0 && d_p2 = 0
+					{ d_p3 = 1; }
+					else
+					{
+					if d_p1 = 1 && d_p2 = 1
+						{ d_p3 = 0; }
+						else
+						{ d_p3 = choose(1, 1, 0); }
+					}
+			
+				////////
+				if d_t1 = 0
+					{
+					#region Рандом тотемов 1
+						var ti, totems, tr, trr;
+						totems = "";
+						tr  = choose(3, 4);
+						trr = tr;
+					
+						while(totems = "")
+							{
+							#region Третий
+								if tr = 3
+									{
+									totems = "";
+									for(i=1;i<=4;i++)
+										{
+										if global.totem_have[i+11] = 0
+											{ totems += string(i); }
+										}
+									if totems = ""
+										{
+										if trr = 3
+											{ tr = 4; }
+											else
+											{ d_t1 = 1; }
+										}
+									}
+							#endregion
+							#region Четвёртый
+								if tr = 4
+									{
+									totems = "";
+									for(i=1;i<=3;i++)
+										{
+										if global.totem_have[i+15] = 0
+											{ totems += string(i); }
+										}
+									if totems = ""
+										{
+										if trr = 4
+											{ tr = 3;}
+											else
+											{ d_t1 = 1;  }
+										}
+									}
+							#endregion
+							}
+						
+						if d_t1 = 0
+							{
+							ti = irandom_range(1, string_length(totems));
+							if tr = 3
+								{ dasd1 = c_fuchsia; d_n1 = 11 + real(string_copy(totems, ti, 1)); }
+							if tr = 4
+								{ dasd1 = c_orange; d_n1 = 15 + real(string_copy(totems, ti, 1)); }
+							
+							//if d_n1 < 16
+							//	{ dasd1 = c_fuchsia; }
+							//if d_n1 >= 16
+							//	{ dasd1 = c_orange; }
+							}
+					#endregion
+					}
+				if d_t2 = 0
+					{
+					#region Рандом тотемов 2
+						var ti, totems, tr, trr;
+						totems = "";
+						tr  = choose(2, 3);
+						trr = tr;
+					
+						while(totems = "")
+							{
+							#region Второй
+								if tr = 2
+									{
+									totems = "";
+									for(i=1;i<=5;i++)
+										{
+										if global.totem_have[i+6] = 0
+										&& (d_t1 == 1 or (d_t1 == 0 && d_n1 != i+6))
+											{ totems += string(i); }
+										}
+									if totems = ""
+										{
+										if trr = 2
+											{ tr = 3; }
+											else
+											{ d_t2 = 1; }
+										}
+									}
+							#endregion
+							#region Третий
+								if tr = 3
+									{
+									totems = "";
+									for(i=1;i<=4;i++)
+										{
+										if global.totem_have[i+11] = 0
+										&& (d_t1 == 1 or (d_t1 == 0 && d_n1 != i+11))
+											{ totems += string(i); }
+										}
+									if totems = ""
+										{
+										if trr = 3
+											{ tr = 2; }
+											else
+											{ d_t2 = 1; }
+										}
+									}
+							#endregion
+							}
+						
+						if d_t2 = 0
+							{
+							ti = irandom_range(1, string_length(totems));
+							if tr = 2
+								{ dasd2 = c_aqua; d_n2 = 6 + real(string_copy(totems, ti, 1)); }
+							if tr = 3
+								{ dasd2 = c_fuchsia; d_n2 = 11 + real(string_copy(totems, ti, 1)); }
+										
+							//if d_n2 <= 6
+							//	{ dasd2 = global.color_white; }
+							//if d_n2 > 6 && d_n2 <= 11
+							//	{ dasd2 = c_aqua; }
+							//if d_n2 > 11 && d_n2 <= 15
+							//	{ dasd2 = c_fuchsia; }
+							//if d_n2 > 15
+							//	{ dasd2 = c_orange; }
+							}
+					#endregion
+					}
+				if d_t3 = 0
+					{
+					#region Рандом тотемов 3
+						var ti, totems, tr, trr;
+						totems = "";
+						tr  = choose(1, 2);
+						trr = tr;
+					
+						while(totems = "")
+							{
+							#region Первый
+								if tr = 1
+									{
+									totems = "";
+									for(i=1;i<=6;i++)
+										{
+										if global.totem_have[i] = 0
+										&& (d_t1 == 1 or (d_t1 == 0 && d_n1 != i))
+										&& (d_t2 == 1 or (d_t2 == 0 && d_n2 != i))
+											{ totems += string(i); }
+										}
+									if totems = ""
+										{
+										if trr = 1
+											{ tr = 2; }
+											else
+											{ d_t3 = 1; }
+										}
+									}
+							#endregion
+							#region Второй
+								if tr = 2
+									{
+									totems = "";
+									for(i=1;i<=5;i++)
+										{
+										if global.totem_have[i+6] = 0
+										&& (d_t1 == 1 or (d_t1 == 0 && d_n1 != i+6))
+										&& (d_t2 == 1 or (d_t2 == 0 && d_n2 != i+6))
+											{ totems += string(i); }
+										}
+									if totems = ""
+										{
+										if trr = 2
+											{ tr = 1; }
+											else
+											{ d_t3 = 1; }
+										}
+									}
+							#endregion
+							}
+							
+						if d_t3 = 0
+							{
+							ti = irandom_range(1, string_length(totems));
+							if tr = 1
+								{ dasd3 = global.color_white; d_n3 = real(string_copy(totems, ti, 1)); }
+							if tr = 2
+								{ dasd3 = c_aqua; d_n3 = 6 + real(string_copy(totems, ti, 1)); }
+							
+							//if d_n3 <= 6
+							//	{ dasd3 = global.color_white; }
+							//if d_n3 > 6 && d_n3 <= 11
+							//	{ dasd3 = c_aqua; }
+							//if d_n3 > 11 && d_n3 <= 15
+							//	{ dasd3 = c_fuchsia; }
+							//if d_n3 > 15
+							//	{ dasd3 = c_orange; }
+							}
+					#endregion
+					}
+			
+				if d_t1 = 1
+					{
+					d_r1 = choose(16, 32, 64);
+					
+					if d_r1 = 2
+						{ dasd1 = global.color_white; }
+					if d_r1 > 2 && d_r1 < 8
+						{ dasd1 = c_aqua; }
+					if d_r1 >= 8 && d_r1 < 16
+						{ dasd1 = c_fuchsia; }
+					if d_r1 = 16
+						{ dasd1 = c_orange; }
+					if d_r1 >= 32
+						{ dasd1 = c_yellow; }
+					}
+					else
+					{ d_r1 = 0; }
+				if d_t2 = 1
+					{
+					d_r2 = choose(6, 8, 10);
+					
+					if d_r2 = 2
+						{ dasd2 = global.color_white; }
+					if d_r2 > 2 && d_r2 < 8
+						{ dasd2 = c_aqua; }
+					if d_r2 >= 8 && d_r2 < 16
+						{ dasd2 = c_fuchsia; }
+					if d_r2 = 16
+						{ dasd2 = c_orange; }
+					if d_r2 >= 32
+						{ dasd2 = c_yellow; }
+					}
+					else
+					{ d_r2 = 0; }
+				if d_t3 = 1
+					{
+					d_r3 = choose(2, 4, 6);
+					
+					if d_r3 = 2
+						{ dasd3 = global.color_white; }
+					if d_r3 > 2 && d_r3 < 8
+						{ dasd3 = c_aqua; }
+					if d_r3 >= 8 && d_r3 < 16
+						{ dasd3 = c_fuchsia; }
+					if d_r3 = 16
+						{ dasd3 = c_orange; }
+					if d_r3 >= 32
+						{ dasd3 = c_yellow; }
+					}
+					else
+					{ d_r3 = 0; }
+				
+				////////
+			
+				if d_t1 = 1
+					{ d_n1 = irandom_range(1, global.heroes_val); }
+			
+				if d_t2 = 1
+					{
+					if d_t1 = 1 
+						{
+						if d_n1 = 1
+							{ d_n2 = irandom_range(2, global.heroes_val); }
+							else
+							{
+							if d_n1 = global.heroes_val
+								{ d_n2 = irandom_range(1, global.heroes_val - 1); }
+								else
+								{ d_n2 = choose(irandom_range(1, d_n1 - 1), irandom_range(d_n1 + 1, global.heroes_val)); }
+							}
+						}
+						else
+						{ d_n2 = irandom_range(1, global.heroes_val); }
+					}
+				
+				if d_t3 = 1
+					{
+					if d_t1 = 1 
+						{
+						if d_n1 = 1
+							{ d_n3 = irandom_range(2, global.heroes_val); }
+							else
+							{
+							if d_n1 = global.heroes_val
+								{ d_n3 = irandom_range(1, global.heroes_val - 1); }
+								else
+								{ d_n3 = choose(irandom_range(1, d_n1 - 1), irandom_range(d_n1 + 1, global.heroes_val)); }
+							}
+						}
+						else
+						{
+						if d_t2 = 1 
+							{
+							if d_n2 = 1
+								{ d_n3 = irandom_range(2, global.heroes_val); }
+								else
+								{
+								if d_n2 = global.heroes_val
+									{ d_n3 = irandom_range(1, global.heroes_val - 1); }
+									else
+									{ d_n3 = choose(irandom_range(1, d_n2 - 1), irandom_range(d_n2 + 1, global.heroes_val)); }
+								}
+							}
+							else
+							{ d_n3 = irandom_range(1, global.heroes_val); }
+						}
+					}
+			#endregion
+			
+			ini_write_string("Design", "des4_t",  string(d_t1));
+			ini_write_string("Design", "des4_n",  string(d_n1));
+			ini_write_string("Design", "des4_p",  string(d_p1));
+			ini_write_string("Design", "des4_pr",  string(d_p1));
+			ini_write_string("Design", "des4_r",  string(d_r1));
+			ini_write_string("Design", "des4_c", string(dasd1));
+			ini_write_string("Design", "des4_b", "0");
+			
+			ini_write_string("Design", "des7_t",  string(d_t2));
+			ini_write_string("Design", "des7_n",  string(d_n2));
+			ini_write_string("Design", "des7_p",  string(d_p2));
+			ini_write_string("Design", "des7_pr",  string(d_p2));
+			ini_write_string("Design", "des7_r",  string(d_r2));
+			ini_write_string("Design", "des7_c", string(dasd2));
+			ini_write_string("Design", "des7_b", "0");
+			
+			ini_write_string("Design", "des9_t",  string(d_t3));
+			ini_write_string("Design", "des9_n",  string(d_n3));
+			ini_write_string("Design", "des9_p",  string(d_p3));
+			ini_write_string("Design", "des9_pr",  string(d_p3));
+			ini_write_string("Design", "des9_r",  string(d_r3));
+			ini_write_string("Design", "des9_c", string(dasd3));
+			ini_write_string("Design", "des9_b", "0");
+			
+			ini_write_string("Design", "ddd", "0");
+			ini_write_string("Design", "dmm", "0");
+			}
 	
-	daily_s[1] = 1;
-	daily_s[2] = 1;
-	daily_s[3] = 1;
+		daily_t[1]  = ini_read_real("Design", "des4_t",  1);
+		daily_n[1]  = ini_read_real("Design", "des4_n",  1);
+		daily_pr[1] = ini_read_real("Design", "des4_pr", 0);
+		daily_r[1]  = ini_read_real("Design", "des4_r",  1);
+		daily_c[1]  = ini_read_real("Design", "des4_c",  0);
+		daily_b[1]  = ini_read_real("Design", "des4_b",  0);
 	
-	cash_y   = global.size / 2 - 100 + 900 - 100 + 30; //900 + y_ind + topp;
-	gold_y   = global.size / 2 - 100 + 1600 + 30 - 100 + 30; //1600 + 30 + y_ind + topp;
+		daily_t[2]  = ini_read_real("Design", "des7_t",  1);
+		daily_n[2]  = ini_read_real("Design", "des7_n",  1);
+		daily_pr[2] = ini_read_real("Design", "des7_pr", 0);
+		daily_r[2]  = ini_read_real("Design", "des7_r",  1);
+		daily_c[2]  = ini_read_real("Design", "des7_c",  0);
+		daily_b[2]  = ini_read_real("Design", "des7_b",  0);
+	
+		daily_t[3]  = ini_read_real("Design", "des9_t",  1);
+		daily_n[3]  = ini_read_real("Design", "des9_n",  1);
+		daily_pr[3] = ini_read_real("Design", "des9_pr", 0);
+		daily_r[3]  = ini_read_real("Design", "des9_r",  1);
+		daily_c[3]  = ini_read_real("Design", "des9_c",  0);
+		daily_b[3]  = ini_read_real("Design", "des9_b",  0);
+		
+		nowday = ini_read_real("Design", "ddd", 0);
+		nowmon = ini_read_real("Design", "dmm", 0);
+	
+		for(i=1;i<=3;i++)
+			{
+			daily_buy_s[i] = 0;
+			daily_buy[i]   = 0;
+			
+			daily_p[i] = 0;
+			
+			if daily_t[i] = 1
+				{
+				#region Первый
+				if daily_r[i] = 2
+					{
+					if daily_pr[i] = 1
+						{ daily_p[i] = 2; }
+						else
+						{ daily_p[i] = 10; }
+					}
+				#endregion			
+				#region Второй
+				if daily_r[i] = 4
+					{
+					if daily_pr[i] = 1
+						{ daily_p[i] = 5; }
+						else
+						{ daily_p[i] = 25; }
+					}
+				#endregion			
+				#region Третий
+				if daily_r[i] = 6
+					{
+					if daily_pr[i] = 1
+						{ daily_p[i] = 7; }
+						else
+						{ daily_p[i] = 35; }
+					}
+				#endregion		
+				#region Четвертый
+				if daily_r[i] = 8
+					{
+					if daily_pr[i] = 1
+						{ daily_p[i] = 10; }
+						else
+						{ daily_p[i] = 60; }
+					}
+				#endregion			
+				#region Пятый
+				if daily_r[i] = 10
+					{
+					if daily_pr[i] = 1
+						{ daily_p[i] = 12; }
+						else
+						{ daily_p[i] = 80; }
+					}
+				#endregion		
+				#region Шестой
+				if daily_r[i] = 16
+					{
+					if daily_pr[i] = 1
+						{ daily_p[i] = 25; }
+						else
+						{ daily_p[i] = 200; }
+					}
+				#endregion			
+				#region Седьмой
+				if daily_r[i] = 32
+					{
+					if daily_pr[i] = 1
+						{ daily_p[i] = 90; }
+						else
+						{ daily_p[i] = 500; }
+					}
+				#endregion			
+				#region Восьмой
+				if daily_r[i] = 64
+					{
+					if daily_pr[i] = 1
+						{ daily_p[i] = 200; }
+						else
+						{ daily_p[i] = 1000; }
+					}
+				#endregion	
+				}
+				else
+				{
+				if daily_c[i] = global.color_white
+					{
+					if daily_pr[i] = 1
+						{ daily_p[i] = 15; }
+						else
+						{ daily_p[i] = 75; }
+					}
+				if daily_c[i] = c_aqua
+					{
+					if daily_pr[i] = 1
+						{ daily_p[i] = 25; }
+						else
+						{ daily_p[i] = 130; }
+					}
+				if daily_c[i] = c_fuchsia
+					{
+					if daily_pr[i] = 1
+						{ daily_p[i] = 60; }
+						else
+						{ daily_p[i] = 300; }
+					}
+				if daily_c[i] = c_orange
+					{
+					if daily_pr[i] = 1
+						{ daily_p[i] = 160; }
+						else
+						{ daily_p[i] = 800; }
+					}
+				}
+			}
+		//daily_t[1] = 0;
+		//daily_t[2] = 0;
+		//daily_t[3] = 0; /// ТИП
+	
+		//daily_n[1] = 0;
+		//daily_n[2] = 0;
+		//daily_n[3] = 0; /// НОМЕР (1-18 / 1-7)
+	
+		//daily_p[1] = 0;
+		//daily_p[2] = 0;
+		//daily_p[3] = 0; /// ЦЕНА
+	
+		//daily_r[1] = 0;
+		//daily_r[2] = 0;
+		//daily_r[3] = 0; /// РЕДКОСТЬ
+	
+		//daily_c[1] = 0;
+		//daily_c[2] = 0;
+		//daily_c[3] = 0; /// ЦВЕТ
+	
+		//daily_s[1] = 1;
+		//daily_s[2] = 1;
+		//daily_s[3] = 1; /// СКЕЙЛ
+	
+		ini_close();
+	#endregion
+	
+	cash_y = global.size / 2 - 100 + 900 - 100 + 30; //900 + y_ind + topp;
+	gold_y = global.size / 2 - 100 + 1600 + 30 - 100 + 30; //1600 + 30 + y_ind + topp;
 	
 	
 	cash_txt[1] = "THE WAD\nOF CASH";
-	cash_val[1] = 50//80;
+	cash_val[1] = 50; //80;
 	cash_pri[1] = "$0.99"; // "15,00₽"
 	
 	cash_txt[2] = "A BAG\nOF CASH";
-	cash_val[2] = 270//500;
+	cash_val[2] = 270; //500;
 	cash_pri[2] = "$4.99"; //"75,00₽"
 	
 	cash_txt[3] = "THE BOX\nOF CASH";
-	cash_val[3] = 550//1200;
+	cash_val[3] = 550; //1200;
 	cash_pri[3] = "$9.99"; //"150,00₽"
 	
 	cash_txt[4] = "A CHEST\nOF CASH";
-	cash_val[4] = 1200//2500;
+	cash_val[4] = 1200; //2500;
 	cash_pri[4] = "$19.99"; //"300,00₽"
 	
 	cash_txt[5] = "A BARREL\nOF CASH";
-	cash_val[5] = 3000//6500;
+	cash_val[5] = 3000; //6500;
 	cash_pri[5] = "$49.99"; //"750,00₽"
 	
 	cash_txt[6] = "A MOUNTAIN\nOF CASH";
-	cash_val[6] = 7000//14000;
+	cash_val[6] = 7000; //14000;
 	cash_pri[6] = "$99.99"; //"1500,00₽"
-	
 	
 	gold_txt[1] = "A BAG\nOF GOLD";
 	gold_val[1] = 100;
@@ -438,18 +968,26 @@
 			hero_lvl[i] = 0;
 			}
 		
+		if global.heroes_have[i] < 178 + 110 + 68 + 42 + 26 + 16 + 10 + 6 + 4 + 2
+			{ hero_lvl[i] = 10; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16 - 26 - 42 - 68 - 110; hero_need[i] = 178; }
+		if global.heroes_have[i] < 110 + 68 + 42 + 26 + 16 + 10 + 6 + 4 + 2
+			{ hero_lvl[i] = 9; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16 - 26 - 42 - 68; hero_need[i] = 110; }
+		if global.heroes_have[i] < 68 + 42 + 26 + 16 + 10 + 6 + 4 + 2
+			{ hero_lvl[i] = 8; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16 - 26 - 42; hero_need[i] = 68; }
+		
 		if global.heroes_have[i] < 42 + 26 + 16 + 10 + 6 + 4 + 2
-			{ hero_lvl[i] = 7; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16 - 26; hero_need[i] = 42 + 26 + 16 + 10 + 6 + 4 + 2; }
+			{ hero_lvl[i] = 7; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16 - 26; hero_need[i] = 42; }
+		//hero_need[i] = 42 + 26 + 16 + 10 + 6 + 4 + 2;
 		if global.heroes_have[i] < 26 + 16 + 10 + 6 + 4 + 2
-			{ hero_lvl[i] = 6; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16; hero_need[i] = 26 + 16 + 10 + 6 + 4 + 2; }
+			{ hero_lvl[i] = 6; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16; hero_need[i] = 26; }
 		if global.heroes_have[i] < 16 + 10 + 6 + 4 + 2
-			{ hero_lvl[i] = 5; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10; hero_need[i] = 16 + 10 + 6 + 4 + 2; }
+			{ hero_lvl[i] = 5; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10; hero_need[i] = 16; }
 		if global.heroes_have[i] < 10 + 6 + 4 + 2
-			{ hero_lvl[i] = 4; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6; hero_need[i] = 10 + 6 + 4 + 2; }
+			{ hero_lvl[i] = 4; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6; hero_need[i] = 10; }
 		if global.heroes_have[i] < 6 + 4 + 2
-			{ hero_lvl[i] = 3; hero_now1[i] = global.heroes_have[i] - 2 - 4; hero_need[i] = 6 + 4 + 2; }
+			{ hero_lvl[i] = 3; hero_now1[i] = global.heroes_have[i] - 2 - 4; hero_need[i] = 6; }
 		if global.heroes_have[i] < 4 + 2
-			{ hero_lvl[i] = 2; hero_now1[i] = global.heroes_have[i] - 2; hero_need[i] = 4 + 2; }
+			{ hero_lvl[i] = 2; hero_now1[i] = global.heroes_have[i] - 2; hero_need[i] = 4; }
 		if global.heroes_have[i] < 2
 			{ hero_lvl[i] = 1; hero_now1[i] = global.heroes_have[i]; hero_need[i] = 2; }
 		
@@ -457,6 +995,27 @@
 		levelup[2] = global.heroes_have[i];
 		levelup[3] = global.heroes_have[i];
 		}
+#endregion
+#region Квесты
+	quests_scale   = 0;
+	quests_scale1  = 0.5;
+	quests_refresh = 1;
+	
+	for(i=1;i<=3;i++)
+		{
+		quests_a[i] = 1;
+		quests_s[i] = 0.5;
+		quests_t[i] = 1;
+		quests_n_all[i] = 1;
+		quests_n_now[i] = 0;
+		
+		quests_n[i]  = "AAA";
+		quests_d[i]  = "WIN 5 DUELS AGAINST HUNTRESS OR SHAMAN";
+		quests_p[i]  = 40;
+		quests_pt[i] = "ç"; // "©"
+		}
+	
+	
 #endregion
 #region Ранг
 	global.g_rank_now = 0;

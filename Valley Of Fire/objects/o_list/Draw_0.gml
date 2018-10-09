@@ -8805,6 +8805,15 @@ if global.hero = 1 && global.enemy_hero = 1
 				{
 				if g_rank_type = 1
 					{
+					if global.rank_stars >= 69//= 69 or global.rank_stars = 70
+						{
+						global.legend_rank += irandom_range(1, 10);
+							if global.ledend_rank > 100
+								{ global.legend_rank += 1; }
+						ini_open("Music.ini");
+							ini_write_string("Eho", "eho", string(global.legend_rank));
+						ini_close();
+						}
 					g_rank_stage = 4;
 					}
 				if g_rank_type = 2
@@ -8817,7 +8826,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							{ global.rank_stars -= 1; }
 							else
 							{ g_message = 1; }
-						if global.rank_stars = 69 or global.rank_stars = 70
+						if global.rank_stars >= 69//global.rank_stars = 69 or global.rank_stars = 70
 							{
 							global.legend_rank += irandom_range(1, 10);
 								if global.ledend_rank > 100
@@ -8841,15 +8850,17 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						if global.rank_stars < 69//70
 							{ global.rank_stars += 1 + winstreak; }
-						
-						if global.rank_stars = 69 or global.rank_stars = 70
+							else
 							{
-							global.legend_rank -= irandom_range(1, 10);
-							if global.ledend_rank < 1
-								{ global.legend_rank = 1; }
-							ini_open("Music.ini");
-								ini_write_string("Eho", "eho", string(global.legend_rank));
-							ini_close();
+							if global.rank_stars = 69 or global.rank_stars = 70
+								{
+								global.legend_rank -= irandom_range(1, 10);
+								if global.ledend_rank < 1
+									{ global.legend_rank = 1; }
+								ini_open("Music.ini");
+									ini_write_string("Eho", "eho", string(global.legend_rank));
+								ini_close();
+								}
 							}
 						g_star_ss[g_star_yn] = 30;
 						if global.sound
@@ -8870,7 +8881,9 @@ if global.hero = 1 && global.enemy_hero = 1
 						{ audio_play_sound(sd_star, 0, 0); }
 					if global.rank_stars < 69//70
 						{ global.rank_stars += 1 + winstreak; }
-					if global.rank_stars = 69 or global.rank_stars = 70
+						else
+						{
+						if global.rank_stars = 69 or global.rank_stars = 70
 							{
 							global.legend_rank -= irandom_range(1, 10);
 							if global.ledend_rank < 1
@@ -8879,6 +8892,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								ini_write_string("Eho", "eho", string(global.legend_rank));
 							ini_close();
 							}
+						}
 					g_rank_stage = 4;
 					}
 				}
@@ -8899,15 +8913,15 @@ if global.hero = 1 && global.enemy_hero = 1
 								{ global.rank_stars -= 1; }
 								else
 								{ g_message = 1; }
-							if global.rank_stars = 69 or global.rank_stars = 70
-								{
-								global.legend_rank += irandom_range(1, 10);
-								if global.ledend_rank > 100
-									{ global.legend_rank += 1; }
-								ini_open("Music.ini");
-									ini_write_string("Eho", "eho", string(global.legend_rank));
-								ini_close();
-								}
+							//if global.rank_stars = 69 or global.rank_stars = 70
+							//	{
+							//	global.legend_rank += irandom_range(1, 10);
+							//	if global.ledend_rank > 100
+							//		{ global.legend_rank += 1; }
+							//	ini_open("Music.ini");
+							//		ini_write_string("Eho", "eho", string(global.legend_rank));
+							//	ini_close();
+							//	}
 							g_rank_stage = 5;
 							g_skul_y = 0;
 							g_skul_s = 0;
@@ -9531,12 +9545,42 @@ if global.hero = 1 && global.enemy_hero = 1
 		{ anim_skul += 0.5; }
 		else
 		{ anim_skul = 0; }
+		
+	var pers, dop, e_pers, a_maxhp, a_e_maxhp;
+		pers   = (hp / maxhp)// * ((1205 - 35) * gui_size - 25);
+		dop    = maxhp / 100;
+		e_pers = (e_hp / e_maxhp);
+		
+		///////
+		a_maxhp   = maxhp;
+		a_e_maxhp = e_maxhp;
+		
+		if maxhp > e_maxhp
+			{
+			if maxhp > 1350
+				{
+				e_maxhp = e_maxhp / maxhp * 1350;
+				maxhp   = 1350;
+				}
+			}
+			else
+			{
+			if e_maxhp > 1350
+				{
+				maxhp   = maxhp / e_maxhp * 1350;
+				e_maxhp = 1350;
+				}
+			}
+			
+			health_hp   = health_hp * maxhp / a_maxhp;
+			health_e_hp = health_e_hp * e_maxhp / a_e_maxhp;
+		/////////
 	#region Хелсбар Игрока
 		draw_sprite_ext_t(s_healthbar_hp, 0, h_x, h_y + h_y1, -gui_size * (0.20 + 0.8 * (maxhp / 1350)), gui_size * 0.4, 0, global.color_white, 1, c_white, c_black);
 		
-		var pers, dop;
-		pers = (hp / maxhp)// * ((1205 - 35) * gui_size - 25);
-		dop  = maxhp / 100;
+		//var pers, dop;
+		//pers = (hp / maxhp)// * ((1205 - 35) * gui_size - 25);
+		//dop  = maxhp / 100;
 	
 		//////////
 			draw_set_color(c_red);
@@ -9635,8 +9679,8 @@ if global.hero = 1 && global.enemy_hero = 1
 	#region Хелсбар Противника
 		draw_sprite_ext_t(s_healthbar_hp, 0, 1280 - h_x, h_y + h_y1, gui_size * (0.20 + 0.8 * (e_maxhp / 1350)), gui_size * 0.4, 0, c_white, 1, c_white, c_black);
 		
-		var e_pers;
-		e_pers = (e_hp / e_maxhp);
+		//var e_pers;
+		//e_pers = (e_hp / e_maxhp);
 		
 		draw_set_color(c_red);
 		draw_rectangle(1280 - h_x - ((1205 - 35) * gui_size * (0.20 + 0.8 * (e_maxhp / 1350)) - 25) * health_e_hp / e_maxhp - 25, h_y - h_s / 8 - 10 + h_y1, 1280 - h_x - 25, h_y - h_s - 10 + h_y1, 0);
@@ -9709,6 +9753,11 @@ if global.hero = 1 && global.enemy_hero = 1
 		//		{ draw_sprite_ext(s_healthbar_table_x, 0, 1280 - h_x - 10/*20 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 + sprite_get_width(s_healthbar_table_skul) * gui_size * i * 1.3*/, h_y - 4 - sprite_get_height(s_healthbar_hp) * gui_size + roundskul_y[i], roundskul_s[i] * 0.7, roundskul_s[i] * 0.7, roundskul_xa[i], c_white, 1); }
 		//	}
 	#endregion
+	
+	///////
+		 maxhp   = a_maxhp;
+		 e_maxhp = a_e_maxhp;
+	//////
 	//////////////////////////////
 	/////////////////////////////
 	if whowin_stage >= 3//win_stage >= 4

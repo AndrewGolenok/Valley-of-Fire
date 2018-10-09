@@ -195,7 +195,7 @@
 				    {
 					ini_write_string("Totems", "totem" + string(i), "0");
 					if i = 4
-						{ ini_write_string("Totems", "totem" + string(i), "0"); }
+						{ ini_write_string("Totems", "totem" + string(i), "1"); }
 					ini_write_string("Totems", "totem_n" + string(i), "0");
 					}
 				global.totem_have[i] = ini_read_real("Totems", "totem" + string(i), 0);
@@ -205,10 +205,12 @@
 		#region Листовки
 			for(i=1;i<=7;i++)
 				{
+				var ranran;
+				ranran = irandom_range(1, 7);
 				if !ini_section_exists("Heroes")
 				    {
 					ini_write_string("Heroes", "heroes" + string(i), "0");
-					ini_write_string("Heroes", "heroes4", "1");
+					ini_write_string("Heroes", "heroes" + string(ranran), "1");
 					}
 				global.heroes_have[i] = ini_read_real("Heroes", "heroes" + string(i), 0);
 				}
@@ -263,7 +265,7 @@
 		#region Ранг легенды
 			if !ini_section_exists("Eho")
 				{ ini_write_string("Eho", "eho", "100"); }
-			global.legend_rank = ini_read_real("eho", "eho", 0);
+			global.legend_rank = ini_read_real("Eho", "eho", 100);
 		#endregion
 		#region Проверка на слив
 			if !ini_section_exists("Musica")
@@ -766,7 +768,7 @@
 		global.totem_name[17] = "КОВАРНЫЙ СВИН";
 		global.totem_desc[17] = "ПРЕВРАЩАЕТ ВСЕ ТОТЕМЫ ИГРОКОВ В СЛУЧАЙНЫЕ";
 		
-		global.totem_name[18] = "КОБРА КОРОЛЬ";
+		global.totem_name[18] = "КОРОЛЕВА КОБРА";
 		global.totem_desc[18] = "ВАШЕ ОРУЖИЕ ПОЛУЧАЕТ ЯД ПРИ КАЖДОМ ПРОМАХЕ ПРОТИВНИКА";
 		
 		global.totem_name[19] = "КРЫС";

@@ -8,7 +8,8 @@
         "99d200be-b92e-4e77-be3a-e17564d7481b",
         "b3511b43-ee1e-4a41-9579-230d436c2b1c",
         "5010efc7-5420-4e15-bb54-1668bd2908c7",
-        "d08149f6-337d-4fca-8fa1-6957f77ccba2"
+        "d08149f6-337d-4fca-8fa1-6957f77ccba2",
+        "a1e5e675-2703-4444-a803-835a846b5dd1"
     ],
     "filterType": "GMSprite",
     "folderName": "Backs",

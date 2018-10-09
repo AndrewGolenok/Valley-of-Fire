@@ -1,4 +1,4 @@
-if global.room_to_go = "duel" or(global.menu_next = "main" or global.menu_now = "main")
+if global.room_to_go = "duel" or(global.menu_next = "main" or global.menu_now = "main" or global.menu_now = "quests")
 	{
 	#region Тестовые сдвиги фона
 		var prx, pry;

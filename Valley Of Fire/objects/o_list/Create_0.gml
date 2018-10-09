@@ -1959,7 +1959,12 @@
 		}
 #endregion
 #region Уровни персонажа
-	global.hero_level = 8;
+	global.hero_level = 10;
+	
+	if global.heroes_have[global.hero] < 110 + 42 + 26 + 16 + 10 + 6 + 4 + 2
+		{ global.hero_level = 9; }
+	if global.heroes_have[global.hero] < 68 + 42 + 26 + 16 + 10 + 6 + 4 + 2
+		{ global.hero_level = 8; }
 	if global.heroes_have[global.hero] < 42 + 26 + 16 + 10 + 6 + 4 + 2
 		{ global.hero_level = 7; }
 	if global.heroes_have[global.hero] < 26 + 16 + 10 + 6 + 4 + 2
@@ -1974,11 +1979,13 @@
 		{ global.hero_level = 2; }
 	if global.heroes_have[global.hero] < 2
 		{ global.hero_level = 1; }
-	atk *= (1 + 0.01 * global.hero_level);
-	hp *= (1 + 0.01 * global.hero_level);
+	atk *= (1 + 0.1 * (global.hero_level - 1));
+	hp *= (1 + 0.1 * (global.hero_level - 1));
 	maxhp = hp;
 	global.enemy_level = choose(global.hero_level - 1, global.hero_level - 1, global.hero_level + 1, global.hero_level);
-	e_atk *= (1 + 0.01 * global.enemy_level);
-	e_hp *= (1 + 0.01 * global.enemy_level);
+	if global.enemy_level < 1
+		{ global.enemy_level = 1; }
+	e_atk *= (1 + 0.1 * (global.enemy_level - 1));
+	e_hp *= (1 + 0.1 * (global.enemy_level - 1));
 	e_maxhp = e_hp;
 #endregion

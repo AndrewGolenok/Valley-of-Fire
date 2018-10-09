@@ -44,7 +44,7 @@ with(o_hero)
 			}
 		
 		if (global.enemy_hero) = 2
-			{ o_list.e_atk += 10; }
+			{ o_list.e_atk += 10 * (1 + 0.1 * (global.enemy_level - 1)); }
 							
 		if diego_dynamit = 1 && skeleton_animation_get() != "super"
 			{ dynamit_d = o_list.e_atk * datk + (1 + global.e_totem_a[5]) * o_list.e_atk * datk / 10 * (global.e_critical == 3); diego_dynamit = 2; stun_seconds -= 1; change = 3; skeleton_animation_set("super"); }
