@@ -133,5 +133,16 @@
     "packageID": "com.yoyogames.googleanalytics",
     "productID": "613CB732594A20D7D84D3DE524B4DD6D",
     "sourcedir": "",
+    "tvosProps": false,
+    "tvosSystemFrameworkEntries": [
+        
+    ],
+    "tvosThirdPartyFrameworkEntries": [
+        
+    ],
+    "tvosclassname": null,
+    "tvosmaccompilerflags": null,
+    "tvosmaclinkerflags": null,
+    "tvosplistinject": null,
     "version": "1.2.2"
 }

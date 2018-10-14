@@ -997,25 +997,497 @@
 		}
 #endregion
 #region Квесты
-	quests_scale   = 0;
-	quests_scale1  = 0.5;
-	quests_refresh = 1;
+	global.quests_scale   = 0;
+	global.quests_scale1  = 0.5;
+	global.quests_refresh = 1;
+	
+	nnn[1] = 0;
+	nnn[2] = 0;
+	nnn[3] = 0;
+	
+	//file_delete("Music.ini");
+	
+	ini_open("Music.ini");
+	
+	if !ini_section_exists("Qual")
+		{
+		nnn[1] = 1;
+		nnn[2] = 1;
+		nnn[3] = 1;
+		
+		ini_write_string("Qual", "qual_1", "1");
+		ini_write_string("Qual", "qual_2", "1");
+		ini_write_string("Qual", "qual_3", "1");
+		
+		ini_write_string("Qual", "qual_a_1", "1");
+		ini_write_string("Qual", "qual_a_2", "1");
+		ini_write_string("Qual", "qual_a_3", "1");
+		
+		ini_write_string("Qual", "qual_nno_1", "0");
+		ini_write_string("Qual", "qual_nno_2", "0");
+		ini_write_string("Qual", "qual_nno_3", "0");
+		
+		ini_write_string("Qual", "qual_rr", "1");
+		}
+		else
+		{
+		nnn[1] = ini_read_real("Qual", "qual_1", 1);
+		nnn[2] = ini_read_real("Qual", "qual_2", 1);
+		nnn[3] = ini_read_real("Qual", "qual_3", 1);
+		
+		global.quests_t[1] = ini_read_real("Qual", "qual_t_1", 1);
+		global.quests_t[2] = ini_read_real("Qual", "qual_t_2", 2);
+		global.quests_t[3] = ini_read_real("Qual", "qual_t_3", 3);
+		
+		global.quests_pt[1] = ini_read_real("Qual", "qual_pt_1", 1);
+		global.quests_pt[2] = ini_read_real("Qual", "qual_pt_2", 2);
+		global.quests_pt[3] = ini_read_real("Qual", "qual_pt_3", 3);
+		}	
+	global.quests_refresh = ini_read_real("Qual", "qual_rr", 1);
+	
+	#region Все варианты обновления
+		if nnn[1] = 1 && nnn[2] = 1 && nnn[3] = 1
+			{
+			global.quests_t[1] = irandom_range(1, 26);
+			global.quests_t[2] = global.quests_t[1];
+			while(global.quests_t[2] = global.quests_t[1])
+				{ global.quests_t[2] = irandom_range(1, 26); }
+			
+			global.quests_t[3] = global.quests_t[1];
+			while(global.quests_t[3] = global.quests_t[1])
+				{
+				global.quests_t[3] = irandom_range(1, 26);
+				while(global.quests_t[3] = global.quests_t[2])
+					{ global.quests_t[3] = irandom_range(1, 26); }
+				}
+			
+			ini_write_string("Qual", "qual_t_1", string(global.quests_t[1]));
+			ini_write_string("Qual", "qual_t_2", string(global.quests_t[2]));
+			ini_write_string("Qual", "qual_t_3", string(global.quests_t[3]));
+			
+			ini_write_string("Qual", "qual_1", "0");
+			ini_write_string("Qual", "qual_2", "0");
+			ini_write_string("Qual", "qual_3", "0");
+			}
+		if nnn[1] = 1 && nnn[2] = 1 && nnn[3] = 0
+			{
+			//global.quests_t[1] = irandom_range(1, 26);
+			global.quests_t[1] = global.quests_t[3];
+			while(global.quests_t[1] = global.quests_t[3])
+				{ global.quests_t[1] = irandom_range(1, 26); }
+			
+			global.quests_t[2] = global.quests_t[3];
+			while(global.quests_t[2] = global.quests_t[3])
+				{
+				global.quests_t[2] = irandom_range(1, 26);
+				while(global.quests_t[2] = global.quests_t[1])
+					{ global.quests_t[2] = irandom_range(1, 26); }
+				}
+			
+			ini_write_string("Qual", "qual_t_1", string(global.quests_t[1]));
+			ini_write_string("Qual", "qual_t_2", string(global.quests_t[2]));
+			
+			ini_write_string("Qual", "qual_1", "0");
+			ini_write_string("Qual", "qual_2", "0");
+			}
+		if nnn[1] = 1 && nnn[2] = 0 && nnn[3] = 1
+			{
+			//global.quests_t[1] = irandom_range(1, 26);
+			global.quests_t[1] = global.quests_t[2];
+			while(global.quests_t[1] = global.quests_t[2])
+				{ global.quests_t[1] = irandom_range(1, 26); }
+			
+			global.quests_t[3] = global.quests_t[2];
+			while(global.quests_t[3] = global.quests_t[2])
+				{
+				global.quests_t[3] = irandom_range(1, 26);
+				while(global.quests_t[3] = global.quests_t[1])
+					{ global.quests_t[3] = irandom_range(1, 26); }
+				}
+			
+			ini_write_string("Qual", "qual_t_1", string(global.quests_t[1]));
+			ini_write_string("Qual", "qual_t_3", string(global.quests_t[3]));
+			
+			ini_write_string("Qual", "qual_1", "0");
+			ini_write_string("Qual", "qual_3", "0");
+			}
+		if nnn[1] = 0 && nnn[2] = 1 && nnn[3] = 1
+			{
+			//global.quests_t[1] = irandom_range(1, 26);
+			global.quests_t[2] = global.quests_t[1];
+			while(global.quests_t[2] = global.quests_t[1])
+				{ global.quests_t[2] = irandom_range(1, 26); }
+			
+			global.quests_t[3] = global.quests_t[1];
+			while(global.quests_t[3] = global.quests_t[1])
+				{
+				global.quests_t[3] = irandom_range(1, 26);
+				while(global.quests_t[3] = global.quests_t[2])
+					{ global.quests_t[3] = irandom_range(1, 26); }
+				}
+			
+			ini_write_string("Qual", "qual_t_2", string(global.quests_t[2]));
+			ini_write_string("Qual", "qual_t_3", string(global.quests_t[3]));
+			
+			ini_write_string("Qual", "qual_2", "0");
+			ini_write_string("Qual", "qual_3", "0");
+			}
+		if nnn[1] = 1 && nnn[2] = 0 && nnn[3] = 0
+			{
+			global.quests_t[1] = global.quests_t[2];
+			while(global.quests_t[1] = global.quests_t[2])
+				{
+				global.quests_t[1] = irandom_range(1, 26);
+				while(global.quests_t[1] = global.quests_t[3])
+					{ global.quests_t[1] = irandom_range(1, 26); }
+				}
+			
+			ini_write_string("Qual", "qual_t_1", string(global.quests_t[1]));
+			
+			ini_write_string("Qual", "qual_1", "0");
+			}
+		if nnn[1] = 0 && nnn[2] = 1 && nnn[3] = 0
+			{
+			global.quests_t[2] = global.quests_t[1];
+			while(global.quests_t[2] = global.quests_t[1])
+				{
+				global.quests_t[2] = irandom_range(1, 26);
+				while(global.quests_t[2] = global.quests_t[3])
+					{ global.quests_t[2] = irandom_range(1, 26); }
+				}
+			
+			ini_write_string("Qual", "qual_t_2", string(global.quests_t[2]));
+			
+			ini_write_string("Qual", "qual_2", "0");
+			}
+		if nnn[1] = 0 && nnn[2] = 0 && nnn[3] = 1
+			{
+			global.quests_t[3] = global.quests_t[1];
+			while(global.quests_t[3] = global.quests_t[1])
+				{
+				global.quests_t[3] = irandom_range(1, 26);
+				while(global.quests_t[3] = global.quests_t[2])
+					{ global.quests_t[3] = irandom_range(1, 26); }
+				}
+			ini_write_string("Qual", "qual_t_3", string(global.quests_t[3]));
+			
+			ini_write_string("Qual", "qual_3", "0");
+			}
+	#endregion
+	
+		global.quests_t[1] = ini_read_real("Qual", "qual_t_1", 1);
+		global.quests_t[2] = ini_read_real("Qual", "qual_t_2", 2);
+		global.quests_t[3] = ini_read_real("Qual", "qual_t_3", 3);
+	//global.quests_t[1] = irandom_range(1, 26);
+	//global.quests_t[2] = global.quests_t[1];
+	//while(global.quests_t[2] = global.quests_t[1])
+	//	{ global.quests_t[2] = irandom_range(1, 26); }
+	
+	//global.quests_t[3] = global.quests_t[1];
+	//while(global.quests_t[3] = global.quests_t[1])
+	//	{
+	//	global.quests_t[3] = irandom_range(1, 26);
+	//	while(global.quests_t[3] = global.quests_t[2])
+	//		{ global.quests_t[3] = irandom_range(1, 26); }
+	//	}
 	
 	for(i=1;i<=3;i++)
 		{
-		quests_a[i] = 1;
-		quests_s[i] = 0.5;
-		quests_t[i] = 1;
-		quests_n_all[i] = 1;
-		quests_n_now[i] = 0;
+		global.quests_a[i] = ini_read_real("Qual", "qual_a_" + string(i), 1);
+		global.quests_n_now[i] = ini_read_real("Qual", "qual_nno_" + string(i), 1);
+		global.quests_s[i] = 0.5;
+		//global.quests_t[i] = irandom_range(1, 26);
 		
-		quests_n[i]  = "AAA";
-		quests_d[i]  = "WIN 5 DUELS AGAINST HUNTRESS OR SHAMAN";
-		quests_p[i]  = 40;
-		quests_pt[i] = "ç"; // "©"
+		global.quests_n_all[i] = 1;
+		global.quests_n_now[i] = 0;
+			
+		if nnn[i] = 1//global.quests_a[i] = 0
+			{
+			global.quests_n[i]  = 1;
+			
+			global.quests_n_all[i] = 1;
+			global.quests_n_now[i] = 0;
+			
+			//if nnn[i] = 1
+				{
+				global.quests_pt[i] = choose("ç", "©", "©", "©");
+				//global.quests_n[i]  = ini_read_real("Qual", "qual_n_" + string(i), 1);
+				#region Задания 1
+				if 1//global.quests_t[i]
+					{
+					if global.quests_t[i] = 1 or global.quests_t[i] = 2
+					or global.quests_t[i] = 3 or global.quests_t[i] = 4
+						{
+						global.quests_n[i] = choose(1, 2);
+						}
+			
+					if global.quests_t[i] = 5 or global.quests_t[i] = 6 or global.quests_t[i] = 7
+					or global.quests_t[i] = 8 or global.quests_t[i] = 9 or global.quests_t[i] = 10
+						{
+						global.quests_n[i] = choose(1, 2, 3, 4);
+						}
+				
+					if global.quests_t[i] = 11 or global.quests_t[i] = 12 or global.quests_t[i] = 13
+						{
+						global.quests_n[i] = choose(1, 2, 3);
+						}
+					if global.quests_t[i] = 14
+						{ global.quests_n[i] = 1; }
+					if global.quests_t[i] = 15
+						{ global.quests_n[i] = 2; }
+					if global.quests_t[i] = 16
+						{
+						global.quests_n[i] = choose(1, 2, 3);
+						}
+					if global.quests_t[i] = 17
+						{
+						global.quests_n[i] = choose(1, 2, 3);
+						}
+			
+					if global.quests_t[i] = 18
+						{
+						global.quests_n[i] = 3;
+						}
+			
+					if global.quests_t[i] = 19
+						{ global.quests_n[i] = 2; }
+			
+					if global.quests_t[i] = 20
+						{ global.quests_n[i] = 2; }
+			
+					if global.quests_t[i] = 21
+						{ global.quests_n[i] = 2; }
+			
+					if global.quests_t[i] = 22
+						{
+						global.quests_n[i] = 2;
+						}
+			
+					if global.quests_t[i] = 23
+						{
+						global.quests_n[i] = 2;
+						}
+			
+					if global.quests_t[i] = 24
+						{
+						global.quests_n[i] = 2;
+						}
+			
+					if global.quests_t[i] = 25
+						{ global.quests_n[i] = 2; }
+			
+					if global.quests_t[i] = 26
+						{
+						global.quests_n[i] = 2;
+						}
+					}
+			#endregion
+			
+				ini_write_string("Qual", "qual_pt_" + string(i), string(global.quests_pt[i]));
+				ini_write_string("Qual", "qual_n_" + string(i), string(global.quests_n[i]));
+				}
+				
+			ini_write_string("Qual", "qual_a_" + string(i), "1");
+			global.quests_a[i] = ini_read_real("Qual", "qual_a_" + string(i), 1);
+			}
+		
+		global.quests_pt[i] = ini_read_string("Qual", "qual_pt_" + string(i), "©");
+		global.quests_n[i]  = ini_read_real("Qual", "qual_n_" + string(i), 1);
+		#region Задания 2
+				if 1//global.quests_t[i]
+					{
+					if global.quests_t[i] = 1 or global.quests_t[i] = 2
+					or global.quests_t[i] = 3 or global.quests_t[i] = 4
+						{
+						switch(global.quests_n[i])
+							{
+							case 1: global.quests_n_all[i] = 3; break;
+							case 2: global.quests_n_all[i] = 5; break;
+							}
+						}
+			
+					if global.quests_t[i] = 5 or global.quests_t[i] = 6 or global.quests_t[i] = 7
+					or global.quests_t[i] = 8 or global.quests_t[i] = 9 or global.quests_t[i] = 10
+						{
+						switch(global.quests_n[i])
+							{
+							case 1: global.quests_n_all[i] = 10; break;
+							case 2: global.quests_n_all[i] = 20; break;
+							case 3: global.quests_n_all[i] = 30; break;
+							case 4: global.quests_n_all[i] = 50; break;
+							}
+						}
+				
+					if global.quests_t[i] = 11 or global.quests_t[i] = 12 or global.quests_t[i] = 13
+						{
+						switch(global.quests_n[i])
+							{
+							case 1: global.quests_n_all[i] = 5; break;
+							case 2: global.quests_n_all[i] = 10; break;
+							case 3: global.quests_n_all[i] = 15; break;
+							}
+						}
+					if global.quests_t[i] = 16
+						{
+						switch(global.quests_n[i])
+							{
+							case 1: global.quests_n_all[i] = 1000; break;
+							case 2: global.quests_n_all[i] = 4000; break;
+							case 3: global.quests_n_all[i] = 7000; break;
+							}
+						}
+					if global.quests_t[i] = 17
+						{
+						switch(global.quests_n[i])
+							{
+							case 1: global.quests_n_all[i] = 5; break;
+							case 2: global.quests_n_all[i] = 10; break;
+							case 3: global.quests_n_all[i] = 15; break;
+							}
+						}
+			
+					if global.quests_t[i] = 18
+						{
+						global.quests_n_all[i] = 6;
+						}
+			
+					if global.quests_t[i] = 22
+						{
+						global.quests_n_all[i] = 7;
+						}
+			
+					if global.quests_t[i] = 23
+						{
+						global.quests_n_all[i] = 3;
+						}
+			
+					if global.quests_t[i] = 24
+						{
+						global.quests_n_all[i] = 300;
+						}
+			
+					if global.quests_t[i] = 26
+						{
+						global.quests_n_all[i] = 500;
+						}
+					}
+			#endregion
+			
+		global.quests_d[i] = "";
+		if global.quests_t[i] > 0 && global.quests_t[i] <= 4
+			{ global.quests_d[i] = "ВЫИГРАТЬ " + string(global.quests_n_all[i]) + " МАТЧЕЙ ЗА "; }
+		if global.quests_t[i] >= 5 && global.quests_t[i] <= 10
+			{ global.quests_d[i] = "ОТВЕТИТЬ ВЕРНО НА " + string(global.quests_n_all[i]) + " ВОПРОСОВ ТЕМЫ "; }
+		if global.quests_t[i] >= 11 && global.quests_t[i] <= 13
+			{ global.quests_d[i] = "СЫГРАТЬ " + string(global.quests_n_all[i]) + " РАЗ "; }
+		
+		switch(global.quests_t[i])
+			{
+			case 1:
+				global.quests_d[i] += "ВОРИШКУ ИЛИ ДИЕГО";
+			break;
+			case 2:
+				global.quests_d[i] += "ШЕРИФА ИЛИ ДЖО";
+			break;
+			case 3:
+				global.quests_d[i] += "ОХОТНИЦУ ИЛИ ШАМАНА";
+			break;
+			case 4:
+				global.quests_d[i] += "БИЛЛА МЛАДШЕГО";
+			break;
+			case 5:
+				global.quests_d[i] += "КАРТ";
+			break;
+			case 6:
+				global.quests_d[i] += "БУТЫЛКИ";
+			break;
+			case 7:
+				global.quests_d[i] += "ДВИЖЕНИЕ";
+			break;
+			case 8:
+				global.quests_d[i] += "ВНИМАНИЕ";
+			break;
+			case 9:
+				global.quests_d[i] += "СТРЕЛЬБА";
+			break;
+			case 10:
+				global.quests_d[i] += "МАТЕМАТИКА";
+			break;
+			case 11:
+				global.quests_d[i] += "В БЫСТРУЮ ИГРУ";
+			break;
+			case 12:
+				global.quests_d[i] += "В РАНГОВУЮ ИГРУ";
+			break;
+			case 13:
+				global.quests_d[i] += "С ДРУГОМ";
+			break;
+			case 14:
+				global.quests_d[i]  = "ВЫИГРАТЬ МАТЧ БЕЗ ОШИБОК";
+			break;
+			case 15:
+				global.quests_d[i]  = "ВЫИГРАТЬ ДУЭЛЬ, ТРАТЯ НЕ БОЛЕЕ 3 СЕКУНД НА ОТВЕТ";
+			break;
+			case 16:
+				global.quests_d[i]  = "НАНЕСТИ " + string(global.quests_n_all[i]) + " УРОНА";
+			break;
+			case 17:
+				global.quests_d[i]  = "ИСПОЛЬЗОВАТЬ СПОСОБНОСТЬ " + string(global.quests_n_all[i]) + " РАЗ";
+			break;
+			case 18:
+				global.quests_d[i]  = "СВОРОВАТЬ СПОСОБНОСТЬ У КАЖДОГО ПЕРСОНАЖА";
+			break;
+			case 19:
+				global.quests_d[i]  = "ВЫИГРАТЬ ДУЭЛЬ, КОГДА ВРАГ ОШЛУШЕН";
+			break;
+			case 20:
+				global.quests_d[i]  = "УДЕРЖИВАТЬ ВРАГА ОТРАВЛЕННЫМ 15 СЕКУНД";
+			break;
+			case 21:
+				global.quests_d[i]  = "ДОВЕСТИ ХП ВРАГА ДО НУЛЯ, ВЕРНУВ ЕМУ УРОН";
+			break;
+			case 22:
+				global.quests_d[i]  = "ОТВЕТИТЬ ВЕРНО НА 7 ВОПРОСОВ В ТУМАНЕ";
+			break;
+			case 23:
+				global.quests_d[i]  = "ВЫИГРАТЬ 3 ДУЭЛИ, НЕ ИСПОЛЬЗУЯ СПОСОБНОСТЬ";
+			break;
+			case 24:
+				global.quests_d[i]  = "НАНЕСТИ ВРАГУ 300 УРОНА ТОТЕМОМ ОГНЯ";
+			break;
+			case 25:
+				global.quests_d[i]  = "3 РАЗА НАНЕСТИ УРОН, ПРОМАХНУВШИСЬ";
+			break;
+			case 26:
+				global.quests_d[i]  = "НАНЕСТИ ВРАГУ 500 УРОНА ТОТЕМОМ МОЛНИИ";
+			break;
+			}
+		//global.quests_d[i]  = "WIN 5 DUELS AGAINST HUNTRESS OR SHAMAN";
+		global.quests_p[i]  = 40;
+		//global.quests_pt[i] = choose("ç", "©", "©", "©"); // "©"
+		if global.quests_pt[i] = "©"
+			{
+			switch(global.quests_n[i])
+				{
+				case 1: global.quests_p[i] = 40; break;
+				case 2: global.quests_p[i] = 60; break;
+				case 3: global.quests_p[i] = 80; break;
+				case 4: global.quests_p[i] = 100; break;
+				}
+			}
+			else
+			{
+			switch(global.quests_n[i])
+				{
+				case 1: global.quests_p[i] = 8; break;
+				case 2: global.quests_p[i] = 12; break;
+				case 3: global.quests_p[i] = 16; break;
+				case 4: global.quests_p[i] = 25; break;
+				}
+			}
 		}
 	
-	
+	ini_close();
 #endregion
 #region Ранг
 	global.g_rank_now = 0;
@@ -1199,10 +1671,10 @@
 			menu_totems_s = 1;
 			menu_totems_n = "TOTEMS";
 			
-			menu_quests_x = 1280 - 150;
-			menu_quests_y = global.size - 150 - 320;
-			menu_quests_s = 1;
-			menu_quests_n = "QUESTS";
+			menu_global.quests_x = 1280 - 150;
+			menu_global.quests_y = global.size - 150 - 320;
+			menu_global.quests_s = 1;
+			menu_global.quests_n = "QUESTS";
 			
 			menu_shop_x   = 1280 - 150;
 			menu_shop_y   = global.size - 150;
@@ -1221,10 +1693,10 @@
 			menu_totems_s = 1;
 			menu_totems_n = "TOTEMS";
 			
-			menu_quests_x = 1280 - 150;
-			menu_quests_y = global.size - 100 - 150;
-			menu_quests_s = 1;
-			menu_quests_n = "QUESTS";
+			menu_global.quests_x = 1280 - 150;
+			menu_global.quests_y = global.size - 100 - 150;
+			menu_global.quests_s = 1;
+			menu_global.quests_n = "QUESTS";
 			
 			menu_shop_x   = 1280 - 150;
 			menu_shop_y   = global.size - 100;

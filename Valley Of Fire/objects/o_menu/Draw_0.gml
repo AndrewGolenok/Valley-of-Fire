@@ -5264,22 +5264,22 @@ if global.menu_now = "store" or global.menu_next = "store"
 			{
 			if global.menu_now != "quests"
 				{
-				if quests_scale < 1
-					{ quests_scale += 0.1; }
+				if global.quests_scale < 1
+					{ global.quests_scale += 0.1; }
 					else
 					{
-					quests_scale = 1;
+					global.quests_scale = 1;
 					global.menu_now = global.menu_next;
 					}
 				}
 			}
 			else
 			{
-			if quests_scale > 0
-				{ quests_scale -= 0.2; }
+			if global.quests_scale > 0
+				{ global.quests_scale -= 0.2; }
 				else
 				{
-				quests_scale = 0;
+				global.quests_scale = 0;
 				global.menu_now = global.menu_next;
 				}
 			}
@@ -5287,26 +5287,389 @@ if global.menu_now = "store" or global.menu_next = "store"
 			draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
 		
-		draw_sprite_ext_t(s_quests_back, 0, 640, global.size / 2, quests_scale * quests_scale1, quests_scale * quests_scale1, 0, c_white, 1, c_white, c_black);
+		draw_sprite_ext_t(s_global.quests_back, 0, 640, global.size / 2, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, 0, c_white, 1, c_white, c_black);
 		
 		for(i=1;i<=3;i++)
 			{
-			draw_sprite_ext(s_quests_lists, i, 640 + (-340 + 170 * i) * quests_scale + 5, global.size / 2 - 192 * quests_scale1 + 5 + 10 + pry / 2, quests_scale * quests_scale1, quests_scale * quests_scale1, prx / 2, c_black, 0.5);
-			draw_sprite_ext_t(s_quests_lists, i, 640 + (-340 + 170 * i) * quests_scale, global.size / 2 - 192 * quests_scale1 + 5 + pry / 2, quests_scale * quests_scale1, quests_scale * quests_scale1, prx / 2, c_white, 1, c_white, c_black);
+			if global.quests_a[i] = 1
+				{
+				draw_sprite_ext(s_global.quests_lists, global.quests_t[i], 640 + (-340 + 170 * i) * global.quests_scale + 5, global.size / 2 - 192 * global.quests_scale1 + 5 + 10 + pry / 2, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, prx / 2, c_black, 0.5);
+				draw_sprite_ext_t(s_global.quests_lists, global.quests_t[i], 640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 - 192 * global.quests_scale1 + 5 + pry / 2, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, prx / 2, c_white, 1, c_white, c_black);
 			
-			draw_sprite_ext_t(s_quests_lists, 0, 640 + (-340 + 170 * i) * quests_scale, global.size / 2 - 192 * quests_scale1 + pry / 2, quests_scale * quests_scale1, quests_scale * quests_scale1, 0, c_white, 1, c_white, c_black);
-			draw_text_ext_transformed_t(640 + (-340 + 170 * i) * quests_scale + lengthdir_x(150, prx / 2 + 270), global.size / 2 - 192 * quests_scale1 + 5 + lengthdir_y(150, prx / 2 + 270) + pry / 2, quests_d[i], -1, 2000, quests_scale * 0.08, quests_scale * 0.08, prx / 2, global.color_white, c_black);
+				//draw_sprite_ext_t(s_global.quests_lists, 0, 640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 - 192 * global.quests_scale1 + pry / 2, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, 0, c_white, 1, c_white, c_black);
+				draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale + lengthdir_x(135, prx / 2 + 270), global.size / 2 - 192 * global.quests_scale1 + 5 + lengthdir_y(135, prx / 2 + 270) + pry / 2, global.quests_d[i], -1, 2000, global.quests_scale * 0.08, global.quests_scale * 0.08, prx / 2, global.color_white, c_black);
+				
+				// 160 global.quests_p[i]
+				
+				if global.quests_refresh
+					{
+					draw_sprite_ext_t(s_refresh, 0, 640 + (-340 + 170 * i) * global.quests_scale + 60, global.size / 2 - 192 * global.quests_scale1, global.quests_scale * global.quests_scale1 * 0.8, global.quests_scale * global.quests_scale1 * 0.8, 0, global.color_white, 1, global.color_white, c_black); 
+					
+					if point_in_circle(mouse_x, mouse_y, 640 + (-340 + 170 * i) * global.quests_scale + 60, global.size / 2 - 192 * global.quests_scale1, 35)
+						{
+						if mouse_check_button_pressed(mb_left)
+							{
+							#region Квесты
+								//nnn[i] = 1;
+								
+								ini_open("Music.ini");
+								ini_write_string("Qual", "qual_rr", "0");
+								global.quests_refresh = ini_read_real("Qual", "qual_rr", 1);
+								#region Все варианты обновления
+									if i = 1 //nnn[1] = 1 && nnn[2] = 0 && nnn[3] = 0
+										{
+										global.quests_t[1] = global.quests_t[2];
+										while(global.quests_t[1] = global.quests_t[2])
+											{
+											global.quests_t[1] = irandom_range(1, 26);
+											while(global.quests_t[1] = global.quests_t[3])
+												{ global.quests_t[1] = irandom_range(1, 26); }
+											}
 			
-			if quests_pt[i] = "©"
-				{ draw_text_ext_transformed_t(640 + (-340 + 170 * i) * quests_scale, global.size / 2 + 130, string(quests_p[i]) + string(quests_pt[i]), -1, 2000, quests_scale * 0.2, quests_scale * 0.2, 0, global.gold_color, c_black); }
-				else
-				{ draw_text_ext_transformed_t(640 + (-340 + 170 * i) * quests_scale, global.size / 2 + 130, string(quests_p[i]) + string(quests_pt[i]), -1, 2000, quests_scale * 0.2, quests_scale * 0.2, 0, global.cash_color, c_black); }
-			// 160 quests_p[i]
+										ini_write_string("Qual", "qual_t_1", string(global.quests_t[1]));
 			
-			if quests_refresh
-				{ draw_sprite_ext_t(s_refresh, 0, 640 + (-340 + 170 * i) * quests_scale + 60, global.size / 2 - 192 * quests_scale1, quests_scale * quests_scale1 * 0.8, quests_scale * quests_scale1 * 0.8, 0, global.color_white, 1, global.color_white, c_black); } 
+										ini_write_string("Qual", "qual_1", "0");
+										}
+									if i = 2 //nnn[1] = 0 && nnn[2] = 1 && nnn[3] = 0
+										{
+										global.quests_t[2] = global.quests_t[1];
+										while(global.quests_t[2] = global.quests_t[1])
+											{
+											global.quests_t[2] = irandom_range(1, 26);
+											while(global.quests_t[2] = global.quests_t[3])
+												{ global.quests_t[2] = irandom_range(1, 26); }
+											}
+			
+										ini_write_string("Qual", "qual_t_2", string(global.quests_t[2]));
+			
+										ini_write_string("Qual", "qual_2", "0");
+										}
+									if i = 3 //nnn[1] = 0 && nnn[2] = 0 && nnn[3] = 1
+										{
+										global.quests_t[3] = global.quests_t[1];
+										while(global.quests_t[3] = global.quests_t[1])
+											{
+											global.quests_t[3] = irandom_range(1, 26);
+											while(global.quests_t[3] = global.quests_t[2])
+												{ global.quests_t[3] = irandom_range(1, 26); }
+											}
+										ini_write_string("Qual", "qual_t_3", string(global.quests_t[3]));
+			
+										ini_write_string("Qual", "qual_3", "0");
+										}
+								#endregion
+	
+									global.quests_t[i] = ini_read_real("Qual", "qual_t_" + string(i), 1);
+								
+									global.quests_a[i] = 1;
+									global.quests_s[i] = 0.5;
+								
+									global.quests_n_all[i] = 1;
+									global.quests_n_now[i] = 0;
+			
+									if nnn[i] = 1//global.quests_a[i] = 0
+										{
+										global.quests_n[i]  = 1;
+			
+										global.quests_n_all[i] = 1;
+										global.quests_n_now[i] = 0;
+			
+										global.quests_pt[i] = choose("ç", "©", "©", "©");
+										#region Задания 1
+										if 1//global.quests_t[i]
+											{
+											if global.quests_t[i] = 1 or global.quests_t[i] = 2
+											or global.quests_t[i] = 3 or global.quests_t[i] = 4
+												{
+												global.quests_n[i] = choose(1, 2);
+												}
+			
+											if global.quests_t[i] = 5 or global.quests_t[i] = 6 or global.quests_t[i] = 7
+											or global.quests_t[i] = 8 or global.quests_t[i] = 9 or global.quests_t[i] = 10
+												{
+												global.quests_n[i] = choose(1, 2, 3, 4);
+												}
+				
+											if global.quests_t[i] = 11 or global.quests_t[i] = 12 or global.quests_t[i] = 13
+												{
+												global.quests_n[i] = choose(1, 2, 3);
+												}
+											if global.quests_t[i] = 14
+												{ global.quests_n[i] = 1; }
+											if global.quests_t[i] = 15
+												{ global.quests_n[i] = 2; }
+											if global.quests_t[i] = 16
+												{
+												global.quests_n[i] = choose(1, 2, 3);
+												}
+											if global.quests_t[i] = 17
+												{
+												global.quests_n[i] = choose(1, 2, 3);
+												}
+			
+											if global.quests_t[i] = 18
+												{
+												global.quests_n[i] = 3;
+												}
+			
+											if global.quests_t[i] = 19
+												{ global.quests_n[i] = 2; }
+			
+											if global.quests_t[i] = 20
+												{ global.quests_n[i] = 2; }
+			
+											if global.quests_t[i] = 21
+												{ global.quests_n[i] = 2; }
+			
+											if global.quests_t[i] = 22
+												{
+												global.quests_n[i] = 2;
+												}
+			
+											if global.quests_t[i] = 23
+												{
+												global.quests_n[i] = 2;
+												}
+			
+											if global.quests_t[i] = 24
+												{
+												global.quests_n[i] = 2;
+												}
+			
+											if global.quests_t[i] = 25
+												{ global.quests_n[i] = 2; }
+			
+											if global.quests_t[i] = 26
+												{
+												global.quests_n[i] = 2;
+												}
+											}
+									#endregion
+			
+										ini_write_string("Qual", "qual_pt_" + string(i), string(global.quests_pt[i]));
+										ini_write_string("Qual", "qual_n_" + string(i), string(global.quests_n[i]));
+										
+										ini_write_string("Qual", "qual_a_" + string(i), "1");
+										global.quests_a[i] = ini_read_real("Qual", "qual_a_" + string(i), 1);
+										}
+		
+									global.quests_pt[i] = ini_read_string("Qual", "qual_pt_" + string(i), "©");
+									global.quests_n[i]  = ini_read_real("Qual", "qual_n_" + string(i), 1);
+									#region Задания 2
+											if 1//global.quests_t[i]
+												{
+												if global.quests_t[i] = 1 or global.quests_t[i] = 2
+												or global.quests_t[i] = 3 or global.quests_t[i] = 4
+													{
+													switch(global.quests_n[i])
+														{
+														case 1: global.quests_n_all[i] = 3; break;
+														case 2: global.quests_n_all[i] = 5; break;
+														}
+													}
+			
+												if global.quests_t[i] = 5 or global.quests_t[i] = 6 or global.quests_t[i] = 7
+												or global.quests_t[i] = 8 or global.quests_t[i] = 9 or global.quests_t[i] = 10
+													{
+													switch(global.quests_n[i])
+														{
+														case 1: global.quests_n_all[i] = 10; break;
+														case 2: global.quests_n_all[i] = 20; break;
+														case 3: global.quests_n_all[i] = 30; break;
+														case 4: global.quests_n_all[i] = 50; break;
+														}
+													}
+				
+												if global.quests_t[i] = 11 or global.quests_t[i] = 12 or global.quests_t[i] = 13
+													{
+													switch(global.quests_n[i])
+														{
+														case 1: global.quests_n_all[i] = 5; break;
+														case 2: global.quests_n_all[i] = 10; break;
+														case 3: global.quests_n_all[i] = 15; break;
+														}
+													}
+												if global.quests_t[i] = 16
+													{
+													switch(global.quests_n[i])
+														{
+														case 1: global.quests_n_all[i] = 1000; break;
+														case 2: global.quests_n_all[i] = 4000; break;
+														case 3: global.quests_n_all[i] = 7000; break;
+														}
+													}
+												if global.quests_t[i] = 17
+													{
+													switch(global.quests_n[i])
+														{
+														case 1: global.quests_n_all[i] = 5; break;
+														case 2: global.quests_n_all[i] = 10; break;
+														case 3: global.quests_n_all[i] = 15; break;
+														}
+													}
+			
+												if global.quests_t[i] = 18
+													{
+													global.quests_n_all[i] = 6;
+													}
+			
+												if global.quests_t[i] = 22
+													{
+													global.quests_n_all[i] = 7;
+													}
+			
+												if global.quests_t[i] = 23
+													{
+													global.quests_n_all[i] = 3;
+													}
+			
+												if global.quests_t[i] = 24
+													{
+													global.quests_n_all[i] = 300;
+													}
+			
+												if global.quests_t[i] = 26
+													{
+													global.quests_n_all[i] = 500;
+													}
+												}
+										#endregion
+			
+									global.quests_d[i] = "";
+									if global.quests_t[i] > 0 && global.quests_t[i] <= 4
+										{ global.quests_d[i] = "ВЫИГРАТЬ " + string(global.quests_n_all[i]) + " МАТЧЕЙ ЗА "; }
+									if global.quests_t[i] >= 5 && global.quests_t[i] <= 10
+										{ global.quests_d[i] = "ОТВЕТИТЬ ВЕРНО НА " + string(global.quests_n_all[i]) + " ВОПРОСОВ ТЕМЫ "; }
+									if global.quests_t[i] >= 11 && global.quests_t[i] <= 13
+										{ global.quests_d[i] = "СЫГРАТЬ " + string(global.quests_n_all[i]) + " РАЗ "; }
+		
+									switch(global.quests_t[i])
+										{
+										case 1:
+											global.quests_d[i] += "ВОРИШКУ ИЛИ ДИЕГО";
+										break;
+										case 2:
+											global.quests_d[i] += "ШЕРИФА ИЛИ ДЖО";
+										break;
+										case 3:
+											global.quests_d[i] += "ОХОТНИЦУ ИЛИ ШАМАНА";
+										break;
+										case 4:
+											global.quests_d[i] += "БИЛЛА МЛАДШЕГО";
+										break;
+										case 5:
+											global.quests_d[i] += "КАРТ";
+										break;
+										case 6:
+											global.quests_d[i] += "БУТЫЛКИ";
+										break;
+										case 7:
+											global.quests_d[i] += "ДВИЖЕНИЕ";
+										break;
+										case 8:
+											global.quests_d[i] += "ВНИМАНИЕ";
+										break;
+										case 9:
+											global.quests_d[i] += "СТРЕЛЬБА";
+										break;
+										case 10:
+											global.quests_d[i] += "МАТЕМАТИКА";
+										break;
+										case 11:
+											global.quests_d[i] += "В БЫСТРУЮ ИГРУ";
+										break;
+										case 12:
+											global.quests_d[i] += "В РАНГОВУЮ ИГРУ";
+										break;
+										case 13:
+											global.quests_d[i] += "С ДРУГОМ";
+										break;
+										case 14:
+											global.quests_d[i]  = "ВЫИГРАТЬ МАТЧ БЕЗ ОШИБОК";
+										break;
+										case 15:
+											global.quests_d[i]  = "ВЫИГРАТЬ ДУЭЛЬ, ТРАТЯ НЕ БОЛЕЕ 3 СЕКУНД НА ОТВЕТ";
+										break;
+										case 16:
+											global.quests_d[i]  = "НАНЕСТИ " + string(global.quests_n_all[i]) + " УРОНА";
+										break;
+										case 17:
+											global.quests_d[i]  = "ИСПОЛЬЗОВАТЬ СПОСОБНОСТЬ " + string(global.quests_n_all[i]) + " РАЗ";
+										break;
+										case 18:
+											global.quests_d[i]  = "СВОРОВАТЬ СПОСОБНОСТЬ У КАЖДОГО ПЕРСОНАЖА";
+										break;
+										case 19:
+											global.quests_d[i]  = "ВЫИГРАТЬ ДУЭЛЬ, КОГДА ВРАГ ОШЛУШЕН";
+										break;
+										case 20:
+											global.quests_d[i]  = "УДЕРЖИВАТЬ ВРАГА ОТРАВЛЕННЫМ 15 СЕКУНД";
+										break;
+										case 21:
+											global.quests_d[i]  = "ДОВЕСТИ ХП ВРАГА ДО НУЛЯ, ВЕРНУВ ЕМУ УРОН";
+										break;
+										case 22:
+											global.quests_d[i]  = "ОТВЕТИТЬ ВЕРНО НА 7 ВОПРОСОВ В ТУМАНЕ";
+										break;
+										case 23:
+											global.quests_d[i]  = "ВЫИГРАТЬ 3 ДУЭЛИ, НЕ ИСПОЛЬЗУЯ СПОСОБНОСТЬ";
+										break;
+										case 24:
+											global.quests_d[i]  = "НАНЕСТИ ВРАГУ 300 УРОНА ТОТЕМОМ ОГНЯ";
+										break;
+										case 25:
+											global.quests_d[i]  = "3 РАЗА НАНЕСТИ УРОН, ПРОМАХНУВШИСЬ";
+										break;
+										case 26:
+											global.quests_d[i]  = "НАНЕСТИ ВРАГУ 500 УРОНА ТОТЕМОМ МОЛНИИ";
+										break;
+										}
+								
+									global.quests_p[i]  = 40;
+								
+									if global.quests_pt[i] = "©"
+										{
+										switch(global.quests_n[i])
+											{
+											case 1: global.quests_p[i] = 40; break;
+											case 2: global.quests_p[i] = 60; break;
+											case 3: global.quests_p[i] = 80; break;
+											case 4: global.quests_p[i] = 100; break;
+											}
+										}
+										else
+										{
+										switch(global.quests_n[i])
+											{
+											case 1: global.quests_p[i] = 8; break;
+											case 2: global.quests_p[i] = 12; break;
+											case 3: global.quests_p[i] = 16; break;
+											case 4: global.quests_p[i] = 25; break;
+											}
+										}
+									//}
+	
+								ini_close();
+							#endregion
+							}
+						}
+					//draw_circle_color(640 + (-340 + 170 * i) * global.quests_scale + 60, global.size / 2 - 192 * global.quests_scale1, 35,c_white, c_white, 1);
+					}
+				if global.quests_n_all[i] > 1
+					{
+					draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale + lengthdir_x(185, prx / 2 + 270), global.size / 2 - 192 * global.quests_scale1 + 5 + lengthdir_y(185, prx / 2 + 270) + pry / 2, string(global.quests_n_now[i]) + "~" +string(global.quests_n_all[i]), -1, 2000, global.quests_scale * 0.12, global.quests_scale * 0.12, prx / 2, global.color_white, c_black);
+				
+					//draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 - 192 * global.quests_scale1, string(global.quests_n_now[i]) + "~" +string(global.quests_n_all[i]), -1, 2000, global.quests_scale * 0.12, global.quests_scale * 0.12, prx / 2, global.color_white, c_black);
+					}
+			
+				if global.quests_pt[i] = "©"
+					{ draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 + 130, string(global.quests_p[i]) + string(global.quests_pt[i]), -1, 2000, global.quests_scale * 0.2, global.quests_scale * 0.2, 0, global.gold_color, c_black); }
+					else
+					{ draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 + 130, string(global.quests_p[i]) + string(global.quests_pt[i]), -1, 2000, global.quests_scale * 0.2, global.quests_scale * 0.2, 0, global.cash_color, c_black); }
+				}
+			draw_sprite_ext_t(s_global.quests_lists, 0, 640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 - 192 * global.quests_scale1 + pry / 2, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, 0, c_white, 1, c_white, c_black);
 			}
-		draw_text_transformed_t(640, global.size / 2 - 150, "QUESTS", quests_scale * 0.25, quests_scale * 0.25, 0, global.color_white, c_black);
+		draw_text_transformed_t(640, global.size / 2 - 150, "QUESTS", global.quests_scale * 0.25, global.quests_scale * 0.25, 0, global.color_white, c_black);
 		
 		if !(point_in_rectangle(mouse_x, mouse_y, 640 - 320, global.size / 2 - 150, 640 + 320, global.size / 2 + 150))
 		or (point_in_rectangle(mouse_x, mouse_y, 640 - 305 - 40, global.size / 2 - 132 - 40, 640 - 305 + 40, global.size / 2 - 132 + 40))
@@ -5331,7 +5694,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 		draw_set_font(global.game_font);
 		draw_set_alpha(0.5);
 		draw_set_color(c_black);
-		draw_text_transformed(640 - 305, global.size / 2 - 132, "X", quests_scale * 0.25, quests_scale * 0.25, 0);
+		draw_text_transformed(640 - 305, global.size / 2 - 132, "X", global.quests_scale * 0.25, global.quests_scale * 0.25, 0);
 		draw_set_color(c_white);
 		draw_set_alpha(1);
 		}
@@ -6682,10 +7045,37 @@ if global.menu_now = "store" or global.menu_next = "store"
 	
 		ini_close();
 	#endregion
+		#region Задания
+		ini_open("Music.ini");
+			ini_write_string("Qual", "qual_rr", "1");
+			if global.quests_a[1] = 0
+				{ ini_write_string("Qual", "qual_1", "1"); }
+			if global.quests_a[2] = 0
+				{ ini_write_string("Qual", "qual_2", "1"); }
+			if global.quests_a[3] = 0
+				{ ini_write_string("Qual", "qual_3", "1"); }
+		ini_close();
+		#endregion
 		}
+	ini_open("Music.ini");
+		if keyboard_check_pressed(ord("I"))
+			{
+			ini_write_string("Qual", "qual_a_1", "0");
+			global.quests_a[1] = ini_read_real("Qual", "qual_a_1", 0);
+			}
+		if keyboard_check_pressed(ord("O"))
+			{
+			ini_write_string("Qual", "qual_a_2", "0");
+			global.quests_a[2] = ini_read_real("Qual", "qual_a_2", 0);
+			}
+		if keyboard_check_pressed(ord("P"))
+			{
+			ini_write_string("Qual", "qual_a_3", "0");
+			global.quests_a[3] = ini_read_real("Qual", "qual_a_3", 0);
+			}
+	ini_close();
 #endregion
 
-//draw_text_transformed(mouse_x, mouse_y, string(current_minute) + "." + string(current_second), 0.25, 0.25, 0);
 if 0
 	{
 	#region СТАРЫЙ ОБЪЕКТ
@@ -7363,16 +7753,16 @@ if 0
 		#endregion
 	
 		#region Изменение ранга
-			if keyboard_check_pressed(ord("O"))
-				{
-				if global.player_rank < 15
-					{ global.player_rank += 1; }
-				}
-			if keyboard_check_pressed(ord("P"))
-				{
-				if global.player_rank > 0
-					{ global.player_rank -= 1; }
-				}
+			//if keyboard_check_pressed(ord("O"))
+			//	{
+			//	if global.player_rank < 15
+			//		{ global.player_rank += 1; }
+			//	}
+			//if keyboard_check_pressed(ord("P"))
+			//	{
+			//	if global.player_rank > 0
+			//		{ global.player_rank -= 1; }
+			//	}
 		#endregion
 	#endregion
 	}
