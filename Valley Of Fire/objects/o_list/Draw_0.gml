@@ -72,6 +72,23 @@
 									}
 								if j = 0
 									{
+									////////// КВЕСТЫ
+									for(i=1;i<=3;i++)
+										{
+										if global.quests_a[i] = 1
+											{
+											if global.quests_t[i] = 25
+												{
+												if global.quests_n_now[i] < global.quests_n_all[i]
+													{ global.quests_n_now[i] += atk / 2; }
+												}
+											
+											ini_open("Music.ini");
+												ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+											ini_close();
+											}
+										}
+									////////// КВЕСТЫ
 									if hp > 0 && e_hp > 0
 										{ e_hp -= atk / 2; }
 									dop_i[2] = 8;
@@ -179,8 +196,17 @@ if global.hero = 1 && global.enemy_hero = 1
 				else
 				{ list_y += 10; }
 			}
-		if (global.player_object).stun
-			{ list_scale = 0; }
+		if global.pvp = 0
+			{
+			if (global.player_object).stun
+				{ list_scale = 0; }
+			}
+			else
+			{
+			if ((global.player_object).stun && global.now = 0)
+			or ((global.enemy_object).stun && global.now = 1)
+				{ list_scale = 0; }
+			}
 	#endregion
 	#region ТЕМЫ
 		if global.super_ability = 1
@@ -188,10 +214,22 @@ if global.hero = 1 && global.enemy_hero = 1
 		global.training_hand_x = -200;
 		global.training_hand_y = -200;
 		var mouse_x1, mouse_y1;
+		
+		//for(pvpi=1;pvpi<=1+global.pvp;pvpi++)
+		//{
 		if theme_round[global.rounds] != -1 && theme_choose = 4 && global.super_ability = 0
 			{
 			#region Текст вопроса
 				question_text = global.question_text[theme_round[global.rounds],round_task[global.rounds,global.task]];
+				
+				//if global.pvp = 1
+				//	{
+				//	if global.now = 0
+				//		{ question_text = global.question_text[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
+				//		else
+				//		{ question_text = global.question_text[theme_round[global.rounds],round_task[global.rounds,global.bo]]; }
+				//	}
+				
 				with(global.player_object)
 					{
 					if shoot = 0 && !(skeleton_animation_get() = "super") && !(skeleton_animation_get() = "shoot")
@@ -214,7 +252,19 @@ if global.hero = 1 && global.enemy_hero = 1
 						{ global.abilitican = 0; }
 					}
 			#endregion
-				
+			#region Положение вопроса
+				var pvp_x;
+				pvp_x = 0;
+				//if global.pvp = 1
+				//	{
+				//	if pvpi = 1
+				//		{ pvp_x = -300; }
+				//		else
+				//		{ pvp_x = 300; }
+				//	}
+				//draw_text(mouse_x, mouse_y, string(pvpi) + "~" + string(pvp_x));
+			#endregion
+			
 			#region Математика - Math
 				if theme_round[global.rounds] = 6
 					{
@@ -238,16 +288,16 @@ if global.hero = 1 && global.enemy_hero = 1
 								button_width  = sprite_get_width(s_question_sign)  * list_size1 * o_but_sc;
 								button_height = sprite_get_height(s_question_sign) * list_size1 * o_but_sc;
 							
-								x1 = 640 - button_width / 2 * 3 - 45; //640 - 5 - 160 * list_size1 - button_x;
+								x1 = 640 - button_width / 2 * 3 - 45 + pvp_x; //640 - 5 - 160 * list_size1 - button_x;
 								y1 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 140 * list_size1 + list_y - 250 * (1 - list_scale);
 			
-								x2 = 640 - button_width / 2 - 15; //640 - 5 + 160 * list_size1 + button_x;
+								x2 = 640 - button_width / 2 - 15 + pvp_x; //640 - 5 + 160 * list_size1 + button_x;
 								y2 = y1;
 		
-								x3 = 640 + button_width / 2 + 15; //x1;
+								x3 = 640 + button_width / 2 + 15 + pvp_x; //x1;
 								y3 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 400 * list_size1 + list_y - 350 * (1 - list_scale);
 		
-								x4 = 640 + button_width / 2 * 3 + 45; // x2;
+								x4 = 640 + button_width / 2 * 3 + 45 + pvp_x; // x2;
 								y4 = y3;
 							#endregion
 							#region Варианты
@@ -542,16 +592,16 @@ if global.hero = 1 && global.enemy_hero = 1
 								button_width = sprite_get_width(s_question_sign) * list_size1 * o_but_sc;
 								button_height = sprite_get_height(s_question_sign) * list_size1 * o_but_sc;
 									
-								x1 = 640 - button_width / 2 * 3 - 45; //640 - 5 - 160 * list_size1 - button_x;
+								x1 = 640 - button_width / 2 * 3 - 45 + pvp_x; //640 - 5 - 160 * list_size1 - button_x;
 								y1 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 140 * list_size1 + list_y - 250 * (1 - list_scale);
 									
-								x2 = 640 - button_width / 2 - 15; //640 - 5 + 160 * list_size1 + button_x;
+								x2 = 640 - button_width / 2 - 15 + pvp_x; //640 - 5 + 160 * list_size1 + button_x;
 								y2 = y1;
 									
-								x3 = 640 + button_width / 2 + 15; //x1;
+								x3 = 640 + button_width / 2 + 15 + pvp_x; //x1;
 								y3 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 400 * list_size1 + list_y - 350 * (1 - list_scale);
 									
-								x4 = 640 + button_width / 2 * 3 + 45; // x2;
+								x4 = 640 + button_width / 2 * 3 + 45 + pvp_x; // x2;
 								y4 = y3;
 							#endregion
 							#region Варианты
@@ -846,16 +896,16 @@ if global.hero = 1 && global.enemy_hero = 1
 									button_width = sprite_get_width(s_question_sign) * list_size1 * o_but_sc;
 									button_height = sprite_get_height(s_question_sign) * list_size1 * o_but_sc;
 								
-									x1 = 640 - button_width / 2 * 3 - 100; //640 - 5 - 160 * list_size1 - button_x;
+									x1 = 640 - button_width / 2 * 3 - 100 + pvp_x; //640 - 5 - 160 * list_size1 - button_x;
 									y1 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 140 * list_size1 + list_y - 250 * (1 - list_scale);
 								
-									x2 = 640 - button_width / 2 - 15 - 50; //640 - 5 + 160 * list_size1 + button_x;
+									x2 = 640 - button_width / 2 - 15 - 50 + pvp_x; //640 - 5 + 160 * list_size1 + button_x;
 									y2 = y1;
 								
-									x3 = 640 + button_width / 2 + 15 + 50; //x1;
+									x3 = 640 + button_width / 2 + 15 + 50 + pvp_x; //x1;
 									y3 = global.size / 2 + 50; //global.size / 2 + 4 - 80 + 400 * list_size1 + list_y - 350 * (1 - list_scale);
 								
-									x4 = 640 + button_width / 2 * 3 + 100; // x2;
+									x4 = 640 + button_width / 2 * 3 + 100 + pvp_x; // x2;
 									y4 = y3;
 							#endregion
 							#region Варианты
@@ -1053,16 +1103,16 @@ if global.hero = 1 && global.enemy_hero = 1
 									button_width = sprite_get_width(s_question_sign) * list_size1 * o_but_sc;
 									button_height = sprite_get_height(s_question_sign) * list_size1 * o_but_sc;
 							
-									x1 = 640 - button_width / 2 * 3 - 45; //640 - 5 - 160 * list_size1 - button_x;
+									x1 = 640 - button_width / 2 * 3 - 45 + pvp_x; //640 - 5 - 160 * list_size1 - button_x;
 									y1 = global.size / 2 + 50;
 							
-									x2 = 640 - button_width / 2 - 15; //640 - 5 + 160 * list_size1 + button_x;
+									x2 = 640 - button_width / 2 - 15 + pvp_x; //640 - 5 + 160 * list_size1 + button_x;
 									y2 = y1;
 		
-									x3 = 640 + button_width / 2 + 15; //x1;
+									x3 = 640 + button_width / 2 + 15 + pvp_x; //x1;
 									y3 = global.size / 2 + 50;
 							
-									x4 = 640 + button_width / 2 * 3 + 45; // x2;
+									x4 = 640 + button_width / 2 * 3 + 45 + pvp_x; // x2;
 									y4 = y3;
 							#endregion
 							#region Варианты
@@ -2082,13 +2132,14 @@ if global.hero = 1 && global.enemy_hero = 1
 					if global.training = 3
 						{
 						var hand_xxx, hand_yyy;
-						hand_xxx = -200;
+						hand_xxx = -200 + pvp_x;
 						hand_yyy = -200;
 							
 						global.training_hand_x = hand_xxx;
 						global.training_hand_y = hand_yyy;
 						}
 					pre_wait = 0;
+					
 					#region Задача 1 - Рука, стрелки, клик
 						if round_task[global.rounds,global.task] = 1
 							{
@@ -2116,7 +2167,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							
 								dop_q_y = 0;
 							
-								x1 = 640;
+								x1 = 640 + pvp_x;
 								y1 = global.size / 2;
 							
 								y2 = global.size / 2 - 160;
@@ -2219,7 +2270,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								#endregion
 								for(i=hand_count;i>=1;i--)
 									{
-									hand_xx[i] = 640 - (hand_now - i) * 100;
+									hand_xx[i] = 640 - (hand_now - i) * 100 + pvp_x;
 									hand_ss[i] = 0;
 									if hand_now = i
 										{ hand_ss[i] = 0.9; }
@@ -2258,9 +2309,9 @@ if global.hero = 1 && global.enemy_hero = 1
 						
 								dop_q_y = 0;
 						
-								x1 = 640 - 100;
+								x1 = 640 - 100 + pvp_x;
 								y1 = global.size / 2;
-								x2 = 640 + 100;
+								x2 = 640 + 100 + pvp_x;
 								y2 = y1;
 						
 								hand_scale = 1;
@@ -2366,7 +2417,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							
 								dop_q_y = -70;
 							
-								x1 = 640;
+								x1 = 640 + pvp_x;
 								y1 = global.size / 2;
 							
 								if hand_scale < 1
@@ -2477,7 +2528,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								#endregion
 								for(i=hand_count;i>=1;i--)
 									{
-									hand_xx[i] = 640 - (hand_now - i) * 170;
+									hand_xx[i] = 640 - (hand_now - i) * 170 + pvp_x;
 									hand_ss[i] = 0;
 									if hand_now = i
 										{ hand_ss[i] = 0.9; }
@@ -4935,25 +4986,45 @@ if global.hero = 1 && global.enemy_hero = 1
 				}
 			#endregion
 			}
+		//}
+		if global.pvp = 1
+			{
+			if global.now = 1
+				{
+				if global.answer != -1
+					{
+					global.bot_answer = global.answer;
+					global.answer = -1;
+					}
+				}
+			}
 	#endregion
 	#region Геймплей
 		#region Таймер
 			if (list_scale = 1/* or (global.player_object).stun*/) && pre_wait = 0 && (global.training = 0 or (global.training = 5 && global.training_question != 0))
+			//&& (global.pvp = 0 or (global.pvp = 1 && global.now = 0))
 				{
 				if timer > 0
 					{
 					if global.super_ability = 0
 						{
 						timer -= 1; 
+						global.bistra_time -= 1;
+						if global.bistra_time >= room_speed * 3
+							{ global.bistra = 0; }
 						//timer_x -= 1;
 						}
 					}
 					else
 					{
+					global.bistra_time = 0;
 					if global.storm = 1 { storm_1(); }
 					(global.player_object).answer = -1
 					(global.player_object).stun = 1;
-					global.answer = 0;
+					if global.now = 0
+						{ global.answer = 0; }
+						else
+						{ global.bot_answer = 0; }
 					if theme_round[global.rounds] = 6
 						{ script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task]))); }
 					if theme_round[global.rounds] = 2
@@ -4983,11 +5054,44 @@ if global.hero = 1 && global.enemy_hero = 1
 			#region Игрок
 			if global.answer != -1 && u_question <= 9
 				{
+				////////// КВЕСТЫ
+				for(i=1;i<=3;i++)
+					{
+					if global.answer = 1
+						{
+						if global.quests_a[i] = 1
+							{
+							if global.quests_t[i] = 5 or global.quests_t[i] = 6
+							or global.quests_t[i] = 7 or global.quests_t[i] = 8
+							or global.quests_t[i] = 9 or global.quests_t[i] = 10
+							&& theme_round[global.rounds] = global.quests_t[i] - 4
+								{
+								if global.quests_n_now[i] < global.quests_n_all[i]
+									{ global.quests_n_now[i] += 1; }
+								}
+							if global.quests_t[i] = 22 && global.bill_abil > 0
+								{
+								if global.quests_n_now[i] < global.quests_n_all[i]
+									{ global.quests_n_now[i] += 1; }
+								}
+							ini_open("Music.ini");
+								ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+							ini_close();
+							}
+						}
+					}
+				
+				if global.answer = 0
+					{ global.pralna = 0; }
+				////////// КВЕСТЫ
+				
 				list_scale = 0;
 				pre_wait = 1;
 				
+				
 				u_answer[u_question] = global.answer;
-				if u_answer[u_question] > e_answer[u_question]
+				
+				if u_answer[u_question] > e_answer[u_question] && global.pvp = 0
 					{
 					if u_question > e_question
 						{ u_time[e_question] = (3 + 3 * global.p_totem_a[4]) * room_speed; }
@@ -5041,6 +5145,24 @@ if global.hero = 1 && global.enemy_hero = 1
 						{ global.answer = !answ; }
 					if answ != global.answer
 						{ global.anim[2,1] = 0; }
+						
+					////////// КВЕСТЫ
+					for(i=1;i<=3;i++)
+						{
+						if global.quests_a[i] = 1 && answ != global.answer && answ = 0
+							{
+							if global.quests_t[i] = 25
+								{
+								if global.quests_n_now[i] < global.quests_n_all[i]
+									{ global.quests_n_now[i] += 1; }
+								}
+								
+							ini_open("Music.ini");
+								ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+							ini_close();
+							}
+						}
+					////////// КВЕСТЫ
 					}
 				
 				if global.e_totem_a[9]
@@ -5148,11 +5270,23 @@ if global.hero = 1 && global.enemy_hero = 1
 					{
 					if global.task < 3
 						{
-						global.task += 1;
+						if global.pvp = 1
+							{
+							global.now = !global.now;
+							global.nex += 1;
+							if global.nex = 2
+								{ global.nex = 0; global.task += 1; global.question = 1; /*u_question = (global.task - 1) * 3;*/ global.question = 1;  }
+								else
+								{ global.question = 1; }
+							global.pvp_stop = 1;
+							}
+							else
+							{ global.task += 1; }
+						
 						if global.storm = 1 { storm_1(); }
 						
 						if theme_round[global.rounds] = 6
-						{ script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task]))); }
+							{ script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task]))); }
 						if theme_round[global.rounds] = 2
 							{ script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task]))); }
 						if theme_round[global.rounds] = 3
@@ -5167,9 +5301,40 @@ if global.hero = 1 && global.enemy_hero = 1
 						}
 						else
 						{
-						list_go = 0;
-						list_scale = 0;
-						plas_scale = 0;
+						if global.pvp = 0
+							{
+							list_go = 0;
+							list_scale = 0;
+							plas_scale = 0;
+							}
+							else
+							{
+							global.now = !global.now;
+							global.nex += 1;
+							if global.nex = 2
+								{
+								global.nex = 0;
+								
+								list_go = 0;
+								list_scale = 0;
+								plas_scale = 0;
+								}
+								else
+								{
+								global.question = 1;
+								global.pvp_stop = 1;
+								}
+							
+							//if (global.now = 0 && u_question = 10)
+							//or (global.now = 1 && e_question = 10)
+							//	{
+							//	list_go = 0;
+							//	list_scale = 0;
+							//	plas_scale = 0;
+							//	}
+							//	else
+							//	{ list_go = 1; }
+							}
 						}
 					}
 				if timer != 0
@@ -5224,53 +5389,60 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						if bot_time = -1
 							{
-							if e_time[e_question] > 3 * room_speed
+							if global.pvp = 0
 								{
-								if bot_type = 0
-									{ bot_time = random_range(1, 2.5) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
-								if bot_type = 1
-									{ bot_time = random_range(0.25, 1.5) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
-								if bot_type = 2
-									{ bot_time = random_range(1, 4) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
-								if bot_type = 3
-									{ bot_time = random_range(1, 3) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
+								if e_time[e_question] > 3 * room_speed
+									{
+									if bot_type = 0
+										{ bot_time = random_range(1, 2.5) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
+									if bot_type = 1
+										{ bot_time = random_range(0.25, 1.5) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
+									if bot_type = 2
+										{ bot_time = random_range(1, 4) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
+									if bot_type = 3
+										{ bot_time = random_range(1, 3) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
+									}
+									else
+									{
+									if bot_type = 0
+										{ bot_time = random_range(0, 1) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
+									if bot_type = 1
+										{ bot_time = random_range(0, 0.2) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
+									if bot_type = 2
+										{ bot_time = random_range(0.5, 2) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
+									if bot_type = 3
+										{ bot_time = random_range(0, 1) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
+									}
 								}
-								else
-								{
-								if bot_type = 0
-									{ bot_time = random_range(0, 1) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
-								if bot_type = 1
-									{ bot_time = random_range(0, 0.2) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
-								if bot_type = 2
-									{ bot_time = random_range(0.5, 2) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
-								if bot_type = 3
-									{ bot_time = random_range(0, 1) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]]; }
-								}
-							bot_time2 = e_time[e_question]; //6 * room_speed;
-							bot_wait  = min_wait[theme_round[global.rounds],round_task[global.rounds,global.task]];
+								bot_time2 = e_time[e_question]; //6 * room_speed;
+								bot_wait  = min_wait[theme_round[global.rounds],round_task[global.rounds,global.task]];
 							}
 							else
 							{
 							if bot_wait <= 0 && (global.enemy_object).stun = 0 && !global.super_ability
+							&& (global.pvp = 0)//&& (global.pvp = 0 or (global.pvp = 1 && global.now = 1))
 								{
 								if bot_time > 0
 									{ bot_time -= 1; }
 									else
 									{
-									if (global.enemy_object).shoot = 0 && (global.enemy_object).answer = -1
+									if global.pvp = 0
 										{
-										if bot_type = 0
-											{ global.bot_answer = choose(1, 1, 0, 0, 0); }
-										if bot_type = 1
-											{ global.bot_answer = choose(1, 0); }
-										if bot_type = 2
-											{ global.bot_answer = choose(1, 1, 1, 1, 0); }
-										if bot_type = 3
-											{ global.bot_answer = choose(1, 1, 1, 0); }
+										if (global.enemy_object).shoot = 0 && (global.enemy_object).answer = -1
+											{
+											if bot_type = 0
+												{ global.bot_answer = choose(1, 1, 0, 0, 0); }
+											if bot_type = 1
+												{ global.bot_answer = choose(1, 0); }
+											if bot_type = 2
+												{ global.bot_answer = choose(1, 1, 1, 1, 0); }
+											if bot_type = 3
+												{ global.bot_answer = choose(1, 1, 1, 0); }
+											}
 										}
 									}
 								}
-							if global.bot_answer = -1
+							if global.bot_answer = -1 && (global.pvp = 0 or global.now = 1)
 								{
 								if bot_wait > 0
 									{ bot_wait -= 1; }
@@ -5307,18 +5479,21 @@ if global.hero = 1 && global.enemy_hero = 1
 					{ e_super_now1 = 0; }
 				if global.hand = -1
 					{
-					if e_super_now = e_super_need && e_super_now1 = e_super_need && theme_choose = 4 && global.e_abilitican = 1 && (global.enemy_object).stun = 0 && global.training < 1
+					if e_super_now = e_super_need && e_super_now1 >= e_super_need && theme_choose = 4 && global.e_abilitican = 1 && (global.enemy_object).stun = 0 && global.training < 1
 						{
 						if ((((e_hp - atk) / e_maxhp <= hp / maxhp ) && global.enemy_hero != 5)
 						or (global.enemy_hero = 5 && (global.enemy_object).bill_stage != 0)
 						or global.swipe_ability = 1 or (global.enemy_hero = 2)
-						or (global.enemy_hero = 1 && global.swipe_ability = 0
-						&& super_now = super_need != 0) && (bot_type = 2 or bot_type = 3)
+						or (global.enemy_hero = 1 && global.swipe_ability = 0 && super_now = super_need)// != 0)
+						&& (bot_type = 2 or bot_type = 3)
 						or (global.enemy_hero = 1 && global.swipe_ability = 0) && (bot_type = 1 or bot_type = 2))
 						&& (global.enemy_object).hand_away = 0 && (global.player_object).hand_away = 0
 							{
 							if global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
+							&& (global.pvp = 0 or (global.pvp = 1 && pvp_super_popa = 1))
 								{
+								if pvp_super_popa = 1
+									{ pvp_super_popa = 0; }
 								e_super_now  = 0;
 								e_super_need += 3;
 								global.super_ability = 1;
@@ -5377,138 +5552,17 @@ if global.hero = 1 && global.enemy_hero = 1
 											}
 										}
 									}
-								
-								//skill[global.rounds] = 2;
-								//if global.rounds = 1
-								//	{ skill[2] = 0; }
 							
 								global.ability_dop_anim = 1;
 								}
 							}
 						}
 					}
-					else
-					{
-					#region ЖОПА
-					//if ((e_super_now = e_super_need && (global.hand = -1 or (global.hand = 0 && global.enemy_hero = 1) or (global.hand = 1 && global.hero = 1)))) && theme_choose = 4
-					//	{
-					//	if (e_hp - atk) / e_maxhp <= hp / maxhp
-					//		{
-					//		if global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
-					//			{
-					//			e_super_now  = 0;
-					//			e_super_need += 3;
-					//			if global.hand = 0 && global.enemy_hero = 1
-					//				{ e_super_need = 3; }
-					//			global.super_ability = 1;
-							
-					//			//if global.hand = 0 && global.enemy_hero != 1
-					//			//	{ global.super_ability = 0; super_now1 = 0; global.hand = 1; (global.enemy_object).super = 0; }
-							
-					//			if global.hand = -1 or (global.hand = 0 && global.enemy_hero = 1) or (global.hand = 1 && global.hero = 1)
-					//				{
-					//				with(global.enemy_object)
-					//					{
-					//					change = 3;
-					//					super  = 1;
-					//					if global.swipe_ability = 0
-					//						{
-					//						switch(global.enemy_hero)
-					//							{
-					//							case 1: super_need = 3; super_now1 = 3; skeleton_animation_set("super"); change = 1; break;
-					//							case 2: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//							case 6: abil_x = 160; skeleton_animation_set("super"); change = 3; break;
-					//							case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
-					//							case 3: change = 1; skeleton_animation_set("reload"); /*global.super_ability = 0; global.super_ability1 = 1;*/ huntress_poison = 1; break;
-					//							case 5: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 1; break;
-					//							case 7: break;
-					//							}
-					//						}
-					//						else
-					//						{
-					//						if global.enemy_hero != 1
-					//							{
-					//							change = 1; skeleton_animation_set("reload"); 
-					//							global.super_ability = 1;
-					//							hand_away = room_speed;
-												
-					//							super_need = 3; super_now1 = 0;
-					//							var enemy_now, enemy_need, player_now, player_need;
-					//							enemy_now  = o_list.e_super_now;
-					//							enemy_need = o_list.e_super_need;
-												
-					//							player_now  = o_list.super_now;
-					//							player_need = o_list.super_need;
-												
-					//							o_list.super_now  = enemy_now;
-					//							o_list.super_need = enemy_need;
-												
-					//							o_list.e_super_now  = player_now;
-					//							o_list.e_super_need = player_need;
-					//							}
-					//							else
-					//							{
-					//							switch(global.enemy_hero)
-					//								{
-					//								case 1: image_speed = 2; skeleton_animation_set("super"); change = 1; super_need = 3; super_now1 = 3; break;
-					//								case 2: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//								case 3: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//								case 4: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//								case 5: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
-					//								case 6: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//								case 7: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
-					//								}
-					//							}
-					//						}
-					//					}
-					//				}
-							
-					//			//skill[global.rounds] = 2;
-					//			//if global.rounds = 1
-					//			//	{ skill[2] = 0; }
-							
-					//			global.ability_dop_anim = 1;
-					//			}
-					//		}
-					//	}
-					//if (super_now = super_need && ((global.hand = 1 && global.enemy_hero = 1) or (global.hand = 0 && global.hero = 1))) && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && global.super_ability = 0// && (global.enemy_object).shoot = 0
-					//	{
-					//	super_now  = 0;
-					//	super_need += 3;
-					//	global.super_ability = 1;
-					
-					//	if global.enemy_hero = 1
-					//		{
-					//		with(global.enemy_object)
-					//			{
-					//			change = 3;
-					//			super  = 0;
-					//			switch(global.hero)
-					//				{
-					//				case 1: global.super_ability = 0; break;
-					//				case 2: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//				case 4: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//				case 3: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//				case 5: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
-					//				case 6: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//				case 7: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
-					//				}
-					//			}
-					//		//skill[global.rounds] = 2;
-					//		//if global.rounds = 1
-					//		//	{ skill[2] = 0; }
-					//		global.ability_dop_anim = 1;
-					//		}
-					//		else
-					//		{ global.super_ability = 1; (global.enemy_object).hand_away = room_speed; super_now1 = 0; /*global.hand = 1;*/ (global.enemy_object).super = 0; }
-					//	}
-					#endregion
-					}
 			#endregion
 			#region Враг
 			if global.bot_answer != -1 && bot_go != 0 && e_question <= 9
 				{
-				if global.player_rank = 15
+				if global.player_rank = 15 && global.pvp = 0
 					{
 					var trtt;
 					trtt = choose(1, 0, 0);
@@ -5520,8 +5574,10 @@ if global.hero = 1 && global.enemy_hero = 1
 					if irandom(9) != 0
 						{ global.bot_answer = 0; }
 					}
+				
 				e_answer[e_question] = global.bot_answer;
-				if e_answer[e_question] > u_answer[e_question]
+				
+				if e_answer[e_question] > u_answer[e_question] && global.pvp = 0
 					{
 					if e_question > u_question
 						{ e_time[e_question] = (3 + 3 * global.e_totem_a[4]) * room_speed; }
@@ -5532,6 +5588,25 @@ if global.hero = 1 && global.enemy_hero = 1
 						}
 					}
 				e_question += 1;
+				
+				if global.pvp = 1
+					{
+					list_scale = 0;
+					if global.storm = 1 { storm_1(); }
+					
+					if theme_round[global.rounds] = 6
+						{ script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task]))); }
+					if theme_round[global.rounds] = 2
+						{ script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task]))); }
+					if theme_round[global.rounds] = 3
+						{ script_execute(asset_get_index("move_" + string(round_task[global.rounds,global.task]))); }
+					if theme_round[global.rounds] = 4
+						{ script_execute(asset_get_index("attention_" + string(round_task[global.rounds,global.task]))); }
+					if theme_round[global.rounds] = 1
+						{ script_execute(asset_get_index("cards_" + string(round_task[global.rounds,global.task]))); }
+					if theme_round[global.rounds] = 5
+						{ script_execute(asset_get_index("shooting_" + string(round_task[global.rounds,global.task]))); }
+					}
 				
 				if global.idol[3] = 4
 					{
@@ -5616,14 +5691,57 @@ if global.hero = 1 && global.enemy_hero = 1
 					{
 					if bot_task < 3
 						{
-						bot_task += 1;
+						if global.pvp = 1
+							{
+							global.now = !global.now;
+							global.nex += 1;
+							if global.nex = 2
+								{ global.nex = 0; bot_task += 1; global.task += 1; /*e_question = (global.task - 1) * 3;*/ /*u_question = (global.task - 1) * 3;*/ global.question = 1; }
+								else
+								{ global.question = 1; }
+							
+							global.pvp_stop = 1;
+							}
+							else
+							{ bot_task += 1; }
+						
+						//if global.pvp = 1
+						//	{
+						//	if global.now = 1
+						//		{ global.now = 0; bot_task += 1; global.task += 1; }
+						//	}
+						//	else
+						//	{ bot_task += 1; }
+						
+						//bot_task += 1;
 						bot_question = 1;
 						}
 						else
 						{
-						bot_time2 = -2;
-						bot_time  = -2;
-						bot_go = 0;
+						if global.pvp = 0
+							{
+							bot_time2 = -2;
+							bot_time  = -2;
+							bot_go = 0;
+							}
+							else
+							{
+							global.now = !global.now;
+							global.nex += 1;
+							if global.nex = 2
+								{
+								global.nex = 0;
+								
+								list_go = 0;
+								list_scale = 0;
+								plas_scale = 0;
+								}
+								else
+								{
+								global.question = 1;
+								global.pvp_stop = 1;
+								}
+							}
 						}
 					}
 				if bot_time2 != 0
@@ -5797,6 +5915,46 @@ if global.hero = 1 && global.enemy_hero = 1
 		//draw_set_alpha(1);
 		//draw_text_transformed(640, dop_q_y + global.size / 2 - 469 * list_size - 90 + list_y + button_x / 4 + 30, question_text, plas_scale, 1, 0);
 	#endregion
+	#region ПвП
+		if global.pvp_stop != 0
+			{
+			draw_set_alpha(0.45);
+			draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+			draw_set_alpha(1);
+			
+			var ccc, xxx;
+			if global.now = 0
+				{
+				xxx = -360;
+				ccc = global.color_hero[global.hero];
+				}
+				else
+				{
+				xxx = 360;
+				ccc = global.color_hero[global.enemy_hero];
+				}
+			draw_text_transformed_t(640 + xxx, global.size + 50 - (global.size / 2 + 50) * pvp_scale, coin_you[!global.now], 0.3, 0.3, -40 + 55 * pvp_scale, ccc, c_black);
+			list_go = 0;
+			if mouse_check_button_pressed(mb_left) && pvp_scale = 1
+				{
+				//if (mouse_x < 640 && global.now = 0)
+				//or (mouse_x >- 640 && global.now = 1)
+					{ pvp_stage = 1; }
+				}
+			if pvp_stage = 0
+				{
+				if pvp_scale < 1
+					{ pvp_scale += 0.2; }
+				}
+				else
+				{
+				if pvp_scale > 0
+					{ pvp_scale -= 0.2; }
+					else
+					{ pvp_stage = 0; list_go = 1; global.pvp_stop = 0; }
+				}
+			}
+	#endregion
 	#region Победная и проигрышная плашки
 		//if plas_scale < 1
 			//{
@@ -5842,157 +6000,222 @@ if global.hero = 1 && global.enemy_hero = 1
 			
 		//	global.hand = -1;
 		//	}
+		
+		var pvp_xx;
+		pvp_xx = 0;
+		if global.pvp = 1
+			{
+			if global.now = 0
+				{ pvp_xx = - (640 * 2 - 80 - sprite_get_width(s_super) / 2); }
+				else
+				{ pvp_xx = 0; }
+			}
+		//pvp_xx = 0;
+		
 		mouse_x1 = device_mouse_x(dev);
 		mouse_y1 = device_mouse_y(dev);
 		
 		if device_mouse_check_button_pressed(dev, mb_left) && theme_choose = 4 && (global.player_object).stun = 0 && global.abilitican = 1 && (global.training < 1 or global.training = 6)
 			{
 			//if point_in_rectangle(mouse_x1, mouse_y1, 640 - 80 + sprite_get_width(s_super) / 2 - 20, global.size - 50 - 80 + super_x + super_zhopa, 640 + 80 + sprite_get_width(s_super) / 2 - 20, global.size - 50 + 80 + super_zhopa)
-			if point_in_rectangle(mouse_x1, mouse_y1, 640 * 2 - 80 - sprite_get_width(s_super) / 2, global.size - 50 - 80 + super_zhopa - 20, 640 * 2 + 80 - sprite_get_width(s_super) / 2, global.size - 50 + 80 + super_zhopa - 20)
+			if point_in_rectangle(mouse_x1, mouse_y1, 640 * 2 - 80 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 80 + super_zhopa - 20, 640 * 2 + 80 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 + 80 + super_zhopa - 20)
+			&& global.pvp_stop = 0
 				{
-				if global.sound = 1
-					{ audio_play_sound(sd_text, 2, 0); }
-				if global.hand = -1
+				if global.pvp = 0 or (global.pvp = 1 && global.now = 0)
 					{
-					if super_now = super_need && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0 && !(global.hero = 1 && global.enemy_hero = 1)// && (global.enemy_object).shoot = 0
+					if global.sound = 1
+						{ audio_play_sound(sd_text, 2, 0); }
+					if global.hand = -1
 						{
-						super_now  = 0;
-						super_need += 3;
-						super_now1 = super_need;
-						global.super_ability = 1;
-						
-						with(global.player_object)
+						if super_now = super_need//((super_now = super_need && global.pvp = 0) or (global.pvp = 1 && ((super_now = super_need && global.now = 0) or (e_super_now = e_super_need && global.now = 1))))
+						&& global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
+						&& !(global.hero = 1 && global.enemy_hero = 1)// && (global.enemy_object).shoot = 0
 							{
-							change = 3;
-							super  = 1;
-							if global.swipe_ability = 0
+							////////// КВЕСТЫ
+							for(i=1;i<=3;i++)
 								{
-								switch(global.hero)
+								if global.quests_a[i] = 1
 									{
-									case 1: o_list.super_need = 3 - global.p_totem_a[15]; o_list.super_now1 = 3; skeleton_animation_set("super"); change = 1; break;
-									case 2: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-									case 6: abil_x = 160; skeleton_animation_set("super"); change = 3; break;
-									case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
-									case 3: change = 1; skeleton_animation_set("reaload"); huntress_poison = 1; break;
-									case 5: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 1; break;
-									case 7: super = 1; image_index = 0; image_speed = 2; skeleton_animation_set("greetings"); change = 2; break;
+									if global.quests_t[i] = 17
+										{
+										if global.quests_n_now[i] < global.quests_n_all[i]
+											{ global.quests_n_now[i] += 1; }
+										}
+								
+									ini_open("Music.ini");
+										ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+									ini_close();
 									}
 								}
-								else
+							global.spasabnast = 1;
+							////////// КВЕСТЫ
+							super_now  = 0;
+							super_need += 3;
+							super_now1 = super_need;
+							global.super_ability = 1;
+						
+							with(global.player_object)
 								{
-								if global.hero != 1
+								change = 3;
+								super  = 1;
+								if global.swipe_ability = 0
 									{
-									change = 1; skeleton_animation_set("reload"); 
-									global.super_ability = 1;
-									hand_away = room_speed;
+									switch(global.hero)
+										{
+										case 1: o_list.super_need = 3 - global.p_totem_a[15]; o_list.super_now1 = 3; skeleton_animation_set("super"); change = 1; break;
+										case 2: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+										case 6: abil_x = 160; skeleton_animation_set("super"); change = 3; break;
+										case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
+										case 3: change = 1; skeleton_animation_set("reaload"); huntress_poison = 1; break;
+										case 5: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 1; break;
+										case 7: super = 1; image_index = 0; image_speed = 2; skeleton_animation_set("greetings"); change = 2; break;
+										}
 									
-									o_list.super_now1 = 0; //super_need;
-									var enemy_now, enemy_need, player_now, player_need;
-									enemy_now   = o_list.e_super_now;
-									enemy_need  = o_list.e_super_need;
+									if global.hero = 1 && global.varr[global.enemy_hero] = 0
+										{
+										ini_open("Music.ini");
 									
-									player_now  = o_list.super_now;
-									player_need = o_list.super_need;
+										ini_write_string("Var", "v" + string(global.enemy_hero), "1");
+										global.varr[global.enemy_hero] = ini_read_real("Var", "v" + string(i), 0);
 									
-									o_list.super_now  = enemy_now;
-									o_list.super_need = enemy_need;
-		
-									o_list.e_super_now  = 0; //player_now;
-									o_list.e_super_need = 3 - global.e_totem_a[15]; //player_need;
+										for(i=1;i<=3;i++)
+											{
+											if global.quests_a[i] = 1
+												{
+												if global.quests_t[i] = 18
+													{
+													if global.quests_n_now[i] < global.quests_n_all[i]
+														{ global.quests_n_now[i] += 1; }
+													}
+								
+												ini_open("Music.ini");
+													ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+												ini_close();
+												}
+											}
+									
+										ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+										ini_close();
+										}
 									}
 									else
 									{
-									switch(global.enemy_hero)
+									if global.hero != 1
 										{
-										case 1: image_speed = 2; skeleton_animation_set("super"); change = 1; o_list.super_need = 3 - global.p_totem_a[15]; o_list.super_now1 = 3; break;
-										case 2: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-										case 3: change = 1; skeleton_animation_set("reload"); huntress_poison = 1; break;
-										case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
-										case 5: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
-										case 6: abil_x = 160; skeleton_animation_set("shoot"); change = 3; break;
-										case 7: change = 1; skeleton_animation_set("super"); break;
+										change = 1; skeleton_animation_set("reload"); 
+										global.super_ability = 1;
+										hand_away = room_speed;
+									
+										o_list.super_now1 = 0; //super_need;
+										var enemy_now, enemy_need, player_now, player_need;
+										enemy_now   = o_list.e_super_now;
+										enemy_need  = o_list.e_super_need;
+									
+										player_now  = o_list.super_now;
+										player_need = o_list.super_need;
+									
+										o_list.super_now  = enemy_now;
+										o_list.super_need = enemy_need;
+		
+										o_list.e_super_now  = 0; //player_now;
+										o_list.e_super_need = 3 - global.e_totem_a[15]; //player_need;
+										}
+										else
+										{
+										switch(global.enemy_hero)
+											{
+											case 1: image_speed = 2; skeleton_animation_set("super"); change = 1; o_list.super_need = 3 - global.p_totem_a[15]; o_list.super_now1 = 3; break;
+											case 2: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+											case 3: change = 1; skeleton_animation_set("reload"); huntress_poison = 1; break;
+											case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
+											case 5: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
+											case 6: abil_x = 160; skeleton_animation_set("shoot"); change = 3; break;
+											case 7: change = 1; skeleton_animation_set("super"); break;
+											}
 										}
 									}
 								}
+							//skill[global.rounds] = 2;
+							//if global.rounds = 1
+							//	{ skill[2] = 0; }
+							global.ability_dop_anim = 1;
+							io_clear();
 							}
-						//skill[global.rounds] = 2;
-						//if global.rounds = 1
-						//	{ skill[2] = 0; }
-						global.ability_dop_anim = 1;
-						io_clear();
+						}
+						else
+						{
+						#region ЖОПА
+						//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0// && (global.enemy_object).shoot = 0
+						//	{
+						//	super_now  = 0;
+						//	super_need += 3;
+						//	super_now1 = super_need;
+						//	if global.hand = 1
+						//		{ super_need = 3; }
+						//	global.super_ability = 1;
+					
+						//	//if global.hand = 1 && global.hero != 1
+						//	//	{ global.super_ability = 0; super_now1 = 0; global.hand = 0; (global.player_object).super = 0; }
+					
+						//	if global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1)
+						//		{
+						//		with(global.player_object)
+						//			{
+						//			change = 3;
+						//			super  = 1;
+						//			switch(global.hero)
+						//				{
+						//				case 1: super_now1 = 0; skeleton_animation_set("super"); global.hand = 0; change = 1; break;
+						//				case 2: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+						//				case 6: abil_x = 160; skeleton_animation_set("super"); change = 3; break;
+						//				case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
+						//				case 3: change = 1; skeleton_animation_set("reload"); /*global.super_ability = 0; global.super_ability1 = 1;*/ huntress_poison = 1; break;
+						//				case 5: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 1; break;
+						//				case 7: break;
+						//				}
+						//			}
+						//		}
+						//	//skill[global.rounds] = 2;
+						//	//if global.rounds = 1
+						//	//	{ skill[2] = 0; }
+						//	global.ability_dop_anim = 1;
+						//	}
+						//if (e_super_now = e_super_need && ((global.hand = 0 && global.hero = 1) or (global.hand = 1 && global.hero != 1))) && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && global.super_ability = 0// && (global.enemy_object).shoot = 0
+						//	{
+						//	e_super_now  = 0;
+						//	e_super_need += 3;
+						//	super_now1 = e_super_need;
+						//	global.super_ability = 1;
+						//	if global.hero = 1
+						//		{
+						//		with(global.player_object)
+						//			{
+						//			change = 3;
+						//			super  = 0;
+						//			switch(global.enemy_hero)
+						//				{
+						//				case 1: global.super_ability = 0; break;
+						//				case 2: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+						//				case 4: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+						//				case 3: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+						//				case 5: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
+						//				case 6: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
+						//				case 7: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
+						//				}
+						//			}
+						//		//skill[global.rounds] = 2;
+						//		//if global.rounds = 1
+						//		//	{ skill[2] = 0; }
+						//		global.ability_dop_anim = 1;
+						//		}
+						//		else
+						//		{ global.super_ability = 1; (global.player_object).hand_away = room_speed; super_now1 = 0; /*global.hand = 0;*/ (global.player_object).super = 0; }
+						//	}
+						#endregion
 						}
 					}
 					else
-					{
-					#region ЖОПА
-					//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0// && (global.enemy_object).shoot = 0
-					//	{
-					//	super_now  = 0;
-					//	super_need += 3;
-					//	super_now1 = super_need;
-					//	if global.hand = 1
-					//		{ super_need = 3; }
-					//	global.super_ability = 1;
-					
-					//	//if global.hand = 1 && global.hero != 1
-					//	//	{ global.super_ability = 0; super_now1 = 0; global.hand = 0; (global.player_object).super = 0; }
-					
-					//	if global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1)
-					//		{
-					//		with(global.player_object)
-					//			{
-					//			change = 3;
-					//			super  = 1;
-					//			switch(global.hero)
-					//				{
-					//				case 1: super_now1 = 0; skeleton_animation_set("super"); global.hand = 0; change = 1; break;
-					//				case 2: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//				case 6: abil_x = 160; skeleton_animation_set("super"); change = 3; break;
-					//				case 4: skeleton_animation_set("super"); diego_dynamit = 1; change = 3; break;
-					//				case 3: change = 1; skeleton_animation_set("reload"); /*global.super_ability = 0; global.super_ability1 = 1;*/ huntress_poison = 1; break;
-					//				case 5: super = 1; image_speed = 2; skeleton_animation_set("shoot"); change = 1; break;
-					//				case 7: break;
-					//				}
-					//			}
-					//		}
-					//	//skill[global.rounds] = 2;
-					//	//if global.rounds = 1
-					//	//	{ skill[2] = 0; }
-					//	global.ability_dop_anim = 1;
-					//	}
-					//if (e_super_now = e_super_need && ((global.hand = 0 && global.hero = 1) or (global.hand = 1 && global.hero != 1))) && global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && global.super_ability = 0// && (global.enemy_object).shoot = 0
-					//	{
-					//	e_super_now  = 0;
-					//	e_super_need += 3;
-					//	super_now1 = e_super_need;
-					//	global.super_ability = 1;
-					//	if global.hero = 1
-					//		{
-					//		with(global.player_object)
-					//			{
-					//			change = 3;
-					//			super  = 0;
-					//			switch(global.enemy_hero)
-					//				{
-					//				case 1: global.super_ability = 0; break;
-					//				case 2: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//				case 4: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//				case 3: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//				case 5: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
-					//				case 6: image_speed = 2; skeleton_animation_set("shoot"); change = 3; break;
-					//				case 7: image_speed = 2; skeleton_animation_set("super"); change = 3; break;
-					//				}
-					//			}
-					//		//skill[global.rounds] = 2;
-					//		//if global.rounds = 1
-					//		//	{ skill[2] = 0; }
-					//		global.ability_dop_anim = 1;
-					//		}
-					//		else
-					//		{ global.super_ability = 1; (global.player_object).hand_away = room_speed; super_now1 = 0; /*global.hand = 0;*/ (global.player_object).super = 0; }
-					//	}
-					#endregion
-					}
+					{ pvp_super_popa = 1; }
 				}
 			}
 		}
@@ -6007,412 +6230,1121 @@ if global.hero = 1 && global.enemy_hero = 1
 	//		{ super_x += 40; }
 	//	}
 	
-	#region Кнопка суперудара игрока
-		var butcolor;
-		butcolor = global.color_hero[global.hero];
-		if global.hand = -1
-			{
-			if global.swipe_ability = 0
-				{ butcolor = global.color_hero[global.hero]; }
-				else
-				{ butcolor = global.color_hero[global.enemy_hero]; }
-			}
-			else
-			{
-			if (global.hand = 0 && global.hero = 1)
-				{ butcolor = global.color_hero[global.enemy_hero]; }
-			}
-		#region Пацанкод
+	if global.pvp = 0 or global.now = 0
+		{
+		#region Кнопка суперудара игрока
+			var butcolor;
+			
+			butcolor = global.color_hero[global.hero];
 			if global.hand = -1
 				{
-				if part_n = 1
-					{
-					if part_y < global.size - 10
-						{ part_y += part_yspd; }
-					if abs(part_x - (1280) * super_now1 / super_need) > 10
-						{ part_x -= sign(part_x - (1280) * super_now1 / super_need) * part_xspd; }
-						else
-						{
-						if part_y >= global.size - 10
-							{ part_n = 0; }
-						}
-					}
-				if part_n = 2
-					{
-					if part_s > 0
-						{ part_s -= 0.25; }
-						else
-						{ part_n = 0; }
-					}
-				
 				if global.swipe_ability = 0
-					{
-					if part_n > 0
-						{
-						draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-						draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-						draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-						}
-					}
+					{ butcolor = global.color_hero[global.hero]; }
 					else
-					{
-					if part_n > 0
-						{
-						draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-						draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-						draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-						}
-					}
-				if part_n = 0
-					{
-					if super_now <= super_need
-						{
-						if super_now1 < super_now // super_need
-							{ super_now1 += 0.025 * super_need; }
-					
-						if super_now = 0
-							{
-							if super_now1 > 0
-								{ super_now1 -= 0.025 * super_need; }
-								else
-								{ super_now1 = 0; }
-							}
-						}
-					}
+					{ butcolor = global.color_hero[global.enemy_hero]; }
 				}
 				else
 				{
-				#region ЖОПА
-				//if part_n = 1
-				//	{
-				//	if (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))
-				//		{
-				//		if part_y < global.size - 10
-				//			{ part_y += part_yspd; }
-				//		if abs(part_x - (1280) * super_now1 / super_need) > 10
-				//			{ part_x -= sign(part_x - (1280) * super_now1 / super_need) * part_xspd; }
-				//			else
-				//			{
-				//			if part_y >= global.size - 10
-				//				{ part_n = 0; }
-				//			}
-				//		}
-				//	if (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
-				//		{
-				//		if part_y < global.size - 10
-				//			{ part_y += part_yspd; }
-				//		if abs(part_x - (1280) * super_now1 / e_super_need) > 10
-				//			{ part_x -= sign(part_x - (1280) * super_now1 / e_super_need) * part_xspd; }
-				//			else
-				//			{
-				//			if part_y >= global.size - 10
-				//				{ part_n = 0; }
-				//			}
-				//		}
-				//	}
-				//if part_n = 2
-				//	{
-				//	if part_s > 0
-				//		{ part_s -= 0.25; }
-				//		else
-				//		{ part_n = 0; }
-				//	}
-			
-				//if (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))
-				//	{
-				//	if part_n > 0
-				//		{
-				//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-				//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-				//		draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-				//		}
-				//	}
-				//if (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
-				//	{
-				//	if part_n > 0
-				//		{
-				//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / e_super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-				//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / e_super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-				//		draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-				//		}
-				//	}
-				//if part_n = 0
-				//	{
-				//	if (super_now <= super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (e_super_now <= e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
-				//		{
-				//		if (super_now1 < super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1)))//super_now1 < super_now
-				//			{ super_now1 += 0.025 * super_need; }
-				//			else
-				//			{ super_now1 += 0.025 * e_super_need; }
-					
-				//		if super_now = 0 && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))
-				//			{
-				//			if super_now1 > 0
-				//				{ super_now1 -= 0.025 * super_need; }
-				//				else
-				//				{ super_now1 = 0; }
-				//			}
-				//		if e_super_now = 0 && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
-				//			{
-				//			if super_now1 > 0
-				//				{ super_now1 -= 0.025 * e_super_need; }
-				//				else
-				//				{ super_now1 = 0; }
-				//			}
-				//		}
-				//	}
-				#endregion
+				if (global.hand = 0 && global.hero = 1)
+					{ butcolor = global.color_hero[global.enemy_hero]; }
 				}
-			//draw_text_transformed_t(mouse_x, mouse_y, string(part_n), 0.5, 0.5, 0, global.color_hero[global.hero], c_black);
-		#endregion
-		var d_size;
-		d_size = 0.05; //0.1 * (super_stage - 1) / 13;
-		if global.hand = -1
-			{
-			if super_now = super_need
-				{
-				if super_now1 = super_need
+			
+			#region Пацанкод
+				if global.hand = -1
 					{
-					if super_zhopa > 0
-						{ super_zhopa -= 40; super_angle = 0; }
-						else
+					if part_n = 1
 						{
-						if super_time < 40
-							{
-							super_time += 1;
-							if abs(super_angle) > 1.5
-								{ super_angle += 2 * super_dir; }
-								else
-								{ super_angle = 0; }
-							}
+						if part_y < global.size - 10
+							{ part_y += part_yspd; }
+						if abs(part_x - (1280) * super_now1 / super_need) > 10
+							{ part_x -= sign(part_x - (1280) * super_now1 / super_need) * part_xspd; }
 							else
 							{
-							if (super_angle < 5 && super_dir = 1) or (super_angle > -5 && super_dir = -1)
-								{ super_angle += 2 * super_dir; }
-								else
+							if part_y >= global.size - 10
+								{ part_n = 0; }
+							}
+						}
+					if part_n = 2
+						{
+						if part_s > 0
+							{ part_s -= 0.25; }
+							else
+							{ part_n = 0; }
+						}
+				
+					if global.swipe_ability = 0
+						{
+						if part_n > 0
+							{
+							draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							}
+						}
+						else
+						{
+						if part_n > 0
+							{
+							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							}
+						}
+					if part_n = 0
+						{
+						if super_now <= super_need
+							{
+							if super_now1 < super_now // super_need
+								{ super_now1 += 0.025 * super_need; }
+					
+							if super_now = 0
 								{
-								super_dir = -super_dir;
-								super_angle += 2 * super_dir;
-								super_val += 1;
-								if super_val = 5
-									{ super_time = 0; super_val = 0; }
+								if super_now1 > 0
+									{ super_now1 -= 0.025 * super_need; }
+									else
+									{ super_now1 = 0; }
 								}
 							}
 						}
 					}
-				}
-				else
-				{
-				super_val = 0;
-				super_angle = 0;
-				if super_zhopa < 300
-					{ super_zhopa += 30; }
-				}
-		
-			if super_now = super_need
-				{
-				if super_alp1 = 1
+					else
 					{
-					if super_alp > 0.2//0.7
-						{ super_alp -= 0.05; }
-						else
-						{ super_alp1 = 0 }
+					#region ЖОПА
+					//if part_n = 1
+					//	{
+					//	if (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))
+					//		{
+					//		if part_y < global.size - 10
+					//			{ part_y += part_yspd; }
+					//		if abs(part_x - (1280) * super_now1 / super_need) > 10
+					//			{ part_x -= sign(part_x - (1280) * super_now1 / super_need) * part_xspd; }
+					//			else
+					//			{
+					//			if part_y >= global.size - 10
+					//				{ part_n = 0; }
+					//			}
+					//		}
+					//	if (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
+					//		{
+					//		if part_y < global.size - 10
+					//			{ part_y += part_yspd; }
+					//		if abs(part_x - (1280) * super_now1 / e_super_need) > 10
+					//			{ part_x -= sign(part_x - (1280) * super_now1 / e_super_need) * part_xspd; }
+					//			else
+					//			{
+					//			if part_y >= global.size - 10
+					//				{ part_n = 0; }
+					//			}
+					//		}
+					//	}
+					//if part_n = 2
+					//	{
+					//	if part_s > 0
+					//		{ part_s -= 0.25; }
+					//		else
+					//		{ part_n = 0; }
+					//	}
+			
+					//if (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))
+					//	{
+					//	if part_n > 0
+					//		{
+					//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+					//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+					//		draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+					//		}
+					//	}
+					//if (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
+					//	{
+					//	if part_n > 0
+					//		{
+					//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / e_super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+					//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / e_super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+					//		draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+					//		}
+					//	}
+					//if part_n = 0
+					//	{
+					//	if (super_now <= super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (e_super_now <= e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
+					//		{
+					//		if (super_now1 < super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1)))//super_now1 < super_now
+					//			{ super_now1 += 0.025 * super_need; }
+					//			else
+					//			{ super_now1 += 0.025 * e_super_need; }
+					
+					//		if super_now = 0 && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))
+					//			{
+					//			if super_now1 > 0
+					//				{ super_now1 -= 0.025 * super_need; }
+					//				else
+					//				{ super_now1 = 0; }
+					//			}
+					//		if e_super_now = 0 && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
+					//			{
+					//			if super_now1 > 0
+					//				{ super_now1 -= 0.025 * e_super_need; }
+					//				else
+					//				{ super_now1 = 0; }
+					//			}
+					//		}
+					//	}
+					#endregion
+					}
+				//draw_text_transformed_t(mouse_x, mouse_y, string(part_n), 0.5, 0.5, 0, global.color_hero[global.hero], c_black);
+			#endregion
+			var d_size;
+			d_size = 0.05;
+			//0.1 * (super_stage - 1) / 13;
+		
+			if global.hand = -1
+				{
+				if super_now = super_need
+					{
+					if super_now1 = super_need
+						{
+						if super_zhopa > 0
+							{ super_zhopa -= 40; super_angle = 0; }
+							else
+							{
+							if super_time < 40
+								{
+								super_time += 1;
+								if abs(super_angle) > 1.5
+									{ super_angle += 2 * super_dir; }
+									else
+									{ super_angle = 0; }
+								}
+								else
+								{
+								if (super_angle < 5 && super_dir = 1) or (super_angle > -5 && super_dir = -1)
+									{ super_angle += 2 * super_dir; }
+									else
+									{
+									super_dir = -super_dir;
+									super_angle += 2 * super_dir;
+									super_val += 1;
+									if super_val = 5
+										{ super_time = 0; super_val = 0; }
+									}
+								}
+							}
+						}
 					}
 					else
 					{
-					if super_alp < 1
-						{ super_alp += 0.05; }
+					super_val = 0;
+					super_angle = 0;
+					if super_zhopa < 300
+						{ super_zhopa += 30; }
+					}
+		
+				if super_now = super_need
+					{
+					if super_alp1 = 1
+						{
+						if super_alp > 0.2//0.7
+							{ super_alp -= 0.05; }
+							else
+							{ super_alp1 = 0 }
+						}
 						else
 						{
-						if super_alpha > 0
-							{ super_alpha -= 0.05; }
+						if super_alp < 1
+							{ super_alp += 0.05; }
 							else
-							{ super_alpha = 1; super_alp = 0.2; super_alp1 = 1; }
+							{
+							if super_alpha > 0
+								{ super_alpha -= 0.05; }
+								else
+								{ super_alpha = 1; super_alp = 0.2; super_alp1 = 1; }
+							}
 						}
+					}
+					else
+					{ super_alp1 = 1; super_alp = 1; }
+				}
+				else
+				{
+				#region ЖОПА
+				//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (e_super_now = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
+				//	{
+				//	if (super_now1 = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (super_now1 = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
+				//		{
+				//		if super_zhopa > 0
+				//			{ super_zhopa -= 40; super_angle = 0; }
+				//			else
+				//			{
+				//			if super_time < 40
+				//				{
+				//				super_time += 1;
+				//				if abs(super_angle) > 1.5
+				//					{ super_angle += 2 * super_dir; }
+				//					else
+				//					{ super_angle = 0; }
+				//				}
+				//				else
+				//				{
+				//				if (super_angle < 5 && super_dir = 1) or (super_angle > -5 && super_dir = -1)
+				//					{ super_angle += 2 * super_dir; }
+				//					else
+				//					{
+				//					super_dir = -super_dir;
+				//					super_angle += 2 * super_dir;
+				//					super_val += 1;
+				//					if super_val = 5
+				//						{ super_time = 0; super_val = 0; }
+				//					}
+				//				}
+				//			}
+				//		}
+				//	}
+				//	else
+				//	{
+				//	super_val = 0;
+				//	super_angle = 0;
+				//	if super_zhopa < 300
+				//		{ super_zhopa += 30; }
+				//	}
+		
+				//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (e_super_now = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
+				//	{
+				//	if super_alp1 = 1
+				//		{
+				//		if super_alp > 0.2//0.7
+				//			{ super_alp -= 0.05; }
+				//			else
+				//			{ super_alp1 = 0 }
+				//		}
+				//		else
+				//		{
+				//		if super_alp < 1
+				//			{ super_alp += 0.05; }
+				//			else
+				//			{
+				//			if super_alpha > 0
+				//				{ super_alpha -= 0.05; }
+				//				else
+				//				{ super_alpha = 1; super_alp = 0.2; super_alp1 = 1; }
+				//			}
+				//		}
+				//	}
+				//	else
+				//	{ super_alp1 = 1; super_alp = 1; }
+				#endregion
+				}
+			draw_set_alpha(0.7);
+			draw_rectangle_color(0, global.size, 1280, global.size - 13, c_black, c_black, c_black, c_black, 0);
+		
+			if global.hand = -1
+				{
+				if super_now = super_need
+					{
+					draw_set_alpha(0.5 * super_alpha);
+					draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
+				
+					draw_set_alpha(0.3 * super_alpha);
+					draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
+					}
+				
+					draw_set_alpha(1);
+				
+					draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
+					draw_set_alpha(0.2);
+					draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
+					draw_set_alpha(1);
+				
+					draw_set_alpha(1 - super_alp);
+					draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
+					draw_set_alpha(1);
+					//}
+				}
+				else
+				{
+				#region ЖОПА
+				//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1)))
+				//	{
+				//	draw_set_alpha(0.5 * super_alpha);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
+				
+				//	draw_set_alpha(0.3 * super_alpha);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
+				
+				//	draw_set_alpha(1);
+				
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
+				//	draw_set_alpha(0.2);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
+				//	draw_set_alpha(1);
+				
+				//	draw_set_alpha(1 - super_alp);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
+				//	draw_set_alpha(1);
+				//	}
+				//if e_super_now = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
+				//	{
+				//	draw_set_alpha(0.5 * super_alpha);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
+			
+				//	draw_set_alpha(0.3 * super_alpha);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
+			
+			
+				//	draw_set_alpha(1);
+		
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
+				//	draw_set_alpha(0.2);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
+				//	draw_set_alpha(1);
+		
+				//	draw_set_alpha(1 - super_alp);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
+				//	draw_set_alpha(1);
+				//	}
+				#endregion
+				}
+			draw_set_font(global.game_font);
+			draw_text_transformed_t(640 * 2 - sprite_get_width(s_super) - string_width(super_text) * 0.2 / 2 + 20 + pvp_xx / 1.5, global.size - 50 - 20 + super_zhopa, super_text, 0.2, 0.2, super_angle, butcolor, c_black);
+		
+			//draw_sprite_ext(s_super, 1, 640 + sprite_get_width(s_super) * (list_size1 * 1 + d_size) * super_scale / 2 + 40, global.size - 50 + super_x + super_zhopa, (list_size1 * 1 + d_size) * super_scale, (list_size1 * 1 + d_size) * super_scale, 0, c_white, 1);
+		
+			///////////////
+				if global.swipe_ability = 0
+					{
+					draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, butcolor, 0.5, butcolor, c_black);
+					draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, butcolor, 1, butcolor, c_black);
+					
+					draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0.5, global.color_white, c_black);
+					draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+					}
+					else
+					{
+					draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.enemy_hero], 0.5, global.color_hero[global.enemy_hero], c_black);
+					draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.enemy_hero], 1, global.color_hero[global.enemy_hero], c_black);
+					
+					draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0., global.color_white, c_black);
+					draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+					}
+				//if global.swipe_ability = 0
+				//	{
+				//	draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0.5, global.color_white, c_black);
+				//	draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+				//	}
+				//	else
+				//	{
+				//	draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0., global.color_white, c_black);
+				//	draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+				//	}
+			//////////////
+		
+			//draw_sprite_ext(s_super_black, super_stage, 86 * (list_size1 * 1.3 + d_size)/*- 90 - 500 - super_x*/, global.size - 40 - 1 + super_x, list_size1 * 1.3 + d_size, list_size1 * 1.3 + d_size, 0, c_white, 1);
+			//draw_sprite_ext(asset_get_index("s_super_" + global.hero_code_name[global.enemy_hero]), e_skill[global.rounds], 1280 - (640 - 90 - 500) + super_x, global.size - 80, -list_size1 * 1, list_size1 * 1, 0, c_white, 1);
+		#endregion
+		}
+		else
+		{
+		#region Кнопка суперудара врага
+			var butcolor;
+			
+			butcolor = global.color_hero[global.hero];
+			if global.hand = -1
+				{
+				if global.swipe_ability = 0
+					{ butcolor = global.color_hero[global.enemy_hero]; }
+					else
+					{ butcolor = global.color_hero[global.hero]; }
+				}
+				else
+				{
+				if (global.hand = 0 && global.enemy_hero = 1)
+					{ butcolor = global.color_hero[global.hero]; }
+				}
+			
+			#region Пацанкод
+				if global.hand = -1
+					{
+					if part_n = 1
+						{
+						if part_y < global.size - 10
+							{ part_y += part_yspd; }
+						if abs(part_x - (1280) * e_super_now1 / e_super_need) > 10
+							{ part_x -= sign(part_x - (1280) * e_super_now1 / e_super_need) * part_xspd; }
+							else
+							{
+							if part_y >= global.size - 10
+								{ part_n = 0; }
+							}
+						}
+					if part_n = 2
+						{
+						if part_s > 0
+							{ part_s -= 0.25; }
+							else
+							{ part_n = 0; }
+						}
+				
+					if global.swipe_ability = 0
+						{
+						if part_n > 0
+							{
+							draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * e_super_now1 / e_super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * e_super_now1 / e_super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							}
+						}
+						else
+						{
+						if part_n > 0
+							{
+							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * e_super_now1 / e_super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * e_super_now1 / e_super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							}
+						}
+					if part_n = 0
+						{
+						if e_super_now <= e_super_need
+							{
+							if e_super_now1 < e_super_now // super_need
+								{ e_super_now1 += 0.025 * e_super_need; }
+					
+							if e_super_now = 0
+								{
+								if e_super_now1 > 0
+									{ e_super_now1 -= 0.025 * e_super_need; }
+									else
+									{ e_super_now1 = 0; }
+								}
+							}
+						}
+					}
+				//draw_text_transformed_t(mouse_x, mouse_y, string(part_n), 0.5, 0.5, 0, global.color_hero[global.hero], c_black);
+			#endregion
+			var d_size;
+			d_size = 0.05;
+			//0.1 * (super_stage - 1) / 13;
+		
+			if global.hand = -1
+				{
+				if e_super_now >= e_super_need
+					{
+					if e_super_now1 >= e_super_need
+						{
+						if super_zhopa > 0
+							{ super_zhopa -= 40; super_angle = 0; }
+							else
+							{
+							if super_time < 40
+								{
+								super_time += 1;
+								if abs(super_angle) > 1.5
+									{ super_angle += 2 * super_dir; }
+									else
+									{ super_angle = 0; }
+								}
+								else
+								{
+								if (super_angle < 5 && super_dir = 1) or (super_angle > -5 && super_dir = -1)
+									{ super_angle += 2 * super_dir; }
+									else
+									{
+									super_dir = -super_dir;
+									super_angle += 2 * super_dir;
+									super_val += 1;
+									if super_val = 5
+										{ super_time = 0; super_val = 0; }
+									}
+								}
+							}
+						}
+					}
+					else
+					{
+					super_val = 0;
+					super_angle = 0;
+					if super_zhopa < 300
+						{ super_zhopa += 30; }
+					}
+		
+				if e_super_now = e_super_need
+					{
+					if super_alp1 = 1
+						{
+						if super_alp > 0.2//0.7
+							{ super_alp -= 0.05; }
+							else
+							{ super_alp1 = 0 }
+						}
+						else
+						{
+						if super_alp < 1
+							{ super_alp += 0.05; }
+							else
+							{
+							if super_alpha > 0
+								{ super_alpha -= 0.05; }
+								else
+								{ super_alpha = 1; super_alp = 0.2; super_alp1 = 1; }
+							}
+						}
+					}
+					else
+					{ super_alp1 = 1; super_alp = 1; }
+				}
+			draw_set_alpha(0.7);
+			draw_rectangle_color(0, global.size, 1280, global.size - 13, c_black, c_black, c_black, c_black, 0);
+		
+			if global.hand = -1
+				{
+				if e_super_now = e_super_need
+					{
+					draw_set_alpha(0.5 * super_alpha);
+					draw_rectangle_color(0, global.size, (1280) * e_super_now1 / e_super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
+				
+					draw_set_alpha(0.3 * super_alpha);
+					draw_rectangle_color(0, global.size, (1280) * e_super_now1 / e_super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
+					}
+				
+					draw_set_alpha(1);
+				
+					draw_rectangle_color(0, global.size, (1280) * e_super_now1 / e_super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
+					draw_set_alpha(0.2);
+					draw_rectangle_color(0, global.size, (1280) * e_super_now1 / e_super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
+					draw_set_alpha(1);
+				
+					draw_set_alpha(1 - super_alp);
+					draw_rectangle_color(0, global.size, (1280) * e_super_now1 / e_super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
+					draw_set_alpha(1);
+					//}
+				}
+			draw_set_font(global.game_font);
+			draw_text_transformed_t(640 * 2 - sprite_get_width(s_super) - string_width(super_text) * 0.2 / 2 + 20 + pvp_xx / 1.5, global.size - 50 - 20 + super_zhopa, super_text, 0.2, 0.2, super_angle, butcolor, c_black);
+		
+			//draw_sprite_ext(s_super, 1, 640 + sprite_get_width(s_super) * (list_size1 * 1 + d_size) * super_scale / 2 + 40, global.size - 50 + super_x + super_zhopa, (list_size1 * 1 + d_size) * super_scale, (list_size1 * 1 + d_size) * super_scale, 0, c_white, 1);
+		
+			///////////////
+				if global.swipe_ability = 0
+					{
+					draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.enemy_hero], 0.5, butcolor, c_black);
+					draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.enemy_hero], 1, butcolor, c_black);
+					
+					draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0.5, global.color_white, c_black);
+					draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+					}
+					else
+					{
+					draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.hero], 0.5, global.color_hero[global.hero], c_black);
+					draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.hero], 1, global.color_hero[global.hero], c_black);
+					
+					draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0., global.color_white, c_black);
+					draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+					}
+			//////////////
+		
+			//draw_sprite_ext(s_super_black, super_stage, 86 * (list_size1 * 1.3 + d_size)/*- 90 - 500 - super_x*/, global.size - 40 - 1 + super_x, list_size1 * 1.3 + d_size, list_size1 * 1.3 + d_size, 0, c_white, 1);
+			//draw_sprite_ext(asset_get_index("s_super_" + global.hero_code_name[global.enemy_hero]), e_skill[global.rounds], 1280 - (640 - 90 - 500) + super_x, global.size - 80, -list_size1 * 1, list_size1 * 1, 0, c_white, 1);
+		#endregion
+		}
+	if 0
+		{
+		#region Кнопка суперудара
+			var butcolor;
+		
+			if global.pvp = 0 or (global.pvp = 1 && global.now = 0)
+				{
+				butcolor = global.color_hero[global.hero];
+				if global.hand = -1
+					{
+					if global.swipe_ability = 0
+						{ butcolor = global.color_hero[global.hero]; }
+						else
+						{ butcolor = global.color_hero[global.enemy_hero]; }
+					}
+					else
+					{
+					if (global.hand = 0 && global.hero = 1)
+						{ butcolor = global.color_hero[global.enemy_hero]; }
 					}
 				}
 				else
-				{ super_alp1 = 1; super_alp = 1; }
-			}
-			else
-			{
-			#region ЖОПА
-			//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (e_super_now = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
-			//	{
-			//	if (super_now1 = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (super_now1 = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
-			//		{
-			//		if super_zhopa > 0
-			//			{ super_zhopa -= 40; super_angle = 0; }
-			//			else
-			//			{
-			//			if super_time < 40
-			//				{
-			//				super_time += 1;
-			//				if abs(super_angle) > 1.5
-			//					{ super_angle += 2 * super_dir; }
-			//					else
-			//					{ super_angle = 0; }
-			//				}
-			//				else
-			//				{
-			//				if (super_angle < 5 && super_dir = 1) or (super_angle > -5 && super_dir = -1)
-			//					{ super_angle += 2 * super_dir; }
-			//					else
-			//					{
-			//					super_dir = -super_dir;
-			//					super_angle += 2 * super_dir;
-			//					super_val += 1;
-			//					if super_val = 5
-			//						{ super_time = 0; super_val = 0; }
-			//					}
-			//				}
-			//			}
-			//		}
-			//	}
-			//	else
-			//	{
-			//	super_val = 0;
-			//	super_angle = 0;
-			//	if super_zhopa < 300
-			//		{ super_zhopa += 30; }
-			//	}
-		
-			//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (e_super_now = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
-			//	{
-			//	if super_alp1 = 1
-			//		{
-			//		if super_alp > 0.2//0.7
-			//			{ super_alp -= 0.05; }
-			//			else
-			//			{ super_alp1 = 0 }
-			//		}
-			//		else
-			//		{
-			//		if super_alp < 1
-			//			{ super_alp += 0.05; }
-			//			else
-			//			{
-			//			if super_alpha > 0
-			//				{ super_alpha -= 0.05; }
-			//				else
-			//				{ super_alpha = 1; super_alp = 0.2; super_alp1 = 1; }
-			//			}
-			//		}
-			//	}
-			//	else
-			//	{ super_alp1 = 1; super_alp = 1; }
-			#endregion
-			}
-		draw_set_alpha(0.7);
-		draw_rectangle_color(0, global.size, 1280, global.size - 13, c_black, c_black, c_black, c_black, 0);
-		
-		if global.hand = -1
-			{
-			if super_now = super_need
 				{
-				draw_set_alpha(0.5 * super_alpha);
-				draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
-				
-				draw_set_alpha(0.3 * super_alpha);
-				draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
-				
+				butcolor = global.color_hero[global.enemy_hero];
+				if global.hand = -1
+					{
+					if global.swipe_ability = 0
+						{ butcolor = global.color_hero[global.enemy_hero]; }
+						else
+						{ butcolor = global.color_hero[global.hero]; }
+					}
+					else
+					{
+					if (global.hand = 0 && global.enemy_hero = 1)
+						{ butcolor = global.color_hero[global.hero]; }
+					}
 				}
+			#region Пацанкод
+				if global.hand = -1
+					{
+					if part_n = 1
+						{
+						if part_y < global.size - 10
+							{ part_y += part_yspd; }
+						if abs(part_x - (1280) * super_now1 / super_need) > 10
+							{ part_x -= sign(part_x - (1280) * super_now1 / super_need) * part_xspd; }
+							else
+							{
+							if part_y >= global.size - 10
+								{ part_n = 0; }
+							}
+						}
+					if part_n = 2
+						{
+						if part_s > 0
+							{ part_s -= 0.25; }
+							else
+							{ part_n = 0; }
+						}
 				
-				draw_set_alpha(1);
-				
-				draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
-				draw_set_alpha(0.2);
-				draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
-				draw_set_alpha(1);
-				
-				draw_set_alpha(1 - super_alp);
-				draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
-				draw_set_alpha(1);
-				//}
-			}
-			else
-			{
-			#region ЖОПА
-			//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1)))
-			//	{
-			//	draw_set_alpha(0.5 * super_alpha);
-			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
-				
-			//	draw_set_alpha(0.3 * super_alpha);
-			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
-				
-			//	draw_set_alpha(1);
-				
-			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
-			//	draw_set_alpha(0.2);
-			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
-			//	draw_set_alpha(1);
-				
-			//	draw_set_alpha(1 - super_alp);
-			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
-			//	draw_set_alpha(1);
-			//	}
-			//if e_super_now = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
-			//	{
-			//	draw_set_alpha(0.5 * super_alpha);
-			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
+					if global.swipe_ability = 0
+						{
+						if part_n > 0
+							{
+							draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							}
+						}
+						else
+						{
+						if part_n > 0
+							{
+							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							}
+						}
+					if part_n = 0
+						{
+						if super_now <= super_need
+							{
+							if super_now1 < super_now // super_need
+								{ super_now1 += 0.025 * super_need; }
+					
+							if super_now = 0
+								{
+								if super_now1 > 0
+									{ super_now1 -= 0.025 * super_need; }
+									else
+									{ super_now1 = 0; }
+								}
+							}
+						}
+					}
+					else
+					{
+					#region ЖОПА
+					//if part_n = 1
+					//	{
+					//	if (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))
+					//		{
+					//		if part_y < global.size - 10
+					//			{ part_y += part_yspd; }
+					//		if abs(part_x - (1280) * super_now1 / super_need) > 10
+					//			{ part_x -= sign(part_x - (1280) * super_now1 / super_need) * part_xspd; }
+					//			else
+					//			{
+					//			if part_y >= global.size - 10
+					//				{ part_n = 0; }
+					//			}
+					//		}
+					//	if (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
+					//		{
+					//		if part_y < global.size - 10
+					//			{ part_y += part_yspd; }
+					//		if abs(part_x - (1280) * super_now1 / e_super_need) > 10
+					//			{ part_x -= sign(part_x - (1280) * super_now1 / e_super_need) * part_xspd; }
+					//			else
+					//			{
+					//			if part_y >= global.size - 10
+					//				{ part_n = 0; }
+					//			}
+					//		}
+					//	}
+					//if part_n = 2
+					//	{
+					//	if part_s > 0
+					//		{ part_s -= 0.25; }
+					//		else
+					//		{ part_n = 0; }
+					//	}
 			
-			//	draw_set_alpha(0.3 * super_alpha);
-			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
-			
-			
-			//	draw_set_alpha(1);
-		
-			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
-			//	draw_set_alpha(0.2);
-			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
-			//	draw_set_alpha(1);
-		
-			//	draw_set_alpha(1 - super_alp);
-			//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
-			//	draw_set_alpha(1);
-			//	}
+					//if (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))
+					//	{
+					//	if part_n > 0
+					//		{
+					//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+					//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+					//		draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+					//		}
+					//	}
+					//if (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
+					//	{
+					//	if part_n > 0
+					//		{
+					//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / e_super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+					//		draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / e_super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+					//		draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+					//		}
+					//	}
+					//if part_n = 0
+					//	{
+					//	if (super_now <= super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (e_super_now <= e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
+					//		{
+					//		if (super_now1 < super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1)))//super_now1 < super_now
+					//			{ super_now1 += 0.025 * super_need; }
+					//			else
+					//			{ super_now1 += 0.025 * e_super_need; }
+					
+					//		if super_now = 0 && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))
+					//			{
+					//			if super_now1 > 0
+					//				{ super_now1 -= 0.025 * super_need; }
+					//				else
+					//				{ super_now1 = 0; }
+					//			}
+					//		if e_super_now = 0 && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
+					//			{
+					//			if super_now1 > 0
+					//				{ super_now1 -= 0.025 * e_super_need; }
+					//				else
+					//				{ super_now1 = 0; }
+					//			}
+					//		}
+					//	}
+					#endregion
+					}
+				//draw_text_transformed_t(mouse_x, mouse_y, string(part_n), 0.5, 0.5, 0, global.color_hero[global.hero], c_black);
 			#endregion
-			}
-		draw_set_font(global.game_font);
-		draw_text_transformed_t(640 * 2 - sprite_get_width(s_super) - string_width(super_text) * 0.2 / 2 + 20, global.size - 50 - 20 + super_zhopa, super_text, 0.2, 0.2, super_angle, butcolor, c_black);
+			var d_size;
+			d_size = 0.05;
+			//0.1 * (super_stage - 1) / 13;
 		
-		//draw_sprite_ext(s_super, 1, 640 + sprite_get_width(s_super) * (list_size1 * 1 + d_size) * super_scale / 2 + 40, global.size - 50 + super_x + super_zhopa, (list_size1 * 1 + d_size) * super_scale, (list_size1 * 1 + d_size) * super_scale, 0, c_white, 1);
-		if global.swipe_ability = 0
-			{
-			draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, butcolor, 0.5, butcolor, c_black);
-			draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, butcolor, 1, butcolor, c_black);
-			}
-			else
-			{
-			draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.enemy_hero], 0.5, global.color_hero[global.enemy_hero], c_black);
-			draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.enemy_hero], 1, global.color_hero[global.enemy_hero], c_black);
-			}
-		if global.hand = -1
-			{
-			if global.swipe_ability = 0
+			if global.hand = -1
 				{
-				draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0.5, global.color_white, c_black);
-				draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+				if super_now = super_need
+					{
+					if super_now1 = super_need
+						{
+						if super_zhopa > 0
+							{ super_zhopa -= 40; super_angle = 0; }
+							else
+							{
+							if super_time < 40
+								{
+								super_time += 1;
+								if abs(super_angle) > 1.5
+									{ super_angle += 2 * super_dir; }
+									else
+									{ super_angle = 0; }
+								}
+								else
+								{
+								if (super_angle < 5 && super_dir = 1) or (super_angle > -5 && super_dir = -1)
+									{ super_angle += 2 * super_dir; }
+									else
+									{
+									super_dir = -super_dir;
+									super_angle += 2 * super_dir;
+									super_val += 1;
+									if super_val = 5
+										{ super_time = 0; super_val = 0; }
+									}
+								}
+							}
+						}
+					}
+					else
+					{
+					super_val = 0;
+					super_angle = 0;
+					if super_zhopa < 300
+						{ super_zhopa += 30; }
+					}
+		
+				if super_now = super_need
+					{
+					if super_alp1 = 1
+						{
+						if super_alp > 0.2//0.7
+							{ super_alp -= 0.05; }
+							else
+							{ super_alp1 = 0 }
+						}
+						else
+						{
+						if super_alp < 1
+							{ super_alp += 0.05; }
+							else
+							{
+							if super_alpha > 0
+								{ super_alpha -= 0.05; }
+								else
+								{ super_alpha = 1; super_alp = 0.2; super_alp1 = 1; }
+							}
+						}
+					}
+					else
+					{ super_alp1 = 1; super_alp = 1; }
 				}
 				else
 				{
-				draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0., global.color_white, c_black);
-				draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+				#region ЖОПА
+				//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (e_super_now = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
+				//	{
+				//	if (super_now1 = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (super_now1 = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
+				//		{
+				//		if super_zhopa > 0
+				//			{ super_zhopa -= 40; super_angle = 0; }
+				//			else
+				//			{
+				//			if super_time < 40
+				//				{
+				//				super_time += 1;
+				//				if abs(super_angle) > 1.5
+				//					{ super_angle += 2 * super_dir; }
+				//					else
+				//					{ super_angle = 0; }
+				//				}
+				//				else
+				//				{
+				//				if (super_angle < 5 && super_dir = 1) or (super_angle > -5 && super_dir = -1)
+				//					{ super_angle += 2 * super_dir; }
+				//					else
+				//					{
+				//					super_dir = -super_dir;
+				//					super_angle += 2 * super_dir;
+				//					super_val += 1;
+				//					if super_val = 5
+				//						{ super_time = 0; super_val = 0; }
+				//					}
+				//				}
+				//			}
+				//		}
+				//	}
+				//	else
+				//	{
+				//	super_val = 0;
+				//	super_angle = 0;
+				//	if super_zhopa < 300
+				//		{ super_zhopa += 30; }
+				//	}
+		
+				//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1))) or (e_super_now = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1)))
+				//	{
+				//	if super_alp1 = 1
+				//		{
+				//		if super_alp > 0.2//0.7
+				//			{ super_alp -= 0.05; }
+				//			else
+				//			{ super_alp1 = 0 }
+				//		}
+				//		else
+				//		{
+				//		if super_alp < 1
+				//			{ super_alp += 0.05; }
+				//			else
+				//			{
+				//			if super_alpha > 0
+				//				{ super_alpha -= 0.05; }
+				//				else
+				//				{ super_alpha = 1; super_alp = 0.2; super_alp1 = 1; }
+				//			}
+				//		}
+				//	}
+				//	else
+				//	{ super_alp1 = 1; super_alp = 1; }
+				#endregion
 				}
-			}
-			else
-			{
-			#region ЖОПА
-			//if global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.hero != 1)
-			//	{ draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 + super_x + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black); }
-			//	else
-			//	{ draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 + super_x + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black); }
-			#endregion
-			}
-		//draw_sprite_ext(s_super_black, super_stage, 86 * (list_size1 * 1.3 + d_size)/*- 90 - 500 - super_x*/, global.size - 40 - 1 + super_x, list_size1 * 1.3 + d_size, list_size1 * 1.3 + d_size, 0, c_white, 1);
-		//draw_sprite_ext(asset_get_index("s_super_" + global.hero_code_name[global.enemy_hero]), e_skill[global.rounds], 1280 - (640 - 90 - 500) + super_x, global.size - 80, -list_size1 * 1, list_size1 * 1, 0, c_white, 1);
-	#endregion
+			draw_set_alpha(0.7);
+			draw_rectangle_color(0, global.size, 1280, global.size - 13, c_black, c_black, c_black, c_black, 0);
+		
+			if global.hand = -1
+				{
+				if super_now = super_need
+					{
+					draw_set_alpha(0.5 * super_alpha);
+					draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
+				
+					draw_set_alpha(0.3 * super_alpha);
+					draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
+					}
+				
+					draw_set_alpha(1);
+				
+					draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
+					draw_set_alpha(0.2);
+					draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
+					draw_set_alpha(1);
+				
+					draw_set_alpha(1 - super_alp);
+					draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
+					draw_set_alpha(1);
+					//}
+				}
+				else
+				{
+				#region ЖОПА
+				//if (super_now = super_need && (global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.enemy_hero = 1)))
+				//	{
+				//	draw_set_alpha(0.5 * super_alpha);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
+				
+				//	draw_set_alpha(0.3 * super_alpha);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
+				
+				//	draw_set_alpha(1);
+				
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
+				//	draw_set_alpha(0.2);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
+				//	draw_set_alpha(1);
+				
+				//	draw_set_alpha(1 - super_alp);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
+				//	draw_set_alpha(1);
+				//	}
+				//if e_super_now = e_super_need && (global.hand = 0 && global.hero = 1 or (global.hand = 1 && global.hero != 1))
+				//	{
+				//	draw_set_alpha(0.5 * super_alpha);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11 - super_alp * 4 * 8, butcolor, butcolor, butcolor, butcolor, 0);
+			
+				//	draw_set_alpha(0.3 * super_alpha);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11 - super_alp * 2 * 6, butcolor, butcolor, butcolor, butcolor, 0);
+			
+			
+				//	draw_set_alpha(1);
+		
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11, butcolor, butcolor, butcolor, butcolor, 0);
+				//	draw_set_alpha(0.2);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 3, c_black, c_black, c_black, c_black, 0);
+				//	draw_set_alpha(1);
+		
+				//	draw_set_alpha(1 - super_alp);
+				//	draw_rectangle_color(0, global.size, (1280) * super_now1 / e_super_need, global.size - 11, c_white, c_white, c_white, c_white, 0);
+				//	draw_set_alpha(1);
+				//	}
+				#endregion
+				}
+			draw_set_font(global.game_font);
+			draw_text_transformed_t(640 * 2 - sprite_get_width(s_super) - string_width(super_text) * 0.2 / 2 + 20 + pvp_xx / 1.5, global.size - 50 - 20 + super_zhopa, super_text, 0.2, 0.2, super_angle, butcolor, c_black);
+		
+			//draw_sprite_ext(s_super, 1, 640 + sprite_get_width(s_super) * (list_size1 * 1 + d_size) * super_scale / 2 + 40, global.size - 50 + super_x + super_zhopa, (list_size1 * 1 + d_size) * super_scale, (list_size1 * 1 + d_size) * super_scale, 0, c_white, 1);
+		
+			///////////////
+			if global.pvp = 0
+				{
+				if global.swipe_ability = 0
+					{
+					draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, butcolor, 0.5, butcolor, c_black);
+					draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, butcolor, 1, butcolor, c_black);
+					}
+					else
+					{
+					draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.enemy_hero], 0.5, global.color_hero[global.enemy_hero], c_black);
+					draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.enemy_hero], 1, global.color_hero[global.enemy_hero], c_black);
+					}
+				if global.hand = -1
+					{
+					if global.swipe_ability = 0
+						{
+						draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0.5, global.color_white, c_black);
+						draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+						}
+						else
+						{
+						draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0., global.color_white, c_black);
+						draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+						}
+					}
+					else
+					{
+					#region ЖОПА
+					//if global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.hero != 1)
+					//	{ draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 + super_x + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black); }
+					//	else
+					//	{ draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 + super_x + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black); }
+					#endregion
+					}
+				}
+				else
+				{
+				if global.now = 1
+					{
+					//if global.swipe_ability = 0
+					//	{
+					//	draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, butcolor, 0.5, butcolor, c_black);
+					//	draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, butcolor, 1, butcolor, c_black);
+					//	}
+					//	else
+					//	{
+					//	draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.enemy_hero], 0.5, global.color_hero[global.enemy_hero], c_black);
+					//	draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.enemy_hero], 1, global.color_hero[global.enemy_hero], c_black);
+					//	}
+					//if global.hand = -1
+					//	{
+					//	if global.swipe_ability = 0
+					//		{
+					//		draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0.5, global.color_white, c_black);
+					//		draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+					//		}
+					//		else
+					//		{
+					//		draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0., global.color_white, c_black);
+					//		draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+					//		}
+					//	}
+					//	else
+					//	{
+					//	#region ЖОПА
+					//	//if global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.hero != 1)
+					//	//	{ draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 + super_x + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black); }
+					//	//	else
+					//	//	{ draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2/* - 20*/, global.size - 50 + super_x + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black); }
+					//	#endregion
+					//	}
+					}
+					else
+					{
+					if global.swipe_ability = 0
+						{
+						draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, butcolor, 0.5, butcolor, c_black);
+						draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, butcolor, 1, butcolor, c_black);
+						}
+						else
+						{
+						draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.hero], 0.5, global.color_hero[global.hero], c_black);
+						draw_sprite_ext_t(s_super, 0, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx/* - 20*/, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_hero[global.hero], 1, global.color_hero[global.hero], c_black);
+						}
+					if global.hand = -1
+						{
+						if global.swipe_ability != 0
+							{
+							draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0.5, global.color_white, c_black);
+							draw_sprite_ext_t(s_super, global.hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+							}
+							else
+							{
+							draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa + 8, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 0., global.color_white, c_black);
+							draw_sprite_ext_t(s_super, global.enemy_hero + 1, 640 * 2 - sprite_get_width(s_super) / 2 + pvp_xx, global.size - 50 - 20 + super_zhopa, list_size1 * 1 + d_size, list_size1 * 1 + d_size, super_angle, global.color_white, 1, global.color_white, c_black);
+							}
+						}
+					}
+				}
+			//////////////
+		
+			//draw_sprite_ext(s_super_black, super_stage, 86 * (list_size1 * 1.3 + d_size)/*- 90 - 500 - super_x*/, global.size - 40 - 1 + super_x, list_size1 * 1.3 + d_size, list_size1 * 1.3 + d_size, 0, c_white, 1);
+			//draw_sprite_ext(asset_get_index("s_super_" + global.hero_code_name[global.enemy_hero]), e_skill[global.rounds], 1280 - (640 - 90 - 500) + super_x, global.size - 80, -list_size1 * 1, list_size1 * 1, 0, c_white, 1);
+		#endregion
+		}
 	#region Способность Шерифа
 		if global.hero = 6 && (global.player_object).super = 1//(global.hero = 6 or (global.enemy_hero = 6 && global.hero = 1 && global.swipe_ability)) && (global.player_object).super = 1
 			{
@@ -7284,6 +8216,8 @@ if global.hero = 1 && global.enemy_hero = 1
 						{ first_player = 1; }
 					}
 				
+				if global.pvp = 1
+					{ global.now = !first_player; }
 				coin_stage = 4;
 				coin_a = 0;
 				}
@@ -7340,8 +8274,8 @@ if global.hero = 1 && global.enemy_hero = 1
 		if first_player != -1
 			{
 			draw_set_font(global.game_font);
-			draw_text_transformed_t( name_x,  name_y, coin_you[first_player], name_s * 0.3, name_s * 0.3, 0, global.color_white, c_black);
-			draw_text_transformed_t(first_x, first_y, coin_you[2], first_s * 0.3, first_s * 0.3, 0, global.color_white, c_black);
+			draw_text_transformed_t( name_x - global.pvp * 30,  name_y, coin_you[first_player], name_s * 0.3, name_s * 0.3, 0, global.color_white, c_black);
+			draw_text_transformed_t(first_x + global.pvp * 30, first_y, coin_you[2], first_s * 0.3, first_s * 0.3, 0, global.color_white, c_black);
 			}
 		}
 #endregion
@@ -7432,7 +8366,7 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						var butsize;
 						butsize = theme_s[i] * 0.65 * sprite_get_width(s_themes_button) / 2;
-						if first_player = 1 && point_in_rectangle(mouse_x, mouse_y, theme_x[i] - butsize, theme_y[i] - butsize, theme_x[i] + butsize, theme_y[i] + butsize)
+						if (first_player = 1 or global.pvp) && point_in_rectangle(mouse_x, mouse_y, theme_x[i] - butsize, theme_y[i] - butsize, theme_x[i] + butsize, theme_y[i] + butsize)
 							{
 							if mouse_check_button(mb_left)
 								{ theme_s[i] = 1.1; }
@@ -7593,7 +8527,7 @@ if global.hero = 1 && global.enemy_hero = 1
 				theme_points_time += 1;
 				if theme_points_time = 20
 					{
-					if first_player = 0 && theme_points = ""
+					if (first_player = 0 && global.pvp = 0) && theme_points = ""
 						{
 						var numnum;
 						if theme_choose = 1
@@ -8554,7 +9488,7 @@ if global.hero = 1 && global.enemy_hero = 1
 				{ win_plas += 0.4; draw_sprite_ext(s_plash_win_f, win_plas, 640, -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size * finplas, list_size, 0, c_white, 1); }
 			var gold_c;
 			gold_c = make_color_rgb(252,232,131);
-			draw_set_font(global.game_font);//draw_set_font(f_win_regular);
+			draw_set_font(global.game_font);
 			if os_get_language() = "ru"
 				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "ПОБЕДА!", finplas * 0.18, 0.18, 0, gold_c, c_black); }
 				else
@@ -8577,43 +9511,6 @@ if global.hero = 1 && global.enemy_hero = 1
 				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "ПОРАЖЕНИЕ", finplas * 0.18, 0.18, 0, global.color_white, c_black); }
 			}
 			
-		//draw_set_font(global.game_font);
-		//draw_text_transformed_t(640, global.size / 2 + 200 + fin_y, "TAP TO RESTART", 0.2, 0.2, 0, c_white, c_black);
-		
-		//draw_set_color(c_black);
-		//draw_set_alpha(0.4);
-		//draw_text_transformed(640 - 1, 100 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "ACCURACY: " + string(round(100 * accuracy_true / accuracy_all)) + "%", finplas * 0.18, 0.18, 0);
-		//draw_set_color(c_white);
-		//draw_set_alpha(1);
-		//draw_text_transformed(640, 100 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "ACCURACY: " + string(round(100 * accuracy_true / accuracy_all)) + "%", finplas * 0.18, 0.18, 0);
-		
-		//var money, respect;
-		//money = 25;
-		//if whowin = 1
-		//	{ respect = "+1"; }
-		//	else
-		//	{ respect = "-1"; }
-		//if roundskul[1] = 1
-		//	{ money += 25; }
-		//if roundskul[2] = 1
-		//	{ money += 25; }
-		//if roundskul[3] = 1 or (roundskul[3] = 0 && money > 25)
-		//	{ money += 25; }
-			
-		
-		//draw_set_color(c_black);
-		//draw_set_alpha(0.4);
-		//draw_text_transformed(640 - 1, 200 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "MONEY +" + string(money) + "$", finplas * 0.18, 0.18, 0);
-		//draw_set_color(c_white);
-		//draw_set_alpha(1);
-		//draw_text_transformed(640, 200 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "MONEY +" + string(money) + "$", finplas * 0.18, 0.18, 0);
-		
-		//draw_set_color(c_black);
-		//draw_set_alpha(0.4);
-		//draw_text_transformed(640 - 1, 300 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + 3 + list_y, "RESPECT " + string(respect), finplas * 0.18, 0.18, 0);
-		//draw_set_color(c_white);
-		//draw_set_alpha(1);
-		//draw_text_transformed(640, 300 - fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "RESPECT " + string(respect), finplas * 0.18, 0.18, 0);
 		if fin_y > 0
 			{ fin_y -= 40; }
 			else
@@ -8621,18 +9518,60 @@ if global.hero = 1 && global.enemy_hero = 1
 			if finplas < 1
 				{
 				finplas += 0.1;
-				if finplas = 1
+				if finplas >= 1
 					{
-					//if whowin = 1
-					//	{
-					//	if global.sound
-					//		{ audio_play_sound(sd_win, 2, 0); }
-					//	}
-					//	else
-					//	{
-					//	//if global.sound
-					//	//	{ audio_play_sound(sd_lose, 2, 0); }
-					//	}
+					for(i=1;i<=3;i++)
+						{
+						if whowin = 1
+							{
+							if global.quests_a[i] = 1
+								{
+								if (global.quests_t[i] = 1 && (global.hero = 1 or global.hero = 4))
+								or (global.quests_t[i] = 2 && (global.hero = 2 or global.hero = 6))
+								or (global.quests_t[i] = 3 && (global.hero = 3 or global.hero = 7))
+								or (global.quests_t[i] = 4 && (global.hero = 5 && global.bill_propil = 0))
+									{
+									if global.quests_n_now[i] < global.quests_n_all[i]
+										{ global.quests_n_now[i] += 1; }
+									}
+								if global.quests_t[i] = 14 && global.pralna = 1
+									{
+									if global.quests_n_now[i] < global.quests_n_all[i]
+										{ global.quests_n_now[i] += 1; }
+									}
+								if global.quests_t[i] = 15 && global.bistra = 1
+									{
+									if global.quests_n_now[i] < global.quests_n_all[i]
+										{ global.quests_n_now[i] += 1; }
+									}
+								if global.quests_t[i] = 23 && global.spasabnast = 0
+									{
+									if global.quests_n_now[i] < global.quests_n_all[i]
+										{ global.quests_n_now[i] += 1; }
+									}
+								if global.quests_t[i] = 20 && global.vremiaiada >= room_speed * 15
+									{
+									if global.quests_n_now[i] < global.quests_n_all[i]
+										{ global.quests_n_now[i] += 1; }
+									}
+								ini_open("Music.ini");
+									ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+								ini_close();
+								}
+							}
+						if global.quests_a[i] = 1
+							{
+							if global.quests_t[i] = 11 or global.quests_t[i] = 12 or global.quests_t[i] = 13
+								{
+								if global.quests_n_now[i] < global.quests_n_all[i]
+									{ global.quests_n_now[i] += 1; }
+								}
+							
+							ini_open("Music.ini");
+								ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+							ini_close();
+							}
+						}
 					}
 				}
 				else
@@ -8805,7 +9744,7 @@ if global.hero = 1 && global.enemy_hero = 1
 				{
 				if g_rank_type = 1
 					{
-					if global.rank_stars >= 69//= 69 or global.rank_stars = 70
+					if global.rank_stars >= 69
 						{
 						global.legend_rank += irandom_range(1, 10);
 							if global.ledend_rank > 100
@@ -8913,15 +9852,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								{ global.rank_stars -= 1; }
 								else
 								{ g_message = 1; }
-							//if global.rank_stars = 69 or global.rank_stars = 70
-							//	{
-							//	global.legend_rank += irandom_range(1, 10);
-							//	if global.ledend_rank > 100
-							//		{ global.legend_rank += 1; }
-							//	ini_open("Music.ini");
-							//		ini_write_string("Eho", "eho", string(global.legend_rank));
-							//	ini_close();
-							//	}
+							
 							g_rank_stage = 5;
 							g_skul_y = 0;
 							g_skul_s = 0;
@@ -8932,14 +9863,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							}
 						}
 					}
-				//if g_rank_type = 2
-				//	{
-				//	g_rank_stage = 5;
-				//	}
-				//if g_rank_type = 3
-				//	{
-				//	g_rank_stage = 5;
-				//	}
+				
 				if g_rank_type = 4
 					{
 					//if g_skul_s > 0
@@ -8981,8 +9905,6 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						if roundskul_n[3] != 0
 							{
-							//txt_gold = "+5©";
-							//global.gold += 5;
 							var pg;
 							pg = 15 - global.player_rank + 5;
 							global.gold += pg;
@@ -8990,7 +9912,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							txt_cash = "";
 							ini_write_string("Sounds", "sound_on_g", string(global.gold));
 							}
-						//g_rank_stage = 7;
+						
 						}
 					if g_rank_type = 2
 						{
@@ -9038,8 +9960,6 @@ if global.hero = 1 && global.enemy_hero = 1
 								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "+" + string(pc) + "(+" + string(pc1) + ")" + "ç";
 								}
-							//txt_gold = "+10©";
-							//txt_cash = "+1ç";
 							
 							ini_write_string("Sounds", "sound_on_g", string(global.gold));
 							ini_write_string("Sounds", "sound_false_c", string(global.cash));
@@ -9076,23 +9996,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "+" + string(pc) + "(+" + string(pc1) + ")" + "ç";
 								}
-							//global.gold += 15 - global.player_rank + 10;
-							//global.cash += 1;
-							//if global.player_rank <= 10
-							//	{ global.cash += 2; }
-							//if global.player_rank <= 5
-							//	{ global.cash += 3; }
-							//if global.player_rank <= 3
-							//	{ global.cash += 4; }
-							//if global.player_rank <= 2
-							//	{ global.cash += 4; }
-							//if global.player_rank <= 1
-							//	{ global.cash += 5; }
-							//if global.player_rank <= 0
-							//	{ global.cash += 10; }
 							
-							//txt_gold = "+" + string(global.gold) + "©";
-							//txt_cash = "+" + string(global.cash) + "ç";
 							ini_write_string("Sounds", "sound_on_g", string(global.gold));
 							ini_write_string("Sounds", "sound_false_c", string(global.cash));
 							}
@@ -9132,12 +10036,6 @@ if global.hero = 1 && global.enemy_hero = 1
 								txt_cash = "+" + string(pc) + "(+" + string(pc1) + ")" + "ç";
 								}
 							
-							//txt_gold = "+" + string(pg) + "©";
-							//txt_cash = "+" + string(pc) + "ç";
-							//txt_gold = "+10 (+10)©";
-							//txt_cash = "+1 (+3)ç";
-							//global.gold += 20;
-							//global.cash += 4;
 							ini_write_string("Sounds", "sound_on_g", string(global.gold));
 							ini_write_string("Sounds", "sound_false_c", string(global.cash));
 							}
@@ -9232,15 +10130,6 @@ if global.hero = 1 && global.enemy_hero = 1
 					{ draw_text_transformed_t(640, global.size - 60 + fin_y, "ВЕРНУТЬСЯ В МЕНЮ", 0.2, 0.2, 0, global.color_white, c_black); }
 					else
 					{ draw_text_transformed_t(640, global.size - 60 + fin_y, "TAP TO GO MENU", 0.2, 0.2, 0, global.color_white, c_black); }
-				
-				if mouse_check_button_pressed(mb_left)
-					{
-					global.p_totem[1] = -1;
-					global.p_totem[2] = -1;
-					global.p_totem[3] = -1;
-					if room_gt = 0
-						{ room_goto_t("menu"); room_gt = 1; }
-					}
 				}
 			//////
 			if g_rank_stage >= 7
@@ -9255,17 +10144,15 @@ if global.hero = 1 && global.enemy_hero = 1
 							{
 							if global.wins = 3 or global.wins = 6 or global.wins = 10 or global.wins = 20
 								{
-								var a;
-								a = requestReview();
+								//var a;
+								//a = requestReview();
 								requestReview();
 								
 								//global.request = 1;
 								
-								if a = 1
-									{
-									GoogleAnalytics_SendEvent("REQUEST","Игрок нажал на отзыв!");
-									global.request = 1;
-									}
+								GoogleAnalytics_SendEvent("REQUEST","Игрок нажал на отзыв!");
+								global.request = 1;
+								
 								}
 							req = 1;
 							}
@@ -9274,9 +10161,8 @@ if global.hero = 1 && global.enemy_hero = 1
 						ini_write_string("Request", "request", string(global.request));
 						ini_write_string("Request", "wins", string(global.wins));
 							
-					global.request = ini_read_real("Request", "request", 0);
-					global.wins    = ini_read_real("Request", "wins", 0);
-							
+						global.request = ini_read_real("Request", "request", 0);
+						global.wins    = ini_read_real("Request", "wins", 0);	
 					ini_close();
 					}
 					else
@@ -9433,7 +10319,6 @@ if global.hero = 1 && global.enemy_hero = 1
 				}	
 			if g_message = 1
 				{
-				//g_skul_y = 0;
 				draw_set_font(global.game_font);
 				if os_get_language() = "ru"
 					{ draw_text_transformed_t(640, global.size - 180 + fin_y, "ВЫ НЕ ТЕРЯЕТЕ ЗВЕЗДУ\nНА ЭТОМ РАНГЕ", 0.15, 0.15, 0, global.cash_color, c_black); }
@@ -9452,6 +10337,83 @@ if global.hero = 1 && global.enemy_hero = 1
 			}
 		if o_control.back_spd > 0
 			{ o_control.back_spd -= 0.05; }
+			
+		if g_rank_stage = 8 or g_rank_stage = 7
+			{
+			var peponka;
+			peponka = 0;
+			//////
+			#region Квесты
+				for(i=1;i<=3;i++)
+					{
+					if global.quests_a[i] = 1
+						{
+						if global.quests_n_now[i] = global.quests_n_all[i]
+							{
+							draw_set_alpha(0.25);
+							draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
+							draw_set_alpha(1);
+								
+							draw_sprite_ext(s_light, 0, 640, global.size / 2, 0.5, 0.5, 0, c_white, 0.7);
+							draw_sprite_ext(s_quests_lists, global.quests_t[i], 640, global.size / 2 - 192 * 0.7, 0.7, 0.7, 0, c_black, 0.5);
+							draw_sprite_ext_t(s_quests_lists, global.quests_t[i], 640, global.size / 2 - 192 * 0.7, 0.7, 0.7, 0, c_white, 1, c_white, c_black);
+								
+							draw_text_ext_transformed_t(640, global.size / 2 - 192 * 0.7 + 200, global.quests_d[i], -1, 2000, 0.08, 0.08, 0, global.color_white, c_black);
+							if os_get_language() = "ru"
+								{ draw_text_ext_transformed_t(640, global.size / 2 - 192 * 0.7, "ВЫПОЛНЕНО!", -1, 2000, 0.15, 0.17, 12, c_orange, c_black); }
+								else
+								{ draw_text_ext_transformed_t(640, global.size / 2 - 192 * 0.7, "COMPLITED!", -1, 2000, 0.15, 0.17, 12, c_orange, c_black); }
+								
+							if global.quests_pt[i] = "©"
+								{ draw_text_ext_transformed_t(640, global.size / 2 - 192 * 0.7 + 280, string(global.quests_p[i]) + string(global.quests_pt[i]), -1, 2000, 0.3, 0.3, 0, global.gold_color, c_black); }
+								else
+								{ draw_text_ext_transformed_t(640, global.size / 2 - 192 * 0.7 + 280, string(global.quests_p[i]) + string(global.quests_pt[i]), -1, 2000, 0.3, 0.3, 0, global.cash_color, c_black); }
+							
+							peponka = 1;
+							if mouse_check_button_released(mb_left)
+								{
+								peponka = 0;
+								global.quests_a[i] = 0;
+								
+								if global.quests_pt[i] = "©"
+									{ global.gold += global.quests_p[i]; }
+									else
+									{ global.cash += global.quests_p[i]; }
+								
+								ini_open("Music.ini");
+									ini_write_string("Qual", "qual_a_" + string(i), "0");
+									
+									ini_write_string("Sounds", "sound_on_g", string(global.gold));
+									ini_write_string("Sounds", "sound_false_c", string(global.cash));
+									
+									if global.quests_t[i] = 18
+										{
+										for(j=2;j<=7;j++)
+											{
+											ini_write_string("Var", "v" + string(j), "0");
+											global.varr[j] = ini_read_real("Var", "v" + string(i), 0);
+											}
+										}
+								ini_close();
+								
+								if global.sound
+									{ audio_play_sound(sd_gold, 3, 0); }
+								io_clear();
+								}
+							}
+						}
+					}
+			#endregion
+			//////
+			if mouse_check_button_pressed(mb_left) && peponka = 0
+				{
+				global.p_totem[1] = -1;
+				global.p_totem[2] = -1;
+				global.p_totem[3] = -1;
+				if room_gt = 0
+					{ room_goto_t("menu"); room_gt = 1; }
+				}
+			}
 		}
 #endregion
 #region Хелсбар
@@ -10708,5 +11670,5 @@ if lines_true
 #endregion
 #region Отладка
 	//draw_set_font(global.game_font);
-	//draw_text_transformed(mouse_x, mouse_y, string(totem_txt), 0.2, 0.2, 0);//draw_text_transformed_t(mouse_x, mouse_y, string(global.tot), 0.25, 0.25, 0, c_white, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(e_super_now1) + "~" + string(e_super_need), 0.2, 0.2, 0, c_white, c_black);
 #endregion

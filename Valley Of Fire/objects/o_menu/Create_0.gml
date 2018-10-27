@@ -998,7 +998,7 @@
 #endregion
 #region Квесты
 	global.quests_scale   = 0;
-	global.quests_scale1  = 0.5;
+	global.quests_scale1  = 0.7;
 	global.quests_refresh = 1;
 	
 	nnn[1] = 0;
@@ -1194,12 +1194,12 @@
 	for(i=1;i<=3;i++)
 		{
 		global.quests_a[i] = ini_read_real("Qual", "qual_a_" + string(i), 1);
-		global.quests_n_now[i] = ini_read_real("Qual", "qual_nno_" + string(i), 1);
+		//global.quests_n_now[i] = ini_read_real("Qual", "qual_nno_" + string(i), 1);
 		global.quests_s[i] = 0.5;
 		//global.quests_t[i] = irandom_range(1, 26);
 		
 		global.quests_n_all[i] = 1;
-		global.quests_n_now[i] = 0;
+		//global.quests_n_now[i] = 0;
 			
 		if nnn[i] = 1//global.quests_a[i] = 0
 			{
@@ -1288,9 +1288,11 @@
 				}
 				
 			ini_write_string("Qual", "qual_a_" + string(i), "1");
+			ini_write_string("Qual", "qual_nno_" + string(i), "0");
 			global.quests_a[i] = ini_read_real("Qual", "qual_a_" + string(i), 1);
 			}
 		
+		global.quests_n_now[i] = ini_read_real("Qual", "qual_nno_" + string(i), 1);
 		global.quests_pt[i] = ini_read_string("Qual", "qual_pt_" + string(i), "©");
 		global.quests_n[i]  = ini_read_real("Qual", "qual_n_" + string(i), 1);
 		#region Задания 2
@@ -1360,10 +1362,15 @@
 						{
 						global.quests_n_all[i] = 3;
 						}
-			
+					
 					if global.quests_t[i] = 24
 						{
 						global.quests_n_all[i] = 300;
+						}
+						
+					if global.quests_t[i] = 25
+						{
+						global.quests_n_all[i] = 3;
 						}
 			
 					if global.quests_t[i] = 26
@@ -1393,7 +1400,7 @@
 				global.quests_d[i] += "ОХОТНИЦУ ИЛИ ШАМАНА";
 			break;
 			case 4:
-				global.quests_d[i] += "БИЛЛА МЛАДШЕГО";
+				global.quests_d[i] += "БИЛЛА СТАРШЕГО";
 			break;
 			case 5:
 				global.quests_d[i] += "КАРТ";
@@ -1494,6 +1501,7 @@
 	global.g_stars_need = 0;
 	global.g_stars_now = 0;
 	global.quick = 0;
+	global.pvp   = 0;
 	anim_skul = 0;
 	#region ПЕРЕМЕННЫЕ
 		var skul_i;
@@ -1671,10 +1679,10 @@
 			menu_totems_s = 1;
 			menu_totems_n = "TOTEMS";
 			
-			menu_global.quests_x = 1280 - 150;
-			menu_global.quests_y = global.size - 150 - 320;
-			menu_global.quests_s = 1;
-			menu_global.quests_n = "QUESTS";
+			menu_quests_x = 1280 - 150;
+			menu_quests_y = global.size - 150 - 320;
+			menu_quests_s = 1;
+			menu_quests_n = "QUESTS";
 			
 			menu_shop_x   = 1280 - 150;
 			menu_shop_y   = global.size - 150;
@@ -1693,10 +1701,10 @@
 			menu_totems_s = 1;
 			menu_totems_n = "TOTEMS";
 			
-			menu_global.quests_x = 1280 - 150;
-			menu_global.quests_y = global.size - 100 - 150;
-			menu_global.quests_s = 1;
-			menu_global.quests_n = "QUESTS";
+			menu_quests_x = 1280 - 150;
+			menu_quests_y = global.size - 100 - 150;
+			menu_quests_s = 1;
+			menu_quests_n = "QUESTS";
 			
 			menu_shop_x   = 1280 - 150;
 			menu_shop_y   = global.size - 100;

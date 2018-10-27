@@ -87,11 +87,33 @@ if !enemy
 	if enemy
 		{
 		draw_sprite_ext(sprite_index, image_index, x + 28 + prx, y - 15 + o_control.back_train_y1 + pry, sc * scale, scale, image_angle, c_white, 1);
-		
+		if global.pvp = 1
+			{
+			if global.now = 0
+				{ draw_sprite_ext(sprite_index, image_index, x + 28 + prx, y - 15 + o_control.back_train_y1 + pry, sc * scale, scale, 0, c_black, 0.45); }
+			}
+			
 		if global.idol[1] = 4
 			{
 			if fire_time = 0
 				{
+				////////// КВЕСТЫ
+				for(i=1;i<=3;i++)
+					{
+					if global.quests_a[i] = 1
+						{
+						if global.quests_t[i] = 24
+							{
+							if global.quests_n_now[i] < global.quests_n_all[i]
+								{ global.quests_n_now[i] += o_list.atk / 10; }
+							}
+								
+						ini_open("Music.ini");
+							ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+						ini_close();
+						}
+					}
+				////////// КВЕСТЫ
 				fire_time = room_speed;
 				o_list.e_hp -= o_list.atk / 10;
 				o_list.dop_i[2] = 8;
@@ -107,7 +129,7 @@ if !enemy
 				else
 				{ fire_time -= 1; }
 			draw_sprite_ext(sprite_index, image_index, x + 28 + prx, y - 15 + o_control.back_train_y2 + pry, sc * scale, scale, 0, make_color_rgb(253,265,15), 0.2);
-		
+			
 			abil_n += 0.4;
 			draw_sprite_ext(s_fire, abil_n, x + 5 + prx, y - 145 - 100 + o_control.back_train_y2 + pry, sc * scale * 1.3, scale * 1.3, 0, c_white, 1);
 			//if poisoned > 0
@@ -115,6 +137,7 @@ if !enemy
 			}
 		if poisoned > 0
 			{
+			global.vremiaiada += 1;
 			poisoned -= 1;
 			
 			if poisoned mod room_speed = 0
@@ -135,10 +158,21 @@ if !enemy
 			abil_n += 0.4;
 			draw_sprite_ext(s_abil_thing_huntress, abil_n, x + 5 + prx, y - 145 - 100 + o_control.back_train_y2 + pry, sc * scale * 1.3, scale * 1.3, 0, c_white, 1);
 			}
+			else
+			{
+			if global.vremiaiada < room_speed * 15
+				{ global.vremiaiada = 0; }
+			}
 		}
 		else
 		{
 		draw_sprite_ext(sprite_index, image_index, x - 28 + prx, y - 15 + o_control.back_train_y2 + pry, sc * scale, scale, 0, c_white, 1);
+		
+		if global.pvp = 1
+			{
+			if global.now = 1
+				{ draw_sprite_ext(sprite_index, image_index, x - 28 + prx, y - 15 + o_control.back_train_y2 + pry, sc * scale, scale, 0, c_black, 0.45); }
+			}
 		
 		if global.idol[1] = 4
 			{
@@ -190,6 +224,7 @@ if !enemy
 			draw_sprite_ext(s_abil_thing_huntress, abil_n, x + 5 + prx, y - 145 - 100 + o_control.back_train_y2 + pry, sc * scale * 1.3, scale * 1.3, 0, c_white, 1);
 			}
 		}
+	
 	if change = 5 && hero = 6 && image_index = 50 && stun_seconds >= 2
 		{
 		image_index = 28;
@@ -409,6 +444,20 @@ if !enemy
 				
 				if o_list.e_hp > 0 && o_list.hp > 0
 					{ o_list.e_hp -= dynamit_d; }
+				
+				for(i=1;i<=3;i++)
+					{
+					if global.quests_t[i] = 21 && o_list.e_hp <= 0
+						{
+						if global.quests_n_now[i] < global.quests_n_all[i]
+							{ global.quests_n_now[i] += 1; }
+					
+						ini_open("Music.ini");
+							ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+						ini_close();
+						}
+					}
+				 //&& global.e_totem_a[8] = 0
 				
 				if (global.enemy_object).diego_dynamit = 1
 					{

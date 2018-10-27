@@ -316,5 +316,5 @@
 #endregion
 #region Отладка
 	//draw_set_font(global.game_font);
-	//draw_text_transformed_t(mouse_x, mouse_y, string(global.room_rmp) + "~" + string(global.room_rm), 0.25, 0.25, 0, c_white, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(global.quests_n_now[1]) + "~" + string(global.quests_n_now[2]) + "~" + string(global.quests_n_now[3]), 0.25, 0.25, 0, c_white, c_black);
 #endregion

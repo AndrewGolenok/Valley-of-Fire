@@ -278,6 +278,9 @@
 			
 		theme_text[0] = ini_read_string("Text", "theme_text_0", "");
 		theme_text[1] = ini_read_string("Text", "theme_text_1", "");
+		
+		if global.pvp = 1
+			{ theme_text[1] = theme_text[0]; }
 			
 		win_text[0] = ini_read_string("Text", "win_text_0", "");
 		win_text[1] = ini_read_string("Text", "win_text_1", "");
@@ -379,6 +382,12 @@
 			coin_you[2]  = "FIRST"
 			coin_text1 = "GET READY?";
 			coin_text2 = "GO!";
+			
+			if global.pvp = 1
+				{
+				coin_you[1]  = "PLAYER1";
+				coin_you[0]  = "PLAYER2";
+				}
 			}
 			else
 			{
@@ -387,6 +396,12 @@
 			coin_you[2]  = "ПЕРВЫЙ"
 			coin_text1 = "ВЫ ГОТОВЫ?";
 			coin_text2 = "ДУЭЛЬ!";
+			
+			if global.pvp = 1
+				{
+				coin_you[1]  = "ИГРОК1";
+				coin_you[0]  = "ИГРОК2";
+				}
 			}
 		
 		coin_text1_a = 0;
@@ -904,17 +919,18 @@
 	#endregion
 #endregion
 #region Суперудар Кнопка
-	super_need  = 3;
-	super_now   = 0;
-	super_now1  = 0;
-	super_scale = 0;
-	super_stage = 0;
-	super_zhopa = 300;
-	super_angle = 0;
-	super_dir   = 1;
-	super_alp   = 1;
-	super_alp1  = 1;
-	super_alpha = 1;
+	super_need   = 3;
+	super_now    = 0;
+	super_now1   = 0;
+	super_scale  = 0;
+	super_stage  = 0;
+	super_zhopa  = 300;
+	super_zhopa1 = 300;
+	super_angle  = 0;
+	super_dir    = 1;
+	super_alp    = 1;
+	super_alp1   = 1;
+	super_alpha  = 1;
 	
 	e_super_need = 3;
 	e_super_now  = 0;
@@ -994,6 +1010,7 @@
 	g_rank_type = -1;
 #endregion
 #region Бот
+	//global.pvp = 0;
 	for(i=1;i<=12;i++)
 		{
 		u_answer[i] = -1;
@@ -1183,16 +1200,16 @@
 	//global.p_totem[1] = 1;
 	//global.p_totem[2] = 2;
 	//global.p_totem[3] = 3;
-	
 	global.enemy_level = choose(global.player_rank, global.player_rank + 1, global.player_rank - 1); //irandom_range(1,10);
+	
 	#region Случайные тотемы Врага
-		if global.enemy_level >= 12
+		if global.p_totem[1] != -1 && global.p_totem[2] = -1 //global.enemy_level >= 12
 			{
 			global.e_totem[1] = choose(irandom_range(1, 6), irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
 			global.e_totem[2] = -1;
 			global.e_totem[3] = -1;
 			}
-		if global.enemy_level < 12 && global.enemy_level >= 9
+		if global.p_totem[2] != -1 && global.p_totem[3] = -1 //global.enemy_level < 12 && global.enemy_level >= 9
 			{
 			var toi;
 			global.e_totem[1] = choose(irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
@@ -1203,7 +1220,7 @@
 				{ global.e_totem[2] = choose(irandom_range(2, 11), irandom_range(2, 15), irandom_range(2, 18)); }
 			global.e_totem[3] = -1;
 			}
-		if global.enemy_level < 9
+		if global.p_totem[3] != -1 //global.enemy_level < 9
 			{
 			var toi;
 			global.e_totem[1] = choose(irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
@@ -1988,4 +2005,39 @@
 	e_atk *= (1 + 0.1 * (global.enemy_level - 1));
 	e_hp *= (1 + 0.1 * (global.enemy_level - 1));
 	e_maxhp = e_hp;
+#endregion
+#region Квесты
+	global.pralna = 1;
+	global.bistra = 1;
+	global.bistra_time = 0;
+	global.spasabnast = 0;
+	global.vremiaiada = 0;
+#endregion
+#region ПвП
+	pvpi = 0;
+	
+	global.now = 0;
+	global.nex = 0;
+	global.pvp_stop = 0;
+	pvp_stage = 0
+	pvp_scale = 0;
+	
+	pvp_super_popa = 0;
+	
+	if os_get_language() = "ru"
+		{
+		if global.pvp = 1
+			{
+			global.player_name = "ИГРОК 1";
+			global.enemy_name  = "ИГРОК 2";
+			}
+		}
+		else
+		{
+		if global.pvp = 1
+			{
+			global.player_name = "PLAYER 1";
+			global.enemy_name  = "PLAYER 2";
+			}
+		}
 #endregion

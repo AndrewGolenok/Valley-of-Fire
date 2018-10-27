@@ -3,6 +3,8 @@ search = 1;
 godamaged = 0;
 damaged   = 0;
 
+global.bill_propil = 0;
+
 enemy = global.enemy;
 
 bullet_index = 0;

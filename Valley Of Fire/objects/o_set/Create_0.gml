@@ -101,7 +101,7 @@
 	application_surface_enable(1);
 	
 	device_mouse_dbclick_enable(0);
-	global.size = 590; //640; // 720; //800; //960;
+	global.size = 720; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
@@ -294,6 +294,17 @@
 			
 			ini_write_string("Musica", "back", "0");
 			global.notend = 0;
+		#endregion
+		#region Квесты
+			for(i=2;i=7;i++)
+				{
+				if !ini_section_exists("Var")
+					{ ini_write_string("Var", "v" + string(i), "0"); }
+				global.varr[i] = ini_read_real("Var", "v" + string(i), 0);
+				}
+			//global.quests_n_now[1] = 0;
+			//global.quests_n_now[2] = 0;
+			//global.quests_n_now[3] = 0;
 		#endregion
 	ini_close();
 #endregion
@@ -531,6 +542,7 @@
 	ini_close();
 #endregion
 #region Характеристики игрока
+	global.player_rank = 15;
 	//global.player_name  = "Andrew";
 	////global.hero = 1;
 	//global.player_rank  = 15;

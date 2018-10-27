@@ -66,7 +66,27 @@ if shoot = 2 or shoot = 3
 			if enemy
 				{ enemy_deal(); (global.player_object).stun = 1; }
 				else
-				{ player_deal(); (global.enemy_object).stun = 1; }
+				{
+				var datk;
+				datk = 1;
+				if (o_list.hp - o_list.e_atk) <= 0
+					{ datk = (1 + 0.2 * global.p_totem_a[6]); }
+				
+				for(i=1;i<=3;i++)
+					{
+					if global.quests_t[i] = 19 && global.e_totem_a[8] = 0
+					&& o_list.e_hp - o_list.atk * datk + (1 + global.p_totem_a[5]) * o_list.atk * datk / 10 * (global.critical == (3 - 1 * global.p_totem_a[3])) <= 0
+						{
+						if global.quests_n_now[i] < global.quests_n_all[i]
+							{ global.quests_n_now[i] += 1; }
+						
+						ini_open("Music.ini");
+							ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+						ini_close();
+						}
+					}
+				player_deal(); (global.enemy_object).stun = 1;
+				}
 			}
 		shoot = 3;
 		super = 0;

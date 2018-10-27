@@ -1,3 +1,41 @@
+////////// КВЕСТЫ
+var datk;
+datk = 1;
+var chance, miss;
+miss = 0;
+			
+if (o_list.hp - o_list.e_atk) <= 0
+	{ datk = (1 + 0.2 * global.p_totem_a[6]); }
+	
+for(i=1;i<=3;i++)
+	{
+	if global.quests_a[i] = 1
+		{
+		if global.quests_t[i] = 16
+			{
+			if global.quests_n_now[i] < global.quests_n_all[i]
+				{ global.quests_n_now[i] += o_list.atk * datk + (1 + global.p_totem_a[5]) * o_list.atk * datk / 10 * (global.critical == (3 - 1 * global.p_totem_a[3])); }
+			}
+		
+		ini_open("Music.ini");
+			ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+		ini_close();
+		}
+	//&& ((global.hero = 2 && global.swipe_ability = 0) or (global.hero = 1 && global.enemy_hero = 1 && global.swipe_ability = 1))
+		
+	//if global.quests_t[i] = 19 && global.e_totem_a[8] = 0
+	//&& o_list.e_hp - o_list.atk * datk + (1 + global.p_totem_a[5]) * o_list.atk * datk / 10 * (global.critical == (3 - 1 * global.p_totem_a[3])) <= 0
+	//	{
+	//	if global.quests_n_now[i] < global.quests_n_all[i]
+	//		{ global.quests_n_now[i] += 1; }
+					
+	//	ini_open("Music.ini");
+	//		ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+	//	ini_close();
+	//	}
+	}
+////////// КВЕСТЫ
+
 with(o_hero)
 	{
 	if enemy
@@ -26,7 +64,7 @@ with(o_hero)
 		if o_list.view_go_left = 0 && o_list.view_go_right = 0
 			{ o_list.view_go_right = 1; }
 			
-		var datk;
+		//var datk;
 		datk = 1;
 		var chance, miss;
 		miss = 0;

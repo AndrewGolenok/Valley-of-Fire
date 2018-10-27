@@ -327,11 +327,11 @@
 								{ heroes += string(i); }
 							}
 						r_heroes = real(string_copy(heroes, irandom_range(1, string_length(heroes)), 1));
-					
+						
 						#region РАНДОМ
 						var totems, r_t1, r_t2, r_t3, n_totem, ti;
 						totems = "";
-						n_totem = irandom(1)
+						n_totem = irandom(1);
 						r_t1 = -1;
 						r_t2 = -1;
 						r_t3 = -1;
@@ -348,11 +348,11 @@
 								ti = irandom_range(1, string_length(totems));
 								r_t3 = real(string_copy(totems, ti, 1));
 								totems = string_delete(totems, ti, 1);
-						
+								
 								ti = irandom_range(1, string_length(totems));
 								r_t2 = real(string_copy(totems, ti, 1));
 								totems = string_delete(totems, ti, 1);
-						
+								
 								ti = irandom_range(1, string_length(totems));
 								r_t1 = real(string_copy(totems, ti, 1));
 								totems = string_delete(totems, ti, 1);
@@ -362,33 +362,39 @@
 								ti = irandom_range(1, string_length(totems));
 								r_t3 = real(string_copy(totems, ti, 1));
 								totems = string_delete(totems, ti, 1);
-						
+								
 								ti = irandom_range(1, string_length(totems));
 								r_t2 = real(string_copy(totems, ti, 1));
 								totems = string_delete(totems, ti, 1);
-						
-								r_t1 = -1;
+								
+								//r_t1 = -1;
+								
+								n_totem = 0;
 								}
 							if string_length(totems) = 1
 								{
 								ti = irandom_range(1, string_length(totems));
 								r_t3 = real(string_copy(totems, ti, 1));
 								totems = string_delete(totems, ti, 1);
-						
-								r_t2 = -1;
-						
-								r_t1 = -1;
+								
+								//r_t2 = -1;
+								
+								//r_t1 = -1;
+								
+								n_totem = 0;
 								}
 							if totems = ""
 								{
-								r_1 = -1;
-						
-								r_t2 = -1;
-						
-								r_t3 = -1;
+								//r_t1 = -1;
+								
+								//r_t2 = -1;
+								
+								//r_t3 = -1;
+								
+								n_totem = 0;
 								}
 							}
-							else
+						if n_totem = 0
 							{
 							for(i=1;i<=9;i++)
 								{
@@ -397,43 +403,57 @@
 								}
 							if string_length(totems) >= 3
 								{
-								ti = irandom_range(1, string_length(totems));
-								r_t3 = real(string_copy(totems, ti, 1));
-								totems = string_delete(totems, ti, 1);
-						
-								ti = irandom_range(1, string_length(totems));
-								r_t2 = real(string_copy(totems, ti, 1));
-								totems = string_delete(totems, ti, 1);
-						
-								ti = irandom_range(1, string_length(totems));
-								r_t1 = real(string_copy(totems, ti, 1));
+								if r_t3 = -1
+									{
+									ti = irandom_range(1, string_length(totems));
+									r_t3 = real(string_copy(totems, ti, 1));
+									totems = string_delete(totems, ti, 1);
+									}
+								if r_t2 = -1
+									{
+									ti = irandom_range(1, string_length(totems));
+									r_t2 = real(string_copy(totems, ti, 1));
+									totems = string_delete(totems, ti, 1);
+									}
+								if r_t1 = -1
+									{
+									ti = irandom_range(1, string_length(totems));
+									r_t1 = real(string_copy(totems, ti, 1));
+									totems = string_delete(totems, ti, 1);
+									}
 								}
 							if string_length(totems) = 2
 								{
-								ti = irandom_range(1, string_length(totems));
-								r_t3 = real(string_copy(totems, ti, 1));
-								totems = string_delete(totems, ti, 1);
-						
-								ti = irandom_range(1, string_length(totems));
-								r_t2 = real(string_copy(totems, ti, 1));
-								totems = string_delete(totems, ti, 1);
-						
-								r_t1 = -1;
+								if r_t3 = -1
+									{
+									ti = irandom_range(1, string_length(totems));
+									r_t3 = real(string_copy(totems, ti, 1));
+									totems = string_delete(totems, ti, 1);
+									}
+								if r_t2 = -1
+									{
+									ti = irandom_range(1, string_length(totems));
+									r_t2 = real(string_copy(totems, ti, 1));
+									totems = string_delete(totems, ti, 1);
+									}
+								//r_t1 = -1;
 								}
 							if string_length(totems) = 1
 								{
-								ti = irandom_range(1, string_length(totems));
-								r_t3 = real(string_copy(totems, ti, 1));
-								totems = string_delete(totems, ti, 1);
+								if r_t3 = -1
+									{
+									ti = irandom_range(1, string_length(totems));
+									r_t3 = real(string_copy(totems, ti, 1));
+									totems = string_delete(totems, ti, 1);
+									}
+								//r_t2 = -1;
 						
-								r_t2 = -1;
-						
-								r_t1 = -1;
+								//r_t1 = -1;
 								}
 							}
 						#endregion
 					#endregion
-				
+					
 					global.hero = r_heroes;
 					global.p_totem[1] = r_t1;
 					global.p_totem[2] = r_t2;
@@ -441,6 +461,7 @@
 					if global.player_rank != 15
 						{ global.player_rank = irandom_range(global.player_rank - 1, 15); }
 					global.quick = 1;
+					global.pvp   = 1;
 					room_goto_t("duel");
 					}
 				}
@@ -5287,35 +5308,34 @@ if global.menu_now = "store" or global.menu_next = "store"
 			draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
 		
-		draw_sprite_ext_t(s_global.quests_back, 0, 640, global.size / 2, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, 0, c_white, 1, c_white, c_black);
+		draw_sprite_ext_t(s_quests_back, 0, 640, global.size / 2, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, 0, c_white, 1, c_white, c_black);
 		
 		for(i=1;i<=3;i++)
 			{
 			if global.quests_a[i] = 1
 				{
-				draw_sprite_ext(s_global.quests_lists, global.quests_t[i], 640 + (-340 + 170 * i) * global.quests_scale + 5, global.size / 2 - 192 * global.quests_scale1 + 5 + 10 + pry / 2, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, prx / 2, c_black, 0.5);
-				draw_sprite_ext_t(s_global.quests_lists, global.quests_t[i], 640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 - 192 * global.quests_scale1 + 5 + pry / 2, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, prx / 2, c_white, 1, c_white, c_black);
+				draw_sprite_ext(s_quests_lists, global.quests_t[i], 640 + (-340 + 170 * i) * global.quests_scale * (global.quests_scale1 / 0.5) + 5, global.size / 2 - 192 * global.quests_scale1 + 5 + 10, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, -prx / 2, c_black, 0.5);
+				draw_sprite_ext_t(s_quests_lists, global.quests_t[i], 640 + (-340 + 170 * i) * global.quests_scale * (global.quests_scale1 / 0.5), global.size / 2 - 192 * global.quests_scale1 + 5, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, -prx / 2, c_white, 1, c_white, c_black);
 			
-				//draw_sprite_ext_t(s_global.quests_lists, 0, 640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 - 192 * global.quests_scale1 + pry / 2, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, 0, c_white, 1, c_white, c_black);
-				draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale + lengthdir_x(135, prx / 2 + 270), global.size / 2 - 192 * global.quests_scale1 + 5 + lengthdir_y(135, prx / 2 + 270) + pry / 2, global.quests_d[i], -1, 2000, global.quests_scale * 0.08, global.quests_scale * 0.08, prx / 2, global.color_white, c_black);
-				
-				// 160 global.quests_p[i]
+				//draw_sprite_ext_t(s_quests_lists, 0, 640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 - 192 * global.quests_scale1 + pry / 2, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, 0, c_white, 1, c_white, c_black);
+				draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale * (global.quests_scale1 / 0.5) + lengthdir_x(135 * (global.quests_scale1 / 0.5), -prx / 2 + 270), global.size / 2 - 192 * global.quests_scale1 + 5 + lengthdir_y(135 * (global.quests_scale1 / 0.5), -prx / 2 + 270), global.quests_d[i], -1, 2000, global.quests_scale * 0.08, global.quests_scale * 0.08, -prx / 2, global.color_white, c_black);
 				
 				if global.quests_refresh
 					{
-					draw_sprite_ext_t(s_refresh, 0, 640 + (-340 + 170 * i) * global.quests_scale + 60, global.size / 2 - 192 * global.quests_scale1, global.quests_scale * global.quests_scale1 * 0.8, global.quests_scale * global.quests_scale1 * 0.8, 0, global.color_white, 1, global.color_white, c_black); 
+					draw_sprite_ext_t(s_refresh, 0, 640 + (-340 + 170 * i) * global.quests_scale * (global.quests_scale1 / 0.5) + 85, global.size / 2 - 192 * global.quests_scale1, global.quests_scale * global.quests_scale1 * 0.8, global.quests_scale * global.quests_scale1 * 0.8, 0, global.color_white, 1, global.color_white, c_black); 
 					
-					if point_in_circle(mouse_x, mouse_y, 640 + (-340 + 170 * i) * global.quests_scale + 60, global.size / 2 - 192 * global.quests_scale1, 35)
+					if point_in_circle(mouse_x, mouse_y, 640 + (-340 + 170 * i) * global.quests_scale * (global.quests_scale1 / 0.5) + 60, global.size / 2 - 192 * global.quests_scale1, 35 * (global.quests_scale1 / 0.5))
 						{
 						if mouse_check_button_pressed(mb_left)
 							{
+							if global.sound { audio_play_sound(sd_text, 2, 0); }
 							#region Квесты
 								//nnn[i] = 1;
 								
 								ini_open("Music.ini");
-								ini_write_string("Qual", "qual_rr", "0");
-								global.quests_refresh = ini_read_real("Qual", "qual_rr", 1);
-								#region Все варианты обновления
+									ini_write_string("Qual", "qual_rr", "0");
+									global.quests_refresh = ini_read_real("Qual", "qual_rr", 1);
+									#region Все варианты обновления
 									if i = 1 //nnn[1] = 1 && nnn[2] = 0 && nnn[3] = 0
 										{
 										global.quests_t[1] = global.quests_t[2];
@@ -5358,7 +5378,15 @@ if global.menu_now = "store" or global.menu_next = "store"
 										ini_write_string("Qual", "qual_3", "0");
 										}
 								#endregion
-	
+									
+									if global.quests_t[i] = 18
+										{
+										for(j=2;j<=7;j++)
+											{
+											ini_write_string("Var", "v" + string(j), "0");
+											global.varr[j] = ini_read_real("Var", "v" + string(i), 0);
+											}
+										}
 									global.quests_t[i] = ini_read_real("Qual", "qual_t_" + string(i), 1);
 								
 									global.quests_a[i] = 1;
@@ -5450,9 +5478,11 @@ if global.menu_now = "store" or global.menu_next = "store"
 										ini_write_string("Qual", "qual_n_" + string(i), string(global.quests_n[i]));
 										
 										ini_write_string("Qual", "qual_a_" + string(i), "1");
+										ini_write_string("Qual", "qual_nno_" + string(i), "0");
 										global.quests_a[i] = ini_read_real("Qual", "qual_a_" + string(i), 1);
 										}
-		
+									
+									global.quests_n_now[i] = ini_read_real("Qual", "qual_nno_" + string(i), 1);
 									global.quests_pt[i] = ini_read_string("Qual", "qual_pt_" + string(i), "©");
 									global.quests_n[i]  = ini_read_real("Qual", "qual_n_" + string(i), 1);
 									#region Задания 2
@@ -5657,22 +5687,22 @@ if global.menu_now = "store" or global.menu_next = "store"
 					}
 				if global.quests_n_all[i] > 1
 					{
-					draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale + lengthdir_x(185, prx / 2 + 270), global.size / 2 - 192 * global.quests_scale1 + 5 + lengthdir_y(185, prx / 2 + 270) + pry / 2, string(global.quests_n_now[i]) + "~" +string(global.quests_n_all[i]), -1, 2000, global.quests_scale * 0.12, global.quests_scale * 0.12, prx / 2, global.color_white, c_black);
+					draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale * (global.quests_scale1 / 0.5) + lengthdir_x(185 * (global.quests_scale1 / 0.5), -prx / 2 + 270), global.size / 2 - 192 * global.quests_scale1 + 5 + lengthdir_y(185 * (global.quests_scale1 / 0.5), -prx / 2 + 270), string(global.quests_n_now[i]) + "~" +string(global.quests_n_all[i]), -1, 2000, global.quests_scale * 0.15, global.quests_scale * 0.15, -prx / 2, global.color_white, c_black);
 				
 					//draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 - 192 * global.quests_scale1, string(global.quests_n_now[i]) + "~" +string(global.quests_n_all[i]), -1, 2000, global.quests_scale * 0.12, global.quests_scale * 0.12, prx / 2, global.color_white, c_black);
 					}
-			
+				
 				if global.quests_pt[i] = "©"
-					{ draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 + 130, string(global.quests_p[i]) + string(global.quests_pt[i]), -1, 2000, global.quests_scale * 0.2, global.quests_scale * 0.2, 0, global.gold_color, c_black); }
+					{ draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale * (global.quests_scale1 / 0.5), global.size / 2 + 130 * (global.quests_scale1 / 0.5), string(global.quests_p[i]) + string(global.quests_pt[i]), -1, 2000, global.quests_scale * 0.2 * (global.quests_scale1 / 0.5), global.quests_scale * 0.2 * (global.quests_scale1 / 0.5), 0, global.gold_color, c_black); }
 					else
-					{ draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 + 130, string(global.quests_p[i]) + string(global.quests_pt[i]), -1, 2000, global.quests_scale * 0.2, global.quests_scale * 0.2, 0, global.cash_color, c_black); }
+					{ draw_text_ext_transformed_t(640 + (-340 + 170 * i) * global.quests_scale * (global.quests_scale1 / 0.5), global.size / 2 + 130 * (global.quests_scale1 / 0.5), string(global.quests_p[i]) + string(global.quests_pt[i]), -1, 2000, global.quests_scale * 0.2 * (global.quests_scale1 / 0.5), global.quests_scale * 0.2 * (global.quests_scale1 / 0.5), 0, global.cash_color, c_black); }
+				draw_sprite_ext_t(s_quests_lists, 0, 640 + (-340 + 170 * i) * global.quests_scale * (global.quests_scale1 / 0.5), global.size / 2 - 192 * global.quests_scale1, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, 0, c_white, 1, c_white, c_black);
 				}
-			draw_sprite_ext_t(s_global.quests_lists, 0, 640 + (-340 + 170 * i) * global.quests_scale, global.size / 2 - 192 * global.quests_scale1 + pry / 2, global.quests_scale * global.quests_scale1, global.quests_scale * global.quests_scale1, 0, c_white, 1, c_white, c_black);
 			}
-		draw_text_transformed_t(640, global.size / 2 - 150, "QUESTS", global.quests_scale * 0.25, global.quests_scale * 0.25, 0, global.color_white, c_black);
+		draw_text_transformed_t(640, global.size / 2 - 150 * (global.quests_scale1 / 0.5), "QUESTS", global.quests_scale * 0.25, global.quests_scale * 0.25, 0, global.color_white, c_black);
 		
-		if !(point_in_rectangle(mouse_x, mouse_y, 640 - 320, global.size / 2 - 150, 640 + 320, global.size / 2 + 150))
-		or (point_in_rectangle(mouse_x, mouse_y, 640 - 305 - 40, global.size / 2 - 132 - 40, 640 - 305 + 40, global.size / 2 - 132 + 40))
+		if !(point_in_rectangle(mouse_x, mouse_y, 640 - 320 * 1.4, global.size / 2 - 150 * 1.4, 640 + 320 * 1.4, global.size / 2 + 150 * 1.4))
+		or (point_in_rectangle(mouse_x, mouse_y, 640 - 305 * 1.4 - 40, global.size / 2 - 132 * 1.4 - 40, 640 - 305 * 1.4 + 40, global.size / 2 - 132 * 1.4 + 40))
 			{
 			//// КЛАЦ
 			if mouse_check_button_pressed(mb_left)
@@ -5694,7 +5724,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 		draw_set_font(global.game_font);
 		draw_set_alpha(0.5);
 		draw_set_color(c_black);
-		draw_text_transformed(640 - 305, global.size / 2 - 132, "X", global.quests_scale * 0.25, global.quests_scale * 0.25, 0);
+		draw_text_transformed(640 - 305 * (global.quests_scale1 / 0.5), global.size / 2 - 132 * (global.quests_scale1 / 0.5), "X", global.quests_scale * 0.25, global.quests_scale * 0.25, 0);
 		draw_set_color(c_white);
 		draw_set_alpha(1);
 		}

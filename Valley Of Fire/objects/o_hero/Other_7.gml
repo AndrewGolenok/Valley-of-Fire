@@ -73,6 +73,7 @@ if (hero = 7 && skeleton_animation_get() = "greetings") or (hero = 1 && global.s
 
 if bill_stage = 1
 	{
+	global.bill_propil = 1;
 	bill_stage = 2;
 	//if ((global.player_object).super = 1 && enemy) or ((global.enemy_object).super = 1 && enemy)
 	//	{  }
