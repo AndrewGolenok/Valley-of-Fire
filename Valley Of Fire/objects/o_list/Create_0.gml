@@ -2002,9 +2002,12 @@
 	global.enemy_level = choose(global.hero_level - 1, global.hero_level - 1, global.hero_level + 1, global.hero_level);
 	if global.enemy_level < 1
 		{ global.enemy_level = 1; }
+	if global.pvp
+		{ global.enemy_level = global.hero_level; }
 	e_atk *= (1 + 0.1 * (global.enemy_level - 1));
 	e_hp *= (1 + 0.1 * (global.enemy_level - 1));
 	e_maxhp = e_hp;
+	
 #endregion
 #region Квесты
 	global.pralna = 1;

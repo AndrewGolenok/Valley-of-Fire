@@ -5002,7 +5002,7 @@ if global.hero = 1 && global.enemy_hero = 1
 	#region Геймплей
 		#region Таймер
 			if (list_scale = 1/* or (global.player_object).stun*/) && pre_wait = 0 && (global.training = 0 or (global.training = 5 && global.training_question != 0))
-			//&& (global.pvp = 0 or (global.pvp = 1 && global.now = 0))
+			&& (global.pvp = 0 or (global.pvp = 1 && global.now = 0))
 				{
 				if timer > 0
 					{
@@ -5012,7 +5012,6 @@ if global.hero = 1 && global.enemy_hero = 1
 						global.bistra_time -= 1;
 						if global.bistra_time >= room_speed * 3
 							{ global.bistra = 0; }
-						//timer_x -= 1;
 						}
 					}
 					else
@@ -5021,10 +5020,12 @@ if global.hero = 1 && global.enemy_hero = 1
 					if global.storm = 1 { storm_1(); }
 					(global.player_object).answer = -1
 					(global.player_object).stun = 1;
-					if global.now = 0
-						{ global.answer = 0; }
-						else
-						{ global.bot_answer = 0; }
+					//if global.now = 0
+					//	{ global.answer = 0; }
+					//	else
+					//	{ global.bot_answer = 0; }
+					global.answer = 0;
+					
 					if theme_round[global.rounds] = 6
 						{ script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task]))); }
 					if theme_round[global.rounds] = 2
@@ -5383,7 +5384,11 @@ if global.hero = 1 && global.enemy_hero = 1
 				}
 				#endregion
 			#region Бот
-				if (bot_go != 0 && e_question <= 9) && global.training < 1//list_scale = 1 && bot_go !=0
+				if global.pvp = 1
+					{
+					bot_time = 100;
+					}
+				if (bot_go != 0 && e_question <= 9) && global.training < 1 && (global.pvp = 0 or (global.pvp = 1 && list_scale = 1))// && bot_go !=0
 					{
 					//if bot_type = 1
 						{
@@ -5420,7 +5425,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							else
 							{
 							if bot_wait <= 0 && (global.enemy_object).stun = 0 && !global.super_ability
-							&& (global.pvp = 0)//&& (global.pvp = 0 or (global.pvp = 1 && global.now = 1))
+							&& global.pvp = 0//(global.pvp = 0 or (global.pvp = 1 && global.now = 1))
 								{
 								if bot_time > 0
 									{ bot_time -= 1; }
@@ -5430,6 +5435,7 @@ if global.hero = 1 && global.enemy_hero = 1
 										{
 										if (global.enemy_object).shoot = 0 && (global.enemy_object).answer = -1
 											{
+											global.bot_answer = 0;
 											if bot_type = 0
 												{ global.bot_answer = choose(1, 1, 0, 0, 0); }
 											if bot_type = 1
@@ -5444,20 +5450,43 @@ if global.hero = 1 && global.enemy_hero = 1
 								}
 							if global.bot_answer = -1 && (global.pvp = 0 or global.now = 1)
 								{
+								//if global.pvp = 1
+								//	{ bot_wait = 0; }
 								if bot_wait > 0
 									{ bot_wait -= 1; }
 									else
 									{
-									if !global.super_ability
+									if !global.super_ability or global.pvp = 1
 										{
 										if bot_time2 > 0
 											{ bot_time2 -= 1; }
 											else
 											{
+											if theme_round[global.rounds] = 6
+												{ script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task]))); }
+											if theme_round[global.rounds] = 2
+												{ script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task]))); }
+											if theme_round[global.rounds] = 3
+												{ script_execute(asset_get_index("move_" + string(round_task[global.rounds,global.task]))); }
+											if theme_round[global.rounds] = 4
+												{ script_execute(asset_get_index("attention_" + string(round_task[global.rounds,global.task]))); }
+											if theme_round[global.rounds] = 1
+												{ script_execute(asset_get_index("cards_" + string(round_task[global.rounds,global.task]))); }
+											if theme_round[global.rounds] = 5
+												{ script_execute(asset_get_index("shooting_" + string(round_task[global.rounds,global.task]))); }
 											//bot_time = -1;
-											//(global.player_object).answer = -1
-											//(global.enemy_object).stun = 1;
+											(global.player_object).answer = -1
+											(global.enemy_object).stun = 1;
 											global.bot_answer = 0;
+											}
+											
+										if bot_time2 <= room_speed * 3
+											{
+											draw_set_color(c_white);
+											
+											draw_set_alpha(0.4 + 0.6 * bot_time2 / (3 * room_speed));
+											draw_rectangle(640 - 200 * bot_time2 / (3 * room_speed), global.size / 2 - 20 - 5 + timer_y, 640 + 200 * bot_time2 / (3 * room_speed), global.size / 2 - 20 + 5 + timer_y, 0);
+											draw_set_alpha(1);
 											}
 										}
 									}
@@ -9476,7 +9505,7 @@ if global.hero = 1 && global.enemy_hero = 1
 		draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
 		draw_set_alpha(1);
 		
-		if whowin = 1
+		if whowin = 1 or global.pvp = 1
 			{
 			if finplas < 1
 				{
@@ -9486,15 +9515,23 @@ if global.hero = 1 && global.enemy_hero = 1
 				}
 				else
 				{ win_plas += 0.4; draw_sprite_ext(s_plash_win_f, win_plas, 640, -fin_y + 50 + global.size / 2 - 469 * list_size - 80 + list_y, list_size * finplas, list_size, 0, c_white, 1); }
-			var gold_c;
+			var gold_c, pvpp;
 			gold_c = make_color_rgb(252,232,131);
+			pvpp = "";
+			if global.pvp = 1
+				{
+				if whowin = 1
+					{ pvpp = coin_you[1] + "\n"; }
+					else
+					{ pvpp = coin_you[0] + "\n"; }
+				}
 			draw_set_font(global.game_font);
 			if os_get_language() = "ru"
-				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "ПОБЕДА!", finplas * 0.18, 0.18, 0, gold_c, c_black); }
+				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, pvpp + "ПОБЕДА!", finplas * 0.18, 0.18, 0, gold_c, c_black); }
 				else
-				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, "VICTORY!", finplas * 0.18, 0.18, 0, gold_c, c_black); }
+				{ draw_text_transformed_t(640, -fin_y + 50 + global.size / 2 - 469 * list_size - 100 + list_y, pvpp + "VICTORY!", finplas * 0.18, 0.18, 0, gold_c, c_black); }
 			}
-		if whowin = 2
+		if whowin = 2 && global.pvp = 0
 			{
 			if finplas < 1
 				{ finplas += 0.1; }
@@ -9611,7 +9648,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							if roundskul_n[3] = 0
 								{
 								var pg;
-								pg = 15 - global.player_rank + 5;
+								pg = 10//15 - global.player_rank + 5;
 								global.gold += pg;
 								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "";
@@ -9622,7 +9659,7 @@ if global.hero = 1 && global.enemy_hero = 1
 								else
 								{
 								var pg;
-								pg = 15 - global.player_rank + 5;
+								pg = 5//15 - global.player_rank + 5;
 								global.gold += pg;
 								txt_gold = "+" + string(pg) + "©";
 								txt_cash = "";
@@ -9747,7 +9784,7 @@ if global.hero = 1 && global.enemy_hero = 1
 					if global.rank_stars >= 69
 						{
 						global.legend_rank += irandom_range(1, 10);
-							if global.ledend_rank > 100
+							if global.legend_rank > 100
 								{ global.legend_rank += 1; }
 						ini_open("Music.ini");
 							ini_write_string("Eho", "eho", string(global.legend_rank));
@@ -9768,7 +9805,7 @@ if global.hero = 1 && global.enemy_hero = 1
 						if global.rank_stars >= 69//global.rank_stars = 69 or global.rank_stars = 70
 							{
 							global.legend_rank += irandom_range(1, 10);
-								if global.ledend_rank > 100
+								if global.legend_rank > 100
 									{ global.legend_rank += 1; }
 							ini_open("Music.ini");
 								ini_write_string("Eho", "eho", string(global.legend_rank));
@@ -9794,7 +9831,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							if global.rank_stars = 69 or global.rank_stars = 70
 								{
 								global.legend_rank -= irandom_range(1, 10);
-								if global.ledend_rank < 1
+								if global.legend_rank < 1
 									{ global.legend_rank = 1; }
 								ini_open("Music.ini");
 									ini_write_string("Eho", "eho", string(global.legend_rank));
@@ -9825,7 +9862,7 @@ if global.hero = 1 && global.enemy_hero = 1
 						if global.rank_stars = 69 or global.rank_stars = 70
 							{
 							global.legend_rank -= irandom_range(1, 10);
-							if global.ledend_rank < 1
+							if global.legend_rank < 1
 								{ global.legend_rank = 1; }
 							ini_open("Music.ini");
 								ini_write_string("Eho", "eho", string(global.legend_rank));
@@ -9906,7 +9943,7 @@ if global.hero = 1 && global.enemy_hero = 1
 						if roundskul_n[3] != 0
 							{
 							var pg;
-							pg = 15 - global.player_rank + 5;
+							pg = 10//15 - global.player_rank + 5;
 							global.gold += pg;
 							txt_gold = "+" + string(pg) + "©";
 							txt_cash = "";
@@ -9919,7 +9956,7 @@ if global.hero = 1 && global.enemy_hero = 1
 						if roundskul_n[3] != 0
 							{
 							var pg;
-							pg = 15 - global.player_rank + 5;
+							pg = 10//15 - global.player_rank + 5;
 							global.gold += pg;
 							txt_gold = "+" + string(pg) + "©";
 							txt_cash = "";
@@ -9931,22 +9968,23 @@ if global.hero = 1 && global.enemy_hero = 1
 						if roundskul_n[3] = 0
 							{
 							var pg, pc, pc1;
-							pg = 15 - global.player_rank + 15;
+							pg = 10//15 - global.player_rank + 15;
 							global.gold += pg;
 							pc  = 2;
 							pc1 = 0;
-							if global.player_rank <= 10
-								{ pc1 += 2; }
-							if global.player_rank <= 5
-								{ pc1 += 3; }
-							if global.player_rank <= 3
-								{ pc1 += 4; }
-							if global.player_rank <= 2
-								{ pc1 += 4; }
-							if global.player_rank <= 1
-								{ pc1 += 5; }
-							if global.player_rank <= 0
-								{ pc1 += 10; }
+							//pc1 = 0;
+							//if global.player_rank <= 10
+							//	{ pc1 += 2; }
+							//if global.player_rank <= 5
+							//	{ pc1 += 3; }
+							//if global.player_rank <= 3
+							//	{ pc1 += 4; }
+							//if global.player_rank <= 2
+							//	{ pc1 += 4; }
+							//if global.player_rank <= 1
+							//	{ pc1 += 5; }
+							//if global.player_rank <= 0
+							//	{ pc1 += 10; }
 							
 							global.cash += pc + pc1;
 							
@@ -9967,22 +10005,22 @@ if global.hero = 1 && global.enemy_hero = 1
 							else
 							{
 							var pg, pc, pc1;
-							pg = 15 - global.player_rank + 10;
+							pg = 5//15 - global.player_rank + 10;
 							global.gold += pg;
 							pc  = 1;
 							pc1 = 0;
-							if global.player_rank <= 10
-								{ pc1 += 2; }
-							if global.player_rank <= 5
-								{ pc1 += 3; }
-							if global.player_rank <= 3
-								{ pc1 += 4; }
-							if global.player_rank <= 2
-								{ pc1 += 4; }
-							if global.player_rank <= 1
-								{ pc1 += 5; }
-							if global.player_rank <= 0
-								{ pc1 += 10; }
+							//if global.player_rank <= 10
+							//	{ pc1 += 2; }
+							//if global.player_rank <= 5
+							//	{ pc1 += 3; }
+							//if global.player_rank <= 3
+							//	{ pc1 += 4; }
+							//if global.player_rank <= 2
+							//	{ pc1 += 4; }
+							//if global.player_rank <= 1
+							//	{ pc1 += 5; }
+							//if global.player_rank <= 0
+							//	{ pc1 += 10; }
 							
 							global.cash += pc + pc1;
 							
@@ -10006,22 +10044,22 @@ if global.hero = 1 && global.enemy_hero = 1
 						if roundskul_n[3] = 0
 							{
 							var pg, pc, pc1;
-							pg = 15 - global.player_rank + 20;
+							pg = 10//15 - global.player_rank + 20;
 							global.gold += pg;
-							pc  = 3;
+							pc  = 2//3;
 							pc1 = 0;
-							if global.player_rank <= 10
-								{ pc1 += 2; }
-							if global.player_rank <= 5
-								{ pc1 += 3; }
-							if global.player_rank <= 3
-								{ pc1 += 4; }
-							if global.player_rank <= 2
-								{ pc1 += 4; }
-							if global.player_rank <= 1
-								{ pc1 += 5; }
-							if global.player_rank <= 0
-								{ pc1 += 10; }
+							//if global.player_rank <= 10
+							//	{ pc1 += 2; }
+							//if global.player_rank <= 5
+							//	{ pc1 += 3; }
+							//if global.player_rank <= 3
+							//	{ pc1 += 4; }
+							//if global.player_rank <= 2
+							//	{ pc1 += 4; }
+							//if global.player_rank <= 1
+							//	{ pc1 += 5; }
+							//if global.player_rank <= 0
+							//	{ pc1 += 10; }
 							
 							global.cash += pc + pc1;
 							
@@ -10042,22 +10080,22 @@ if global.hero = 1 && global.enemy_hero = 1
 							else
 							{
 							var pg, pc, pc1;
-							pg = 15 - global.player_rank + 15;
+							pg = 5//15 - global.player_rank + 15;
 							global.gold += pg;
-							pc  = 2;
+							pc  = 1//2;
 							pc1 = 0;
-							if global.player_rank <= 10
-								{ pc1 += 2; }
-							if global.player_rank <= 5
-								{ pc1 += 3; }
-							if global.player_rank <= 3
-								{ pc1 += 4; }
-							if global.player_rank <= 2
-								{ pc1 += 4; }
-							if global.player_rank <= 1
-								{ pc1 += 5; }
-							if global.player_rank <= 0
-								{ pc1 += 10; }
+							//if global.player_rank <= 10
+							//	{ pc1 += 2; }
+							//if global.player_rank <= 5
+							//	{ pc1 += 3; }
+							//if global.player_rank <= 3
+							//	{ pc1 += 4; }
+							//if global.player_rank <= 2
+							//	{ pc1 += 4; }
+							//if global.player_rank <= 1
+							//	{ pc1 += 5; }
+							//if global.player_rank <= 0
+							//	{ pc1 += 10; }
 							
 							global.cash += pc + pc1;
 							
@@ -10196,7 +10234,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							if skul_i = 0
 								{
 								draw_text_transformed_t(640, global.size / 2 - 50 + 15, "LEGEND", 0.2, 0.2, 0, global.color_white, c_black);
-								draw_text_transformed_t(640, global.size / 2 - 50 + 15 + 5 + string_height("LEGEND") * 0.2, string(global.legend_rank), 0.2, 0.2, 0, global.color_white, c_black);
+								draw_text_transformed_t(640, global.size / 2 - 50 + 15 + 5 + string_height(global.legend_rank) * 0.2 / 2, string(global.legend_rank), 0.2, 0.2, 0, global.color_white, c_black);
 								}
 							}
 							else
@@ -10204,7 +10242,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							if skul_i = 0
 								{
 								draw_text_transformed_t(640, global.size / 2 - 50 + 15, "ЛЕГЕНДА", 0.2, 0.2, 0, global.color_white, c_black);
-								draw_text_transformed_t(640, global.size / 2 - 50 + 15 + 5 + string_height("ЛЕГЕНДА") * 0.2, string(global.legend_rank), 0.2, 0.2, 0, global.color_white, c_black);
+								draw_text_transformed_t(640, global.size / 2 - 50 + 15 + 5 + string_height(global.legend_rank) * 0.2 / 2, string(global.legend_rank), 0.2, 0.2, 0, global.color_white, c_black);
 								}
 							}
 						if g_skul_s = 1
@@ -10314,7 +10352,8 @@ if global.hero = 1 && global.enemy_hero = 1
 					draw_sprite_ext(s_sunmoon, 0, 640, global.size / 2 - 50 + 15, 0.5, 0.5, 0, c_black, 0.5);
 					draw_sprite_ext_t(s_sunmoon, 0, 640, global.size / 2 - 50, 0.5, 0.5, 0, c_white, 1, c_white, c_black);
 					
-					draw_text_transformed_t(640, global.size / 2 - 50, txt_gold, 0.18, 0.18, 0, global.gold_color, c_black);
+					if global.pvp = 0
+						{ draw_text_transformed_t(640, global.size / 2 - 50, txt_gold, 0.18, 0.18, 0, global.gold_color, c_black); }
 					}
 				}	
 			if g_message = 1
@@ -10348,7 +10387,7 @@ if global.hero = 1 && global.enemy_hero = 1
 					{
 					if global.quests_a[i] = 1
 						{
-						if global.quests_n_now[i] = global.quests_n_all[i]
+						if global.quests_n_now[i] >= global.quests_n_all[i]
 							{
 							draw_set_alpha(0.25);
 							draw_rectangle_color(0, 0, 1280, global.size, c_black, c_black, c_black, c_black, 0);
@@ -11670,5 +11709,5 @@ if lines_true
 #endregion
 #region Отладка
 	//draw_set_font(global.game_font);
-	//draw_text_transformed_t(mouse_x, mouse_y, string(e_super_now1) + "~" + string(e_super_need), 0.2, 0.2, 0, c_white, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(bot_time2) + "~" + string(bot_time), 0.2, 0.2, 0, c_white, c_black);
 #endregion

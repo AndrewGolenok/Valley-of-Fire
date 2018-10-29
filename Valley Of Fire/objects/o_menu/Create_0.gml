@@ -1380,94 +1380,189 @@
 					}
 			#endregion
 			
-		global.quests_d[i] = "";
-		if global.quests_t[i] > 0 && global.quests_t[i] <= 4
-			{ global.quests_d[i] = "ВЫИГРАТЬ " + string(global.quests_n_all[i]) + " МАТЧЕЙ ЗА "; }
-		if global.quests_t[i] >= 5 && global.quests_t[i] <= 10
-			{ global.quests_d[i] = "ОТВЕТИТЬ ВЕРНО НА " + string(global.quests_n_all[i]) + " ВОПРОСОВ ТЕМЫ "; }
-		if global.quests_t[i] >= 11 && global.quests_t[i] <= 13
-			{ global.quests_d[i] = "СЫГРАТЬ " + string(global.quests_n_all[i]) + " РАЗ "; }
-		
-		switch(global.quests_t[i])
+		if os_get_language() = "ru"
 			{
-			case 1:
-				global.quests_d[i] += "ВОРИШКУ ИЛИ ДИЕГО";
-			break;
-			case 2:
-				global.quests_d[i] += "ШЕРИФА ИЛИ ДЖО";
-			break;
-			case 3:
-				global.quests_d[i] += "ОХОТНИЦУ ИЛИ ШАМАНА";
-			break;
-			case 4:
-				global.quests_d[i] += "БИЛЛА СТАРШЕГО";
-			break;
-			case 5:
-				global.quests_d[i] += "КАРТ";
-			break;
-			case 6:
-				global.quests_d[i] += "БУТЫЛКИ";
-			break;
-			case 7:
-				global.quests_d[i] += "ДВИЖЕНИЕ";
-			break;
-			case 8:
-				global.quests_d[i] += "ВНИМАНИЕ";
-			break;
-			case 9:
-				global.quests_d[i] += "СТРЕЛЬБА";
-			break;
-			case 10:
-				global.quests_d[i] += "МАТЕМАТИКА";
-			break;
-			case 11:
-				global.quests_d[i] += "В БЫСТРУЮ ИГРУ";
-			break;
-			case 12:
-				global.quests_d[i] += "В РАНГОВУЮ ИГРУ";
-			break;
-			case 13:
-				global.quests_d[i] += "С ДРУГОМ";
-			break;
-			case 14:
-				global.quests_d[i]  = "ВЫИГРАТЬ МАТЧ БЕЗ ОШИБОК";
-			break;
-			case 15:
-				global.quests_d[i]  = "ВЫИГРАТЬ ДУЭЛЬ, ТРАТЯ НЕ БОЛЕЕ 3 СЕКУНД НА ОТВЕТ";
-			break;
-			case 16:
-				global.quests_d[i]  = "НАНЕСТИ " + string(global.quests_n_all[i]) + " УРОНА";
-			break;
-			case 17:
-				global.quests_d[i]  = "ИСПОЛЬЗОВАТЬ СПОСОБНОСТЬ " + string(global.quests_n_all[i]) + " РАЗ";
-			break;
-			case 18:
-				global.quests_d[i]  = "СВОРОВАТЬ СПОСОБНОСТЬ У КАЖДОГО ПЕРСОНАЖА";
-			break;
-			case 19:
-				global.quests_d[i]  = "ВЫИГРАТЬ ДУЭЛЬ, КОГДА ВРАГ ОШЛУШЕН";
-			break;
-			case 20:
-				global.quests_d[i]  = "УДЕРЖИВАТЬ ВРАГА ОТРАВЛЕННЫМ 15 СЕКУНД";
-			break;
-			case 21:
-				global.quests_d[i]  = "ДОВЕСТИ ХП ВРАГА ДО НУЛЯ, ВЕРНУВ ЕМУ УРОН";
-			break;
-			case 22:
-				global.quests_d[i]  = "ОТВЕТИТЬ ВЕРНО НА 7 ВОПРОСОВ В ТУМАНЕ";
-			break;
-			case 23:
-				global.quests_d[i]  = "ВЫИГРАТЬ 3 ДУЭЛИ, НЕ ИСПОЛЬЗУЯ СПОСОБНОСТЬ";
-			break;
-			case 24:
-				global.quests_d[i]  = "НАНЕСТИ ВРАГУ 300 УРОНА ТОТЕМОМ ОГНЯ";
-			break;
-			case 25:
-				global.quests_d[i]  = "3 РАЗА НАНЕСТИ УРОН, ПРОМАХНУВШИСЬ";
-			break;
-			case 26:
-				global.quests_d[i]  = "НАНЕСТИ ВРАГУ 500 УРОНА ТОТЕМОМ МОЛНИИ";
-			break;
+			global.quests_d[i] = "";
+			if global.quests_t[i] > 0 && global.quests_t[i] <= 4
+				{ global.quests_d[i] = "ВЫИГРАТЬ " + string(global.quests_n_all[i]) + " МАТЧЕЙ ЗА "; }
+			if global.quests_t[i] >= 5 && global.quests_t[i] <= 10
+				{ global.quests_d[i] = "ОТВЕТИТЬ ВЕРНО НА " + string(global.quests_n_all[i]) + " ВОПРОСОВ ТЕМЫ "; }
+			if global.quests_t[i] >= 11 && global.quests_t[i] <= 13
+				{ global.quests_d[i] = "СЫГРАТЬ " + string(global.quests_n_all[i]) + " РАЗ "; }
+			
+			switch(global.quests_t[i])
+				{
+				case 1:
+					global.quests_d[i] += "ВОРИШКУ ИЛИ ДИЕГО";
+				break;
+				case 2:
+					global.quests_d[i] += "ШЕРИФА ИЛИ ДЖО";
+				break;
+				case 3:
+					global.quests_d[i] += "ОХОТНИЦУ ИЛИ ШАМАНА";
+				break;
+				case 4:
+					global.quests_d[i] += "БИЛЛА СТАРШЕГО";
+				break;
+				case 5:
+					global.quests_d[i] += "КАРТ";
+				break;
+				case 6:
+					global.quests_d[i] += "БУТЫЛКИ";
+				break;
+				case 7:
+					global.quests_d[i] += "ДВИЖЕНИЕ";
+				break;
+				case 8:
+					global.quests_d[i] += "ВНИМАНИЕ";
+				break;
+				case 9:
+					global.quests_d[i] += "СТРЕЛЬБА";
+				break;
+				case 10:
+					global.quests_d[i] += "МАТЕМАТИКА";
+				break;
+				case 11:
+					global.quests_d[i] += "В БЫСТРУЮ ИГРУ";
+				break;
+				case 12:
+					global.quests_d[i] += "В РАНГОВУЮ ИГРУ";
+				break;
+				case 13:
+					global.quests_d[i] += "С ДРУГОМ";
+				break;
+				case 14:
+					global.quests_d[i]  = "ВЫИГРАТЬ МАТЧ БЕЗ ОШИБОК";
+				break;
+				case 15:
+					global.quests_d[i]  = "ВЫИГРАТЬ ДУЭЛЬ, ТРАТЯ НЕ БОЛЕЕ 3 СЕКУНД НА ОТВЕТ";
+				break;
+				case 16:
+					global.quests_d[i]  = "НАНЕСТИ " + string(global.quests_n_all[i]) + " УРОНА";
+				break;
+				case 17:
+					global.quests_d[i]  = "ИСПОЛЬЗОВАТЬ СПОСОБНОСТЬ " + string(global.quests_n_all[i]) + " РАЗ";
+				break;
+				case 18:
+					global.quests_d[i]  = "СВОРОВАТЬ СПОСОБНОСТЬ У КАЖДОГО ПЕРСОНАЖА";
+				break;
+				case 19:
+					global.quests_d[i]  = "ВЫИГРАТЬ ДУЭЛЬ, КОГДА ВРАГ ОШЛУШЕН";
+				break;
+				case 20:
+					global.quests_d[i]  = "УДЕРЖИВАТЬ ВРАГА ОТРАВЛЕННЫМ 15 СЕКУНД";
+				break;
+				case 21:
+					global.quests_d[i]  = "ДОВЕСТИ ХП ВРАГА ДО НУЛЯ, ВЕРНУВ ЕМУ УРОН";
+				break;
+				case 22:
+					global.quests_d[i]  = "ОТВЕТИТЬ ВЕРНО НА 7 ВОПРОСОВ В ТУМАНЕ";
+				break;
+				case 23:
+					global.quests_d[i]  = "ВЫИГРАТЬ 3 ДУЭЛИ, НЕ ИСПОЛЬЗУЯ СПОСОБНОСТЬ";
+				break;
+				case 24:
+					global.quests_d[i]  = "НАНЕСТИ ВРАГУ 300 УРОНА ТОТЕМОМ ОГНЯ";
+				break;
+				case 25:
+					global.quests_d[i]  = "3 РАЗА НАНЕСТИ УРОН, ПРОМАХНУВШИСЬ";
+				break;
+				case 26:
+					global.quests_d[i]  = "НАНЕСТИ ВРАГУ 500 УРОНА ТОТЕМОМ МОЛНИИ";
+				break;
+				}
+			}
+			else
+			{
+			global.quests_d[i] = "";
+			if global.quests_t[i] > 0 && global.quests_t[i] <= 4
+				{ global.quests_d[i] = "TO WIN " + string(global.quests_n_all[i]) + " DUELS USING "; }
+			if global.quests_t[i] >= 5 && global.quests_t[i] <= 10
+				{ global.quests_d[i] = "MAKE THE RIGHT ANSWERS ON " + string(global.quests_n_all[i]) + " QUESTIONS OF "; }
+			if global.quests_t[i] >= 11 && global.quests_t[i] <= 13
+				{ global.quests_d[i] = "PLAY " + string(global.quests_n_all[i]) + " TIMES "; }
+			
+			switch(global.quests_t[i])
+				{
+				case 1:
+					global.quests_d[i] += "THIEF OR DIEGO";
+				break;
+				case 2:
+					global.quests_d[i] += "SHERIFF OR JO";
+				break;
+				case 3:
+					global.quests_d[i] += "HUNTER OR SHAMAN";
+				break;
+				case 4:
+					global.quests_d[i] += "JUNIOR BILL";
+				break;
+				case 5:
+					global.quests_d[i] += "CARDS";
+				break;
+				case 6:
+					global.quests_d[i] += "BOTTLES";
+				break;
+				case 7:
+					global.quests_d[i] += "MOVING";
+				break;
+				case 8:
+					global.quests_d[i] += "ATTENTION ";
+				break;
+				case 9:
+					global.quests_d[i] += "SHOOTING";
+				break;
+				case 10:
+					global.quests_d[i] += "MATH";
+				break;
+				case 11:
+					global.quests_d[i] += "QUICK GAME";
+				break;
+				case 12:
+					global.quests_d[i] += "RANK GAME";
+				break;
+				case 13:
+					global.quests_d[i] += "WITH FRIEND";
+				break;
+				case 14:
+					global.quests_d[i]  = "TO WIN A DUEL WITHOUT WRONG ANSWERS";
+				break;
+				case 15:
+					global.quests_d[i]  = "TO WIN A DUEL, USING FOR NO MORE THAN 3 SECONDS PER ANSWER";
+				break;
+				case 16:
+					global.quests_d[i]  = "MAKE " + string(global.quests_n_all[i]) + " DAMAGE";
+				break;
+				case 17:
+					global.quests_d[i]  = "USE ABILITY" + string(global.quests_n_all[i]) + " TIMES";
+				break;
+				case 18:
+					global.quests_d[i]  = "STEAL ABILITIES FROM EVERY CHARACTER";
+				break;
+				case 19:
+					global.quests_d[i]  = "WIN THE DUEL WHEN THE ENEMY STUNNED";
+				break;
+				case 20:
+					global.quests_d[i]  = "STAY ENEMY POISONED 15 SECONDS ";
+				break;
+				case 21:
+					global.quests_d[i]  = "BRING THE ENEMY’S HEALTH TO ZERO USING RETURN DAMAGE";
+				break;
+				case 22:
+					global.quests_d[i]  = "IN THE MIST ANSWER RIGHT TO 7 QUESTIONS";
+				break;
+				case 23:
+					global.quests_d[i]  = "WIN 3 DUELS, WITHOUT USING ABILITY";
+				break;
+				case 24:
+					global.quests_d[i]  = "MAKE TO THE ENEMY 300 DAMAGE BY THE TOTEM OF FIRE";
+				break;
+				case 25:
+					global.quests_d[i]  = "MAKE TO THE ENEMY DAMAGE 3 TIMES, USING THE TOTEM OF WIND";
+				break;
+				case 26:
+					global.quests_d[i]  = "MAKE TO THE ENEMY 500 DAMAGE BY THE TOTEM OF LIGHTNING";
+				break;
+				}
 			}
 		//global.quests_d[i]  = "WIN 5 DUELS AGAINST HUNTRESS OR SHAMAN";
 		global.quests_p[i]  = 40;
@@ -1653,6 +1748,13 @@
 	//	if audio_is_playing(sd_menu)
 	//		{ audio_pause_sound(sd_menu); }
 	//	}
+#endregion
+#region ПвП
+	global.pvp_set = 0;
+	global.pvp_now = 0;
+	
+	pvp_rank_i = global.player_rank;
+	pvp_pep = 30;
 #endregion
 
 #region Главное меню (СТАРОЕ)

@@ -47,7 +47,7 @@
 	while(ntf >= 0)
 	   {
 	   var data = ds_map_find_value(map, "data");
-	   if data == "d1" or data == "d2" or data == "d3" or data == "d4"
+	   //if data == "d1" or data == "d2" or data == "d3" or data == "d4"
 	      {
 	      push_cancel_local_notification(ntf);
 	      }
@@ -277,7 +277,7 @@
 				if global.rank_stars = 69 or global.rank_stars = 70
 					{
 					global.legend_rank += irandom_range(1, 10);
-					if global.ledend_rank > 100
+					if global.legend_rank > 100
 						{ global.legend_rank += 1; }
 					ini_write_string("Eho", "eho", string(global.legend_rank));
 					}
