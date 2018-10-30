@@ -1,4 +1,18 @@
 #region Стартовые переменные
+	if global.shomen
+		{
+		if global.shomen1 != 0
+			{ global.shomen = 0; }
+			else
+			{
+			if global.quick = 0 && global.pvp = 0 && global.training = -1
+				{ global.shomen = 1; }
+			}
+		//if !ini_section_exists("SHOMA")
+		//			{ ini_write_string("SHOMA", "sm", "0"); }
+		//		global.shomen1 = ini_read_real("SHOMA", "sm", 0);
+		//global.shomen
+		}
 	if global.training = -1 && global.shomen
 		{
 		global.player_rank = 15;
@@ -399,8 +413,8 @@
 			
 			if global.pvp = 1
 				{
-				coin_you[1]  = "ИГРОК1";
-				coin_you[0]  = "ИГРОК2";
+				coin_you[1] = "ИГРОК1";
+				coin_you[0] = "ИГРОК2";
 				}
 			}
 		
@@ -409,6 +423,8 @@
 		
 		coin_text1_s = 0;
 		coin_text2_s = 0;
+		
+		hand_i = 0;
 	#endregion
 #endregion
 #region Выбор Темы
@@ -1202,48 +1218,50 @@
 	//global.p_totem[3] = 3;
 	global.enemy_level = choose(global.player_rank, global.player_rank + 1, global.player_rank - 1); //irandom_range(1,10);
 	
-	#region Случайные тотемы Врага
-		if global.p_totem[1] != -1 && global.p_totem[2] = -1 //global.enemy_level >= 12
-			{
-			global.e_totem[1] = choose(irandom_range(1, 6), irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
-			global.e_totem[2] = -1;
-			global.e_totem[3] = -1;
-			}
-		if global.p_totem[2] != -1 && global.p_totem[3] = -1 //global.enemy_level < 12 && global.enemy_level >= 9
-			{
-			var toi;
-			global.e_totem[1] = choose(irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
-		
-			if global.e_totem[1] != 1
-				{ global.e_totem[2] = irandom_range(1, global.e_totem[1]); }
-				else
-				{ global.e_totem[2] = choose(irandom_range(2, 11), irandom_range(2, 15), irandom_range(2, 18)); }
-			global.e_totem[3] = -1;
-			}
-		if global.p_totem[3] != -1 //global.enemy_level < 9
-			{
-			var toi;
-			global.e_totem[1] = choose(irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
-		
-			if global.e_totem[1] != 1
+	if global.pvp = 0
+		{
+		#region Случайные тотемы Врага
+			if global.p_totem[1] != -1 && global.p_totem[2] = -1 //global.enemy_level >= 12
 				{
-				global.e_totem[2] = irandom_range(1, global.e_totem[1]);
-				if global.e_totem[2] != 1
-					{ global.e_totem[3] = irandom_range(1, global.e_totem[2]); }
-					else
-					{ global.e_totem[3] = irandom_range(2, global.e_totem[1]); }
+				global.e_totem[1] = choose(irandom_range(1, 6), irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
+				global.e_totem[2] = -1;
+				global.e_totem[3] = -1;
 				}
-				else
+			if global.p_totem[2] != -1 && global.p_totem[3] = -1 //global.enemy_level < 12 && global.enemy_level >= 9
 				{
-				global.e_totem[2] = choose(irandom_range(2, 15), irandom_range(2, 18)); 
-				if global.e_totem[2] != 2
-					{ global.e_totem[3] = irandom_range(2, global.e_totem[2]); }
+				var toi;
+				global.e_totem[1] = choose(irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
+		
+				if global.e_totem[1] != 1
+					{ global.e_totem[2] = irandom_range(1, global.e_totem[1]); }
 					else
-					{ global.e_totem[3] = irandom_range(3, 18); }
+					{ global.e_totem[2] = choose(irandom_range(2, 11), irandom_range(2, 15), irandom_range(2, 18)); }
+				global.e_totem[3] = -1;
 				}
-			}
-	#endregion
-	
+			if global.p_totem[3] != -1 //global.enemy_level < 9
+				{
+				var toi;
+				global.e_totem[1] = choose(irandom_range(1, 11), irandom_range(1, 15), irandom_range(1, 18));
+		
+				if global.e_totem[1] != 1
+					{
+					global.e_totem[2] = irandom_range(1, global.e_totem[1]);
+					if global.e_totem[2] != 1
+						{ global.e_totem[3] = irandom_range(1, global.e_totem[2]); }
+						else
+						{ global.e_totem[3] = irandom_range(2, global.e_totem[1]); }
+					}
+					else
+					{
+					global.e_totem[2] = choose(irandom_range(2, 15), irandom_range(2, 18)); 
+					if global.e_totem[2] != 2
+						{ global.e_totem[3] = irandom_range(2, global.e_totem[2]); }
+						else
+						{ global.e_totem[3] = irandom_range(3, 18); }
+					}
+				}
+		#endregion
+		}
 	//global.e_totem[1] = 18;
 	//global.e_totem[2] = 2;
 	//global.e_totem[3] = 3;
@@ -1266,6 +1284,24 @@
 		global.p_totem[3] = -1;
 		}
 	
+	var ret1, ret2, ret3;
+	ret1 = global.e_totem[1];
+	ret2 = global.e_totem[2];
+	ret3 = global.e_totem[3];
+	
+	if ret3 != -1 && ret2 = -1 && ret1 = -1
+		{
+		global.e_totem[1] = ret3;
+		global.e_totem[2] = -1;
+		global.e_totem[3] = -1;
+		}
+	if ret3 != -1 && ret2 != -1 && ret1 = -1
+		{
+		global.e_totem[1] = ret2;
+		global.e_totem[2] = ret3;
+		global.e_totem[3] = -1;
+		}
+		
 	if global.training = 4
 		{
 		global.p_totem[1] = 15;

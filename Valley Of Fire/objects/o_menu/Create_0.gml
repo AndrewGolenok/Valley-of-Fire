@@ -1640,7 +1640,7 @@
 #endregion
 #region Титры
 	global.titles = 0;
-	title_yy = global.size - 50;
+	title_yy = global.size - 50 - 150;
 	for(i=1;i<=25;i++)
 		{
 		title_text[i]  = "";
@@ -1648,12 +1648,13 @@
 		title_scale[i] = 0.2;
 		title_y[i] = 150 * i;
 		}
-	title_text[1]  = "VALLEY\nOF\nFIRE";
+	title_text[1]  = "";
 	title_text[2]  = "";
-	title_text[3]  = "";
+	title_text[3]  = "VALLEY\nOF\nFIRE";
 	title_text[4]  = "";
 	
 	title_coll[1]   = c_orange;
+	title_coll[3]   = c_orange;
 	title_coll[5]   = c_orange;
 	title_coll[10]  = c_orange;
 	title_coll[12]  = c_orange;
@@ -1691,12 +1692,13 @@
 	
 	if os_get_language() = "ru"
 		{
-		title_text[1]  = "VALLEY\nOF\nFIRE";
+		title_text[1]  = "";
 		title_text[2]  = "";
-		title_text[3]  = "";
+		title_text[3]  = "VALLEY\nOF\nFIRE";
 		title_text[4]  = "";
 		
 		title_coll[1]   = c_orange;
+		title_coll[3]   = c_orange;
 		title_coll[5]   = c_orange;
 		title_coll[10]  = c_orange;
 		title_coll[12]  = c_orange;
@@ -1753,8 +1755,15 @@
 	global.pvp_set = 0;
 	global.pvp_now = 0;
 	
+	global.p_totem_p[1] = -1;
+	global.p_totem_p[2] = -1;
+	global.p_totem_p[3] = -1;
+	
 	pvp_rank_i = global.player_rank;
 	pvp_pep = 30;
+	
+	if nowday != current_day or nowmon != current_month
+		{ global.menu_next = "quests"; }
 #endregion
 
 #region Главное меню (СТАРОЕ)

@@ -73,18 +73,18 @@
 								if j = 0
 									{
 									////////// КВЕСТЫ
-									for(i=1;i<=3;i++)
+									for(l=1;l<=3;l++)
 										{
-										if global.quests_a[i] = 1
+										if global.quests_a[l] = 1
 											{
-											if global.quests_t[i] = 25
+											if global.quests_t[l] = 25
 												{
-												if global.quests_n_now[i] < global.quests_n_all[i]
-													{ global.quests_n_now[i] += atk / 2; }
+												if global.quests_n_now[l] < global.quests_n_all[l]
+													{ global.quests_n_now[l] += atk / 2; }
 												}
 											
 											ini_open("Music.ini");
-												ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+												ini_write_string("Qual", "qual_nno_" + string(l), string(global.quests_n_now[l]));
 											ini_close();
 											}
 										}
@@ -5274,6 +5274,7 @@ if global.hero = 1 && global.enemy_hero = 1
 						if global.pvp = 1
 							{
 							global.now = !global.now;
+							part_n = 0;
 							global.nex += 1;
 							if global.nex = 2
 								{ global.nex = 0; global.task += 1; global.question = 1; /*u_question = (global.task - 1) * 3;*/ global.question = 1;  }
@@ -5311,6 +5312,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							else
 							{
 							global.now = !global.now;
+							part_n = 0;
 							global.nex += 1;
 							if global.nex = 2
 								{
@@ -5456,7 +5458,7 @@ if global.hero = 1 && global.enemy_hero = 1
 									{ bot_wait -= 1; }
 									else
 									{
-									if !global.super_ability or global.pvp = 1
+									if !global.super_ability && global.pvp = 1 //or global.pvp = 1
 										{
 										if bot_time2 > 0
 											{ bot_time2 -= 1; }
@@ -5480,7 +5482,7 @@ if global.hero = 1 && global.enemy_hero = 1
 											global.bot_answer = 0;
 											}
 											
-										if bot_time2 <= room_speed * 3
+										if bot_time2 <= room_speed * 3 // && global.pvp = 1
 											{
 											draw_set_color(c_white);
 											
@@ -5723,6 +5725,7 @@ if global.hero = 1 && global.enemy_hero = 1
 						if global.pvp = 1
 							{
 							global.now = !global.now;
+							part_n = 0;
 							global.nex += 1;
 							if global.nex = 2
 								{ global.nex = 0; bot_task += 1; global.task += 1; /*e_question = (global.task - 1) * 3;*/ /*u_question = (global.task - 1) * 3;*/ global.question = 1; }
@@ -5756,6 +5759,7 @@ if global.hero = 1 && global.enemy_hero = 1
 							else
 							{
 							global.now = !global.now;
+							part_n = 0;
 							global.nex += 1;
 							if global.nex = 2
 								{
@@ -5817,7 +5821,7 @@ if global.hero = 1 && global.enemy_hero = 1
 				if skeleton_animation_get() != "idle"
 					{ global.sraka = 1; }
 				}
-			if global.training < 1 && ((u_question = 10 && e_question = 10 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && global.sraka = 0) or hp <= 0 or e_hp <= 0)
+			if global.training < 1 && ((u_question >= 10 && e_question >= 10 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && global.sraka = 0) or hp <= 0 or e_hp <= 0)
 			&& theme_choose != 5  && theme_choose != 6 && global.super_ability = 0 && ((global.player_object).diego_dynamit = 0 or (global.player_object).diego_dynamit = 1)
 			&& ((global.enemy_object).diego_dynamit = 0 or (global.enemy_object).diego_dynamit = 1)// && (global.player_object).shoot = 0  && (global.enemy_object).shoot = 0// && global.sraka = 0
 				{
@@ -5962,7 +5966,20 @@ if global.hero = 1 && global.enemy_hero = 1
 				xxx = 360;
 				ccc = global.color_hero[global.enemy_hero];
 				}
-			draw_text_transformed_t(640 + xxx, global.size + 50 - (global.size / 2 + 50) * pvp_scale, coin_you[!global.now], 0.3, 0.3, -40 + 55 * pvp_scale, ccc, c_black);
+			draw_text_transformed_t(640 + xxx, global.size + 50 - (global.size / 2 + 50) * pvp_scale - 25, coin_you[!global.now], 0.3, 0.3, -40 + 55 * pvp_scale, ccc, c_black);
+			if os_get_language() = "ru"
+				{ draw_text_transformed_t(640, global.size + 50 - (global.size / 2 + 50) * pvp_scale - 200, "ТВОЙ ХОД", 0.3, 0.3, -40 + 45 * pvp_scale, global.color_white, c_black); }
+				else
+				{ draw_text_transformed_t(640, global.size + 50 - (global.size / 2 + 50) * pvp_scale - 200, "YOU TURN", 0.3, 0.3, -40 + 45 * pvp_scale, global.color_white, c_black); }
+			
+			//draw_sprite_ext(s_hand, 0, 640 + xxx * 0.8, global.size + 50 - (global.size / 2 + 50) * pvp_scale + 150, 1, 1, 0, c_white, 1);
+			if hand_i < 10
+				{ hand_i += 0.4; }
+				else
+				{ hand_i = 0; }
+			draw_sprite_ext(s_training_hand, hand_i, 640 + xxx * 0.8, global.size + 50 - (global.size / 2 + 50) * pvp_scale + 100, 1, 1, 0, c_black, 0.5);
+			draw_sprite_ext_t(s_training_hand, hand_i, 640 + xxx * 0.8, global.size + 50 - (global.size / 2 + 50) * pvp_scale + 100, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
+			
 			list_go = 0;
 			if mouse_check_button_pressed(mb_left) && pvp_scale = 1
 				{
@@ -6100,31 +6117,31 @@ if global.hero = 1 && global.enemy_hero = 1
 										case 7: super = 1; image_index = 0; image_speed = 2; skeleton_animation_set("greetings"); change = 2; break;
 										}
 									
-									if global.hero = 1 && global.varr[global.enemy_hero] = 0
+									if global.enemy_hero != 1
 										{
-										ini_open("Music.ini");
-									
-										ini_write_string("Var", "v" + string(global.enemy_hero), "1");
-										global.varr[global.enemy_hero] = ini_read_real("Var", "v" + string(i), 0);
-									
-										for(i=1;i<=3;i++)
+										if global.hero = 1// && global.varr[global.enemy_hero] = 0
 											{
-											if global.quests_a[i] = 1
+											ini_open("Music.ini");
+											
+											ini_write_string("Var", "v" + string(global.enemy_hero), "1");
+											global.varr[global.enemy_hero] = ini_read_real("Var", "v" + string(global.enemy_hero), 0);
+											
+											for(i=1;i<=3;i++)
 												{
-												if global.quests_t[i] = 18
+												if global.quests_a[i] = 1
 													{
-													if global.quests_n_now[i] < global.quests_n_all[i]
-														{ global.quests_n_now[i] += 1; }
-													}
-								
-												ini_open("Music.ini");
+													if global.quests_t[i] = 18
+														{
+														if global.quests_n_now[i] < global.quests_n_all[i]
+															{ global.quests_n_now[i] += 1; }
+														}
+														
 													ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
-												ini_close();
+													}
+												ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
 												}
+											ini_close();
 											}
-									
-										ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
-										ini_close();
 										}
 									}
 									else
@@ -8247,6 +8264,7 @@ if global.hero = 1 && global.enemy_hero = 1
 				
 				if global.pvp = 1
 					{ global.now = !first_player; }
+				part_n = 0;
 				coin_stage = 4;
 				coin_a = 0;
 				}
@@ -9561,6 +9579,13 @@ if global.hero = 1 && global.enemy_hero = 1
 						{
 						if whowin = 1
 							{
+							if global.shomen1 = 0 && global.shomen
+								{
+								ini_open("Music.ini");
+									ini_write_string("SHOMA", "sm", "1");
+									global.shomen1 = ini_read_real("SHOMA", "sm", 0);
+								ini_close();
+								}
 							if global.quests_a[i] = 1
 								{
 								if (global.quests_t[i] = 1 && (global.hero = 1 or global.hero = 4))

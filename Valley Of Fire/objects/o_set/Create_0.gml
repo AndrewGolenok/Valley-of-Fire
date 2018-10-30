@@ -47,10 +47,10 @@
 	while(ntf >= 0)
 	   {
 	   var data = ds_map_find_value(map, "data");
-	   //if data == "d1" or data == "d2" or data == "d3" or data == "d4"
-	      {
+	  //if data == "d1" or data == "d2" or data == "d3" or data == "d4"
+	     // {
 	      push_cancel_local_notification(ntf);
-	      }
+	      //}
 	   ntf = push_get_next_local_notification(map);
 	   }
 	ds_map_destroy(map);
@@ -101,7 +101,7 @@
 	application_surface_enable(1);
 	
 	device_mouse_dbclick_enable(0);
-	global.size = 720; //640; // 720; //800; //960;
+	global.size = 800; //640; // 720; //800; //960;
 	if os_type != os_macosx
 	    { global.size = (display_get_height() * 1280) / display_get_width(); }
 	
@@ -296,7 +296,7 @@
 			global.notend = 0;
 		#endregion
 		#region Квесты
-			for(i=2;i=7;i++)
+			for(i=1;i=7;i++)
 				{
 				if !ini_section_exists("Var")
 					{ ini_write_string("Var", "v" + string(i), "0"); }
@@ -305,6 +305,22 @@
 			//global.quests_n_now[1] = 0;
 			//global.quests_n_now[2] = 0;
 			//global.quests_n_now[3] = 0;
+		#endregion
+		#region Шомен
+			if !ini_section_exists("SHOMA")
+					{ ini_write_string("SHOMA", "sm", "0"); }
+				global.shomen1 = ini_read_real("SHOMA", "sm", 0);
+				global.pvp = 0;
+			//global.shomen
+		#endregion
+		#region Рука-меню
+			if !ini_section_exists("Hand")
+					{
+					ini_write_string("Hand", "gold", "1");
+					ini_write_string("Hand", "cash", "1");
+					}
+				global.hand_gold = ini_read_real("Hand", "gold", 0);
+				global.hand_cash = ini_read_real("Hand", "cash", 0);
 		#endregion
 	ini_close();
 #endregion

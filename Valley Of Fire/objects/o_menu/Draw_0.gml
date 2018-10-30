@@ -42,9 +42,10 @@
 #endregion
 
 #region Параллакс
-	var prx, pry, xxxx;
+	var prx, pry, xxxx, player_num;
 		prx = global.paral_x * global.paral_sx;
 		pry = global.paral_y * global.paral_sy;
+		player_num = "";
 	if global.size <= 640
 			{ xxxx = - 20; }
 			else
@@ -58,6 +59,14 @@
 		popka2 = (960 - global.size) * 1.5;
 	if popka2 > 0
 		{ popka2 = 0; }
+	
+	if global.pvp_set != 0
+		{
+		if os_get_language() = "ru"
+			{ player_num = " (И"+string(global.pvp_now)+")"; }
+			else
+			{ player_num = " (P"+string(global.pvp_now)+")"; }
+		}
 #endregion
 
 #region Главное меню
@@ -265,6 +274,19 @@
 		draw_set_alpha(1);
 		// КНОПКИ
 		
+		#region Рука
+			if (global.hand_gold && global.gold >= 100)
+			or (global.hand_cash && global.cash >= 50)
+				{
+				if hand_i < 10
+					{ hand_i += 0.4; }
+					else
+					{ hand_i = 0; }
+				draw_sprite_ext(s_training_hand, hand_i, 640, global.size - 100, 1, 1, 0, c_black, 0.5);
+				draw_sprite_ext_t(s_training_hand, hand_i, 640, global.size - 100, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
+				}
+		#endregion
+		
 		var sc_scale;
 		sc_scale = 1;
 		//if global.size < 640
@@ -305,7 +327,7 @@
 			//draw_set_alpha(1);
 			
 			//// БЫСТРАЯ ИГРА
-			if point_in_rectangle(mouse_x, mouse_y, string_width("∂БЫСТРАЯ ИГРА∂") * 0.22 / 2 + 20 - string_width("œQUICK PLAYœ") * 0.22 / 2, global.size / 2 - string_height("œQUICK PLAYœ") * 0.22 - 10, string_width("∂БЫСТРАЯ ИГРА∂") * 0.22 / 2 + 20 + string_width("œQUICK PLAYœ") * 0.22 / 2, global.size / 2 + string_height("œQUICK PLAYœ") * 0.22 / 2.5 - 10)
+			if point_in_rectangle(mouse_x, mouse_y, string_width("∂БЫСТРАЯ ИГРА∂") * 0.22 / 2 + 20 - string_width("œQUICK PLAYœ") * 0.22 / 2, global.size / 2 - string_height("œQUICK PLAYœ") * 0.22 - 10 - 0.2 * (global.size - 590), string_width("∂БЫСТРАЯ ИГРА∂") * 0.22 / 2 + 20 + string_width("œQUICK PLAYœ") * 0.22 / 2, global.size / 2 + string_height("œQUICK PLAYœ") * 0.22 / 2.5 - 10 - 0.2 * (global.size - 590))
 			&& global.menu_now = "main"
 				{
 				GoogleAnalytics_SendEvent("PLAY","Игрок выбрал QUICK PLAY");
@@ -462,6 +484,8 @@
 					global.p_totem[3] = r_t3;
 					if global.player_rank != 15
 						{ global.player_rank = irandom_range(global.player_rank - 1, 15); }
+					global.pvp_now = 0;
+					global.pvp_set = 0;
 					global.quick = 1;
 					//global.pvp   = 1;
 					room_goto_t("duel");
@@ -471,16 +495,16 @@
 			
 			//draw_rectangle(640 - string_width("QUICK PLAY") * 0.22 - 30, global.size / 2 + 20, 640 - 30, global.size / 2 + 20, 1);
 			if os_get_language() = "ru"
-				{ draw_text_transformed_t(string_width("∂БЫСТРАЯ ИГРА∂") * 0.22 / 2 + 20, global.size / 2 - 10, "∂БЫСТРАЯ ИГРА∂", 0.22 * ms5, 0.22 * ms5, 5, global.color_white, c_black); }
+				{ draw_text_transformed_t(string_width("∂БЫСТРАЯ ИГРА∂") * 0.22 / 2 + 20, global.size / 2 - 10 - 0.2 * (global.size - 590), "∂БЫСТРАЯ ИГРА∂", 0.22 * ms5, 0.22 * ms5, 5, global.color_white, c_black); }
 				else
-				{ draw_text_transformed_t(string_width("∂БЫСТРАЯ ИГРА∂") * 0.22 / 2 + 20, global.size / 2 - 10, "∂QUICK PLAY∂", 0.22 * ms5, 0.22 * ms5, 5, global.color_white, c_black); }
+				{ draw_text_transformed_t(string_width("∂БЫСТРАЯ ИГРА∂") * 0.22 / 2 + 20, global.size / 2 - 10 - 0.2 * (global.size - 590), "∂QUICK PLAY∂", 0.22 * ms5, 0.22 * ms5, 5, global.color_white, c_black); }
 			
 			//БЫСТРАЯ ИГРА
 		
 			//// РАНКЕД ДУЭЛЬ
 			if global.menu_now = "main"
 				{
-				if point_in_rectangle(mouse_x, mouse_y, 640 - string_width("®РАНГ ДУЭЛЬ®") * 0.22 / 2, global.size / 2 - string_height("®РАНГ ДУЭЛЬ®") * 0.22 / 2 + 25, 640 + string_width("®РАНГ ДУЭЛЬ®") * 0.22 / 2, global.size / 2 + string_height("®РАНГ ДУЭЛЬ®") * 0.22 + 25)
+				if point_in_rectangle(mouse_x, mouse_y, 640 - string_width("®РАНГ ДУЭЛЬ®") * 0.22 / 2, global.size / 2 - string_height("®РАНГ ДУЭЛЬ®") * 0.22 / 2 + 25 + 0.2 * (global.size - 590), 640 + string_width("®РАНГ ДУЭЛЬ®") * 0.22 / 2, global.size / 2 + string_height("®РАНГ ДУЭЛЬ®") * 0.22 + 25 + 0.2 * (global.size - 590))
 					{
 					GoogleAnalytics_SendEvent("PLAY","Игрок выбрал RANKED");
 					//// КЛАЦ
@@ -494,6 +518,7 @@
 						{ ms6 = 1.1; }
 					if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now= "main"
 						{
+						global.pvp_now = 0;
 						global.pvp_set = 0;
 						global.duel = 1;
 						global.menu_next = "training";
@@ -501,13 +526,13 @@
 					}
 				}
 			if os_get_language() = "ru"
-				{ draw_text_transformed_t(640, global.size / 2 + string_height("®РАНГ ДУЭЛЬ®") * 0.22 / 2 + 25, "®РАНГ ДУЭЛЬ®", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black); }
+				{ draw_text_transformed_t(640, global.size / 2 + string_height("®РАНГ ДУЭЛЬ®") * 0.22 / 2 + 25 + 0.2 * (global.size - 590), "®РАНГ ДУЭЛЬ®", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black); }
 				else
-				{ draw_text_transformed_t(640, global.size / 2 + string_height("®RANKED®") * 0.22 / 2 + 25, "®RANKED®", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black); }
+				{ draw_text_transformed_t(640, global.size / 2 + string_height("®RANKED®") * 0.22 / 2 + 25 + 0.2 * (global.size - 590), "®RANKED®", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black); }
 			//РАНКЕД ДУЭЛЬ
 		
 			//// ПРОТИВ ДРУГА
-			if point_in_rectangle(mouse_x, mouse_y, 1280 - string_width("œПРОТИВ ДРУГАœ") * 0.22 / 2 - 20 - string_width("œПРОТИВ ДРУГАœ") * 0.22 / 2, global.size / 2 - string_height("œПРОТИВ ДРУГАœ") * 0.22 - 60, 1280 - string_width("œПРОТИВ ДРУГАœ") * 0.22 / 2 - 20 + string_width("œПРОТИВ ДРУГАœ") * 0.22 / 2, global.size / 2 + string_height("œПРОТИВ ДРУГАœ") * 0.22 - 60)
+			if point_in_rectangle(mouse_x, mouse_y, 1280 - string_width("œПРОТИВ ДРУГАœ") * 0.22 / 2 - 20 - string_width("œПРОТИВ ДРУГАœ") * 0.22 / 2, global.size / 2 - string_height("œПРОТИВ ДРУГАœ") * 0.22 - 60 - 0.2 * (global.size - 590), 1280 - string_width("œПРОТИВ ДРУГАœ") * 0.22 / 2 - 20 + string_width("œПРОТИВ ДРУГАœ") * 0.22 / 2, global.size / 2 + string_height("œПРОТИВ ДРУГАœ") * 0.22 - 60 - 0.2 * (global.size - 590))
 			&& global.menu_now = "main"
 				{
 				GoogleAnalytics_SendEvent("PLAY","Игрок выбрал QUICK PLAY");
@@ -677,9 +702,9 @@
 				}
 			//draw_rectangle(640 - string_width("QUICK PLAY") * 0.22 - 30, global.size / 2 + 20, 640 - 30, global.size / 2 + 20, 1);
 			if os_get_language() = "ru"
-				{ draw_text_transformed_t(1280 - string_width("œПРОТИВ ДРУГАœ") * 0.22 / 2 - 20, global.size / 2 - 60, "œПРОТИВ ДРУГАœ", 0.22 * ms8, 0.22 * ms8, 5, global.color_white, c_black); }
+				{ draw_text_transformed_t(1280 - string_width("œПРОТИВ ДРУГАœ") * 0.22 / 2 - 20, global.size / 2 - 60 - 0.2 * (global.size - 590), "œПРОТИВ ДРУГАœ", 0.22 * ms8, 0.22 * ms8, 5, global.color_white, c_black); }
 				else
-				{ draw_text_transformed_t(1280 - string_width("œПРОТИВ ДРУГАœ") * 0.22 / 2 - 20, global.size / 2 - 60, "œVERSUS FRIENDœ", 0.22 * ms8, 0.22 * ms8, 5, global.color_white, c_black); }
+				{ draw_text_transformed_t(1280 - string_width("œПРОТИВ ДРУГАœ") * 0.22 / 2 - 20, global.size / 2 - 60 - 0.2 * (global.size - 590), "œVERSUS FRIENDœ", 0.22 * ms8, 0.22 * ms8, 5, global.color_white, c_black); }
 			
 			//ПРОТИВ ДРУГА
 		
@@ -688,7 +713,7 @@
 				{
 				if mouse_check_button_released(mb_left)
 					{
-					if point_in_rectangle(mouse_x, mouse_y, 1280 - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") * 0.2 - 10, 0, 1280, string_height(string(global.gold) + "©") + 10)
+					if point_in_rectangle(mouse_x, mouse_y, 1280 - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") * 0.2 - 10, 0, 1280, string_height(string(global.gold) + "©") * 0.2 + 30)
 						{
 						GoogleAnalytics_SendEvent("PLAY","Игрок нажал сверху на валюту");
 						//// КЛАЦ
@@ -862,6 +887,11 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 	var top;
 	top = ((sprite_get_height(s_totem_back) * global.back_scale - global.size) / 2) * (sprite_get_width(s_totem_back) / 1280); //sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.size / 1280)) / 2;
 	draw_sprite_part_ext(s_totem_back, 1, 0, top, sprite_get_width(s_totem_back), sprite_get_height(s_totem_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
+	
+	var ptotem1, ptotem2, ptotem3;
+	ptotem1 = global.p_totem[1];
+	ptotem2 = global.p_totem[2];
+	ptotem3 = global.p_totem[3];
 	
 	///////
 	
@@ -1088,7 +1118,44 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 					if mouse_check_button(mb_left)
 						{ go5 = 1.1; }
 					if mouse_check_button_released(mb_left)
-						{ global.quick = 0; room_goto_t("duel"); }
+						{
+						if global.pvp_set = 0
+							{ global.quick = 0; global.pvp = 0; }
+							else
+							{ global.quick = 1; global.pvp = 1; }
+						
+						if global.pvp_set = 0
+							{ room_goto_t("duel"); }
+						
+						if global.pvp_now = 1
+							{
+							global.p_totem_p[1] = global.p_totem[1];
+							global.p_totem_p[2] = global.p_totem[2];
+							global.p_totem_p[3] = global.p_totem[3];
+							
+							global.p_totem[1] = -1;
+							global.p_totem[2] = -1;
+							global.p_totem[3] = -1;
+							
+							global.pvp_now = 2;
+							global.menu_now = "heroes"; global.menu_next = "heroes";
+							}
+							else
+							{
+							if global.pvp_now = 2
+								{
+								global.e_totem[1] = global.p_totem[1];
+								global.e_totem[2] = global.p_totem[2];
+								global.e_totem[3] = global.p_totem[3];
+								
+								global.p_totem[1] = global.p_totem_p[1];
+								global.p_totem[2] = global.p_totem_p[2];
+								global.p_totem[3] = global.p_totem_p[3];
+								
+								room_goto_t("duel");
+								}
+							}
+						}
 					io_clear();
 					}
 				
@@ -1316,10 +1383,20 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 				
 				//draw_rectangle(1280 - 300 - 150, global.size - 60 + training_back_y - 50, 1280 - 300 + 150, global.size - 60 + training_back_y + 50, 1);
 				draw_sprite_ext(s_light, 0, 1280 - 300, global.size - 60 + training_back_y, 0.6, 0.3, 0, c_white, 0.7);
-				if os_get_language() != "ru"
-					{ draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "START", 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black); }
+				if global.pvp_now != 1
+					{
+					if os_get_language() != "ru"
+						{ draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "START", 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black); }
+						else
+						{ draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "СТАРТ", 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black); }
+					}
 					else
-					{ draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "СТАРТ", 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black); }
+					{
+					if os_get_language() != "ru"
+						{ draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "NEXT", 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black); }
+						else
+						{ draw_text_transformed_t(1280 - 300, global.size - 60 + training_back_y, "ДАЛЕЕ", 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black); }
+					}
 				}
 		#endregion
 	
@@ -1338,12 +1415,12 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 			if global.size >= 700
 				{
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "ВЫБЕРИ ТОТЕМЫ", 0.22, 0.22, 0, col, c_black);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "ВЫБЕРИ ТОТЕМЫ" + player_num, 0.22, 0.22, 0, col, c_black);
 				}
 				else
 				{
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 60, "ВЫБЕРИ ТОТЕМЫ", 0.22, 0.22, 0, col, c_black);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 60, "ВЫБЕРИ ТОТЕМЫ" + player_num, 0.22, 0.22, 0, col, c_black);
 				}
 			}
 			else
@@ -1359,12 +1436,12 @@ if global.menu_now = "totem" or global.menu_next = "totem"
 			if global.size >= 700
 				{
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE TOTEMS", 0.22, 0.22, 0, col, c_black);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE TOTEMS" + player_num, 0.22, 0.22, 0, col, c_black);
 				}
 				else
 				{
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 60, "CHOOSE TOTEMS", 0.22, 0.22, 0, col, c_black);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 60, "CHOOSE TOTEMS" + player_num, 0.22, 0.22, 0, col, c_black);
 				}
 			}
 			else
@@ -1771,7 +1848,10 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 						if mouse_check_button_released(mb_left) && global.heroes_have[i] > 0
 							{
 							GoogleAnalytics_SendEvent("HEROES","Игрок выбрал персонажа " + string(1));
-							global.hero = i;
+							if global.pvp_now != 2
+								{ global.hero = i; }
+								else
+								{ global.enemy_hero = i; }
 							global.duel = 1;
 							global.p_totem[1] = -1;
 							global.p_totem[2] = -1;
@@ -1811,6 +1891,12 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 	
 	draw_sprite_ext(s_heroes_back, 4, 640, global.size + training_back_y + yh + 40 * (960 / global.size) + 10, global.back_scale, global.back_scale, 0, c_black, 0.5);
 	draw_sprite_ext_t(s_heroes_back, 4, 640, global.size + training_back_y + yh + 40 * (960 / global.size), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
+	
+	var text_hero;
+	text_hero = "";
+	if global.pvp_now = 0
+		{ text_hero = ""; }
+	
 	if os_get_language() = "ru"
 		{
 		if global.duel = 0
@@ -1832,12 +1918,12 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 			if global.size  >= 700
 				{
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "ВЫБЕРИ ГЕРОЯ", 0.22, 0.22, 0, col, c_black);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "ВЫБЕРИ ГЕРОЯ" + player_num, 0.22, 0.22, 0, col, c_black);
 				}
 				else
 				{
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "ВЫБЕРИ ГЕРОЯ", 0.22, 0.22, 0, col, c_black);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "ВЫБЕРИ ГЕРОЯ" + player_num, 0.22, 0.22, 0, col, c_black);
 				}
 			}
 		}
@@ -1862,12 +1948,12 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 			if global.size  >= 700
 				{
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE A HERO", 0.22, 0.22, 0, col, c_black);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300, "CHOOSE A HERO" + player_num, 0.22, 0.22, 0, col, c_black);
 				}
 				else
 				{
 				draw_set_font(global.game_font);
-				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "CHOOSE A HERO", 0.22, 0.22, 0, col, c_black);
+				draw_text_transformed_t(450, global.size / 2 + training_back_y - 300 + 40, "CHOOSE A HERO" + player_num, 0.22, 0.22, 0, col, c_black);
 				}
 			}
 		}
@@ -1897,8 +1983,8 @@ if global.menu_now = "heroes" or (global.menu_next = "heroes" && global.duel = 0
 		//// КЛАЦ
 		if mouse_check_button_pressed(mb_left)
 			{
-			sc_spd   = 2;
-			sc_dist  = 10;
+			sc_spd  = 2;
+			sc_dist = 10;
 			}
 		}
 	if point_in_rectangle(mouse_x, mouse_y, 0, 0, 100, 100)
@@ -2721,6 +2807,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 		draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.24, 0.24, 0, c_black, 0.5);
 		if lootbox_buy[2] = 0
 			{ draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 0.24 * lbs2, 0.24 * lbs2, 0, c_white, 1); }
+		
 		////// Названия
 		if os_get_language() = "ru"
 			{
@@ -2738,8 +2825,32 @@ if global.menu_now = "store" or global.menu_next = "store"
 		draw_text_transformed_t(640 + prx - 150 + 22, top + 155 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 140, "100©", 0.25 * lbs1, 0.25 * lbs1, 0, global.gold_color, c_black);
 		draw_text_transformed_t(640 + prx + 150 + 22, top + 155 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 140, "50ç", 0.25 * lbs2, 0.25 * lbs2, 0, global.cash_color, c_black);
 		///// Цена
-		//////
 		
+		///////
+		#region Рука
+			if (global.hand_gold && global.gold >= 100)
+				{
+				if hand_i < 10
+					{ hand_i += 0.4; }
+					else
+					{ hand_i = 0; }
+				draw_sprite_ext(s_training_hand, hand_i, 640 + prx - 150 + 22, top + 155 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 80, 1, 1, 0, c_black, 0.5);
+				draw_sprite_ext_t(s_training_hand, hand_i, 640 + prx - 150 + 22, top + 155 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 80, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
+				}
+			if (global.hand_cash && global.cash >= 50)
+				{
+				if !(global.hand_gold && global.gold >= 100)
+					{
+					if hand_i < 10
+						{ hand_i += 0.4; }
+						else
+						{ hand_i = 0; }
+					}
+				draw_sprite_ext(s_training_hand, hand_i, 640 + prx + 150 + 22, top + 155 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 80, 1, 1, 0, c_black, 0.5);
+				draw_sprite_ext_t(s_training_hand, hand_i, 640 + prx + 150 + 22, top + 155 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 80, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
+				}
+		#endregion
+		///////
 		
 		////// ЕЖЕДНЕВНЫЕ ПОКУПКИ
 		draw_sprite_ext(s_store_plash, 0, 640 + prx, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 0.4, 0.4, 0, c_black, 0.5);
@@ -3802,6 +3913,19 @@ if global.menu_now = "store" or global.menu_next = "store"
 								draw_text_transformed_t(640 - 25/* + string_width("100© BUY") * 0.2 * lbs1 * upsc / 2 - 20*/, global.size / 2 + 140 - nizco + 60 + 70 + xxxx, "100©BUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
 								//draw_text_transformed_t(640 - string_width("100©") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 + 60 + 70/*+ 60*/, "100©", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
 								}
+							///////
+							#region Рука
+								if (global.hand_gold && global.gold >= 100)
+									{
+									if hand_i < 10
+										{ hand_i += 0.4; }
+										else
+										{ hand_i = 0; }
+									draw_sprite_ext(s_training_hand, hand_i, 640 - 25, global.size / 2 - nizco + 90 + 60 + 70 + xxxx + 70, 1, 1, 0, c_black, 0.5);
+									draw_sprite_ext_t(s_training_hand, hand_i, 640 - 25, global.size / 2 - nizco + 90 + 60 + 70 + xxxx + 70, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
+									}
+							#endregion
+							///////
 							}
 						//////
 						//if global.gold < 100
@@ -3827,6 +3951,11 @@ if global.menu_now = "store" or global.menu_next = "store"
 								if global.gold >= 100
 									{
 									ini_open("Music.ini");
+										if global.hand_gold = 1
+											{
+											ini_write_string("Hand", "gold", "0");
+											global.hand_gold = ini_read_real("Hand", "gold", 0);
+											}
 										global.gold -= 100;
 										ini_write_string("Sounds", "sound_on_g", string(global.gold));
 									ini_close();
@@ -4553,6 +4682,19 @@ if global.menu_now = "store" or global.menu_next = "store"
 										draw_text_transformed_t(640 - 25, global.size / 2 - nizco + 140 + 60 + 70 + xxxx, "50çBUY", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.cash_color, c_black);
 										//draw_text_transformed_t(640 - string_width("100©") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 + 60 + 70/*+ 60*/, "100©", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.gold_color, c_black);
 										}
+									///////
+									#region Рука
+										if (global.hand_cash && global.cash >= 50)
+											{
+											if hand_i < 10
+												{ hand_i += 0.4; }
+												else
+												{ hand_i = 0; }
+											draw_sprite_ext(s_training_hand, hand_i, 640 - 25, global.size / 2 - nizco + 90 + 60 + 70 + xxxx + 70, 1, 1, 0, c_black, 0.5);
+											draw_sprite_ext_t(s_training_hand, hand_i, 640 - 25, global.size / 2 - nizco + 90 + 60 + 70 + xxxx + 70, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
+											}
+									#endregion
+									///////
 									}
 								draw_sprite_ext_t(s_lootbox2, 0, 640 - 10, global.size / 2 - nizco - 120 + 65 + 70, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, 0, c_white, 1, c_white, c_black);
 								//draw_sprite_ext_t(s_buy, 5 + i, 640, global.size / 2 + 90 + 60 + 70, 0.45 * upsc * 0.85, 0.45 * lootbox_buy_s[i] * upsc * 0.85, 0, c_white, 1, c_white, c_black);
@@ -4604,6 +4746,12 @@ if global.menu_now = "store" or global.menu_next = "store"
 										//	draw_text_transformed_t(640 - string_width("50ç") * 0.2 * lbs1 * upsc / 2 + 10, global.size / 2 + 140 + 60 + 70/*+ 60*/, "50ç", 0.2 * lbs1 * upsc * minn, 0.2 * lbs1 * upsc * lootbox_buy_s[i] * minn, 0, global.cash_color, c_black);
 										//	}
 										ini_open("Music.ini");
+											
+											if global.hand_cash = 1
+												{
+												ini_write_string("Hand", "cash", "0");
+												global.hand_cash = ini_read_real("Hand", "cash", 0);
+												}
 											global.cash -= 50;
 											ini_write_string("Sounds", "sound_false_c", string(global.cash));
 										ini_close();
@@ -6821,7 +6969,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 #endregion
 #region Отладка
 	//draw_set_font(global.game_font);
-	//draw_text_transformed_t(mouse_x, mouse_y, string(global.p_totem[1]) + ":" + string(global.p_totem[2]) + ":" + string(global.p_totem[3]), 0.25, 0.25, 0, c_white, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(vers), 0.25, 0.25, 0, c_white, c_black);
 	//draw_set_font(global.game_font);
 	//draw_text_transformed_t(mouse_x, mouse_y, string(store_yy1), 0.25, 0.25, 0, c_white, c_black);
 	if keyboard_check_pressed(ord("T"))

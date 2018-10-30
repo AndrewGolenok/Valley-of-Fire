@@ -1,5 +1,6 @@
 #region Переменные игроков
-	global.enemy_hero = irandom_range(1,7);
+	if global.pvp = 0
+		{ global.enemy_hero = irandom_range(1,7); }
 #endregion
 #region Камера
 	application_surface_enable(1);
