@@ -49,12 +49,15 @@
 	ini_open("Music.ini");
 		//global.training_o = ini_read_real("Training", "training", 0);
 		
-		global.tr[1] = ini_read_real("Training", "tr1", 0);
+		global.tr[1] = ini_read_real("Training", "tr1", 1);
 		global.tr[2] = ini_read_real("Training", "tr2", 0);
 		global.tr[3] = ini_read_real("Training", "tr3", 0);
 		global.tr[4] = ini_read_real("Training", "tr4", 0);
 		global.tr[5] = ini_read_real("Training", "tr5", 0);
 		global.tr[6] = ini_read_real("Training", "tr6", 0);
+		
+		if global.tr[1] = 0
+			{ global.tr[1] = 1; }
 		
 		if global.tr[6] = 2
 			{ global.training_o = 1; }
@@ -1762,8 +1765,20 @@
 	pvp_rank_i = global.player_rank;
 	pvp_pep = 30;
 	
-	if nowday != current_day or nowmon != current_month
+	if global.training_o != 0
+	&& (nowday != current_day or nowmon != current_month)
 		{ global.menu_next = "quests"; }
+#endregion
+#region Обучение
+	//if global.tr[2] = 0
+	//	{
+	//	show_message_async("sss");
+		
+	//	global.training = theme_t[1,1];
+	//	global.hero = theme_t[1,1];
+		
+	//	room_goto_t("duel");
+	//	}
 #endregion
 
 #region Главное меню (СТАРОЕ)

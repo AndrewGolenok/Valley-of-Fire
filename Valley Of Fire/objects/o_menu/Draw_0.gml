@@ -2129,6 +2129,16 @@ if global.menu_now = "training" or global.menu_next = "training"
 	#endregion
 	if global.duel = 0
 		{
+		#region Обучение
+			if global.tr[2] = 0 && !instance_exists(o_transf)// && 0
+				{
+				global.training = theme_t[1,1];
+				global.hero = theme_t[1,1];
+			
+				room_goto_t("duel");
+				}
+		#endregion
+		
 		for(j=1;j<=2;j++)
 			{
 			for(i=1;i<=3;i++)
@@ -2145,13 +2155,13 @@ if global.menu_now = "training" or global.menu_next = "training"
 							}
 							else
 							{ theme_s[i,j] = 1; }
-						if mouse_check_button_released(mb_left)
+						if mouse_check_button_released(mb_left)// or (global.tr[2] = 0 && !instance_exists(o_transf))
 							{
 							if theme_op[i,j] != 0
 								{
 								global.training = theme_t[i,j];
 								global.hero = theme_t[i,j];
-							
+								
 								room_goto_t("duel");
 								}
 							}
@@ -2332,7 +2342,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 		//if global.rank_stars < 2
 		//	{ star_now = global.rank_stars; star_need = 2; shield_i = 0; skul_i = 15; }
 		
-		if global.training_o = 1
+		if global.training_o = 1 or global.pvp_set != 0
 			{
 			if anim_skul < 3
 				{ anim_skul += 0.5; }
@@ -2439,7 +2449,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 			}
 		
 		go5 = 1;
-		if global.training_o = 1
+		if global.training_o = 1 or global.pvp_set != 0
 			{
 			if point_in_rectangle(mouse_x, mouse_y, 640 - 290, global.size / 2 - 60 + 150 + training_back_y, 640 + 290, global.size / 2 + 60 + 150 + training_back_y)
 				{
@@ -2490,7 +2500,7 @@ if global.menu_now = "training" or global.menu_next = "training"
 		//global.g_stars_now = 0;
 		}
 	
-	if global.training_o != 1 && global.duel = 1
+	if global.training_o != 1 && global.duel = 1 && global.pvp_set = 0
 		{
 		draw_set_alpha(0.45);
 		draw_rectangle_color(0, training_back_y, 1280, global.size + training_back_y, c_black, c_black, c_black, c_black, 0);
@@ -6969,7 +6979,7 @@ if global.menu_now = "store" or global.menu_next = "store"
 #endregion
 #region Отладка
 	//draw_set_font(global.game_font);
-	//draw_text_transformed_t(mouse_x, mouse_y, string(vers), 0.25, 0.25, 0, c_white, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(global.tr[1]), 0.25, 0.25, 0, c_white, c_black);
 	//draw_set_font(global.game_font);
 	//draw_text_transformed_t(mouse_x, mouse_y, string(store_yy1), 0.25, 0.25, 0, c_white, c_black);
 	if keyboard_check_pressed(ord("T"))

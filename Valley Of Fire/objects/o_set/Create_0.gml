@@ -1,4 +1,6 @@
 #region Пуши
+//file_delete("Music.ini");
+//game_end();
 //randomize();
 //fizra  = choose("miachik", "ganbol", "roketka", "fizcultura");
 //fizra1 = choose("skakalka", "gira", "espander", "lizha");
@@ -163,7 +165,7 @@
 				}
 			//global.training_o = ini_read_real("Training", "training", 0);
 			
-			global.tr[1] = ini_read_real("Training", "tr1", 0);
+			global.tr[1] = ini_read_real("Training", "tr1", 1);
 			global.tr[2] = ini_read_real("Training", "tr2", 0);
 			global.tr[3] = ini_read_real("Training", "tr3", 0);
 			global.tr[4] = ini_read_real("Training", "tr4", 0);
@@ -211,6 +213,7 @@
 				    {
 					ini_write_string("Heroes", "heroes" + string(i), "0");
 					ini_write_string("Heroes", "heroes" + string(ranran), "1");
+					ini_write_string("Heroes", "heroes2", "1");
 					}
 				global.heroes_have[i] = ini_read_real("Heroes", "heroes" + string(i), 0);
 				}

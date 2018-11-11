@@ -12,15 +12,15 @@ if os_get_language() = "ru"
 	}
 	else
 	{
-	push_local_notification(date_inc_day(date_current_datetime(), 1), "DAILY GIFT", "Gome in and get 30 GOLD!", "d1");
+	push_local_notification(date_inc_day(date_current_datetime(), 1), "DAILY GIFT", "Come and get 30 GOLD!", "d1");
 	
-	push_local_notification(date_inc_day(date_current_datetime(), 3), "IS IT TIME TO STRETCH YOUR BRAIN?", "Gome in and get 70 GOLD!", "d2");
+	push_local_notification(date_inc_day(date_current_datetime(), 3), "IS IT TIME TO STRETCH YOUR BRAIN?", "Come and get 70 GOLD!", "d2");
 	
-	push_local_notification(date_inc_day(date_current_datetime(), 7), "HOLA AMIGO!", "Gome in and get 25 CASH!", "d3");
+	push_local_notification(date_inc_day(date_current_datetime(), 7), "HOLA AMIGO!", "Come and get 25 CASH!", "d3");
 	
-	push_local_notification(date_inc_day(date_current_datetime(), 14), "THE BEST SHOOTERS OF THE TOWN WANT TO FIGHT WITH YOU!", "Gome in and get 50 GOLD and 30 CASH!", "d4");
+	push_local_notification(date_inc_day(date_current_datetime(), 14), "THE BEST SHOOTERS OF THE TOWN WANT TO FIGHT WITH YOU!", "Come and get 50 GOLD and 30 CASH!", "d4");
 	
-	push_local_notification(date_inc_day(date_current_datetime(), 30), "DUELS ARE WAITING FOR YOU!", "Gome in and get 100 GOLD and 50 CASH!", "d5");
+	push_local_notification(date_inc_day(date_current_datetime(), 30), "DUELS ARE WAITING FOR YOU!", "Come and get 100 GOLD and 50 CASH!", "d5");
 	}
 /*
 push_local_notification(date_inc_day(date_current_datetime(), 1), push_txt1, push_txt2, "daily_reward 1");

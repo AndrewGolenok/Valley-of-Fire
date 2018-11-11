@@ -219,6 +219,7 @@ if global.hero = 1 && global.enemy_hero = 1
 		//{
 		if theme_round[global.rounds] != -1 && theme_choose = 4 && global.super_ability = 0
 			{
+			//if list_scale < 1
 			#region Текст вопроса
 				question_text = global.question_text[theme_round[global.rounds],round_task[global.rounds,global.task]];
 				
@@ -4118,7 +4119,7 @@ if global.hero = 1 && global.enemy_hero = 1
 										}
 								#endregion
 								for(i=1;i<=cards_all;i++)
-									{ draw_sprite_ext(s_card, cards_i[i], card_x + cards_x[i], card_y + cards_y[i] - 70, cards_ss[i] * 0.7, 0.7, 0, c_white, 1); }
+									{ draw_sprite_ext(s_card, cards_i[i], card_x + cards_x[i], card_y + cards_y[i] - 70, cards_ss[i] * 0.7 * list_scale, 0.7, 0, c_white, 1); }
 							#endregion
 							}
 					#endregion
@@ -5314,6 +5315,22 @@ if global.hero = 1 && global.enemy_hero = 1
 							global.now = !global.now;
 							part_n = 0;
 							global.nex += 1;
+							list_scale = 0;
+							if global.storm = 1 { storm_1(); }
+							
+							if theme_round[global.rounds] = 6
+								{ script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task]))); }
+							if theme_round[global.rounds] = 2
+								{ script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task]))); }
+							if theme_round[global.rounds] = 3
+								{ script_execute(asset_get_index("move_" + string(round_task[global.rounds,global.task]))); }
+							if theme_round[global.rounds] = 4
+								{ script_execute(asset_get_index("attention_" + string(round_task[global.rounds,global.task]))); }
+							if theme_round[global.rounds] = 1
+								{ script_execute(asset_get_index("cards_" + string(round_task[global.rounds,global.task]))); }
+							if theme_round[global.rounds] = 5
+								{ script_execute(asset_get_index("shooting_" + string(round_task[global.rounds,global.task]))); }
+							
 							if global.nex = 2
 								{
 								global.nex = 0;
@@ -5725,6 +5742,22 @@ if global.hero = 1 && global.enemy_hero = 1
 						if global.pvp = 1
 							{
 							global.now = !global.now;
+							list_scale = 0;
+							if global.storm = 1 { storm_1(); }
+							
+							if theme_round[global.rounds] = 6
+								{ script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task]))); }
+							if theme_round[global.rounds] = 2
+								{ script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task]))); }
+							if theme_round[global.rounds] = 3
+								{ script_execute(asset_get_index("move_" + string(round_task[global.rounds,global.task]))); }
+							if theme_round[global.rounds] = 4
+								{ script_execute(asset_get_index("attention_" + string(round_task[global.rounds,global.task]))); }
+							if theme_round[global.rounds] = 1
+								{ script_execute(asset_get_index("cards_" + string(round_task[global.rounds,global.task]))); }
+							if theme_round[global.rounds] = 5
+								{ script_execute(asset_get_index("shooting_" + string(round_task[global.rounds,global.task]))); }
+							
 							part_n = 0;
 							global.nex += 1;
 							if global.nex = 2
@@ -6317,23 +6350,26 @@ if global.hero = 1 && global.enemy_hero = 1
 							else
 							{ part_n = 0; }
 						}
-				
-					if global.swipe_ability = 0
+					
+					if global.pvp = 0
 						{
-						if part_n > 0
+						if global.swipe_ability = 0
 							{
-							draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-							draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-							draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							if part_n > 0
+								{
+								draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+								draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+								draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+								}
 							}
-						}
-						else
-						{
-						if part_n > 0
+							else
 							{
-							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							if part_n > 0
+								{
+								draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+								draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * super_now1 / super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+								draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+								}
 							}
 						}
 					if part_n = 0
@@ -6727,23 +6763,26 @@ if global.hero = 1 && global.enemy_hero = 1
 							else
 							{ part_n = 0; }
 						}
-				
-					if global.swipe_ability = 0
+					
+					if global.pvp = 0
 						{
-						if part_n > 0
+						if global.swipe_ability = 0
 							{
-							draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * e_super_now1 / e_super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-							draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * e_super_now1 / e_super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-							draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							if part_n > 0
+								{
+								draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * e_super_now1 / e_super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+								draw_sprite_ext_t(s_super, global.hero + 1, part_x + part_xspd * sign(part_x - (1280) * e_super_now1 / e_super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+								draw_sprite_ext_t(s_super, global.hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+								}
 							}
-						}
-						else
-						{
-						if part_n > 0
+							else
 							{
-							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * e_super_now1 / e_super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * e_super_now1 / e_super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
-							draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+							if part_n > 0
+								{
+								draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * e_super_now1 / e_super_need) * 2, part_y - part_yspd * 2, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+								draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x + part_xspd * sign(part_x - (1280) * e_super_now1 / e_super_need), part_y - part_yspd, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+								draw_sprite_ext_t(s_super, global.enemy_hero + 1, part_x, part_y, 0.3 * part_s, 0.3 * part_s, 0, butcolor, 1, butcolor, c_black);
+								}
 							}
 						}
 					if part_n = 0
@@ -7391,6 +7430,7 @@ if global.hero = 1 && global.enemy_hero = 1
 			//draw_sprite_ext(asset_get_index("s_super_" + global.hero_code_name[global.enemy_hero]), e_skill[global.rounds], 1280 - (640 - 90 - 500) + super_x, global.size - 80, -list_size1 * 1, list_size1 * 1, 0, c_white, 1);
 		#endregion
 		}
+	
 	#region Способность Шерифа
 		if global.hero = 6 && (global.player_object).super = 1//(global.hero = 6 or (global.enemy_hero = 6 && global.hero = 1 && global.swipe_ability)) && (global.player_object).super = 1
 			{

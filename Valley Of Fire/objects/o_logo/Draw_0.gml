@@ -325,7 +325,19 @@ if stage >= 14
 	//if fire_alpha > 0.65
 	//	{ fire_alpha -= 0.02; }
 	if load_go >= 100
-		{ room_goto_t("menu"); stage = 19; }
+		{
+		if global.tr[2] = 0
+			{
+			//global.training = 4;
+			//global.hero = 4;
+								
+			//room_goto_t("duel");
+			room_goto_t("menu");
+			}
+			else
+			{ room_goto_t("menu"); }
+		stage = 19;
+		}
 	
 	draw_set_alpha(load_alpha);
 	draw_set_color(c_black);
