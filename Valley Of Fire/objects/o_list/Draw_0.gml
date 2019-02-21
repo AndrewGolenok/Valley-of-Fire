@@ -4988,6 +4988,7 @@ if global.hero = 1 && global.enemy_hero = 1
 			#endregion
 			}
 		//}
+		
 		if global.pvp = 1
 			{
 			if global.now = 1

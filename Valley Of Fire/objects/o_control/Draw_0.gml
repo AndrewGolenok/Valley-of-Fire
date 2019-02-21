@@ -329,6 +329,14 @@ if global.room_to_go = "duel" or(global.menu_next = "main" or global.menu_now = 
 				}
 			}
 	#endregion
+	#region Фон Дома
+		if global.background = "house"
+			{
+			draw_sprite_ext(s_house_back,  0, 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, 1);
+			draw_sprite_ext(s_house_house, 0, 640 + back_x, global.size + back_y, back_s, back_s, 0, c_white, 1);
+			draw_sprite_ext(s_house_trees, 0, 640 + back_x - prx, global.size + back_y - pry + 50, back_s, back_s, 0, c_white, 1);
+			}
+	#endregion
 	#region Поверх
 		draw_sprite_ext(s_train_back1, o_control.back_time[1], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[1]] * o_control.back_alpha[1]);
 		draw_sprite_ext(s_train_back1, o_control.back_time[2], 640 + o_control.back_x, global.size + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[2]] * o_control.back_alpha[2]);

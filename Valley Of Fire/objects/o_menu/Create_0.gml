@@ -1,3 +1,44 @@
+#region Текст
+	ini_open(string(global.lang) + ".ini");
+		for(i=1;i<=34;i++)
+			{
+			if i<=6
+				{ cash_txt[i] = ini_read_string("Menu", "cash_txt_" + string(i), ""); }
+			if i<=3
+				{ gold_txt[i] = ini_read_string("Menu", "gold_txt_" + string(i), ""); }
+			if i<=4
+				{ text_tot[i] = ini_read_string("Menu", "text_tot_" + string(i), ""); }
+			if i<=8
+				{
+				heroes_name[i]  = ini_read_string("Menu", "heroes_name_"  + string(i), "");
+				heroes_theme[i] = ini_read_string("Menu", "heroes_theme_" + string(i), "");
+				heroes_abil[i]  = ini_read_string("Menu", "heroes_abil_"  + string(i), "");
+				}
+			if i <= 21
+				{
+				main_text[i]     = ini_read_string("Menu", "main_text_"     + string(i), "");
+				training_text[i] = ini_read_string("Menu", "training_text_" + string(i), "");
+				store_text[i]    = ini_read_string("Menu", "store_text_"    + string(i), "");
+				heroes_text[i]   = ini_read_string("Menu", "heroes_text_"   + string(i), "");
+				totems_text[i]   = ini_read_string("Menu", "totems_text_"   + string(i), "");
+				}
+			quest_text[i] = ini_read_string("Menu", "quest_text_" + string(i), "");
+			}
+		hp_text  = ini_read_string("Menu", "hp_text", "");
+		atk_text = ini_read_string("Menu", "atk_text", "");
+		
+		him_text = ini_read_string("Menu", "him_text", "");
+		her_text = ini_read_string("Menu", "her_text", "");
+		
+		choose_text = ini_read_string("Menu", "choose_text", "");
+		//for(i=1;i<=8;i++)
+		//	{ heroes_name[i] = ini_read_string("Menu", "heroes_name_" + string(i), ""); }
+		//for(i=1;i<=4;i++)
+		//	{ text_tot[i] = ini_read_string("Menu", "text_tot_" + string(i), ""); }
+		//for(i=1;i<=34;i++)
+		//	{ quest_text[i] = ini_read_string("Menu", "quests_text_" + string(i), ""); }
+	ini_close();
+#endregion
 #region Меню
 	tr_ang  = 0;
 	tr_dir  = 1;
@@ -191,25 +232,25 @@
 			{ totem_c[i] = c_orange; }
 		}
 	
-	text_tot[1] = "COMMON";
+	//text_tot[1] = "COMMON";
 	text_y[1]   = -totem_r * 1.5;
 	
-	text_tot[2] = "RARE";
+	//text_tot[2] = "RARE";
 	text_y[2]   = (totem_y[4] + totem_y[7]) / 2;
 	
-	text_tot[3] = "EPIC";
+	//text_tot[3] = "EPIC";
 	text_y[3]   = (totem_y[10] + totem_y[12]) / 2;
 	
-	text_tot[4] = "LEGENDARY";
+	//text_tot[4] = "LEGENDARY";
 	text_y[4]   = (totem_y[15] + totem_y[16]) / 2;
 	
-	if os_get_language() = "ru"
-		{
-		text_tot[1] = "ОБЫЧНЫЕ";
-		text_tot[2] = "РЕДКИЕ";
-		text_tot[3] = "ЭПИЧЕСКИЕ";
-		text_tot[4] = "ЛЕГЕНДАРНЫЕ";
-		}
+	//if os_get_language() = "ru"
+	//	{
+	//	text_tot[1] = "ОБЫЧНЫЕ";
+	//	text_tot[2] = "РЕДКИЕ";
+	//	text_tot[3] = "ЭПИЧЕСКИЕ";
+	//	text_tot[4] = "ЛЕГЕНДАРНЫЕ";
+	//	}
 #endregion
 #region Магазин
 	store_yy  = 0;
@@ -857,39 +898,39 @@
 	gold_y = global.size / 2 - 100 + 1600 + 30 - 100 + 30; //1600 + 30 + y_ind + topp;
 	
 	
-	cash_txt[1] = "THE WAD\nOF CASH";
+	//cash_txt[1] = "THE WAD\nOF CASH";
 	cash_val[1] = 50; //80;
 	cash_pri[1] = "$0.99"; // "15,00₽"
 	
-	cash_txt[2] = "A BAG\nOF CASH";
+	//cash_txt[2] = "A BAG\nOF CASH";
 	cash_val[2] = 270; //500;
 	cash_pri[2] = "$4.99"; //"75,00₽"
 	
-	cash_txt[3] = "THE BOX\nOF CASH";
+	//cash_txt[3] = "THE BOX\nOF CASH";
 	cash_val[3] = 550; //1200;
 	cash_pri[3] = "$9.99"; //"150,00₽"
 	
-	cash_txt[4] = "A CHEST\nOF CASH";
+	//cash_txt[4] = "A CHEST\nOF CASH";
 	cash_val[4] = 1200; //2500;
 	cash_pri[4] = "$19.99"; //"300,00₽"
 	
-	cash_txt[5] = "A BARREL\nOF CASH";
+	//cash_txt[5] = "A BARREL\nOF CASH";
 	cash_val[5] = 3000; //6500;
 	cash_pri[5] = "$49.99"; //"750,00₽"
 	
-	cash_txt[6] = "A MOUNTAIN\nOF CASH";
+	//cash_txt[6] = "A MOUNTAIN\nOF CASH";
 	cash_val[6] = 7000; //14000;
 	cash_pri[6] = "$99.99"; //"1500,00₽"
 	
-	gold_txt[1] = "A BAG\nOF GOLD";
+	//gold_txt[1] = "A BAG\nOF GOLD";
 	gold_val[1] = 100;
 	gold_pri[1] = 20;
 	
-	gold_txt[2] = "A BARREL\nOF GOLD";
+	//gold_txt[2] = "A BARREL\nOF GOLD";
 	gold_val[2] = 800;
 	gold_pri[2] = 150;
 	
-	gold_txt[3] = "A MOUNTAIN\nOF GOLD";
+	//gold_txt[3] = "A MOUNTAIN\nOF GOLD";
 	gold_val[3] = 5500;
 	gold_pri[3] = 1000;
 	
@@ -903,19 +944,19 @@
 		cash_pri[6] = "7490₽";
 		}
 	
-	if os_get_language() = "ru"
-		{
-		cash_txt[1] = "ПАЧКА\nДЕНЕГ";
-		cash_txt[2] = "МЕШОК\nДЕНЕГ";
-		cash_txt[3] = "ЯЩИК\nДЕНЕГ";
-		cash_txt[4] = "СУНДУК\nДЕНЕГ";
-		cash_txt[5] = "БОЧКА\nДЕНЕГ";
-		cash_txt[6] = "ГОРА\nДЕНЕГ";
+	//if os_get_language() = "ru"
+	//	{
+	//	cash_txt[1] = "ПАЧКА\nДЕНЕГ";
+	//	cash_txt[2] = "МЕШОК\nДЕНЕГ";
+	//	cash_txt[3] = "ЯЩИК\nДЕНЕГ";
+	//	cash_txt[4] = "СУНДУК\nДЕНЕГ";
+	//	cash_txt[5] = "БОЧКА\nДЕНЕГ";
+	//	cash_txt[6] = "ГОРА\nДЕНЕГ";
 		
-		gold_txt[1] = "МЕШОК\nЗОЛОТА";
-		gold_txt[2] = "БОЧКА\nЗОЛОТА";
-		gold_txt[3] = "ГОРА\nЗОЛОТА";
-		}
+	//	gold_txt[1] = "МЕШОК\nЗОЛОТА";
+	//	gold_txt[2] = "БОЧКА\nЗОЛОТА";
+	//	gold_txt[3] = "ГОРА\nЗОЛОТА";
+	//	}
 	
 	gold_buy[1] = 0;
 	gold_buy[2] = 0;
@@ -1383,190 +1424,222 @@
 					}
 			#endregion
 			
-		if os_get_language() = "ru"
-			{
+		
+		//if os_get_language() = "ru"
+		//	{
+		//	//global.quests_d[i] = "";
+		//	//if global.quests_t[i] > 0 && global.quests_t[i] <= 4
+		//	//	{ global.quests_d[i] = "ВЫИГРАТЬ " + string(global.quests_n_all[i]) + " МАТЧЕЙ ЗА "; }
+		//	//if global.quests_t[i] >= 5 && global.quests_t[i] <= 10
+		//	//	{ global.quests_d[i] = "ОТВЕТИТЬ ВЕРНО НА " + string(global.quests_n_all[i]) + " ВОПРОСОВ ТЕМЫ "; }
+		//	//if global.quests_t[i] >= 11 && global.quests_t[i] <= 13
+		//	//	{ global.quests_d[i] = "СЫГРАТЬ " + string(global.quests_n_all[i]) + " РАЗ "; }
+			
+		//	//switch(global.quests_t[i])
+		//	//	{
+		//	//	case 1:
+		//	//		global.quests_d[i] += "ВОРИШКУ ИЛИ ДИЕГО";
+		//	//	break;
+		//	//	case 2:
+		//	//		global.quests_d[i] += "ШЕРИФА ИЛИ ДЖО";
+		//	//	break;
+		//	//	case 3:
+		//	//		global.quests_d[i] += "ОХОТНИЦУ ИЛИ ШАМАНА";
+		//	//	break;
+		//	//	case 4:
+		//	//		global.quests_d[i] += "БИЛЛА СТАРШЕГО";
+		//	//	break;
+		//	//	case 5:
+		//	//		global.quests_d[i] += "КАРТ";
+		//	//	break;
+		//	//	case 6:
+		//	//		global.quests_d[i] += "БУТЫЛКИ";
+		//	//	break;
+		//	//	case 7:
+		//	//		global.quests_d[i] += "ДВИЖЕНИЕ";
+		//	//	break;
+		//	//	case 8:
+		//	//		global.quests_d[i] += "ВНИМАНИЕ";
+		//	//	break;
+		//	//	case 9:
+		//	//		global.quests_d[i] += "СТРЕЛЬБА";
+		//	//	break;
+		//	//	case 10:
+		//	//		global.quests_d[i] += "МАТЕМАТИКА";
+		//	//	break;
+		//	//	case 11:
+		//	//		global.quests_d[i] += "В БЫСТРУЮ ИГРУ";
+		//	//	break;
+		//	//	case 12:
+		//	//		global.quests_d[i] += "В РАНГОВУЮ ИГРУ";
+		//	//	break;
+		//	//	case 13:
+		//	//		global.quests_d[i] += "С ДРУГОМ";
+		//	//	break;
+		//	//	case 14:
+		//	//		global.quests_d[i]  = "ВЫИГРАТЬ МАТЧ БЕЗ ОШИБОК";
+		//	//	break;
+		//	//	case 15:
+		//	//		global.quests_d[i]  = "ВЫИГРАТЬ ДУЭЛЬ, ТРАТЯ НЕ БОЛЕЕ 3 СЕКУНД НА ОТВЕТ";
+		//	//	break;
+		//	//	case 16:
+		//	//		global.quests_d[i]  = "НАНЕСТИ " + string(global.quests_n_all[i]) + " УРОНА";
+		//	//	break;
+		//	//	case 17:
+		//	//		global.quests_d[i]  = "ИСПОЛЬЗОВАТЬ СПОСОБНОСТЬ " + string(global.quests_n_all[i]) + " РАЗ";
+		//	//	break;
+		//	//	case 18:
+		//	//		global.quests_d[i]  = "СВОРОВАТЬ СПОСОБНОСТЬ У КАЖДОГО ПЕРСОНАЖА";
+		//	//	break;
+		//	//	case 19:
+		//	//		global.quests_d[i]  = "ВЫИГРАТЬ ДУЭЛЬ, КОГДА ВРАГ ОГЛУШЕН";
+		//	//	break;
+		//	//	case 20:
+		//	//		global.quests_d[i]  = "УДЕРЖИВАТЬ ВРАГА ОТРАВЛЕННЫМ 15 СЕКУНД";
+		//	//	break;
+		//	//	case 21:
+		//	//		global.quests_d[i]  = "ДОВЕСТИ ХП ВРАГА ДО НУЛЯ, ВЕРНУВ ЕМУ УРОН";
+		//	//	break;
+		//	//	case 22:
+		//	//		global.quests_d[i]  = "ОТВЕТИТЬ ВЕРНО НА 7 ВОПРОСОВ В ТУМАНЕ";
+		//	//	break;
+		//	//	case 23:
+		//	//		global.quests_d[i]  = "ВЫИГРАТЬ 3 ДУЭЛИ, НЕ ИСПОЛЬЗУЯ СПОСОБНОСТЬ";
+		//	//	break;
+		//	//	case 24:
+		//	//		global.quests_d[i]  = "НАНЕСТИ ВРАГУ 300 УРОНА ТОТЕМОМ ОГНЯ";
+		//	//	break;
+		//	//	case 25:
+		//	//		global.quests_d[i]  = "3 РАЗА НАНЕСТИ УРОН, ПРОМАХНУВШИСЬ";
+		//	//	break;
+		//	//	case 26:
+		//	//		global.quests_d[i]  = "НАНЕСТИ ВРАГУ 500 УРОНА ТОТЕМОМ МОЛНИИ";
+		//	//	break;
+		//	//	}
+		//	}
+		//	else
+		//	{
+		//	global.quests_d[i] = "";
+		//	if global.quests_t[i] > 0 && global.quests_t[i] <= 4
+		//		{ global.quests_d[i] = "TO WIN " + string(global.quests_n_all[i]) + " DUELS USING "; }
+		//	if global.quests_t[i] >= 5 && global.quests_t[i] <= 10
+		//		{ global.quests_d[i] = "MAKE THE RIGHT ANSWERS ON " + string(global.quests_n_all[i]) + " QUESTIONS OF "; }
+		//	if global.quests_t[i] >= 11 && global.quests_t[i] <= 13
+		//		{ global.quests_d[i] = "PLAY " + string(global.quests_n_all[i]) + " TIMES "; }
+			
+		//	switch(global.quests_t[i])
+		//		{
+		//		case 1:
+		//			global.quests_d[i] += "THIEF OR DIEGO";
+		//		break;
+		//		case 2:
+		//			global.quests_d[i] += "SHERIFF OR JO";
+		//		break;
+		//		case 3:
+		//			global.quests_d[i] += "HUNTER OR SHAMAN";
+		//		break;
+		//		case 4:
+		//			global.quests_d[i] += "JUNIOR BILL";
+		//		break;
+		//		case 5:
+		//			global.quests_d[i] += "CARDS";
+		//		break;
+		//		case 6:
+		//			global.quests_d[i] += "BOTTLES";
+		//		break;
+		//		case 7:
+		//			global.quests_d[i] += "MOVING";
+		//		break;
+		//		case 8:
+		//			global.quests_d[i] += "ATTENTION ";
+		//		break;
+		//		case 9:
+		//			global.quests_d[i] += "SHOOTING";
+		//		break;
+		//		case 10:
+		//			global.quests_d[i] += "MATH";
+		//		break;
+		//		case 11:
+		//			global.quests_d[i] += "QUICK GAME";
+		//		break;
+		//		case 12:
+		//			global.quests_d[i] += "RANK GAME";
+		//		break;
+		//		case 13:
+		//			global.quests_d[i] += "WITH FRIEND";
+		//		break;
+		//		case 14:
+		//			global.quests_d[i]  = "TO WIN A DUEL WITHOUT WRONG ANSWERS";
+		//		break;
+		//		case 15:
+		//			global.quests_d[i]  = "TO WIN A DUEL, USING FOR NO MORE THAN 3 SECONDS PER ANSWER";
+		//		break;
+		//		case 16:
+		//			global.quests_d[i]  = "MAKE " + string(global.quests_n_all[i]) + " DAMAGE";
+		//		break;
+		//		case 17:
+		//			global.quests_d[i]  = "USE ABILITY" + string(global.quests_n_all[i]) + " TIMES";
+		//		break;
+		//		case 18:
+		//			global.quests_d[i]  = "STEAL ABILITIES FROM EVERY CHARACTER";
+		//		break;
+		//		case 19:
+		//			global.quests_d[i]  = "WIN THE DUEL WHEN THE ENEMY STUNNED";
+		//		break;
+		//		case 20:
+		//			global.quests_d[i]  = "STAY ENEMY POISONED 15 SECONDS ";
+		//		break;
+		//		case 21:
+		//			global.quests_d[i]  = "BRING THE ENEMY’S HEALTH TO ZERO USING RETURN DAMAGE";
+		//		break;
+		//		case 22:
+		//			global.quests_d[i]  = "IN THE MIST ANSWER RIGHT TO 7 QUESTIONS";
+		//		break;
+		//		case 23:
+		//			global.quests_d[i]  = "WIN 3 DUELS, WITHOUT USING ABILITY";
+		//		break;
+		//		case 24:
+		//			global.quests_d[i]  = "MAKE TO THE ENEMY 300 DAMAGE BY THE TOTEM OF FIRE";
+		//		break;
+		//		case 25:
+		//			global.quests_d[i]  = "MAKE TO THE ENEMY DAMAGE 3 TIMES, USING THE TOTEM OF WIND";
+		//		break;
+		//		case 26:
+		//			global.quests_d[i]  = "MAKE TO THE ENEMY 500 DAMAGE BY THE TOTEM OF LIGHTNING";
+		//		break;
+		//		}
+		//	}
+		///
+		#region Текст квестов
 			global.quests_d[i] = "";
 			if global.quests_t[i] > 0 && global.quests_t[i] <= 4
-				{ global.quests_d[i] = "ВЫИГРАТЬ " + string(global.quests_n_all[i]) + " МАТЧЕЙ ЗА "; }
+				{ global.quests_d[i] = quest_text[1] + string(global.quests_n_all[i]) + quest_text[2]; }
 			if global.quests_t[i] >= 5 && global.quests_t[i] <= 10
-				{ global.quests_d[i] = "ОТВЕТИТЬ ВЕРНО НА " + string(global.quests_n_all[i]) + " ВОПРОСОВ ТЕМЫ "; }
+				{ global.quests_d[i] = quest_text[3] + string(global.quests_n_all[i]) + quest_text[4]; }
 			if global.quests_t[i] >= 11 && global.quests_t[i] <= 13
-				{ global.quests_d[i] = "СЫГРАТЬ " + string(global.quests_n_all[i]) + " РАЗ "; }
+				{ global.quests_d[i] = quest_text[5] + string(global.quests_n_all[i]) + quest_text[6]; }
 			
-			switch(global.quests_t[i])
+			if global.quests_t[i] != 16 && global.quests_t[i] != 17
 				{
-				case 1:
-					global.quests_d[i] += "ВОРИШКУ ИЛИ ДИЕГО";
-				break;
-				case 2:
-					global.quests_d[i] += "ШЕРИФА ИЛИ ДЖО";
-				break;
-				case 3:
-					global.quests_d[i] += "ОХОТНИЦУ ИЛИ ШАМАНА";
-				break;
-				case 4:
-					global.quests_d[i] += "БИЛЛА СТАРШЕГО";
-				break;
-				case 5:
-					global.quests_d[i] += "КАРТ";
-				break;
-				case 6:
-					global.quests_d[i] += "БУТЫЛКИ";
-				break;
-				case 7:
-					global.quests_d[i] += "ДВИЖЕНИЕ";
-				break;
-				case 8:
-					global.quests_d[i] += "ВНИМАНИЕ";
-				break;
-				case 9:
-					global.quests_d[i] += "СТРЕЛЬБА";
-				break;
-				case 10:
-					global.quests_d[i] += "МАТЕМАТИКА";
-				break;
-				case 11:
-					global.quests_d[i] += "В БЫСТРУЮ ИГРУ";
-				break;
-				case 12:
-					global.quests_d[i] += "В РАНГОВУЮ ИГРУ";
-				break;
-				case 13:
-					global.quests_d[i] += "С ДРУГОМ";
-				break;
-				case 14:
-					global.quests_d[i]  = "ВЫИГРАТЬ МАТЧ БЕЗ ОШИБОК";
-				break;
-				case 15:
-					global.quests_d[i]  = "ВЫИГРАТЬ ДУЭЛЬ, ТРАТЯ НЕ БОЛЕЕ 3 СЕКУНД НА ОТВЕТ";
-				break;
-				case 16:
-					global.quests_d[i]  = "НАНЕСТИ " + string(global.quests_n_all[i]) + " УРОНА";
-				break;
-				case 17:
-					global.quests_d[i]  = "ИСПОЛЬЗОВАТЬ СПОСОБНОСТЬ " + string(global.quests_n_all[i]) + " РАЗ";
-				break;
-				case 18:
-					global.quests_d[i]  = "СВОРОВАТЬ СПОСОБНОСТЬ У КАЖДОГО ПЕРСОНАЖА";
-				break;
-				case 19:
-					global.quests_d[i]  = "ВЫИГРАТЬ ДУЭЛЬ, КОГДА ВРАГ ОШЛУШЕН";
-				break;
-				case 20:
-					global.quests_d[i]  = "УДЕРЖИВАТЬ ВРАГА ОТРАВЛЕННЫМ 15 СЕКУНД";
-				break;
-				case 21:
-					global.quests_d[i]  = "ДОВЕСТИ ХП ВРАГА ДО НУЛЯ, ВЕРНУВ ЕМУ УРОН";
-				break;
-				case 22:
-					global.quests_d[i]  = "ОТВЕТИТЬ ВЕРНО НА 7 ВОПРОСОВ В ТУМАНЕ";
-				break;
-				case 23:
-					global.quests_d[i]  = "ВЫИГРАТЬ 3 ДУЭЛИ, НЕ ИСПОЛЬЗУЯ СПОСОБНОСТЬ";
-				break;
-				case 24:
-					global.quests_d[i]  = "НАНЕСТИ ВРАГУ 300 УРОНА ТОТЕМОМ ОГНЯ";
-				break;
-				case 25:
-					global.quests_d[i]  = "3 РАЗА НАНЕСТИ УРОН, ПРОМАХНУВШИСЬ";
-				break;
-				case 26:
-					global.quests_d[i]  = "НАНЕСТИ ВРАГУ 500 УРОНА ТОТЕМОМ МОЛНИИ";
-				break;
+				if global.quests_t[i] < 16
+					{ global.quests_d[i] += quest_text[6+global.quests_t[i]]; }
+					else
+					{ global.quests_d[i] += quest_text[8+global.quests_t[i]]; }
 				}
-			}
-			else
-			{
-			global.quests_d[i] = "";
-			if global.quests_t[i] > 0 && global.quests_t[i] <= 4
-				{ global.quests_d[i] = "TO WIN " + string(global.quests_n_all[i]) + " DUELS USING "; }
-			if global.quests_t[i] >= 5 && global.quests_t[i] <= 10
-				{ global.quests_d[i] = "MAKE THE RIGHT ANSWERS ON " + string(global.quests_n_all[i]) + " QUESTIONS OF "; }
-			if global.quests_t[i] >= 11 && global.quests_t[i] <= 13
-				{ global.quests_d[i] = "PLAY " + string(global.quests_n_all[i]) + " TIMES "; }
-			
-			switch(global.quests_t[i])
+				else
 				{
-				case 1:
-					global.quests_d[i] += "THIEF OR DIEGO";
-				break;
-				case 2:
-					global.quests_d[i] += "SHERIFF OR JO";
-				break;
-				case 3:
-					global.quests_d[i] += "HUNTER OR SHAMAN";
-				break;
-				case 4:
-					global.quests_d[i] += "JUNIOR BILL";
-				break;
-				case 5:
-					global.quests_d[i] += "CARDS";
-				break;
-				case 6:
-					global.quests_d[i] += "BOTTLES";
-				break;
-				case 7:
-					global.quests_d[i] += "MOVING";
-				break;
-				case 8:
-					global.quests_d[i] += "ATTENTION ";
-				break;
-				case 9:
-					global.quests_d[i] += "SHOOTING";
-				break;
-				case 10:
-					global.quests_d[i] += "MATH";
-				break;
-				case 11:
-					global.quests_d[i] += "QUICK GAME";
-				break;
-				case 12:
-					global.quests_d[i] += "RANK GAME";
-				break;
-				case 13:
-					global.quests_d[i] += "WITH FRIEND";
-				break;
-				case 14:
-					global.quests_d[i]  = "TO WIN A DUEL WITHOUT WRONG ANSWERS";
-				break;
-				case 15:
-					global.quests_d[i]  = "TO WIN A DUEL, USING FOR NO MORE THAN 3 SECONDS PER ANSWER";
-				break;
-				case 16:
-					global.quests_d[i]  = "MAKE " + string(global.quests_n_all[i]) + " DAMAGE";
-				break;
-				case 17:
-					global.quests_d[i]  = "USE ABILITY" + string(global.quests_n_all[i]) + " TIMES";
-				break;
-				case 18:
-					global.quests_d[i]  = "STEAL ABILITIES FROM EVERY CHARACTER";
-				break;
-				case 19:
-					global.quests_d[i]  = "WIN THE DUEL WHEN THE ENEMY STUNNED";
-				break;
-				case 20:
-					global.quests_d[i]  = "STAY ENEMY POISONED 15 SECONDS ";
-				break;
-				case 21:
-					global.quests_d[i]  = "BRING THE ENEMY’S HEALTH TO ZERO USING RETURN DAMAGE";
-				break;
-				case 22:
-					global.quests_d[i]  = "IN THE MIST ANSWER RIGHT TO 7 QUESTIONS";
-				break;
-				case 23:
-					global.quests_d[i]  = "WIN 3 DUELS, WITHOUT USING ABILITY";
-				break;
-				case 24:
-					global.quests_d[i]  = "MAKE TO THE ENEMY 300 DAMAGE BY THE TOTEM OF FIRE";
-				break;
-				case 25:
-					global.quests_d[i]  = "MAKE TO THE ENEMY DAMAGE 3 TIMES, USING THE TOTEM OF WIND";
-				break;
-				case 26:
-					global.quests_d[i]  = "MAKE TO THE ENEMY 500 DAMAGE BY THE TOTEM OF LIGHTNING";
-				break;
+				switch(global.quests_t[i])
+					{
+					case 16:
+						global.quests_d[i]  = quest_text[22] + string(global.quests_n_all[i]) + quest_text[23];
+					break;
+					case 17:
+						global.quests_d[i]  = quest_text[24] + string(global.quests_n_all[i]) + quest_text[25];
+					break;
+					}
 				}
-			}
+		#endregion
+		///
 		//global.quests_d[i]  = "WIN 5 DUELS AGAINST HUNTRESS OR SHAMAN";
 		global.quests_p[i]  = 40;
 		//global.quests_pt[i] = choose("ç", "©", "©", "©"); // "©"

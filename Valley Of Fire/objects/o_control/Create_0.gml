@@ -24,7 +24,7 @@
 	view_set_camera(VIEW, camera);
 #endregion
 #region Фон
-	global.background = choose("train", "mine", "waterfall", "saloon");
+	global.background = "house"//choose("train", "mine", "waterfall", "saloon", "house");
 	global.super_ability    = 0;
 	global.super_ability1   = 0;
 	global.ability_dop_anim = 0;
@@ -68,6 +68,16 @@
 			{ back_y = 0; }
 		if global.size <= 640
 			{ back_y = 140; }
+		}
+	if global.background = "house"
+		{
+		back_s = 1.2675;
+		if global.size < 900
+			{ back_y = 160; }
+			else
+			{ back_y = 0; }
+		if global.size < 650
+			{ back_y = 220; }
 		}
 	back_sp = back_s;
 	

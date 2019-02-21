@@ -143,6 +143,10 @@ if global.background = "saloon"
 	xn += 70 * !enemy - 70 * enemy;
 	y  += 130;
 	}
+if global.background = "house"
+	{
+	y += 230;
+	}
 	
 sc_dist  = 0;
 sc_dir   = 1;
