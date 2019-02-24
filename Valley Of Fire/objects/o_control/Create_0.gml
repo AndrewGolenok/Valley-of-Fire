@@ -208,54 +208,6 @@
 		sl_tumble_g = 0;
 		sl_tumble_spd = 0;
 	#endregion
-	#region Гуи
-		//q_col  = c_white;
-		//h_pos  = 0;
-		//list_y = -300;
-		
-		//button_xc = 0;
-		//button_x  = 0;
-		
-		//list_scale = 0;
-		//plas_scale = 0;
-		
-		//super_x = 300;
-		//vvv = 0;
-		
-		//win_plas = 0;
-		
-		//theme_choose = 1;
-		//for(i=0; i<=2; i++)
-		//	{
-		//	theme_b_mv[i] = 0;
-		//	theme_b_im[i] = irandom(2);
-		//	theme_b_sx[i] = 0;
-			
-		//	theme_b_x[i]  = 640;
-		//	theme_b_y[i]  = 300;
-			
-		//	theme_b_c[i]   = 0;
-		//	theme_b_cn[i]  = 60;
-		//	theme_b_dir[i] = 1;
-			
-		//	theme_n[i]   = 0;
-			
-		//	theme_go[i]  = 0;
-		//	theme_sc[i]  = 0;
-		//	theme_end[i] = 0;
-			
-		//	theme_l[i] = 0;
-			
-		//	theme_ps[i] = 0;
-			
-		//	switch(theme_b_im[i])
-		//		{
-		//		case 0: theme_b_th[i] = "math"; break;
-		//		case 1: theme_b_th[i] = "move"; break;
-		//		case 2: theme_b_th[i] = "other"; break;
-		//		}
-		//	}
-	#endregion
 #endregion
 
 #region Сурфейс

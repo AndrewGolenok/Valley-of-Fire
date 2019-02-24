@@ -6,21 +6,6 @@ if global.room_to_go = "duel" or(global.menu_next = "main" or global.menu_now = 
 		pry = global.paral_y * global.paral_sy
 	#endregion
 	#region Время и прочие характеристики
-		//if global.music
-		//	{
-		//	if !audio_is_playing(sd_back_train)
-		//		{ audio_play_sound(sd_back_train, 0, 1);  }
-		//	if !audio_is_playing(sd_music)
-		//		{ audio_play_sound(sd_music, 1, 1);  }
-		//	}
-		//	else
-		//	{
-		//	if audio_is_playing(sd_back_train)
-		//		{ audio_stop_sound(sd_back_train);  }
-		//	if audio_is_playing(sd_music)
-		//		{ audio_stop_sound(sd_music);  }
-		//	}
-		
 		if day_hour = 24
 			{ day_hour = 0; }
 	
@@ -132,9 +117,9 @@ if global.room_to_go = "duel" or(global.menu_next = "main" or global.menu_now = 
 					}
 			#endregion
 			#region Задник
-			draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, 1);
-			draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, back_alpha[1]);
-			draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, back_alpha[2]);
+				draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, 1);
+				draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, back_alpha[1]);
+				draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x - prx, global.size + back_y - pry, back_s, back_s, 0, c_white, back_alpha[2]);
 			#endregion
 			}
 		if global.background = "train"
@@ -228,7 +213,6 @@ if global.room_to_go = "duel" or(global.menu_next = "main" or global.menu_now = 
 				
 							draw_sprite_ext(back_other_spr[i], back_other_img[i], back_other_x[i] - prx, back_y - 20 + back_other_y[i] - pry - (sprite_get_width(back_other_spr[i]) * back_other_s[i] * back_other_sk[i] / 3) / 2, back_other_s[i] * back_other_sk[i] / 3, back_other_s[i] * back_other_sk[i] * 1.25, -100, c_black, 0.45);
 							draw_sprite_ext(back_other_spr[i], back_other_img[i], back_other_x[i] - prx, back_y - 20 + back_other_y[i] - pry, back_other_s[i] * back_other_sk[i], back_other_s[i] * back_other_sk[i], 0, c_white, 1);
-							//draw_text(mouse_x, mouse_y, string(global.size - 200 * back_s));//draw_text(back_other_x[i], back_y + back_other_y[i], string(back_other_y[i]));
 							}
 							else
 							{ back_other_x[i] = 2280; }
@@ -239,17 +223,14 @@ if global.room_to_go = "duel" or(global.menu_next = "main" or global.menu_now = 
 				back_anim_1 -= back_spd / 1.5 * 0.35;
 				back_anim_2 += back_spd / 1.5 * 0.35;
 
-				//if back_timen > 0
-				//	{
-					back_train_y1 += back_spd / 1.5 * back_dir1 * back_spd;
-					if abs(back_train_y1) >= back_spd * 5
-						{ back_dir1 = -back_dir1; back_train_y1 += back_spd / 1.5 * back_dir1 * back_spd; }
-	
-					back_train_y2 += back_spd / 1.5 * back_dir2 * back_spd;
-					if abs(back_train_y2) >= back_spd * 5
-						{ back_dir2 = -back_dir2; back_train_y2 += back_spd / 1.5 * back_dir2 * back_spd; }
-				//	}
-
+				back_train_y1 += back_spd / 1.5 * back_dir1 * back_spd;
+				if abs(back_train_y1) >= back_spd * 5
+					{ back_dir1 = -back_dir1; back_train_y1 += back_spd / 1.5 * back_dir1 * back_spd; }
+				
+				back_train_y2 += back_spd / 1.5 * back_dir2 * back_spd;
+				if abs(back_train_y2) >= back_spd * 5
+					{ back_dir2 = -back_dir2; back_train_y2 += back_spd / 1.5 * back_dir2 * back_spd; }
+				
 				if back_anim_1 < 0
 					{ back_anim_1 = 2; }
 				if back_anim_2 > 2
@@ -302,8 +283,6 @@ if global.room_to_go = "duel" or(global.menu_next = "main" or global.menu_now = 
 				}
 		
 			draw_sprite_ext(s_saloon_back, 0, 640 + back_x - prx, global.size + back_y - pry, 1, 1, 0, c_white, 1);
-			//draw_sprite_ext(s_saloon_house, 0, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
-			//draw_sprite_ext(s_saloon_wanted, sl_wanted_i, 640 + back_x, global.size + back_y, 1, 1, 0, c_white, 1);
 			draw_sprite_ext(s_saloon_doors, sl_doors_i, 640 + back_x - prx, global.size + back_y - pry, 1, 1, 0, c_white, 1);
 		
 			if sl_tumble_g = 0
@@ -372,12 +351,6 @@ if global.room_to_go = "duel" or(global.menu_next = "main" or global.menu_now = 
 			}
 	#endregion
 	#region Суперспособность
-		//global.super_ability = 0;
-		//with(o_hero)
-		//	{
-		//	if skeleton_animation_get() = "super"
-		//		{ global.super_ability = 1; }
-		//	}
 		if global.super_ability = 1 or global.super_ability1 = 1
 			{
 			draw_set_alpha(0.45);

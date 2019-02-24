@@ -5867,7 +5867,7 @@ if global.hero = 1 && global.enemy_hero = 1
 				
 				if abs(hp / maxhp - e_hp / e_maxhp) <= 0.015
 					{
-					if u_time[9] > e_time[9]//task_question[3,6] = 2 or task_question[3,6] = 3
+					if u_time[9] > e_time[9]
 						{ roundskul[global.rounds] = 1; }
 						else
 						{ roundskul[global.rounds] = 2; }  // Раунд окончен
@@ -5894,9 +5894,6 @@ if global.hero = 1 && global.enemy_hero = 1
 				bot_task     = 1;
 				bot_time   = -1;
 				bot_time2  =  6 * e_time[1];
-				//global.answer = -1;
-				//global.bot_answer = -1;
-								
 				global.task = 1;
 				if global.storm = 1 { storm_1(); }
 				

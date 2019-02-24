@@ -18,17 +18,3 @@ if data == "d5"
 ini_write_string("Sounds", "sound_on_g", string(global.gold));
 ini_write_string("Sounds", "sound_false_c", string(global.cash));
 ini_close();
-
-	
-//while(ntf >= 0)
-//   {
-//   var data = ds_map_find_value(map, "data");
-//   if data == "d1" or data == "d2" or data == "d3" or data == "d4"
-//      {
-//      push_cancel_local_notification(ntf);
-//      }
-//   ntf = push_get_next_local_notification(map);
-//   }
-//ds_map_destroy(map);
-
-//alarm[0] = 2;

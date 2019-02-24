@@ -1,103 +1,18 @@
+#region Стартовые функции
+	randomize(); // Включаем рандом
+#endregion
 #region Пуши
-//file_delete("Music.ini");
-//game_end();
-//randomize();
-//fizra  = choose("miachik", "ganbol", "roketka", "fizcultura");
-//fizra1 = choose("skakalka", "gira", "espander", "lizha");
-//if mouse_check_button_pressed(mb_left)
-//	{ click = instance_position(mouse_x, mouse_y, id); }
-	
-//if instance_position(mouse_x, mouse_y, id) && mouse_check_button_pressed(mb_left)
-//	{ click = 1; }
-//if !instance_position(mouse_x, mouse_y, id) && mouse_check_button_pressed(mb_left)
-//	{ click = 0; }
-//if distance_to_object(o_player) < sprite_width * 7
-//	{
-//	if sprite_index = s_1
-//		{
-//		if image_index < 4
-//			{ image_index += 0.1; }
-//			else
-//			{ image_speed = 0.1; sprite_index = s_2; }
-//		}
-//	if sprite_index = s_2
-//		{
-//		if click
-//			{ sprite_index = s_3; }
-//		}
-//	if sprite_index = s_3
-//		{
-//		if !click
-//			{ sprite_index = s_2; }
-//		if place_meeting(x, y, o_player)
-//			{
-//			// Вопрос
-//			}
-//		}
-//	}
-//	else
-//	{
-//	if sprite_index != s_1
-//		{ sprite_index = s_1; image_index = 4; }
-//	image_speed = 0;
-//	if image_index > 0 
-//		{ image_index -= 0.1; }
-//	}
-	
 	var map = ds_map_create();
 	var ntf = push_get_first_local_notification(map);
 	while(ntf >= 0)
 	   {
 	   var data = ds_map_find_value(map, "data");
-	  //if data == "d1" or data == "d2" or data == "d3" or data == "d4"
-	     // {
-	      push_cancel_local_notification(ntf);
-	      //}
+	   push_cancel_local_notification(ntf);
 	   ntf = push_get_next_local_notification(map);
 	   }
 	ds_map_destroy(map);
 
 	alarm[0] = 2;
-#endregion
-#region Реклама
-	#region UnityADS
-	//GoogleAnalytics_Init("UA-96583902-1", false); // Unity ADS
-	//if os_type = os_ios
-	//	{ unity_ads_init("1202480"); }
-	//if os_type = os_android
-	//	{ unity_ads_init("1202481"); }
-	
-	//unity_ads_set_test_mode(0); // 0 - for workable unity ads.
-	//global.vidos = 0;
-	//global.adv = 0;
-	#endregion
-	#region AdMob
-	//GoogleMobileAds_Init("pub-5529510774102506"); // AdMob ADS
-	//var google_b;
-	//if os_device != device_ios_iphone and os_device != device_ios_iphone5 and display_get_width() > 640
-	//	{ google_b = GoogleMobileAds_Full_Banner; }
-	//	else
-	//	{ google_b = GoogleMobileAds_Banner; }
-	//if os_type=os_ios
-	//	{					  
-	//	GoogleMobileAds_AddBanner("ca-app-pub-5529510774102506/7557263279", GoogleMobileAds_Banner);
-	//	GoogleMobileAds_MoveBanner(0, 2280);
-	
-	//	GoogleMobileAds_Init("ca-app-pub-5529510774102506/5940929278");
-	//	GoogleMobileAds_LoadInterstitial();
-	//	}
-	//if os_type=os_android
-	//	{
-	//	GoogleMobileAds_AddBanner("ca-app-pub-5529510774102506/1371128871", GoogleMobileAds_Banner);
-	//	GoogleMobileAds_MoveBanner(0, 2280);
-    
-	//	GoogleMobileAds_Init("ca-app-pub-5529510774102506/2847862071");
-	//	GoogleMobileAds_LoadInterstitial();
-	//	}
-	
-	//if !os_is_network_connected()
-	//	{ alarm[1]=10*room_speed; }
-	#endregion
 #endregion
 #region Автоподстройка разрешения
 	application_surface_enable(1);
@@ -125,17 +40,13 @@
 	view_set_yport(VIEW, 0);
 	view_set_wport(VIEW, 1280);
 	view_set_hport(VIEW, global.size);
-	//view_set_wport(VIEW, display_get_width());
-	//view_set_hport(VIEW, display_get_height());
 	
 	window_set_size(1280, global.size);
 
 	view_set_camera(VIEW, camera);
 #endregion
 #region Язык
-	global.lang = "en"; //os_get_language(); // Берём данные языка устройства
-	//if os_type=os_windows
-	//	{ global.lang=get_string("Выберите язык:\n1. en - Английский\n2. ru - Русский","en"); }
+	global.lang = "en";
 #endregion
 #region Ини сохранения
 	ini_open("Music.ini");
@@ -152,19 +63,13 @@
 			///
 			if !ini_section_exists("Training")
 			    {
-				//ini_write_string("Training", "training", "0");
-				//
 				ini_write_string("Training", "tr1", "1");
 				ini_write_string("Training", "tr2", "0");
 				ini_write_string("Training", "tr3", "0");
 				ini_write_string("Training", "tr4", "0");
 				ini_write_string("Training", "tr5", "0");
 				ini_write_string("Training", "tr6", "0");
-				//ini_write_string("Music.ini", "reward", "1500");
-				//ini_write_string("Music.ini", "dollars", "0");
 				}
-			//global.training_o = ini_read_real("Training", "training", 0);
-			
 			global.tr[1] = ini_read_real("Training", "tr1", 1);
 			global.tr[2] = ini_read_real("Training", "tr2", 0);
 			global.tr[3] = ini_read_real("Training", "tr3", 0);
@@ -185,7 +90,6 @@
 				ini_write_string("Sounds", "sound_on_g", "0");
 				ini_write_string("Sounds", "sound_false_c", "20");
 				}
-			//global.training_o = ini_read_real("Training", "training", 0);
 			
 			global.gold = ini_read_real("Sounds", "sound_on_g", 0);
 			global.cash = ini_read_real("Sounds", "sound_false_c", 0);
@@ -305,16 +209,12 @@
 					{ ini_write_string("Var", "v" + string(i), "0"); }
 				global.varr[i] = ini_read_real("Var", "v" + string(i), 0);
 				}
-			//global.quests_n_now[1] = 0;
-			//global.quests_n_now[2] = 0;
-			//global.quests_n_now[3] = 0;
 		#endregion
 		#region Шомен
 			if !ini_section_exists("SHOMA")
 					{ ini_write_string("SHOMA", "sm", "0"); }
 				global.shomen1 = ini_read_real("SHOMA", "sm", 0);
 				global.pvp = 0;
-			//global.shomen
 		#endregion
 		#region Рука-меню
 			if !ini_section_exists("Hand")
@@ -366,7 +266,6 @@
 #endregion
 #region Персонажи
 	global.hero = 1;
-	//global.player_rank = 15;
 	global.heroes_val  = 7;
 	global.weapon = "standard";
 	
@@ -549,70 +448,7 @@
 			//global.hero_nofull_loose[11] = 0;
 		#endregion
 	#endregion
-	/*
-	for(i=1;i<=global.heroes_val;i++)
-		{
-		global.hero_wins[i]  = global.hero_full_wins[i] + global.hero_nofull_wins[i];
-		global.hero_loose[i] = global.hero_full_loose[i] + global.hero_nofull_loose[i];
-		global.hero_games[i] = global.hero_wins[i] + global.hero_loose[i];
-		
-		global.hero_name[i]  = ini_read_string("Hero_"+string(i), "hero_name", "");
-		
-		global.hero_class[i] = ini_read_string("Hero_"+string(i), "hero_class", "");
-		
-		global.hero_description[i] = ini_read_string("Hero_"+string(i), "hero_description", "");
-		
-		global.ability_a1[i]  = ini_read_string("Hero_"+string(i), "ability_a1", "");
-		global.ability_a2[i]  = ini_read_string("Hero_"+string(i), "ability_a2", "");
-		global.ability_p1[i]  = ini_read_string("Hero_"+string(i), "ability_p1", "");
-		global.ability_p2[i]  = ini_read_string("Hero_"+string(i), "ability_p2", "");
-		
-		global.hero_weapon[i] = ini_read_string("Hero_"+string(i), "hero_weapon", "");
-		
-		global.hero_theme[i]  = ini_read_string("Hero_"+string(i), "hero_theme", "");
-		
-		if global.hero_games[i] > 4
-			{ global.hero_grade[i] = (global.hero_full_loose[i] + (global.hero_nofull_loose[i]) * 2 + (global.hero_nofull_wins[i]) * 3 + (global.hero_full_wins[i]) * 4) / (global.hero_games[i]); }
-			else
-			{ global.hero_grade[i] = 0; }
-		
-		global.hero_level[i] = 1;
-		
-		var f;
-		f = (global.hero_full_loose[i] + (global.hero_nofull_loose[i]) * 2 + (global.hero_nofull_wins[i]) * 3 + (global.hero_full_wins[i]) * 4) * 25;
-		if f > 0
-			{
-			for(j=1; f>0; j++)
-				{
-				f -= j * 100;
-				if f >= 0
-					{ global.hero_level[i] += 1; }
-				}
-			}
-		
-		global.hero_exp[i] = global.hero_grade[i] * global.hero_games[i] * 25;
-		for(j=1; j<=global.hero_level[i]-1; j++)
-			{ global.hero_exp[i] -= j * 100; }
-		}
-	*/
 	ini_close();
-#endregion
-#region Характеристики игрока
-	global.player_rank = 15;
-	//global.player_name  = "Andrew";
-	////global.hero = 1;
-	//global.player_rank  = 15;
-	////global.rank_stars   = 0;
-	//global.weapon = "standard";
-	
-	//global.enemy_name   = "Werdna";
-	//global.enemy_hero   = 3;
-	//global.enemy_rank	= 15;
-	//global.enemy_weapon = "standard";
-	//global.enemy = 0;
-	
-	//global.hero		  = choose(1, 2, 3);
-	//global.enemy_hero = choose(1, 2, 3);
 #endregion
 #region Вопросы и темы
 	ini_open("Language/" + string(global.lang) + "/question_text_" + string(global.lang) + ".ini");
@@ -648,39 +484,8 @@
 	
 	global.count_themes = 7;
 	ini_open(string(global.lang) + ".ini");
-		//if os_get_language() = "ru"
-		//	{
-		//	global.theme_name[1] = "КАРТЫ";
-		//	global.theme_name[2] = "БУТЫЛКИ";
-		//	global.theme_name[3] = "ДВИЖЕНИЕ";
-		//	global.theme_name[4] = "ВНИМАНИЕ";
-		//	global.theme_name[5] = "СТРЕЛЬБА";
-		//	global.theme_name[6] = "МАТЕМАТИКА";
-		//	global.theme_name[7] = "ШТОРМ";
-		//	}
-		//	else
-		//	{
-		//	global.theme_name[1] = "CARDS";
-		//	global.theme_name[2] = "BOTTLES";
-		//	global.theme_name[3] = "MOVE";
-		//	global.theme_name[4] = "ATTENTION";
-		//	global.theme_name[5] = "SHOOTING";
-		//	global.theme_name[6] = "MATH";
-		//	global.theme_name[7] = "STORM";
-		//	}
-		//switch(i)
-		//	{
-		//	case 1: theme = "КАРТЫ"; break;
-		//	case 2: theme = "БУТЫЛКИ"; break;
-		//	case 3: theme = "ДВИЖЕНИЕ"; break;
-		//	case 4: theme = "ВНИМАНИЕ"; break;
-		//	case 5: theme = "СТРЕЛЬБА"; break;
-		//	case 6: theme = "МАТЕМ."; break;
-		//	case 7: theme = "ШТОРМ"; break;
-		//	}
 		for(i=1;i<=7;i++)
 			{ global.theme_name[i] = ini_read_string("Theme", "theme_" + string(i), ""); }
-		
 		global.color_white = make_color_rgb(255, 248, 220);
 	ini_close();
 #endregion
@@ -695,15 +500,11 @@
 #region Цвета персонажей
 	global.color_hero[1]  = make_color_rgb(40 ,  40,  40);
 	global.color_hero[2]  = make_color_rgb(60 , 179, 113);
-	global.color_hero[3]  = make_color_rgb(186,  85, 211); // make_color_rgb(60 , 179, 113);
+	global.color_hero[3]  = make_color_rgb(186,  85, 211);
 	global.color_hero[4]  = c_maroon;
-	global.color_hero[5]  = global.color_white; //c_white;
+	global.color_hero[5]  = global.color_white;
 	global.color_hero[6]  = c_orange;
-	global.color_hero[7]  = make_color_rgb(135, 206, 235);//135, 206, 235
-	//global.color_hero[8]  = make_color_rgb(105, 105, 105);
-	//global.color_hero[9]  = make_color_rgb(220,  20,  60);
-	//global.color_hero[10] = make_color_rgb(250, 235, 215);
-	//global.color_hero[11] = make_color_rgb(220,  20,  60);
+	global.color_hero[7]  = make_color_rgb(135, 206, 235);
 #endregion
 #region Параллакс
 	global.paral_x = 0;
@@ -727,160 +528,12 @@
 			global.totem_desc[i] = ini_read_string("Totems", "totem_desc_" + string(i), ""); //"";
 			}
 	ini_close();
-	
-	//global.totem_name[1] = "FRIENDLY TOTEM";
-	//global.totem_desc[1] = "Increases the hero HP by 5%";
-	
-	//global.totem_name[2] = "WARRIOR TOTEM";
-	//global.totem_desc[2] = "increases the hero ATK by 5%";
-	
-	//global.totem_name[3] = "hostile totem";
-	//global.totem_desc[3] = "CRIT demands only one correct answer";
-	
-	//global.totem_name[4] = "thinking totem";
-	//global.totem_desc[4] = "gives 3 additional seconds to answer";
-	
-	//global.totem_name[5] = "grumpy totem";
-	//global.totem_desc[5] = "CRIT *2";
-	
-	//global.totem_name[6] = "last chance";
-	//global.totem_desc[6] = "gives 20% ATK bonus if your rival next attack is mortal";
-	
-	//global.totem_name[7] = "joyful totem";
-	//global.totem_desc[7] = "you are to choose the theme always";
-	
-	//global.totem_name[8] = "inaccessible totem";
-	//global.totem_desc[8] = "gives immunity to being stunned";
-	
-	//global.totem_name[9] = "evasive totem";
-	//global.totem_desc[9] = "gives 5% possibility to avoid damage";
-	
-	//global.totem_name[10] = "odd frog";
-	//global.totem_desc[10] = "turns into other random totem and its power works";
-	
-	//global.totem_name[11] = "happy lion";
-	//global.totem_desc[11] = "destroys all totems of either player";
-	
-	//global.totem_name[12] = "steel bull";
-	//global.totem_desc[12] = "gives 35% possibility to block mortal attack";
-	
-	//global.totem_name[13] = "ambiguous panther";
-	//global.totem_desc[13] = "causes damage to the rival hero at the beginning and may damage your hero as well with the 50% possibility";
-	
-	//global.totem_name[14] = "all-seeing owl";
-	//global.totem_desc[14] = "all themes turn into your hero themes";
-	
-	//global.totem_name[15] = "purple fox";
-	//global.totem_desc[15] = "SUPER demands one less correct answer";
-	
-	//global.totem_name[16] = "rat thief";
-	//global.totem_desc[16] = "exchanges with your rival totem and its power works";
-	
-	//global.totem_name[17] = "treacherous pig";
-	//global.totem_desc[17] = "turns all players totems into random ones";
-	
-	//global.totem_name[18] = "King cobra";
-	//global.totem_desc[18] = "your weapon gets poison at every incorrect answer of your rival";
-	
-	//global.totem_name[19] = "RAT";
-	//global.totem_desc[19] = "(DO NOTHING)";
-	
-	//if os_get_language() = "ru"
-	//	{
-	//	global.totem_name[1] = "ДРУЖЕЛЮБНЫЙ ТОТЕМ";
-	//	global.totem_desc[1] = "УВЕЛИЧИВАЕТ HP ПЕРСОНАЖА НА 5%";
-		
-	//	global.totem_name[2] = "ВРАЖДЕБНЫЙ ТОТЕМ";
-	//	global.totem_desc[2] = "УВЕЛИЧИВАЕТ ATK ПЕРСОНАЖА НА 5%";
-		
-	//	global.totem_name[3] = "ТОТЕМ СИЛЫ";
-	//	global.totem_desc[3] = "КРИТ ТРЕБУЕТ ВСЕГО 1 ВЕРНЫЙ ОТВЕТ";
-		
-	//	global.totem_name[4] = "ВДУМЧИВЫЙ ТОТЕМ";
-	//	global.totem_desc[4] = "ДАЁТ +3 СЕКУНДЫ НА ОТВЕТ";
-		
-	//	global.totem_name[5] = "СЕРДИТЫЙ ТОТЕМ";
-	//	global.totem_desc[5] = "КРИТ *2";
-		
-	//	global.totem_name[6] = "ПОСЛЕДНИЙ ШАНС";
-	//	global.totem_desc[6] = "ЕСЛИ СЛЕДУЮЩИЙ УРОН ВРАГА БУДЕТ СМЕРТЕЛЬНЫМ - +20% ATK";
-		
-	//	global.totem_name[7] = "ВЕСЕЛЫЙ ТОТЕМ";
-	//	global.totem_desc[7] = "ТЕМУ ВСЕГДА ВЫБИРАЕТЕ ВЫ";
-		
-	//	global.totem_name[8] = "НЕПРИСТУПНЫЙ ТОТЕМ";
-	//	global.totem_desc[8] = "ВЫ НЕ МОЖЕТЕ БЫТЬ ОГЛУШЕНЫ";
-		
-	//	global.totem_name[9] = "ТОТЕМ УКЛОНЕНИЯ";
-	//	global.totem_desc[9] = "ВЕРОЯТНОСТЬ УКЛОНИТЬСЯ ОТ УРОНА 5%";
-		
-	//	global.totem_name[10] = "СТРАННАЯ ЛЯГУХА";
-	//	global.totem_desc[10] = "ПРЕВРАЩАЕТСЯ В ДРУГОЙ СЛУЧАЙНЫ ТОТЕМ, ЕГО ЭФФЕКТ СРАБАТЫВАЕТ";
-		
-	//	global.totem_name[11] = "ВЕСЕЛЫЙ ЛЕВ";
-	//	global.totem_desc[11] = "УНИЧТОЖАЕТ ВСЕ ТОТЕМЫ У КАЖДОГО ИГРОКА";
-		
-	//	global.totem_name[12] = "СТАЛЬНОЙ БУЙВОЛ";
-	//	global.totem_desc[12] = "С ВЕРОЯТНОСТЬ 35% БЛОКИРУЕТ СМЕРТЕЛЬНЫЙ УРОН";
-		
-	//	global.totem_name[13] = "НЕПОСТОЯНАЯ ПАНТЕРА";
-	//	global.totem_desc[13] = "ВНАЧАЛЕ РАУНДА НАНОСИТ УРОН ПРОТИВНИКУ И 50% ВЕРОЯТНОСТЬ, ЧТО НАНЕСЁТ УРОН ВАМ";
-		
-	//	global.totem_name[14] = "ВСЕВИДЯЩАЯ СОВА";
-	//	global.totem_desc[14] = "ВСЕ ТЕМЫ СТАНОВЯТСЯ ТЕМАМИ ВАШЕГО ПЕРСОНАЖА";
-		
-	//	global.totem_name[15] = "ПУРПУРНЫЙ ЛИС";
-	//	global.totem_desc[15] = "СУПЕР ТРЕБУЕТ НА ОДИН ВЕРНЫЙ ОТВЕТ МЕЬШЕ";
-		
-	//	global.totem_name[16] = "КРЫС ВОРИШКА";
-	//	global.totem_desc[16] = "МЕНЯЕТСЯ МЕСТАМИ С ТОТЕМОМ ПРОТИВНИКА, ЕГО ЭФФЕКТ СРАБАТЫВАЕТ";
-		
-	//	global.totem_name[17] = "КОВАРНЫЙ СВИН";
-	//	global.totem_desc[17] = "ПРЕВРАЩАЕТ ВСЕ ТОТЕМЫ ИГРОКОВ В СЛУЧАЙНЫЕ";
-		
-	//	global.totem_name[18] = "КОРОЛЕВА КОБРА";
-	//	global.totem_desc[18] = "ВАШЕ ОРУЖИЕ ПОЛУЧАЕТ ЯД ПРИ КАЖДОМ ПРОМАХЕ ПРОТИВНИКА";
-		
-	//	global.totem_name[19] = "КРЫС";
-	//	global.totem_desc[19] = "(НИЧЕГО НЕ ВОРУЕТ)";
-	//	}
-	
-	
-	//// 1 - Увеличивает ХП  персонажа на 5%
-	//// 2 - Увеличивает АТК персонажа на 5%
-	// 3 - КРИТ требует всего 1 верный ответ
-	// 4 - Даёт дополнительные 3 секунды на ответ
-	// 5 - КРИТ х2
-	// 6 - Если следующая атака противника будет смертельной бонус при атаке +20% от АТК
-	// 7  - Тему всегда выбираете вы
-	// 8  - Даёт иммунитет к ОГЛУШЕНИЮ
-	// 9  - Вероятность УКЛОНИТЬСЯ от урона - 5%
-	//// 10 - Превращается в другой случаный ТОТЕМ, его эффект срабатывает
-	//// 11 - Уничтожает ВСЕ ТОТЕМЫ у каждого игрока
-	
-	// 12 - Вероятность 35% ЗАБЛОКИРОВАТЬ смертельный урон
-	// 13 - В начале раунда наносит урон (АТК) герою противника и с вероятностью 50% наносит урон вашему герою 
-	//// 14 - Все ТЕМЫ становятся темами вашего персонажа
-	// 15 - СУПЕР требует на 1 верный ответ меньше
-	
-	//// 16 - Меняется местами с ТОТЕМОМ противника, его эффект срабатывает
-	//// 17 - Превращает ВСЕ ТОТЕМЫ игроков в случаные
-	// 18 - Ваше оружие получает ЯД при каждом промахе противника
-	
-	// 19 - деактивированный 16 тотем
 #endregion
 #region Прочие переменные
-	global.shomen = 0;
-	global.gold_color = make_color_rgb(252,232,131);
-	global.cash_color = make_color_rgb(60 , 179, 113);
-#endregion
-#region Покупки
-	//buy_cash_50 = 0;
-	//buy_cash_270 = 0;
-	//buy_cash_550 = 0;
-	//buy_cash_1200 = 0;
-	//buy_cash_3000 = 0;
-	//buy_cash_7000 = 0;
+	global.shomen      = 0;
+	global.gold_color  = make_color_rgb(252,232,131);
+	global.cash_color  = make_color_rgb(60 , 179, 113);
+	global.player_rank = 15;
 #endregion
 #region Музыка
 	global.music_gain = 1;
@@ -899,11 +552,9 @@
 	GoogleAnalytics_SendEvent("PLAY","Игрок зашёл в игру!");
 #endregion
 #region Прочее
-	randomize(); // Включаем рандом
-	//
 	if os_type = os_ios { achievement_login(); } // Game Center
 	alarm[2] = room_speed * 1.5; // Покупки
-	//
+	
 	global.text_color = make_color_rgb(255, 228, 181);
 	global.room_to_go = "set";
 	room_goto_t("logo"); // Переход

@@ -73,7 +73,7 @@ if !enemy
 	
 	if change = 5 && image_index = 28
 		{
-		if hero = 4 // hero = 2
+		if hero = 4
 			{
 			stun_seconds -= 1;
 			if stun_seconds > 1
@@ -132,8 +132,6 @@ if !enemy
 			
 			abil_n += 0.4;
 			draw_sprite_ext(s_fire, abil_n, x + 5 + prx, y - 145 - 100 + o_control.back_train_y2 + pry, sc * scale * 1.3, scale * 1.3, 0, c_white, 1);
-			//if poisoned > 0
-			//	{ poisoned = 0; }
 			}
 		if poisoned > 0
 			{
@@ -198,8 +196,6 @@ if !enemy
 		
 			abil_n += 0.4;
 			draw_sprite_ext(s_fire, abil_n, x + 5 + prx, y - 145 - 100 + o_control.back_train_y2 + pry, sc * scale * 1.3, scale * 1.3, 0, c_white, 1);
-			//if poisoned > 0
-			//	{ poisoned = 0; }
 			}
 		if poisoned > 0
 			{
@@ -347,13 +343,6 @@ if !enemy
 	var abil;
 	abil = asset_get_index("ability_hero_" + string(global.hero_code_name[hero]));
 	script_execute(abil); 
-	
-	//if diego_dynamit = 1
-	//	{
-	//	if global.super_ability = 1 && change = 3
-	//		{ global.super_ability = 0; }
-	//	hero_sprite = asset_get_index("s_" + global.hero_code_name[hero] + "2");
-	//	}
 	if o_list.theme_choose = 4
 		{
 		if enemy
@@ -362,8 +351,6 @@ if !enemy
 				{
 				if o_list.e_hp <= o_list.e_maxhp / 2
 					{
-					//if global.hero = 5
-					//	{ global.enemy_name = global.enemy_name + " JR."; }
 					if bill_stage = 0
 						{
 						if global.jr_e = 0
@@ -411,7 +398,6 @@ if !enemy
 		{
 		if enemy = 0
 			{
-			//global.super_ability1 = 1;
 			dynamit_x = x + 375 * scale;
 			dynamit_y = y - 200;
 			dynamit_a = 135;
@@ -419,7 +405,6 @@ if !enemy
 			}
 			else
 			{
-			//global.super_ability1 = 1;
 			dynamit_x = x - 375 * scale;
 			dynamit_y = y - 200;
 			dynamit_a = 135;
@@ -457,7 +442,6 @@ if !enemy
 						ini_close();
 						}
 					}
-				 //&& global.e_totem_a[8] = 0
 				
 				if (global.enemy_object).diego_dynamit = 1
 					{
@@ -551,7 +535,6 @@ if !enemy
 		diego_boom += 0.5;
 		if diego_boom > 5
 			{ diego_boom = -1; }
-		//(global.enemy_object).x
 		}
 	if hero = 5 && bill_stage = 0
 		{ stun = 0; }
@@ -563,8 +546,7 @@ if !enemy
 	
 	if global.super_ability = 0 && stun = 1 && skeleton_animation_get() != "stun"
 		{
-		//stun = 1;
-		stun_seconds = 3;// * room_speed;
+		stun_seconds = 3;
 		sprite_index = hero_sprite;
 		skeleton_animation_set("stun");
 		image_index = 0;
@@ -605,7 +587,6 @@ if !enemy
 			}
 		}
 #endregion
-
 #region Чучело
 	if global.training > 0
 		{

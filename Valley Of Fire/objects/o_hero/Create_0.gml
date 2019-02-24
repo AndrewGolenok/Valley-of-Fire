@@ -40,13 +40,9 @@ if !enemy
 	ox = -sprite_width / 2;
 	}
 
-//weapon = "";
 hero_sprite = asset_get_index("s_" + global.hero_code_name[hero]/* + weapon*/);
 hero_code_name = global.hero_code_name[hero];
-//if weapon = "standard"
-//	{ hero_bullet = asset_get_index("s_bullet_" + global.hero_code_weapon[hero]); }
-//	else
-//	{
+
 hero_bullet   = asset_get_index("s_bullet_" + weapon);
 hero_bullet_w = asset_get_index("s_bullet_" + weapon + "_w");
 sc = enemy - !enemy;
@@ -55,15 +51,14 @@ sprite_index = hero_sprite;
 image_speed  = 0;
 skeleton_animation_set("greetings");
 
-scale = 0.33 + global.more_size / 2700; // 1800 // 0.57 * global.size / 680;
+scale = 0.33 + global.more_size / 2700;
 
 if scale < 0.33
 	{ scale = 0.33; }
 if scale > 0.4
 	{ scale = 0.4; } // 0.4
 	
-y = global.size - 460 + o_control.back_y// - 110 * scale / 0.4; //global.more_size / 2 + 294; //544 + global.more_size / 2;
-
+y = global.size - 460 + o_control.back_y;
 change = 0;
 shoot  = 0;
 
@@ -77,7 +72,7 @@ super_img = 0;
 	
 ability_index = 0;
 ability_alpha = 1;
-ability_back  = s_ability_back; //asset_get_index("s_ability_back_" + string(global.hero_code_name[hero]));
+ability_back  = s_ability_back;
 
 hero_shoot = 20;
 knife_i = 0;

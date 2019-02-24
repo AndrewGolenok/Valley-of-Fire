@@ -22,8 +22,3 @@ if os_get_language() = "ru"
 	
 	push_local_notification(date_inc_day(date_current_datetime(), 30), "DUELS ARE WAITING FOR YOU!", "Come and get 100 GOLD and 50 CASH!", "d5");
 	}
-/*
-push_local_notification(date_inc_day(date_current_datetime(), 1), push_txt1, push_txt2, "daily_reward 1");
-push_local_notification(date_inc_day(date_current_datetime(), 3), push_txt1, push_txt2, "daily_reward 3");
-push_local_notification(date_inc_day(date_current_datetime(), 5), push_txt1, push_txt2, "daily_reward 5");
-push_local_notification(date_inc_day(date_current_datetime(), 7), push_txt1, push_txt2, "daily_reward 7"); // Пуши

@@ -1,15 +1,4 @@
-scale = 1//0.2;
-
-//if !audio_is_playing(sd_music)
-//		{ audio_play_sound(sd_music, 1, 1);  }
-		
-//hero_left[1] = asset_get_index("s_"+global.hero_code_name[5]+"");
-//hero_left[2] = asset_get_index("s_"+global.hero_code_name[7]+"");
-//hero_left[3] = asset_get_index("s_"+global.hero_code_name[1]+"");
-
-//hero_right[1] = asset_get_index("s_"+global.hero_code_name[6]+"");
-//hero_right[2] = asset_get_index("s_huntress");
-//hero_right[3] = asset_get_index("s_chief");
+scale = 1;
 
 if global.music = 1
 	{
@@ -39,7 +28,6 @@ text_scale2 = 0; // Текст2
 
 back = s_menu0;
 
-/////////////////
 all_y      = 1200;
 sun_y      = 200;
 sun_angle  = 0;
@@ -54,8 +42,8 @@ if global.size < 700
 	iphonex_s = global.size / 700 - 0.1;
 	}
 
-sherif_x   = 550//640;
-chief_x    = 550//640;
+sherif_x   = 550;
+chief_x    = 550;
 heroes1_x  = 500;
 heroes2_x  = 500;
 
