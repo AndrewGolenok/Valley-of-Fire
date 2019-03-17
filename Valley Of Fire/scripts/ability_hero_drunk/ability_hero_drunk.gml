@@ -59,7 +59,7 @@ if shoot = 2 or shoot = 3
 	draw_sprite_ext(s_bullet_bottle, knife_i, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_white, 1 * bullet_alpha);
 	draw_sprite_ext(s_bullet_bottle, knife_i, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.8 * bullet_alpha);
 	
-	if (sx >= 1280 - x - sprite_get_width(s_bullet_bottle) / 4 && !enemy) or (sx <= (1280 - x) + sprite_get_width(s_bullet_bottle) / 4 && enemy)
+	if (sx >= global.width - x - sprite_get_width(s_bullet_bottle) / 4 && !enemy) or (sx <= (global.width - x) + sprite_get_width(s_bullet_bottle) / 4 && enemy)
 		{
 		if shoot != 3
 			{

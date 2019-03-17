@@ -1,6 +1,6 @@
 var stats_xx, stats_yy, stats_ss;
 stats_xx = 640;
-stats_yy = global.size / 2;
+stats_yy = global.height / 2;
 stats_ss = argument0;
 draw_primitive_begin(pr_trianglefan);
 	draw_vertex(stats_xx + lengthdir_x(stats_ss, 90),  stats_yy + lengthdir_y(stats_ss, 90));

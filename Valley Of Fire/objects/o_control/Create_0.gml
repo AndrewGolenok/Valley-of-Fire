@@ -5,82 +5,84 @@
 #region Камера
 	application_surface_enable(1);
 	
-	surface_resize(application_surface, 1280, global.size);
-	display_set_gui_size(1280, global.size);
-	room_set_height(room, global.size);
+	surface_resize(application_surface, global.width, global.height);
+	display_set_gui_size(global.width, global.height);
+	room_set_height(room, global.height);
 	VIEW   = view_current; 
-	camera = camera_create_view(0, 0, 1280, global.size, 0, -1, 0, 0, 0, 0);
+	camera = camera_create_view(0, 0, global.width, global.height, 0, -1, 0, 0, 0, 0);
 	camera_destroy(camera_get_default());
 
 	view_enabled = true;
 	view_set_visible(VIEW, true);
 	view_set_xport(VIEW, 0);
 	view_set_yport(VIEW, 0);
-	view_set_wport(VIEW, 1280);
-	view_set_hport(VIEW, global.size);
+	view_set_wport(VIEW, global.width);
+	view_set_hport(VIEW, global.height);
 	
-	window_set_size(1280, global.size);
+	window_set_size(global.width, global.height);
 
 	view_set_camera(VIEW, camera);
 #endregion
 #region Фон
-	global.background = "house"//choose("train", "mine", "waterfall", "saloon", "house");
-	global.super_ability    = 0;
-	global.super_ability1   = 0;
-	global.ability_dop_anim = 0;
-	depth = 5;
-	
-	back_x = 0;
-	if global.background = "train"
-		{
-		back_s  = 0.56;
-		if global.size < 900
-			{ back_y = 160; }
-			else
-			{ back_y = 30; }
-		if global.size < 650
-			{ back_y = 220; }
-		}
-	if global.background = "mine"
-		{
-		back_s = 0.52;
-		if global.size < 900
-			{ back_y = 150; }
-			else
-			{ back_y = 0; }
-		}
-	if global.background = "waterfall"
-		{
-		back_s = 0.52;
-		if global.size < 900
-			{ back_y = 30; }
-			else
-			{ back_y = 0; }
-		if global.size <= 640
-			{ back_y = 100; }
-		}
-	if global.background = "saloon"
-		{
-		back_s = 0.52;
-		if global.size < 900
-			{ back_y = 100; }
-			else
-			{ back_y = 0; }
-		if global.size <= 640
-			{ back_y = 140; }
-		}
-	if global.background = "house"
-		{
-		back_s = 1.2675;
-		if global.size < 900
-			{ back_y = 160; }
-			else
-			{ back_y = 0; }
-		if global.size < 650
-			{ back_y = 220; }
-		}
-	back_sp = back_s;
-	
+	#region Выбор фона
+		global.background       = "house"; //choose("train", "mine", "waterfall", "saloon", "house");
+		global.super_ability    = 0;
+		global.super_ability1   = 0;
+		global.ability_dop_anim = 0;
+		depth = 5;
+	#endregion
+	#region Изменение размеров и координат фона
+		back_x = 0;
+		if global.background = "train"
+			{
+			back_s  = 0.56;
+			if global.height < 900
+				{ back_y = 160; }
+				else
+				{ back_y = 30; }
+			if global.height < 650
+				{ back_y = 220; }
+			}
+		if global.background = "mine"
+			{
+			back_s = 0.52;
+			if global.height < 900
+				{ back_y = 150; }
+				else
+				{ back_y = 0; }
+			}
+		if global.background = "waterfall"
+			{
+			back_s = 0.52;
+			if global.height < 900
+				{ back_y = 30; }
+				else
+				{ back_y = 0; }
+			if global.height <= 640
+				{ back_y = 100; }
+			}
+		if global.background = "saloon"
+			{
+			back_s = 0.52;
+			if global.height < 900
+				{ back_y = 100; }
+				else
+				{ back_y = 0; }
+			if global.height <= 640
+				{ back_y = 140; }
+			}
+		if global.background = "house"
+			{
+			back_s = 1.2675;
+			if global.height < 900
+				{ back_y = 160; }
+				else
+				{ back_y = 0; }
+			if global.height < 650
+				{ back_y = 220; }
+			}
+		back_sp = back_s;
+	#endregion
 	#region Поезд
 		day_hour   = 9;
 		day_minute = 0;
@@ -129,14 +131,14 @@
 		back_train_y2 = back_spd * 3;
 	
 		back_m_spd = back_spd / 1.5 * 5; // Скорость гор
-		back_m_y   = back_y + global.size - 1050 * back_s;
+		back_m_y   = back_y + global.height - 1050 * back_s;
 	
 		back_n  = 0;
 		back_p  = 14;
 		back_gt = 0;
 		
 		back_sand_spd = back_spd / 1.5 * 6;
-		back_sand_y   = back_y + global.size - 1050 * back_s;
+		back_sand_y   = back_y + global.height - 1050 * back_s;
 	
 		for(i=0; i<=14; i++)
 			{
@@ -160,8 +162,8 @@
 		for(i=0; i<=10; i++)
 			{
 			back_other_x[i]   = 2280;
-			back_other_y[i]   = irandom_range(global.size - 1050 * back_s, global.size - 200 * back_s);
-			back_other_sk[i]  = back_other_y[i] / (global.size - 200);
+			back_other_y[i]   = irandom_range(global.height - 1050 * back_s, global.height - 200 * back_s);
+			back_other_sk[i]  = back_other_y[i] / (global.height - 200);
 			
 			back_other_s[i]   = (1 - 0.5 * abs(back_other_x[i] - 640) / 640) * back_s;
 			
@@ -173,8 +175,8 @@
 		
 		for(i=0; i<=8; i++)
 			{
-			back_clouds_x[i] = irandom(1280);
-			back_clouds_y[i] = irandom_range(20,  global.size - 1050 * back_s - 20) - 10;
+			back_clouds_x[i] = irandom(global.width);
+			back_clouds_y[i] = irandom_range(20,  global.height - 1050 * back_s - 20) - 10;
 			back_clouds_i[i] = irandom(2);
 			back_clouds_s[i] = random_range(1,3);
 			
@@ -197,10 +199,8 @@
 	#endregion
 	#region Салун
 		sl_doors_i  = 0;
-		
 		sl_wanted_t = irandom_range(4, 10) * room_speed;
 		sl_wanted_i = 0;
-		
 		sl_tumble_x = 0;
 		sl_tumble_y = 0;
 		sl_tumble_s = 0;
@@ -209,9 +209,8 @@
 		sl_tumble_spd = 0;
 	#endregion
 #endregion
-
 #region Сурфейс
-	global.bsurf = surface_create(1280, global.size);
+	global.bsurf = surface_create(global.width, global.height);
 	surface_set_target(global.bsurf);
 	draw_clear_alpha(c_white, 0);
 	surface_reset_target();

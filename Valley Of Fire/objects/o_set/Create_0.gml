@@ -1,4 +1,4 @@
-#region Стартовые функции
+#region Включение рандома
 	randomize(); // Включаем рандом
 #endregion
 #region Пуши
@@ -18,30 +18,31 @@
 	application_surface_enable(1);
 	
 	device_mouse_dbclick_enable(0);
-	global.size = 960; //640; // 720; //800; //960;
+	global.width  = 1280;
+	global.height = 960;  //640; // 720; //800; //960;
 	if os_type != os_macosx
-	    { global.size = (display_get_height() * 1280) / display_get_width(); }
+	    { global.height = (display_get_height() * global.width) / display_get_width(); }
 	
-	if global.size < 590 { global.size = 590; }
-	if global.size > 960 { global.size = 960; }
+	if global.height < 590 { global.height = 590; }
+	if global.height > 960 { global.height = 960; }
 	
-	global.more_size = global.size - 590;
-
-	surface_resize(application_surface, 1280, global.size);
-	display_set_gui_size(1280, global.size);
-	room_set_height(room, global.size);
+	global.more_size = global.height - 590;
+	
+	surface_resize(application_surface, global.width, global.height);
+	display_set_gui_size(global.width, global.height);
+	room_set_height(room, global.height);
 	var VIEW = view_current;
-	var camera = camera_create_view(0, 0, 1280, global.size, 0, -1, 0, 0, 0, 0);
+	var camera = camera_create_view(0, 0, global.width, global.height, 0, -1, 0, 0, 0, 0);
 	camera_destroy(camera_get_default());
 
 	view_enabled = true;
 	view_set_visible(VIEW, true);
 	view_set_xport(VIEW, 0);
 	view_set_yport(VIEW, 0);
-	view_set_wport(VIEW, 1280);
-	view_set_hport(VIEW, global.size);
+	view_set_wport(VIEW, global.width);
+	view_set_hport(VIEW, global.height);
 	
-	window_set_size(1280, global.size);
+	window_set_size(global.width, global.height);
 
 	view_set_camera(VIEW, camera);
 #endregion
@@ -265,30 +266,28 @@
 	ini_close();
 #endregion
 #region Персонажи
-	global.hero = 1;
-	global.heroes_val  = 7;
-	global.weapon = "standard";
+	#region Характеристики игрока
+		global.hero = 1;
+		global.heroes_val  = 7;
+		ini_open("Language/" + string(global.lang) + "/heroes_" + string(global.lang) + ".ini");
+		global.description_hp = ini_read_string("Description", "description_hp", "HEALTH:");
+		global.description_at = ini_read_string("Description", "description_at", "DAMAGE:");
+		global.description_ab = ini_read_string("Description", "description_ab", "ABILITY:");
+		global.description_aa = ini_read_string("Description", "description_aa", "Active");
+		global.description_pa = ini_read_string("Description", "description_pa", "Passive");
+		global.description_hs = ini_read_string("Description", "description_hs", "STORY:");
+		global.description_th = ini_read_string("Description", "description_th", "THEME:");
+		
+		global.property_level = ini_read_string("Description", "property_level", "lvl");
+		global.property_wins  = ini_read_string("Description", "property_wins" , "WINS:");
+		global.property_grade = ini_read_string("Description", "property_grade", "GRADE:");
 	
-	ini_open("Language/" + string(global.lang) + "/heroes_" + string(global.lang) + ".ini");
-	
-	global.description_hp = ini_read_string("Description", "description_hp", "HEALTH:");
-	global.description_at = ini_read_string("Description", "description_at", "DAMAGE:");
-	global.description_ab = ini_read_string("Description", "description_ab", "ABILITY:");
-	global.description_aa = ini_read_string("Description", "description_aa", "Active");
-	global.description_pa = ini_read_string("Description", "description_pa", "Passive");
-	global.description_hs = ini_read_string("Description", "description_hs", "STORY:");
-	global.description_th = ini_read_string("Description", "description_th", "THEME:");
-	
-	global.property_level = ini_read_string("Description", "property_level", "lvl");
-	global.property_wins  = ini_read_string("Description", "property_wins" , "WINS:");
-	global.property_grade = ini_read_string("Description", "property_grade", "GRADE:");
-	
-	global.grade_rank[0] = ini_read_string("Description", "grade_rank_0", "Unknow");
-	global.grade_rank[1] = ini_read_string("Description", "grade_rank_1", "Green");
-	global.grade_rank[2] = ini_read_string("Description", "grade_rank_2", "Bronze");
-	global.grade_rank[3] = ini_read_string("Description", "grade_rank_3", "Silver");
-	global.grade_rank[4] = ini_read_string("Description", "grade_rank_4", "Gold");
-	
+		global.grade_rank[0] = ini_read_string("Description", "grade_rank_0", "Unknow");
+		global.grade_rank[1] = ini_read_string("Description", "grade_rank_1", "Green");
+		global.grade_rank[2] = ini_read_string("Description", "grade_rank_2", "Bronze");
+		global.grade_rank[3] = ini_read_string("Description", "grade_rank_3", "Silver");
+		global.grade_rank[4] = ini_read_string("Description", "grade_rank_4", "Gold");
+	#endregion
 	#region Воришка
 		global.hp[1]  = 700;
 		global.atk[1] = 60;
@@ -388,7 +387,6 @@
 		global.hero_full_loose[7]   = 0;
 		global.hero_nofull_loose[7] = 50;
 	#endregion
-	
 	#region Потом
 		#region Гробовщик
 			//global.hp[5]  = 250;
@@ -451,34 +449,6 @@
 	ini_close();
 #endregion
 #region Вопросы и темы
-	ini_open("Language/" + string(global.lang) + "/question_text_" + string(global.lang) + ".ini");
-	global.question_text[1,1] = ini_read_string("Theme_1", "question_1", "");
-	global.question_text[1,2] = ini_read_string("Theme_1", "question_2", "");
-	global.question_text[1,3] = ini_read_string("Theme_1", "question_3", "");
-	global.question_text[1,4] = ini_read_string("Theme_1", "question_4", "");
-	
-	global.question_text[3,1] = "Tap if hand direction is same!"; //ini_read_string("Theme_1", "question_1", "");
-	global.question_text[3,2] = "Walk past the fences!";
-	global.question_text[3,3] = "Swipe in the hand direction!";
-	global.question_text[3,4] = "Tap if hand direction is equal...";
-	
-	global.question_text[2,1] = "Shoot the bottles in the\norder of their appearance!";
-	global.question_text[2,2] = "Targets!";
-	global.question_text[2,3] = "Shoot the bottles in the\nright sequence!";
-	global.question_text[2,4] = "---";
-	
-	for(i=4;i<=8;i++)
-		{
-		for(j=1;j<=4;j++)
-			{
-			global.question_text[i,j] = "-";
-			global.question_text[i,j] = "-";
-			global.question_text[i,j] = "-";
-			global.question_text[i,j] = "-";
-			}
-		}
-	ini_close();
-	
 	for(i=1; i<=11; i++)
 		{ global.theme_name[i] = "OTHER"; }
 	
@@ -538,13 +508,10 @@
 #region Музыка
 	global.music_gain = 1;
 	global.music_pere = 0;
-	
 	global.back_prev  = 0;
 	global.room_pere  = 0;
-	
 	global.room_rm    = 0;
 	global.room_rmp   = 0;
-	
 	depth = -100000;
 #endregion
 #region Аналитика

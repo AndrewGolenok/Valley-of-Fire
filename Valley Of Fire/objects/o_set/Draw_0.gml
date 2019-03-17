@@ -1,4 +1,4 @@
-#region Перемещение между комнатами
+#region Отладка: Перемещение между комнатами
 	if keyboard_check_pressed(ord("1"))
 		{ room_goto_t("logo"); }
 	if keyboard_check_pressed(ord("2"))
@@ -6,7 +6,7 @@
 	if keyboard_check_pressed(ord("3"))
 		{ room_goto_t("duel"); }
 #endregion
-#region Параллакс
+#region Отладка: Параллакс
 	if keyboard_check(vk_left)
 		{
 		if global.paral_x > -1
@@ -34,7 +34,7 @@
 		global.paral_y = -device_get_tilt_x();
 		}
 #endregion
-#region Ини-файлы
+#region Отладка: Ини-файлы
 	#region Тренировка завершена
 		if keyboard_check_pressed(ord("Z"))
 			{
@@ -193,7 +193,7 @@
 			}
 	#endregion
 #endregion
-#region Отладка
+#region Отладка: Отрисовка на экране
 	//draw_set_font(global.game_font);
 	//draw_text_transformed_t(mouse_x, mouse_y, string(global.quests_n_now[1]) + "~" + string(global.quests_n_now[2]) + "~" + string(global.quests_n_now[3]), 0.25, 0.25, 0, c_white, c_black);
 #endregion

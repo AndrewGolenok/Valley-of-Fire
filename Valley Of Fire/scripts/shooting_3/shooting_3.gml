@@ -32,7 +32,7 @@ for(i=1;i<=targetk_all;i++)
 	
 for(i=1;i<=6;i++)
 	{
-	knife_y[i] = global.size / 2;
+	knife_y[i] = global.height / 2;
 	knife_x[i] = 640 - 170;
 	
 	knife_d[i] = -1;

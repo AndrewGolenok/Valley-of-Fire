@@ -78,7 +78,7 @@ if shoot = 2 or shoot = 3
 	//draw_sprite_ext(s_bullet_revolver, 0, sx - 28, sy - 40, sc * scale - 0.025, scale + 0.025, 0, c_orange, 0.5);
 	//draw_sprite_ext(s_bullet_revolver, 0, sx - 28, sy - 40, sc * scale - 0.025, scale + 0.025, 0, c_yellow, 0.2);
 	
-	if ((sx >= (1280 - x - sprite_get_width(s_bullet_revolver) - weapon_spd * 1.2)) && !enemy) or ((sx <= ((1280 - x) + weapon_spd * 1.2 + sprite_get_width(s_bullet_revolver))) && enemy)
+	if ((sx >= (global.width - x - sprite_get_width(s_bullet_revolver) - weapon_spd * 1.2)) && !enemy) or ((sx <= ((global.width - x) + weapon_spd * 1.2 + sprite_get_width(s_bullet_revolver))) && enemy)
 		{
 		global.super_ability = 0;
 		if enemy

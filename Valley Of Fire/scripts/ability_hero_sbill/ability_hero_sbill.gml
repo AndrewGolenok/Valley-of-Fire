@@ -73,7 +73,7 @@ if (round(image_index) = 10 or round(image_index) = 9) && skeleton_animation_get
 //	draw_sprite_ext(s_bullet_knife, 0, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_white, 1 * bullet_alpha);
 //	draw_sprite_ext(s_bullet_knife, 0, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_fuchsia, 0.8 * bullet_alpha);
 	
-//	if (sx >= 1280 - x - sprite_get_width(s_bullet_knife) / 4 && !enemy) or (sx <= (1280 - x) + sprite_get_width(s_bullet_knife) / 4 && enemy)
+//	if (sx >= global.width - x - sprite_get_width(s_bullet_knife) / 4 && !enemy) or (sx <= (global.width - x) + sprite_get_width(s_bullet_knife) / 4 && enemy)
 //		{ shoot = 3; }
 //	}
 	
