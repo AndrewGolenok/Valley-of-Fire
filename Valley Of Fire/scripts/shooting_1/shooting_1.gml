@@ -5,7 +5,7 @@ aim_all   = 5;
 var aim_txt, aim_ran;
 aim_txt = "12345";
 
-for(i=1;i<=5;i++)
+for(i = 1; i <= 5; i ++)
 	{
 	if global.player_rank <= 3
 		{ aim_all = 5; aim_r[i] = choose(1, 0); min_wait[6,1] = 30; min_time[6,1] = 110; }
@@ -22,7 +22,7 @@ for(i=1;i<=5;i++)
 	aim_t[i] = 20 + global.player_rank * 4;
 	}
 
-for(i=1;i<=aim_all;i++)
+for(i = 1; i <= aim_all; i ++)
 	{
 	aim_ran  = irandom_range(1, string_length(aim_txt));
 	aim_n[i] = real(string_copy(aim_txt,aim_ran,1));

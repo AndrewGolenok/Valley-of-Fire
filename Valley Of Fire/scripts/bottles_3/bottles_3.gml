@@ -1,7 +1,7 @@
 bottle_stage = 1;
 bottle_red_a = 0;
 
-for(i=1;i<=6;i++)
+for(i = 1; i <= 6; i ++)
 	{
 	bottle_y[i]   = - 140;
 	bottle_i[i]   = irandom_range(2, 3);

@@ -159,7 +159,7 @@
 		
 		var skul_t;
 		skul_t = "";
-		for(i=1;i<=3;i++)
+		for(i = 1; i <= 3; i ++)
 		{
 			if skul[i] = -1
 			{

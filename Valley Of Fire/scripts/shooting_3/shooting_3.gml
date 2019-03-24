@@ -22,7 +22,7 @@ targetk_spd = 6 - global.player_rank / 15;
 var txt, txt1;
 txt = "12345";
 
-for(i=1;i<=targetk_all;i++)
+for(i = 1; i <= targetk_all; i ++)
 	{
 	txt1 = irandom_range(1, string_length(txt));
 	targetk_n[i] = real(string_copy(txt, txt1, 1));
@@ -30,7 +30,7 @@ for(i=1;i<=targetk_all;i++)
 	targetk_d[i] = 0;
 	}
 	
-for(i=1;i<=6;i++)
+for(i = 1; i <= 6; i ++)
 	{
 	knife_y[i] = global.height / 2;
 	knife_x[i] = 640 - 170;

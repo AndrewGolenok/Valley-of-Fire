@@ -3,7 +3,7 @@ bottle_change = 0;
 bottle_end    = 0;
 bottle_s      = 1;
 
-for(i=1;i<=6;i++)
+for(i = 1; i <= 6; i ++)
 	{
 	bottle_destroy[i] = 0;
 	if bottle_change = 1

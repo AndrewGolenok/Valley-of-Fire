@@ -29,7 +29,7 @@ bottle_stage = 1;
 
 sss  = string_copy(sss, 1, bottle_all);
 
-for(i=1;i<=bottle_all;i++)
+for(i = 1; i <= bottle_all; i ++)
 	{
 	bottle_destroy[i] = 0;
 	sss1 = irandom_range(1, string_length(sss));
@@ -86,11 +86,11 @@ if bottle_all = 5
 	sssr = string_replace(sssr, "t", "1");
 	}
 
-//for(i=bottle_all;i>=1;i--)
+//for(i = bottle_all;i>=1;i--)
 //	{
 //	usa += string_copy(sssr, i, 1);
 //	}
-for(i=1;i<=bottle_all;i++)
+for(i = 1; i <= bottle_all; i ++)
 	{
 	bottle_n1[i] = real(string_copy(sssr, i, 1));
 	}

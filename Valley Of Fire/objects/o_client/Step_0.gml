@@ -250,7 +250,7 @@ if stage = 2
 		network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 	}
 	
-	for(i=1;i<=2;i++)
+	for(i = 1; i <= 2; i ++)
 	{
 		if answer[i] != -1
 		{

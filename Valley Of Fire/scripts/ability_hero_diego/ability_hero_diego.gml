@@ -51,7 +51,7 @@ if shoot = 2 or shoot = 3
 	//draw_sprite_ext(s_bullet_revolver, 0, sx - 28, sy - 1 - 40, sc * scale - 0.025, scale + 0.025, 0, c_yellow, 0.4 * bullet_alpha);
 	//draw_sprite_ext(s_bullet_revolver, 0, sx - 28, sy + 1 - 40, sc * scale - 0.025, scale + 0.025, 0, c_yellow, 0.4 * bullet_alpha);
 	
-	//for(i = 0; i <= 5; i++)
+	//for(i = 0; i <= 5; i ++)
 	//	{ draw_sprite_ext(s_bullet_revolver, 0, sx - 8 * i - 28, sy - 40, sc * scale - 0.025, scale + 0.025, 0, c_yellow, 0.4 / i * bullet_alpha); }
 	
 

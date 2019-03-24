@@ -25,10 +25,10 @@ var txt, txt1, txt2, txt3;
 txt  = "";
 txt2 = "12345";
 
-for(i=1;i<=target_all;i++)
+for(i = 1; i <= target_all; i ++)
 	{ txt += string(i); }
 
-for(i=1;i<=target_all;i++)
+for(i = 1; i <= target_all; i ++)
 	{
 	txt1 = irandom_range(1, string_length(txt));
 	target_n[i] = real(string_copy(txt, txt1, 1));

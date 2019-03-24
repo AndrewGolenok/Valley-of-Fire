@@ -53,7 +53,7 @@ if shoot = 2 or shoot = 3
 	draw_sprite_ext(s_bullet_bottle, knife_i, sx - 28, sy - 1 - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 * bullet_alpha);
 	draw_sprite_ext(s_bullet_bottle, knife_i, sx - 28, sy + 1 - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 * bullet_alpha);
 	
-	for(i = 0; i <= 5; i++)
+	for(i = 0; i <= 5; i ++)
 		{ draw_sprite_ext(s_bullet_bottle, knife_i, sx - 8 * i - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, global.color_hero[2], 0.4 / i * bullet_alpha); }
 	
 	draw_sprite_ext(s_bullet_bottle, knife_i, sx - 28, sy - 15, sc * scale - 0.025, scale + 0.025, 0, c_white, 1 * bullet_alpha);
@@ -72,7 +72,7 @@ if shoot = 2 or shoot = 3
 				if (o_list.hp - o_list.e_atk) <= 0
 					{ datk = (1 + 0.2 * global.p_totem_a[6]); }
 				
-				for(i=1;i<=3;i++)
+				for(i = 1; i <= 3; i ++)
 					{
 					if global.quests_t[i] = 19 && global.e_totem_a[8] = 0
 					&& o_list.e_hp - o_list.atk * datk + (1 + global.p_totem_a[5]) * o_list.atk * datk / 10 * (global.critical == (3 - 1 * global.p_totem_a[3])) <= 0

@@ -23,7 +23,7 @@ txt2 = "123456";
 txt  = "";
 
 txt3 = "";
-for(i=1;i<=cards_all;i++)
+for(i = 1; i <= cards_all; i ++)
 	{
 	txt1 = irandom_range(1, string_length(txt2));
 	txt += string_copy(txt2, txt1, 1);
@@ -31,7 +31,7 @@ for(i=1;i<=cards_all;i++)
 	
 	txt3 += string(i);
 	}
-for(i=1;i<=cards_all;i++)
+for(i = 1; i <= cards_all; i ++)
 	{
 	cards_nu[i] = i;
 	cards_y[i]  = 0;
@@ -48,7 +48,7 @@ for(i=1;i<=cards_all;i++)
 	cards_n[i]  = real(string_copy(txt3, txt4, 1));
 	txt3 = string_delete(txt3, txt4, 1);
 	}
-for(i=1;i<=cards_all;i++)
+for(i = 1; i <= cards_all; i ++)
 	{
 	cards_xx[i] = -70 * (cards_all - 1) + (cards_n[i] - 1) * 140;
 	}

@@ -1,6 +1,6 @@
 #region Текст
 	ini_open(string(global.lang) + ".ini");
-		for(i=1;i<=34;i++)
+		for(i = 1; i <= 34; i ++)
 			{
 			if i<=6
 				{ cash_txt[i] = ini_read_string("Menu", "cash_txt_" + string(i), ""); }
@@ -96,9 +96,9 @@
 		ini_close();
 	#endregion
 	#region Переменные меню тренировки
-		for(i=1;i<=3;i++)
+		for(i = 1; i <= 3; i ++)
 			{
-			for(j=1;j<=2;j++)
+			for(j = 1; j <= 2; j ++)
 				{
 				theme_x[i,j] = 640 - 400 + 200 * i;
 				if j = 1
@@ -173,7 +173,7 @@
 	#endregion
 	#region Координаты и цвет
 		text_x = totem_w * 0.8;
-		for(i=1;i<=18;i++)
+		for(i = 1; i <= 18; i ++)
 			{
 			#region Координата X
 				totem_x[i] = 0;
@@ -221,7 +221,7 @@
 	#endregion
 #endregion
 #region Магазин
-	#region Координаты маназина
+	#region Координаты магазина
 		store_yy  = 0;
 		store_yy1 = 0;
 		store_pr  = 0;
@@ -358,7 +358,7 @@
 									if tr = 3
 										{
 										totems = "";
-										for(i=1;i<=4;i++)
+										for(i = 1; i <= 4; i ++)
 											{
 											if global.totem_have[i+11] = 0
 												{ totems += string(i); }
@@ -376,7 +376,7 @@
 									if tr = 4
 										{
 										totems = "";
-										for(i=1;i<=3;i++)
+										for(i = 1; i <= 3; i ++)
 											{
 											if global.totem_have[i+15] = 0
 												{ totems += string(i); }
@@ -416,7 +416,7 @@
 									if tr = 2
 										{
 										totems = "";
-										for(i=1;i<=5;i++)
+										for(i = 1; i <= 5; i ++)
 											{
 											if global.totem_have[i+6] = 0
 											&& (d_t1 == 1 or (d_t1 == 0 && d_n1 != i+6))
@@ -435,7 +435,7 @@
 									if tr = 3
 										{
 										totems = "";
-										for(i=1;i<=4;i++)
+										for(i = 1; i <= 4; i ++)
 											{
 											if global.totem_have[i+11] = 0
 											&& (d_t1 == 1 or (d_t1 == 0 && d_n1 != i+11))
@@ -476,7 +476,7 @@
 									if tr = 1
 										{
 										totems = "";
-										for(i=1;i<=6;i++)
+										for(i = 1; i <= 6; i ++)
 											{
 											if global.totem_have[i] = 0
 											&& (d_t1 == 1 or (d_t1 == 0 && d_n1 != i))
@@ -496,7 +496,7 @@
 									if tr = 2
 										{
 										totems = "";
-										for(i=1;i<=5;i++)
+										for(i = 1; i <= 5; i ++)
 											{
 											if global.totem_have[i+6] = 0
 											&& (d_t1 == 1 or (d_t1 == 0 && d_n1 != i+6))
@@ -690,7 +690,7 @@
 				nowday = ini_read_real("Design", "ddd", 0);
 				nowmon = ini_read_real("Design", "dmm", 0);
 			#endregion
-			for(i=1;i<=3;i++)
+			for(i = 1; i <= 3; i ++)
 				{
 				daily_buy_s[i] = 0;
 				daily_buy[i]   = 0;
@@ -866,7 +866,7 @@
 		hero_pr  = 0;
 	#endregion
 	#region Координаты, размер, уровень
-	for(i=1;i<=7;i++)
+	for(i = 1; i <= 7; i ++)
 		{
 		#region Координаты, размер
 			hero_xx[i]  = 0;
@@ -1125,7 +1125,7 @@
 			global.quests_t[3] = ini_read_real("Qual", "qual_t_3", 3);
 		#endregion
 		#region Обновление, запись и чтение переменных
-			for(i=1;i<=3;i++)
+			for(i = 1; i <= 3; i ++)
 				{
 				#region Размер, доступность
 					global.quests_a[i] = ini_read_real("Qual", "qual_a_" + string(i), 1);
@@ -1385,7 +1385,7 @@
 #region Титры
 	global.titles = 0;
 	title_yy = global.height - 50 - 150;
-	for(i=1;i<=25;i++)
+	for(i = 1; i <= 25; i ++)
 		{
 		title_text[i]  = "";
 		title_coll[i]  = global.color_white;

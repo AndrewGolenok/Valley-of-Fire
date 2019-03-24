@@ -84,7 +84,7 @@ if type = network_type_data
 					need_hp[1] = hp[1];
 					atk[2]     = round(hp[1] / 7);
 					
-					for (i=0;i<ds_list_size(totem1);i++)
+					for (i=0;i<ds_list_size(totem1); i ++)
 					{
 						totems[1,i+1] = totem1[| i];
 					}
@@ -97,7 +97,7 @@ if type = network_type_data
 					need_hp[2] = hp[2];
 					atk[1]     = round(hp[2] / 7);
 					
-					for (i=0;i<ds_list_size(totem2);i++)
+					for (i=0;i<ds_list_size(totem2); i ++)
 					{
 						totems[2,i+1] = totem2[| i];
 					}

@@ -3,7 +3,7 @@ text = argument2;
 ty   = 25 * argument3;
 symb = string_length(text);
 
-for(i=1;i<=symb;i++)
+for(i = 1; i <= symb; i ++)
 	{
 	if i mod 2 = 0
 		{ ty = 5; }

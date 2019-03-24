@@ -1,14 +1,14 @@
 hand_sign_count = 0;
 hand_sign_now   = 1;
 hand_sign_scale = 1;
-for(i=1;i<=5;i++)
+for(i = 1; i <= 5; i ++)
 	{
 	hand_sign[i]    = irandom(2)
 	hand_sign_xx[i] = 0;
 	hand_sign_ss[i] = 1;
 	var ttt, ttt1;
 	ttt = "012";
-	for(j=1;j<=3;j++)
+	for(j = 1; j <= 3; j ++)
 		{
 		ttt1 = irandom_range(1,string_length(ttt));
 		hand_sign_z[i,j] = real(string_copy(ttt, ttt1, 1));

@@ -3,7 +3,7 @@ hand_angle = 0;
 hand_now   = 1;
 hand_speed = 16 - global.player_rank / 2; //23 - global.player_rank;
 
-for(i=1;i<=6;i++)
+for(i = 1; i <= 6; i ++)
 	{
 	hand_true[i] = 0;
 	hand_red[i]  = 0;

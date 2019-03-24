@@ -20,9 +20,9 @@ card_find_a = 10;
 card_find_s = 0;
 card_what();
 
-for(i=1;i<=2;i++)
+for(i = 1; i <= 2; i ++)
 	{
-	for(j=1;j<=card_all;j++)
+	for(j = 1; j <= card_all; j ++)
 		{
 		card_scale[i,j] = 0.7;
 		card_i[i,j]     = card_m[i,j];

@@ -65,7 +65,7 @@ if num = 2
 	equation_text = string(a) + sgn + string(b) + "=" + "?";
 	}
 			
-for(i=1;i<=4;i++)
+for(i = 1; i <= 4; i ++)
 	{
 	if vtext[i] != vtext[tra]
 		{

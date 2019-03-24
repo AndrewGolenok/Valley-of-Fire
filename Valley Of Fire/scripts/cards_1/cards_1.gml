@@ -11,9 +11,9 @@ if global.player_rank < 15 && global.player_rank >= 13
 if global.player_rank >= 15
 	{ card_all = 2; card_time = 40; min_wait[5,1] = 50; min_time[5,1] = 20; }
 
-for(i=1;i<=2;i++)
+for(i = 1; i <= 2; i ++)
 	{
-	for(j=1;j<=3;j++)
+	for(j = 1; j <= 3; j ++)
 		{
 		card_scale[i,j] = 0.7;
 		card_m[i,j]   = 0;

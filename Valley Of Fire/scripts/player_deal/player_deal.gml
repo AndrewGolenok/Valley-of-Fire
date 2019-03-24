@@ -7,7 +7,7 @@ miss = 0;
 if (o_list.hp - o_list.e_atk) <= 0
 	{ datk = (1 + 0.2 * global.p_totem_a[6]); }
 	
-for(i=1;i<=3;i++)
+for(i = 1; i <= 3; i ++)
 	{
 	if global.quests_a[i] = 1
 		{

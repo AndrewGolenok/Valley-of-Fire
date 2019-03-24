@@ -1,8 +1,8 @@
 #region Рандом окружения
-	for(i=0; i<=10; i++)
-		{
+	for(i = 0; i<=10; i ++)
+	{
 		if back_other_x[i] = 2280
-			{
+		{
 			back_other_x[i]   = global.width + 268;
 			back_other_y[i]   = irandom_range(global.height - 1040 * back_s, global.height - 450 * back_s);
 			back_other_sk[i]  = 1 - 0.9 * (abs(back_other_y[i] - (global.height - 400 * back_s)) / (global.height - 400 * back_s));
@@ -11,7 +11,7 @@
 			back_other_img[i] = irandom(2);
 			back_other_spd[i] = back_spd / 1.5 * (8 + 8 * back_other_sk[i]);
 			break;
-			}
 		}
+	}
 	alarm[0] = irandom_range(10, room_speed * 1);
 #endregion

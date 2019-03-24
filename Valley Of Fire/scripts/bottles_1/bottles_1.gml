@@ -29,7 +29,7 @@ if bottle_red  = 1
 	{ bottle_stage = 1; }
 
 sss  = string_copy(sss, 1, bottle_all);
-for(i=1;i<=bottle_all;i++)
+for(i = 1; i <= bottle_all; i ++)
 	{
 	bottle_destroy[i] = 0;
 	sss1 = irandom_range(1, string_length(sss));

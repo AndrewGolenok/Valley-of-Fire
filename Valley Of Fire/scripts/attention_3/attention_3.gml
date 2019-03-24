@@ -1,4 +1,4 @@
-for(i=1;i<=6;i++)
+for(i = 1; i <= 6; i ++)
 	{
 	horse_p[i]   = choose(-1, 1);
 	horse_n[i]   = 0;
@@ -11,7 +11,7 @@ horse_death   = 0;
 horse_death_y = 0;
 horse_death_a = 1;
 
-for(i=1;i<=6;i++)
+for(i = 1; i <= 6; i ++)
 	{
 	if global.player_rank <= 3
 			{ horse_count = 6; horse_red[i] = choose(1, -1); min_time[4,3] = 100; min_time[4,3] = 10; }
