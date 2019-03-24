@@ -86,6 +86,6 @@
 	}
 	else
 	{
-	show_message("NO NETWORK CONNECTION!");
+		show_message("NO NETWORK CONNECTION!");
 	}
 #endregion
