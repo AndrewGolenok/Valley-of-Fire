@@ -161,7 +161,7 @@ if stage = 0
 			else
 			{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"getFight\", \"param\": {\"fightId\": \"" + string(f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"getFight\", \"param\": {\"fightId\": \"" + string(global.f_id) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			
 			need_f = room_speed;

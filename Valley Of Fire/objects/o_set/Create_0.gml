@@ -15,9 +15,10 @@
 #endregion
 #region Автоподстройка разрешения
 	application_surface_enable(1);
-	device_mouse_dbclick_enable(0);
+	device_mouse_dbclick_enable(true);
+	//device_mouse_dbclick_enable(false);
 	global.width  = 1280;
-	global.height = 960;
+	global.height = 720;
 	if os_type != os_macosx
 	{
 		global.height = (display_get_height() * global.width) / display_get_width();

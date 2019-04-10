@@ -1,3 +1,4 @@
+/*
 var aa;
 
 if theme_real_theme[0] != -1

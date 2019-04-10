@@ -4225,7 +4225,7 @@
 													{
 														if lootbox_item_ss[k] = 1
 														{
-															draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.height / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height("D") * 0.12 * lootbox_item_s[k] / 2, string_upper(string_copy(totem_desc[13],0,36)), -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black);
+															draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.height / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height("D") * 0.12 * lootbox_item_s[k] / 2, string_upper(string_copy(global.totem_desc[13],0,36)), -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black);
 														}
 													}
 												}
@@ -4896,7 +4896,7 @@
 													}
 													else
 													{
-														draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.height / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height("D") * 0.12 * lootbox_item_s[k] / 2, string_upper(string_copy(totem_desc[13],0,36)), -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black);
+														draw_text_ext_transformed_t(640 - 10 - lootbox_item_x[k] * (k == 1) + lootbox_item_x[k] * (k == 2) + theme_x1[k], global.height / 2 - 120 + 65 + 70 + lootbox_item_y[k] + 150 + string_height("D") * 0.12 * lootbox_item_s[k] / 2, string_upper(string_copy(global.totem_desc[13],0,36)), -1, 2000, 0.12 * lootbox_item_s[k], 0.12 * lootbox_item_s[k], 0, lootbox_item_c[k], c_black);
 													}
 												}
 												else

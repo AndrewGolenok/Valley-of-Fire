@@ -1,5 +1,5 @@
 #region Общая информация
-	draw_set_font(f_main)
+	draw_set_font(f_win_regular);
 	draw_set_color(c_white);
 	
 	draw_set_halign(fa_left);
