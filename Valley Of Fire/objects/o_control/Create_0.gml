@@ -114,7 +114,7 @@
 		day_minute = 0;
 		day_second = 0;
 		day_star   = 0;
-		for(i = 0; i<=128; i ++)
+		for(i = 0; i <= 128; i ++)
 		{
 			if i mod 2 = 0
 			{
@@ -165,7 +165,7 @@
 		back_gt = 0;
 		back_sand_spd = back_spd / 1.5 * 6;
 		back_sand_y   = back_y + global.height - 1050 * back_s;
-		for(i = 0; i<=14; i ++)
+		for(i = 0; i <= 14; i ++)
 		{
 			if i = back_n
 			{
@@ -180,11 +180,11 @@
 				back_m_s[i]   = (1 - 0.5 * abs(back_m_x[i] - 640) / 640) * back_s;
 			}
 		}
-		for(i = 0; i<=5; i ++)
+		for(i = 0; i <= 5; i ++)
 			{
 				back_sand_x[i]  = (sprite_get_width(s_train_sand) / 4 + sprite_get_width(s_train_sand) * i / 4) * back_s;
 			}
-		for(i = 0; i<=10; i ++)
+		for(i = 0; i <= 10; i ++)
 		{
 			back_other_x[i]   = 2280;
 			back_other_y[i]   = irandom_range(global.height - 1050 * back_s, global.height - 200 * back_s);
@@ -194,7 +194,7 @@
 			back_other_img[i] = irandom(2);
 			back_other_spd[i] = back_spd / 1.5 * (6 + 2 * back_other_sk[i]);
 		}
-		for(i = 0; i<=8; i ++)
+		for(i = 0; i <= 8; i ++)
 			{
 			back_clouds_x[i]  = irandom(global.width);
 			back_clouds_y[i]  = irandom_range(20,  global.height - 1050 * back_s - 20) - 10;

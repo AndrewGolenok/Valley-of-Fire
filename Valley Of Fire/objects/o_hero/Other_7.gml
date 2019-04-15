@@ -34,6 +34,7 @@
 					o_list.e_super_now  = 0;
 					o_list.e_super_need = 3 - global.e_totem_a[15];
 					o_list.super_now1 = 0;
+					super = 0;
 				#endregion
 			}
 		}
@@ -115,7 +116,7 @@
 		{
 			o_list.e_atk /= 3;
 		}
-		image_speed = 2;
+		image_speed = spd_max;
 		change = 1;
 	}
 #endregion
@@ -135,7 +136,7 @@
 			sprite_index = hero_sprite;
 			skeleton_animation_set("idle");
 			image_index = 0;
-			image_speed = 2;
+			image_speed = spd_max;
 			change = 0;
 			exit;
 		}
@@ -146,7 +147,7 @@
 			sprite_index = hero_sprite;
 			skeleton_animation_set("gunsout");
 			image_index = 0;
-			image_speed = 2;
+			image_speed = spd_max;
 			change = 1;
 			exit;
 		}
@@ -157,7 +158,7 @@
 			sprite_index = hero_sprite;
 			skeleton_animation_set("reload");
 			image_index = 0;
-			image_speed = 2;
+			image_speed = spd_max;
 			change = 1;
 			exit;
 		}
@@ -212,6 +213,13 @@
 			{
 				change = 2;
 			}
+		}
+	#endregion
+	#region Состояние 6: Возврат способности
+		if change = 6
+		{
+			super  = 0;
+			change = 1;
 		}
 	#endregion
 #endregion

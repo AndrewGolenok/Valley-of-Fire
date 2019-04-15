@@ -4,12 +4,9 @@
 #region Пуши
 	var map = ds_map_create();
 	var ntf = push_get_first_local_notification(map);
-	while(ntf >= 0)
-	{
-	   var data = ds_map_find_value(map, "data");
-	   push_cancel_local_notification(ntf);
-	   ntf = push_get_next_local_notification(map);
-	}
+	var data = ds_map_find_value(map, "data");
+	push_cancel_local_notification(ntf);
+	ntf = push_get_next_local_notification(map);
 	ds_map_destroy(map);
 	alarm[0] = 2;
 #endregion
@@ -214,7 +211,7 @@
 			global.notend = 0;
 		#endregion
 		#region Квесты
-			for(i = 1;i=7; i ++)
+			for(i = 1; i <= 7; i ++)
 			{
 				if !ini_section_exists("Var")
 				{
@@ -425,7 +422,7 @@
 	ini_close();
 #endregion
 #region Вопросы и темы
-	for(i = 1; i<=11; i ++)
+	for(i = 1; i <= 11; i ++)
 	{
 		global.theme_name[i] = "OTHER";
 	}

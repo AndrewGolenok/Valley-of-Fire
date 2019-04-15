@@ -2,19 +2,19 @@
 	ini_open(string(global.lang) + ".ini");
 		for(i = 1; i <= 34; i ++)
 		{
-			if i<=6
+			if i <= 6
 			{
 				cash_txt[i] = ini_read_string("Menu", "cash_txt_" + string(i), "");
 			}
-			if i<=3
+			if i <= 3
 			{
 				gold_txt[i] = ini_read_string("Menu", "gold_txt_" + string(i), "");
 			}
-			if i<=4
+			if i <= 4
 			{
 				text_tot[i] = ini_read_string("Menu", "text_tot_" + string(i), "");
 			}
-			if i<=8
+			if i <= 8
 			{
 				heroes_name[i]  = ini_read_string("Menu", "heroes_name_"  + string(i), "");
 				heroes_theme[i] = ini_read_string("Menu", "heroes_theme_" + string(i), "");
@@ -382,7 +382,7 @@
 					}
 					var ta;
 					ta = 0;
-					for(l=1;l<=18;l++)
+					for(l = 1; l <= 18; l++)
 					{
 						ta += global.totem_have[l];
 					}

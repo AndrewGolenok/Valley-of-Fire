@@ -1,14 +1,16 @@
 {
     "id": "e68069c2-45b2-4d18-bdd5-0dc137b324b2",
     "modelName": "GMFont",
-    "mvc": "1.0",
+    "mvc": "1.1",
     "name": "f_question_bold",
     "AntiAlias": 1,
     "TTFName": "",
+    "ascenderOffset": 0,
     "bold": true,
     "charset": 0,
     "first": 0,
     "fontName": "Devanagari Sangam MN",
+    "glyphOperations": 0,
     "glyphs": [
         {
             "Key": 32,
@@ -1526,8 +1528,9 @@
             }
         }
     ],
-    "image": null,
+    "hinting": 0,
     "includeTTF": false,
+    "interpreter": 0,
     "italic": false,
     "kerningPairs": [
         {
@@ -2444,6 +2447,8 @@
         }
     ],
     "last": 0,
+    "maintainGms1Font": false,
+    "pointRounding": 0,
     "ranges": [
         {
             "x": 32,

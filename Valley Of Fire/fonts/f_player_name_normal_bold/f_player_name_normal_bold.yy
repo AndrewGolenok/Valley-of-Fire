@@ -1,14 +1,16 @@
 {
     "id": "67482f46-e64f-4a9e-ad90-ff2a2f73b1d3",
     "modelName": "GMFont",
-    "mvc": "1.0",
+    "mvc": "1.1",
     "name": "f_player_name_normal_bold",
     "AntiAlias": 1,
     "TTFName": "",
+    "ascenderOffset": 0,
     "bold": true,
     "charset": 0,
     "first": 0,
     "fontName": "American Typewriter",
+    "glyphOperations": 0,
     "glyphs": [
         {
             "Key": 32,
@@ -2441,13 +2443,16 @@
             }
         }
     ],
-    "image": null,
+    "hinting": 0,
     "includeTTF": false,
+    "interpreter": 0,
     "italic": false,
     "kerningPairs": [
         
     ],
     "last": 0,
+    "maintainGms1Font": false,
+    "pointRounding": 0,
     "ranges": [
         {
             "x": 32,

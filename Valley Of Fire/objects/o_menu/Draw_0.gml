@@ -2040,7 +2040,7 @@
 								draw_text_transformed_t(theme_x[i,j] + prx, theme_y[i,j] + training_back_y + pry, "?", theme_s[i,j] * theme_sc * theme_ss[i,j], theme_s[i,j] * theme_sc, 0, global.color_white, c_black);
 								var ques;
 								ques = "";
-								for(k=1;k<=string_length(theme_nn[i,j]);k++)
+								for(k = 1; k <= string_length(theme_nn[i,j]); k ++)
 									{ ques += "?"; }
 								if string_length(ques) > 6
 									{ ques = "??????" }
@@ -2498,7 +2498,10 @@
 		#endregion
 		#region КНОПКИ МАГАЗИНА
 			#region Переменная верхней координаты top
-				top = 0;
+				var lbs1, lbs2;
+					lbs1 = 1;
+					lbs2 = 1;
+					top = 0;
 			#endregion
 			#region МЕНЮ 1: Лутбоксы
 				#region Отрисовка
@@ -2658,7 +2661,7 @@
 				draw_text_transformed_t(640 + prx - string_width("24H59M)") * 0.12 / 2 + string_width("(" + store_text[5] + " ") * 0.1 / 2 + string_width(string(23 - current_hour)) * 0.17 + string_width(store_text[6]) * 0.1 + string_width(string(59 - current_minute)) * 0.17 / 2, top - 110 + daily_y + training_back_y + pry + store_yy1 + 45 - 10, string(59 - current_minute), 0.17, 0.17, 0, global.color_white, c_black);
 				draw_text_transformed_t(640 + prx - string_width("24H59M)") * 0.12 / 2 + string_width("(" + store_text[5] + " ") * 0.1 / 2 + string_width(string(23 - current_hour)) * 0.17 + string_width(store_text[6]) * 0.1 + string_width(string(59 - current_minute)) * 0.17 + string_width(store_text[7]+")") * 0.1 / 2, top - 110 + daily_y + training_back_y + pry + store_yy1 + 45, store_text[7] + ")", 0.1, 0.1, 0, global.color_white, c_black);
 				// Отрисовка дейли-вещи
-				for(dall=1;dall<=3;dall++)
+				for(dall = 1; dall <= 3; dall ++)
 				{
 					#region Коордианта по X
 						var dall_x;
@@ -3741,7 +3744,7 @@
 												{
 													var ta;
 													ta = 0;
-													for(l=1;l<=18;l++)
+													for(l = 1; l <= 18; l ++)
 													{
 														ta += global.totem_have[l];
 													}
@@ -4201,7 +4204,7 @@
 										}
 									#endregion
 									#region Отрисовка элементов вещей и текста
-										for(k=1;k<=2;k++)
+										for(k = 1; k <= 2; k ++)
 										{
 											if lootbox_item_o[k] >= 1
 											{
@@ -4437,7 +4440,7 @@
 												{
 													var ta;
 													ta = 0;
-													for(l=1;l<=18;l++)
+													for(l = 1; l <= 18; l ++)
 													{
 														ta += global.totem_have[l];
 													}
@@ -4854,7 +4857,7 @@
 										}
 									#endregion
 									#region Отрисовка вещи 1, 2, 3: Тотем / Листовка
-										for(r=1;r<=3;r++)
+										for(r = 1; r <= 3;r ++)
 										{
 											if lootbox_item_o[r] < 2
 											{
@@ -4874,7 +4877,7 @@
 										}
 									#endregion
 									#region Отрисовка элементов вещей и текста
-										for(k=1;k<=3;k++)
+										for(k = 1; k <= 3; k ++)
 										{
 											if lootbox_item_o[k] >= 1
 											{
@@ -6036,7 +6039,7 @@
 			
 			var ta;
 				ta = 0;
-				for(l=1;l<=18;l++)
+				for(l = 1; l <= 18; l ++)
 					{ ta += global.totem_have[l]; }
 									
 				if ta = 18

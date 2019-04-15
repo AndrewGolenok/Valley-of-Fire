@@ -15,22 +15,22 @@
 				if x < xn / 2 - 20
 				{
 					x += 10;
-					image_speed = 0.5;
+					image_speed = spd_med;
 				}
 				if x >= xn / 2 - 50 && x < xn / 2 + 30
 				{
 					x += 5;
-					image_speed = 2;
+					image_speed = spd_max;
 				}
 				if x >= xn / 2 + 20 && x < xn
 				{
 					x += 2;
-					image_speed = 0;
+					image_speed = spd_min;
 				}
 				if x >= xn
 				{
 					change = 2;
-					image_speed = 2;
+					image_speed = spd_max;
 				}
 			}
 		#endregion
@@ -51,22 +51,22 @@
 				if x > xn / 2 + 20
 				{
 					x -= 10;
-					image_speed = 0.5;
+					image_speed = spd_med;
 				}
 				if x <= xn / 2 + 50 && x > xn / 2 - 30
 				{
 					x -= 5;
-					image_speed = 2;
+					image_speed = spd_max;
 				}
 				if x <= xn / 2 - 20 && x > xn
 				{
 					x -= 2;
-					image_speed = 0;
+					image_speed = spd_min;
 				}
 				if x <= xn
 				{
 					change = 2;
-					image_speed = 2;
+					image_speed = spd_max;
 				}
 			}
 		#endregion
@@ -133,12 +133,12 @@
 				stun_seconds -= 1;
 				if stun_seconds > 1
 				{
-					image_speed = 1.25;
+					image_speed = spd_nor + 0.25;
 					change = 5;
 				}
 				else
 				{
-					image_speed = 2;
+					image_speed = spd_max;
 					change = 2;
 				}
 				image_index = 18;
@@ -508,7 +508,7 @@
 								global.super_ability = 1;
 								sprite_index = s_sbill1;
 								hero_sprite  = s_sbill1;
-								image_speed  = 1.5;
+								image_speed  = spd_nor + 0.5;
 								bill_stage   = 1;
 								skeleton_animation_set("death");
 							}
@@ -536,7 +536,7 @@
 								global.super_ability = 1;
 								sprite_index = s_sbill1;
 								hero_sprite  = s_sbill1;
-								image_speed  = 1.5;
+								image_speed  = spd_nor + 0.5;
 								bill_stage   = 1;
 								skeleton_animation_set("death");
 							}
@@ -756,7 +756,7 @@
 			sprite_index = hero_sprite;
 			skeleton_animation_set("stun");
 			image_index = 0;
-			image_speed = 2;
+			image_speed = spd_max;
 			change = 4;
 		}
 	#endregion
@@ -780,7 +780,7 @@
 				sprite_index = hero_sprite;
 				skeleton_animation_set("idle");
 				image_index = 0;
-				image_speed = 2;
+				image_speed = spd_max;
 				change = 1;
 			}
 		}

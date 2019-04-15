@@ -115,7 +115,7 @@
 			if global.background = "train" or global.background = "waterfall" or global.background = "saloon"
 			{
 				#region Звезды и задник
-				for(i = 0; i<=128; i ++)
+				for(i = 0; i <= 128; i ++)
 				{
 					day_star_n[i] += 0.25 * back_spd;
 					draw_sprite_ext(day_star_s[i], day_star_n[i], i * 10 + back_x, day_star_y[i], back_s, back_s, 0, c_white, star_alpha);
@@ -125,7 +125,7 @@
 				draw_sprite_ext(s_sunmoon, 1, 640 - lengthdir_x(640, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600)), global.height / 2 - lengthdir_y(200, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600)), moon_scale, moon_scale, -90 - 15 * (day_hour + day_minute / 60 + day_second / 3600), c_white, 1);
 			#endregion
 				#region Рисование облаков
-					for(i = 0; i<=8; i ++)
+					for(i = 0; i <= 8; i ++)
 					{
 						if back_clouds_y[i] > back_m_y
 						{
@@ -156,7 +156,7 @@
 			{
 				#region Рисование гор
 					back_m_y = back_y + global.height - 1050 * back_s;
-					for(i = back_n; i<=14; i ++)
+					for(i = back_n; i <= 14; i ++)
 					{
 						if i = back_n
 						{
@@ -194,7 +194,7 @@
 					}
 					if back_n > 0 or back_gt = 1
 					{
-						for(i = 0; i<=back_p; i ++)
+						for(i = 0; i <= back_p; i ++)
 						{
 							if i != 0
 							{
@@ -221,7 +221,7 @@
 				#region Рисование песка
 					back_sand_y   = back_y + global.height - 1050 * back_s;
 					back_sand_spd = back_spd / 1.5 * 6;
-					for(i = 0; i<=5; i ++)
+					for(i = 0; i <= 5; i ++)
 					{
 						back_sand_x[i] -= back_sand_spd;
 						if back_sand_x[i] <= back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - sprite_get_width(s_train_sand) / 2 * back_s
@@ -232,7 +232,7 @@
 					}
 				#endregion
 				#region Рисование кактусов, утесов, черепков
-					for(i = 0; i<=10; i ++)
+					for(i = 0; i <= 10; i ++)
 					{
 						if back_other_x[i] != 2280
 						{

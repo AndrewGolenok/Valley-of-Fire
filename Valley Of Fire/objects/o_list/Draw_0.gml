@@ -97,7 +97,7 @@
 								if j = 0
 								{
 									////////// КВЕСТЫ
-									for(l=1;l<=3;l++)
+									for(l = 1; l <= 3; l ++)
 									{
 										if global.quests_a[l] = 1
 										{
@@ -313,7 +313,7 @@
 							#region Варианты
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -702,7 +702,7 @@
 							#region Варианты
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -1095,7 +1095,7 @@
 							#region Варианты
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -1347,7 +1347,7 @@
 							#region Варианты
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -1587,7 +1587,7 @@
 				{
 					#region Задача 1 - Бутылки, очередь
 						if round_task[global.rounds,global.task] = 1
-							{
+						{
 							#region ТРЕНИРОВКА: координаты руки
 								if global.training = 2
 								{
@@ -1639,7 +1639,7 @@
 									{
 										if bottle_stage != 0
 										{
-											for(i = bottle_all;i>=1;i--)
+											for(i = bottle_all; i >=1; i --)
 											{
 												if bottle_n[i] = bottle_stage
 												{
@@ -1670,7 +1670,7 @@
 							#region Ответ
 								if bottle_stage = 0 && global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -1812,11 +1812,11 @@
 									}
 								#endregion
 							#endregion
-							}
+						}
 					#endregion
 					#region Задача 2 - Бутылки, номера
 						if round_task[global.rounds,global.task] = 2
-							{
+						{
 							#region ТРЕНИРОВКА: Координаты руки
 								if global.training = 2
 								{
@@ -1866,7 +1866,7 @@
 							#region Ответ
 								if bottle_stage = 0 && global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -2025,11 +2025,11 @@
 									}
 								#endregion
 							#endregion
-							}
+						}
 					#endregion
 					#region Задача 3 - Бутылки, падение
 						if round_task[global.rounds,global.task] = 3
-							{
+						{
 							#region ТРЕНИРОВКА: Координаты руки
 								if global.training = 2
 								{
@@ -2126,7 +2126,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -2232,11 +2232,11 @@
 									}
 								#endregion
 							#endregion
-							}
+						}
 					#endregion
 					#region Задача 4 - Бутылки, наполнение
 						if round_task[global.rounds,global.task] = 4
-							{
+						{
 							#region ТРЕНИРОВКА: Координаты руки
 								if global.training = 2
 								{
@@ -2309,7 +2309,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0 && bottle_end = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -2505,7 +2505,7 @@
 										}
 								#endregion
 							#endregion
-							}
+						}
 					#endregion 
 				}
 			#endregion
@@ -2551,7 +2551,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -2662,7 +2662,7 @@
 									}
 								#endregion
 								#region Отрисовка стрелки
-									for(i = hand_count;i>=1;i--)
+									for(i = hand_count; i >= 1;i --)
 									{
 										hand_xx[i] = 640 - (hand_now - i) * 100 + pvp_x;
 										hand_ss[i] = 0;
@@ -2709,7 +2709,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -2834,7 +2834,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -3000,7 +3000,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -3136,7 +3136,7 @@
 											hat_x[hat_cha] += hat_spd;
 											if hat_x[hat_cha] > hat_xn[hat_cha]
 											{
-												hat_x[hat_sha] = hat_xn[hat_sha];
+												hat_x[hat_cha] = hat_xn[hat_cha];
 											}	
 										}
 										if hat_x[hat_cha] > hat_xn[hat_cha]
@@ -3144,7 +3144,7 @@
 											hat_x[hat_cha] -= hat_spd;
 											if hat_x[hat_cha] < hat_xn[hat_cha]
 											{
-												hat_x[hat_sha] = hat_xn[hat_sha];
+												hat_x[hat_cha] = hat_xn[hat_cha];
 											}	
 										}
 										if hat_x[hat_sha] = hat_xn[hat_sha] && hat_x[hat_cha] = hat_xn[hat_cha]
@@ -3213,7 +3213,7 @@
 							#region Ответ
 								if hat_stage = 3 && global.super_ability = 0 && list_scale = 1
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -3403,7 +3403,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -3710,7 +3710,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -3905,7 +3905,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -4018,7 +4018,7 @@
 											for(j = 1; j <= 3; j ++)
 											{
 												#region Нажатие на карту
-													for(dev=0;dev<5;dev++)
+													for(dev = 0; dev < 5; dev ++)
 													{
 														#region ОБУЧЕНИЕ: Координаты руки
 															if global.training = 1 && global.training_stage[1] = 8 && hand_xxx = -200
@@ -4394,7 +4394,7 @@
 											for(j = 1; j <= card_all; j ++)
 											{
 												#region Нажатие на карту
-													for(dev=0;dev<5;dev++)
+													for(dev = 0; dev < 5; dev ++)
 													{
 														mouse_x1 = device_mouse_x(dev);
 														mouse_y1 = device_mouse_y(dev);
@@ -4738,7 +4738,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 									{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 										{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -4840,7 +4840,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -5008,7 +5008,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -5177,7 +5177,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -5458,7 +5458,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -5556,7 +5556,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 								{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 									{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -5594,7 +5594,7 @@
 					#endregion
 					}
 			#endregion		
-			#region Шторм       - Storm
+			#region Шторм      - Storm
 				if theme_round[global.rounds] = 7
 					{
 						global.storm = 1;
@@ -5617,7 +5617,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 									{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 										{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -5660,7 +5660,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 									{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 										{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -5703,7 +5703,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 									{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 										{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -5746,7 +5746,7 @@
 							#region Ответ
 								if global.cananswer && list_scale = 1 && global.super_ability = 0 && smile_open = 0
 									{
-									for(dev=0;dev<5;dev++)
+									for(dev = 0; dev < 5; dev ++)
 										{
 										mouse_x1 = device_mouse_x(dev);
 										mouse_y1 = device_mouse_y(dev);
@@ -6269,10 +6269,10 @@
 									if !enemy
 									{
 										answer = global.answer;
-										image_speed = 2.5;
+										image_speed = spd_max + 0.5;
 										if hero = 2
 										{
-											image_speed = 2;
+											image_speed = spd_max;
 										}
 										if huntress_poison = 0
 										{
@@ -6295,7 +6295,7 @@
 									{
 										if global.answer = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 											{
-											image_speed = 1.5;
+											image_speed = spd_nor + 0.5;
 											if !stun
 												{
 													skeleton_animation_set("miss");
@@ -6539,7 +6539,7 @@
 													break;
 													case 2:
 														super = 1;
-														image_speed = 2;
+														image_speed = spd_max;
 														skeleton_animation_set("shoot");
 														change = 3;
 													break;
@@ -6560,14 +6560,14 @@
 													break;
 													case 5:
 														super = 1;
-														image_speed = 2;
+														image_speed = spd_max;
 														skeleton_animation_set("shoot");
 														change = 1;
 													break;
 													case 7:
 														super = 1;
 														image_index = 0;
-														image_speed = 2;
+														image_speed = spd_max;
 														skeleton_animation_set("greetings");
 														change = 2;
 													break;
@@ -6601,12 +6601,12 @@
 													switch(global.hero)
 														{
 														case 1:
-															image_speed = 2;
+															image_speed = spd_max;
 															skeleton_animation_set("super");
 															change = 1;
 															o_list.e_super_need = 3 - global.e_totem_a[15]; break;
 														case 2:
-															image_speed = 2;
+															image_speed = spd_max;
 															skeleton_animation_set("shoot");
 															change = 3;
 														break;
@@ -6621,7 +6621,7 @@
 															change = 3;
 														break;
 														case 5:
-															image_speed = 2;
+															image_speed = spd_max;
 															skeleton_animation_set("super");
 															change = 3;
 														break;
@@ -6929,10 +6929,10 @@
 									if enemy
 									{
 										answer = global.bot_answer;
-										image_speed = 2.5;
+										image_speed = spd_max + 0.5;
 										if hero = 2
 										{
-											image_speed = 2;
+											image_speed = spd_max;
 										}
 										skeleton_animation_set("shoot");
 										change = 3;
@@ -6941,7 +6941,7 @@
 									{
 										if global.bot_answer = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 										{
-											image_speed = 1.5;
+											image_speed = spd_nor + 0.5;
 											if !stun
 											{
 												skeleton_animation_set("miss");
@@ -7181,7 +7181,7 @@
 #endregion
 #region Способность
 	#region Нажатие на супер
-		for(dev=0;dev<5;dev++)
+		for(dev = 0; dev < 5; dev ++)
 		{
 			#region Координата по горизонтали
 				var pvp_xx;
@@ -7203,10 +7203,9 @@
 				mouse_y1 = device_mouse_y(dev);
 			#endregion
 			#region Суперудар, нажатие
-				if device_mouse_check_button_pressed(dev, mb_left) && theme_choose = 4 && (global.player_object).stun = 0 && global.abilitican = 1 && (global.training < 1 or global.training = 6)
+				if device_mouse_check_button_pressed(dev, mb_left) && theme_choose = 4 && (global.player_object).stun = 0 && global.abilitican = 1 && (global.training < 1 or global.training = 6) && global.pvp_stop = 0
 				{
 					if point_in_rectangle(mouse_x1, mouse_y1, 640 * 2 - 80 - sprite_get_width(s_super) / 2 + pvp_xx, global.height - 50 - 80 + super_zhopa - 20, 640 * 2 + 80 - sprite_get_width(s_super) / 2 + pvp_xx, global.height - 50 + 80 + super_zhopa - 20)
-					&& global.pvp_stop = 0
 					{
 						if global.pvp = 0 or (global.pvp = 1 && global.now = 0)
 						{
@@ -7217,9 +7216,12 @@
 								}
 							#endregion
 							if super_now = super_need
-							&& global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
+							&& global.super_ability = 0
+							&& (global.player_object).answer = -1 && (global.enemy_object).answer = -1
+							&& (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
 							&& !(global.hero = 1 && global.enemy_hero = 1)
 							{
+								trigger = 1;
 								#region Квесты
 									for(i = 1; i <= 3; i ++)
 									{
@@ -7264,7 +7266,7 @@
 														break;
 														case 2:
 															super = 1;
-															image_speed = 2;
+															image_speed = spd_max;
 															skeleton_animation_set("shoot");
 															change = 3;
 														break;
@@ -7285,14 +7287,14 @@
 														break;
 														case 5:
 															super = 1;
-															image_speed = 2;
+															image_speed = spd_max;
 															skeleton_animation_set("shoot");
 															change = 1;
 														break;
 														case 7:
 															super = 1;
 															image_index = 0;
-															image_speed = 2;
+															image_speed = spd_max;
 															skeleton_animation_set("greetings");
 															change = 2;
 														break;
@@ -7332,7 +7334,7 @@
 											if global.hero != 1
 											{
 												#region Возвращение себе суперспособности
-													change = 1; skeleton_animation_set("reload"); 
+													change = 6; skeleton_animation_set("reload"); 
 													global.super_ability = 1;
 													hand_away = room_speed;
 													o_list.super_now1 = 0;
@@ -7353,14 +7355,14 @@
 													switch(global.enemy_hero)
 													{
 														case 1:
-															image_speed = 2;
+															image_speed = spd_max;
 															skeleton_animation_set("super");
 															change = 1;
 															o_list.super_need = 3 - global.p_totem_a[15];
 															o_list.super_now1 = 3;
 														break;
 														case 2:
-															image_speed = 2;
+															image_speed = spd_max;
 															skeleton_animation_set("shoot");
 															change = 3;
 														break;
@@ -7375,7 +7377,7 @@
 															change = 3;
 														break;
 														case 5:
-															image_speed = 2;
+															image_speed = spd_max;
 															skeleton_animation_set("super");
 															change = 3;
 														break;
@@ -8118,7 +8120,7 @@
 				}
 				totem_txt   = "";
 				totem_txt_i = -1;
-				for(tt=1;tt<=6;tt++)
+				for(tt = 1; tt <= 6; tt ++)
 				{
 					#region Игрок
 						if ((global.tot = 1 or global.tot = 3 or global.tot = 5 or global.tot = 1.5 or global.tot = 3.5 or global.tot = 5.5) && totem_first = 1)
@@ -9878,7 +9880,7 @@
 										else
 										{
 											stun_seconds = 3;
-											image_speed  = 2;
+											image_speed  = spd_max;
 											skeleton_animation_set("lose");
 											change = 5;
 										}
@@ -9917,7 +9919,7 @@
 										else
 										{
 											stun_seconds = 3;
-											image_speed  = 2;
+											image_speed  = spd_max;
 											skeleton_animation_set("lose");
 											change = 5;
 										}
@@ -10030,7 +10032,7 @@
 									{
 										theme_choose = 9;
 									}
-									for(i = 0; i<=2; i ++)
+									for(i = 0; i <= 2; i ++)
 									{
 										theme_ss[i] = 1;
 										theme_xx[i] = 0;
@@ -10160,11 +10162,11 @@
 			atk     = global.atk[global.hero];
 			e_atk   = global.atk[global.enemy_hero];
 			atk    *= (1 + 0.1 * (global.hero_level - 1));
-			hp     *= (1 + 0.1 * (global.hero_level - 1));
+			//hp     *= (1 + 0.1 * (global.hero_level - 1));
 			e_atk  *= (1 + 0.1 * (global.enemy_level - 1));
-			e_hp   *= (1 + 0.1 * (global.enemy_level - 1));
-			maxhp   = hp;
-			e_maxhp = e_hp;
+			//e_hp   *= (1 + 0.1 * (global.enemy_level - 1));
+			//maxhp   = hp;
+			//e_maxhp = e_hp;
 			with(o_hero)
 			{
 				depth -= 2;
@@ -11397,9 +11399,9 @@
 		}
 	#endregion
 	#region Относительные переменные
-		pers      = (hp / maxhp);
+		pers      = abs(hp / maxhp);
 		dop       = maxhp / 100;
-		e_pers    = (e_hp / e_maxhp);
+		e_pers    = abs(e_hp / e_maxhp);
 		a_maxhp   = maxhp;
 		a_e_maxhp = e_maxhp;
 	#endregion
@@ -11494,7 +11496,7 @@
 				draw_text_transformed_t(10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.player_name)) * 0.1 / 2, h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.player_name), 0.1, 0.1, 0, global.color_white, c_black);
 			#endregion
 			#region Отрисовка черепков дуэли
-				for(i = 1; i<=3; i ++)
+				for(i = 1; i <= 3; i ++)
 				{
 					draw_sprite_ext(s_healthbar_table_skul, 0, 640 - 40 + 40 * (i - 1), h_y - 10 + 3, gui_size * 1.5, gui_size * 1.5, 0, c_black, 0.75);
 					draw_sprite_ext_t(s_healthbar_table_skul, 0, 640 - 40 + 40 * (i - 1), h_y - roundskul_y[i] - 10, roundskul_s[i] * 1.5, roundskul_s[i] * 1.5, 0, c_white, 1, c_white, c_black);
@@ -11841,7 +11843,7 @@
 					//draw_question(s_question_back, 0, 640, global.height - 140, 560 * smile_sc, 50, 1, c_white, 0.7);
 				#endregion
 				#region Наведение на смайл, смайл соперника
-					for(i = 0; i<=5; i ++)
+					for(i = 0; i <= 5; i ++)
 					{
 						if point_in_circle(mouse_x, mouse_y, 640 - 260 + 100 * i, global.height - 140, 40) && smile_sc = 1
 						{
@@ -11912,7 +11914,7 @@
 					{
 						smile_sc -= 0.15;
 						draw_question(s_question_back, 0, 640, global.height - 140, 560 * smile_sc, 50, 1, c_white, 0.7);
-						for(i = 0; i<=5; i ++)
+						for(i = 0; i <= 5; i ++)
 						{
 							draw_sprite_ext(s_smiles, i, 640 - 260 * smile_sc + 100 * i * smile_sc, global.height - 140, 0.27 * smile_sc, 0.27, 0, c_white, 1);
 						}
@@ -12665,6 +12667,6 @@
 	}
 #endregion
 #region Отладка
-	//draw_set_font(global.game_font);
-	//draw_text_transformed_t(mouse_x, mouse_y, string(bot_time2) + "~" + string(bot_time), 0.2, 0.2, 0, c_white, c_black);
+	draw_set_font(global.game_font);
+	draw_text_transformed_t(mouse_x, mouse_y, string((global.player_object).image_speed), 0.2, 0.2, 0, c_white, c_black);
 #endregion

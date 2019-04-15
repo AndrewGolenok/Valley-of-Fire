@@ -8,7 +8,7 @@
 	{
 		if alp < 1
 		{
-			alp += 0.05 + alp/4;
+			alp += 0.05 + alp / 4;
 			alarm[0] = 2;
 		}
 		else

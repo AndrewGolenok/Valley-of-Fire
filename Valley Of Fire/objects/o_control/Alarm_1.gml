@@ -1,5 +1,5 @@
 #region Рандом облаков
-	for(i = 0; i<=8; i ++)
+	for(i = 0; i <= 8; i ++)
 		{
 		if back_clouds_x[i] = 2280
 			{

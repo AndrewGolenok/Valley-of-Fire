@@ -1,5 +1,5 @@
 #region Рандом окружения
-	for(i = 0; i<=10; i ++)
+	for(i = 0; i <= 10; i ++)
 	{
 		if back_other_x[i] = 2280
 		{

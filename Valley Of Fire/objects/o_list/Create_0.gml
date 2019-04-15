@@ -138,7 +138,7 @@
 	smile_bi    = 0;
 	smile_bs    = 1;
 	smile_n     = 0;
-	for(i = 0; i<=5; i ++)
+	for(i = 0; i <= 5; i ++)
 	{
 		smile_ss[i] = 0;
 	}
@@ -977,6 +977,7 @@
 	color[2] = c_white;
 	color[3] = c_white;
 	color[4] = c_white;
+	trigger  = 0;
 #endregion
 #region Верно или нет
 	answer_rec = 0;
@@ -996,10 +997,8 @@
 		global.idol[i]   = 0;
 		global.idol_s[i] = 1;
 		global.idol_h[i] = -1;
-		for(j = 0; j <= 1; j ++)
-		{
-			global.anim[i,j] = -1;
-		}
+		global.anim[i,0] = -1;
+		global.anim[i,1] = -1;
 	}
 	idol_alpha   = 0;
 	idol_alpha_s = 0;

@@ -145,3 +145,9 @@
 	}
 	hand_away  = 0; // Обучение
 #endregion
+#region Скорость анимаций персонажей
+	spd_min = 0;
+	spd_med = 0.5;
+	spd_nor = 1;
+	spd_max = 2;
+#endregion
