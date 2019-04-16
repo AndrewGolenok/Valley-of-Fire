@@ -3,8 +3,9 @@
 	{
 	    if iap_status() == iap_status_available // проверяем статус покупки, если 
 		{
-	        var purchase_map = ds_map_create(); //создаём карту покупки
-	        var purchase_index = ds_map_find_value(iap_data, "index"); //извлекаем из  карты iap_data индекс текущей покупки  
+			var purchase_map, purchase_index;
+	        purchase_map = ds_map_create(); //создаём карту покупки
+	        purchase_index = ds_map_find_value(iap_data, "index"); //извлекаем из  карты iap_data индекс текущей покупки  
 	        iap_purchase_details(purchase_index, purchase_map);
 	        if ds_map_find_value(purchase_map, "status") == iap_purchased
 	        {

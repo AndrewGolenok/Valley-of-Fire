@@ -2,7 +2,7 @@
 	if rmp = "set" && go = 1
 	{
 		alarm[0] = 2;
-		go = 1.5;
+		go = 2;
 	}
 	if go = 1
 	{
@@ -16,7 +16,7 @@
 			alp = 1;
 		}
 	}
-	if go = 2
+	if go = 3
 	{
 		if alp > 0
 		{

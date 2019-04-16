@@ -1,3 +1,3 @@
 #region Переход
-	go = 2;
+	go = 3;
 #endregion

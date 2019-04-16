@@ -148,7 +148,7 @@
 			back_time[1] = 3;
 		}
 		back_time[2]  = back_time[1] + 1;
-		back_alpha[2] = ((day_hour * 60 * 60 + day_minute * 60 + day_second) - back_time[1] * 60 * 60 ) / (back_time[2] * 60 * 60  - back_time[1] * 60 * 60 )///abs((back_time[2] * 6 * 60 * 60) - (abs((day_hour * 60 * 60 + day_minute * 60 + day_second) - (back_time[1] * 6 * 60 * 60)))) / (back_time[2] * 6 * 60 * 60);
+		back_alpha[2] = ((day_hour * 60 * 60 + day_minute * 60 + day_second) - back_time[1] * 60 * 60 ) / (back_time[2] * 60 * 60  - back_time[1] * 60 * 60 )//abs((back_time[2] * 6 * 60 * 60) - (abs((day_hour * 60 * 60 + day_minute * 60 + day_second) - (back_time[1] * 6 * 60 * 60)))) / (back_time[2] * 6 * 60 * 60);
 		back_alpha[1] = 1 - back_alpha[2];
 		back_anim_1   = 2;
 		back_anim_2   = 2;

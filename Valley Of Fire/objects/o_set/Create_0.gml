@@ -275,7 +275,7 @@
 	ini_close();
 #endregion
 #region Персонажи
-	ini_open("Language/" + string(global.lang) + "/heroes_" + string(global.lang) + ".ini");
+	ini_open("Language/" + global.lang + "/heroes_" + global.lang + ".ini");
 		#region Характеристики игрока
 			global.hero = 1;
 			global.heroes_val  = 7;
@@ -427,7 +427,7 @@
 		global.theme_name[i] = "OTHER";
 	}
 	global.count_themes = 7;
-	ini_open(string(global.lang) + ".ini");
+	ini_open(global.lang + ".ini");
 		for(i = 1; i <= 7; i ++)
 		{
 			global.theme_name[i] = ini_read_string("Theme", "theme_" + string(i), "");
@@ -464,7 +464,7 @@
 	global.e_totem[1] = -1;
 	global.e_totem[2] = -1;
 	global.e_totem[3] = -1;
-	ini_open(string(global.lang) + ".ini");
+	ini_open(global.lang + ".ini");
 		for(i = 1; i <= 19; i ++)
 		{
 			global.totem_name[i] = ini_read_string("Totems", "totem_name_" + string(i), "");
@@ -490,6 +490,10 @@
 #region Аналитика
 	GoogleAnalytics_Init("UA-125015160-1", false);
 	GoogleAnalytics_SendEvent("PLAY","Игрок зашёл в игру!");
+#endregion
+#region Меню
+	global.menu_now  = "main";
+	global.menu_next = "main";
 #endregion
 #region Прочее
 	if os_type = os_ios

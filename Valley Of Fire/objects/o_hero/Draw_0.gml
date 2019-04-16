@@ -164,7 +164,7 @@
 					{
 						if fire_time = 0
 						{
-							////////// КВЕСТЫ
+							/////// КВЕСТЫ
 							for(i = 1; i <= 3; i ++)
 							{
 								if global.quests_a[i] = 1
@@ -181,7 +181,7 @@
 									ini_close();
 								}
 							}
-							////////// КВЕСТЫ
+							/////// КВЕСТЫ
 							fire_time = room_speed;
 							o_list.e_hp -= o_list.atk / 10;
 							o_list.dop_i[2] = 8;

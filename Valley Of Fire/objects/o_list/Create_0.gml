@@ -174,7 +174,7 @@
 		theme_s2 = 1;
 		theme_s3 = 1;
 		
-		ini_open(string(global.lang) + ".ini");
+		ini_open(global.lang + ".ini");
 			coin_you[1]  = ini_read_string("Menu", "coin_you_1", "");
 			coin_you[0]  = ini_read_string("Menu", "coin_you_0", "");
 			coin_you[2]  = ini_read_string("Menu", "coin_you_2", "");
@@ -240,7 +240,7 @@
 	theme_timer = room_speed * 14;
 #endregion
 #region Объявление раунда
-	ini_open(string(global.lang) + ".ini");
+	ini_open(global.lang + ".ini");
 		round_text[1] = ini_read_string("Menu", "round_text_1", "");
 		round_text[2] = ini_read_string("Menu", "round_text_2", "");
 		round_text[3] = ini_read_string("Menu", "round_text_3", "");
@@ -753,7 +753,7 @@
 	shaker_ang = 0;
 	go_hp      = 0;
 	
-	ini_open(string(global.lang) + ".ini");
+	ini_open(global.lang + ".ini");
 		super_text  = ini_read_string("Menu", "super_text", "");
 		super_text2 = ini_read_string("Menu", "super_text2", "");
 	ini_close();
@@ -851,7 +851,7 @@
 		min_time[4,2] = 60;
 		min_time[4,3] = 10;
 		min_time[4,4] = 10;
-		///
+		//
 		min_wait[1,1] = 10;
 		min_wait[1,2] = 10;
 		min_wait[1,3] = 10;
@@ -934,7 +934,7 @@
 		hprld = 0;
 	#endregion
 	#region Имя бота
-		ini_open(string(global.lang) + ".ini");
+		ini_open(global.lang + ".ini");
 			for(i = 1; i <= 14; i ++)
 			{
 				bot_name[i] = ini_read_string("Menu", "bot_name_" + string(i), "");
@@ -1403,7 +1403,7 @@
 		global.training_gb_t     = room_speed;
 	#endregion
 	#region Время суток, Ини
-		ini_open(string(global.lang) + ".ini");
+		ini_open(global.lang + ".ini");
 			var day_time;
 			if o_control.day_hour >= 5 && o_control.day_hour < 12
 			{
@@ -1546,7 +1546,7 @@
 	pvp_super_popa = 0;
 	if global.pvp = 1
 	{
-		ini_open(string(global.lang) + ".ini");
+		ini_open(global.lang + ".ini");
 			global.player_name = ini_read_string("Menu", "coin_you_p", "") + " 1";
 			global.enemy_name  = ini_read_string("Menu", "coin_you_p", "") + " 2";
 		ini_close();

@@ -1,5 +1,6 @@
 #region Время перехода
 	alarm[1] = room_speed / 10;
+	go = 4;
 #endregion
 #region Удаление текущих объектов
 	switch(rmp)

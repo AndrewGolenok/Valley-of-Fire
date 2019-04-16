@@ -889,7 +889,7 @@
 						{
 							draw_sprite_ext(s_totems_eyes, totem_now, global.width - 300, global.height / 2 - 100 + training_back_y, 0.4, 0.4, 0, totem_c[totem_now], totem_alp);
 						}
-						////
+						///
 						draw_text_ext_transformed_t(global.width - 300, global.height / 2 - 100 + training_back_y + 235, string_upper(global.totem_desc[totem_now]), -1, 2500, 0.12, 0.12, 0, global.color_white, c_black);
 						draw_text_ext_transformed_t(global.width - 300, global.height / 2 - 100 + training_back_y + 90, string_upper(global.totem_name[totem_now]), -1, 1000, 0.15, 0.15, 0, totem_c[totem_now], c_black);
 					#endregion
@@ -3064,7 +3064,7 @@
 					draw_text_transformed_t(640 + prx + 200, top + 127 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[3]), 0.18 * sc3, 0.18 * sc3, 0, global.cash_color, c_black);
 					draw_text_transformed_t(640 + prx + 200, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[3], 0.2 * sc3, 0.2 * sc3, 0, global.color_white, c_black);
 		
-					//////
+					////
 		
 					draw_sprite_ext(s_currency_buy, 3, 640 + prx - 200 + 5, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 10, 0.5 * sc4, 0.5 * sc4, 0, c_black, 0.5);
 					draw_sprite_ext_t(s_currency_buy, 3, 640 + prx - 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1, 0.5 * sc4, 0.5 * sc4, 0, c_white, 1, c_white, c_black);
@@ -3083,7 +3083,7 @@
 					draw_text_ext_transformed_t(640 + prx + 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[6], -1, 1600, 0.11 * sc6, 0.11 * sc6, 0, global.color_white, c_black);
 					draw_text_transformed_t(640 + prx + 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[6]), 0.18 * sc6, 0.18 * sc6, 0, global.cash_color, c_black);
 					draw_text_transformed_t(640 + prx + 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[6], 0.2 * sc6, 0.2 * sc6, 0, global.color_white, c_black);
-					///////////
+					////////
 				#endregion
 			#endregion
 			#region МЕНЮ 4: Покупка голды
@@ -4066,7 +4066,7 @@
 													lootbox_d = 1; // Направление угла
 													lootbox_t = 0; // Время тряски
 													lootbox_i = 0; // Индекс кадра для анимации
-													/////////
+													//////
 													theme_a1[1] = 0;
 													theme_x1[1] = 0;
 													theme_y1[1] = 0;
@@ -4076,44 +4076,44 @@
 													theme_a1[3] = 0;
 													theme_x1[3] = 0;
 													theme_y1[3] = 0;
-													/////////
+													//////
 													lootbox_item_s[1] = 0;
 													lootbox_item_s[2] = 0;
-													lootbox_item_s[3] = 0; /// Скейл ?
+													lootbox_item_s[3] = 0; // Скейл ?
 													lootbox_item_ss[1] = 0;
 													lootbox_item_ss[2] = 0;
-													lootbox_item_ss[3] = 0; /// Скейл I
+													lootbox_item_ss[3] = 0; // Скейл I
 													lootbox_item_x[1] = 0;
 													lootbox_item_x[2] = 0;
 													lootbox_item_x[3] = 0; 
-													/////
+													////
 													lootbox_item_y[1] = 0;
 													lootbox_item_y[2] = 0;
-													lootbox_item_y[3] = 0; /// Координаты
-													////
+													lootbox_item_y[3] = 0; // Координаты
+													///
 													lootbox_item_t[1] = 0;
 													lootbox_item_t[2] = 0;
-													lootbox_item_t[3] = 0; /// Тип - тотем или листовка
-													//////
+													lootbox_item_t[3] = 0; // Тип - тотем или листовка
+													////
 													lootbox_item_i[1] = 0;
 													lootbox_item_i[2] = 0;
-													lootbox_item_i[3] = 0; //// Номера (тотема или персонажа)
-													///////
+													lootbox_item_i[3] = 0; /// Номера (тотема или персонажа)
+													/////
 													lootbox_item_c[1] = 0;
 													lootbox_item_c[2] = 0;
-													lootbox_item_c[3] = 0; //// Цвет
-													///////
+													lootbox_item_c[3] = 0; /// Цвет
+													/////
 													lootbox_item_v[1] = 0;
 													lootbox_item_v[2] = 0;
-													lootbox_item_v[3] = 0; //// Количество (листовок)
+													lootbox_item_v[3] = 0; /// Количество (листовок)
 													lootbox_item_o[1] = 0;
-													///////
+													/////
 													lootbox_item_o[2] = 0;
-													lootbox_item_o[3] = 0; ///// Открыто или нет
-													//////
+													lootbox_item_o[3] = 0; //// Открыто или нет
+													////
 													lootbox_buy[1] = 0;
 													lootbox_buy[2] = 0;
-													///////
+													/////
 													lootbox_buy_s[1] = 0;
 													lootbox_buy_s[2] = 0;
 													if global.heroes_have[i] < 178 + 110 + 68 + 42 + 26 + 16 + 10 + 6 + 4 + 2
@@ -4749,7 +4749,7 @@
 													lootbox_t = 0; // Время тряски
 													lootbox_i = 0; // Индекс кадра для анимации
 									
-													/////////
+													//////
 													theme_a1[1] = 0;
 													theme_x1[1] = 0;
 													theme_y1[1] = 0;
@@ -4761,15 +4761,15 @@
 													theme_a1[3] = 0;
 													theme_x1[3] = 0;
 													theme_y1[3] = 0;
-													//////
+													////
 									
 													lootbox_item_s[1] = 0;
 													lootbox_item_s[2] = 0;
-													lootbox_item_s[3] = 0; /// Скейл ?
+													lootbox_item_s[3] = 0; // Скейл ?
 									
 													lootbox_item_ss[1] = 0;
 													lootbox_item_ss[2] = 0;
-													lootbox_item_ss[3] = 0; /// Скейл I
+													lootbox_item_ss[3] = 0; // Скейл I
 									
 													lootbox_item_x[1] = 0;
 													lootbox_item_x[2] = 0;
@@ -4777,27 +4777,27 @@
 														
 													lootbox_item_y[1] = 0;
 													lootbox_item_y[2] = 0;
-													lootbox_item_y[3] = 0; /// Координаты
+													lootbox_item_y[3] = 0; // Координаты
 														
 													lootbox_item_t[1] = 0;
 													lootbox_item_t[2] = 0;
-													lootbox_item_t[3] = 0; /// Тип - тотем или листовка
+													lootbox_item_t[3] = 0; // Тип - тотем или листовка
 														
 													lootbox_item_i[1] = 0;
 													lootbox_item_i[2] = 0;
-													lootbox_item_i[3] = 0; //// Номера (тотема или персонажа)
+													lootbox_item_i[3] = 0; /// Номера (тотема или персонажа)
 									
 													lootbox_item_c[1] = 0;
 													lootbox_item_c[2] = 0;
-													lootbox_item_c[3] = 0; //// Цвет
+													lootbox_item_c[3] = 0; /// Цвет
 									
 													lootbox_item_v[1] = 0;
 													lootbox_item_v[2] = 0;
-													lootbox_item_v[3] = 0; //// Количество (листовок)
+													lootbox_item_v[3] = 0; /// Количество (листовок)
 													lootbox_item_o[1] = 0;
 									
 													lootbox_item_o[2] = 0;
-													lootbox_item_o[3] = 0; ///// Открыто или нет
+													lootbox_item_o[3] = 0; //// Открыто или нет
 	
 													lootbox_buy[1] = 0;
 													lootbox_buy[2] = 0;
@@ -6022,7 +6022,7 @@
 			dasd2 = 0;
 			dasd3 = 0;
 			
-			////////
+			//////
 			
 			d_t1 = choose(1, 1, 1, 1, 0);
 			d_t2 = choose(1, 1, 1, 1, 0);
@@ -6044,7 +6044,7 @@
 									
 				if ta = 18
 					{ d_t1 = 1; d_t2 = 1; d_t3 = 1; }
-			////////
+			//////
 			
 			d_p1 = choose(1, 0);
 			d_p2 = choose(1, 0);
@@ -6059,7 +6059,7 @@
 					{ d_p3 = choose(1, 1, 0); }
 				}
 			
-			////////
+			//////
 			if d_t1 = 0
 				{
 				#region Рандом тотемов 1
@@ -6316,7 +6316,7 @@
 				else
 				{ d_r3 = 0; }
 				
-			////////
+			//////
 			
 			if d_t1 = 1
 				{ d_n1 = irandom_range(1, global.heroes_val); }

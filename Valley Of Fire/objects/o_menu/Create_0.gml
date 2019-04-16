@@ -1,5 +1,5 @@
-#region Текст
-	ini_open(string(global.lang) + ".ini");
+ #region Текст
+	ini_open(global.lang + ".ini");
 		for(i = 1; i <= 34; i ++)
 		{
 			if i <= 6
@@ -42,8 +42,8 @@
 	tr_dir  = 1;
 	tr_time = room_speed * 2;
 	tr_timm = 0;
-	global.fps_mental = 0;
-	global.fps_col = 0;
+	//global.fps_mental = 0;
+	//global.fps_col = 0;
 	global.lug_time = 0;
 	global.duel = 0;
 	global.menu_now   = "main";
@@ -93,6 +93,15 @@
 	#region Основные переменные тренировки
 		global.training = 0;
 		ini_open("Music.ini");
+			if !ini_section_exists("Training")
+			{
+				global.tr[1] = ini_write_string("Training", "tr1", "1");
+				global.tr[2] = ini_write_string("Training", "tr2", "0");
+				global.tr[3] = ini_write_string("Training", "tr3", "0");
+				global.tr[4] = ini_write_string("Training", "tr4", "0");
+				global.tr[5] = ini_write_string("Training", "tr5", "0");
+				global.tr[6] = ini_write_string("Training", "tr6", "0");
+			}
 			global.tr[1] = ini_read_real("Training", "tr1", 1);
 			global.tr[2] = ini_read_real("Training", "tr2", 0);
 			global.tr[3] = ini_read_real("Training", "tr3", 0);
@@ -147,11 +156,11 @@
 						theme_a[i,j] = 0;
 					}
 				}
-				theme_op[i,j]  = 0;
-				theme_s[i,j]   = 1;
-				theme_ss[i,j]  = 1;
+				theme_op[i,j]    = 0;
+				theme_s[i,j]     = 1;
+				theme_ss[i,j]    = 1;
 				theme_stage[i,j] = 0;
-				theme_nn[i,j] = global.theme_name[theme_t[i,j]];
+				theme_nn[i,j]    = global.theme_name[theme_t[i,j]];
 			}
 		}
 	#endregion
@@ -168,35 +177,35 @@
 #endregion
 #region Тотемы
 	#region Переменные hold
-		hold_sp   = 0;
-		hold_ti   = 0;
-		hold_dr   = 1;
-		hold_do   = 1;
+		hold_sp = 0;
+		hold_ti = 0;
+		hold_dr = 1;
+		hold_do = 1;
 	#endregion
 	#region Основные переменные, координаты, прозрачность, высота
 		totem_now = 1;
 		hero_i    = 0;
 		totem_yy  = 0;
 		totem_yy1 = 0;
-		///
+		//
 		totem_alp = 0.5;
 		totem_adi = 1;
-		///
+		//
 		totem_pr = 0;
 		totem_re = 0;
-		///
+		//
 		totem_s   = 0.25;
 		totem_w   = sprite_get_width(s_totems) * totem_s;
 		totem_r   = 70;
-		///
+		//
 		totems_y[1] = -(global.height / 2);
 		totems_y[2] = -(global.height / 2 - 100 + totem_w);
 		totems_y[3] = -(global.height / 2 - 100 + totem_w * 2);
-		///
+		//
 		totems_x[1] = 0;
 		totems_x[2] = 0;
 		totems_x[3] = 0;
-		///
+		//
 		totems_p[1] = 1;
 		totems_p[2] = 1;
 		totems_p[3] = 1;
@@ -284,72 +293,72 @@
 		store_yy1 = 0;
 		store_pr  = 0;
 		store_tap = 1;
-		y_ind = 0;
+		y_ind     = 0;
 	#endregion
 	#region Лутбоксы: основное
-		lootbox_y = global.height / 2 - 100 - 100 + 30;
+		lootbox_y     = global.height / 2 - 100 - 100 + 30;
 		lootbox_alpha = 0; // Темный фон
-		lootbox_aa = 0; // Альфа вспышки
-		lootbox_s = 0; // Стейдж
-		lootbox_a = 0; // Угол
-		lootbox_d = 1; // Направление угла
-		lootbox_t = 0; // Время тряски
-		lootbox_i = 0; // Индекс кадра для анимации
+		lootbox_aa    = 0; // Альфа вспышки
+		lootbox_s     = 0; // Стейдж
+		lootbox_a     = 0; // Угол
+		lootbox_d     = 1; // Направление угла
+		lootbox_t     = 0; // Время тряски
+		lootbox_i     = 0; // Индекс кадра для анимации
 	#endregion
 	#region Темы, координаты
 		theme_a1[1] = 0;
 		theme_x1[1] = 0;
 		theme_y1[1] = 0;
-		///
+		//
 		theme_a1[2] = 0;
 		theme_x1[2] = 0;
 		theme_y1[2] = 0;
-		///
+		//
 		theme_a1[3] = 0;
 		theme_x1[3] = 0;
 		theme_y1[3] = 0;
 	#endregion
 	#region Лутбоксы: вещи
-		lootbox_item_s[1] = 0;
-		lootbox_item_s[2] = 0;
-		lootbox_item_s[3] = 0; /// Скейл ?
-		///
+		lootbox_item_s[1]  = 0;
+		lootbox_item_s[2]  = 0;
+		lootbox_item_s[3]  = 0; // Скейл ?
+		//
 		lootbox_item_ss[1] = 0;
 		lootbox_item_ss[2] = 0;
-		lootbox_item_ss[3] = 0; /// Скейл I
-		///
+		lootbox_item_ss[3] = 0; // Скейл I
+		//
 		lootbox_item_x[1] = 0;
 		lootbox_item_x[2] = 0;
 		lootbox_item_x[3] = 0; 
-		///			
+		//			
 		lootbox_item_y[1] = 0;
 		lootbox_item_y[2] = 0;
-		lootbox_item_y[3] = 0; /// Координаты
-		///
+		lootbox_item_y[3] = 0; // Координаты
+		//
 		lootbox_item_t[1] = 0;
 		lootbox_item_t[2] = 0;
-		lootbox_item_t[3] = 0; /// Тип - тотем или листовка
-		///
+		lootbox_item_t[3] = 0; // Тип - тотем или листовка
+		//
 		lootbox_item_i[1] = 0;
 		lootbox_item_i[2] = 0;
-		lootbox_item_i[3] = 0; //// Номера (тотема или персонажа)
-		///
+		lootbox_item_i[3] = 0; /// Номера (тотема или персонажа)
+		//
 		lootbox_item_c[1] = 0;
 		lootbox_item_c[2] = 0;
-		lootbox_item_c[3] = 0; //// Цвет
-		///
+		lootbox_item_c[3] = 0; /// Цвет
+		//
 		lootbox_item_v[1] = 0;
 		lootbox_item_v[2] = 0;
-		lootbox_item_v[3] = 0; //// Количество (листовок)
-		///
+		lootbox_item_v[3] = 0; /// Количество (листовок)
+		//
 		lootbox_item_o[1] = 0;
 		lootbox_item_o[2] = 0;
-		lootbox_item_o[3] = 0; ///// Открыто или нет
+		lootbox_item_o[3] = 0; //// Открыто или нет
 	#endregion
 	#region Лубоксы: покупка первого и второго
-		lootbox_buy[1] = 0;
-		lootbox_buy[2] = 0;
-		///
+		lootbox_buy[1]   = 0;
+		lootbox_buy[2]   = 0;
+		//
 		lootbox_buy_s[1] = 0;
 		lootbox_buy_s[2] = 0;
 	#endregion
@@ -392,7 +401,7 @@
 						d_t2 = 1;
 						d_t3 = 1;
 					}
-					///
+					//
 					d_p1 = choose(1, 0);
 					d_p2 = choose(1, 0);
 					if d_p1 = 0 && d_p2 = 0
@@ -410,7 +419,7 @@
 							d_p3 = choose(1, 1, 0);
 						}
 					}
-					///
+					//
 					if d_t1 = 0
 					{
 						#region Рандом тотемов 1
@@ -723,7 +732,7 @@
 					{
 						d_r3 = 0;
 					}
-					///
+					//
 					if d_t1 = 1
 					{
 						d_n1 = irandom_range(1, global.heroes_val);
@@ -804,54 +813,54 @@
 					ini_write_string("Design", "des4_t",  string(d_t1));
 					ini_write_string("Design", "des4_n",  string(d_n1));
 					ini_write_string("Design", "des4_p",  string(d_p1));
-					ini_write_string("Design", "des4_pr",  string(d_p1));
+					ini_write_string("Design", "des4_pr", string(d_p1));
 					ini_write_string("Design", "des4_r",  string(d_r1));
 					ini_write_string("Design", "des4_c", string(dasd1));
 					ini_write_string("Design", "des4_b", "0");
-					///
+					//
 					ini_write_string("Design", "des7_t",  string(d_t2));
 					ini_write_string("Design", "des7_n",  string(d_n2));
 					ini_write_string("Design", "des7_p",  string(d_p2));
-					ini_write_string("Design", "des7_pr",  string(d_p2));
+					ini_write_string("Design", "des7_pr", string(d_p2));
 					ini_write_string("Design", "des7_r",  string(d_r2));
 					ini_write_string("Design", "des7_c", string(dasd2));
 					ini_write_string("Design", "des7_b", "0");
-					///
+					//
 					ini_write_string("Design", "des9_t",  string(d_t3));
 					ini_write_string("Design", "des9_n",  string(d_n3));
 					ini_write_string("Design", "des9_p",  string(d_p3));
-					ini_write_string("Design", "des9_pr",  string(d_p3));
+					ini_write_string("Design", "des9_pr", string(d_p3));
 					ini_write_string("Design", "des9_r",  string(d_r3));
 					ini_write_string("Design", "des9_c", string(dasd3));
 					ini_write_string("Design", "des9_b", "0");
-					///
+					//
 					ini_write_string("Design", "ddd", "0");
 					ini_write_string("Design", "dmm", "0");
 				#endregion
 			}
 			#region Чтение из ини
-				///
+				//
 				daily_t[1]  = ini_read_real("Design", "des4_t",  1);
 				daily_n[1]  = ini_read_real("Design", "des4_n",  1);
 				daily_pr[1] = ini_read_real("Design", "des4_pr", 0);
 				daily_r[1]  = ini_read_real("Design", "des4_r",  1);
 				daily_c[1]  = ini_read_real("Design", "des4_c",  0);
 				daily_b[1]  = ini_read_real("Design", "des4_b",  0);
-				///
+				//
 				daily_t[2]  = ini_read_real("Design", "des7_t",  1);
 				daily_n[2]  = ini_read_real("Design", "des7_n",  1);
 				daily_pr[2] = ini_read_real("Design", "des7_pr", 0);
 				daily_r[2]  = ini_read_real("Design", "des7_r",  1);
 				daily_c[2]  = ini_read_real("Design", "des7_c",  0);
 				daily_b[2]  = ini_read_real("Design", "des7_b",  0);
-				///
+				//
 				daily_t[3]  = ini_read_real("Design", "des9_t",  1);
 				daily_n[3]  = ini_read_real("Design", "des9_n",  1);
 				daily_pr[3] = ini_read_real("Design", "des9_pr", 0);
 				daily_r[3]  = ini_read_real("Design", "des9_r",  1);
 				daily_c[3]  = ini_read_real("Design", "des9_c",  0);
 				daily_b[3]  = ini_read_real("Design", "des9_b",  0);
-				///
+				//
 				nowday = ini_read_real("Design", "ddd", 0);
 				nowmon = ini_read_real("Design", "dmm", 0);
 			#endregion
@@ -1053,14 +1062,14 @@
 		}
 	#endregion
 	#region Покупка голды
-		gold_buy[1] = 0;
-		gold_buy[2] = 0;
-		gold_buy[3] = 0;
-		///
+		gold_buy[1]   = 0;
+		gold_buy[2]   = 0;
+		gold_buy[3]   = 0;
+		//
 		gold_buy_s[1] = 0;
 		gold_buy_s[2] = 0;
 		gold_buy_s[3] = 0;
-		///
+		//
 		gold_noten[1] = 0;
 		gold_noten[2] = 0;
 		gold_noten[3] = 0;
@@ -1088,25 +1097,25 @@
 			if i <= 2
 			{
 				hero_xx[i]  = (hero_w + hero_r) * (i - 1);
-				hero_yyy[i]  = 0;
+				hero_yyy[i] = 0;
 				hero_lvl[i] = 0;
 			}
 			if i > 2 && i <= 4
 			{
 				hero_xx[i]  = (hero_w + hero_r)  * ((i-2) - 1);
-				hero_yyy[i]  = hero_h + hero_r;
+				hero_yyy[i] = hero_h + hero_r;
 				hero_lvl[i] = 0;
 			}
 			if i > 4 && i <= 6
 			{
 				hero_xx[i]  = (hero_w + hero_r)  * ((i-4) - 1);
-				hero_yyy[i]  = (hero_h + hero_r) * 2;
+				hero_yyy[i] = (hero_h + hero_r) * 2;
 				hero_lvl[i] = 0;
 			}
 			if i = 7
 			{
 				hero_xx[i]  = 0;
-				hero_yyy[i]  = (hero_h + hero_r) * 3;
+				hero_yyy[i] = (hero_h + hero_r) * 3;
 				hero_lvl[i] = 0;
 			}
 		#endregion
@@ -1117,7 +1126,7 @@
 				{ hero_lvl[i] = 9; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16 - 26 - 42 - 68; hero_need[i] = 110; }
 			if global.heroes_have[i] < 68 + 42 + 26 + 16 + 10 + 6 + 4 + 2
 				{ hero_lvl[i] = 8; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16 - 26 - 42; hero_need[i] = 68; }
-			///
+			//
 			if global.heroes_have[i] < 42 + 26 + 16 + 10 + 6 + 4 + 2
 				{ hero_lvl[i] = 7; hero_now1[i] = global.heroes_have[i] - 2 - 4 - 6 - 10 - 16 - 26; hero_need[i] = 42; }
 			if global.heroes_have[i] < 26 + 16 + 10 + 6 + 4 + 2
@@ -1132,7 +1141,7 @@
 				{ hero_lvl[i] = 2; hero_now1[i] = global.heroes_have[i] - 2; hero_need[i] = 4; }
 			if global.heroes_have[i] < 2
 				{ hero_lvl[i] = 1; hero_now1[i] = global.heroes_have[i]; hero_need[i] = 2; }
-			///
+			//
 			levelup[1] = global.heroes_have[i];
 			levelup[2] = global.heroes_have[i];
 			levelup[3] = global.heroes_have[i];
@@ -1160,15 +1169,15 @@
 					ini_write_string("Qual", "qual_1", "1");
 					ini_write_string("Qual", "qual_2", "1");
 					ini_write_string("Qual", "qual_3", "1");
-					///
+					//
 					ini_write_string("Qual", "qual_a_1", "1");
 					ini_write_string("Qual", "qual_a_2", "1");
 					ini_write_string("Qual", "qual_a_3", "1");
-					///
+					//
 					ini_write_string("Qual", "qual_nno_1", "0");
 					ini_write_string("Qual", "qual_nno_2", "0");
 					ini_write_string("Qual", "qual_nno_3", "0");
-					///
+					//
 					ini_write_string("Qual", "qual_rr", "1");
 				#endregion
 			}
@@ -1178,11 +1187,11 @@
 					nnn[1] = ini_read_real("Qual", "qual_1", 1);
 					nnn[2] = ini_read_real("Qual", "qual_2", 1);
 					nnn[3] = ini_read_real("Qual", "qual_3", 1);
-					///
+					//
 					global.quests_t[1] = ini_read_real("Qual", "qual_t_1", 1);
 					global.quests_t[2] = ini_read_real("Qual", "qual_t_2", 2);
 					global.quests_t[3] = ini_read_real("Qual", "qual_t_3", 3);
-					///
+					//
 					global.quests_pt[1] = ini_read_real("Qual", "qual_pt_1", 1);
 					global.quests_pt[2] = ini_read_real("Qual", "qual_pt_2", 2);
 					global.quests_pt[3] = ini_read_real("Qual", "qual_pt_3", 3);
@@ -1202,7 +1211,7 @@
 					{
 						global.quests_t[2] = irandom_range(1, 26);
 					}
-					///
+					//
 					global.quests_t[3] = global.quests_t[1];
 					while(global.quests_t[3] = global.quests_t[1])
 					{
@@ -1212,11 +1221,11 @@
 							global.quests_t[3] = irandom_range(1, 26);
 						}
 					}
-					///
+					//
 					ini_write_string("Qual", "qual_t_1", string(global.quests_t[1]));
 					ini_write_string("Qual", "qual_t_2", string(global.quests_t[2]));
 					ini_write_string("Qual", "qual_t_3", string(global.quests_t[3]));
-					///
+					//
 					ini_write_string("Qual", "qual_1", "0");
 					ini_write_string("Qual", "qual_2", "0");
 					ini_write_string("Qual", "qual_3", "0");
@@ -1231,7 +1240,7 @@
 						global.quests_t[1] = irandom_range(1, 26);
 					}
 					global.quests_t[2] = global.quests_t[3];
-					///
+					//
 					while(global.quests_t[2] = global.quests_t[3])
 					{
 						global.quests_t[2] = irandom_range(1, 26);
@@ -1240,10 +1249,10 @@
 							global.quests_t[2] = irandom_range(1, 26);
 						}
 					}
-					///
+					//
 					ini_write_string("Qual", "qual_t_1", string(global.quests_t[1]));
 					ini_write_string("Qual", "qual_t_2", string(global.quests_t[2]));
-					///
+					//
 					ini_write_string("Qual", "qual_1", "0");
 					ini_write_string("Qual", "qual_2", "0");
 				}
@@ -1256,7 +1265,7 @@
 					{
 						global.quests_t[1] = irandom_range(1, 26);
 					}
-					///
+					//
 					global.quests_t[3] = global.quests_t[2];
 					while(global.quests_t[3] = global.quests_t[2])
 					{
@@ -1266,10 +1275,10 @@
 							global.quests_t[3] = irandom_range(1, 26);
 						}
 					}
-					///
+					//
 					ini_write_string("Qual", "qual_t_1", string(global.quests_t[1]));
 					ini_write_string("Qual", "qual_t_3", string(global.quests_t[3]));
-					///
+					//
 					ini_write_string("Qual", "qual_1", "0");
 					ini_write_string("Qual", "qual_3", "0");
 				}
@@ -1282,7 +1291,7 @@
 					{
 						global.quests_t[2] = irandom_range(1, 26);
 					}
-					///
+					//
 					global.quests_t[3] = global.quests_t[1];
 					while(global.quests_t[3] = global.quests_t[1])
 					{
@@ -1292,10 +1301,10 @@
 							global.quests_t[3] = irandom_range(1, 26);
 						}
 					}
-					///
+					//
 					ini_write_string("Qual", "qual_t_2", string(global.quests_t[2]));
 					ini_write_string("Qual", "qual_t_3", string(global.quests_t[3]));
-					///
+					//
 					ini_write_string("Qual", "qual_2", "0");
 					ini_write_string("Qual", "qual_3", "0");
 				}
@@ -1312,9 +1321,9 @@
 							global.quests_t[1] = irandom_range(1, 26);
 						}
 					}
-					///
+					//
 					ini_write_string("Qual", "qual_t_1", string(global.quests_t[1]));
-					///
+					//
 					ini_write_string("Qual", "qual_1", "0");
 				}
 			#endregion
@@ -1330,9 +1339,9 @@
 							global.quests_t[2] = irandom_range(1, 26);
 						}
 					}
-					///
+					//
 					ini_write_string("Qual", "qual_t_2", string(global.quests_t[2]));
-					///
+					//
 					ini_write_string("Qual", "qual_2", "0");
 				}
 			#endregion
@@ -1349,7 +1358,7 @@
 						}
 					}
 					ini_write_string("Qual", "qual_t_3", string(global.quests_t[3]));
-					///
+					//
 					ini_write_string("Qual", "qual_3", "0");
 				}
 			#endregion
@@ -1363,8 +1372,8 @@
 			for(i = 1; i <= 3; i ++)
 			{
 				#region Размер, доступность
-					global.quests_a[i] = ini_read_real("Qual", "qual_a_" + string(i), 1);
-					global.quests_s[i] = 0.5;
+					global.quests_a[i]     = ini_read_real("Qual", "qual_a_" + string(i), 1);
+					global.quests_s[i]     = 0.5;
 					global.quests_n_all[i] = 1;
 				#endregion
 				#region Обновление и запись
@@ -1451,8 +1460,8 @@
 				#endregion
 				#region Чтение
 					global.quests_n_now[i] = ini_read_real("Qual", "qual_nno_" + string(i), 1);
-					global.quests_pt[i] = ini_read_string("Qual", "qual_pt_" + string(i), "©");
-					global.quests_n[i]  = ini_read_real("Qual", "qual_n_" + string(i), 1);
+					global.quests_pt[i]    = ini_read_string("Qual", "qual_pt_" + string(i), "©");
+					global.quests_n[i]     = ini_read_real("Qual", "qual_n_" + string(i), 1);
 				#endregion
 				#region Задания 2
 					if global.quests_t[i] = 1 or global.quests_t[i] = 2
@@ -1765,7 +1774,7 @@
 		title_text[24]  = "";
 		title_text[25]  = "СПАСИБО ТЕБЕ!";
 	}
-	//// SPECIAL THANKS
+	/// SPECIAL THANKS
 #endregion
 #region ПвП
 	global.pvp_set = 0;
