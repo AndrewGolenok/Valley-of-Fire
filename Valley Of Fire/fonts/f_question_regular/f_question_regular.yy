@@ -1,16 +1,14 @@
 {
     "id": "b5cab454-dc62-4c62-b7b3-c388b191b59e",
     "modelName": "GMFont",
-    "mvc": "1.1",
+    "mvc": "1.0",
     "name": "f_question_regular",
     "AntiAlias": 1,
     "TTFName": "",
-    "ascenderOffset": 0,
     "bold": true,
     "charset": 0,
     "first": 0,
     "fontName": "American Typewriter",
-    "glyphOperations": 0,
     "glyphs": [
         {
             "Key": 32,
@@ -2443,16 +2441,13 @@
             }
         }
     ],
-    "hinting": 0,
+    "image": null,
     "includeTTF": false,
-    "interpreter": 0,
     "italic": false,
     "kerningPairs": [
         
     ],
     "last": 0,
-    "maintainGms1Font": false,
-    "pointRounding": 0,
     "ranges": [
         {
             "x": 10,
