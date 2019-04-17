@@ -1,4 +1,4 @@
- #region Текст
+#region Текст
 	ini_open(global.lang + ".ini");
 		for(i = 1; i <= 34; i ++)
 		{
@@ -1789,4 +1789,7 @@
 	{
 		global.menu_next = "quests";
 	}
+#endregion
+#region ОНЛАЙН
+	searching = 0;
 #endregion

@@ -79,11 +79,13 @@ if type = network_type_data
 					rank[1]    = player1[? "rank"];
 					level[1]   = player1[? "level"];
 					hero[1]    = player1[? "hero"];
-					hp[1]      = 100 + 20 * hero[1];
-					hp_max[1]  = hp[1];
-					need_hp[1] = hp[1];
-					atk[2]     = round(hp[1] / 7);
 					
+					/// НЕТ
+						hp[1]      = 100 + 20 * hero[1];
+						hp_max[1]  = hp[1];
+						need_hp[1] = hp[1];
+						atk[2]     = round(hp[1] / 7);
+					/// НЕТ
 					for (i = 0; i < ds_list_size(totem1); i ++)
 					{
 						totems[1,i+1] = totem1[| i];
@@ -92,19 +94,21 @@ if type = network_type_data
 					rank[2]    = player2[? "rank"];
 					level[2]   = player2[? "level"];
 					hero[2]    = player2[? "hero"];
-					hp[2]      = 100 + 20 * hero[2];
-					hp_max[2]  = hp[2];
-					need_hp[2] = hp[2];
-					atk[1]     = round(hp[2] / 7);
-					
+					/// НЕТ
+						hp[2]      = 100 + 20 * hero[2];
+						hp_max[2]  = hp[2];
+						need_hp[2] = hp[2];
+						atk[1]     = round(hp[2] / 7);
+					/// НЕТ
 					for (i = 0; i < ds_list_size(totem2); i ++)
 					{
 						totems[2, i + 1] = totem2[| i];
 					}
-					
-					need_f       = -1;
-					waiting      = 0;
-					searching    = 0;
+					/// НЕТ
+						need_f       = -1;
+						waiting      = 0;
+						searching    = 0;
+					/// НЕТ
 					global.fight = 1;
 				break;
 				#endregion
@@ -136,11 +140,16 @@ if type = network_type_data
 				case 1:
 					if rearr = 0
 					{
-						theme[1] = param[? "theme1"];
-						theme[2] = param[? "theme2"];
-						theme[3] = param[? "theme3"];
-						
-						rearr = 1;
+						if instance_exists(o_list)
+						{
+							o_list.theme_t[1] = param[? "theme1"];
+							o_list.theme_t[2] = param[? "theme2"];
+							o_list.theme_t[3] = param[? "theme3"];
+							o_list.theme_nn[1] = global.theme_name[o_list.theme_t[1]];
+							o_list.theme_nn[2] = global.theme_name[o_list.theme_t[2]];
+							o_list.theme_nn[3] = global.theme_name[o_list.theme_t[3]];
+							rearr = 1;
+						}
 					}
 					buffer_seek(buffer_c, buffer_seek_start, 0);
 					buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 5" + ",\"fightId\": \"" + string(global.f_id) + "\"}}");

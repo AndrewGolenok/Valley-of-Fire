@@ -1,9 +1,3 @@
-#region Переменные игроков
-	if global.pvp = 0
-	{
-		global.enemy_hero = irandom_range(1,7);
-	}
-#endregion
 #region Камера
 	application_surface_enable(1);
 	surface_resize(application_surface, global.width, global.height);
@@ -23,7 +17,35 @@
 #endregion
 #region Фон
 	#region Выбор фона
-		global.background       = "house"; //choose("train", "mine", "waterfall", "saloon", "house");
+		if global.online && instance_exists(o_list)
+		{
+			global.background = "train";
+			switch(o_client.back)
+			{
+				case 1:
+					global.background = "train";
+				break;
+				case 2:
+					global.background = "mine";
+				break;
+				case 3:
+					global.background = "waterfall";
+				break;
+				case 4:
+					global.background = "saloon";
+				break;
+				case 5:
+					global.background = "house";
+				break;
+				case 6:
+					global.background = "saloon";
+				break;
+			}
+		}
+		else
+		{
+			global.background = "house"; //choose("train", "mine", "waterfall", "saloon", "house");
+		}
 		global.super_ability    = 0;
 		global.super_ability1   = 0;
 		global.ability_dop_anim = 0;
@@ -230,8 +252,8 @@
 	#endregion
 #endregion
 #region Сурфейс
-	global.bsurf = surface_create(global.width, global.height);
-	surface_set_target(global.bsurf);
-	draw_clear_alpha(c_white, 0);
-	surface_reset_target();
+	//global.bsurf = surface_create(global.width, global.height);
+	//surface_set_target(global.bsurf);
+	//draw_clear_alpha(c_white, 0);
+	//surface_reset_target();
 #endregion

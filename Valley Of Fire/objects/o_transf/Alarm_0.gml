@@ -12,11 +12,21 @@
 			}
 		break;
 		case "menu":
-			if rm != "duel"
+			if global.online
 			{
 				with(o_control)
 				{
 					instance_destroy();
+				}
+			}
+			else
+			{
+				if rm != "duel"
+				{
+					with(o_control)
+					{
+						instance_destroy();
+					}
 				}
 			}
 			with(o_menu)
@@ -51,9 +61,16 @@
 			instance_create_depth(0, 0, -1, o_menu);
 		break;
 		case "duel":
-			if rmp != "menu"
+			if global.online
 			{
 				instance_create_depth(0, 0, -1, o_control);
+			}
+			else
+			{
+				if rmp != "menu"
+				{
+					instance_create_depth(0, 0, -1, o_control);
+				}
 			}
 			instance_create_depth(0, 0, -1, o_list);
 			global.enemy = 0;

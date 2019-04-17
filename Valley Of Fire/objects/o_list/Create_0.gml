@@ -1,4 +1,21 @@
 #region Стартовые переменные
+	#region Переменные игроков
+		if !(global.training = -1 or global.shomen)
+		{
+			global.online = false;
+		}
+		if global.pvp = 0
+		{
+			if global.online
+			{
+				global.enemy_hero = irandom_range(1,7);
+			}
+			else
+			{
+				global.enemy_hero = o_client.hero[global.enid];
+			}
+		}
+	#endregion
 	#region Чокнутый шаман
 		if global.shomen
 		{
@@ -33,7 +50,14 @@
 	#endregion
 	#region Имена
 		global.player_name = string_upper(global.hero_code_name[global.hero]);
-		global.enemy_rank  = choose(global.player_rank - 1, global.player_rank + 1, global.player_rank + 1, global.player_rank, global.player_rank, global.player_rank, global.player_rank, global.player_rank)
+		if global.online
+		{
+			global.enemy_rank = o_client.rank[global.enid];
+		}
+		else
+		{
+			global.enemy_rank  = choose(global.player_rank - 1, global.player_rank + 1, global.player_rank + 1, global.player_rank, global.player_rank, global.player_rank, global.player_rank, global.player_rank)
+		}
 		if global.hero = 2
 		{
 			global.player_name = "DRUNK JOE";
@@ -196,9 +220,9 @@
 	theme_x[1]  = 640 - 300;
 	theme_y[1]  = global.height / 2;
 	theme_s[1]  = 0;
-	theme_t[1]  = global.enemy_hero;
+	//theme_t[1]  = global.enemy_hero;
 	theme_a[1]  = 1;
-	theme_nn[1] = global.theme_name[theme_t[1]];
+	//theme_nn[1] = global.theme_name[theme_t[1]];
 	theme_x1[1] = 0;
 	theme_y1[1] = 0;
 	theme_a1[1] = irandom(360);
@@ -206,17 +230,18 @@
 	theme_x[2]  = 640;
 	theme_y[2]  = global.height / 2;
 	theme_s[2]  = 0;
-	if global.enemy_hero != global.hero
-	{
-		theme_t[2] = global.hero;
-	}
-	else
-	{
-		theme_t[2] = theme_new(theme_t[1], -1);
-	}
+	
+	//if global.enemy_hero != global.hero
+	//{
+	//	theme_t[2] = global.hero;
+	//}
+	//else
+	//{
+	//	theme_t[2] = theme_new(theme_t[1], -1);
+	//}
 	
 	theme_a[2]  = 1;
-	theme_nn[2] = global.theme_name[theme_t[2]];
+	//theme_nn[2] = global.theme_name[theme_t[2]];
 	theme_x1[2] = 0;
 	theme_y1[2] = 0;
 	theme_a1[2] = irandom(360);
@@ -224,9 +249,9 @@
 	theme_x[3]  = 640 + 300;
 	theme_y[3]  = global.height / 2;
 	theme_s[3]  = 0;
-	theme_t[3]  = theme_new(theme_t[1], theme_t[2]);
+	//theme_t[3]  = theme_new(theme_t[1], theme_t[2]);
 	theme_a[3]  = 1;
-	theme_nn[3] = global.theme_name[theme_t[3]];
+	//theme_nn[3] = global.theme_name[theme_t[3]];
 	theme_x1[3] = 0;
 	theme_y1[3] = 0;
 	theme_a1[3] = irandom(360);
@@ -238,6 +263,61 @@
 	theme_dot   = "";
 	
 	theme_timer = room_speed * 14;
+	
+	////
+	if global.online
+	{
+		if global.myid = o_client.first_p
+		{
+			theme_t[1]  = global.hero;
+			theme_nn[1] = global.theme_name[theme_t[1]];
+			if global.enemy_hero != global.hero
+			{
+				theme_t[2] = global.enemy_hero;
+			}
+			else
+			{
+				theme_t[2] = theme_new(theme_t[1], -1);
+			}
+			theme_nn[2] = global.theme_name[theme_t[2]];
+			theme_t[3]  = theme_new(theme_t[1], theme_t[2]);
+			theme_nn[3] = global.theme_name[theme_t[3]];
+			
+			o_client.cl_stage = 3;
+		}
+		else
+		{
+			theme_t[1]  = global.enemy_hero;
+			theme_nn[1] = global.theme_name[theme_t[1]];
+			if global.enemy_hero != global.hero
+			{
+				theme_t[2] = global.hero;
+			}
+			else
+			{
+				theme_t[2] = 1//theme_new(theme_t[1], -1);
+			}
+			theme_nn[2] = global.theme_name[theme_t[2]];
+			theme_t[3]  = 1//theme_new(theme_t[1], theme_t[2]);
+			theme_nn[3] = global.theme_name[theme_t[3]];
+		}
+	}
+	else
+	{
+		theme_t[1]  = global.enemy_hero;
+		theme_nn[1] = global.theme_name[theme_t[1]];
+		if global.enemy_hero != global.hero
+		{
+			theme_t[2] = global.hero;
+		}
+		else
+		{
+			theme_t[2] = theme_new(theme_t[1], -1);
+		}
+		theme_nn[2] = global.theme_name[theme_t[2]];
+		theme_t[3]  = theme_new(theme_t[1], theme_t[2]);
+		theme_nn[3] = global.theme_name[theme_t[3]];
+	}
 #endregion
 #region Объявление раунда
 	ini_open(global.lang + ".ini");
@@ -1515,14 +1595,21 @@
 		atk *= (1 + 0.1 * (global.hero_level - 1));
 		hp  *= (1 + 0.1 * (global.hero_level - 1));
 		maxhp = hp;
-		global.enemy_level = choose(global.hero_level - 1, global.hero_level - 1, global.hero_level + 1, global.hero_level);
-		if global.enemy_level < 1
+		if global.online
 		{
-			global.enemy_level = 1;
+			global.enemy_level = o_client.level[global.enid];
 		}
-		if global.pvp
+		else
 		{
-			global.enemy_level = global.hero_level;
+			global.enemy_level = choose(global.hero_level - 1, global.hero_level - 1, global.hero_level + 1, global.hero_level);
+			if global.enemy_level < 1
+			{
+				global.enemy_level = 1;
+			}
+			if global.pvp
+			{
+				global.enemy_level = global.hero_level;
+			}
 		}
 		e_atk *= (1 + 0.1 * (global.enemy_level - 1));
 		e_hp  *= (1 + 0.1 * (global.enemy_level - 1));

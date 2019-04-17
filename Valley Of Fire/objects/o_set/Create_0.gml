@@ -495,6 +495,9 @@
 	global.menu_now  = "main";
 	global.menu_next = "main";
 #endregion
+#region ОНЛАЙН: Создание объекта
+	instance_create_depth(0, 0, -1, o_client);
+#endregion
 #region Прочее
 	if os_type = os_ios
 	{

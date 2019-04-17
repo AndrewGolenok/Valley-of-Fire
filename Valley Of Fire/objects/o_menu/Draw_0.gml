@@ -866,7 +866,7 @@
 		#region Задник поверх 1: Каменная плита
 			draw_sprite_part_ext(s_totem_back, 0, 0, top, sprite_get_width(s_totem_back), sprite_get_height(s_totem_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 		#endregion
-		#region ОПИСАНИЕ ТОТЕМА
+		#region ОПИСАНИЕ ТОТЕМА и Переход к дуэли
 				if global.duel = 0
 				{
 					#region Описание тотема и его отрисовка справа
@@ -933,30 +933,53 @@
 								}
 								if global.pvp_set = 0
 								{
-									room_goto_t("duel");
-								}
-								if global.pvp_now = 1
-								{
-									global.p_totem_p[1] = global.p_totem[1];
-									global.p_totem_p[2] = global.p_totem[2];
-									global.p_totem_p[3] = global.p_totem[3];
-									global.p_totem[1] = -1;
-									global.p_totem[2] = -1;
-									global.p_totem[3] = -1;
-									global.pvp_now = 2;
-									global.menu_now = "heroes"; global.menu_next = "heroes";
+									if global.online
+									{
+										if searching = 0
+										{
+											o_client.cl_stage = 1;
+											searching = 1;
+										}
+										else
+										{
+											o_client.cl_stage = 2;
+											searching = 0;
+										}
+										if global.fight
+										{
+											room_goto_t("duel");
+										}
+									}
+									else
+									{
+										room_goto_t("duel");
+									}
 								}
 								else
 								{
-									if global.pvp_now = 2
+									if global.pvp_now = 1
 									{
-										global.e_totem[1] = global.p_totem[1];
-										global.e_totem[2] = global.p_totem[2];
-										global.e_totem[3] = global.p_totem[3];
-										global.p_totem[1] = global.p_totem_p[1];
-										global.p_totem[2] = global.p_totem_p[2];
-										global.p_totem[3] = global.p_totem_p[3];
-										room_goto_t("duel");
+										global.p_totem_p[1] = global.p_totem[1];
+										global.p_totem_p[2] = global.p_totem[2];
+										global.p_totem_p[3] = global.p_totem[3];
+										global.p_totem[1] = -1;
+										global.p_totem[2] = -1;
+										global.p_totem[3] = -1;
+										global.pvp_now  = 2;
+										global.menu_now = "heroes"; global.menu_next = "heroes";
+									}
+									else
+									{
+										if global.pvp_now = 2
+										{
+											global.e_totem[1] = global.p_totem[1];
+											global.e_totem[2] = global.p_totem[2];
+											global.e_totem[3] = global.p_totem[3];
+											global.p_totem[1] = global.p_totem_p[1];
+											global.p_totem[2] = global.p_totem_p[2];
+											global.p_totem[3] = global.p_totem_p[3];
+											room_goto_t("duel");
+										}
 									}
 								}
 							}
@@ -1180,10 +1203,29 @@
 						#endregion
 					#endregion
 					#region Отрисовка света и текста
-						draw_sprite_ext(s_light, 0, global.width - 300, global.height - 60 + training_back_y, 0.6, 0.3, 0, c_white, 0.7);
 						if global.pvp_now != 1
 						{
-							draw_text_transformed_t(global.width - 300, global.height - 60 + training_back_y, totems_text[2], 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black);
+							if global.online
+							{
+								if searching = 0
+								{
+									draw_sprite_ext(s_light, 0, global.width - 300, global.height - 60 + training_back_y, 0.6, 0.3, 0, c_white, 0.7);
+									draw_text_transformed_t(global.width - 300, global.height - 60 + training_back_y, totems_text[2], 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black);
+								}
+								else
+								{
+									draw_set_alpha(0.45);
+									draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
+									draw_set_alpha(1);
+									draw_text_transformed_t(global.width - 300, global.height - 60 + training_back_y, "CANCEL", 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black);
+									draw_text_transformed_t(global.width / 2, global.height / 2 + training_back_y, "SEARCHING...", 0.4 * go5, 0.4 * go5, tr_ang, global.color_white, c_black);
+								}
+							}
+							else
+							{
+								draw_sprite_ext(s_light, 0, global.width - 300, global.height - 60 + training_back_y, 0.6, 0.3, 0, c_white, 0.7);
+								draw_text_transformed_t(global.width - 300, global.height - 60 + training_back_y, totems_text[2], 0.25 * go5, 0.25 * go5, tr_ang, global.color_white, c_black);
+							}
 						}
 						else
 						{

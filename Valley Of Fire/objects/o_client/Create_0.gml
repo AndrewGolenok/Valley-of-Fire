@@ -1,4 +1,8 @@
-ip   = "192.168.1.4";
+global.online = true;
+
+cl_stage = 0;
+
+ip   = "192.168.1.10";
 port = 4567;
 
 socket_c     = network_create_socket(network_socket_tcp);
@@ -55,6 +59,8 @@ rank[1]     = -1;
 rank[2]     = -1;
 level[1]    = -1;
 level[2]    = -1;
+hero[1]     = -1;
+hero[2]     = -1;
 
 totems[1,1] = -1;
 totems[1,2] = -1;
@@ -104,7 +110,7 @@ need_hp[2]  = 0;
 real_hp[1]  = 0;
 real_hp[2]  = 0;
 
-rearr       = 0;
+rearr       = 1;
 rearr_t     = room_speed;
 
 need_f = -1;

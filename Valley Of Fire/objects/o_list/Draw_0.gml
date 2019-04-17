@@ -2499,6 +2499,7 @@
 												#region Отрисовка бутылок
 													draw_sprite_ext(bottle_spr, 0, bottle_x[i], global.height / 2 + bottle_y[i] - 50, 0.6 * list_scale, 0.6 * list_scale, 0, c_white, 1 - 0.5 * bottle_destroy[i]);
 													draw_sprite_part_ext(bottle_spr, 0, 0, bottle_h - bottle_h * bottle_p[i], bottle_w, bottle_h, bottle_x[i] - bottle_w / 2 * 0.6 + 2, global.height / 2 + bottle_y[i] - 50 + bottle_h / 2 * 0.6 - bottle_w * 0.6 * bottle_p[i], 0.6 * list_scale, 0.6 * list_scale, c_red, 1 - 0.5 * bottle_destroy[i]);
+													surface_reset_target();
 												#endregion
 											}
 										#endregion
@@ -8957,17 +8958,24 @@
 				else
 				{
 					#region Падение монтки
-						if coin_i <= 4
+						if global.online
 						{
-							coin_i = 4;
-							first_player = 1;
+							first_player = o_client.first_p;
 						}
 						else
 						{
-							if coin_i > 4
+							if coin_i <= 4
 							{
 								coin_i = 4;
-								first_player = 0;
+								first_player = 1;
+							}
+							else
+							{
+								if coin_i > 4
+								{
+									coin_i = 4;
+									first_player = 0;
+								}
 							}
 						}
 						if global.p_totem_a[7] = 1 && global.e_totem_a[7] != 1
