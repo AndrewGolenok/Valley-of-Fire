@@ -110,7 +110,7 @@ need_hp[2]  = 0;
 real_hp[1]  = 0;
 real_hp[2]  = 0;
 
-rearr       = 1;
-rearr_t     = room_speed;
+rearr        = 1;
+rearr_t      = room_speed;
 
 need_f = -1;

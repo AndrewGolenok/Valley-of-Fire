@@ -599,7 +599,7 @@
 		#endregion
 	}
 #endregion
-#region Тотемы / Выбор тотемов
+#region Тотемы / Выбор тотемов / Переход к дуэли
 	if global.menu_now = "totem" or global.menu_next = "totem"
 	{
 		#region ПОЯЛВЕНИЕ МЕНЮ
@@ -866,7 +866,7 @@
 		#region Задник поверх 1: Каменная плита
 			draw_sprite_part_ext(s_totem_back, 0, 0, top, sprite_get_width(s_totem_back), sprite_get_height(s_totem_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 		#endregion
-		#region ОПИСАНИЕ ТОТЕМА и Переход к дуэли
+		#region ОПИСАНИЕ ТОТЕМА / Переход к дуэли
 				if global.duel = 0
 				{
 					#region Описание тотема и его отрисовка справа
@@ -985,6 +985,10 @@
 							}
 							io_clear();
 						}
+					if global.online && global.fight && !instance_exists(o_transf)
+					{
+						room_goto_t("duel");
+					}
 					#endregion
 					#region Установка тотема справа
 						#region Если нет 3 тотема

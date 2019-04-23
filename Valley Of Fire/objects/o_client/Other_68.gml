@@ -109,6 +109,17 @@ if type = network_type_data
 						waiting      = 0;
 						searching    = 0;
 					/// НЕТ
+					if instance_exists(o_control)
+					{
+						with(o_control)
+						{
+							instance_destroy();
+						}
+					}
+					instance_create_depth(0, 0, -1, o_control);
+					global.e_totem[1] = totems[global.enid,1];
+					global.e_totem[2] = totems[global.enid,2];
+					global.e_totem[3] = totems[global.enid,3];
 					global.fight = 1;
 				break;
 				#endregion
@@ -142,9 +153,9 @@ if type = network_type_data
 					{
 						if instance_exists(o_list)
 						{
-							o_list.theme_t[1] = param[? "theme1"];
-							o_list.theme_t[2] = param[? "theme2"];
-							o_list.theme_t[3] = param[? "theme3"];
+							o_list.theme_t[1]  = param[? "theme1"];
+							o_list.theme_t[2]  = param[? "theme2"];
+							o_list.theme_t[3]  = param[? "theme3"];
 							o_list.theme_nn[1] = global.theme_name[o_list.theme_t[1]];
 							o_list.theme_nn[2] = global.theme_name[o_list.theme_t[2]];
 							o_list.theme_nn[3] = global.theme_name[o_list.theme_t[3]];
@@ -166,6 +177,16 @@ if type = network_type_data
 					theme_r[1] = param[? "theme_r1"];
 					theme_r[2] = param[? "theme_r2"];
 					theme_r[3] = param[? "theme_r3"];
+					if instance_exists(o_list)
+					{
+						o_list.theme_click = theme_r[global.rounds];
+						o_list.theme_g = 1;
+						if global.sound = 1
+						{
+							audio_play_sound(sd_text, 2, 0);
+						}
+						o_list.theme_round[global.rounds] = o_list.theme_t[theme_r[global.rounds]];
+					}
 				break;
 			#endregion
 			#region Ответ
@@ -175,6 +196,10 @@ if type = network_type_data
 					task[global.enid]     = param[? "task"];
 					
 					need_hp[global.myid]  = param[? "hp"];
+					
+					global.bot_answer   = answer[global.enid];
+					o_list.bot_question = question[global.enid];
+					o_list.bot_task     = task[global.enid];
 				break;
 			#endregion
 			#region Досылка темы

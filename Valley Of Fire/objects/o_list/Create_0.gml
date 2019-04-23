@@ -1,6 +1,6 @@
 #region Стартовые переменные
 	#region Переменные игроков
-		if !(global.training = -1 or global.shomen)
+		if global.training > 0
 		{
 			global.online = false;
 		}
@@ -8,12 +8,16 @@
 		{
 			if global.online
 			{
-				global.enemy_hero = irandom_range(1,7);
+				global.enemy_hero = o_client.hero[global.enid];
 			}
 			else
 			{
-				global.enemy_hero = o_client.hero[global.enid];
+				global.enemy_hero = irandom_range(1, 7);
 			}
+		}
+		if global.enemy_hero < 1
+		{
+			global.enemy_hero = 1;
 		}
 	#endregion
 	#region Чокнутый шаман
@@ -300,6 +304,7 @@
 			theme_nn[2] = global.theme_name[theme_t[2]];
 			theme_t[3]  = 1//theme_new(theme_t[1], theme_t[2]);
 			theme_nn[3] = global.theme_name[theme_t[3]];
+			o_client.rearr = 0;
 		}
 	}
 	else
@@ -548,7 +553,7 @@
 		bottle_red_a  = 0;
 		bottle_change = 0;
 		bottle_end    = 0;
-		for(i = 1; i <= 6; i ++)
+		for(i = 1; i <= 10; i ++)
 		{
 			bottle_y[i]  = 0;
 			bottle_a[i]  = 0;
@@ -1089,7 +1094,7 @@
 		global.enemy_level = choose(global.player_rank, global.player_rank + 1, global.player_rank - 1); //irandom_range(1,10);
 	#endregion
 	#region Случайные тотемы Врага
-			if global.pvp = 0
+			if global.pvp = 0 && global.online = 0
 			{
 				if global.p_totem[1] != -1 && global.p_totem[2] = -1
 				{

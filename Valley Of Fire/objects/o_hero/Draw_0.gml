@@ -415,7 +415,7 @@
 					}
 				}
 			#endregion
-			#region Снаряд попал в друго игрока
+			#region Снаряд попал в другого игрока
 			if ((((sx >= global.width - x - sprite_get_width(s_bullet_revolver) - weapon_spd * 1.2) && !enemy) or ((sx <= (global.width - x) + weapon_spd * 1.2 + sprite_get_width(s_bullet_revolver)) && enemy)) && answer != -1)
 			{
 				if enemy

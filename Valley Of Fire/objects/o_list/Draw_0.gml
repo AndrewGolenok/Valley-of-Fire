@@ -1078,7 +1078,7 @@
 					#endregion
 					#region Задача 3 - Больше Меньше
 						if round_task[global.rounds,global.task] = 3
-							{
+						{
 							#region Координаты кнопок
 									var x1, y1, x2, y2, x3, y3, x4, y4, button_width, button_height;
 									button_width = sprite_get_width(s_question_sign) * list_size1 * o_but_sc;
@@ -1326,11 +1326,11 @@
 									}
 								 #endregion
 							#endregion
-							}
+						}
 					#endregion
 					#region Задача 4 - Равно Неравно
 						if round_task[global.rounds,global.task] = 4
-							{
+						{
 							#region Координаты кнопок
 									var x1, y1, x2, y2, x3, y3, x4, y4, button_width, button_height;
 									button_width = sprite_get_width(s_question_sign) * list_size1 * o_but_sc;
@@ -1371,14 +1371,14 @@
 															audio_play_sound(sd_text, 2, 0);
 														}
 														if vtrue[2] = 1
-														{
-															global.answer = 1;
-														}
-														else
-														{
-															global.answer = 0;
-														}
-														math_4();
+															{
+																global.answer = 1;
+															}
+															else
+															{
+																global.answer = 0;
+															}
+														math_3();
 													}
 												}
 												else
@@ -1404,14 +1404,14 @@
 															audio_play_sound(sd_text, 2, 0);
 														}
 														if vtrue[3] = 1
-														{
-															global.answer = 1;
-														}
-														else
-														{
-															global.answer = 0;
-														}
-														math_4();
+															{
+																global.answer = 1;
+															}
+															else
+															{
+																global.answer = 0;
+															}
+														math_3();
 													}
 												}
 												else
@@ -1421,11 +1421,11 @@
 											#endregion
 										}
 										#region ОБУЧЕНИЕ: Варианты
-											if global.training < 1 or global.training_question != 0
+											if !(global.training < 1 or global.training_question != 0)
 											{
 												if global.training_stage[6] = 20
 												{
-													if vtrue[2] =1
+													if vtrue[2] = 1
 													{
 														#region Вариант 2
 															if point_in_rectangle(mouse_x1, mouse_y1, x2 - button_width / 2, y2 - button_height / 2, x2 + button_width / 2, y2 + button_height / 2)
@@ -1578,7 +1578,7 @@
 									}
 								#endregion
 							#endregion
-							}
+						}
 					#endregion
 				}
 			#endregion
@@ -2441,7 +2441,7 @@
 													{
 														bottle_destroy[i] += 1;
 														draw_sprite_ext(bottle_spr, bottle_destroy[i] - 1, bottle_x[i], global.height / 2 + bottle_y[i] - 50, 0.6 * list_scale, 0.6 * list_scale, 0, c_white, 1 - 0.1 * bottle_destroy[i]); 
-														draw_sprite_part_ext(bottle_spr, bottle_destroy[i] - 1, 0, bottle_h - bottle_h * bottle_p[i], bottle_w, bottle_h, bottle_x[i] - bottle_w / 2 * 0.6 + 2, global.height / 2 + bottle_y[i] - 50 + bottle_h / 2 * 0.6 - bottle_w * 0.6 * bottle_p[i], 0.6 * list_scale, 0.6 * list_scale, c_red, 1 - 0.1 * bottle_destroy[i]);
+														//draw_sprite_part_ext(bottle_spr, bottle_destroy[i] - 1, 0, bottle_h - bottle_h * bottle_p[i], bottle_w, bottle_h, bottle_x[i] - bottle_w / 2 * 0.6 + 2, global.height / 2 + bottle_y[i] - 50 + bottle_h / 2 * 0.6 - bottle_w * 0.6 * bottle_p[i], 0.6 * list_scale, 0.6 * list_scale, c_red, 1 - 0.1 * bottle_destroy[i]);
 													}
 													if bottle_end = 2 && bottle_destroy[bottle_all] = 6
 													{
@@ -2499,7 +2499,6 @@
 												#region Отрисовка бутылок
 													draw_sprite_ext(bottle_spr, 0, bottle_x[i], global.height / 2 + bottle_y[i] - 50, 0.6 * list_scale, 0.6 * list_scale, 0, c_white, 1 - 0.5 * bottle_destroy[i]);
 													draw_sprite_part_ext(bottle_spr, 0, 0, bottle_h - bottle_h * bottle_p[i], bottle_w, bottle_h, bottle_x[i] - bottle_w / 2 * 0.6 + 2, global.height / 2 + bottle_y[i] - 50 + bottle_h / 2 * 0.6 - bottle_w * 0.6 * bottle_p[i], 0.6 * list_scale, 0.6 * list_scale, c_red, 1 - 0.5 * bottle_destroy[i]);
-													surface_reset_target();
 												#endregion
 											}
 										#endregion
@@ -5865,27 +5864,139 @@
 				#endregion
 			}
 		#endregion
-			#region Игрок
-				if global.answer != -1 && u_question <= 9
-				{
-					#region Квесты
-						for(i = 1; i <= 3; i ++)
+		#region Игрок
+			if global.answer != -1 && u_question <= 9
+			{
+				#region Онлайн
+					if global.online
+					{
+						o_client.answer[global.myid]   = global.answer;
+						o_client.question[global.myid] = global.question;
+						o_client.task[global.myid]     = global.task;
+						o_client.hp[global.enid]       = e_hp;
+						o_client.cl_stage = 7;
+					}
+				#endregion
+				#region Квесты
+					for(i = 1; i <= 3; i ++)
+					{
+						if global.answer = 1
 						{
-							if global.answer = 1
+							if global.quests_a[i] = 1
 							{
-								if global.quests_a[i] = 1
+								if global.quests_t[i] = 5 or global.quests_t[i] = 6
+								or global.quests_t[i] = 7 or global.quests_t[i] = 8
+								or global.quests_t[i] = 9 or global.quests_t[i] = 10
+								&& theme_round[global.rounds] = global.quests_t[i] - 4
 								{
-									if global.quests_t[i] = 5 or global.quests_t[i] = 6
-									or global.quests_t[i] = 7 or global.quests_t[i] = 8
-									or global.quests_t[i] = 9 or global.quests_t[i] = 10
-									&& theme_round[global.rounds] = global.quests_t[i] - 4
+									if global.quests_n_now[i] < global.quests_n_all[i]
 									{
-										if global.quests_n_now[i] < global.quests_n_all[i]
-										{
-											global.quests_n_now[i] += 1;
-										}
+										global.quests_n_now[i] += 1;
 									}
-									if global.quests_t[i] = 22 && global.bill_abil > 0
+								}
+								if global.quests_t[i] = 22 && global.bill_abil > 0
+								{
+									if global.quests_n_now[i] < global.quests_n_all[i]
+									{
+										global.quests_n_now[i] += 1;
+									}
+								}
+								ini_open("Music.ini");
+									ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
+								ini_close();
+							}
+						}
+					}
+					if global.answer = 0
+					{
+						global.pralna = 0;
+					}
+				#endregion
+				#region Сворачиванеи вопроса при ответе
+					list_scale = 0;
+					pre_wait = 1;
+				#endregion
+				#region Зависимость вопроса и времени врага (и времени ответа бота)
+					u_answer[u_question] = global.answer;
+					if u_answer[u_question] > e_answer[u_question] && global.pvp = 0
+					{
+						if u_question > e_question
+						{
+							u_time[e_question] = (3 + 3 * global.p_totem_a[4]) * room_speed;
+						}
+						if u_question = e_question
+						{
+							u_time[e_question] = (3 + 3 * global.p_totem_a[4]) * room_speed;
+							if bot_time2 > (3 + 3 * global.e_totem_a[4]) * room_speed
+							{
+								bot_time2 = (3 + 3 * global.e_totem_a[4]) * room_speed;
+								bot_time = random(1) * room_speed;
+							}
+						}
+					}
+					if global.training < 1
+					{
+						u_question += 1;
+					}
+				#endregion
+				#region Надписи, говорящие о верности ответа
+					if global.training < 1
+					{
+						if global.answer = 1
+						{
+							if os_get_language() = "ru"
+							{
+								global.training_gb = choose("ХОРОШО!", "ОТЛИЧНО!", "КРУТО!", "ИДЕАЛЬНО!");
+							}
+							else
+							{
+								global.training_gb = choose("GOOD!", "AWESOME", "PERFECT!", "EXELLENT");
+							}
+						}
+						else
+						{
+							if os_get_language() = "ru"
+								{
+									global.training_gb = choose("ПРОМАХ", "ОШИБКА", "НЕУДАЧА", "НЕВЕЗУХА");
+								}
+								else
+								{
+									global.training_gb = choose("MISS", "FAULT", "GAFFE", "MISTAKE");
+								}
+						}
+					}
+				#endregion
+				#region Эффект идола молнии
+					var miss;
+					miss = 0;
+					if global.idol[3] = 4
+					{
+						if global.answer = 0 
+						{
+							global.anim[3,1] = 0;
+						}
+					}
+				#endregion
+				#region Эффект идола ветра
+					if global.idol[2] = 4
+					{
+						var answ, may;
+						answ = global.answer;
+						may  = choose(0, 1);
+						if may = 1
+						{
+							global.answer = !answ;
+						}
+						if answ != global.answer
+						{
+							global.anim[2,1] = 0;
+						}
+						#region Квест на идола
+							for(i = 1; i <= 3; i ++)
+							{
+								if global.quests_a[i] = 1 && answ != global.answer && answ = 0
+								{
+									if global.quests_t[i] = 25
 									{
 										if global.quests_n_now[i] < global.quests_n_all[i]
 										{
@@ -5897,139 +6008,47 @@
 									ini_close();
 								}
 							}
+						#endregion
+					}
+				#endregion
+				#region Эффкт тотема врага "" (промах)
+					if global.e_totem_a[9]
+					{
+						var chance;
+						chance = irandom(99);
+						if chance < 5
+						{
+							global.answer = 0;
+							miss = 1;
 						}
+					}
+				#endregion
+				#region Эффект тотема врага "" (яд)
+					if global.e_totem_a[18] = 1
+					{
 						if global.answer = 0
 						{
-							global.pralna = 0;
+							(global.enemy_object).have_posion = 1;
 						}
-					#endregion
-					#region Сворачиванеи вопроса при ответе
-						list_scale = 0;
-						pre_wait = 1;
-					#endregion
-					#region Зависимость вопроса и времени врага (и времени ответа бота)
-						u_answer[u_question] = global.answer;
-						if u_answer[u_question] > e_answer[u_question] && global.pvp = 0
-						{
-							if u_question > e_question
+					}
+				#endregion
+				#region ОТВЕТ ИГРОКА
+					if global.answer = 1
+					{
+						#region Верный
+							answer_rec = 1;
+							answer_col = make_color_rgb(60, 179, 113);
+							if global.hand = -1
 							{
-								u_time[e_question] = (3 + 3 * global.p_totem_a[4]) * room_speed;
-							}
-							if u_question = e_question
-							{
-								u_time[e_question] = (3 + 3 * global.p_totem_a[4]) * room_speed;
-								if bot_time2 > (3 + 3 * global.e_totem_a[4]) * room_speed
+								if super_now != super_need
 								{
-									bot_time2 = (3 + 3 * global.e_totem_a[4]) * room_speed;
-									bot_time = random(1) * room_speed;
-								}
-							}
-						}
-						if global.training < 1
-						{
-							u_question += 1;
-						}
-					#endregion
-					#region Надписи, говорящие о верности ответа
-						if global.training < 1
-						{
-							if global.answer = 1
-							{
-								if os_get_language() = "ru"
-								{
-									global.training_gb = choose("ХОРОШО!", "ОТЛИЧНО!", "КРУТО!", "ИДЕАЛЬНО!");
-								}
-								else
-								{
-									global.training_gb = choose("GOOD!", "AWESOME", "PERFECT!", "EXELLENT");
+									super_now += 1;
+									part_n = -1;
 								}
 							}
 							else
 							{
-								if os_get_language() = "ru"
-									{
-										global.training_gb = choose("ПРОМАХ", "ОШИБКА", "НЕУДАЧА", "НЕВЕЗУХА");
-									}
-									else
-									{
-										global.training_gb = choose("MISS", "FAULT", "GAFFE", "MISTAKE");
-									}
-							}
-						}
-					#endregion
-					#region Эффект идола молнии
-						var miss;
-						miss = 0;
-						if global.idol[3] = 4
-						{
-							if global.answer = 0 
-							{
-								global.anim[3,1] = 0;
-							}
-						}
-					#endregion
-					#region Эффект идола ветра
-						if global.idol[2] = 4
-						{
-							var answ, may;
-							answ = global.answer;
-							may  = choose(0, 1);
-							if may = 1
-							{
-								global.answer = !answ;
-							}
-							if answ != global.answer
-							{
-								global.anim[2,1] = 0;
-							}
-							#region Квест на идола
-								for(i = 1; i <= 3; i ++)
-								{
-									if global.quests_a[i] = 1 && answ != global.answer && answ = 0
-									{
-										if global.quests_t[i] = 25
-										{
-											if global.quests_n_now[i] < global.quests_n_all[i]
-											{
-												global.quests_n_now[i] += 1;
-											}
-										}
-										ini_open("Music.ini");
-											ini_write_string("Qual", "qual_nno_" + string(i), string(global.quests_n_now[i]));
-										ini_close();
-									}
-								}
-							#endregion
-						}
-					#endregion
-					#region Эффкт тотема врага "" (промах)
-						if global.e_totem_a[9]
-						{
-							var chance;
-							chance = irandom(99);
-							if chance < 5
-							{
-								global.answer = 0;
-								miss = 1;
-							}
-						}
-					#endregion
-					#region Эффект тотема врага "" (яд)
-						if global.e_totem_a[18] = 1
-						{
-							if global.answer = 0
-							{
-								(global.enemy_object).have_posion = 1;
-							}
-						}
-					#endregion
-					#region ОТВЕТ ИГРОКА
-						if global.answer = 1
-						{
-							#region Верный
-								answer_rec = 1;
-								answer_col = make_color_rgb(60, 179, 113);
-								if global.hand = -1
+								if global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.hero != 1)
 								{
 									if super_now != super_need
 									{
@@ -6039,135 +6058,172 @@
 								}
 								else
 								{
-									if global.hand = -1 or (global.hand = 1 && global.hero = 1) or (global.hand = 0 && global.hero != 1)
+									if e_super_now != e_super_need
 									{
-										if super_now != super_need
-										{
-											super_now += 1;
-											part_n = -1;
-										}
-									}
-									else
-									{
-										if e_super_now != e_super_need
-										{
-											e_super_now += 1;
-											part_n = -1;
-										}
+										e_super_now += 1;
+										part_n = -1;
 									}
 								}
-								if global.critical < 3 - 1 * global.p_totem_a[3]
-								{
-									global.critical += 1;
-								}
-							#endregion
-						}
-						else
-						{
-							#region Неверный
-								answer_rec = 1;
-								if miss = 0
-								{
-									answer_col = make_color_rgb(178, 34, 34);
-								}
-								else
-								{
-									answer_col = make_color_rgb(60, 179, 113);
-								}
-								global.critical = 0;
-							#endregion
-						}
-					#endregion
-					#region Рассчёт аккуратности
-						accuracy_true += global.answer;
-						accuracy_all  += 1;
-					#endregion
-					#region Запись ответа в task_question
-						for(i = 1; i <= 6; i ++)
-						{
-							if task_question[global.task,i] = -1
-							{
-								if timer != 0
-								{
-									task_question[global.task,i] = global.answer;
-								}
-								else
-								{
-									task_question[global.task,i] = -2;
-								}
-								break;
 							}
-						}
-					#endregion
-					#region Проверка на номер вопроса и смена задачи
-						if global.question < 3
+							if global.critical < 3 - 1 * global.p_totem_a[3]
+							{
+								global.critical += 1;
+							}
+						#endregion
+					}
+					else
+					{
+						#region Неверный
+							answer_rec = 1;
+							if miss = 0
+							{
+								answer_col = make_color_rgb(178, 34, 34);
+							}
+							else
+							{
+								answer_col = make_color_rgb(60, 179, 113);
+							}
+							global.critical = 0;
+						#endregion
+					}
+				#endregion
+				#region Рассчёт аккуратности
+					accuracy_true += global.answer;
+					accuracy_all  += 1;
+				#endregion
+				#region Запись ответа в task_question
+					for(i = 1; i <= 6; i ++)
+					{
+						if task_question[global.task,i] = -1
 						{
-							#region Прибавление номера вопроса (и надпии для тренировки)
-								if global.training < 1
+							if timer != 0
+							{
+								task_question[global.task,i] = global.answer;
+							}
+							else
+							{
+								task_question[global.task,i] = -2;
+							}
+							break;
+						}
+					}
+				#endregion
+				#region Проверка на номер вопроса и смена задачи
+					if global.question < 3
+					{
+						#region Прибавление номера вопроса (и надпии для тренировки)
+							if global.training < 1
+							{
+								global.question += 1;
+							}
+							else
+							{
+								if global.answer = 1
 								{
-									global.question += 1;
-								}
-								else
-								{
-									if global.answer = 1
+									global.training_question += 1;
+									if os_get_language() = "ru"
 									{
-										global.training_question += 1;
-										if os_get_language() = "ru"
-										{
-											global.training_gb = choose("ХОРОШО!", "ОТЛИЧНО!", "КРУТО!", "ИДЕАЛЬНО!");
-										}
-										else
-										{
-											global.training_gb = choose("GOOD!", "AWESOME", "PERFECT!", "EXELLENT");
-										}
+										global.training_gb = choose("ХОРОШО!", "ОТЛИЧНО!", "КРУТО!", "ИДЕАЛЬНО!");
 									}
 									else
 									{
-										if os_get_language() = "ru"
-										{
-											global.training_gb = choose("ПРОМАХ", "ОШИБКА", "НЕУДАЧА", "НЕВЕЗУХА");
-										}
-										else
-										{
-											global.training_gb = choose("MISS", "FAULT", "GAFFE", "MISTAKE");
-										}
+										global.training_gb = choose("GOOD!", "AWESOME", "PERFECT!", "EXELLENT");
 									}
 								}
-								if global.storm = 1
+								else
 								{
-									storm_1();
+									if os_get_language() = "ru"
+									{
+										global.training_gb = choose("ПРОМАХ", "ОШИБКА", "НЕУДАЧА", "НЕВЕЗУХА");
+									}
+									else
+									{
+										global.training_gb = choose("MISS", "FAULT", "GAFFE", "MISTAKE");
+									}
 								}
-							#endregion
-						}
-						else
-						{
-							#region Прибавление новой задачи и проверка
-								if global.task < 3
-								{
-									#region Устанавливаем новую задачу
-										#region Прибавляем задачу
-											if global.pvp = 1
+							}
+							if global.storm = 1
+							{
+								storm_1();
+							}
+						#endregion
+					}
+					else
+					{
+						#region Прибавление новой задачи и проверка
+							if global.task < 3
+							{
+								#region Устанавливаем новую задачу
+									#region Прибавляем задачу
+										if global.pvp = 1
+										{
+											global.now = !global.now;
+											part_n = 0;
+											global.nex += 1;
+											if global.nex = 2
 											{
-												global.now = !global.now;
-												part_n = 0;
-												global.nex += 1;
-												if global.nex = 2
-												{
-													global.nex = 0;
-													global.task += 1;
-													global.question = 1;
-												}
-												else
-												{
-													global.question = 1;
-												}
-												global.pvp_stop = 1;
+												global.nex = 0;
+												global.task += 1;
+												global.question = 1;
 											}
 											else
 											{
-												global.task += 1;
+												global.question = 1;
 											}
-										#endregion
+											global.pvp_stop = 1;
+										}
+										else
+										{
+											global.task += 1;
+										}
+									#endregion
+									#region Скрипт темы/раунда/задачи
+										if global.storm = 1
+										{
+											storm_1();
+										}
+										switch(theme_round[global.rounds])
+										{
+											case 1:
+												script_execute(asset_get_index("cards_" + string(round_task[global.rounds,global.task])));
+											break;
+											case 2:
+												script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task])));
+											break;
+											case 3:
+												script_execute(asset_get_index("move_" + string(round_task[global.rounds,global.task])));
+											break;
+											case 4:
+												script_execute(asset_get_index("attention_" + string(round_task[global.rounds,global.task])));
+											break;
+											case 5:
+												script_execute(asset_get_index("shooting_" + string(round_task[global.rounds,global.task])));
+											break;
+											case 6:
+												script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task])));
+											break;
+										}
+										global.question = 1;
+									#endregion
+								#endregion
+							}
+							else
+							{
+								if global.pvp = 0
+								{
+									#region Сворачивание вопроса, игрок ждёт соперника
+										list_go = 0;
+										list_scale = 0;
+										plas_scale = 0;
+									#endregion
+								}
+								else
+								{
+									#region Отвечает второй игрок
+										global.now = !global.now;
+										part_n = 0;
+										global.nex += 1;
+										list_scale = 0;
 										#region Скрипт темы/раунда/задачи
 											if global.storm = 1
 											{
@@ -6196,25 +6252,193 @@
 											}
 											global.question = 1;
 										#endregion
+										if global.nex = 2
+										{
+											global.nex = 0;
+											list_go = 0;
+											list_scale = 0;
+											plas_scale = 0;
+										}
+										else
+										{
+											global.question = 1;
+											global.pvp_stop = 1;
+										}
 									#endregion
+								}
+							}
+						#endregion
+					}
+				#endregion
+				#region Таймер
+					if timer != 0
+					{
+						#region Анимация игрока (Старый код?)
+							with(o_hero)
+							{
+								if !enemy
+								{
+									answer = global.answer;
+									image_speed = spd_max + 0.5;
+									if hero = 2
+									{
+										image_speed = spd_max;
+									}
+									if huntress_poison = 0
+									{
+										skeleton_animation_set("shoot");
+									}
+									else
+									{
+										if hero = 3
+											{
+												skeleton_animation_set("super");
+											}
+											else
+											{
+												skeleton_animation_set("shoot");
+											}
+									}
+									change = 3;
+								}
+								else
+								{
+									if global.answer = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
+										{
+										image_speed = spd_nor + 0.5;
+										if !stun
+											{
+												skeleton_animation_set("miss");
+											}
+										change = 1;
+										}
+								}
+							}
+						#endregion
+					}
+					else
+					{
+						dop_i[0] = 2;
+					}
+					global.answer = -1;
+					timer   = u_time[u_question];
+					timer_x = timer;
+				#endregion
+			}
+		#endregion
+		#region Бот
+			#region Время бота для ПвП
+				if global.pvp = 1
+				{
+					bot_time = 100;
+				}
+			#endregion
+			#region Время ответа, таймер, условия бота
+				if (bot_go != 0 && e_question <= 9) && global.training < 1 && (global.pvp = 0 or (global.pvp = 1 && list_scale = 1)) && global.online = 0
+				{
+					if bot_time = -1
+					{
+						#region Установка времени ответа бота
+							if global.pvp = 0
+							{
+								if e_time[e_question] > 3 * room_speed
+								{
+									if bot_type = 0
+									{
+										bot_time = random_range(1, 2.5) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
+									}
+									if bot_type = 1
+									{
+										bot_time = random_range(0.25, 1.5) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
+									}
+									if bot_type = 2
+									{
+										bot_time = random_range(1, 4) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
+									}
+									if bot_type = 3
+									{
+										bot_time = random_range(1, 3) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
+									}
+								}
+								else
+								{
+									if bot_type = 0
+									{
+										bot_time = random_range(0, 1) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
+									}
+									if bot_type = 1
+									{
+										bot_time = random_range(0, 0.2) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
+									}
+									if bot_type = 2
+									{
+										bot_time = random_range(0.5, 2) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
+									}
+									if bot_type = 3
+									{
+										bot_time = random_range(0, 1) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
+									}
+								}
+							}
+							bot_time2 = e_time[e_question];
+							bot_wait  = min_wait[theme_round[global.rounds],round_task[global.rounds,global.task]];
+						#endregion
+					}
+					else
+					{
+						#region По окончании времени ответа, бот отвечает
+							if bot_wait <= 0 && (global.enemy_object).stun = 0 && !global.super_ability
+							&& global.pvp = 0
+							{
+								if bot_time > 0
+								{
+									bot_time -= 1;
 								}
 								else
 								{
 									if global.pvp = 0
 									{
-										#region Сворачивание вопроса, игрок ждёт соперника
-											list_go = 0;
-											list_scale = 0;
-											plas_scale = 0;
-										#endregion
+										if (global.enemy_object).shoot = 0 && (global.enemy_object).answer = -1
+										{
+											global.bot_answer = 0;
+											if bot_type = 0
+											{
+												global.bot_answer = choose(1, 1, 0, 0, 0);
+											}
+											if bot_type = 1
+											{
+												global.bot_answer = choose(1, 0);
+											}
+											if bot_type = 2
+											{
+												global.bot_answer = choose(1, 1, 1, 1, 0);
+											}
+											if bot_type = 3
+											{
+												global.bot_answer = choose(1, 1, 1, 0);
+											}
+										}
 									}
-									else
+								}
+							}
+						#endregion
+						#region Ожидание бота, убавление таймера бота и ПвП условия
+							if global.bot_answer = -1 && (global.pvp = 0 or global.now = 1)
+							{
+								if bot_wait > 0
+								{
+									bot_wait -= 1;
+								}
+								else
+								{
+									if !global.super_ability && global.pvp = 1
 									{
-										#region Отвечает второй игрок
-											global.now = !global.now;
-											part_n = 0;
-											global.nex += 1;
-											list_scale = 0;
+										if bot_time2 > 0
+										{
+											bot_time2 -= 1;
+										}
+										else
+										{
 											#region Скрипт темы/раунда/задачи
 												if global.storm = 1
 												{
@@ -6243,193 +6467,387 @@
 												}
 												global.question = 1;
 											#endregion
-											if global.nex = 2
+											(global.player_object).answer = -1
+											(global.enemy_object).stun = 1;
+											global.bot_answer = 0;
+										}
+										if bot_time2 <= room_speed * 3
+										{
+											#region Отрисвка таймера при ПвП
+												draw_set_color(c_white);
+												draw_set_alpha(0.4 + 0.6 * bot_time2 / (3 * room_speed));
+												draw_rectangle(640 - 200 * bot_time2 / (3 * room_speed), global.height / 2 - 20 - 5 + timer_y, 640 + 200 * bot_time2 / (3 * room_speed), global.height / 2 - 20 + 5 + timer_y, 0);
+												draw_set_alpha(1);
+											#endregion
+										}
+									}
+								}
+							}
+						#endregion
+					}
+				}
+			#endregion
+			#region Границы таймера и суперспособности
+				if bot_time > 10 * room_speed
+				{
+					bot_time = 10 * room_speed;
+				}
+				if bot_time2 > 6 * room_speed
+				{
+					bot_time = 6 * room_speed;
+				}
+				if bot_wait > room_speed * 6
+				{
+					bot_wait = room_speed * 6;
+				}
+				if e_super_now1 < e_super_now
+				{
+					e_super_now1 += 1 / room_speed;
+				}
+				if e_super_now = 0
+				{
+					e_super_now1 = 0;
+				}
+			#endregion
+			#region Суперспособность бота
+			if global.hand = -1 && global.online = 0
+			{
+				if e_super_now = e_super_need && e_super_now1 >= e_super_need && theme_choose = 4 && global.e_abilitican = 1 && (global.enemy_object).stun = 0 && global.training < 1
+				{
+					if ((((e_hp - atk) / e_maxhp <= hp / maxhp ) && global.enemy_hero != 5)
+					or (global.enemy_hero = 5 && (global.enemy_object).bill_stage != 0)
+					or global.swipe_ability = 1 or (global.enemy_hero = 2)
+					or (global.enemy_hero = 1 && global.swipe_ability = 0 && super_now = super_need)
+					&& (bot_type = 2 or bot_type = 3)
+					or (global.enemy_hero = 1 && global.swipe_ability = 0) && (bot_type = 1 or bot_type = 2))
+					&& (global.enemy_object).hand_away = 0 && (global.player_object).hand_away = 0
+					{
+						if global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
+						&& (global.pvp = 0 or (global.pvp = 1 && pvp_super_popa = 1))
+						{
+							#region Суперспособность
+								if pvp_super_popa = 1
+								{
+									pvp_super_popa = 0;
+								}
+								e_super_now  = 0;
+								e_super_need += 3;
+								global.super_ability = 1;
+								with(global.enemy_object)
+								{
+									change = 3;
+									super  = 1;
+									if global.swipe_ability = 0
+									{
+										#region Если способность не украдена
+											switch(global.enemy_hero)
 											{
-												global.nex = 0;
-												list_go = 0;
-												list_scale = 0;
-												plas_scale = 0;
-											}
-											else
-											{
-												global.question = 1;
-												global.pvp_stop = 1;
+												case 1:
+													o_list.e_super_need = 3 - global.e_totem_a[15];
+													skeleton_animation_set("super");
+													change = 1;
+												break;
+												case 2:
+													super = 1;
+													image_speed = spd_max;
+													skeleton_animation_set("shoot");
+													change = 3;
+												break;
+												case 6:
+													abil_x = 160;
+													skeleton_animation_set("super");
+													change = 3;
+												break;
+												case 4:
+													skeleton_animation_set("super");
+													diego_dynamit = 1;
+													change = 3;
+												break;
+												case 3:
+													change = 1;
+													skeleton_animation_set("reload");
+													huntress_poison = 1;
+												break;
+												case 5:
+													super = 1;
+													image_speed = spd_max;
+													skeleton_animation_set("shoot");
+													change = 1;
+												break;
+												case 7:
+													super = 1;
+													image_index = 0;
+													image_speed = spd_max;
+													skeleton_animation_set("greetings");
+													change = 2;
+												break;
 											}
 										#endregion
 									}
-								}
-							#endregion
-						}
-					#endregion
-					#region Таймер
-						if timer != 0
-						{
-							#region Анимация игрока (Старый код?)
-								with(o_hero)
-								{
-									if !enemy
+									else
 									{
-										answer = global.answer;
-										image_speed = spd_max + 0.5;
-										if hero = 2
+										if global.enemy_hero != 1
 										{
-											image_speed = spd_max;
-										}
-										if huntress_poison = 0
-										{
-											skeleton_animation_set("shoot");
+											#region Возвравщение себе способности
+												change = 1;
+												skeleton_animation_set("reload"); 
+												global.super_ability = 1;
+												hand_away = room_speed;
+												o_list.super_now1 = 0;
+												var enemy_now, enemy_need, player_now, player_need;
+												enemy_now  = o_list.e_super_now;
+												enemy_need = o_list.e_super_need;
+												player_now  = o_list.super_now;
+												player_need = o_list.super_need;
+												o_list.super_now  = 0;
+												o_list.super_need = 3 - global.p_totem_a[15];
+												o_list.e_super_now  = player_now;
+												o_list.e_super_need = player_need;
+											#endregion
 										}
 										else
 										{
-											if hero = 3
-												{
-													skeleton_animation_set("super");
-												}
-												else
-												{
-													skeleton_animation_set("shoot");
-												}
+											#region Использоване суперспособности противника
+												switch(global.hero)
+													{
+													case 1:
+														image_speed = spd_max;
+														skeleton_animation_set("super");
+														change = 1;
+														o_list.e_super_need = 3 - global.e_totem_a[15]; break;
+													case 2:
+														image_speed = spd_max;
+														skeleton_animation_set("shoot");
+														change = 3;
+													break;
+													case 3:
+														change = 1;
+														skeleton_animation_set("reload");
+														huntress_poison = 1;
+													break;
+													case 4:
+														skeleton_animation_set("super");
+														diego_dynamit = 1;
+														change = 3;
+													break;
+													case 5:
+														image_speed = spd_max;
+														skeleton_animation_set("super");
+														change = 3;
+													break;
+													case 6:
+														abil_x = 160;
+														skeleton_animation_set("shoot");
+														change = 3;
+													break;
+													case 7:
+														change = 1;
+														skeleton_animation_set("super");
+													break;
+													}
+											#endregion
 										}
-										change = 3;
-									}
-									else
-									{
-										if global.answer = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
-											{
-											image_speed = spd_nor + 0.5;
-											if !stun
-												{
-													skeleton_animation_set("miss");
-												}
-											change = 1;
-											}
 									}
 								}
+								global.ability_dop_anim = 1;
 							#endregion
 						}
-						else
-						{
-							dop_i[0] = 2;
-						}
-						global.answer = -1;
-						timer   = u_time[u_question];
-						timer_x = timer;
-					#endregion
+					}
 				}
+			}
 			#endregion
-			#region Бот
-				#region Время бота для ПвП
-					if global.pvp = 1
+		#endregion
+		#region Враг
+			if global.bot_answer != -1 && bot_go != 0 && e_question <= 9
+			{
+				#region Вероятность неверного ответа для низкого ранга
+					if (global.player_rank = 15 or global.player_rank = 14) && global.pvp = 0 && global.online = 0
 					{
-						bot_time = 100;
+						var trtt;
+						trtt = choose(1, 0, 0);
+						if trtt = 1
+						{
+							global.bot_answer = 0;
+						}
 					}
 				#endregion
-				#region Время ответа, таймер, условия бота
-					if (bot_go != 0 && e_question <= 9) && global.training < 1 && (global.pvp = 0 or (global.pvp = 1 && list_scale = 1))
+				#region Вероятность неверного ответа при ульте Била
+					if global.bill_abil > 0 && global.pvp = 0 && global.online = 0
 					{
-						if bot_time = -1
+						if irandom(9) != 0
 						{
-							#region Установка времени ответа бота
-								if global.pvp = 0
-								{
-									if e_time[e_question] > 3 * room_speed
-									{
-										if bot_type = 0
-										{
-											bot_time = random_range(1, 2.5) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
-										}
-										if bot_type = 1
-										{
-											bot_time = random_range(0.25, 1.5) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
-										}
-										if bot_type = 2
-										{
-											bot_time = random_range(1, 4) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
-										}
-										if bot_type = 3
-										{
-											bot_time = random_range(1, 3) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
-										}
-									}
-									else
-									{
-										if bot_type = 0
-										{
-											bot_time = random_range(0, 1) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
-										}
-										if bot_type = 1
-										{
-											bot_time = random_range(0, 0.2) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
-										}
-										if bot_type = 2
-										{
-											bot_time = random_range(0.5, 2) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
-										}
-										if bot_type = 3
-										{
-											bot_time = random_range(0, 1) * room_speed + min_time[theme_round[global.rounds],round_task[global.rounds,global.task]];
-										}
-									}
-								}
-								bot_time2 = e_time[e_question];
-								bot_wait  = min_wait[theme_round[global.rounds],round_task[global.rounds,global.task]];
-							#endregion
+							global.bot_answer = 0;
+						}
+					}
+				#endregion
+				#region Зависимость вопроса и времени игрока
+					e_answer[e_question] = global.bot_answer;
+					if e_answer[e_question] > u_answer[e_question] && global.pvp = 0
+					{
+						if e_question > u_question
+						{
+							e_time[e_question] = (3 + 3 * global.e_totem_a[4]) * room_speed;
+						}
+						if e_question = u_question
+						{
+							if timer > (3 + 3 * global.p_totem_a[4]) * room_speed
+							{
+								timer = (3 + 3 * global.p_totem_a[4]) * room_speed;
+							}
+						}
+					}
+					e_question += 1;
+				#endregion
+				#region ПвП, сворачивание вопроса
+					if global.pvp = 1
+					{
+						list_scale = 0;
+						#region Скрипт темы/раунда/задачи
+							if global.storm = 1
+							{
+								storm_1();
+							}
+							switch(theme_round[global.rounds])
+							{
+								case 1:
+									script_execute(asset_get_index("cards_" + string(round_task[global.rounds,global.task])));
+								break;
+								case 2:
+									script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task])));
+								break;
+								case 3:
+									script_execute(asset_get_index("move_" + string(round_task[global.rounds,global.task])));
+								break;
+								case 4:
+									script_execute(asset_get_index("attention_" + string(round_task[global.rounds,global.task])));
+								break;
+								case 5:
+									script_execute(asset_get_index("shooting_" + string(round_task[global.rounds,global.task])));
+								break;
+								case 6:
+									script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task])));
+								break;
+							}
+							global.question = 1;
+						#endregion
+					}
+				#endregion
+				#region Эффект идола молнии
+					if global.idol[3] = 4
+					{
+						if global.bot_answer = 0 
+						{
+							global.anim[3,0] = 0;
+						}
+					}
+				#endregion
+				#region Эффект идола ветра
+					if global.idol[2] = 4
+					{
+						var answ, may;
+						answ = global.bot_answer;
+						may = choose(0, 1);
+						if may = 1
+						{
+							global.bot_answer = !answ;
+						}
+						if answ != global.bot_answer
+						{
+							global.anim[2,0] = 0;
+						}
+					}
+				#endregion
+				#region Эффект тотема игрока (промах)
+					if global.p_totem_a[9]
+					{
+						var chance;
+						chance = irandom(99);
+						if chance < 5
+						{
+							global.bot_answer = 0;
+						}
+					}
+				#endregion
+				#region Эффект тотема игрока (яд)
+					if global.p_totem_a[18] = 1
+					{
+						if global.bot_answer = 0
+						{
+							(global.player_object).have_posion = 1;
+						}
+					}
+				#endregion
+				#region ОТВЕТ ВРАГА
+					if global.bot_answer = 1
+					{
+						if global.hand = -1
+						{
+							if e_super_now < e_super_need
+							{
+								e_super_now += 1;
+							}
 						}
 						else
 						{
-							#region По окончании времени ответа, бот отвечает
-								if bot_wait <= 0 && (global.enemy_object).stun = 0 && !global.super_ability
-								&& global.pvp = 0
+							if global.hand = -1 or (global.hand = 0 && global.enemy_hero = 1) or (global.hand = 1 && global.hero = 1)
+							{
+								if e_super_now < e_super_need
 								{
-									if bot_time > 0
-									{
-										bot_time -= 1;
-									}
-									else
-									{
-										if global.pvp = 0
-										{
-											if (global.enemy_object).shoot = 0 && (global.enemy_object).answer = -1
-											{
-												global.bot_answer = 0;
-												if bot_type = 0
-												{
-													global.bot_answer = choose(1, 1, 0, 0, 0);
-												}
-												if bot_type = 1
-												{
-													global.bot_answer = choose(1, 0);
-												}
-												if bot_type = 2
-												{
-													global.bot_answer = choose(1, 1, 1, 1, 0);
-												}
-												if bot_type = 3
-												{
-													global.bot_answer = choose(1, 1, 1, 0);
-												}
-											}
-										}
-									}
+									e_super_now += 1;
 								}
-							#endregion
-							#region Ожидание бота, убавление таймера бота и ПвП условия
-								if global.bot_answer = -1 && (global.pvp = 0 or global.now = 1)
+							}
+							else
+							{
+								if super_now < super_need
 								{
-									if bot_wait > 0
+									super_now += 1;
+								}
+							}
+						}
+						if global.e_critical < 3 - 1 * global.e_totem_a[3]
+						{
+							global.e_critical += 1;
+						}
+					}
+					else
+					{
+						global.e_critical = 0;
+					}
+				#endregion
+				#region Завись ответа в task_question
+					for(i = 1; i <= 6; i ++)
+					{
+						if task_question[bot_task,i] = -1
+						{
+							if bot_time2 != 0
+							{
+								task_question[bot_task,i] = 2 + global.bot_answer;
+							}
+							else
+							{
+								task_question[bot_task,i] = -2;
+							}
+							break;
+						}
+					}
+				#endregion
+				#region Новый вопрос и задача у врага
+					if bot_question < 3
+						{
+							bot_question += 1;
+						}
+						else
+						{
+							#region Проверка новой задачи прибавление
+								if global.online = 0
+								{
+									if bot_task < 3
 									{
-										bot_wait -= 1;
-									}
-									else
-									{
-										if !global.super_ability && global.pvp = 1
-										{
-											if bot_time2 > 0
+										#region Прибавление задачи и Установка новой задачи в случае ПвП
+											if global.pvp = 1
 											{
-												bot_time2 -= 1;
-											}
-											else
-											{
+												global.now = !global.now;
+												list_scale = 0;
 												#region Скрипт темы/раунда/задачи
 													if global.storm = 1
 													{
@@ -6458,510 +6876,104 @@
 													}
 													global.question = 1;
 												#endregion
-												(global.player_object).answer = -1
-												(global.enemy_object).stun = 1;
-												global.bot_answer = 0;
-											}
-											if bot_time2 <= room_speed * 3
-											{
-												#region Отрисвка таймера при ПвП
-													draw_set_color(c_white);
-													draw_set_alpha(0.4 + 0.6 * bot_time2 / (3 * room_speed));
-													draw_rectangle(640 - 200 * bot_time2 / (3 * room_speed), global.height / 2 - 20 - 5 + timer_y, 640 + 200 * bot_time2 / (3 * room_speed), global.height / 2 - 20 + 5 + timer_y, 0);
-													draw_set_alpha(1);
-												#endregion
-											}
-										}
-									}
-								}
-							#endregion
-						}
-					}
-				#endregion
-				#region Границы таймера и суперспособности
-					if bot_time > 10 * room_speed
-					{
-						bot_time = 10 * room_speed;
-					}
-					if bot_time2 > 6 * room_speed
-					{
-						bot_time = 6 * room_speed;
-					}
-					if bot_wait > room_speed * 6
-					{
-						bot_wait = room_speed * 6;
-					}
-					if e_super_now1 < e_super_now
-					{
-						e_super_now1 += 1 / room_speed;
-					}
-					if e_super_now = 0
-					{
-						e_super_now1 = 0;
-					}
-				#endregion
-				#region Суперспособность бота
-				if global.hand = -1
-				{
-					if e_super_now = e_super_need && e_super_now1 >= e_super_need && theme_choose = 4 && global.e_abilitican = 1 && (global.enemy_object).stun = 0 && global.training < 1
-					{
-						if ((((e_hp - atk) / e_maxhp <= hp / maxhp ) && global.enemy_hero != 5)
-						or (global.enemy_hero = 5 && (global.enemy_object).bill_stage != 0)
-						or global.swipe_ability = 1 or (global.enemy_hero = 2)
-						or (global.enemy_hero = 1 && global.swipe_ability = 0 && super_now = super_need)
-						&& (bot_type = 2 or bot_type = 3)
-						or (global.enemy_hero = 1 && global.swipe_ability = 0) && (bot_type = 1 or bot_type = 2))
-						&& (global.enemy_object).hand_away = 0 && (global.player_object).hand_away = 0
-						{
-							if global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
-							&& (global.pvp = 0 or (global.pvp = 1 && pvp_super_popa = 1))
-							{
-								#region Суперспособность
-									if pvp_super_popa = 1
-									{
-										pvp_super_popa = 0;
-									}
-									e_super_now  = 0;
-									e_super_need += 3;
-									global.super_ability = 1;
-									with(global.enemy_object)
-									{
-										change = 3;
-										super  = 1;
-										if global.swipe_ability = 0
-										{
-											#region Если способность не украдена
-												switch(global.enemy_hero)
+												part_n = 0;
+												global.nex += 1;
+												if global.nex = 2
 												{
-													case 1:
-														o_list.e_super_need = 3 - global.e_totem_a[15];
-														skeleton_animation_set("super");
-														change = 1;
-													break;
-													case 2:
-														super = 1;
-														image_speed = spd_max;
-														skeleton_animation_set("shoot");
-														change = 3;
-													break;
-													case 6:
-														abil_x = 160;
-														skeleton_animation_set("super");
-														change = 3;
-													break;
-													case 4:
-														skeleton_animation_set("super");
-														diego_dynamit = 1;
-														change = 3;
-													break;
-													case 3:
-														change = 1;
-														skeleton_animation_set("reload");
-														huntress_poison = 1;
-													break;
-													case 5:
-														super = 1;
-														image_speed = spd_max;
-														skeleton_animation_set("shoot");
-														change = 1;
-													break;
-													case 7:
-														super = 1;
-														image_index = 0;
-														image_speed = spd_max;
-														skeleton_animation_set("greetings");
-														change = 2;
-													break;
+													global.nex = 0;
+													bot_task += 1;
+													global.task += 1;
+													global.question = 1;
 												}
-											#endregion
-										}
-										else
-										{
-											if global.enemy_hero != 1
-											{
-												#region Возвравщение себе способности
-													change = 1;
-													skeleton_animation_set("reload"); 
-													global.super_ability = 1;
-													hand_away = room_speed;
-													o_list.super_now1 = 0;
-													var enemy_now, enemy_need, player_now, player_need;
-													enemy_now  = o_list.e_super_now;
-													enemy_need = o_list.e_super_need;
-													player_now  = o_list.super_now;
-													player_need = o_list.super_need;
-													o_list.super_now  = 0;
-													o_list.super_need = 3 - global.p_totem_a[15];
-													o_list.e_super_now  = player_now;
-													o_list.e_super_need = player_need;
-												#endregion
-											}
-											else
-											{
-												#region Использоване суперспособности противника
-													switch(global.hero)
-														{
-														case 1:
-															image_speed = spd_max;
-															skeleton_animation_set("super");
-															change = 1;
-															o_list.e_super_need = 3 - global.e_totem_a[15]; break;
-														case 2:
-															image_speed = spd_max;
-															skeleton_animation_set("shoot");
-															change = 3;
-														break;
-														case 3:
-															change = 1;
-															skeleton_animation_set("reload");
-															huntress_poison = 1;
-														break;
-														case 4:
-															skeleton_animation_set("super");
-															diego_dynamit = 1;
-															change = 3;
-														break;
-														case 5:
-															image_speed = spd_max;
-															skeleton_animation_set("super");
-															change = 3;
-														break;
-														case 6:
-															abil_x = 160;
-															skeleton_animation_set("shoot");
-															change = 3;
-														break;
-														case 7:
-															change = 1;
-															skeleton_animation_set("super");
-														break;
-														}
-												#endregion
-											}
-										}
-									}
-									global.ability_dop_anim = 1;
-								#endregion
-							}
-						}
-					}
-				}
-				#endregion
-			#endregion
-			#region Враг
-				if global.bot_answer != -1 && bot_go != 0 && e_question <= 9
-				{
-					#region Вероятность неверного ответа для низкого ранга
-						if (global.player_rank = 15 or global.player_rank = 14) && global.pvp = 0
-						{
-							var trtt;
-							trtt = choose(1, 0, 0);
-							if trtt = 1
-							{
-								global.bot_answer = 0;
-							}
-						}
-					#endregion
-					#region Вероятность неверного ответа при ульте Била
-						if global.bill_abil > 0 && global.pvp = 0
-						{
-							if irandom(9) != 0
-							{
-								global.bot_answer = 0;
-							}
-						}
-					#endregion
-					#region Зависимость вопроса и времени игрока
-						e_answer[e_question] = global.bot_answer;
-						if e_answer[e_question] > u_answer[e_question] && global.pvp = 0
-						{
-							if e_question > u_question
-							{
-								e_time[e_question] = (3 + 3 * global.e_totem_a[4]) * room_speed;
-							}
-							if e_question = u_question
-							{
-								if timer > (3 + 3 * global.p_totem_a[4]) * room_speed
-								{
-									timer = (3 + 3 * global.p_totem_a[4]) * room_speed;
-								}
-							}
-						}
-						e_question += 1;
-					#endregion
-					#region ПвП, сворачивание вопроса
-						if global.pvp = 1
-						{
-							list_scale = 0;
-							#region Скрипт темы/раунда/задачи
-								if global.storm = 1
-								{
-									storm_1();
-								}
-								switch(theme_round[global.rounds])
-								{
-									case 1:
-										script_execute(asset_get_index("cards_" + string(round_task[global.rounds,global.task])));
-									break;
-									case 2:
-										script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task])));
-									break;
-									case 3:
-										script_execute(asset_get_index("move_" + string(round_task[global.rounds,global.task])));
-									break;
-									case 4:
-										script_execute(asset_get_index("attention_" + string(round_task[global.rounds,global.task])));
-									break;
-									case 5:
-										script_execute(asset_get_index("shooting_" + string(round_task[global.rounds,global.task])));
-									break;
-									case 6:
-										script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task])));
-									break;
-								}
-								global.question = 1;
-							#endregion
-						}
-					#endregion
-					#region Эффект идола молнии
-						if global.idol[3] = 4
-						{
-							if global.bot_answer = 0 
-							{
-								global.anim[3,0] = 0;
-							}
-						}
-					#endregion
-					#region Эффект идола ветра
-						if global.idol[2] = 4
-						{
-							var answ, may;
-							answ = global.bot_answer;
-							may = choose(0, 1);
-							if may = 1
-							{
-								global.bot_answer = !answ;
-							}
-							if answ != global.bot_answer
-							{
-								global.anim[2,0] = 0;
-							}
-						}
-					#endregion
-					#region Эффект тотема игрока (промах)
-						if global.p_totem_a[9]
-						{
-							var chance;
-							chance = irandom(99);
-							if chance < 5
-							{
-								global.bot_answer = 0;
-							}
-						}
-					#endregion
-					#region Эффект тотема игрока (яд)
-						if global.p_totem_a[18] = 1
-						{
-							if global.bot_answer = 0
-							{
-								(global.player_object).have_posion = 1;
-							}
-						}
-					#endregion
-					#region ОТВЕТ ВРАГА
-						if global.bot_answer = 1
-						{
-							if global.hand = -1
-							{
-								if e_super_now < e_super_need
-								{
-									e_super_now += 1;
-								}
-							}
-							else
-							{
-								if global.hand = -1 or (global.hand = 0 && global.enemy_hero = 1) or (global.hand = 1 && global.hero = 1)
-								{
-									if e_super_now < e_super_need
-									{
-										e_super_now += 1;
-									}
-								}
-								else
-								{
-									if super_now < super_need
-									{
-										super_now += 1;
-									}
-								}
-							}
-							if global.e_critical < 3 - 1 * global.e_totem_a[3]
-							{
-								global.e_critical += 1;
-							}
-						}
-						else
-						{
-							global.e_critical = 0;
-						}
-					#endregion
-					#region Завись ответа в task_question
-						for(i = 1; i <= 6; i ++)
-						{
-							if task_question[bot_task,i] = -1
-							{
-								if bot_time2 != 0
-								{
-									task_question[bot_task,i] = 2 + global.bot_answer;
-								}
-								else
-								{
-									task_question[bot_task,i] = -2;
-								}
-								break;
-							}
-						}
-					#endregion
-					#region Проверка на номер вопроса и смена задачи
-						if bot_question < 3
-						{
-							bot_question += 1;
-						}
-						else
-						{
-							#region Проверка новой задачи прибавление
-								if bot_task < 3
-								{
-									#region Прибавление задачи и Установка новой задачи в случае ПвП
-										if global.pvp = 1
-										{
-											global.now = !global.now;
-											list_scale = 0;
-											#region Скрипт темы/раунда/задачи
-												if global.storm = 1
+												else
 												{
-													storm_1();
+													global.question = 1;
 												}
-												switch(theme_round[global.rounds])
-												{
-													case 1:
-														script_execute(asset_get_index("cards_" + string(round_task[global.rounds,global.task])));
-													break;
-													case 2:
-														script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task])));
-													break;
-													case 3:
-														script_execute(asset_get_index("move_" + string(round_task[global.rounds,global.task])));
-													break;
-													case 4:
-														script_execute(asset_get_index("attention_" + string(round_task[global.rounds,global.task])));
-													break;
-													case 5:
-														script_execute(asset_get_index("shooting_" + string(round_task[global.rounds,global.task])));
-													break;
-													case 6:
-														script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task])));
-													break;
-												}
-												global.question = 1;
-											#endregion
-											part_n = 0;
-											global.nex += 1;
-											if global.nex = 2
-											{
-												global.nex = 0;
-												bot_task += 1;
-												global.task += 1;
-												global.question = 1;
-											}
-											else
-											{
-												global.question = 1;
-											}
-											global.pvp_stop = 1;
-										}
-										else
-										{
-											bot_task += 1;
-										}
-										bot_question = 1;
-									#endregion
-								}
-								else
-								{
-									if global.pvp = 0
-									{
-										#region Враг закончил овечать
-											bot_time2 = -2;
-											bot_time  = -2;
-											bot_go = 0;
-										#endregion
-									}
-									else
-									{
-										#region В случае ПвП овтечает игрок или заканчиваем раунд
-											global.now = !global.now;
-											part_n = 0;
-											global.nex += 1;
-											if global.nex = 2
-											{
-												global.nex = 0;
-												list_go = 0;
-												list_scale = 0;
-												plas_scale = 0;
-											}
-											else
-											{
-												global.question = 1;
 												global.pvp_stop = 1;
 											}
+											else
+											{
+												bot_task += 1;
+											}
+											bot_question = 1;
 										#endregion
-									}
-								}
-							#endregion
-						}
-					#endregion
-					#region Таймер
-						if bot_time2 != 0
-						{
-							#region Старый код
-								with(o_hero)
-								{
-									if enemy
-									{
-										answer = global.bot_answer;
-										image_speed = spd_max + 0.5;
-										if hero = 2
-										{
-											image_speed = spd_max;
-										}
-										skeleton_animation_set("shoot");
-										change = 3;
 									}
 									else
 									{
-										if global.bot_answer = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
+										if global.pvp = 0
 										{
-											image_speed = spd_nor + 0.5;
-											if !stun
-											{
-												skeleton_animation_set("miss");
-											}
-											change = 1;
+											#region Враг закончил овечать
+												bot_time2 = -2;
+												bot_time  = -2;
+												bot_go    = 0;
+											#endregion
+										}
+										else
+										{
+											#region В случае ПвП овтечает игрок или заканчиваем раунд
+												global.now = !global.now;
+												part_n = 0;
+												global.nex += 1;
+												if global.nex = 2
+												{
+													global.nex = 0;
+													list_go = 0;
+													list_scale = 0;
+													plas_scale = 0;
+												}
+												else
+												{
+													global.question = 1;
+													global.pvp_stop = 1;
+												}
+											#endregion
 										}
 									}
 								}
 							#endregion
 						}
-						global.bot_answer = -1;
-						if bot_go != 0
-						{
-							bot_time2 = e_time[e_question];
-						}
-						bot_time = -1;
-					#endregion
-				}
-			#endregion
+				#endregion
+				#region Таймер
+					if bot_time2 != 0
+					{
+						#region Старый код
+							with(o_hero)
+							{
+								if enemy
+								{
+									answer = global.bot_answer;
+									image_speed = spd_max + 0.5;
+									if hero = 2
+									{
+										image_speed = spd_max;
+									}
+									skeleton_animation_set("shoot");
+									change = 3;
+								}
+								else
+								{
+									if global.bot_answer = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
+									{
+										image_speed = spd_nor + 0.5;
+										if !stun
+										{
+											skeleton_animation_set("miss");
+										}
+										change = 1;
+									}
+								}
+							}
+						#endregion
+					}
+					global.bot_answer = -1;
+					if bot_go != 0
+					{
+						bot_time2 = e_time[e_question];
+					}
+					bot_time = -1;
+				#endregion
+			}
+		#endregion
 		#region Конец раунда
 			#region Переменная сраки
 				global.sraka = 0;
@@ -7178,7 +7190,7 @@
 				}
 			#endregion
 		}
-	#endregion
+#endregion
 #endregion
 #region Способность
 	#region Нажатие на супер
@@ -8863,7 +8875,7 @@
 #endregion
 #region Выбор Первого Игрока
 	if global.game_stage = 1 or global.game_stage = 2
-		{
+	{
 		#region Стадия 0
 			if coin_stage = 0
 			{
@@ -8960,7 +8972,14 @@
 					#region Падение монтки
 						if global.online
 						{
-							first_player = o_client.first_p;
+							if global.myid = o_client.first_p
+							{
+								first_player = 1;
+							}
+							else
+							{
+								first_player = 0;
+							}
 						}
 						else
 						{
@@ -9073,7 +9092,7 @@
 				draw_text_transformed_t(first_x + global.pvp * 30, first_y, coin_you[2], first_s * 0.3, first_s * 0.3, 0, global.color_white, c_black);
 			}
 		#endregion
-		}
+	}
 #endregion
 #region Выбор Темы
 	if (theme_choose = 1 && global.game_stage = 2) or theme_choose = 7 or theme_choose = 8
@@ -9184,6 +9203,11 @@
 										audio_play_sound(sd_text, 2, 0);
 									}
 									theme_round[global.rounds] = theme_t[i];
+									if global.online
+									{
+										o_client.theme_r[global.rounds] = i;
+										o_client.cl_stage = 4;
+									}
 								}
 							}
 							theme_s[i] = 1;
@@ -9402,7 +9426,7 @@
 				theme_points_time += 1;
 				if theme_points_time = 20
 				{
-					if (first_player = 0 && global.pvp = 0) && theme_points = ""
+					if (first_player = 0 && global.pvp = 0 && global.online = 0) && theme_points = ""
 					{
 						var numnum;
 						if theme_choose = 1
@@ -9454,42 +9478,89 @@
 				}
 				else
 				{
-					var numnum;
-					if theme_a[1] = 1 && theme_a[2] = 0 && theme_a[3] = 0
+					if global.online
 					{
-						numnum = 1;
+						if global.myid = o_client.first_p
+						{
+							var numnum;
+							if theme_a[1] = 1 && theme_a[2] = 0 && theme_a[3] = 0
+							{
+								numnum = 1;
+							}
+							if theme_a[2] = 1 && theme_a[1] = 0 && theme_a[3] = 0
+							{
+								numnum = 2;
+							}
+							if theme_a[3] = 1 && theme_a[1] = 0 && theme_a[2] = 0
+							{
+								numnum = 3;
+							}
+							if theme_a[1] = 1 && theme_a[2] = 1 && theme_a[3] = 0
+							{
+								numnum = choose(1, 2);
+							}
+							if theme_a[2] = 1 && theme_a[1] = 0 && theme_a[3] = 1
+							{
+								numnum = choose(2, 3);
+							}
+							if theme_a[3] = 1 && theme_a[1] = 1 && theme_a[2] = 0
+							{
+								numnum = choose(1, 3);
+							}
+							if theme_a[3] = 1 && theme_a[1] = 1 && theme_a[2] = 1
+							{
+								numnum = choose(1, 2, 3);
+							}
+							theme_click = numnum;
+							theme_g = 1;
+							if global.sound = 1
+							{
+								audio_play_sound(sd_text, 2, 0);
+							}
+							theme_round[global.rounds] = theme_t[numnum];
+							o_client.theme_r[global.rounds] = numnum;
+							o_client.cl_stage = 4;
+						}
 					}
-					if theme_a[2] = 1 && theme_a[1] = 0 && theme_a[3] = 0
+					else
 					{
-						numnum = 2;
+						var numnum;
+						if theme_a[1] = 1 && theme_a[2] = 0 && theme_a[3] = 0
+						{
+							numnum = 1;
+						}
+						if theme_a[2] = 1 && theme_a[1] = 0 && theme_a[3] = 0
+						{
+							numnum = 2;
+						}
+						if theme_a[3] = 1 && theme_a[1] = 0 && theme_a[2] = 0
+						{
+							numnum = 3;
+						}
+						if theme_a[1] = 1 && theme_a[2] = 1 && theme_a[3] = 0
+						{
+							numnum = choose(1, 2);
+						}
+						if theme_a[2] = 1 && theme_a[1] = 0 && theme_a[3] = 1
+						{
+							numnum = choose(2, 3);
+						}
+						if theme_a[3] = 1 && theme_a[1] = 1 && theme_a[2] = 0
+						{
+							numnum = choose(1, 3);
+						}
+						if theme_a[3] = 1 && theme_a[1] = 1 && theme_a[2] = 1
+						{
+							numnum = choose(1, 2, 3);
+						}
+						theme_click = numnum;
+						theme_g = 1;
+						if global.sound = 1
+						{
+							audio_play_sound(sd_text, 2, 0);
+						}
+						theme_round[global.rounds] = theme_t[numnum];
 					}
-					if theme_a[3] = 1 && theme_a[1] = 0 && theme_a[2] = 0
-					{
-						numnum = 3;
-					}
-					if theme_a[1] = 1 && theme_a[2] = 1 && theme_a[3] = 0
-					{
-						numnum = choose(1, 2);
-					}
-					if theme_a[2] = 1 && theme_a[1] = 0 && theme_a[3] = 1
-					{
-						numnum = choose(2, 3);
-					}
-					if theme_a[3] = 1 && theme_a[1] = 1 && theme_a[2] = 0
-					{
-						numnum = choose(1, 3);
-					}
-					if theme_a[3] = 1 && theme_a[1] = 1 && theme_a[2] = 1
-					{
-						numnum = choose(1, 2, 3);
-					}
-					theme_click = numnum;
-					theme_g = 1;
-					if global.sound = 1
-					{
-						audio_play_sound(sd_text, 2, 0);
-					}
-					theme_round[global.rounds] = theme_t[numnum];
 				}
 				if theme_timer <= room_speed * 7
 				{
@@ -9688,10 +9759,14 @@
 				}
 			#endregion
 			#region Переменные нажатий и первого игрока
-				theme_g = 0;
-				theme_click = 0;
-				theme_dot = "";
+				theme_g      = 0;
+				theme_click  = 0;
+				theme_dot    = "";
 				first_player = !first_player;
+				if global.online
+				{
+					o_client.first_p = 3 - o_client.first_p;
+				}
 			#endregion
 			#region Переменные тем
 				for(i = 1; i <= 3; i ++)
@@ -9753,7 +9828,14 @@
 				round_alpha  = 1;
 				coin_y       = global.height + 300;
 				choose_y     = global.height + 300;
-				theme_choose = 3;
+				if global.online
+				{
+					o_client.cl_stage = 5;
+				}
+				else
+				{
+					theme_choose = 3;
+				}
 			#endregion
 		}
 	#endregion
@@ -12676,5 +12758,5 @@
 #endregion
 #region Отладка
 	draw_set_font(global.game_font);
-	draw_text_transformed_t(mouse_x, mouse_y, string((global.player_object).image_speed), 0.2, 0.2, 0, c_white, c_black);
+	draw_text_transformed_t(global.width / 2, global.height / 2, string(theme_t[1]) + "-" + string(theme_t[2]) + "-" + string(theme_t[3]), 0.25, 0.25, 0, c_white, c_black);
 #endregion

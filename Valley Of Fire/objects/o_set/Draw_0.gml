@@ -48,7 +48,7 @@
 	}
 #endregion
 #region ОТЛАДКА: Ини-файлы
-	#region Тренировка завершена
+	#region (Z) Тренировка завершена
 		if keyboard_check_pressed(ord("Z"))
 		{
 			ini_open("Music.ini");
@@ -78,7 +78,7 @@
 			ini_close();
 		}
 	#endregion
-	#region Тренировка ноль
+	#region (X) Тренировка ноль
 		if keyboard_check_pressed(ord("X"))
 		{
 			ini_open("Music.ini");
@@ -108,7 +108,7 @@
 			ini_close();
 		}
 	#endregion
-	#region Рандомные уровни на листовках
+	#region (C) Рандомные уровни на листовках
 		if keyboard_check_pressed(ord("C"))
 		{
 			ini_open("Music.ini");
@@ -120,7 +120,7 @@
 			ini_close();
 		}
 	#endregion
-	#region Нулевой уровень на листовках
+	#region (V) Нулевой уровень на листовках
 		if keyboard_check_pressed(ord("V"))
 		{
 			ini_open("Music.ini");
@@ -133,7 +133,7 @@
 			ini_close();
 		}
 	#endregion
-	#region Все тотемы есть
+	#region (B) Все тотемы есть
 		if keyboard_check_pressed(ord("B"))
 		{
 			ini_open("Music.ini");
@@ -147,7 +147,7 @@
 			ini_close();
 		}
 	#endregion
-	#region Все тотемы ноль
+	#region (N) Все тотемы ноль
 		if keyboard_check_pressed(ord("N"))
 		{
 			ini_open("Music.ini");
@@ -168,7 +168,7 @@
 			ini_close();
 		}
 	#endregion
-	#region Ранг рандомный
+	#region (Q) Ранг рандомный
 		if keyboard_check_pressed(ord("Q"))
 		{
 			ini_open("Music.ini");
@@ -177,7 +177,7 @@
 			ini_close();
 		}
 	#endregion
-	#region Ранг - ноль
+	#region (W) Ранг - ноль
 		if keyboard_check_pressed(ord("W"))
 		{
 			ini_open("Music.ini");
@@ -186,7 +186,7 @@
 			ini_close();
 		}
 	#endregion
-	#region Рандом валюты
+	#region (A) Рандом валюты
 		if keyboard_check_pressed(ord("A"))
 		{
 			ini_open("Music.ini");
@@ -197,7 +197,7 @@
 			ini_close();
 		}
 	#endregion
-	#region Нулевая валюта
+	#region (S) Нулевая валюта
 		if keyboard_check_pressed(ord("S"))
 		{
 			ini_open("Music.ini");
