@@ -81,7 +81,7 @@ with(o_hero)
 		
 		if miss = 0
 			{
-			if o_list.hp > 0 && o_list.e_hp > 0
+			if o_list.hp >= 1 && o_list.e_hp >= 1
 				{ o_list.e_hp -= o_list.atk * datk + (1 + global.p_totem_a[5]) * o_list.atk * datk / 10 * (global.critical == (3 - 1 * global.p_totem_a[3])); }
 			}	
 			
@@ -108,3 +108,7 @@ with(o_hero)
 			}
 		}
 	}
+if global.online
+{
+	o_client.cl_stage = 6;
+}

@@ -195,8 +195,6 @@ if type = network_type_data
 					question[global.enid] = param[? "question"];
 					task[global.enid]     = param[? "task"];
 					
-					need_hp[global.myid]  = param[? "hp"];
-					
 					global.bot_answer   = answer[global.enid];
 					o_list.bot_question = question[global.enid];
 					o_list.bot_task     = task[global.enid];
@@ -205,6 +203,27 @@ if type = network_type_data
 			#region Досылка темы
 				case 5:
 					rearr = 1;
+				break;
+			#endregion
+			#region Синхронизация хп
+				case 6:
+					o_list.hp = param[? "hp"];
+				break;
+			#endregion
+			#region Игрок закончил действовать в раунде
+				case 8:
+					if o_list.player_end[global.myid] = 0
+					{
+						o_list.faster_id = global.enid;
+					}
+					o_list.player_end[global.enid] = param[? "player_end"];
+				break;
+			#endregion
+			#region Синхронизация задач
+				case 9:
+					o_list.round_task[global.rounds,1] = param[? "task1"];
+					o_list.round_task[global.rounds,2] = param[? "task2"];
+					o_list.round_task[global.rounds,3] = param[? "task3"];
 				break;
 			#endregion
 		}

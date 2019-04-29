@@ -75,7 +75,7 @@
 							#region Идол игрока
 								if j = 1
 								{
-									if hp > 0 && e_hp > 0
+									if hp >= 1 && e_hp >= 1
 									{
 										hp -= e_atk / 2;
 									}
@@ -114,7 +114,7 @@
 										}
 									}
 									/////// КВЕСТЫ
-									if hp > 0 && e_hp > 0
+									if hp >= 1 && e_hp >= 1
 									{
 										e_hp -= atk / 2;
 									}
@@ -6986,134 +6986,172 @@
 				}
 			#endregion
 			#region Конец раунда
-				if global.training < 1 && ((u_question >= 10 && e_question >= 10 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && global.sraka = 0) or hp <= 0 or e_hp <= 0)
+				if global.online
+				{
+						if global.training < 1 && ((u_question >= 10 && (global.player_object).answer = -1 && global.sraka = 0) or hp < 1 or e_hp < 1)
+						&& theme_choose != 5  && theme_choose != 6 && global.super_ability = 0 && ((global.player_object).diego_dynamit = 0 or (global.player_object).diego_dynamit = 1)
+						{
+							if player_end[global.myid] = 0
+							{
+								player_end[global.myid] = 1;
+								if player_end[global.enid] = 0
+								{
+									faster_id = global.myid;
+								}
+								o_client.cl_stage = 8;
+							}
+						}
+				}
+				if global.training < 1 && ((u_question >= 10 && e_question >= 10 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && global.sraka = 0) or hp < 1 or e_hp < 1)
 				&& theme_choose != 5  && theme_choose != 6 && global.super_ability = 0 && ((global.player_object).diego_dynamit = 0 or (global.player_object).diego_dynamit = 1)
 				&& ((global.enemy_object).diego_dynamit = 0 or (global.enemy_object).diego_dynamit = 1)// && (global.player_object).shoot = 0  && (global.enemy_object).shoot = 0// && global.sraka = 0
 				{
-					#region Результат раунда в зависимости от хп игроков
-						if hp / maxhp > e_hp / e_maxhp
-						{
-							roundskul[global.rounds] = 1;
-						}
-						if hp / maxhp < e_hp / e_maxhp
-						{
-							roundskul[global.rounds] = 2;
-						}
-						if abs(hp / maxhp - e_hp / e_maxhp) <= 0.015
-						{
-							if u_time[9] > e_time[9]
+					if (global.online = 0 or (global.online = 1 && ((player_end[1] = 1 && player_end[2] = 1) or hp < 1 or e_hp < 1)))
+					{
+						#region Результат раунда в зависимости от хп игроков
+							if hp / maxhp > e_hp / e_maxhp
 							{
 								roundskul[global.rounds] = 1;
 							}
-							else
+							if hp / maxhp < e_hp / e_maxhp
 							{
 								roundskul[global.rounds] = 2;
-							}  // Раунд окончен
-						}
-					#endregion
-					#region Обнуление переменных U
-						for(i = 1; i <= 10; i ++)
-						{
-							u_answer[i] = -1;
-							e_answer[i] = -1;
-							u_time[i] = (6 + 3 * global.p_totem_a[4]) * room_speed;
-							e_time[i] = (6 + 3 * global.e_totem_a[4]) * room_speed;
-						}
-					#endregion
-					#region Обнуление плашек и прочих переменных
-						bot_time2 = e_time[u_question];
-						timer     = u_time[u_question];
-						u_question = 1;
-						e_question = 1;
-						global.sraka = 0; // Никто не атакует
-						list_go = 0;
-						list_scale = 0;
-						plas_scale = 0;
-					#endregion		
-					#region Обнуление переменных бота и шторм
-						bot_go = 0; // 1
-						bot_question = 1;
-						bot_task     = 1;
-						bot_time   = -1;
-						bot_time2  =  6 * e_time[1];
-						global.task = 1;
-					#endregion
-					#region Скрипт темы/раунда/задачи
-						if global.storm = 1
-						{
-							storm_1();
-						}
-						switch(theme_round[global.rounds])
-						{
-							case 1:
-								script_execute(asset_get_index("cards_" + string(round_task[global.rounds,global.task])));
-							break;
-							case 2:
-								script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task])));
-							break;
-							case 3:
-								script_execute(asset_get_index("move_" + string(round_task[global.rounds,global.task])));
-							break;
-							case 4:
-								script_execute(asset_get_index("attention_" + string(round_task[global.rounds,global.task])));
-							break;
-							case 5:
-								script_execute(asset_get_index("shooting_" + string(round_task[global.rounds,global.task])));
-							break;
-							case 6:
-								script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task])));
-							break;
-						}
-						global.question = 1;
-					#endregion
-					#region Стадия игры, вопрос и задача
-						global.question = 1;
-						global.task = 1;
-						global.game_stage = 4;
-					#endregion			
-					#region Обнуление переменных текста раунда
-						round_text1_x = 1450;
-						round_3_x     = 1450;
-						round_2_x     = 1450;
-						round_1_x     = 1450;
-						round_0_x     = 1450;
-						round_alpha   = 1;
-					#endregion
-					#region Обнуление переменных ответов
-						task_question[1,1] = -1;
-						task_question[1,2] = -1;
-						task_question[1,3] = -1;
-						task_question[1,4] = -1;
-						task_question[1,5] = -1;
-						task_question[1,6] = -1; // 0 - игрок неверно, 1 - игрок верно
-						task_question[2,1] = -1;
-						task_question[2,2] = -1;
-						task_question[2,3] = -1;
-						task_question[2,4] = -1;
-						task_question[2,5] = -1;
-						task_question[2,6] = -1; // 2 - соперник неверно, 3 - соперник верно
-						task_question[3,1] = -1;
-						task_question[3,2] = -1;
-						task_question[3,3] = -1;
-						task_question[3,4] = -1;
-						task_question[3,5] = -1;
-						task_question[3,6] = -1; //
-					#endregion
-					#region Переменные победителя и смена стадии
-						if (roundskul[1] = 1 &&  roundskul[2] = 1) or (roundskul[1] = 1 &&  roundskul[3] = 1)  or (roundskul[2] = 1 &&  roundskul[3] = 1)
-						{
-							theme_choose = 9; whowin = 1;
-						}
-						if (roundskul[1] = 2 &&  roundskul[2] = 2) or (roundskul[1] = 2 &&  roundskul[3] = 2)  or (roundskul[2] = 2 &&  roundskul[3] = 2)
-						{
-							whowin = 2;
-						}
-						if global.rounds < 3
-						{
-							global.rounds += 1;
-						}
-						theme_choose = 5;
-					#endregion
+							}
+							if abs(hp / maxhp - e_hp / e_maxhp) <= 0.015
+							{
+								if global.online
+								{
+									if faster_id = global.myid
+									{
+										roundskul[global.rounds] = 1;
+									}
+									else
+									{
+										roundskul[global.rounds] = 2;
+									}  // Раунд окончен
+								}
+								else
+								{
+									if u_time[9] > e_time[9]
+									{
+										roundskul[global.rounds] = 1;
+									}
+									else
+									{
+										roundskul[global.rounds] = 2;
+									}  // Раунд окончен
+								}
+							}
+						#endregion
+						#region Обнуление переменных U
+							for(i = 1; i <= 10; i ++)
+							{
+								u_answer[i] = -1;
+								e_answer[i] = -1;
+								u_time[i] = (6 + 3 * global.p_totem_a[4]) * room_speed;
+								e_time[i] = (6 + 3 * global.e_totem_a[4]) * room_speed;
+							}
+						#endregion
+						#region Обнуление плашек и прочих переменных
+							bot_time2 = e_time[u_question];
+							timer     = u_time[u_question];
+							u_question = 1;
+							e_question = 1;
+							global.sraka = 0; // Никто не атакует
+							list_go = 0;
+							list_scale = 0;
+							plas_scale = 0;
+						#endregion		
+						#region Обнуление переменных бота и шторм
+							bot_go = 0; // 1
+							bot_question = 1;
+							bot_task     = 1;
+							bot_time   = -1;
+							bot_time2  =  6 * e_time[1];
+							global.task = 1;
+						#endregion
+						#region Скрипт темы/раунда/задачи
+							if global.storm = 1
+							{
+								storm_1();
+							}
+							switch(theme_round[global.rounds])
+							{
+								case 1:
+									script_execute(asset_get_index("cards_" + string(round_task[global.rounds,global.task])));
+								break;
+								case 2:
+									script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task])));
+								break;
+								case 3:
+									script_execute(asset_get_index("move_" + string(round_task[global.rounds,global.task])));
+								break;
+								case 4:
+									script_execute(asset_get_index("attention_" + string(round_task[global.rounds,global.task])));
+								break;
+								case 5:
+									script_execute(asset_get_index("shooting_" + string(round_task[global.rounds,global.task])));
+								break;
+								case 6:
+									script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task])));
+								break;
+							}
+							global.question = 1;
+						#endregion
+						#region Стадия игры, вопрос и задача
+							global.question = 1;
+							global.task = 1;
+							global.game_stage = 4;
+						#endregion			
+						#region Обнуление переменных текста раунда
+							round_text1_x = 1450;
+							round_3_x     = 1450;
+							round_2_x     = 1450;
+							round_1_x     = 1450;
+							round_0_x     = 1450;
+							round_alpha   = 1;
+						#endregion
+						#region Обнуление переменных ответов
+							task_question[1,1] = -1;
+							task_question[1,2] = -1;
+							task_question[1,3] = -1;
+							task_question[1,4] = -1;
+							task_question[1,5] = -1;
+							task_question[1,6] = -1; // 0 - игрок неверно, 1 - игрок верно
+							task_question[2,1] = -1;
+							task_question[2,2] = -1;
+							task_question[2,3] = -1;
+							task_question[2,4] = -1;
+							task_question[2,5] = -1;
+							task_question[2,6] = -1; // 2 - соперник неверно, 3 - соперник верно
+							task_question[3,1] = -1;
+							task_question[3,2] = -1;
+							task_question[3,3] = -1;
+							task_question[3,4] = -1;
+							task_question[3,5] = -1;
+							task_question[3,6] = -1; //
+						#endregion
+						#region Переменные победителя и смена стадии
+							if (roundskul[1] = 1 &&  roundskul[2] = 1) or (roundskul[1] = 1 &&  roundskul[3] = 1)  or (roundskul[2] = 1 &&  roundskul[3] = 1)
+							{
+								theme_choose = 9; whowin = 1;
+							}
+							if (roundskul[1] = 2 &&  roundskul[2] = 2) or (roundskul[1] = 2 &&  roundskul[3] = 2)  or (roundskul[2] = 2 &&  roundskul[3] = 2)
+							{
+								whowin = 2;
+							}
+							if global.rounds < 3
+							{
+								global.rounds += 1;
+							}
+							if global.online
+							{
+								player_end[1] = 0;
+								player_end[2] = 0;
+							}
+							theme_choose = 5;
+						#endregion
+					}
 				}
 			#endregion
 		#endregion
@@ -9581,7 +9619,7 @@
 			if round_s[1] < 1
 			{
 				round_a[1] += 15;
-				round_s[1] += 1/12;
+				round_s[1] += 1 / 12;
 			}
 			else
 			{
@@ -9595,7 +9633,7 @@
 					if round_s[2] < 1
 					{
 						round_a[2] += 15;
-						round_s[2] += 1/12;
+						round_s[2] += 1 / 12;
 					}
 					else
 					{
@@ -9609,7 +9647,7 @@
 							if round_s[3] < 1
 							{
 								round_a[3] += 15;
-								round_s[3] += 1/12;
+								round_s[3] += 1 / 12;
 							}
 							else
 							{
@@ -9679,6 +9717,13 @@
 													now_number = irandom_range(1, string_length(task_number));
 													round_task[global.rounds,j] = real(string_copy(task_number, now_number, 1));
 													task_number = string_delete(task_number, now_number, 1);
+													if global.online
+													{
+														if (first_player = 1 && global.rounds != 3) or (global.rounds = 3 && o_client.first_p = global.myid)
+														{
+															o_client.cl_stage = 9;
+														}
+													}
 												}
 												vvv = 1;
 												#region Скрипт темы/раунда/задачи
@@ -9935,11 +9980,23 @@
 						if round(100 * hp / maxhp) = round(100 * e_hp / e_maxhp)
 						{
 							hprld = 1;
+							if global.online
+							{
+								if faster_id = global.myid
+								{
+									hpold = 1;
+								}
+								else
+								{
+									hpold = 0;
+								}
+							}
 						}
 						else
 						{
 							hprld = 0;
 						}
+						
 						if hpold
 						{
 							#region Победа
@@ -10208,35 +10265,40 @@
 					draw_sprite_ext(s_light, 0, light_xx, whowin_y1, light_scale1 * 0.4, light_scale1 * 0.4, 0, global.color_white, 0.4);
 				#endregion
 				#region Отрисовка текста
-					if hpold
+					draw_text_transformed_t(whowin_x1, whowin_y1, string(round(100 * hp / maxhp)) + "%", 0.4 * whowin_s1, 0.4 * whowin_s1, whowin_a1, global.color_white, c_black);
+					draw_text_transformed_t(whowin_x2, whowin_y2, string(round(100 * e_hp / e_maxhp)) + "%", 0.4 * whowin_s2, 0.4 * whowin_s2, whowin_a2, global.color_white, c_black);
+					if 0
 					{
-						#region Отрисовка процентов, если выиграл
-							if hprld
-							{
-								draw_text_transformed_t(whowin_x1, whowin_y1, string(round(100 * hp / maxhp)) + "%", 0.4 * whowin_s1, 0.4 * whowin_s1, whowin_a1, global.color_white, c_black);
-								draw_text_transformed_t(whowin_x2, whowin_y2, string(round(100 * e_hp / e_maxhp) - 1) + "%", 0.4 * whowin_s2, 0.4 * whowin_s2, whowin_a2, global.color_white, c_black);
-							}
-								else
-							{
-								draw_text_transformed_t(whowin_x1, whowin_y1, string(round(100 * hp / maxhp)) + "%", 0.4 * whowin_s1, 0.4 * whowin_s1, whowin_a1, global.color_white, c_black);
-								draw_text_transformed_t(whowin_x2, whowin_y2, string(round(100 * e_hp / e_maxhp)) + "%", 0.4 * whowin_s2, 0.4 * whowin_s2, whowin_a2, global.color_white, c_black);
-							}
-						#endregion
-					}
-					else
-					{
-						#region Отрисовка процентов, если проиграл
-							if hprld
-							{
-								draw_text_transformed_t(whowin_x1, whowin_y1, string(round(100 * hp / maxhp) - 1) + "%", 0.4 * whowin_s1, 0.4 * whowin_s1, whowin_a1, global.color_white, c_black);
-								draw_text_transformed_t(whowin_x2, whowin_y2, string(round(100 * e_hp / e_maxhp)) + "%", 0.4 * whowin_s2, 0.4 * whowin_s2, whowin_a2, global.color_white, c_black);
-							}
-								else
-							{
-								draw_text_transformed_t(whowin_x1, whowin_y1, string(round(100 * hp / maxhp)) + "%", 0.4 * whowin_s1, 0.4 * whowin_s1, whowin_a1, global.color_white, c_black);
-								draw_text_transformed_t(whowin_x2, whowin_y2, string(round(100 * e_hp / e_maxhp)) + "%", 0.4 * whowin_s2, 0.4 * whowin_s2, whowin_a2, global.color_white, c_black);
-							}
-						#endregion
+						if hpold
+						{
+							#region Отрисовка процентов, если выиграл
+								if hprld
+								{
+									draw_text_transformed_t(whowin_x1, whowin_y1, string(round(100 * hp / maxhp)) + "%", 0.4 * whowin_s1, 0.4 * whowin_s1, whowin_a1, global.color_white, c_black);
+									draw_text_transformed_t(whowin_x2, whowin_y2, string(round(100 * e_hp / e_maxhp) - 1) + "%", 0.4 * whowin_s2, 0.4 * whowin_s2, whowin_a2, global.color_white, c_black);
+								}
+									else
+								{
+									draw_text_transformed_t(whowin_x1, whowin_y1, string(round(100 * hp / maxhp)) + "%", 0.4 * whowin_s1, 0.4 * whowin_s1, whowin_a1, global.color_white, c_black);
+									draw_text_transformed_t(whowin_x2, whowin_y2, string(round(100 * e_hp / e_maxhp)) + "%", 0.4 * whowin_s2, 0.4 * whowin_s2, whowin_a2, global.color_white, c_black);
+								}
+							#endregion
+						}
+						else
+						{
+							#region Отрисовка процентов, если проиграл
+								if hprld
+								{
+									draw_text_transformed_t(whowin_x1, whowin_y1, string(round(100 * hp / maxhp) - 1) + "%", 0.4 * whowin_s1, 0.4 * whowin_s1, whowin_a1, global.color_white, c_black);
+									draw_text_transformed_t(whowin_x2, whowin_y2, string(round(100 * e_hp / e_maxhp)) + "%", 0.4 * whowin_s2, 0.4 * whowin_s2, whowin_a2, global.color_white, c_black);
+								}
+									else
+								{
+									draw_text_transformed_t(whowin_x1, whowin_y1, string(round(100 * hp / maxhp)) + "%", 0.4 * whowin_s1, 0.4 * whowin_s1, whowin_a1, global.color_white, c_black);
+									draw_text_transformed_t(whowin_x2, whowin_y2, string(round(100 * e_hp / e_maxhp)) + "%", 0.4 * whowin_s2, 0.4 * whowin_s2, whowin_a2, global.color_white, c_black);
+								}
+							#endregion
+						}
 					}
 					draw_text_transformed_t(whowin_text_x, whowin_text_y, whowin_text, 0.25 * whowin_text_s, 0.25 * whowin_text_s, whowin_text_a, global.color_white, c_black);
 				#endregion
@@ -10257,9 +10319,15 @@
 			//e_hp   *= (1 + 0.1 * (global.enemy_level - 1));
 			//maxhp   = hp;
 			//e_maxhp = e_hp;
+			//maxhp   = global.hp[global.hero] * (1 + 0.1 * (global.hero_level - 1));
+			//e_maxhp = global.hp[global.enemy_hero] * (1 + 0.1 * (global.enemy_level - 1));
 			with(o_hero)
 			{
 				depth -= 2;
+			}
+			if global.online
+			{
+				o_client.cl_stage = 6;
 			}
 			theme_choose = 6;
 		}
@@ -11397,7 +11465,8 @@
 		{
 			if hp < maxhp
 			{
-				hp += maxhp / 20; }
+				hp += maxhp / 20;
+			}
 			if hp > maxhp
 			{
 				hp = maxhp;
@@ -11431,7 +11500,7 @@
 						health_hp -= 10;
 						if health_hp <= hp
 						{
-							health_hp = hp;
+							health_hp    = hp;
 							health_timer = 20;
 						}
 					}
@@ -11461,7 +11530,7 @@
 						health_e_hp -= 10;
 						if health_e_hp <= e_hp
 						{
-							health_e_hp = e_hp;
+							health_e_hp    = e_hp;
 							health_e_timer = 20;
 						}
 					}
@@ -12758,5 +12827,5 @@
 #endregion
 #region Отладка
 	draw_set_font(global.game_font);
-	draw_text_transformed_t(global.width / 2, global.height / 2, string(theme_t[1]) + "-" + string(theme_t[2]) + "-" + string(theme_t[3]), 0.25, 0.25, 0, c_white, c_black);
+	draw_text_transformed_t(global.width / 2, global.height / 2, string(round_task[1,1]) + "~" +string(round_task[1,2]) + "~" +string(round_task[1,3]), 0.25, 0.25, 0, c_white, c_black);
 #endregion

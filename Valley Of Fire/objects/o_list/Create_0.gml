@@ -1644,3 +1644,8 @@
 		ini_close();
 	}
 #endregion
+#region Онлайн
+	player_end[1] = 0;
+	player_end[2] = 0;
+	faster_id     = -1;
+#endregion

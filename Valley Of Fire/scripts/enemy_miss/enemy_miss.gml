@@ -9,3 +9,7 @@ with(o_hero)
 			{ o_list.view_go_down = 1; o_list.dop_i[0] = 0; }
 		}
 	}
+//if global.online
+//{
+//	o_client.cl_stage = 6;
+//}

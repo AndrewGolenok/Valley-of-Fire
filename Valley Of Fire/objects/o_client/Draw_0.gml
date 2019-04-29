@@ -16,11 +16,14 @@
 	{
 		f_id_t = " (" + string(global.f_id) + ")";
 	}
-	draw_text(xx, yy, "Присоединён" + myid_t + ": " + string(is_connected >= 0) + " (" + ip + ")" + f_id_t);
+	//draw_text(xx, yy, "Присоединён" + myid_t + ": " + string(is_connected >= 0) + " (" + ip + ")" + f_id_t);
 	draw_text(room_width - string_width(fps_txt), yy, fps_txt);
-	draw_text(xx, yy + 32, "Получ текст: " + txt);
-	draw_text(xx, yy + 54, "Этап: " + string(stage));
-	
+	draw_text(xx, yy + 16, "Получ текст: " + txt);
+	if instance_exists(o_list)
+	{
+		draw_text(xx, yy + 48, "ХП ИГ: " + string(o_list.hp) + "~" + string(o_list.maxhp));
+		draw_text(xx, yy + 64, "ХП ВР: " + string(o_list.e_hp) + "~" + string(o_list.e_maxhp));
+	}
 	draw_set_halign(fa_middle);
 	draw_set_valign(fa_center);
 #endregion

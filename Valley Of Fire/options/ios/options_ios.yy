@@ -32,7 +32,7 @@
     "option_ios_orientation_landscape_flipped": true,
     "option_ios_orientation_portrait": false,
     "option_ios_orientation_portrait_flipped": false,
-    "option_ios_output_dir": "~\/GameMakerStudio2\/iOS1",
+    "option_ios_output_dir": "~\/GameMakerStudio2\/iOS14",
     "option_ios_push_notifications": false,
     "option_ios_scale": 0,
     "option_ios_splash_time": 0,

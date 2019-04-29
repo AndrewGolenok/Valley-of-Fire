@@ -868,7 +868,7 @@
 			{
 				daily_buy_s[i] = 0;
 				daily_buy[i]   = 0;
-				daily_p[i] = 0;
+				daily_p[i]     = 0;
 				if daily_t[i] = 1
 				{
 					#region Первый
@@ -1648,9 +1648,9 @@
 	ini_close();
 #endregion
 #region Ранг
-	global.g_rank_now = 0;
+	global.g_rank_now   = 0;
 	global.g_stars_need = 0;
-	global.g_stars_now = 0;
+	global.g_stars_now  = 0;
 	global.quick = 0;
 	global.pvp   = 0;
 	anim_skul = 0;
@@ -1701,7 +1701,7 @@
 		title_text[i]  = "";
 		title_coll[i]  = global.color_white;
 		title_scale[i] = 0.2;
-		title_y[i] = 150 * i;
+		title_y[i]     = 150 * i;
 	}
 	title_text[1]   = "";
 	title_text[2]   = "";
@@ -1777,6 +1777,7 @@
 	/// SPECIAL THANKS
 #endregion
 #region ПвП
+	global.fight   = 0;
 	global.pvp_set = 0;
 	global.pvp_now = 0;
 	global.p_totem_p[1] = -1;
