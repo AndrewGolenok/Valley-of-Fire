@@ -16,6 +16,7 @@
 		x  = -sprite_width / 2;
 		xn = 150;
 		ox = global.width + sprite_width / 2;
+		weapon = global.hero_code_weapon[global.hero];
 	}
 	else
 	{
@@ -23,6 +24,7 @@
 		x  = global.width + sprite_width / 2;
 		xn = global.width - 150;
 		ox = -sprite_width / 2;
+		weapon = global.hero_code_weapon[global.enemy_hero];
 	}
 #endregion
 #region Способности

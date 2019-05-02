@@ -1645,7 +1645,9 @@
 	}
 #endregion
 #region Онлайн
-	player_end[1] = 0;
-	player_end[2] = 0;
-	faster_id     = -1;
+	player_end[1] = 0; //
+	player_end[2] = 0; // Игроки закончили отвечать на вопросы
+	faster_id     = -1; // Самый быстрый игрок
+	pepa		  = ""; // Отладка
+	round_end     = 0; // Враг закончил раунд
 #endregion

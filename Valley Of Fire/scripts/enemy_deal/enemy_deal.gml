@@ -65,7 +65,7 @@ with(o_hero)
 			}
 		}
 	}
-if global.online
-{
-	o_client.cl_stage = 6;
-}
+//if global.online
+//{
+//	o_client.cl_stage = 6;
+//}

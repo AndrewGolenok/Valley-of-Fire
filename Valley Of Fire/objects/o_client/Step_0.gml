@@ -73,7 +73,7 @@ if global.fight
 		if cl_stage = 6
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 6, \"hp\": " + string(o_list.e_hp) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 6, \"hp\": " + string(o_list.e_hp) + ", \"maxhp\": " + string(o_list.e_maxhp) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
@@ -99,8 +99,36 @@ if global.fight
 	#region Синхронизация задач
 		if cl_stage = 9
 		{
+			o_list.pepa = "OTPRAVEL";
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 9, \"task1\": " + string(o_client.round_task[global.rounds,1]) + ", \"task2\": " + string(o_client.round_task[global.rounds,2]) + ", \"task3\": " + string(o_client.round_task[global.rounds,3]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 9, \"task1\": " + string(o_list.round_task[global.rounds,1]) + ", \"task2\": " + string(o_list.round_task[global.rounds,2]) + ", \"task3\": " + string(o_list.round_task[global.rounds,3]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+			cl_stage = 0;
+		}
+	#endregion
+	#region Синхронизация окончания раунда 2
+		if cl_stage = 10
+		{
+			buffer_seek(buffer_c, buffer_seek_start, 0);
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 10, \"hp\": " + string(o_list.e_hp) + ", \"maxhp\": " + string(o_list.e_maxhp) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+			cl_stage = 0;
+		}
+	#endregion
+	#region Синхронизация итогов раунда
+		if cl_stage = 11
+		{
+			buffer_seek(buffer_c, buffer_seek_start, 0);
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 11, \"roundskul\": " + string(o_list.roundskul[global.rounds]) + ", \"rounds\": " + string(global.rounds) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+			cl_stage = 0;
+		}
+	#endregion
+	#region Конец дуэли
+		if cl_stage = 12
+		{
+			buffer_seek(buffer_c, buffer_seek_start, 0);
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 12, \"whowin\": " + string(o_list.whowin) + ", \"fightId\": \"" + string(global.f_id) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}

@@ -381,6 +381,25 @@
             }
         },
         {
+            "Key": "0bc608dc-df35-4c93-95a9-16d6b6bb9ef0",
+            "Value": {
+                "id": "61f76bed-d27b-49af-b885-f949dcdefc31",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_gui_bullet\/s_gui_bullet.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "0c310e15-52d4-49a2-a705-2a72ee9815ce",
             "Value": {
                 "id": "7755cf80-63c6-49e6-87b4-1cedb79627dc",
