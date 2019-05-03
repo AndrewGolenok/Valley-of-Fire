@@ -470,6 +470,10 @@
 						shoot        = 0;
 						bullet_index = 0;
 						answer       = -1;
+						//if global.online
+						//{
+						//	o_client.cl_stage = 6;
+						//}
 					 }
 				}
 			#endregion

@@ -132,8 +132,12 @@ if type = network_type_data
 					case "autoWin":
 						winner = global.myid;
 						stage  = 3;
-						o_list.whowin = 2;
-						o_list.theme_choose = 9;
+						if instance_exists(o_list)
+						{
+							global.game_stage = 5;
+							o_list.whowin = 1;
+							o_list.theme_choose = 9;
+						}
 					break;
 					#endregion
 					#region playWithBot

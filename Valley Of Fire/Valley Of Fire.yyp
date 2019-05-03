@@ -305,6 +305,25 @@
             }
         },
         {
+            "Key": "0a625022-7567-46b6-b7d5-fe0ec9fb2e34",
+            "Value": {
+                "id": "301dea53-9fd8-4d3a-9d43-b303aec27120",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_gui_bullet2\/s_gui_bullet2.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "0a6e5bbf-8195-4953-bb4f-aed97dd59b6f",
             "Value": {
                 "id": "ca90e5f1-3c85-4f36-bb79-c48146f07716",
@@ -2981,6 +3000,25 @@
                 ],
                 "resourcePath": "scripts\/attention_2\/attention_2.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "5b46046a-8b20-4e4c-bb90-354f3176a424",
+            "Value": {
+                "id": "ba94bf47-c7e1-469f-b4ad-7ecb2c511374",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_rank_star1\/s_rank_star1.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -6420,6 +6458,25 @@
                 ],
                 "resourcePath": "fonts\/f_name_bold\/f_name_bold.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "c9859c9e-c7de-4f41-80c7-93ed979f234f",
+            "Value": {
+                "id": "03adeaaf-d93a-4a54-be5c-5301783e6f16",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_gui_bullet1\/s_gui_bullet1.yy",
+                "resourceType": "GMSprite"
             }
         },
         {

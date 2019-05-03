@@ -407,9 +407,9 @@
 		for(i = 1; i <= 3; i ++)
 		{
 			for(j = 1; j <= 3; j ++)
-				{
+			{
 				round_task[i,j] = 0;
-				}
+			}
 		}
 	#endregion
 	#region Характеристики игроков (Хп и Атака)
@@ -448,6 +448,34 @@
 		task_question[3,4] = -1;
 		task_question[3,5] = -1;
 		task_question[3,6] = -1; //
+		///
+		for(i = 1; i <= 3; i++)
+		{
+			player_q[1,i] = -1;
+			player_q[2,i] = -1;
+			player_q[3,i] = -1;
+			
+			player_q[4,i] = -1;
+			player_q[5,i] = -1;
+			player_q[6,i] = -1;
+			
+			player_q[7,i] = -1;
+			player_q[8,i] = -1;
+			player_q[9,i] = -1;
+			
+			enemy_q[1,i] = -1;
+			enemy_q[2,i] = -1;
+			enemy_q[3,i] = -1;
+			
+			enemy_q[4,i] = -1;
+			enemy_q[5,i] = -1;
+			enemy_q[6,i] = -1;
+			
+			enemy_q[7,i] = -1;
+			enemy_q[8,i] = -1;
+			enemy_q[9,i] = -1;
+		}
+		///
 	#endregion
 	#region Таймер
 		timer   = 6 * room_speed;
@@ -1337,6 +1365,18 @@
 		poison_e = 0;
 		totem_txt_i = 0;
 		totem_txt = "";
+	#endregion
+	#region Текущий тотем
+		for(i = 1; i <= 2; i++)
+		{
+			totem_show_x[i]  = 0; //
+			totem_show_y[i]  = 0; // Координаты тотема
+			totem_show_s[i]  = 0; // Размер тотема
+			totem_show_s1[i] = 0; // Размер подстветкитотема
+			totem_show_n[i]  = 0; // Номер тотема
+			totem_show_i[i]  = 0; // Стадия тотема
+			totem_show_a[i]  = 0; // Угол тотема
+		}
 	#endregion
 #endregion
 #region ОБУЧЕНИЕ

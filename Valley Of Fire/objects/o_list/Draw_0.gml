@@ -5867,6 +5867,9 @@
 		#region Игрок
 			if global.answer != -1 && u_question <= 9
 			{
+				#region Запись ответа
+					player_q[u_question,global.rounds] = global.answer;
+				#endregion
 				#region Онлайн
 					if global.online
 					{
@@ -6660,6 +6663,9 @@
 		#region Враг
 			if global.bot_answer != -1 && bot_go != 0 && e_question <= 9
 			{
+				#region Запись ответа
+					enemy_q[e_question,global.rounds] = global.bot_answer;
+				#endregion
 				#region Вероятность неверного ответа для низкого ранга
 					if (global.player_rank = 15 or global.player_rank = 14) && global.pvp = 0 && global.online = 0
 					{
@@ -12859,20 +12865,167 @@
 		#endregion
 	}
 #endregion
-#region Отладка
-	draw_set_font(global.game_font);
-	draw_text_transformed_t(global.width / 2, global.height / 2, pepa + string(round_task[global.rounds,1]) + "~" +string(round_task[global.rounds,2]) + "~" +string(round_task[global.rounds,3]), 0.25, 0.25, 0, c_white, c_black);
-	
-	draw_sprite_ext_t(s_gui_bullet, 0, mouse_x, mouse_y, 0.25, 0.25, 0, c_white, 1, c_white, c_black);
-	if global.question > 1
+#region Отрисовка текущих ответов
+	var gui_b_size, gui_b_y, gui_b_x, gui_b_spr;
+	gui_b_size = 0.35;
+	gui_b_y    = 0;
+	gui_b_x    = 165;
+	gui_b_spr  = s_gui_bullet;
+	for(i = 1; i <= 3; i++)
 	{
-		draw_sprite_ext_t(s_gui_bullet, global.question - 1, mouse_x, mouse_y, 0.25, 0.25, 0, c_white, 1, c_white, c_black);
-		for(i = 0; i <= 9; i++)
+		//if i = global.task
+		//{
+		//	gui_b_y = 10; 
+		//}
+		//else
+		//{
+		//	gui_b_y = 0;
+		//}
+		for(j = 1; j <= 3; j++)
 		{
-			if task_question[global.rounds,i]
+			if u_question = (i - 1) * 3 + j
 			{
-				draw_sprite_ext_t(s_gui_bullet, 10 + i - 1, mouse_x, mouse_y, 0.25, 0.25, 0, c_white, 1, c_white, c_black);
+				gui_b_y = 5; 
 			}
+			else
+			{
+				gui_b_y = 0;
+			}
+			draw_sprite_ext(gui_b_spr, j - 1, global.width / 2 + (-gui_b_x + gui_b_x * (i - 1)) * gui_b_size, global.height / 6.5 - gui_b_y, gui_b_size, gui_b_size, 0, c_white, 1);
+			if player_q[(i - 1) * 3 + j, global.rounds] = 1
+			{
+				draw_sprite_ext(gui_b_spr, 2 + j, global.width / 2 + (-gui_b_x + gui_b_x * (i - 1)) * gui_b_size, global.height / 6.5 - gui_b_y, gui_b_size, gui_b_size, 0, c_white, 1);
+			}
+			if player_q[(i - 1) * 3 + j, global.rounds] = 0
+			{
+				draw_sprite_ext(gui_b_spr, 5 + j, global.width / 2 + (-gui_b_x + gui_b_x * (i - 1)) * gui_b_size, global.height / 6.5 - gui_b_y, gui_b_size, gui_b_size, 0, c_white, 1);
+			}
+		}
+	}
+	//draw_sprite_ext(s_gui_bullet, 0, global.width / 2, global.height / 3, 0.35, 0.35, 0, c_white, 1);
+	//if u_question > 1
+	//{
+	//	draw_sprite_ext(s_gui_bullet, u_question - 1, mouse_x, mouse_y, 0.35, 0.35, 0, c_white, 1);
+	//	for(i = 1; i <= 3; i++)
+	//	{
+	//		if player_q[i,global.rounds] = 0
+	//		{
+	//			draw_sprite_ext(s_gui_bullet, 10 + i - 1, mouse_x, mouse_y, 0.35, 0.35, 0, c_white, 1);
+	//		}
+	//	}
+	//}
+#endregion
+#region Текущий тотем
+	for(i = 1; i <= 2; i++)
+	{
+		if totem_show_n[i] > 0
+		{
+			var totem_size, totem_color;
+			totem_size  = 0.3;
+			totem_color = c_white;
+			if totem_show_n[1] <= 6
+			{
+				totem_color = c_white;
+			}
+			if totem_show_n[1] > 6 && totem_show_n[1] <= 11
+			{
+				totem_color = c_aqua;
+			}
+			if totem_show_n[1] > 11 && totem_show_n[1] <= 15
+			{
+				totem_color = c_fuchsia;
+			}
+			if totem_show_n[1] > 15
+			{
+				totem_color = c_orange;
+			}
+		
+			if totem_show_i[1] = 0
+			{
+				totem_show_x[1]  = (global.player_object).x + 200;
+				totem_show_y[1]  = (global.player_object).y - 300;
+				totem_show_s[1]  = 0;
+				totem_show_s1[1] = 0;
+				totem_show_i[1]  = 1;
+				totem_show_a[1]  = -15;
+			}
+			if totem_show_i[1] = 1
+			{
+				if totem_show_s[1] < 1
+				{
+					totem_show_s[1] += 0.1;//0.05;
+					totem_show_a[1] += 0.75 * 2;
+				}
+				else
+				{
+					totem_show_i[1] = 2;
+				}
+			}
+			if totem_show_i[1] = 2
+			{
+				if totem_show_s1[1] < 1
+				{
+					totem_show_s1[1] += 0.1;
+					totem_show_s[1] += 0.02;
+					totem_show_a[1] += 0.25;
+				}
+				else
+				{
+					totem_show_i[1] = 3;
+				}
+			}
+			if totem_show_i[1] = 3
+			{
+				if totem_show_s[1] < 1.45
+				{
+					totem_show_s[1] += 0.005;
+					totem_show_a[1] += 0.1;
+				}
+				else
+				{
+					totem_show_i[1] = 4;
+				}
+			}
+			if totem_show_i[1] = 4
+			{
+				if totem_show_s[1] > 0
+				{
+					totem_show_s[1]  -= 0.1;
+					totem_show_a[1]  -= 1;
+					totem_show_s1[1] -= 0.1;
+				}
+				else
+				{
+					totem_show_x[1]  = 0;
+					totem_show_y[1]  = 0;
+					totem_show_s[1]  = 0;
+					totem_show_s1[1] = 0;
+					totem_show_a[1]  = 0;
+					totem_show_i[1]  = 0;
+					totem_show_n[1]  = 0;
+				}
+			}
+			if totem_show_i[1] > 1
+			{
+				draw_sprite_ext(s_totems_light, totem_show_n[1], totem_show_x[1], totem_show_y[1], totem_show_s[1] * totem_show_s1[1] * totem_size, totem_show_s[1] * totem_show_s1[1] * totem_size, totem_show_a[1], totem_color, 1);
+				draw_sprite_ext(s_totems, totem_show_n[1], totem_show_x[1], totem_show_y[1], totem_show_s[1] * totem_size, totem_show_s[1] * totem_size, totem_show_a[1], c_white, 1);
+				draw_sprite_ext(s_totems_eyes, totem_show_n[1], totem_show_x[1], totem_show_y[1], totem_show_s[1] * totem_size, totem_show_s[1] * totem_size, totem_show_a[1], totem_color, totem_show_s1[1]);
+			}
+			else
+			{
+				draw_sprite_ext(s_totems, totem_show_n[1], totem_show_x[1], totem_show_y[1], totem_show_s[1] * totem_size, totem_show_s[1] * totem_size, totem_show_a[1], c_white, 1);
+			}
+		}
+	}
+#endregion
+#region Отладка
+	//draw_set_font(global.game_font);
+	//draw_text_transformed_t(global.width / 2, global.height / 2, string(u_question) + "~" + string((i - 1) * 3 + j), 0.25, 0.25, 0, c_white, c_black);
+	if keyboard_check_pressed(vk_up)
+	{
+		if totem_show_n[1] = 0
+		{
+			totem_show_n[1] = irandom_range(1, 18);
 		}
 	}
 #endregion
