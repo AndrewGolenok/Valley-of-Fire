@@ -89,6 +89,10 @@
 											stun = 0;
 											skeleton_animation_set("damaged");
 											change = 1;
+											if global.online
+											{
+												o_client.cl_stage = 15;
+											}
 										}
 									}
 								}
@@ -5814,7 +5818,7 @@
 				}
 				else
 				{
-					#region Если игрокн не успел ответить
+					#region Если игрок не успел ответить
 						global.bistra_time = 0;
 						if global.storm = 1
 						{
@@ -5822,6 +5826,10 @@
 						}
 						(global.player_object).answer = -1
 						(global.player_object).stun = 1;
+						if global.online
+						{
+							o_client.cl_stage = 14;
+						}
 						global.answer = 0;
 						#region Скрипт темы/раунда/задачи
 							if global.storm = 1
@@ -5869,6 +5877,7 @@
 			{
 				#region Запись ответа
 					player_q[u_question,global.rounds] = global.answer;
+					pre_wait = 1;
 				#endregion
 				#region Онлайн
 					if global.online
@@ -5925,14 +5934,14 @@
 					{
 						if u_question > e_question
 						{
-							e_time[u_question] = (5 + 3 * global.e_totem_a[4] - 2) * room_speed;
+							e_time[u_question] = (5 + 3 * global.e_totem_a[4] - 0) * room_speed;
 						}
 						if u_question = e_question
 						{
-							e_time[u_question] = (5 + 3 * global.e_totem_a[4] - 2) * room_speed;
+							e_time[u_question] = (5 + 3 * global.e_totem_a[4] - 0) * room_speed;
 							if bot_time2 > (5 + 3 * global.e_totem_a[4] - 2) * room_speed
 							{
-								bot_time2 = (5 + 3 * global.e_totem_a[4] - 2) * room_speed;
+								bot_time2 = (5 + 3 * global.e_totem_a[4] - 0) * room_speed;
 								bot_time = random(1) * room_speed;
 							}
 						}
@@ -6030,26 +6039,48 @@
 						#endregion
 					}
 				#endregion
-				#region Эффкт тотема врага "" (промах)
+				#region Эффкт тотема врага (промах)
 					if global.e_totem_a[9]
 					{
 						var chance;
 						chance = irandom(99);
-						if chance < 5
+						if chance < 10
 						{
 							global.answer = 0;
 							miss = 1;
+							#region ПОКАЗ ТОТЕМА: Тотем уклонения
+								totem_show_n[2] = 9;
+							#endregion
 						}
 					}
 				#endregion
-				#region Эффект тотема врага "" (яд)
-					if global.e_totem_a[18] = 1
-					{
-						if global.answer = 0
-						{
-							(global.enemy_object).have_posion = 1;
-						}
-					}
+				#region Эффект тотема игрока -врага (яд)
+					//if global.p_totem_a[18] = 1
+					//{
+					//	if global.answer = 1
+					//	{
+					//		#region ПОКАЗ ТОТЕМА: Тотем стана
+					//			if (global.player_object).have_posion != 1
+					//			{
+					//				totem_show_n[1] = 18;
+					//			}
+					//		#endregion
+					//		(global.player_object).have_posion = 1;
+					//	}
+					//}
+					//if global.e_totem_a[18] = 1
+					//{
+					//	if global.answer = 0
+					//	{
+					//		#region ПОКАЗ ТОТЕМА: Тотем стана
+					//			if (global.enemy_object).have_posion != 1
+					//			{
+					//				totem_show_n[2] = 18;
+					//			}
+					//		#endregion
+					//		(global.enemy_object).have_posion = 1;
+					//	}
+					//}
 				#endregion
 				#region ОТВЕТ ИГРОКА
 					if global.answer = 1
@@ -6063,6 +6094,13 @@
 								{
 									super_now += 1;
 									part_n = -1;
+									#region ПОКАЗ ТОТЕМА: Тотем супера
+										if global.p_totem_a[15] = 1
+										&& super_now = super_need
+										{
+											totem_show_n[1] = 15;
+										}
+									#endregion
 								}
 							}
 							else
@@ -6073,6 +6111,13 @@
 									{
 										super_now += 1;
 										part_n = -1;
+										#region ПОКАЗ ТОТЕМА: Тотем супера
+											if global.p_totem_a[15] = 1
+											&& super_now = super_need
+											{
+												totem_show_n[1] = 15;
+											}
+										#endregion
 									}
 								}
 								else
@@ -6081,6 +6126,13 @@
 									{
 										e_super_now += 1;
 										part_n = -1;
+										#region ПОКАЗ ТОТЕМА: Тотем супера
+											if global.e_totem_a[15] = 1
+											&& e_super_now = e_super_need
+											{
+												totem_show_n[2] = 15;
+											}
+										#endregion
 									}
 								}
 							}
@@ -6720,13 +6772,13 @@
 					{
 						if e_question > u_question
 						{
-							u_time[e_question] = (5 + 3 * global.p_totem_a[4] - 2) * room_speed;
+							u_time[e_question] = (5 + 3 * global.p_totem_a[4] - 0) * room_speed;
 						}
 						if e_question = u_question
 						{
 							if timer > (5 + 3 * global.p_totem_a[4] - 2) * room_speed
 							{
-								timer = (5 + 3 * global.p_totem_a[4] - 2) * room_speed;
+								timer = (5 + 3 * global.p_totem_a[4] - 0) * room_speed;
 							}
 						}
 					}
@@ -6796,20 +6848,42 @@
 					{
 						var chance;
 						chance = irandom(99);
-						if chance < 5
+						if chance < 10//5
 						{
 							global.bot_answer = 0;
+							#region ПОКАЗ ТОТЕМА: Тотем уклонения
+								totem_show_n[1] = 9;
+							#endregion
 						}
 					}
 				#endregion
 				#region Эффект тотема игрока (яд)
-					if global.p_totem_a[18] = 1
+					if global.e_totem_a[18] = 1
 					{
-						if global.bot_answer = 0
+						if global.bot_answer = 1
 						{
-							(global.player_object).have_posion = 1;
+							#region ПОКАЗ ТОТЕМА: Тотем стана
+								if (global.enemy_object).have_posion != 1
+								{
+									totem_show_n[2] = 18;
+								}
+							#endregion
+							(global.enemy_object).have_posion = 1;
 						}
-					}
+					} 
+					//if global.p_totem_a[18] = 1
+					//{
+					//	if global.bot_answer = 0
+					//	{
+					//		#region ПОКАЗ ТОТЕМА: Тотем стана
+					//			if (global.player_object).have_posion != 1
+					//			{
+					//				totem_show_n[1] = 18;
+					//			}
+					//		#endregion
+					//		(global.player_object).have_posion = 1;
+					//	}
+					//}
 				#endregion
 				#region ОТВЕТ ВРАГА
 					if global.bot_answer = 1
@@ -6819,6 +6893,13 @@
 							if e_super_now < e_super_need
 							{
 								e_super_now += 1;
+								#region ПОКАЗ ТОТЕМА: Тотем супера
+									if global.e_totem_a[15] = 1
+									&& e_super_now = e_super_need
+									{
+										totem_show_n[2] = 15;
+									}
+								#endregion
 							}
 						}
 						else
@@ -6828,6 +6909,13 @@
 								if e_super_now < e_super_need
 								{
 									e_super_now += 1;
+									#region ПОКАЗ ТОТЕМА: Тотем супера
+										if global.e_totem_a[15] = 1
+										&& e_super_now = e_super_need
+										{
+											totem_show_n[2] = 15;
+										}
+									#endregion
 								}
 							}
 							else
@@ -6835,6 +6923,13 @@
 								if super_now < super_need
 								{
 									super_now += 1;
+									#region ПОКАЗ ТОТЕМА: Тотем супера
+										if global.p_totem_a[15] = 1
+										&& super_now = super_need
+										{
+											totem_show_n[1] = 15;
+										}
+									#endregion
 								}
 							}
 						}
@@ -8996,6 +9091,16 @@
 				}
 				else
 				{
+					#region ПОКАЗ ТОТЕМА: Тотем выбора темы
+						if global.p_totem_a[7] = 1
+						{
+							totem_show_n[1] = 7;
+						}
+						if global.e_totem_a[7] = 1
+						{
+							totem_show_n[2] = 7;
+						}
+					#endregion
 					coin_stage = 1;
 				}
 			}
@@ -9060,16 +9165,6 @@
 							coin_i = 0;
 						}
 						coin_a -= 20;
-						#region ПОКАЗ ТОТЕМА: Тотем выбора темы
-							if global.p_totem_a[7] = 1
-							{
-								totem_show_n[1] = 7;
-							}
-							if global.e_totem_a[7] = 1
-							{
-								totem_show_n[2] = 7;
-							}
-						#endregion
 					#endregion
 				}
 				else
@@ -9756,6 +9851,9 @@
 													{
 														hp -= e_atk;
 													}
+													#region ПОКАЗ ТОТЕМА: Тотем быстрого урона
+														o_list.totem_show_n[1] = 13;
+													#endregion
 												}
 												if global.e_totem_a[13] = 1
 												{
@@ -9766,6 +9864,9 @@
 													{
 														e_hp -= atk;
 													}
+													#region ПОКАЗ ТОТЕМА: Тотем быстрого урона
+														o_list.totem_show_n[2] = 13;
+													#endregion
 												}
 												global.game_stage = 5;
 												theme_choose = 4;
@@ -12956,14 +13057,14 @@
 			{
 				gui_b_y = 0;
 			}
-			draw_sprite_ext(gui_b_spr, j - 1, global.width / 2 + (-gui_b_x + gui_b_x * (i - 1)) * gui_b_size, global.height / 6.5 - gui_b_y, gui_b_size, gui_b_size, 0, c_white, 1);
+			draw_sprite_ext(gui_b_spr, j - 1, global.width / 2 + (-gui_b_x + gui_b_x * (i - 1)) * gui_b_size,  h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1 - gui_b_y, gui_b_size, gui_b_size, 0, c_white, 1);
 			if player_q[(i - 1) * 3 + j, global.rounds] = 1
 			{
-				draw_sprite_ext(gui_b_spr, 2 + j, global.width / 2 + (-gui_b_x + gui_b_x * (i - 1)) * gui_b_size, global.height / 6.5 - gui_b_y, gui_b_size, gui_b_size, 0, c_white, 1);
+				draw_sprite_ext(gui_b_spr, 2 + j, global.width / 2 + (-gui_b_x + gui_b_x * (i - 1)) * gui_b_size,  h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1 - gui_b_y, gui_b_size, gui_b_size, 0, c_white, 1);
 			}
 			if player_q[(i - 1) * 3 + j, global.rounds] = 0
 			{
-				draw_sprite_ext(gui_b_spr, 5 + j, global.width / 2 + (-gui_b_x + gui_b_x * (i - 1)) * gui_b_size, global.height / 6.5 - gui_b_y, gui_b_size, gui_b_size, 0, c_white, 1);
+				draw_sprite_ext(gui_b_spr, 5 + j, global.width / 2 + (-gui_b_x + gui_b_x * (i - 1)) * gui_b_size,  h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1 - gui_b_y, gui_b_size, gui_b_size, 0, c_white, 1);
 			}
 		}
 	}
@@ -13093,7 +13194,7 @@
 #endregion
 #region Отладка
 	//draw_set_font(global.game_font);
-	//draw_text_transformed_t(mouse_x, mouse_y, string(timer) + "~" + string(global.p_totem_a[4]), 0.25, 0.25, 0, c_white, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(o_client.back) + "~" + string(global.background), 0.25, 0.25, 0, c_white, c_black);
 	if keyboard_check_pressed(vk_up)
 	{
 		if totem_show_n[1] = 0

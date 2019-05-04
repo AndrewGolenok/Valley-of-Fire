@@ -133,6 +133,33 @@ if global.fight
 			cl_stage = 0;
 		}
 	#endregion
+	#region Передача имени
+		if cl_stage = 13
+		{
+			buffer_seek(buffer_c, buffer_seek_start, 0);
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 13, \"enemy_name\": \"" + global.player_name + "\", \"fightId\": \"" + string(global.f_id) + "\"}}");
+			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+			cl_stage = 0;
+		}
+	#endregion
+	#region Передача стана: есть стан
+		if cl_stage = 14
+		{
+			buffer_seek(buffer_c, buffer_seek_start, 0);
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 14, \"stun\": 1, \"fightId\": \"" + string(global.f_id) + "\"}}");
+			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+			cl_stage = 0;
+		}
+	#endregion
+	#region Передача стана: стана нет
+		if cl_stage = 15
+		{
+			buffer_seek(buffer_c, buffer_seek_start, 0);
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 14, \"stun\": 0, \"fightId\": \"" + string(global.f_id) + "\"}}");
+			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+			cl_stage = 0;
+		}
+	#endregion
 	#region А
 		if cl_stage = 1000
 		{

@@ -181,6 +181,10 @@
 				{
 					change = 1;
 					stun = 0;
+					if global.online
+					{
+						o_client.cl_stage = 15;
+					}
 				}
 			}
 		}

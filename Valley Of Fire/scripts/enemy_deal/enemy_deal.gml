@@ -38,9 +38,12 @@ with(o_hero)
 		if global.p_totem_a[12] && (o_list.hp - o_list.e_atk) <= 0
 		{
 			chance = irandom(99);
-			if chance < 30
+			if chance < 35
 			{
 				miss = 1;
+				#region ПОКАЗ ТОТЕМА: Тотем уклонения 2
+					o_list.totem_show_n[1] = 12;
+				#endregion
 			}
 		}
 		
@@ -94,18 +97,34 @@ with(o_hero)
 			stun = 0;
 			skeleton_animation_set("damaged");
 			change = 1;
-		}
-		#region ПОКАЗ ТОТЕМА: Тотем усиления атаки
-			if global.p_totem_a[6] = 1
+			if global.online
 			{
-				if o_list.hp > 0 && (o_list.hp - (o_list.e_atk + (1 + global.e_totem_a[5]) * o_list.e_atk * 1 / 10 * (global.e_critical == (3 - 1 * global.e_totem_a[3])))) <= 0
-				{
-					o_list.totem_show_n[1] = 6;
-				}
+				o_client.cl_stage = 15;
 			}
-		#endregion
+		}
 	}
 }
+#region ПОКАЗ ТОТЕМА: Тотем усиления атаки
+	if global.p_totem_a[6] = 1
+	{
+		if o_list.hp > 0 && (o_list.hp - (o_list.e_atk + (1 + global.e_totem_a[5]) * o_list.e_atk * 1 / 10 * (global.e_critical == (3 - 1 * global.e_totem_a[3])))) <= 0
+		{
+			o_list.totem_show_n[1] = 6;
+		}
+	}
+#endregion
+#region Эффект тотема врага (яд)
+	if global.e_totem_a[18] = 1
+	{
+		#region ПОКАЗ ТОТЕМА: Тотем яда
+			if (global.enemy_object).have_posion != 1
+			{
+				o_list.totem_show_n[2] = 18;
+			}
+		#endregion
+		(global.enemy_object).have_posion = 1;
+	}
+#endregion
 //if global.online
 //{
 //	o_client.cl_stage = 6;

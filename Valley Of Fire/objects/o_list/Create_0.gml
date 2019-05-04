@@ -56,7 +56,8 @@
 		global.player_name = string_upper(global.hero_code_name[global.hero]);
 		if global.online
 		{
-			global.enemy_rank = o_client.rank[global.enid];
+			global.player_name = global.name;
+			global.enemy_rank  = o_client.rank[global.enid];
 		}
 		else
 		{
@@ -70,19 +71,19 @@
 		{
 			global.player_name = "BILL SR.";
 		}
-		if os_get_language() = "ru"
-		{
-			switch(global.hero)
-			{
-				case 1: global.player_name = "ВОРИШКА"; break;
-				case 2: global.player_name = "ПЬЯН. ДЖО"; break;
-				case 3: global.player_name = "ОХОТНИЦА"; break;
-				case 4: global.player_name = "ДИЕГО"; break;
-				case 5: global.player_name = "БИЛЛ СТ."; break;
-				case 6: global.player_name = "ШЕРИФ"; break;
-				case 7: global.player_name = "ШАМАН"; break;
-			}
-		}
+		//if os_get_language() = "ru"
+		//{
+		//	switch(global.hero)
+		//	{
+		//		case 1: global.player_name = "ВОРИШКА"; break;
+		//		case 2: global.player_name = "ПЬЯН. ДЖО"; break;
+		//		case 3: global.player_name = "ОХОТНИЦА"; break;
+		//		case 4: global.player_name = "ДИЕГО"; break;
+		//		case 5: global.player_name = "БИЛЛ СТ."; break;
+		//		case 6: global.player_name = "ШЕРИФ"; break;
+		//		case 7: global.player_name = "ШАМАН"; break;
+		//	}
+		//}
 	#endregion
 	#region Ранг врага
 		if global.enemy_rank > 15
@@ -1072,6 +1073,11 @@
 		if global.training > 0
 		{
 			global.enemy_name = bot_name[13];
+		}
+		if global.online
+		{
+			global.enemy_name = "-";
+			o_client.cl_stage = 13;
 		}
 		if global.shomen
 		{

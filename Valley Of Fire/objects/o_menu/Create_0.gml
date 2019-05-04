@@ -38,6 +38,7 @@
 	ini_close();
 #endregion
 #region Меню
+	global.fight = 0;
 	tr_ang  = 0;
 	tr_dir  = 1;
 	tr_time = room_speed * 2;

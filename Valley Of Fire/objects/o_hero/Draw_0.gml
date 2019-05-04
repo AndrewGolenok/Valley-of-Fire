@@ -1,3 +1,7 @@
+#region Стан при онлайне
+	var cancel_stun;
+	cancel_stun = 0;
+#endregion
 #region Появление
 	if !enemy
 	{
@@ -263,6 +267,10 @@
 							stun = 0;
 							skeleton_animation_set("damaged");
 							change = 1;
+							if global.online
+							{
+								cancel_stun = 1;
+							}
 						}
 					}
 					else
@@ -289,6 +297,10 @@
 								stun = 0;
 								skeleton_animation_set("damaged");
 								change = 1;
+								if global.online
+								{
+									cancel_stun = 1;
+								}
 							}
 						}
 						draw_sprite_ext(sprite_index, image_index, x - 28 + prx, y - 15 + o_control.back_train_y2 + pry, sc * scale, scale, 0, c_fuchsia, 0.2);
@@ -526,14 +538,14 @@
 						{
 							if global.hero = 5
 							{
-								if os_get_language() = "ru"
-								{
-									global.player_name = "БИЛЛ МЛ.";
-								}
-								else
-								{
-									global.player_name = "BILL JR.";
-								}
+								//if os_get_language() = "ru"
+								//{
+								//	global.player_name = "БИЛЛ МЛ.";
+								//}
+								//else
+								//{
+								//	global.player_name = "BILL JR.";
+								//}
 							}
 							if bill_stage = 0
 							{
@@ -639,6 +651,10 @@
 									stun = 0;
 									skeleton_animation_set("damaged");
 									change = 1;
+									if global.online
+									{
+										cancel_stun = 1;
+									}
 								}
 							#endregion
 							#region Обнуление переменных
@@ -743,14 +759,42 @@
 		if hero = 5 && bill_stage = 0
 		{
 			stun = 0;
+			if global.online && !enemy
+			{
+				cancel_stun = 1;
+			}
 		}
-		if global.p_totem_a[8] && !enemy
+		if stun != 0
 		{
-			stun = 0;
+			if global.p_totem_a[8] && !enemy
+			{
+				stun = 0;
+				if global.online && !enemy
+				{
+					cancel_stun = 1;
+				}
+				#region ПОКАЗ ТОТЕМА: Тотем стана
+					o_list.totem_show_n[1] = 8;
+				#endregion
+			}
+			if global.e_totem_a[8] && enemy
+			{
+				stun = 0;
+				if global.online && !enemy
+				{
+					cancel_stun = 1;
+				}
+				#region ПОКАЗ ТОТЕМА: Тотем стана
+					o_list.totem_show_n[2] = 8;
+				#endregion
+			}
 		}
-		if global.e_totem_a[8] && enemy
+		if global.online && !enemy
 		{
-			stun = 0;
+			if cancel_stun = 1
+			{
+				o_client.cl_stage = 15;
+			}
 		}
 	#endregion
 	#region Стан

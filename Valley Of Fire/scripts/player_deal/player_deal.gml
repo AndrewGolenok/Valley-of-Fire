@@ -81,9 +81,12 @@ with(o_hero)
 		if global.e_totem_a[12] && (o_list.e_hp - o_list.atk) <= 0
 		{
 			chance = irandom(99);
-			if chance < 30
+			if chance < 35
 			{
 				miss = 1;
+				#region ПОКАЗ ТОТЕМА: Тотем уклонения 2
+					o_list.totem_show_n[2] = 12;
+				#endregion
 			}
 		}
 		if (o_list.hp - (o_list.e_atk + (1 + global.e_totem_a[5]) * o_list.e_atk * 1 / 10 * (global.e_critical == (3 - 1 * global.e_totem_a[3])))) <= 0//(o_list.hp - o_list.e_atk) <= 0
@@ -135,13 +138,26 @@ with(o_hero)
 		}
 	}
 }
-#region ПОКАЗ ТОТЕМА: Тотем усиления атаки				
+#region ПОКАЗ ТОТЕМА: Тотем усиления атаки
+
 	if global.e_totem_a[6] = 1
 	{
 		if o_list.e_hp > 0 && (o_list.e_hp - (o_list.atk + (1 + global.p_totem_a[5]) * o_list.atk * datk / 10 * (global.critical == (3 - 1 * global.p_totem_a[3]))) <= 0)
 		{
 			o_list.totem_show_n[2] = 6;
 		}
+	}
+#endregion
+#region Эффект тотема игрока (яд)
+	if global.p_totem_a[18] = 1
+	{
+		#region ПОКАЗ ТОТЕМА: Тотем яда
+			if (global.player_object).have_posion != 1
+			{
+				o_list.totem_show_n[1] = 18;
+			}
+		#endregion
+		(global.player_object).have_posion = 1;
 	}
 #endregion
 if global.online

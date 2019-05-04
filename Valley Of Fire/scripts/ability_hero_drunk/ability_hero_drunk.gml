@@ -64,7 +64,14 @@ if shoot = 2 or shoot = 3
 		if shoot != 3
 			{
 			if enemy
-				{ enemy_deal(); (global.player_object).stun = 1; }
+				{
+					enemy_deal();
+					(global.player_object).stun = 1;
+					if global.online
+					{
+						o_client.cl_stage = 14;
+					}
+				}
 				else
 				{
 				var datk;

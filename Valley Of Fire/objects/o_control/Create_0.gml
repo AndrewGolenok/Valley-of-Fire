@@ -17,7 +17,7 @@
 #endregion
 #region Фон
 	#region Выбор фона
-		if global.online && instance_exists(o_list)
+		if global.online && global.fight = 1
 		{
 			global.background = "train";
 			switch(o_client.back)
@@ -44,7 +44,7 @@
 		}
 		else
 		{
-			global.background = "house"; //choose("train", "mine", "waterfall", "saloon", "house");
+			global.background = choose("train", "mine", "waterfall", "saloon", "house");
 		}
 		global.super_ability    = 0;
 		global.super_ability1   = 0;

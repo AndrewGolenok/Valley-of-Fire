@@ -109,6 +109,7 @@ if type = network_type_data
 							waiting      = 0;
 							searching    = 0;
 						/// НЕТ
+						global.fight = 1;
 						if instance_exists(o_control)
 						{
 							with(o_control)
@@ -120,7 +121,6 @@ if type = network_type_data
 						global.e_totem[1] = totems[global.enid,1];
 						global.e_totem[2] = totems[global.enid,2];
 						global.e_totem[3] = totems[global.enid,3];
-						global.fight = 1;
 					break;
 					#endregion
 					#region makeMove
@@ -260,6 +260,16 @@ if type = network_type_data
 						o_list.whowin = 3 - param[? "whowin"];
 						o_list.theme_choose = 9;
 					}
+				break;
+			#endregion
+			#region Получение имени врага
+				case 13:
+					global.enemy_name = param[? "enemy_name"];
+				break;
+			#endregion
+			#region Получение имени врага
+				case 14:
+					(global.enemy_object).stun = param[? "stun"];
 				break;
 			#endregion
 		}

@@ -505,6 +505,7 @@
 	}
 	alarm[2] = room_speed * 1.5;
 	global.text_color = make_color_rgb(255, 228, 181);
+	global.name = choose("Andrew", "Artem", "Nikolay", "Yaroslav");
 	global.room_to_go = "set";
 	room_goto_t("logo");
 #endregion

@@ -1,4 +1,4 @@
-global.online = false//true;
+global.online = true;
 
 cl_stage = 0;
 
