@@ -437,10 +437,10 @@
 					else
 				{
 					#region Мы попали по противнику
-						if o_list.bot_question <= global.question && (o_list.bot_task <= global.task) && o_list.bot_time2 > (3 + 3 * global.e_totem_a[4]) * room_speed
+						if o_list.bot_question <= global.question && (o_list.bot_task <= global.task) && o_list.bot_time2 > (5 + 3 * global.e_totem_a[4]) * room_speed
 						{
 							o_list.bot_time  = random(1) * room_speed;
-							o_list.bot_time2 = (3 + 3 * global.e_totem_a[4]) * room_speed;
+							o_list.bot_time2 = (5 + 3 * global.e_totem_a[4]) * room_speed;
 						}
 						if answer = 1
 						{

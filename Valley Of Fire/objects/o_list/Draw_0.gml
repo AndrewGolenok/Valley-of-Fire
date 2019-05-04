@@ -5915,7 +5915,7 @@
 						global.pralna = 0;
 					}
 				#endregion
-				#region Сворачиванеи вопроса при ответе
+				#region Сворачивание вопроса при ответе
 					list_scale = 0;
 					pre_wait = 1;
 				#endregion
@@ -5925,18 +5925,34 @@
 					{
 						if u_question > e_question
 						{
-							u_time[e_question] = (3 + 3 * global.p_totem_a[4]) * room_speed;
+							e_time[u_question] = (5 + 3 * global.e_totem_a[4] - 2) * room_speed;
 						}
 						if u_question = e_question
 						{
-							u_time[e_question] = (3 + 3 * global.p_totem_a[4]) * room_speed;
-							if bot_time2 > (3 + 3 * global.e_totem_a[4]) * room_speed
+							e_time[u_question] = (5 + 3 * global.e_totem_a[4] - 2) * room_speed;
+							if bot_time2 > (5 + 3 * global.e_totem_a[4] - 2) * room_speed
 							{
-								bot_time2 = (3 + 3 * global.e_totem_a[4]) * room_speed;
+								bot_time2 = (5 + 3 * global.e_totem_a[4] - 2) * room_speed;
 								bot_time = random(1) * room_speed;
 							}
 						}
 					}
+					//if u_answer[u_question] > e_answer[u_question] && global.pvp = 0
+					//{
+						//if u_question > e_question
+						//{
+						//	u_time[e_question] = (5 + 3 * global.p_totem_a[4]) * room_speed;
+						//}
+						//if u_question = e_question
+						//{
+						//	u_time[e_question] = (5 + 3 * global.p_totem_a[4]) * room_speed;
+						//	if bot_time2 > (5 + 3 * global.e_totem_a[4]) * room_speed
+						//	{
+						//		bot_time2 = (5 + 3 * global.e_totem_a[4]) * room_speed;
+						//		bot_time = random(1) * room_speed;
+						//	}
+						//}
+					//}
 					if global.training < 1
 					{
 						u_question += 1;
@@ -6070,6 +6086,18 @@
 							}
 							if global.critical < 3 - 1 * global.p_totem_a[3]
 							{
+								#region ПОКАЗ ТОТЕМА: Тотем Крита
+									if global.p_totem_a[3] = 1
+									{
+										totem_show_n[1] = 3;
+									}
+								#endregion
+								#region ПОКАЗ ТОТЕМА: Тотем Крита 2
+									if global.p_totem_a[5] = 1
+									{
+										totem_show_n[1] = 5;
+									}
+								#endregion
 								global.critical += 1;
 							}
 						#endregion
@@ -6495,13 +6523,13 @@
 				{
 					bot_time = 10 * room_speed;
 				}
-				if bot_time2 > 6 * room_speed
+				if bot_time2 > 8 * room_speed
 				{
-					bot_time = 6 * room_speed;
+					bot_time = 8 * room_speed;
 				}
-				if bot_wait > room_speed * 6
+				if bot_wait > room_speed * 8
 				{
-					bot_wait = room_speed * 6;
+					bot_wait = room_speed * 8;
 				}
 				if e_super_now1 < e_super_now
 				{
@@ -6692,13 +6720,13 @@
 					{
 						if e_question > u_question
 						{
-							e_time[e_question] = (3 + 3 * global.e_totem_a[4]) * room_speed;
+							u_time[e_question] = (5 + 3 * global.p_totem_a[4] - 2) * room_speed;
 						}
 						if e_question = u_question
 						{
-							if timer > (3 + 3 * global.p_totem_a[4]) * room_speed
+							if timer > (5 + 3 * global.p_totem_a[4] - 2) * room_speed
 							{
-								timer = (3 + 3 * global.p_totem_a[4]) * room_speed;
+								timer = (5 + 3 * global.p_totem_a[4] - 2) * room_speed;
 							}
 						}
 					}
@@ -6812,6 +6840,18 @@
 						}
 						if global.e_critical < 3 - 1 * global.e_totem_a[3]
 						{
+							#region ПОКАЗ ТОТЕМА: Тотем Крита
+								if global.e_totem_a[3] = 1
+								{
+									totem_show_n[2] = 3;
+								}
+							#endregion
+							#region ПОКАЗ ТОТЕМА: Тотем Крита 2
+								if global.e_totem_a[5] = 1
+								{
+									totem_show_n[2] = 5;
+								}
+							#endregion
 							global.e_critical += 1;
 						}
 					}
@@ -7055,8 +7095,8 @@
 							{
 								u_answer[i] = -1;
 								e_answer[i] = -1;
-								u_time[i] = (6 + 3 * global.p_totem_a[4]) * room_speed;
-								e_time[i] = (6 + 3 * global.e_totem_a[4]) * room_speed;
+								u_time[i] = (5 + 3 * global.p_totem_a[4]) * room_speed;
+								e_time[i] = (5 + 3 * global.e_totem_a[4]) * room_speed;
 							}
 						#endregion
 						#region Обнуление плашек и прочих переменных
@@ -7074,7 +7114,7 @@
 							bot_question = 1;
 							bot_task     = 1;
 							bot_time   = -1;
-							bot_time2  =  6 * e_time[1];
+							bot_time2  =  (5 + 3 * global.e_totem_a[4]) * e_time[1];
 							global.task = 1;
 						#endregion
 						#region Скрипт темы/раунда/задачи
@@ -8391,6 +8431,11 @@
 															{
 																global.e_totem_a[7] = 0;
 															}
+															if global.p_totem[i] = 4
+															{
+																u_time[i] = (5 + 3 * global.p_totem_a[4]) * room_speed;
+																timer = u_time[i];
+															}
 															global.tot += 0.5;
 														}
 													}
@@ -9015,6 +9060,16 @@
 							coin_i = 0;
 						}
 						coin_a -= 20;
+						#region ПОКАЗ ТОТЕМА: Тотем выбора темы
+							if global.p_totem_a[7] = 1
+							{
+								totem_show_n[1] = 7;
+							}
+							if global.e_totem_a[7] = 1
+							{
+								totem_show_n[2] = 7;
+							}
+						#endregion
 					#endregion
 				}
 				else
@@ -10181,6 +10236,16 @@
 										if global.rounds = 2
 										{
 											theme_choose = 7;
+											#region ПОКАЗ ТОТЕМА: Тотем выбора темы
+												if global.p_totem_a[7] = 1
+												{
+													totem_show_n[1] = 7;
+												}
+												if global.e_totem_a[7] = 1
+												{
+													totem_show_n[2] = 7;
+												}
+											#endregion
 										}
 										if global.rounds = 3
 										{
@@ -12921,106 +12986,114 @@
 		if totem_show_n[i] > 0
 		{
 			var totem_size, totem_color;
-			totem_size  = 0.3;
+			totem_size  = 0.25;
 			totem_color = c_white;
-			if totem_show_n[1] <= 6
+			if totem_show_n[i] <= 6
 			{
 				totem_color = c_white;
 			}
-			if totem_show_n[1] > 6 && totem_show_n[1] <= 11
+			if totem_show_n[i] > 6 && totem_show_n[i] <= 11
 			{
 				totem_color = c_aqua;
 			}
-			if totem_show_n[1] > 11 && totem_show_n[1] <= 15
+			if totem_show_n[i] > 11 && totem_show_n[i] <= 15
 			{
 				totem_color = c_fuchsia;
 			}
-			if totem_show_n[1] > 15
+			if totem_show_n[i] > 15
 			{
 				totem_color = c_orange;
 			}
 		
-			if totem_show_i[1] = 0
+			if totem_show_i[i] = 0
 			{
-				totem_show_x[1]  = (global.player_object).x + 200;
-				totem_show_y[1]  = (global.player_object).y - 300;
-				totem_show_s[1]  = 0;
-				totem_show_s1[1] = 0;
-				totem_show_i[1]  = 1;
-				totem_show_a[1]  = -15;
-			}
-			if totem_show_i[1] = 1
-			{
-				if totem_show_s[1] < 1
+				if i = 1
 				{
-					totem_show_s[1] += 0.1;//0.05;
-					totem_show_a[1] += 0.75 * 2;
+					totem_show_x[i]  = (global.player_object).x + 200;
+					 
 				}
 				else
 				{
-					totem_show_i[1] = 2;
+					totem_show_x[i]  = (global.enemy_object).x - 250;
 				}
+				totem_show_y[i]  = (global.player_object).y - 300;
+				totem_show_s[i]  = 0;
+				totem_show_s1[i] = 0;
+				totem_show_i[i]  = 1;
+				totem_show_a[i]  = -15;
 			}
-			if totem_show_i[1] = 2
+			if totem_show_i[i] = 1
 			{
-				if totem_show_s1[1] < 1
+				if totem_show_s[i] < 1
 				{
-					totem_show_s1[1] += 0.1;
-					totem_show_s[1] += 0.02;
-					totem_show_a[1] += 0.25;
+					totem_show_s[i] += 0.1; //0.05;
+					totem_show_a[i] += 0.75 * 2;
 				}
 				else
 				{
-					totem_show_i[1] = 3;
+					totem_show_i[i] = 2;
 				}
 			}
-			if totem_show_i[1] = 3
+			if totem_show_i[i] = 2
 			{
-				if totem_show_s[1] < 1.45
+				if totem_show_s1[i] < 1
 				{
-					totem_show_s[1] += 0.005;
-					totem_show_a[1] += 0.1;
+					totem_show_s1[i] += 0.1;
+					totem_show_s[i] += 0.02;
+					totem_show_a[i] += 0.25;
 				}
 				else
 				{
-					totem_show_i[1] = 4;
+					totem_show_i[i] = 3;
 				}
 			}
-			if totem_show_i[1] = 4
+			if totem_show_i[i] = 3
 			{
-				if totem_show_s[1] > 0
+				if totem_show_s[i] < 1.45
 				{
-					totem_show_s[1]  -= 0.1;
-					totem_show_a[1]  -= 1;
-					totem_show_s1[1] -= 0.1;
+					totem_show_s[i] += 0.01;
+					totem_show_a[i] += 0.1;
 				}
 				else
 				{
-					totem_show_x[1]  = 0;
-					totem_show_y[1]  = 0;
-					totem_show_s[1]  = 0;
-					totem_show_s1[1] = 0;
-					totem_show_a[1]  = 0;
-					totem_show_i[1]  = 0;
-					totem_show_n[1]  = 0;
+					totem_show_i[i] = 4;
 				}
 			}
-			if totem_show_i[1] > 1
+			if totem_show_i[i] = 4
 			{
-				draw_sprite_ext(s_totems_light, totem_show_n[1], totem_show_x[1], totem_show_y[1], totem_show_s[1] * totem_show_s1[1] * totem_size, totem_show_s[1] * totem_show_s1[1] * totem_size, totem_show_a[1], totem_color, 1);
-				draw_sprite_ext(s_totems, totem_show_n[1], totem_show_x[1], totem_show_y[1], totem_show_s[1] * totem_size, totem_show_s[1] * totem_size, totem_show_a[1], c_white, 1);
-				draw_sprite_ext(s_totems_eyes, totem_show_n[1], totem_show_x[1], totem_show_y[1], totem_show_s[1] * totem_size, totem_show_s[1] * totem_size, totem_show_a[1], totem_color, totem_show_s1[1]);
+				if totem_show_s[i] > 0
+				{
+					totem_show_s[i]  -= 0.1;
+					totem_show_a[i]  -= 1;
+					totem_show_s1[i] -= 0.1;
+				}
+				else
+				{
+					totem_show_x[i]  = 0;
+					totem_show_y[i]  = 0;
+					totem_show_s[i]  = 0;
+					totem_show_s1[i] = 0;
+					totem_show_a[i]  = 0;
+					totem_show_i[i]  = 0;
+					totem_show_n[i]  = 0;
+				}
+			}
+			if totem_show_i[i] > 1
+			{
+				draw_sprite_ext(s_totems_light, totem_show_n[i], totem_show_x[i], totem_show_y[i], totem_show_s[i] * totem_show_s1[i] * totem_size, totem_show_s[i] * totem_show_s1[i] * totem_size, totem_show_a[i], totem_color, 1);
+				draw_sprite_ext(s_totems, totem_show_n[i], totem_show_x[i], totem_show_y[i], totem_show_s[i] * totem_size, totem_show_s[i] * totem_size, totem_show_a[i], c_white, 1);
+				draw_sprite_ext(s_totems_eyes, totem_show_n[i], totem_show_x[i], totem_show_y[i], totem_show_s[i] * totem_size, totem_show_s[i] * totem_size, totem_show_a[i], totem_color, totem_show_s1[i]);
 			}
 			else
 			{
-				draw_sprite_ext(s_totems, totem_show_n[1], totem_show_x[1], totem_show_y[1], totem_show_s[1] * totem_size, totem_show_s[1] * totem_size, totem_show_a[1], c_white, 1);
+				draw_sprite_ext(s_totems, totem_show_n[i], totem_show_x[i], totem_show_y[i], totem_show_s[i] * totem_size, totem_show_s[i] * totem_size, totem_show_a[i], c_white, 1);
 			}
 		}
 	}
 #endregion
 #region Отладка
 	//draw_set_font(global.game_font);
-	//draw_text_transformed_t(global.width / 2, global.height / 2, string(u_question) + "~" + string((i - 1) * 3 + j), 0.25, 0.25, 0, c_white, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(timer) + "~" + string(global.p_totem_a[4]), 0.25, 0.25, 0, c_white, c_black);
 	if keyboard_check_pressed(vk_up)
 	{
 		if totem_show_n[1] = 0

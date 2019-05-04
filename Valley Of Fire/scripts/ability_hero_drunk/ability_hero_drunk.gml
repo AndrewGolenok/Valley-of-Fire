@@ -69,7 +69,7 @@ if shoot = 2 or shoot = 3
 				{
 				var datk;
 				datk = 1;
-				if (o_list.hp - o_list.e_atk) <= 0
+				if (o_list.hp - (o_list.e_atk + (1 + global.e_totem_a[5]) * o_list.e_atk * 1 / 10 * (global.e_critical == (3 - 1 * global.e_totem_a[3])))) <= 0//(o_list.hp - o_list.e_atk) <= 0
 					{ datk = (1 + 0.2 * global.p_totem_a[6]); }
 				
 				for(i = 1; i <= 3; i ++)

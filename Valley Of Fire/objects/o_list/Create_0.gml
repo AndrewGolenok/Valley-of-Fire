@@ -478,8 +478,8 @@
 		///
 	#endregion
 	#region Таймер
-		timer   = 6 * room_speed;
-		timer_x = 6 * room_speed;
+		timer   = (5 + 3 * 0) * room_speed;
+		timer_x = (5 + 3 * 0) * room_speed;
 	#endregion
 	#region Прочие переменные дуэли
 		global.abilitican   = 1;
@@ -925,8 +925,8 @@
 		{
 			u_answer[i] = -1;
 			e_answer[i] = -1;
-			u_time[i]   = 6 * room_speed;
-			e_time[i]   = 6 * room_speed;
+			u_time[i]   = (5 + 3 * 0) * room_speed;
+			e_time[i]   = (5 + 3 * 0) * room_speed;
 		}
 		u_question = 1;
 		e_question = 1;
@@ -1038,7 +1038,7 @@
 		bot_question = 1;
 		bot_task     = 1;
 		bot_time     = -1;
-		bot_time2    = 6 * room_speed;
+		bot_time2    = (5 + 3 * 0) * room_speed;
 		timer_y      = 0;
 		global.bot_answer = -1;
 	#endregion
@@ -1376,6 +1376,15 @@
 			totem_show_n[i]  = 0; // Номер тотема
 			totem_show_i[i]  = 0; // Стадия тотема
 			totem_show_a[i]  = 0; // Угол тотема
+		}
+	#endregion
+	#region Время игрока и врага
+		for(i = 1; i <= 12; i ++)
+		{
+			u_answer[i] = -1;
+			e_answer[i] = -1;
+			u_time[i]   = (5 + 3 * global.p_totem_a[4]) * room_speed;
+			e_time[i]   = (5 + 3 * global.e_totem_a[4]) * room_speed;
 		}
 	#endregion
 #endregion
