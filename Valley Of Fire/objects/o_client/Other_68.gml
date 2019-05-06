@@ -219,11 +219,11 @@ if type = network_type_data
 			#endregion
 			#region Игрок закончил действовать в раунде
 				case 8:
-					if o_list.player_end[global.myid] = 0
+					if o_list.player_end[global.myid] != 1
 					{
 						o_list.faster_id = global.enid;
 					}
-					o_list.player_end[global.enid] = param[? "player_end"];
+					o_list.player_end[global.enid] = 1; //param[? "player_end"];
 				break;
 			#endregion
 			#region Синхронизация задач
@@ -238,7 +238,8 @@ if type = network_type_data
 				case 10:
 					o_list.hp		 = param[? "hp"];
 					o_list.maxhp	 = param[? "maxhp"];
-					o_list.round_end = 1;
+					//o_list.round_end = 2;
+					o_list.round_end_dop = 1;
 				break;
 			#endregion
 			#region Синхронизация итогов раунда
@@ -267,9 +268,22 @@ if type = network_type_data
 					global.enemy_name = param[? "enemy_name"];
 				break;
 			#endregion
-			#region Получение имени врага
+			#region Получение стана врага (1, с ответом)
 				case 14:
-					(global.enemy_object).stun = param[? "stun"];
+					answer[global.enid]   = param[? "answer"];
+					question[global.enid] = param[? "question"];
+					task[global.enid]     = param[? "task"];
+					
+					global.bot_answer   = answer[global.enid];
+					o_list.bot_question = question[global.enid];
+					o_list.bot_task     = task[global.enid];
+					
+					(global.enemy_object).stun = 1;
+				break;
+			#endregion
+			#region Получение стана врага (0)
+				case 15:
+					(global.enemy_object).stun = 0; //param[? "stun"];
 				break;
 			#endregion
 		}

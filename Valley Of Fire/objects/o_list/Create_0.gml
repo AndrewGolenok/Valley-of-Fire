@@ -63,14 +63,14 @@
 		{
 			global.enemy_rank  = choose(global.player_rank - 1, global.player_rank + 1, global.player_rank + 1, global.player_rank, global.player_rank, global.player_rank, global.player_rank, global.player_rank)
 		}
-		if global.hero = 2
-		{
-			global.player_name = "DRUNK JOE";
-		}
-		if global.hero = 5
-		{
-			global.player_name = "BILL SR.";
-		}
+		//if global.hero = 2
+		//{
+		//	global.player_name = "DRUNK JOE";
+		//}
+		//if global.hero = 5
+		//{
+		//	global.player_name = "BILL SR.";
+		//}
 		//if os_get_language() = "ru"
 		//{
 		//	switch(global.hero)
@@ -1705,4 +1705,5 @@
 	faster_id     = -1; // Самый быстрый игрок
 	pepa		  = ""; // Отладка
 	round_end     = 0; // Враг закончил раунд
+	round_end_dop = 0;
 #endregion

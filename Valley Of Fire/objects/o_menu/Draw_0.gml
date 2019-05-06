@@ -238,6 +238,8 @@
 							}
 							if global.titles = 0
 							{
+								///ТЕСТ ЖОПА ТИТРЫ
+								global.online = !global.online;
 								global.titles = 1;
 								io_clear();
 							}

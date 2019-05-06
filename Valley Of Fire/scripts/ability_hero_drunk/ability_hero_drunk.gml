@@ -69,7 +69,7 @@ if shoot = 2 or shoot = 3
 					(global.player_object).stun = 1;
 					if global.online
 					{
-						o_client.cl_stage = 14;
+						//o_client.cl_stage = 14;
 					}
 				}
 				else
