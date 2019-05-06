@@ -1,6 +1,7 @@
 global.online = true;
 
 cl_stage = 0;
+ls_stage = 0;
 
 ip   = "192.168.1.10";
 port = 4567;

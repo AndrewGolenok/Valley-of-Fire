@@ -169,7 +169,7 @@ if type = network_type_data
 						}
 					}
 					buffer_seek(buffer_c, buffer_seek_start, 0);
-					buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 5" + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+					buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 5" + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 					network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 				break;
 			#endregion

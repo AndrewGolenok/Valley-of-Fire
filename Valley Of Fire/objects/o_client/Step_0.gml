@@ -1,3 +1,23 @@
+#region Последний стейдж
+	if ls_stage != 0
+	{
+		if ls_stage = cl_stage
+		{
+			if cl_stage != 5
+			{
+				cl_stage = 0;
+			}
+		}
+		else
+		{
+			ls_stage = 0;
+		}
+	}
+	else
+	{
+		ls_stage = cl_stage;
+	}
+#endregion
 #region Игрок начинает поиск
 	if cl_stage = 1
 	{
@@ -22,32 +42,32 @@ if global.fight
 		if cl_stage = 3
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 1, \"theme1\": " + string(o_list.theme_t[1]) + ",\"theme2\": " + string(o_list.theme_t[2]) + ",\"theme3\": " + string(o_list.theme_t[3]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 1, \"theme1\": " + string(o_list.theme_t[1]) + ",\"theme2\": " + string(o_list.theme_t[2]) + ",\"theme3\": " + string(o_list.theme_t[3]) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			rearr_t  = room_speed;
 			rearr    = 0;
 			cl_stage = 0;
 		}
-		if rearr = 0 && global.myid = first_p
+		if rearr = 0 && global.myid = first_p && o_client.cl_stage != 5
+		{
+			if rearr_t > 0
 			{
-				if rearr_t > 0
-				{
-					rearr_t --;
-				}
-				else
-				{
-					buffer_seek(buffer_c, buffer_seek_start, 0);
-					buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 1, \"theme1\": " + string(o_list.theme_t[1]) + ",\"theme2\": " + string(o_list.theme_t[2]) + ",\"theme3\": " + string(o_list.theme_t[3]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
-					network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-					rearr_t = room_speed * 2;
-				}
+				rearr_t --;
 			}
+			else
+			{
+				buffer_seek(buffer_c, buffer_seek_start, 0);
+				buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 1, \"theme1\": " + string(o_list.theme_t[1]) + ",\"theme2\": " + string(o_list.theme_t[2]) + ",\"theme3\": " + string(o_list.theme_t[3]) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
+				network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+				rearr_t = room_speed * 2;
+			}
+		}
 	#endregion
 	#region Выбор темы игроком
 		if cl_stage = 4
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 3, \"theme_r1\": " + string(theme_r[1]) + ",\"theme_r2\": " + string(theme_r[2]) + ",\"theme_r3\": " + string(theme_r[3]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 3, \"theme_r1\": " + string(theme_r[1]) + ",\"theme_r2\": " + string(theme_r[2]) + ",\"theme_r3\": " + string(theme_r[3]) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
@@ -55,17 +75,17 @@ if global.fight
 	#region Готовность
 		if cl_stage = 5
 		{
-			if ready[global.myid] = 0
-			{
-				buffer_seek(buffer_c, buffer_seek_start, 0);
-				buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 2, \"ready\": 1" + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
-				network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-				ready[global.myid] = 1;
-			}
 			if ready[global.myid] = 1 && ready[global.enid] = 1
 			{
 				o_list.theme_choose = 3;
 				cl_stage = 0;
+			}
+			if ready[global.myid] = 0
+			{
+				buffer_seek(buffer_c, buffer_seek_start, 0);
+				buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 2, \"ready\": 1,\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
+				network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+				ready[global.myid] = 1;
 			}
 		}
 	#endregion
@@ -73,7 +93,7 @@ if global.fight
 		if cl_stage = 6
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 6, \"hp\": " + string(o_list.e_hp) + ", \"maxhp\": " + string(o_list.e_maxhp) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 6, \"hp\": " + string(o_list.e_hp) + ", \"maxhp\": " + string(o_list.e_maxhp) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
@@ -82,7 +102,7 @@ if global.fight
 		if cl_stage = 7
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 4, \"answer\": " + string(answer[global.myid]) + ",\"question\": " + string(question[global.myid]) + ",\"task\": " + string(task[global.myid]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 4, \"answer\": " + string(answer[global.myid]) + ",\"question\": " + string(question[global.myid]) + ",\"task\": " + string(task[global.myid]) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
@@ -91,7 +111,7 @@ if global.fight
 		if cl_stage = 8
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 8, \"player_end\": 1,\"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 8, \"player_end\": 1,\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
@@ -99,9 +119,8 @@ if global.fight
 	#region Синхронизация задач
 		if cl_stage = 9
 		{
-			o_list.pepa = "OTPRAVEL";
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 9, \"task1\": " + string(o_list.round_task[global.rounds,1]) + ", \"task2\": " + string(o_list.round_task[global.rounds,2]) + ", \"task3\": " + string(o_list.round_task[global.rounds,3]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 9, \"task1\": " + string(o_list.round_task[global.rounds,1]) + ", \"task2\": " + string(o_list.round_task[global.rounds,2]) + ", \"task3\": " + string(o_list.round_task[global.rounds,3]) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
@@ -110,7 +129,7 @@ if global.fight
 		if cl_stage = 10
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 10, \"hp\": " + string(o_list.e_hp) + ", \"maxhp\": " + string(o_list.e_maxhp) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 10, \"hp\": " + string(o_list.e_hp) + ", \"maxhp\": " + string(o_list.e_maxhp) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
@@ -119,7 +138,7 @@ if global.fight
 		if cl_stage = 11
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 11, \"roundskul\": " + string(o_list.roundskul[global.rounds]) + ", \"rounds\": " + string(global.rounds) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 11, \"roundskul\": " + string(o_list.roundskul[global.rounds]) + ", \"rounds\": " + string(global.rounds) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
@@ -128,7 +147,7 @@ if global.fight
 		if cl_stage = 12
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 12, \"whowin\": " + string(o_list.whowin) + ", \"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 12, \"whowin\": " + string(o_list.whowin) + ", \"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
@@ -137,7 +156,7 @@ if global.fight
 		if cl_stage = 13
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 13, \"enemy_name\": \"" + global.player_name + "\", \"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 13, \"enemy_name\": \"" + global.player_name + "\", \"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
@@ -146,11 +165,11 @@ if global.fight
 		if cl_stage = 14
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 14, \"answer\": " + string(answer[global.myid]) + ",\"question\": " + string(question[global.myid]) + ",\"task\": " + string(task[global.myid]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 14, \"answer\": " + string(answer[global.myid]) + ",\"question\": " + string(question[global.myid]) + ",\"task\": " + string(task[global.myid]) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 			//buffer_seek(buffer_c, buffer_seek_start, 0);
-			//buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 14, \"stun\": 1, \"fightId\": \"" + string(global.f_id) + "\"}}");
+			//buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 14, \"stun\": 1, \"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			//network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			//cl_stage = 0;
 		}
@@ -159,7 +178,7 @@ if global.fight
 		if cl_stage = 15
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 15, \"stun\": 0, \"fightId\": \"" + string(global.f_id) + "\"}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 15, \"stun\": 0, \"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
@@ -199,7 +218,7 @@ if 0
 						theme[3] = irandom_range(1, 8);
 				
 						buffer_seek(buffer_c, buffer_seek_start, 0);
-						buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 1, \"theme1\": " + string(theme[1]) + ",\"theme2\": " + string(theme[2]) + ",\"theme3\": " + string(theme[3]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+						buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 1, \"theme1\": " + string(theme[1]) + ",\"theme2\": " + string(theme[2]) + ",\"theme3\": " + string(theme[3]) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 						network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 						
 						rearr_t = room_speed;
@@ -215,7 +234,7 @@ if 0
 							else
 							{
 								buffer_seek(buffer_c, buffer_seek_start, 0);
-								buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 1, \"theme1\": " + string(theme[1]) + ",\"theme2\": " + string(theme[2]) + ",\"theme3\": " + string(theme[3]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+								buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 1, \"theme1\": " + string(theme[1]) + ",\"theme2\": " + string(theme[2]) + ",\"theme3\": " + string(theme[3]) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 								network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 						
 								rearr_t = room_speed;
@@ -288,7 +307,7 @@ if 0
 							if round_num = 1 or round_num = 2
 							{
 								buffer_seek(buffer_c, buffer_seek_start, 0);
-								buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 3, \"theme_r1\": " + string(theme_r[1]) + ",\"theme_r2\": " + string(theme_r[2]) + ",\"theme_r3\": " + string(theme_r[3]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+								buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 3, \"theme_r1\": " + string(theme_r[1]) + ",\"theme_r2\": " + string(theme_r[2]) + ",\"theme_r3\": " + string(theme_r[3]) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 								network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 							}
 						}
@@ -313,7 +332,7 @@ if 0
 								}
 						
 								buffer_seek(buffer_c, buffer_seek_start, 0);
-								buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 3, \"theme_r1\": " + string(theme_r[1]) + ",\"theme_r2\": " + string(theme_r[2]) + ",\"theme_r3\": " + string(theme_r[3]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+								buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 3, \"theme_r1\": " + string(theme_r[1]) + ",\"theme_r2\": " + string(theme_r[2]) + ",\"theme_r3\": " + string(theme_r[3]) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 								network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 							}
 						}
@@ -338,7 +357,7 @@ if 0
 					else
 					{
 					buffer_seek(buffer_c, buffer_seek_start, 0);
-					buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"getFight\", \"param\": {\"fightId\": \"" + string(global.f_id) + "\"}}");
+					buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"getFight\", \"param\": {\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 					network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			
 					need_f = room_speed;
@@ -379,7 +398,7 @@ if 0
 				if ready[global.myid] = 0
 				{
 					buffer_seek(buffer_c, buffer_seek_start, 0);
-					buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 2, \"ready\": 1" + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+					buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 2, \"ready\": 1" + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 					network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 					ready[global.myid] = 1;
 				}
@@ -422,7 +441,7 @@ if 0
 				}
 		
 				buffer_seek(buffer_c, buffer_seek_start, 0);
-				buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 4, \"answer\": " + string(answer[global.myid]) + ",\"question\": " + string(question[global.myid]) + ",\"task\": " + string(task[global.myid]) + ",\"hp\": " + string(hp[global.enid]) + ",\"fightId\": \"" + string(global.f_id) + "\"}}");
+				buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 4, \"answer\": " + string(answer[global.myid]) + ",\"question\": " + string(question[global.myid]) + ",\"task\": " + string(task[global.myid]) + ",\"hp\": " + string(hp[global.enid]) + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 				network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			}
 	
@@ -495,7 +514,7 @@ if 0
 					if global.myid = 1
 					{
 						buffer_seek(buffer_c, buffer_seek_start, 0);
-						buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"endFight\", \"param\": {\"fightId\": \"" + string(global.f_id) + "\"}}");
+						buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"endFight\", \"param\": {\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
 						network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 					}
 					stage = 3;
@@ -516,3 +535,6 @@ if 0
 	#endregion
 	///////////
 }
+
+//\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}"
+//\"fightId\": \"" + string(global.f_id) + "\"}}"

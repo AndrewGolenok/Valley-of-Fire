@@ -10050,6 +10050,7 @@
 				if global.online
 				{
 					o_client.cl_stage = 5;
+					theme_choose = -1;
 				}
 				else
 				{
@@ -10498,6 +10499,20 @@
 		{
 			if global.online
 			{
+				if round_end = 1 && o_client.cl_stage = 0
+				{
+					if round_end_dop = 1
+					{
+						theme_choose = 6;
+						
+						player_end[1] = 0; //
+						player_end[2] = 0; // Игроки закончили отвечать на вопросы
+						faster_id     = -1; // Самый быстрый игрок
+						pepa		  = ""; // Отладка
+						round_end     = 0; // Враг закончил раунд
+						round_end_dop = 0;
+					}
+				}
 				if round_end = 0 && o_client.cl_stage = 0
 				{
 					global.idol[1] = 0;
@@ -10519,20 +10534,6 @@
 					}
 					o_client.cl_stage = 10;
 					round_end = 1;
-				}
-				if round_end = 1
-				{
-					if round_end_dop = 1
-					{
-						theme_choose = 6;
-						
-						player_end[1] = 0; //
-						player_end[2] = 0; // Игроки закончили отвечать на вопросы
-						faster_id     = -1; // Самый быстрый игрок
-						pepa		  = ""; // Отладка
-						round_end     = 0; // Враг закончил раунд
-						round_end_dop = 0;
-					}
 				}
 			}
 			else
@@ -13231,7 +13232,7 @@
 #endregion
 #region Отладка
 	draw_set_font(global.game_font);
-	draw_text_transformed_t(global.width / 2, global.height / 2, string(player_end[1]) + "~" + string(faster_id) + "~" + string(player_end[2]) + "\n ТЕМА: " + string(theme_choose) + "\n СРАКА:" + string(global.sraka) + "\n ЭНД:" + string(round_end) + "\n ТАСК-ВОП:" + string(global.task) + "~" + string(global.question) + "~" + string(u_question) + "\n ГОТОВ:" + string(o_client.ready[global.myid]) + "~" + string(o_client.ready[global.enid]) + "\n СЛ_СТДЖ:" + string(o_client.cl_stage), 0.15, 0.15, 0, c_white, c_black);
+	draw_text_transformed_t(global.width / 2, global.height / 2, string(global.myid) + "\n" + string(player_end[1]) + "~" + string(faster_id) + "~" + string(player_end[2]) + "\n ТЕМА: " + string(theme_choose) + "\n СРАКА:" + string(global.sraka) + "\n ЭНД:" + string(round_end) + "\n ТАСК-ВОП:" + string(global.task) + "~" + string(global.question) + "~" + string(u_question) + "\n ГОТОВ:" + string(o_client.ready[global.myid]) + "~" + string(o_client.ready[global.enid]) + "\n СЛ_СТДЖ:" + string(o_client.cl_stage) + "\n" + string(round_end_dop) + "\n ФЁРСТ_ПЛ:" + string(first_player), 0.15, 0.15, 0, c_white, c_black);
 	if keyboard_check_pressed(vk_up)
 	{
 		if totem_show_n[1] = 0
