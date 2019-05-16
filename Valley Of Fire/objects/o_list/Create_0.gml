@@ -305,7 +305,8 @@
 			theme_nn[2] = global.theme_name[theme_t[2]];
 			theme_t[3]  = 1//theme_new(theme_t[1], theme_t[2]);
 			theme_nn[3] = global.theme_name[theme_t[3]];
-			o_client.rearr = 0;
+			
+			//o_client.rearr = 0;
 		}
 	}
 	else
@@ -1077,7 +1078,6 @@
 		if global.online
 		{
 			global.enemy_name = "-";
-			o_client.cl_stage = 13;
 		}
 		if global.shomen
 		{
@@ -1706,4 +1706,56 @@
 	pepa		  = ""; // Отладка
 	round_end     = 0; // Враг закончил раунд
 	round_end_dop = 0;
+	nameg_need    = 1;
+	nameg_time    = 5;
+	if global.online
+	{
+		totem_first = o_client.first_p;
+		o_client.nameg = 1;
+	}
+	#region Онлайн, рандом у тотемов
+		var totr;
+		totr = 0;
+		for(pl = 1; pl <= 2; pl ++)
+		{
+			totem_ran_rat[pl]      = "";
+			totem_ran_panther[pl]  = "";
+			totem_ran_bull[pl]     = "";
+			totem_ran_evasive[pl]  = "";
+			totem_ran_pig[pl]      = "";
+			totem_ran_pig_num[pl]  = "";
+			totem_ran_frog_num[pl] = "";
+			totem_ran_frog[pl]     = "";
+			for(i = 1; i <= 18; i ++)
+			{
+				totr = irandom(99);
+				if totr < 35
+				{
+					totem_ran_bull[pl] += "1";
+				}
+				else
+				{
+					totem_ran_bull[pl] += "0";
+				}
+				totr = irandom(99);
+				if totr < 10
+				{
+					totem_ran_evasive[pl] += "1";
+				}
+				else
+				{
+					totem_ran_evasive[pl] += "0";
+				}
+				if i <= 3
+				{
+					totem_ran_rat[pl]     += string(irandom_range(1, 3));
+					totem_ran_panther[pl] += string(irandom(1));
+				}
+				totem_ran_pig[pl]      += string(irandom_range(1, 9));
+				totem_ran_frog[pl]     += string(irandom_range(1, 9));
+				totem_ran_pig_num[pl]  += string(choose(0, 9));
+				totem_ran_frog_num[pl] += string(choose(0, 9));
+			}
+		}
+	#endregion
 #endregion

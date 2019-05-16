@@ -155,10 +155,10 @@ if type = network_type_data
 		{
 			#region Получение тем
 				case 1:
-					if rearr = 0
+					if instance_exists(o_list)
 					{
-						if instance_exists(o_list)
-						{
+						//if rearr != 1
+						//{
 							o_list.theme_t[1]  = param[? "theme1"];
 							o_list.theme_t[2]  = param[? "theme2"];
 							o_list.theme_t[3]  = param[? "theme3"];
@@ -166,11 +166,12 @@ if type = network_type_data
 							o_list.theme_nn[2] = global.theme_name[o_list.theme_t[2]];
 							o_list.theme_nn[3] = global.theme_name[o_list.theme_t[3]];
 							rearr = 1;
-						}
+						//}
+						dosul = 1;
+						//buffer_seek(buffer_c, buffer_seek_start, 0);
+						//buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 5" + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
+						//network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 					}
-					buffer_seek(buffer_c, buffer_seek_start, 0);
-					buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 5" + ",\"fightId\": \"" + string(global.f_id) + ",\"pl_id\": \"" + string(global.myid) + "\"}}");
-					network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 				break;
 			#endregion
 			#region Готовность
@@ -240,6 +241,7 @@ if type = network_type_data
 					o_list.maxhp	 = param[? "maxhp"];
 					//o_list.round_end = 2;
 					o_list.round_end_dop = 1;
+					//global.player_name = "PIDORAS_" + string(global.myid);
 				break;
 			#endregion
 			#region Синхронизация итогов раунда
@@ -263,9 +265,18 @@ if type = network_type_data
 					}
 				break;
 			#endregion
-			#region Получение имени врага
+			#region Получение имени врага и рандом тотемов
 				case 13:
 					global.enemy_name = param[? "enemy_name"];
+					o_list.totem_ran_frog[global.enid]     = param[? "frog"];
+					o_list.totem_ran_rat[global.enid]      = param[? "rat"];
+					o_list.totem_ran_panther[global.enid]  = param[? "panther"];
+					o_list.totem_ran_bull[global.enid]     = param[? "bull"];
+					o_list.totem_ran_evasive[global.enid]  = param[? "evasive"];
+					o_list.totem_ran_pig[global.enid]      = param[? "pig"];
+					o_list.totem_ran_pig_num[global.enid]  = param[? "pig_num"];
+					o_list.totem_ran_frog_num[global.enid] = param[? "frog_num"];
+					nameg2 = 1;
 				break;
 			#endregion
 			#region Получение стана врага (1, с ответом)
@@ -284,6 +295,16 @@ if type = network_type_data
 			#region Получение стана врага (0)
 				case 15:
 					(global.enemy_object).stun = 0; //param[? "stun"];
+				break;
+			#endregion
+			#region Тотем: стан
+				case 16:
+					o_list.totem_show_n[2] = 8; //param[? "stun"];
+				break;
+			#endregion
+			#region Тотем: стан
+				case 17:
+					o_list.nameg_need = 0;
 				break;
 			#endregion
 		}

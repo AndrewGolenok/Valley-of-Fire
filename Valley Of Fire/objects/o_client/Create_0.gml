@@ -111,7 +111,16 @@ need_hp[2]  = 0;
 real_hp[1]  = 0;
 real_hp[2]  = 0;
 
-rearr        = 1;
+rearr        = -1//1;
 rearr_t      = room_speed;
 
+nameg  = 0;
+nameg2 = 0;
+
+dosul = 0;
+
 need_f = -1;
+
+///
+ready[1] = 1;
+ready[2] = 1;

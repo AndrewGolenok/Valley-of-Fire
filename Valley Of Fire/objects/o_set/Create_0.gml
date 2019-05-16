@@ -45,7 +45,7 @@
 	view_set_camera(VIEW, camera);
 #endregion
 #region Язык
-	global.lang = "en";
+	global.lang = "ru"; //"en";
 #endregion
 #region Ини сохранения
 	ini_open("Music.ini");

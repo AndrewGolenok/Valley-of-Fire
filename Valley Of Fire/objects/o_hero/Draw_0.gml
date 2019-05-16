@@ -775,6 +775,10 @@
 				}
 				#region ПОКАЗ ТОТЕМА: Тотем стана
 					o_list.totem_show_n[1] = 8;
+					if global.online
+					{
+						o_client.cl_stage = 16;
+					}
 				#endregion
 			}
 			if global.e_totem_a[8] && enemy
