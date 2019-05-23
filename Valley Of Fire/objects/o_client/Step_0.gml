@@ -39,21 +39,34 @@
 if global.fight
 {
 	#region Передача имени 1 (подтвр)
-		if nameg2 = 1 && cl_stage = 0
+		if nameg2 = 1
 		{
-			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 17, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
-			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			nameg2 = 2;
+			if nameg2_time > 0
+			{
+				nameg2_time --;
+			}
+			else
+			{
+				if cl_stage = 0
+				{
+					buffer_seek(buffer_c, buffer_seek_start, 0);
+					buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 17, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
+					network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+					nameg2 = 2;
+				}
+			}
 		}
 	#endregion
 	#region Передача имени 2 (передача имени и тотемов)
-		if nameg = 1 && cl_stage = 0 && o_list.nameg_need = 1
+		if instance_exists(o_list)
 		{
-			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 13, \"enemy_name\": \"" + global.player_name + "\", \"bull\": \"" + string(o_list.totem_ran_bull[global.myid]) + "\", \"evasive\": \"" + string(o_list.totem_ran_evasive[global.myid]) + "\", \"pig\": \"" + string(o_list.totem_ran_pig[global.myid]) + "\", \"pig_num\": \"" + string(o_list.totem_ran_pig_num[global.myid]) + "\", \"frog\": \"" + string(o_list.totem_ran_frog[global.myid]) + "\", \"frog_num\": \"" + string(o_list.totem_ran_frog_num[global.myid]) + "\", \"rat\": \"" + string(o_list.totem_ran_rat[global.myid]) + "\", \"panther\": \"" + string(o_list.totem_ran_panther[global.myid]) + "\", \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
-			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			nameg = 2;
+			if nameg = 1 && cl_stage = 0 && o_list.nameg_need = 1
+			{
+				buffer_seek(buffer_c, buffer_seek_start, 0);
+				buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 13, \"enemy_name\": \"" + global.player_name + "\", \"bull\": \"" + string(o_list.totem_ran_bull[global.myid]) + "\", \"evasive\": \"" + string(o_list.totem_ran_evasive[global.myid]) + "\", \"pig\": \"" + string(o_list.totem_ran_pig[global.myid]) + "\", \"pig_num\": \"" + string(o_list.totem_ran_pig_num[global.myid]) + "\", \"frog\": \"" + string(o_list.totem_ran_frog[global.myid]) + "\", \"frog_num\": \"" + string(o_list.totem_ran_frog_num[global.myid]) + "\", \"rat\": \"" + string(o_list.totem_ran_rat[global.myid]) + "\", \"panther\": \"" + string(o_list.totem_ran_panther[global.myid]) + "\", \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
+				network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+				nameg = 2;
+			}
 		}
 	#endregion
 	#region Досылка темы
@@ -91,12 +104,13 @@ if global.fight
 		}
 	#endregion
 	#region Выбор темы игроком
-		if cl_stage = 4
+		if cl_stage = 4 or go_theme = 1
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 3, \"theme_r1\": " + string(theme_r[1]) + ",\"theme_r2\": " + string(theme_r[2]) + ",\"theme_r3\": " + string(theme_r[3]) + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
+			go_theme = 0;
 		}
 	#endregion
 	#region Готовность
@@ -174,7 +188,7 @@ if global.fight
 		if cl_stage = 12
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 12, \"whowin\": " + string(o_list.whowin) + ", \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 12, \"whowin\": " + string(o_list.whowin) + ", \"rskul1\": \"" + string(o_list.roundskul[1]) + ", \"rskul2\": \"" + string(o_list.roundskul[2]) + ", \"rskul3\": \"" + string(o_list.roundskul[3]) + ", \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
@@ -206,6 +220,15 @@ if global.fight
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 16, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
+			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+			cl_stage = 0;
+		}
+	#endregion
+	#region Супер
+		if cl_stage = 18
+		{
+			buffer_seek(buffer_c, buffer_seek_start, 0);
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 17, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}

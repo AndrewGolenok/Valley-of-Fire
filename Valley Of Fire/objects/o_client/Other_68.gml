@@ -260,6 +260,9 @@ if type = network_type_data
 					if o_list.whowin = 0
 					or (o_list.whowin = param[? "whowin"] && global.enid = first_p)
 					{
+						o_list.roundskul[1] = 3 - param[? "rskul1"];
+						o_list.roundskul[2] = 3 - param[? "rskul2"];
+						o_list.roundskul[3] = 3 - param[? "rskul3"];
 						o_list.whowin = 3 - param[? "whowin"];
 						o_list.theme_choose = 9;
 					}
@@ -277,6 +280,7 @@ if type = network_type_data
 					o_list.totem_ran_pig_num[global.enid]  = param[? "pig_num"];
 					o_list.totem_ran_frog_num[global.enid] = param[? "frog_num"];
 					nameg2 = 1;
+					nameg2_time = 3;
 				break;
 			#endregion
 			#region Получение стана врага (1, с ответом)
@@ -302,9 +306,14 @@ if type = network_type_data
 					o_list.totem_show_n[2] = 8; //param[? "stun"];
 				break;
 			#endregion
-			#region Тотем: стан
+			#region Имя и тотемы пришли
 				case 17:
 					o_list.nameg_need = 0;
+				break;
+			#endregion
+			#region Супер
+				case 18:
+					o_list.enemy_super = 1;
 				break;
 			#endregion
 		}

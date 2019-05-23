@@ -398,7 +398,7 @@
 					}
 				#endregion
 			}
-			draw_text_transformed_t(string_width(main_text[7]) * 0.22 / 2 + 20, global.height / 2 - 10 - 0.2 * (global.height - 590), "∂" + main_text[7] + "∂", 0.22 * ms5, 0.22 * ms5, 5, global.color_white, c_black);
+			draw_text_transformed_t(string_width(main_text[7]) * 0.22 / 2 + 20, global.height / 2 - 10 - 0.2 * (global.height - 590), "" + main_text[7] + "", 0.22 * ms5, 0.22 * ms5, 5, global.color_white, c_black);
 		#endregion
 		#region Ранкед дуэль
 			if global.menu_now = "main"
@@ -426,7 +426,7 @@
 					}
 				}
 			}
-			draw_text_transformed_t(640, global.height / 2 + string_height("®" + main_text[8] + "®") * 0.22 / 2 + 25 + 0.2 * (global.height - 590), "®" + main_text[8] + "®", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black);
+			draw_text_transformed_t(640, global.height / 2 + string_height("®" + main_text[8] + "®") * 0.22 / 2 + 25 + 0.2 * (global.height - 590), "" + main_text[8] + "", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black);
 		#endregion
 		#region Режим против друга
 			if point_in_rectangle(mouse_x, mouse_y, global.width - string_width("œ" + main_text[9] + "œ") * 0.22 / 2 - 20 - string_width("œ" + main_text[9] + "œ") * 0.22 / 2, global.height / 2 - string_height("œ" + main_text[9] + "œ") * 0.22 - 60 - 0.2 * (global.height - 590), global.width - string_width("œ" + main_text[9] + "œ") * 0.22 / 2 - 20 + string_width("œ" + main_text[9] + "œ") * 0.22 / 2, global.height / 2 + string_height("œ" + main_text[9] + "œ") * 0.22 - 60 - 0.2 * (global.height - 590))
@@ -451,7 +451,7 @@
 					global.menu_next = "training";
 				}
 			}
-			draw_text_transformed_t(global.width - string_width("œ" + main_text[9] + "œ") * 0.22 / 2 - 20, global.height / 2 - 60 - 0.2 * (global.height - 590), "œ" + main_text[9] + "œ", 0.22 * ms8, 0.22 * ms8, 5, global.color_white, c_black);
+			draw_text_transformed_t(global.width - string_width("œ" + main_text[9] + "œ") * 0.22 / 2 - 20, global.height / 2 - 60 - 0.2 * (global.height - 590), "" + main_text[9] + "", 0.22 * ms8, 0.22 * ms8, 5, global.color_white, c_black);
 		#endregion
 		#region Показ голды и баксов
 			if global.menu_now = "main"
@@ -565,6 +565,11 @@
 					{
 						if point_in_rectangle(mouse_x, mouse_y, 72 * 1.6 + 15, 0, 120 + 72 * 1.6, 125)
 						{
+							ini_open("Music.ini");
+								ini_write_string("Ranks", "ranks", string(irandom(70)));
+								global.rank_stars = ini_read_real("Ranks", "ranks", 0);
+							ini_close();
+							
 							global.sound = !global.sound;
 							audio_play_sound(sd_text, 2, 0);
 							ini_open("Music.ini");

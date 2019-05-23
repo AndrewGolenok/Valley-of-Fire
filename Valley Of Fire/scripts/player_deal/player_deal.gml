@@ -78,9 +78,21 @@ with(o_hero)
 		datk = 1;
 		var chance, miss;
 		miss = 0;
-		if global.e_totem_a[12] && (o_list.e_hp - o_list.atk) <= 0
+		if global.e_totem_a[12] && (o_list.e_hp - o_list.atk * datk + (1 + global.p_totem_a[5]) * o_list.atk * datk / 10 * (global.critical == (3 - 1 * global.p_totem_a[3]))) <= 0
 		{
 			chance = irandom(99);
+			if global.online
+			{
+				if real(string_copy(o_list.totem_ran_bull[global.enid], 1, 1)) = 1
+				{
+					chance = 1;
+				}
+				else
+				{
+					chance = 35;
+				}
+				o_list.totem_ran_bull[global.enid] = string_delete(o_list.totem_ran_bull[global.enid], 1, 1);
+			}
 			if chance < 35
 			{
 				miss = 1;

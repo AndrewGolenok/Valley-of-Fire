@@ -116,6 +116,9 @@ rearr_t      = room_speed;
 
 nameg  = 0;
 nameg2 = 0;
+nameg2_time = -1;
+
+go_theme = 0;
 
 dosul = 0;
 

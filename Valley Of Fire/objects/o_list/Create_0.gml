@@ -1708,9 +1708,18 @@
 	round_end_dop = 0;
 	nameg_need    = 1;
 	nameg_time    = 5;
+	enemy_super   = 0;
+	go_super      = 0;
 	if global.online
 	{
-		totem_first = o_client.first_p;
+		if o_client.first_p = global.myid
+		{
+			totem_first = 1;
+		}
+		else
+		{
+			totem_first = 0;
+		}
 		o_client.nameg = 1;
 	}
 	#region Онлайн, рандом у тотемов
@@ -1718,6 +1727,12 @@
 		totr = 0;
 		for(pl = 1; pl <= 2; pl ++)
 		{
+			totemus_pig[1,pl]      = 0;
+			totemus_pig[2,pl]      = 0;
+			totemus_pig[3,pl]      = 0
+			totemus_pig_num[1,pl]  = 0;
+			totemus_pig_num[2,pl]  = 0;
+			totemus_pig_num [3,pl] = 0;
 			totem_ran_rat[pl]      = "";
 			totem_ran_panther[pl]  = "";
 			totem_ran_bull[pl]     = "";
@@ -1738,7 +1753,7 @@
 					totem_ran_bull[pl] += "0";
 				}
 				totr = irandom(99);
-				if totr < 10
+				if totr < 7
 				{
 					totem_ran_evasive[pl] += "1";
 				}

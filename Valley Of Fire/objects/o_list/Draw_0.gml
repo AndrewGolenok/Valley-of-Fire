@@ -6049,17 +6049,17 @@
 						chance = irandom(99);
 						if global.online
 						{
-							if real(string_copy(totem_ran_evasive[global.myid], 1, 1)) = 1
+							if real(string_copy(totem_ran_evasive[global.enid], 1, 1)) = 1
 							{
 								chance = 1;
 							}
 							else
 							{
-								chance = 10;
+								chance = 7;
 							}
-						string_delete(totem_ran_evasive[global.myid], 1, 1);
+							totem_ran_evasive[global.enid] = string_delete(totem_ran_evasive[global.enid], 1, 1);
 						}
-						if chance < 10
+						if chance < 7
 						{
 							global.answer = 0;
 							miss = 1;
@@ -6608,22 +6608,26 @@
 				}
 			#endregion
 			#region Суперспособность бота
-			if global.hand = -1 && global.online = 0
+			if global.hand = -1 && (global.online = 0 or enemy_super = 1)
 			{
-				if e_super_now = e_super_need && e_super_now1 >= e_super_need && theme_choose = 4 && global.e_abilitican = 1 && (global.enemy_object).stun = 0 && global.training < 1
+				if (e_super_now = e_super_need && e_super_now1 >= e_super_need && theme_choose = 4 && global.e_abilitican = 1 && (global.enemy_object).stun = 0 && global.training < 1) or (enemy_super = 1)
 				{
-					if ((((e_hp - atk) / e_maxhp <= hp / maxhp ) && global.enemy_hero != 5)
+					if (((((e_hp - atk) / e_maxhp <= hp / maxhp ) && global.enemy_hero != 5)
 					or (global.enemy_hero = 5 && (global.enemy_object).bill_stage != 0)
 					or global.swipe_ability = 1 or (global.enemy_hero = 2)
 					or (global.enemy_hero = 1 && global.swipe_ability = 0 && super_now = super_need)
 					&& (bot_type = 2 or bot_type = 3)
 					or (global.enemy_hero = 1 && global.swipe_ability = 0) && (bot_type = 1 or bot_type = 2))
-					&& (global.enemy_object).hand_away = 0 && (global.player_object).hand_away = 0
+					&& (global.enemy_object).hand_away = 0 && (global.player_object).hand_away = 0) or (enemy_super = 1)
 					{
-						if global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
-						&& (global.pvp = 0 or (global.pvp = 1 && pvp_super_popa = 1))
+						if (global.super_ability = 0 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
+						&& (global.pvp = 0 or (global.pvp = 1 && pvp_super_popa = 1))) or (enemy_super = 1)
 						{
 							#region Суперспособность
+								if enemy_super = 1
+								{
+									enemy_super = 0;
+								}
 								if pvp_super_popa = 1
 								{
 									pvp_super_popa = 0;
@@ -6863,7 +6867,19 @@
 					{
 						var chance;
 						chance = irandom(99);
-						if chance < 10//5
+						if global.online
+						{
+							if real(string_copy(totem_ran_evasive[global.myid], 1, 1)) = 1
+							{
+								chance = 1;
+							}
+							else
+							{
+								chance = 7;
+							}
+							totem_ran_evasive[global.myid] = string_delete(totem_ran_evasive[global.myid], 1, 1);
+						}
+						if chance < 7
 						{
 							global.bot_answer = 0;
 							#region ПОКАЗ ТОТЕМА: Тотем уклонения
@@ -7144,8 +7160,8 @@
 			#region Конец раунда
 				if global.online && o_client.cl_stage = 0
 				{
-					if global.training < 1 && ((u_question >= 10 && (global.player_object).answer = -1 && global.sraka = 0 && ((global.player_object).diego_dynamit = 0 or (global.player_object).diego_dynamit = 1) && global.super_ability = 0) or hp < 1 or e_hp < 1)
-					&& theme_choose != 5  && theme_choose != 6
+					if global.training < 1 && ((u_question >= 10 && (global.player_object).answer = -1 && global.sraka = 0 && ((global.player_object).diego_dynamit = 0 or (global.player_object).diego_dynamit = 1) && global.super_ability = 0) or floor(hp) < 1 or floor(e_hp) < 1)
+					&& theme_choose != 5  && theme_choose != 6 && theme_choose != 9
 					{
 						if player_end[global.myid] = 0
 						{
@@ -7158,11 +7174,11 @@
 						}
 					}
 				}
-				if (global.training < 1 && ((u_question >= 10 && e_question >= 10 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && global.sraka = 0) or hp < 1 or e_hp < 1 or (global.online = 1 && (player_end[1] = 1 && player_end[2] = 1)))
-				&& theme_choose != 5  && theme_choose != 6 && global.super_ability = 0 && ((global.player_object).diego_dynamit = 0 or (global.player_object).diego_dynamit = 1)
+				if (global.training < 1 && ((u_question >= 10 && e_question >= 10 && (global.player_object).answer = -1 && (global.enemy_object).answer = -1 && global.sraka = 0) or floor(hp) < 1 or floor(e_hp) < 1 or (global.online = 1 && (player_end[1] = 1 && player_end[2] = 1)))
+				&& theme_choose != 5  && theme_choose != 6 && theme_choose != 9 && global.super_ability = 0 && ((global.player_object).diego_dynamit = 0 or (global.player_object).diego_dynamit = 1)
 				&& ((global.enemy_object).diego_dynamit = 0 or (global.enemy_object).diego_dynamit = 1))// && (global.player_object).shoot = 0  && (global.enemy_object).shoot = 0// && global.sraka = 0
 				{
-					if (global.online = 0 or (global.online = 1 && ((player_end[1] = 1 && player_end[2] = 1)/* or hp < 1 or e_hp < 1*/)))
+					if (global.online = 0 or (global.online = 1 && ((player_end[1] = 1 && player_end[2] = 1) or floor(hp) < 1 or floor(e_hp) < 1)))
 					{
 						#region Результат раунда в зависимости от хп игроков
 							if round(100 * hp / maxhp) > round(100 * e_hp / e_maxhp)
@@ -7436,6 +7452,10 @@
 							&& (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
 							&& !(global.hero = 1 && global.enemy_hero = 1)
 							{
+								if global.online
+								{
+									go_super = 1;
+								}
 								trigger = 1;
 								#region Квесты
 									for(i = 1; i <= 3; i ++)
@@ -8298,6 +8318,7 @@
 #endregion
 #region Тотемы
 	if global.game_stage = 0.5
+	&& (global.online = 0 or (global.online = 1 && global.enemy_name != "-" && nameg_need = 0))
 	{
 		#region Временные переменные
 			var txx, tss, pcc;
@@ -8383,53 +8404,71 @@
 									{
 										if global.p_totem[i] = 17
 										{
-											#region Случайные тотемы Врага
-												if global.e_totem[1] != -1 && global.e_totem[2] = -1 && global.e_totem[3] = -1
+											if global.online
+											{
+												for(t1 = 1; t1 <= 3; t1 ++)
 												{
-													global.e_totem[1] = irandom_range(1, 18);
+													totemus_pig[t1,global.myid]     = real(string_copy(totem_ran_pig[global.myid], 1, 1));
+													totemus_pig_num[t1,global.myid] = real(string_copy(totem_ran_pig_num[global.myid], 1, 1));
+													totem_ran_pig[global.myid]      = string_delete(totem_ran_pig[global.myid], 1, 1);
+													totem_ran_pig_num[global.myid]  = string_delete(totem_ran_pig_num[global.myid], 1, 1);
+													global.p_totem[t1] = totemus_pig_num[t1,global.myid] + totemus_pig[t1,global.myid];
+													totemus_pig[t1,global.enid]     = real(string_copy(totem_ran_pig[global.enid], 1, 1));
+													totemus_pig_num[t1,global.enid] = real(string_copy(totem_ran_pig_num[global.enid], 1, 1));
+													totem_ran_pig[global.enid]      = string_delete(totem_ran_pig[global.enid], 1, 1);
+													totem_ran_pig_num[global.enid]  = string_delete(totem_ran_pig_num[global.enid], 1, 1);
+													global.e_totem[t1] = totemus_pig_num[t1,global.enid] + totemus_pig[t1,global.enid];
 												}
-												if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] = -1
-												{
-													global.e_totem[1] = irandom_range(1, 18);
-													if global.e_totem[1] != 1
+											}
+											else
+											{
+												#region Случайные тотемы Врага
+													if global.e_totem[1] != -1 && global.e_totem[2] = -1 && global.e_totem[3] = -1
 													{
-														global.e_totem[2] = irandom_range(1, global.e_totem[1]);
+														global.e_totem[1] = irandom_range(1, 18);
 													}
-													else
+													if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] = -1
 													{
-														global.e_totem[2] = irandom_range(2, 18);
-													}
-												}
-												if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] != -1
-												{
-													global.e_totem[1] = irandom_range(1, 18);
-													if global.e_totem[1] != 1
-													{
-														global.e_totem[2] = irandom_range(1, global.e_totem[1]);
-														if global.e_totem[2] != 1
+														global.e_totem[1] = irandom_range(1, 18);
+														if global.e_totem[1] != 1
 														{
-															global.e_totem[3] = irandom_range(1, global.e_totem[2]);
+															global.e_totem[2] = irandom_range(1, global.e_totem[1]);
 														}
 														else
 														{
-															global.e_totem[3] = irandom_range(2, global.e_totem[1]);
+															global.e_totem[2] = irandom_range(2, 18);
 														}
 													}
-													else
+													if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] != -1
 													{
-														global.e_totem[2] = irandom_range(2, 18); 
-														if global.e_totem[2] != 2
+														global.e_totem[1] = irandom_range(1, 18);
+														if global.e_totem[1] != 1
 														{
-															global.e_totem[3] = irandom_range(2, global.e_totem[2]);
+															global.e_totem[2] = irandom_range(1, global.e_totem[1]);
+															if global.e_totem[2] != 1
+															{
+																global.e_totem[3] = irandom_range(1, global.e_totem[2]);
+															}
+															else
+															{
+																global.e_totem[3] = irandom_range(2, global.e_totem[1]);
+															}
 														}
 														else
 														{
-															global.e_totem[3] = irandom_range(3, 18);
+															global.e_totem[2] = irandom_range(2, 18); 
+															if global.e_totem[2] != 2
+															{
+																global.e_totem[3] = irandom_range(2, global.e_totem[2]);
+															}
+															else
+															{
+																global.e_totem[3] = irandom_range(3, 18);
+															}
 														}
 													}
-												}
-											#endregion
-											#region Случайные тотемы Игрока
+												#endregion
+												#region Случайные тотемы Игрока
 												if global.p_totem[1] != -1 && global.p_totem[2] = -1 && global.p_totem[3] = -1
 												{
 													global.p_totem[1] = irandom_range(1, 18);
@@ -8475,6 +8514,7 @@
 													}
 												}
 											#endregion
+											}
 											totem_ps[i] = 0.8;
 										}
 										else
@@ -8482,7 +8522,19 @@
 											#region Эффекты тотемов
 												if global.p_totem[i] = 10
 												{
-													global.p_totem[i] = choose(irandom_range(1,9), irandom_range(11,18));
+													if global.online
+													{
+														var totemus, totemus_num;
+														totemus     = real(string_copy(totem_ran_frog[global.myid], 1, 1));
+														totemus_num = real(string_copy(totem_ran_frog_num[global.myid], 1, 1));
+														totem_ran_frog[global.myid]     = string_delete(totem_ran_frog[global.myid], 1, 1);
+														totem_ran_frog_num[global.myid] = string_delete(totem_ran_frog_num[global.myid], 1, 1);
+														global.p_totem[i] = totemus_num + totemus;
+													}
+													else
+													{
+														global.p_totem[i] = choose(irandom_range(1,9), irandom_range(11,18));
+													}
 													totem_ps[i] = 0.8;
 												}
 												else
@@ -8491,15 +8543,44 @@
 													{
 														if global.e_totem[1] != -1
 														{
-															var en_tot;
+															var en_tot, en_tot_online;
 															en_tot = 1;
+															en_tot_online = 1;
+															
+															if global.online
+															{
+																en_tot_online = real(string_copy(totem_ran_rat[global.myid], 1, 1));
+																totem_ran_rat[global.myid] = string_delete(totem_ran_rat[global.myid], 1, 1);
+															}
+															
 															if global.e_totem[2] != -1
 															{
-																en_tot = choose(1, 2);
+																if global.online
+																{
+																	if en_tot_online = 3
+																	{
+																		en_tot = 1;
+																	}
+																	else
+																	{
+																		en_tot = en_tot_online;
+																	}
+																}
+																else
+																{
+																	en_tot = choose(1, 2);
+																}
 															}
 															if global.e_totem[3] != -1
 															{
-																en_tot = choose(3, 2, 1);
+																if global.online
+																{
+																	en_tot = en_tot_online;
+																}
+																else
+																{
+																	en_tot = choose(3, 2, 1);
+																}
 															}
 															global.p_totem[i] = global.e_totem[en_tot];
 															global.e_totem[en_tot] = 19;
@@ -8687,53 +8768,71 @@
 														}
 													#endregion
 												}
-												#region Случайные тотемы Врага
-													if global.e_totem[1] != -1 && global.e_totem[2] = -1 && global.e_totem[3] = -1
+												if global.online
+												{
+													for(t1 = 1; t1 <= 3; t1 ++)
 													{
-														global.e_totem[1] = irandom_range(1, 18);
+														totemus_pig[t1,global.myid]     = real(string_copy(totem_ran_pig[global.myid], 1, 1));
+														totemus_pig_num[t1,global.myid] = real(string_copy(totem_ran_pig_num[global.myid], 1, 1));
+														totem_ran_pig[global.myid]      = string_delete(totem_ran_pig[global.myid], 1, 1);
+														totem_ran_pig_num[global.myid]  = string_delete(totem_ran_pig_num[global.myid], 1, 1);
+														global.p_totem[t1] = totemus_pig_num[t1,global.myid] + totemus_pig[t1,global.myid];
+														totemus_pig[t1,global.enid]     = real(string_copy(totem_ran_pig[global.enid], 1, 1));
+														totemus_pig_num[t1,global.enid] = real(string_copy(totem_ran_pig_num[global.enid], 1, 1));
+														totem_ran_pig[global.enid]      = string_delete(totem_ran_pig[global.enid], 1, 1);
+														totem_ran_pig_num[global.enid]  = string_delete(totem_ran_pig_num[global.enid], 1, 1);
+														global.e_totem[t1] = totemus_pig_num[t1,global.enid] + totemus_pig[t1,global.enid];
 													}
-													if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] = -1
-													{
-														global.e_totem[1] = irandom_range(1, 18);
-														if global.e_totem[1] != 1
+												}
+												else
+												{
+													#region Случайные тотемы Врага
+														if global.e_totem[1] != -1 && global.e_totem[2] = -1 && global.e_totem[3] = -1
 														{
-															global.e_totem[2] = irandom_range(1, global.e_totem[1]);
+															global.e_totem[1] = irandom_range(1, 18);
 														}
-														else
+														if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] = -1
 														{
-															global.e_totem[2] = irandom_range(2, 18);
-														}
-													}
-													if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] != -1
-													{
-														global.e_totem[1] = irandom_range(1, 18);
-														if global.e_totem[1] != 1
-														{
-															global.e_totem[2] = irandom_range(1, global.e_totem[1]);
-															if global.e_totem[2] != 1
+															global.e_totem[1] = irandom_range(1, 18);
+															if global.e_totem[1] != 1
 															{
-																global.e_totem[3] = irandom_range(1, global.e_totem[2]);
+																global.e_totem[2] = irandom_range(1, global.e_totem[1]);
 															}
 															else
 															{
-																global.e_totem[3] = irandom_range(2, global.e_totem[1]);
+																global.e_totem[2] = irandom_range(2, 18);
 															}
 														}
-															else
+														if global.e_totem[1] != -1 && global.e_totem[2] != -1 && global.e_totem[3] != -1
 														{
-															global.e_totem[2] = irandom_range(2, 18); 
-															if global.e_totem[2] != 2
+															global.e_totem[1] = irandom_range(1, 18);
+															if global.e_totem[1] != 1
 															{
-																global.e_totem[3] = irandom_range(2, global.e_totem[2]);
+																global.e_totem[2] = irandom_range(1, global.e_totem[1]);
+																if global.e_totem[2] != 1
+																{
+																	global.e_totem[3] = irandom_range(1, global.e_totem[2]);
+																}
+																else
+																{
+																	global.e_totem[3] = irandom_range(2, global.e_totem[1]);
+																}
 															}
-															else
+																else
 															{
-																global.e_totem[3] = irandom_range(3, 18);
+																global.e_totem[2] = irandom_range(2, 18); 
+																if global.e_totem[2] != 2
+																{
+																	global.e_totem[3] = irandom_range(2, global.e_totem[2]);
+																}
+																else
+																{
+																	global.e_totem[3] = irandom_range(3, 18);
+																}
 															}
 														}
-													}
-												#endregion
-												#region Случайные тотемы Игрока
+													#endregion
+													#region Случайные тотемы Игрока
 													if global.p_totem[1] != -1 && global.p_totem[2] = -1 && global.p_totem[3] = -1
 													{
 														global.p_totem[1] = irandom_range(1, 18);
@@ -8779,6 +8878,7 @@
 														}
 													}
 												#endregion
+												}
 												totem_es[i] = 0.8;
 											}
 											else
@@ -8786,7 +8886,19 @@
 												#region Эффект тотемов
 													if global.e_totem[i] = 10
 													{
-														global.e_totem[i] = choose(irandom_range(1,9), irandom_range(11,18));
+														if global.online
+														{
+															var totemus, totemus_num;
+															totemus     = real(string_copy(totem_ran_frog[global.enid], 1, 1));
+															totemus_num = real(string_copy(totem_ran_frog_num[global.enid], 1, 1));
+															totem_ran_frog[global.enid]     = string_delete(totem_ran_frog[global.enid], 1, 1);
+															totem_ran_frog_num[global.enid] = string_delete(totem_ran_frog_num[global.enid], 1, 1);
+															global.e_totem[i] = totemus_num + totemus;
+														}
+														else
+														{
+															global.e_totem[i] = choose(irandom_range(1,9), irandom_range(11,18));
+														}
 														totem_es[i] = 0.8;
 													}
 													else
@@ -8795,15 +8907,42 @@
 														{
 															if global.p_totem[2] != -1
 															{
-																var pn_tot;
+																var pn_tot, pn_tot_online;
 																pn_tot = 1;
+																pn_tot_online = 1;
+																if global.online
+																{
+																	pn_tot_online = real(string_copy(totem_ran_rat[global.enid], 1, 1));
+																	totem_ran_rat[global.enid] = string_delete(totem_ran_rat[global.enid], 1, 1);
+																}
 																if global.p_totem[2] != -1
 																{
-																	pn_tot = choose(1, 2);
+																	if global.online
+																	{
+																		if pn_tot_online = 3
+																		{
+																			pn_tot = 1;
+																		}
+																		else
+																		{
+																			pn_tot = pn_tot_online;
+																		}
+																	}
+																	else
+																	{
+																		pn_tot = choose(1, 2);
+																	}
 																}
 																if global.p_totem[3] != -1
 																{
-																	pn_tot = choose(3, 2, 1);
+																	if global.online
+																	{
+																		pn_tot = pn_tot_online;
+																	}
+																	else
+																	{
+																		pn_tot = choose(3, 2, 1);
+																	}
 																}
 																global.e_totem[i] = global.p_totem[pn_tot];
 																global.p_totem[pn_tot] = 19;
@@ -9424,6 +9563,7 @@
 									if global.online
 									{
 										o_client.theme_r[global.rounds] = i;
+										o_client.go_theme = 1;
 										o_client.cl_stage = 4;
 									}
 								}
@@ -9864,6 +10004,18 @@
 												{
 													var deal;
 													deal = choose(1, 0);
+													if global.online
+													{
+														if real(string_copy(totem_ran_panther[global.myid], 1, 1)) = 1
+														{
+															deal = 1;
+														}
+														else
+														{
+															deal = 0;
+														}
+														totem_ran_panther[global.myid] = string_delete(totem_ran_panther[global.myid], 1, 1);
+													}
 													e_hp -= atk;
 													if deal = 0
 													{
@@ -9877,6 +10029,18 @@
 												{
 													var deal;
 													deal = choose(1, 0);
+													if global.online
+													{
+														if real(string_copy(totem_ran_panther[global.enid], 1, 1)) = 1
+														{
+															deal = 1;
+														}
+														else
+														{
+															deal = 0;
+														}
+														totem_ran_panther[global.enid] = string_delete(totem_ran_panther[global.enid], 1, 1);
+													}
 													hp -= e_atk;
 													if deal = 0
 													{
@@ -13256,18 +13420,46 @@
 		}
 	}
 #endregion
+#region Онлайн, супер
+	if go_super = 1 && o_client.cl_stage = 0
+	{
+		o_client.cl_stage = 18;
+		go_super = 0;
+	}
+#endregion
 #region Отладка
 	var popec;
 	popec = "";
-	popec += "\nRAT THIEF: " + totem_ran_rat[global.myid]        + "    ~    RAT THIEF: " + totem_ran_rat[global.enid];
-	popec += "\nPANTHER: "   + totem_ran_panther[global.myid]    + "    ~    PANTHER: "   + totem_ran_panther[global.enid];
-	popec += "\nFROG: "      + totem_ran_frog[global.myid]       + "    ~    FROG: "      + totem_ran_frog[global.enid];
-	popec += "\nPIG: "       + totem_ran_pig[global.myid]        + "    ~    PIG: "       + totem_ran_pig[global.enid];
-	popec += "\nEVAS: "      + totem_ran_evasive[global.myid]    + "    ~    EVAS: "      + totem_ran_evasive[global.enid];
-	popec += "\nBULL: "      + totem_ran_bull[global.myid]       + "    ~    BULL: "      + totem_ran_bull[global.enid];
+	//popec += "\nRAT THIEF: " + totem_ran_rat[global.myid]        + "    ~    RAT THIEF: " + totem_ran_rat[global.enid];
+	//popec += "\nPANTHER: "   + totem_ran_panther[global.myid]    + "    ~    PANTHER: "   + totem_ran_panther[global.enid];
+	//popec += "\nFROG: "      + totem_ran_frog[global.myid]       + "    ~    FROG: "      + totem_ran_frog[global.enid];
+	//popec += "\nPIG: "       + totem_ran_pig[global.myid]        + "    ~    PIG: "       + totem_ran_pig[global.enid];
+	//popec += "\nEVAS: "      + totem_ran_evasive[global.myid]    + "    ~    EVAS: "      + totem_ran_evasive[global.enid];
+	//popec += "\nBULL: "      + totem_ran_bull[global.myid]       + "    ~    BULL: "      + totem_ran_bull[global.enid];
+	
+	//popec += string(global.myid) + "\n" + string(player_end[1]) + "~" + string(faster_id) + "~" + string(player_end[2]);
+	//popec += "\n ТЕМА: " + string(theme_choose) + "\n СРАКА:" + string(global.sraka) + "\n ЭНД:" + string(round_end);
+	//popec += "\n ТАСК-ВОП:" + string(global.task) + "~" + string(global.question) + "~" + string(u_question);
+	//popec += "\n ГОТОВ:" + string(o_client.ready[global.myid]) + "~" + string(o_client.ready[global.enid]);
+	//popec += "\n СЛ_СТДЖ:" + string(o_client.cl_stage) + "\n" + string(round_end_dop) + "\n ФЁРСТ_ПЛ:" + string(first_player);
+	//popec += "\n РЕАР:" + string(o_client.rearr) + "\n ДОСУЛ:" + string(o_client.dosul);
+	
+	popec += "\ntraining: " + string(global.training);
+	popec += "\npvp_stop: " + string(global.pvp_stop);
+	popec += "\nsuper_now~need: " + string(super_now) + " ~ : " + string(super_need);
+	popec += "\nsuper_abilitican: " + string(global.abilitican);
+	popec += "\nanswer_pl~en: " + string((global.player_object).answer) + " ~ : " + string((global.enemy_object).answer);
+	popec += "\nshoot_pl~en: " + string((global.player_object).shoot) + " ~ : " + string((global.enemy_object).shoot);
+	//super_now = super_need
+	//&& global.super_ability = 0
+	//&& (global.player_object).answer = -1 && (global.enemy_object).answer = -1
+	//&& (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
+	//&& !(global.hero = 1 && global.enemy_hero = 1)
 	draw_set_font(global.game_font);
 	draw_text_transformed_t(global.width / 2, global.height / 2, popec, 0.13, 0.13, 0, c_orange, c_black);
-	//draw_text_transformed_t(mouse_x, mouse_y, string(o_client.nameg) + "~" + string(nameg_need), 0.1, 0.1 , 0, c_yellow, c_black);
+	//draw_text_transformed_t(global.width / 2, global.height / 2, popec, 0.13, 0.13, 0, c_orange, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, string(o_client.nameg) + "~" + string(nameg_need) + "~" + string(o_client.nameg2) + "~" + string(o_client.nameg2_time), 0.1, 0.1 , 0, c_yellow, c_black);
+	
 	//draw_text_transformed_t(global.width / 2, global.height / 2, string(global.myid) + "\n" + string(player_end[1]) + "~" + string(faster_id) + "~" + string(player_end[2]) + "\n ТЕМА: " + string(theme_choose) + "\n СРАКА:" + string(global.sraka) + "\n ЭНД:" + string(round_end) + "\n ТАСК-ВОП:" + string(global.task) + "~" + string(global.question) + "~" + string(u_question) + "\n ГОТОВ:" + string(o_client.ready[global.myid]) + "~" + string(o_client.ready[global.enid]) + "\n СЛ_СТДЖ:" + string(o_client.cl_stage) + "\n" + string(round_end_dop) + "\n ФЁРСТ_ПЛ:" + string(first_player) + "\n РЕАР:" + string(o_client.rearr) + "\n ДОСУЛ:" + string(o_client.dosul), 0.15, 0.15, 0, c_white, c_black);
 	//if keyboard_check_pressed(vk_up)
 	//{
