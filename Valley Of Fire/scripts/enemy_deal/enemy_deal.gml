@@ -106,7 +106,11 @@ with(o_hero)
 		}
 		if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= hero_shoot && skeleton_animation_get() = "shoot")
 		{
-			stun = 0;
+			if stun != 0
+			{
+				stun = 0;
+				answer = -1;
+			}
 			skeleton_animation_set("damaged");
 			change = 1;
 			if global.online

@@ -86,7 +86,11 @@
 									{
 										if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= hero_shoot && skeleton_animation_get() = "shoot")
 										{
-											stun = 0;
+											if stun != 0
+											{
+												stun = 0;
+												answer = -1;
+											}
 											skeleton_animation_set("damaged");
 											change = 1;
 											if global.online
@@ -129,7 +133,11 @@
 									{
 										if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= hero_shoot && skeleton_animation_get() = "shoot")
 										{
-											stun = 0;
+											if stun != 0
+											{
+												stun = 0;
+												answer = -1;
+											}
 											skeleton_animation_set("damaged");
 											change = 1;
 										}
@@ -6014,6 +6022,11 @@
 						var answ, may;
 						answ = global.answer;
 						may  = choose(0, 1);
+						if global.online
+						{
+							may = real(string_copy(idol_wind[global.myid], 1, 1));
+							idol_wind[global.myid] = string_delete(idol_wind[global.myid], 1, 1);
+						}
 						if may = 1
 						{
 							global.answer = !answ;
@@ -13334,7 +13347,7 @@
 			{
 				if totem_show_s[i] < 1
 				{
-					totem_show_s[i] += 0.1; //0.05;
+					totem_show_s[i] += 0.1;
 					totem_show_a[i] += 0.75 * 2;
 				}
 				else
@@ -13450,13 +13463,16 @@
 	popec += "\nsuper_abilitican: " + string(global.abilitican);
 	popec += "\nanswer_pl~en: " + string((global.player_object).answer) + " ~ : " + string((global.enemy_object).answer);
 	popec += "\nshoot_pl~en: " + string((global.player_object).shoot) + " ~ : " + string((global.enemy_object).shoot);
+	
 	//super_now = super_need
 	//&& global.super_ability = 0
 	//&& (global.player_object).answer = -1 && (global.enemy_object).answer = -1
 	//&& (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
 	//&& !(global.hero = 1 && global.enemy_hero = 1)
+	
 	draw_set_font(global.game_font);
-	draw_text_transformed_t(global.width / 2, global.height / 2, popec, 0.13, 0.13, 0, c_orange, c_black);
+	draw_text_transformed_t(global.width / 2, global.height / 2, string_upper(popec), 0.13, 0.13, 0, c_orange, c_black);
+	
 	//draw_text_transformed_t(global.width / 2, global.height / 2, popec, 0.13, 0.13, 0, c_orange, c_black);
 	//draw_text_transformed_t(mouse_x, mouse_y, string(o_client.nameg) + "~" + string(nameg_need) + "~" + string(o_client.nameg2) + "~" + string(o_client.nameg2_time), 0.1, 0.1 , 0, c_yellow, c_black);
 	

@@ -66,6 +66,11 @@
 				{
 					idol_n = choose(1, 3);
 				}
+				if global.online
+				{
+					idol_n = real(string_copy(o_list.idols_random[global.myid], 1, 1));
+					o_list.idols_random[global.myid] = string_delete(o_list.idols_random[global.myid], 1, 1);
+				}
 				if idol_n != -1
 				{
 					if enemy
@@ -131,7 +136,15 @@
 			}
 			if global.game_stage = 0
 			{
-				global.game_stage = 0.5;
+				if global.p_totem[1] = -1 && global.p_totem[2] = -1 && global.p_totem[3] = -1
+				&& global.e_totem[1] = -1 && global.e_totem[2] = -1 && global.e_totem[3] = -1
+				{
+					global.game_stage = 1;
+				}
+				else
+				{
+					global.game_stage = 0.5;
+				}
 			}
 			sprite_index = hero_sprite;
 			skeleton_animation_set("idle");
@@ -180,7 +193,11 @@
 				else
 				{
 					change = 1;
-					stun = 0;
+					if stun != 0
+					{
+						stun = 0;
+						answer = -1;
+					}
 					if global.online
 					{
 						o_client.cl_stage = 15;

@@ -1722,7 +1722,7 @@
 		}
 		o_client.nameg = 1;
 	}
-	#region Онлайн, рандом у тотемов
+	#region Онлайн, рандом у тотемов и идолов
 		var totr;
 		totr = 0;
 		for(pl = 1; pl <= 2; pl ++)
@@ -1741,6 +1741,8 @@
 			totem_ran_pig_num[pl]  = "";
 			totem_ran_frog_num[pl] = "";
 			totem_ran_frog[pl]     = "";
+			idols_random[pl]       = "";
+			idol_wind[pl]          = "";
 			for(i = 1; i <= 18; i ++)
 			{
 				totr = irandom(99);
@@ -1765,11 +1767,13 @@
 				{
 					totem_ran_rat[pl]     += string(irandom_range(1, 3));
 					totem_ran_panther[pl] += string(irandom(1));
+					idols_random[pl]	  += string(irandom_range(1, 3));
 				}
 				totem_ran_pig[pl]      += string(irandom_range(1, 9));
 				totem_ran_frog[pl]     += string(irandom_range(1, 9));
 				totem_ran_pig_num[pl]  += string(choose(0, 9));
 				totem_ran_frog_num[pl] += string(choose(0, 9));
+				idol_wind[pl]	       += string(irandom(1));
 			}
 		}
 	#endregion

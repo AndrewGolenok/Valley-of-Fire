@@ -3,7 +3,7 @@ global.online = true;
 cl_stage = 0;
 ls_stage = 0;
 
-ip   = "192.168.1.10";
+ip   = "192.168.1.6";
 port = 4567;
 
 socket_c     = network_create_socket(network_socket_tcp);

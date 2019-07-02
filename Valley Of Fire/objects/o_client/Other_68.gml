@@ -279,6 +279,8 @@ if type = network_type_data
 					o_list.totem_ran_pig[global.enid]      = param[? "pig"];
 					o_list.totem_ran_pig_num[global.enid]  = param[? "pig_num"];
 					o_list.totem_ran_frog_num[global.enid] = param[? "frog_num"];
+					o_list.idols_random[global.enid]       = param[? "idols"];
+					o_list.idol_wind[global.enid]          = param[? "idol_wind"];
 					nameg2 = 1;
 					nameg2_time = 3;
 				break;
@@ -298,7 +300,7 @@ if type = network_type_data
 			#endregion
 			#region Получение стана врага (0)
 				case 15:
-					(global.enemy_object).stun = 0; //param[? "stun"];
+					(global.enemy_object).stun = 0; //(global.enemy_object).answer = -1; //param[? "stun"];
 				break;
 			#endregion
 			#region Тотем: стан

@@ -105,7 +105,7 @@ if shoot = 2 or shoot = 3
 			//			o_list.dop_text[7] = "-" + string(round(o_list.e_atk));
 			//			if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 			//				{
-			//				stun = 0;
+			//				stun = 0; answer = -1;
 			//				skeleton_animation_set("damaged");
 			//				change = 1;
 			//				}
@@ -131,7 +131,7 @@ if shoot = 2 or shoot = 3
 				//		o_list.dop_text[8] = "-" + string(round(o_list.atk));
 				//		if !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 				//			{
-				//			stun = 0;
+				//			stun = 0; answer = -1;
 				//			skeleton_animation_set("damaged");
 				//			change = 1;
 				//			}

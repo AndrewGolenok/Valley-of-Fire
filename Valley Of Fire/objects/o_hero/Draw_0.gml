@@ -193,7 +193,11 @@
 							o_list.dop_text[8] = "-" + string(round(o_list.atk / 10));
 							if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 							{
-								stun = 0;
+								if stun != 0
+								{
+									stun = 0;
+									answer = -1;
+								}
 								skeleton_animation_set("damaged");
 								change = 1;
 							}
@@ -220,7 +224,11 @@
 							o_list.dop_text[8] = "-" + string(round(o_list.atk / 10));
 							if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 							{
-								stun = 0;
+								if stun != 0
+								{
+									stun = 0;
+									answer = -1;
+								}
 								skeleton_animation_set("damaged");
 								change = 1;
 							}
@@ -264,7 +272,11 @@
 						o_list.dop_text[7] = "-" + string(round(o_list.e_atk / 5));
 						if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 						{
-							stun = 0;
+							if stun != 0
+							{
+								stun = 0;
+								answer = -1;
+							}
 							skeleton_animation_set("damaged");
 							change = 1;
 							if global.online
@@ -294,7 +306,11 @@
 							o_list.dop_text[7] = "-" + string(round(o_list.e_atk / 5));
 							if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 							{
-								stun = 0;
+								if stun != 0
+								{
+									stun = 0;
+									answer = -1;
+								}
 								skeleton_animation_set("damaged");
 								change = 1;
 								if global.online
@@ -465,7 +481,7 @@
 					#endregion
 				}
 				#region Обнуление ответа
-					if answer = 1
+					if answer != -1
 					{
 						shoot        = 0;
 						bullet_index = 0;
@@ -490,6 +506,10 @@
 				}
 			#endregion
 		}
+		//if shoot = 0 && answer != -1
+		//{
+		//	answer = -1;
+		//}
 		#region Обнуление выстрела
 			if answer = -1 && !super
 			{
@@ -648,7 +668,11 @@
 							#region Смена анимации на получение урона
 								if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 								{
-									stun = 0;
+									if stun != 0
+									{
+										stun = 0;
+										answer = -1;
+									}
 									skeleton_animation_set("damaged");
 									change = 1;
 									if global.online
@@ -722,7 +746,11 @@
 							#region Смена анимации на получение урона
 								if global.super_ability = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 								{
-									stun = 0;
+									if stun != 0
+									{
+										stun = 0;
+										answer = -1;
+									}
 									skeleton_animation_set("damaged");
 									change = 1;
 								}
@@ -758,7 +786,11 @@
 	#region Обнуление стана
 		if hero = 5 && bill_stage = 0
 		{
-			stun = 0;
+			if stun != 0
+			{
+				stun = 0;
+				answer = -1;
+			}
 			if global.online && !enemy
 			{
 				cancel_stun = 1;
@@ -768,7 +800,11 @@
 		{
 			if global.p_totem_a[8] && !enemy
 			{
-				stun = 0;
+				if stun != 0
+				{
+					stun = 0;
+					answer = -1;
+				}
 				if global.online && !enemy
 				{
 					cancel_stun = 1;
@@ -783,7 +819,11 @@
 			}
 			if global.e_totem_a[8] && enemy
 			{
-				stun = 0;
+				if stun != 0
+				{
+					stun = 0;
+					answer = -1;
+				}
 				if global.online && !enemy
 				{
 					cancel_stun = 1;
@@ -898,7 +938,11 @@
 			#region Обнуление переменных чучела
 				image_angle  = sc_angle;
 				super = 0;
-				stun = 0;
+				if stun != 0
+				{
+					stun = 0;
+					answer = -1;
+				}
 				have_posion = 0;
 				huntress_poison = 0;
 				poisoned = 0;

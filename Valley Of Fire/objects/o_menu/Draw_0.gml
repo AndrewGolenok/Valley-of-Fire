@@ -566,7 +566,7 @@
 						if point_in_rectangle(mouse_x, mouse_y, 72 * 1.6 + 15, 0, 120 + 72 * 1.6, 125)
 						{
 							ini_open("Music.ini");
-								ini_write_string("Ranks", "ranks", string(irandom(70)));
+								ini_write_string("Ranks", "ranks", string(0/*irandom(70)*/));
 								global.rank_stars = ini_read_real("Ranks", "ranks", 0);
 							ini_close();
 							
@@ -1660,7 +1660,7 @@
 								}
 								if mouse_check_button_released(mb_left) && global.heroes_have[i] > 0
 								{
-									GoogleAnalytics_SendEvent("HEROES","Игрок выбрал персонажа " + string(1));
+									GoogleAnalytics_SendEvent("HEROES","Игрок выбрал персонажа " + string(i));
 									if global.pvp_now != 2
 									{
 										global.hero = i;

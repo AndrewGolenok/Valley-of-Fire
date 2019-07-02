@@ -63,7 +63,7 @@ if global.fight
 			if nameg = 1 && cl_stage = 0 && o_list.nameg_need = 1
 			{
 				buffer_seek(buffer_c, buffer_seek_start, 0);
-				buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 13, \"enemy_name\": \"" + global.player_name + "\", \"bull\": \"" + string(o_list.totem_ran_bull[global.myid]) + "\", \"evasive\": \"" + string(o_list.totem_ran_evasive[global.myid]) + "\", \"pig\": \"" + string(o_list.totem_ran_pig[global.myid]) + "\", \"pig_num\": \"" + string(o_list.totem_ran_pig_num[global.myid]) + "\", \"frog\": \"" + string(o_list.totem_ran_frog[global.myid]) + "\", \"frog_num\": \"" + string(o_list.totem_ran_frog_num[global.myid]) + "\", \"rat\": \"" + string(o_list.totem_ran_rat[global.myid]) + "\", \"panther\": \"" + string(o_list.totem_ran_panther[global.myid]) + "\", \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
+				buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 13, \"enemy_name\": \"" + global.player_name + "\", \"bull\": \"" + string(o_list.totem_ran_bull[global.myid]) + "\", \"evasive\": \"" + string(o_list.totem_ran_evasive[global.myid]) + "\", \"pig\": \"" + string(o_list.totem_ran_pig[global.myid]) + "\", \"pig_num\": \"" + string(o_list.totem_ran_pig_num[global.myid]) + "\", \"frog\": \"" + string(o_list.totem_ran_frog[global.myid]) + "\", \"frog_num\": \"" + string(o_list.totem_ran_frog_num[global.myid]) + "\", \"rat\": \"" + string(o_list.totem_ran_rat[global.myid]) + "\", \"panther\": \"" + string(o_list.totem_ran_panther[global.myid]) + "\", \"idols\": \"" + string(o_list.idols_random[global.myid]) + "\", \"idol_wind\": \"" + string(o_list.idol_wind[global.myid]) + "\", \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 				network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 				nameg = 2;
 			}
@@ -228,7 +228,7 @@ if global.fight
 		if cl_stage = 18
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 17, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 18, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
 		}
