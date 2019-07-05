@@ -137,6 +137,9 @@ if type = network_type_data
 							global.game_stage = 5;
 							o_list.whowin = 1;
 							o_list.theme_choose = 9;
+							global.idol[1] = 0;
+							global.idol[2] = 0;
+							global.idol[3] = 0;
 						}
 					break;
 					#endregion
@@ -279,8 +282,11 @@ if type = network_type_data
 					o_list.totem_ran_pig[global.enid]      = param[? "pig"];
 					o_list.totem_ran_pig_num[global.enid]  = param[? "pig_num"];
 					o_list.totem_ran_frog_num[global.enid] = param[? "frog_num"];
-					o_list.idols_random[global.enid]       = param[? "idols"];
 					o_list.idol_wind[global.enid]          = param[? "idol_wind"];
+					if first_p = global.enid
+					{
+						o_list.idols_random = param[? "idols"];
+					}
 					nameg2 = 1;
 					nameg2_time = 3;
 				break;

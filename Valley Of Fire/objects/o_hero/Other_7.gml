@@ -68,8 +68,11 @@
 				}
 				if global.online
 				{
-					idol_n = real(string_copy(o_list.idols_random[global.myid], 1, 1));
-					o_list.idols_random[global.myid] = string_delete(o_list.idols_random[global.myid], 1, 1);
+					if global.online
+					{
+						idol_n = real(string_copy(o_list.idols_random, 1, 1));
+						o_list.idols_random = string_delete(o_list.idols_random, 1, 1);
+					}
 				}
 				if idol_n != -1
 				{

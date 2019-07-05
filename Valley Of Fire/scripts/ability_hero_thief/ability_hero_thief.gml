@@ -11,15 +11,6 @@
 //		else
 //		{ super_img = 0; }
 //	}
-	
-//if image_index = hero_abindex && skeleton_animation_get() = "super"
-//	{
-//	sx = x;
-//	sy = y;
-	
-//	//shoot = 1//2;
-//	if global.music { audio_play_sound(sd_bow, 1, 0); }
-//	}
 
 //if skeleton_animation_get() = "super"
 //	{
@@ -96,8 +87,8 @@ if global.swipe_ability = 1 && ((global.enemy_hero = 7 && !enemy) or(global.hero
 				}
 				if global.online
 				{
-					idol_n = real(string_copy(o_list.idols_random[global.myid], 1, 1));
-					o_list.idols_random[global.myid] = string_delete(o_list.idols_random[global.myid], 1, 1);
+					idol_n = real(string_copy(o_list.idols_random, 1, 1));
+					o_list.idols_random = string_delete(o_list.idols_random, 1, 1);
 				}
 				if idol_n != -1
 				{

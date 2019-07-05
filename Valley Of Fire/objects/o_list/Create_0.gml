@@ -1741,7 +1741,7 @@
 			totem_ran_pig_num[pl]  = "";
 			totem_ran_frog_num[pl] = "";
 			totem_ran_frog[pl]     = "";
-			idols_random[pl]       = "";
+			idols_random		   = "";
 			idol_wind[pl]          = "";
 			for(i = 1; i <= 18; i ++)
 			{
@@ -1767,7 +1767,10 @@
 				{
 					totem_ran_rat[pl]     += string(irandom_range(1, 3));
 					totem_ran_panther[pl] += string(irandom(1));
-					idols_random[pl]	  += string(irandom_range(1, 3));
+				}
+				if i <= 4
+				{
+					idols_random += string(irandom_range(1, 3));
 				}
 				totem_ran_pig[pl]      += string(irandom_range(1, 9));
 				totem_ran_frog[pl]     += string(irandom_range(1, 9));

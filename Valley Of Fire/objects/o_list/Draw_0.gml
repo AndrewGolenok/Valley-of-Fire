@@ -13457,12 +13457,20 @@
 	//popec += "\n СЛ_СТДЖ:" + string(o_client.cl_stage) + "\n" + string(round_end_dop) + "\n ФЁРСТ_ПЛ:" + string(first_player);
 	//popec += "\n РЕАР:" + string(o_client.rearr) + "\n ДОСУЛ:" + string(o_client.dosul);
 	
-	popec += "\ntraining: " + string(global.training);
-	popec += "\npvp_stop: " + string(global.pvp_stop);
-	popec += "\nsuper_now~need: " + string(super_now) + " ~ : " + string(super_need);
-	popec += "\nsuper_abilitican: " + string(global.abilitican);
-	popec += "\nanswer_pl~en: " + string((global.player_object).answer) + " ~ : " + string((global.enemy_object).answer);
-	popec += "\nshoot_pl~en: " + string((global.player_object).shoot) + " ~ : " + string((global.enemy_object).shoot);
+	//popec += "idol_1 = " + string(global.idol[1]);
+	//popec += "\nidol_2 = " + string(global.idol[2]);
+	//popec += "\nidol_3 = " + string(global.idol[3]);
+	//popec += "\n";
+	//popec += "\nidol_h_1 = " + string(global.idol_h[1]);
+	//popec += "\nidol_h_2 = " + string(global.idol_h[2]);
+	//popec += "\nidol_h_3 = " + string(global.idol_h[3]);
+	
+	//popec += "\ntraining: " + string(global.training);
+	//popec += "\npvp_stop: " + string(global.pvp_stop);
+	//popec += "\nsuper_now~need: " + string(super_now) + " ~ : " + string(super_need);
+	//popec += "\nsuper_abilitican: " + string(global.abilitican);
+	//popec += "\nanswer_pl~en: " + string((global.player_object).answer) + " ~ : " + string((global.enemy_object).answer);
+	//popec += "\nshoot_pl~en: " + string((global.player_object).shoot) + " ~ : " + string((global.enemy_object).shoot);
 	
 	//super_now = super_need
 	//&& global.super_ability = 0
@@ -13472,9 +13480,6 @@
 	
 	draw_set_font(global.game_font);
 	draw_text_transformed_t(global.width / 2, global.height / 2, string_upper(popec), 0.13, 0.13, 0, c_orange, c_black);
-	
-	//draw_text_transformed_t(global.width / 2, global.height / 2, popec, 0.13, 0.13, 0, c_orange, c_black);
-	//draw_text_transformed_t(mouse_x, mouse_y, string(o_client.nameg) + "~" + string(nameg_need) + "~" + string(o_client.nameg2) + "~" + string(o_client.nameg2_time), 0.1, 0.1 , 0, c_yellow, c_black);
 	
 	//draw_text_transformed_t(global.width / 2, global.height / 2, string(global.myid) + "\n" + string(player_end[1]) + "~" + string(faster_id) + "~" + string(player_end[2]) + "\n ТЕМА: " + string(theme_choose) + "\n СРАКА:" + string(global.sraka) + "\n ЭНД:" + string(round_end) + "\n ТАСК-ВОП:" + string(global.task) + "~" + string(global.question) + "~" + string(u_question) + "\n ГОТОВ:" + string(o_client.ready[global.myid]) + "~" + string(o_client.ready[global.enid]) + "\n СЛ_СТДЖ:" + string(o_client.cl_stage) + "\n" + string(round_end_dop) + "\n ФЁРСТ_ПЛ:" + string(first_player) + "\n РЕАР:" + string(o_client.rearr) + "\n ДОСУЛ:" + string(o_client.dosul), 0.15, 0.15, 0, c_white, c_black);
 	//if keyboard_check_pressed(vk_up)
