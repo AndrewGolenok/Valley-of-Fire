@@ -3,7 +3,10 @@ global.online = true;
 cl_stage = 0;
 ls_stage = 0;
 
-ip   = "192.168.1.6";
+zhopanegra  = 0;
+zhopanegra2 = "";
+
+ip   = "92.38.152.233"; //"92.38.152.233"; //"192.168.1.7"; //"http://art.shumeyko.example.com"
 port = 4567;
 
 socket_c     = network_create_socket(network_socket_tcp);
@@ -111,7 +114,7 @@ need_hp[2]  = 0;
 real_hp[1]  = 0;
 real_hp[2]  = 0;
 
-rearr        = -1//1;
+rearr        = -1; //1;
 rearr_t      = room_speed;
 
 nameg  = 0;
@@ -127,3 +130,9 @@ need_f = -1;
 ///
 ready[1] = 1;
 ready[2] = 1;
+
+json_count = 1;
+for(i = 1; i <= 50; i++)
+{
+	json_need[i] = "";
+}

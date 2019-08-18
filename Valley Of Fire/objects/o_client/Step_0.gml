@@ -79,7 +79,7 @@ if global.fight
 		}
 	#endregion
 	#region Рандом темы у первого игрока - отправка второму игроку
-		if cl_stage = 3
+		if cl_stage = 3 && instance_exists(o_list)
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 1, \"theme1\": " + string(o_list.theme_t[1]) + ",\"theme2\": " + string(o_list.theme_t[2]) + ",\"theme3\": " + string(o_list.theme_t[3]) + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
@@ -585,6 +585,3 @@ if 0
 	#endregion
 	///////////
 }
-
-//\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}"
-//\"fightId\": \"" + string(global.f_id) + "\"}}"

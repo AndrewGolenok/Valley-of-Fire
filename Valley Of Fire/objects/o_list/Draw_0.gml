@@ -268,7 +268,7 @@
 				}
 				with(global.enemy_object)
 				{
-					if shoot = 0 && skeleton_animation_get() = "idle"
+					if shoot = 0// && (skeleton_animation_get() = "idle")
 					{
 						global.e_abilitican = 1;
 					}
@@ -279,7 +279,7 @@
 				}
 				with(global.player_object)
 				{
-					if shoot = 0 && skeleton_animation_get() = "idle"
+					if shoot = 0// && (skeleton_animation_get() = "idle")
 					{
 						global.abilitican = 1;
 					}
@@ -625,7 +625,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[6] = 6
 											{
@@ -1018,7 +1018,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[6] = 10
 											{
@@ -1274,7 +1274,7 @@
 										draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 										draw_set_alpha(1);
 									}
-									if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+									if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 									{
 										if global.training_stage[6] = 14 or global.training_stage[6] = 15
 										{
@@ -1526,7 +1526,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[6] = 18 or global.training_stage[6] = 19
 												{
@@ -1771,7 +1771,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[2] = 6 or global.training_stage[2] = 7
 											{
@@ -1968,7 +1968,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[2] = 10
 											{
@@ -2191,7 +2191,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[2] = 14 or global.training_stage[2] = 15
 											{
@@ -2410,7 +2410,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[2] = 18 or global.training_stage[2] = 19
 											{
@@ -2656,7 +2656,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[3] = 6
 											{
@@ -2784,7 +2784,7 @@
 											draw_text_transformed_t(200 - 130, global.height / 2, "180°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
 											draw_text_transformed_t(200, global.height / 2 + 130, "270°", list_scale * 0.25, list_scale * 0.25, 0, global.color_white, c_black);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[3] = 10 or global.training_stage[3] = 11
 											{
@@ -2955,7 +2955,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[3] = 14 or global.training_stage[3] = 15
 											{
@@ -3317,7 +3317,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[4] = 6
 											{
@@ -3593,7 +3593,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[4] = 10 or global.training_stage[4] = 11
 											{
@@ -3832,7 +3832,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[4] = 14
 											{
@@ -4245,7 +4245,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[1] = 6 or global.training_stage[1] = 7
 											{
@@ -4593,7 +4593,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[1] = 10 or global.training_stage[1] = 11 or (global.training_stage[1] = 12 && card_find_s >= 1)
 											{
@@ -4811,7 +4811,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[1] = 14 or (global.training_stage[1] = 15 && cards_s[2] = 1)
 											{
@@ -5081,7 +5081,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[5] = 6 or global.training_stage[5] = 7
 											{
@@ -5247,7 +5247,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[5] = 10 or global.training_stage[5] = 11
 											{
@@ -5523,7 +5523,7 @@
 											draw_rectangle_color(0, 0, global.width, global.height, c_black, c_black, c_black, c_black, 0);
 											draw_set_alpha(1);
 										}
-										if mouse_check_button_pressed(mb_left) && global.training_x > global.width && global.text_sc = 1
+										if mouse_check_button_pressed(mb_left) && global.training_x >= global.width && global.text_sc = 1
 										{
 											if global.training_stage[5] = 14
 											{
@@ -7627,7 +7627,7 @@
 														case 5:
 															image_speed = spd_max;
 															skeleton_animation_set("super");
-															change = 3;
+															change = 3; 
 														break;
 														case 6:
 															abil_x = 160;
@@ -8331,7 +8331,7 @@
 #endregion
 #region Тотемы
 	if global.game_stage = 0.5
-	&& (global.online = 0 or (global.online = 1 && global.enemy_name != "-" && nameg_need = 0))
+	&& (global.online = 0 or (global.online = 1/* && global.enemy_name != "-"*/ && nameg_need = 0))
 	{
 		#region Временные переменные
 			var txx, tss, pcc;
@@ -12167,21 +12167,21 @@
 			#endregion
 			#region Отрисовка черепков дуэли
 				draw_set_font(global.game_font);
-				if global.jr_e = 1
-				{
-					if os_get_language() != "ru"
-					{
-						draw_text_transformed_t(global.width - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name)) * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name) + " JR.", 0.1, 0.1, 0, global.color_white, c_black);
-					}
-					else
-					{
-						draw_text_transformed_t(global.width - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name) + " МЛ.") * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name) + " МЛ.", 0.1, 0.1, 0, global.color_white, c_black);
-					}
-				}
-				else
-				{
+				//if global.jr_e = 1
+				//{
+				//	if os_get_language() != "ru"
+				//	{
+				//		draw_text_transformed_t(global.width - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name)) * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name) + " JR.", 0.1, 0.1, 0, global.color_white, c_black);
+				//	}
+				//	else
+				//	{
+				//		draw_text_transformed_t(global.width - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name) + " МЛ.") * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name) + " МЛ.", 0.1, 0.1, 0, global.color_white, c_black);
+				//	}
+				//}
+				//else
+				//{
 					draw_text_transformed_t(global.width - (10 + sprite_get_width(s_rank_shield) * gui_size + string_width(string_upper(global.enemy_name)) * 0.1 / 2), h_y + 80 - 2 - sprite_get_height(s_healthbar_hp) * gui_size * 0.8 + h_y1, string_upper(global.enemy_name), 0.1, 0.1, 0, global.color_white, c_black);
-				}
+				//}
 			#endregion
 		#endregion
 	#endregion
@@ -13432,6 +13432,13 @@
 			o_client.nameg = 1;
 		}
 	}
+	if o_client.zhopanegra2 != ""
+	{
+		if global.enemy_name != o_client.zhopanegra2
+		{
+			global.enemy_name = o_client.zhopanegra2;
+		}
+	}
 #endregion
 #region Онлайн, супер
 	if go_super = 1 && o_client.cl_stage = 0
@@ -13441,8 +13448,32 @@
 	}
 #endregion
 #region Отладка
+	//timer = room_speed;
 	var popec;
 	popec = "";
+	//popec += "NAMEG = " + string(o_client.nameg);
+	//popec += "\nNAMEG2 = " + string(o_client.nameg2);
+	//popec += "\nNAMEG2_TIME = " + string(o_client.nameg2_time);
+	//popec += "\nNAMEG_NEED = " + string(o_list.nameg_need);
+	//if o_client.zhopanegra = 1
+	//{
+	//	popec += "\nЖОПЕЦ " + string(o_client.zhopanegra2);
+	//}
+	
+	//popec += string(hp) + "~" + string(maxhp) + " - " + string(atk);
+	//popec += "\n" + string(e_hp) + "~" + string(e_maxhp) + " - " + string(e_atk);
+	
+	//popec += global.training_text[global.training,global.training_stage[global.training]];
+	//popec += string(global.training_x) + "~" + string(global.training_x);
+	//popec += "\n st" + string(global.training_stage[global.training]);
+	//popec += "\n sc" + string(global.text_sc);
+	//popec += "\n ne" + string(global.text_ne);
+	//popec += "\n go" + string(global.text_go);
+	// global.training_x >= global.width && global.text_sc = 1
+	//global.text_ne global.text_go
+	
+	//popec += string(o_client.index);
+	
 	//popec += "\nRAT THIEF: " + totem_ran_rat[global.myid]        + "    ~    RAT THIEF: " + totem_ran_rat[global.enid];
 	//popec += "\nPANTHER: "   + totem_ran_panther[global.myid]    + "    ~    PANTHER: "   + totem_ran_panther[global.enid];
 	//popec += "\nFROG: "      + totem_ran_frog[global.myid]       + "    ~    FROG: "      + totem_ran_frog[global.enid];
@@ -13465,12 +13496,14 @@
 	//popec += "\nidol_h_2 = " + string(global.idol_h[2]);
 	//popec += "\nidol_h_3 = " + string(global.idol_h[3]);
 	
+	//*******
 	//popec += "\ntraining: " + string(global.training);
 	//popec += "\npvp_stop: " + string(global.pvp_stop);
 	//popec += "\nsuper_now~need: " + string(super_now) + " ~ : " + string(super_need);
 	//popec += "\nsuper_abilitican: " + string(global.abilitican);
 	//popec += "\nanswer_pl~en: " + string((global.player_object).answer) + " ~ : " + string((global.enemy_object).answer);
 	//popec += "\nshoot_pl~en: " + string((global.player_object).shoot) + " ~ : " + string((global.enemy_object).shoot);
+	//*****
 	
 	//super_now = super_need
 	//&& global.super_ability = 0
@@ -13480,13 +13513,4 @@
 	
 	draw_set_font(global.game_font);
 	draw_text_transformed_t(global.width / 2, global.height / 2, string_upper(popec), 0.13, 0.13, 0, c_orange, c_black);
-	
-	//draw_text_transformed_t(global.width / 2, global.height / 2, string(global.myid) + "\n" + string(player_end[1]) + "~" + string(faster_id) + "~" + string(player_end[2]) + "\n ТЕМА: " + string(theme_choose) + "\n СРАКА:" + string(global.sraka) + "\n ЭНД:" + string(round_end) + "\n ТАСК-ВОП:" + string(global.task) + "~" + string(global.question) + "~" + string(u_question) + "\n ГОТОВ:" + string(o_client.ready[global.myid]) + "~" + string(o_client.ready[global.enid]) + "\n СЛ_СТДЖ:" + string(o_client.cl_stage) + "\n" + string(round_end_dop) + "\n ФЁРСТ_ПЛ:" + string(first_player) + "\n РЕАР:" + string(o_client.rearr) + "\n ДОСУЛ:" + string(o_client.dosul), 0.15, 0.15, 0, c_white, c_black);
-	//if keyboard_check_pressed(vk_up)
-	//{
-	//	if totem_show_n[1] = 0
-	//	{
-	//		totem_show_n[1] = irandom_range(1, 18);
-	//	}
-	//}
 #endregion

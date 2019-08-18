@@ -58,9 +58,9 @@
     "option_ios_texture_page": "2048x2048",
     "option_ios_use_facebook": false,
     "option_ios_version": {
-        "build": 0,
+        "build": 37,
         "major": 1,
-        "minor": 0,
+        "minor": 1,
         "revision": 0
     }
 }

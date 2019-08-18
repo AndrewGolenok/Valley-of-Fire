@@ -1,13 +1,11 @@
 #region Общая информация
-	draw_set_font(f_standard);
-	draw_set_color(c_white);
-	
-	draw_set_halign(fa_left);
-	draw_set_valign(fa_center);
-	
 	var fps_txt = "ПИНГ: " + string(ping_time) + " | МАКС. ПИНГ:" + string(ping_max) + " | FPS: " + string(round(fps_real)) + " ";
 	var myid_t  = "";
 	var f_id_t  = "";
+	draw_set_font(f_standard);
+	draw_set_color(c_white);
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_center);
 	if global.myid != -1
 	{
 		myid_t = " (" + string(global.myid) + ")";
@@ -16,9 +14,9 @@
 	{
 		f_id_t = " (" + string(global.f_id) + ")";
 	}
-	//draw_text(xx, yy, "Присоединён" + myid_t + ": " + string(is_connected >= 0) + " (" + ip + ")" + f_id_t);
 	draw_text(room_width - string_width(fps_txt), yy, fps_txt);
-	draw_text(xx, yy + 16, "Получ текст: " + txt);
+	draw_text(xx, yy + 16, fps_txt);
+	draw_text(xx, yy + 32, "Получ текст: " + txt);
 	if instance_exists(o_list)
 	{
 		draw_text(xx, yy + 48, "ХП ИГ: " + string(o_list.hp) + "~" + string(o_list.maxhp));
@@ -26,6 +24,43 @@
 	}
 	draw_set_halign(fa_middle);
 	draw_set_valign(fa_center);
+	//
+	var json_txt, json_str, module_str, test_txt;
+	module_str = @'{"m';
+	json_txt   = @'{"module":"fight","act":"makeMove","param":{"index":18,"fightId":"1562409641898_187","id":2}}{"module":"fight","act":"makeMove","param":{"index":18,"fightId":"1562409641898_187","id":2}}{"module":"fight","act":"makeMove","param":{"index":18,"fightId":"1562409641898_187","id":2}}';//{\"module\":\"fight\",\"act\":\"makeMove\",\"param\":{\"index\":6,\"hp\":94.5,\"maxhp\":420,\"fightId\":\"1562409641898_187\",\"id\":2}}{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 15, \"stun\": 0, \"fightId\": \"1562409641898_187\", \"id\": 1}}{\"module\":\"fight\",\"act\":\"makeMove\",\"param\":{\"index\":18,\"fightId\":\"1562409641898_187\",\"id\":2}}{\"module\":\"fight\",\"act\":\"makeMove\",\"param\":{\"index\":6,\"hp\":94.5,\"maxhp\":420,\"fightId\":\"1562409641898_187\",\"id\":2}}{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 15, \"stun\": 0, \"fightId\": \"1562409641898_187\", \"id\": 1}}';
+	
+	//var s = argument[0], d = argument[1];
+	//var rl = global.string_split_list;
+	//var p = string_pos(d, s), o = 1;
+	//var dl = string_length(d);
+	//ds_list_clear(rl);
+	//if (dl) while (p) {
+	//    ds_list_add(rl, string_copy(s, o, p - o));
+	//    o = p + dl;
+	//    p = string_pos_ext(d, s, o);
+	//}
+	//ds_list_add(rl, string_delete(s, 1, o - 1));
+	//// create an array and store results:
+	//var rn = ds_list_size(rl);
+	//var rw = array_create(rn);
+	//for (p = 0; p < rn; p++) rw[p] = rl[|p];
+	////return rw;
+	//module_str = @'{"m';
+	//json_txt   = @'{"module":"fight","act":"makeMove","param":{"index":18,"fightId":"1562409641898_187","id":2}}{"module":"fight","act":"makeMove","param":{"index":18,"fightId":"1562409641898_187","id":2}}{"module":"fight","act":"makeMove","param":{"index":18,"fightId":"1562409641898_187","id":2}}'; //{\"module\":\"fight\",\"act\":\"makeMove\",\"param\":{\"index\":6,\"hp\":94.5,\"maxhp\":420,\"fightId\":\"1562409641898_187\",\"id\":2}}{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 15, \"stun\": 0, \"fightId\": \"1562409641898_187\", \"id\": 1}}{\"module\":\"fight\",\"act\":\"makeMove\",\"param\":{\"index\":18,\"fightId\":\"1562409641898_187\",\"id\":2}}{\"module\":\"fight\",\"act\":\"makeMove\",\"param\":{\"index\":6,\"hp\":94.5,\"maxhp\":420,\"fightId\":\"1562409641898_187\",\"id\":2}}{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 15, \"stun\": 0, \"fightId\": \"1562409641898_187\", \"id\": 1}}';
+	//json_count = string_count(module_str, json_txt);
+	//json_txt  += module_str;
+	//test_txt = "count:" + string(json_count);
+	//for(i = 1; i <= json_count; i++)
+	//{
+	//	json_txt     = string_delete(json_txt, 1, string_length(module_str));
+	//	json_str     = string_pos(module_str, json_txt) - 1;
+	//	json_need[i] = module_str + string_copy(json_txt, 1, json_str);
+	//	json_txt     = string_delete(json_txt, 1, json_str);
+	//	test_txt    += "\nstr" + string(i) + ":" + string(json_need[i]);
+	//}
+	//@'odule":"fight","act":"makeMove","param":{"index":18,"fightId":"1562409641898_187","id":2}}{"module":"fight","act":"makeMove","param":{"index":18,"fightId":"1562409641898_187","id":2}}{"module":"fight","act":"makeMove","param":{"index":18,"fightId":"1562409641898_187","id":2}}{"m'
+	//draw_text(mouse_x, mouse_y, test_txt + "\n\n" + string(string_length(module_str)));
+	//draw_text(mouse_x, mouse_y, json_need[1] + "\n" + json_need[2] + "\n" + json_need[3] + "\n" + json_need[4] + "\n" + json_need[5]); //test_txt);
 #endregion
 if 0
 {

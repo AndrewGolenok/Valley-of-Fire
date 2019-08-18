@@ -41,9 +41,9 @@
 	}
 #endregion
 #region Способность Шамана
-	if (hero = 7 && skeleton_animation_get() = "greetings") or (hero = 1 && global.swipe_ability = 1 && (global.enemy_object).hero = 7 && skeleton_animation_get() = "super")
+	if (hero = 7 && skeleton_animation_get() = "greetings") or (hero = 1 && global.swipe_ability = 1 && (global.enemy_object).hero = 7 && skeleton_animation_get() = "super") or bolshaya_zhopa = 1
 	{
-		if super = 1
+		if super = 1 or bolshaya_zhopa = 1
 		{
 			var idol_n, idol_t;
 			idol_t = 1;
@@ -89,6 +89,9 @@
 			}
 			super = 0;
 			global.super_ability = 0;
+			#region Проверка
+				bolshaya_zhopa = 0;
+			#endregion
 		}
 	}
 #endregion

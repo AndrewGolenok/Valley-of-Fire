@@ -22,26 +22,32 @@
 //	}
 
 if (round(image_index) = 10 or round(image_index) = 9) && skeleton_animation_get() = "shoot" && shoot = 0
-	{
+{
 	if super = 0
-		{
+	{
 		sx = x;
 		if hero_sprite != s_jbill
-			{ sy = y; }
-			else
-			{ sy = y + 70; }
-	
-		knife_i = 0;
-		shoot = 1;
+		{
+			sy = y;
 		}
 		else
 		{
+			sy = y + 70;
+		}
+		knife_i = 0;
+		shoot = 1;
+	}
+	else
+	{
 		super = 0;
 		global.super_ability = 0;
 		global.bill_abil = 10 * room_speed;
-		}
-	if global.sound { audio_play_sound(sd_pistol, 1, 0); }
 	}
+	if global.sound
+	{
+		audio_play_sound(sd_pistol, 1, 0);
+	}
+}
 
 //if shoot = 2 or shoot = 3
 //	{

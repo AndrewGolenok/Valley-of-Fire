@@ -176,7 +176,7 @@ with(o_hero)
 		(global.player_object).have_posion = 1;
 	}
 #endregion
-if global.online
-{
-	o_client.cl_stage = 6;
-}
+//if global.online
+//{
+//	o_client.cl_stage = 6;
+//}

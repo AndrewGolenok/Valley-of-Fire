@@ -177,7 +177,7 @@
 									{
 										if global.quests_n_now[i] < global.quests_n_all[i]
 										{
-										global.quests_n_now[i] += o_list.atk / 10;
+											global.quests_n_now[i] += o_list.atk / 10;
 										}
 									}
 									ini_open("Music.ini");
