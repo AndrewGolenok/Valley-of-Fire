@@ -6,7 +6,7 @@ ls_stage = 0;
 zhopanegra  = 0;
 zhopanegra2 = "";
 
-ip   = "92.38.152.233"; //"92.38.152.233"; //"192.168.1.7"; //"http://art.shumeyko.example.com"
+ip   = "92.38.152.233"; //"192.168.1.7";
 port = 4567;
 
 socket_c     = network_create_socket(network_socket_tcp);

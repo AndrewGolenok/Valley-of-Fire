@@ -10779,8 +10779,11 @@
 				}
 				else
 				{
-					win_plas += 0.4;
-					draw_sprite_ext(s_plash_win_f, win_plas, 640, -fin_y + 50 + global.height / 2 - 469 * list_size - 80 + list_y, list_size * finplas, list_size, 0, c_white, 1);
+					if autowin = 0
+					{
+						win_plas += 0.4;
+						draw_sprite_ext(s_plash_win_f, win_plas, 640, -fin_y + 50 + global.height / 2 - 469 * list_size - 80 + list_y, list_size * finplas, list_size, 0, c_white, 1);
+					}
 				}
 				var gold_c, pvpp;
 				gold_c = make_color_rgb(252,232,131);
@@ -10799,11 +10802,25 @@
 				draw_set_font(global.game_font);
 				if os_get_language() = "ru"
 				{
-					draw_text_transformed_t(640, -fin_y + 50 + global.height / 2 - 469 * list_size - 100 + list_y, pvpp + "ПОБЕДА!", finplas * 0.18, 0.18, 0, gold_c, c_black);
+					if autowin = 0
+					{
+						draw_text_transformed_t(640, -fin_y + 50 + global.height / 2 - 469 * list_size - 100 + list_y, pvpp + "ПОБЕДА!", finplas * 0.18, 0.18, 0, gold_c, c_black);
+					}
+					else
+					{
+						draw_text_transformed_t(640, -fin_y + 50 + global.height / 2 - 469 * list_size - 100 + list_y, pvpp + "ПРОТИВНИК ВЫШЕЛ", finplas * 0.18, 0.18, 0, gold_c, c_black);
+					}
 				}
 				else
 				{
-					draw_text_transformed_t(640, -fin_y + 50 + global.height / 2 - 469 * list_size - 100 + list_y, pvpp + "VICTORY!", finplas * 0.18, 0.18, 0, gold_c, c_black);
+					if autowin = 0
+					{
+						draw_text_transformed_t(640, -fin_y + 50 + global.height / 2 - 469 * list_size - 100 + list_y, pvpp + "VICTORY!", finplas * 0.18, 0.18, 0, gold_c, c_black);
+					}
+					else
+					{
+						draw_text_transformed_t(640, -fin_y + 50 + global.height / 2 - 469 * list_size - 100 + list_y, pvpp + "OPPONENT LEAVE", finplas * 0.18, 0.18, 0, gold_c, c_black);
+					}
 				}
 			}
 			#endregion
@@ -11086,7 +11103,7 @@
 							if whowin = 1
 							{
 								global.enemy_rank -= 1;
-								}
+							}
 							else
 							{
 								global.enemy_rank += 1;

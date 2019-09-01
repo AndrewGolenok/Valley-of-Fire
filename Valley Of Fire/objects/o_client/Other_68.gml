@@ -144,12 +144,13 @@ if type = network_type_data
 								stage  = 3;
 								if instance_exists(o_list)
 								{
-									global.game_stage = 5;
-									o_list.whowin = 1;
+									global.game_stage   = 5;
+									o_list.autowin      = 1;
+									o_list.whowin       = 1;
 									o_list.theme_choose = 9;
-									global.idol[1] = 0;
-									global.idol[2] = 0;
-									global.idol[3] = 0;
+									global.idol[1]		= 0;
+									global.idol[2]		= 0;
+									global.idol[3]		= 0;
 								}
 							break;
 							#endregion

@@ -1,5 +1,5 @@
 #region Общая информация
-	var fps_txt = "ПИНГ: " + string(ping_time) + " | МАКС. ПИНГ:" + string(ping_max) + " | FPS: " + string(round(fps_real)) + " ";
+	var fps_txt = "ОНЛАЙН: " + string(global.online)+ " | ПИНГ: " + string(ping_time) + " | МАКС. ПИНГ:" + string(ping_max) + " | FPS: " + string(round(fps_real)) + " ";
 	var myid_t  = "";
 	var f_id_t  = "";
 	draw_set_font(f_standard);

@@ -1710,6 +1710,7 @@
 	nameg_time    = 5;
 	enemy_super   = 0;
 	go_super      = 0;
+	autowin		  = 0;
 	if global.online
 	{
 		if o_client.first_p = global.myid

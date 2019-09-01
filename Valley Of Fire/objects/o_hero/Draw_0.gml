@@ -187,7 +187,7 @@
 							}
 							/////// КВЕСТЫ
 							fire_time = room_speed;
-							o_list.e_hp -= o_list.atk / 10;
+							o_list.e_hp -= o_list.atk / 3; //o_list.e_hp -= o_list.atk / 10;
 							o_list.dop_i[2] = 8;
 							o_list.dop_text_color[2] = make_color_rgb(253,265,15);
 							o_list.dop_text[8] = "-" + string(round(o_list.atk / 10));
@@ -218,7 +218,7 @@
 						poisoned -= 1;
 						if poisoned mod room_speed = 0
 						{
-							o_list.e_hp -= o_list.atk / 10;
+							o_list.e_hp -= o_list.atk / 5; //o_list.e_hp -= o_list.atk / 10;
 							o_list.dop_i[2] = 8;
 							o_list.dop_text_color[2] = (global.player_object).hero_color;
 							o_list.dop_text[8] = "-" + string(round(o_list.atk / 10));
@@ -266,7 +266,7 @@
 					if fire_time = 0
 					{
 						fire_time = room_speed;
-						o_list.hp -= o_list.e_atk / 5;
+						o_list.hp -= o_list.e_atk / 3; // o_list.hp -= o_list.e_atk / 10;
 						o_list.dop_i[1] = 7;
 						o_list.dop_text_color[1] = make_color_rgb(253,265,15);
 						o_list.dop_text[7] = "-" + string(round(o_list.e_atk / 5));
