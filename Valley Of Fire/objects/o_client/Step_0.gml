@@ -231,6 +231,16 @@ if global.fight
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 18, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage = 0;
+			//o_list.super_ii += "6\n";
+		}
+	#endregion
+	#region Автолуз
+		if cl_stage = 19
+		{
+			buffer_seek(buffer_c, buffer_seek_start, 0);
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"autoLose\", \"param\": {}}");
+			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+			cl_stage = 0;
 		}
 	#endregion
 	#region А

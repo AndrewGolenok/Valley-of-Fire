@@ -1711,6 +1711,10 @@
 	enemy_super   = 0;
 	go_super      = 0;
 	autowin		  = 0;
+	autolose      = 0;
+	autolose_time = 0;
+	test_zhepa    = 0; // Тест
+	//super_ii      = ""; // Тест
 	if global.online
 	{
 		if o_client.first_p = global.myid

@@ -7465,9 +7465,11 @@
 							&& (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
 							&& !(global.hero = 1 && global.enemy_hero = 1)
 							{
+								//super_ii += "1-";
 								if global.online
 								{
 									go_super = 1;
+									//super_ii += "2-";
 								}
 								trigger = 1;
 								#region Квесты
@@ -7538,6 +7540,7 @@
 															image_speed = spd_max;
 															skeleton_animation_set("shoot");
 															change = 1;
+															//o_list.super_ii += "3-";
 														break;
 														case 7:
 															super = 1;
@@ -8311,7 +8314,7 @@
 				}
 				global.bill_abil -= 1;
 			}
-			else
+			if global.bill_abil <= 0 or theme_choose != 4
 			{
 				if global.bill_abil_a > 0
 				{
@@ -9892,6 +9895,26 @@
 							o_client.theme_r[global.rounds] = numnum;
 							o_client.cl_stage = 4;
 						}
+						else
+						{
+							autolose_time += 1;
+							if autolose_time = room_speed * 10
+							{
+								winner = global.myid;
+								stage  = 3;
+								if instance_exists(o_list)
+								{
+									global.game_stage   = 5;
+									o_list.autowin      = 1;
+									o_list.whowin       = 1;
+									o_list.theme_choose = 9;
+									global.idol[1]		= 0;
+									global.idol[2]		= 0;
+									global.idol[3]		= 0;
+								}
+								o_client.cl_stage = 19;
+							}
+						}
 					}
 					else
 					{
@@ -10771,7 +10794,7 @@
 			#region Победил игрок (или нет pvp)
 			if whowin = 1 or global.pvp = 1
 			{
-				if finplas < 1
+				if finplas < 1 && autowin = 0
 				{
 					draw_sprite_ext(s_plash_win, 2, 640, -fin_y + 50 + global.height / 2 - 469 * list_size - 80 + list_y, list_size * finplas, list_size, 0, c_white, 1);
 					draw_sprite_ext(s_plash_win, 0, 640 + 418  * list_size * (1 - finplas), -fin_y + 50 + global.height / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
@@ -10835,13 +10858,27 @@
 					draw_sprite_ext(s_plash_lose, 0, 640 + 418  * list_size * (1 - finplas), -fin_y + 50 + global.height / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
 					draw_sprite_ext(s_plash_lose, 1, 640 - 418  * list_size * (1 - finplas), -fin_y + 50 + global.height / 2 - 469 * list_size - 80 + list_y, list_size, list_size, 0, c_white, 1);
 					draw_set_font(global.game_font);
-					if os_get_language() != "ru"
+					if autolose = 0
 					{
-						draw_text_transformed_t(640, -fin_y + 50 + global.height / 2 - 469 * list_size - 100 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0, global.color_white, c_black);
+						if os_get_language() != "ru"
+						{
+							draw_text_transformed_t(640, -fin_y + 50 + global.height / 2 - 469 * list_size - 100 + list_y, "DEFEAT", finplas * 0.18, 0.18, 0, global.color_white, c_black);
+						}
+						else
+						{
+							draw_text_transformed_t(640, -fin_y + 50 + global.height / 2 - 469 * list_size - 100 + list_y, "ПОРАЖЕНИЕ", finplas * 0.18, 0.18, 0, global.color_white, c_black);
+						}
 					}
 					else
 					{
-						draw_text_transformed_t(640, -fin_y + 50 + global.height / 2 - 469 * list_size - 100 + list_y, "ПОРАЖЕНИЕ", finplas * 0.18, 0.18, 0, global.color_white, c_black);
+						if os_get_language() != "ru"
+						{
+							draw_text_transformed_t(640, -fin_y + 50 + global.height / 2 - 469 * list_size - 100 + list_y, "TOO LATE...", finplas * 0.18, 0.18, 0, global.color_white, c_black);
+						}
+						else
+						{
+							draw_text_transformed_t(640, -fin_y + 50 + global.height / 2 - 469 * list_size - 100 + list_y, "ЧТО-ТО ТЫ ДОЛГО...", finplas * 0.18, 0.18, 0, global.color_white, c_black);
+						}
 					}
 				}
 			#endregion
@@ -13458,8 +13495,13 @@
 	}
 #endregion
 #region Онлайн, супер
+	if go_super = 1
+	{
+		//super_ii += "4-";
+	}
 	if go_super = 1 && o_client.cl_stage = 0
 	{
+		//super_ii += "5-";
 		o_client.cl_stage = 18;
 		go_super = 0;
 	}
@@ -13468,6 +13510,11 @@
 	//timer = room_speed;
 	var popec;
 	popec = "";
+	
+	popec += "\n" + string(o_client.cl_stage);
+	popec += "\n" + string(test_zhepa);
+	//popec += "\n\n" + super_ii;
+	
 	//popec += "NAMEG = " + string(o_client.nameg);
 	//popec += "\nNAMEG2 = " + string(o_client.nameg2);
 	//popec += "\nNAMEG2_TIME = " + string(o_client.nameg2_time);

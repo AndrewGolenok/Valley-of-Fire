@@ -784,6 +784,8 @@
 		}
 	#endregion
 	#region Обнуление стана
+		var stuun;
+		stuun = stun;
 		if hero = 5 && bill_stage = 0
 		{
 			if stun != 0
@@ -835,7 +837,7 @@
 		}
 		if global.online && !enemy
 		{
-			if cancel_stun = 1
+			if cancel_stun = 1 && stuun != 0
 			{
 				o_client.cl_stage = 15;
 			}

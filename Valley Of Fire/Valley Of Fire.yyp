@@ -1426,6 +1426,25 @@
             }
         },
         {
+            "Key": "2dcd66ba-af92-454d-930f-f108aaf99d2e",
+            "Value": {
+                "id": "9c35f2f5-e2ff-4b15-b71a-014aef5ddde3",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/sprite223\/sprite223.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "2e093d87-b21e-4808-9559-6b9c5d911cc5",
             "Value": {
                 "id": "0d8a75b7-ead8-4ce4-b79f-8a8c8377b16c",
@@ -3399,6 +3418,25 @@
                 ],
                 "resourcePath": "fonts\/f_player_name_normal_bold\/f_player_name_normal_bold.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "679dc4e0-a9ce-413e-b995-e1c5dc5573d8",
+            "Value": {
+                "id": "fbe8e909-8931-4e98-8e96-88973bd38fd5",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "views\/679dc4e0-a9ce-413e-b995-e1c5dc5573d8.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -8073,25 +8111,6 @@
                 ],
                 "resourcePath": "scripts\/attention_1\/attention_1.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "fa4c7034-5d8c-43b1-8127-6e0d20d37e0c",
-            "Value": {
-                "id": "f99319b6-a22a-4658-800c-6b488548a5e8",
-                "modelName": "GMResourceInfo",
-                "mvc": "1.0",
-                "configDeltaFiles": [
-                    
-                ],
-                "configDeltas": [
-                    
-                ],
-                "resourceCreationConfigs": [
-                    "default"
-                ],
-                "resourcePath": "sprites\/sprite223\/sprite223.yy",
-                "resourceType": "GMSprite"
             }
         },
         {

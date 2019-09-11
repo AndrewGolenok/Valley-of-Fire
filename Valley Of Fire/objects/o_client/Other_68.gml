@@ -47,117 +47,133 @@ if type = network_type_data
 						switch(act)
 						{
 							#region getId
-							case "getId":
-								var g_id  = param[? "id"];
-								var f_id = param[? "fightId"];
+								case "getId":
+									var g_id  = param[? "id"];
+									var f_id = param[? "fightId"];
 					
-								global.text[1]   = module;
-								global.text[2]   = act;
-								global.text[3,1] = g_id;
-								global.text[3,2] = "-";
-								global.text[3,3] = f_id;
+									global.text[1]   = module;
+									global.text[2]   = act;
+									global.text[3,1] = g_id;
+									global.text[3,2] = "-";
+									global.text[3,3] = f_id;
 					
-								global.myid = g_id;
-								if global.myid = 1
-								{
-									global.enid = 2;
-								}
-								else
-								{
-									global.enid = 1;
-								}
-								global.f_id = f_id;
+									global.myid = g_id;
+									if global.myid = 1
+									{
+										global.enid = 2;
+									}
+									else
+									{
+										global.enid = 1;
+									}
+									global.f_id = f_id;
 					
-								buffer_seek(buffer_c, buffer_seek_start, 0);
-								buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"getFight\", \"param\": {\"fightId\": \"" + string(f_id) + "\"}}");
-								network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
+									buffer_seek(buffer_c, buffer_seek_start, 0);
+									buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"getFight\", \"param\": {\"fightId\": \"" + string(f_id) + "\"}}");
+									network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 					
-								need_f = room_speed;
-							break;
+									need_f = room_speed;
+								break;
 							#endregion
 							#region getFight
-							case "getFight":
-								var start    = param[? "start"];
-								var player1  = param[? "player1"];
-								var player2  = param[? "player2"];
-								var totem1   = player1[? "totem"];
-								var totem2   = player2[? "totem"];
+								case "getFight":
+									var start    = param[? "start"];
+									var player1  = param[? "player1"];
+									var player2  = param[? "player2"];
+									var totem1   = player1[? "totem"];
+									var totem2   = player2[? "totem"];
 					
-								back       = param[? "back"];
-								first_p    = param[? "first_player"];
+									back       = param[? "back"];
+									first_p    = param[? "first_player"];
 					
-								rank[1]    = player1[? "rank"];
-								level[1]   = player1[? "level"];
-								hero[1]    = player1[? "hero"];
+									rank[1]    = player1[? "rank"];
+									level[1]   = player1[? "level"];
+									hero[1]    = player1[? "hero"];
 					
-								/// НЕТ
-									hp[1]      = 100 + 20 * hero[1];
-									hp_max[1]  = hp[1];
-									need_hp[1] = hp[1];
-									atk[2]     = round(hp[1] / 7);
-								/// НЕТ
-								for (i = 0; i < ds_list_size(totem1); i ++)
-								{
-									totems[1,i+1] = totem1[| i];
-								}
-					
-								rank[2]    = player2[? "rank"];
-								level[2]   = player2[? "level"];
-								hero[2]    = player2[? "hero"];
-								/// НЕТ
-									hp[2]      = 100 + 20 * hero[2];
-									hp_max[2]  = hp[2];
-									need_hp[2] = hp[2];
-									atk[1]     = round(hp[2] / 7);
-								/// НЕТ
-								for (i = 0; i < ds_list_size(totem2); i ++)
-								{
-									totems[2, i + 1] = totem2[| i];
-								}
-								/// НЕТ
-									need_f       = -1;
-									waiting      = 0;
-									searching    = 0;
-								/// НЕТ
-								global.fight = 1;
-								if instance_exists(o_control)
-								{
-									with(o_control)
+									/// НЕТ
+										hp[1]      = 100 + 20 * hero[1];
+										hp_max[1]  = hp[1];
+										need_hp[1] = hp[1];
+										atk[2]     = round(hp[1] / 7);
+									/// НЕТ
+									for (i = 0; i < ds_list_size(totem1); i ++)
 									{
-										instance_destroy();
+										totems[1,i+1] = totem1[| i];
 									}
-								}
-								instance_create_depth(0, 0, -1, o_control);
-								global.e_totem[1] = totems[global.enid,1];
-								global.e_totem[2] = totems[global.enid,2];
-								global.e_totem[3] = totems[global.enid,3];
-							break;
+					
+									rank[2]    = player2[? "rank"];
+									level[2]   = player2[? "level"];
+									hero[2]    = player2[? "hero"];
+									/// НЕТ
+										hp[2]      = 100 + 20 * hero[2];
+										hp_max[2]  = hp[2];
+										need_hp[2] = hp[2];
+										atk[1]     = round(hp[2] / 7);
+									/// НЕТ
+									for (i = 0; i < ds_list_size(totem2); i ++)
+									{
+										totems[2, i + 1] = totem2[| i];
+									}
+									/// НЕТ
+										need_f       = -1;
+										waiting      = 0;
+										searching    = 0;
+									/// НЕТ
+									global.fight = 1;
+									if instance_exists(o_control)
+									{
+										with(o_control)
+										{
+											instance_destroy();
+										}
+									}
+									instance_create_depth(0, 0, -1, o_control);
+									global.e_totem[1] = totems[global.enid,1];
+									global.e_totem[2] = totems[global.enid,2];
+									global.e_totem[3] = totems[global.enid,3];
+								break;
 							#endregion
 							#region makeMove
-							case "makeMove":
-								index = param[? "index"];
-							break;
+								case "makeMove":
+									index = param[? "index"];
+								break;
 							#endregion
 							#region autoWin
-							case "autoWin":
-								winner = global.myid;
-								stage  = 3;
-								if instance_exists(o_list)
-								{
-									global.game_stage   = 5;
-									o_list.autowin      = 1;
-									o_list.whowin       = 1;
-									o_list.theme_choose = 9;
-									global.idol[1]		= 0;
-									global.idol[2]		= 0;
-									global.idol[3]		= 0;
-								}
-							break;
+								case "autoWin":
+									winner = global.myid;
+									stage  = 3;
+									if instance_exists(o_list)
+									{
+										global.game_stage   = 5;
+										o_list.autowin      = 1;
+										o_list.whowin       = 1;
+										o_list.theme_choose = 9;
+										global.idol[1]		= 0;
+										global.idol[2]		= 0;
+										global.idol[3]		= 0;
+									}
+								break;
+							#endregion
+							#region autoLose
+								case "autoLose":
+									winner = global.enid;
+									stage  = 3;
+									if instance_exists(o_list)
+									{
+										global.game_stage   = 5;
+										o_list.autolose     = 1;
+										o_list.whowin       = 2; //1;
+										o_list.theme_choose = 9;
+										global.idol[1]		= 0;
+										global.idol[2]		= 0;
+										global.idol[3]		= 0;
+									}
+								break;
 							#endregion
 							#region playWithBot
-							case "playWithBot":
-								waiting = 1;
-							break;
+								case "playWithBot":
+									waiting = 1;
+								break;
 							#endregion
 						}
 					break;
@@ -367,6 +383,7 @@ if type = network_type_data
 					#endregion
 					#region Супер
 						case 18:
+							//o_list.test_zhepa = 1;
 							//if o_list.enemy_super != 1
 							//{
 							//	o_list.enemy_super = 1;
@@ -374,13 +391,16 @@ if type = network_type_data
 							//else
 							if true
 							{
+								//o_list.test_zhepa = 2;
 								var herr;
 								if global.swipe_ability = 0
 								{
+									//o_list.test_zhepa = 3;
 									herr = global.enemy_hero;
 								}
 								else
 								{
+									//o_list.test_zhepa = 4;
 									herr = global.hero;
 								}
 								switch(herr)
@@ -457,20 +477,22 @@ if type = network_type_data
 									#endregion
 									#region Билл
 										case 5:
-											with(global.enemy_object)
-											{
-												super = 1;
-												image_speed = spd_max;
-												skeleton_animation_set("shoot");
-												if hero = 5
-												{
-													change = 1;
-												}
-												else
-												{
-													change = 3;
-												}
-											}
+											//o_list.test_zhepa = 5;
+											global.bill_abil  = 10 * room_speed;
+											//with(global.enemy_object)
+											//{
+											//	super = 1;
+											//	image_speed = spd_max;
+											//	skeleton_animation_set("shoot");
+											//	if hero = 5
+											//	{
+											//		change = 1;
+											//	}
+											//	else
+											//	{
+											//		change = 3;
+											//	}
+											//}
 										break;
 									#endregion
 									#region Шериф
