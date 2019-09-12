@@ -95,7 +95,7 @@
 											change = 1;
 											if global.online
 											{
-												o_client.cl_stage = 15;
+												o_client.cl_stage[15] = 1; //o_client.cl_stage[1] = 15;
 											}
 										}
 									}
@@ -5836,7 +5836,7 @@
 						(global.player_object).stun = 1;
 						if global.online
 						{
-							o_client.cl_stage = 14;
+							o_client.cl_stage[14] = 1; //o_client.cl_stage[1] = 14;
 						}
 						global.answer = 0;
 						#region Скрипт темы/раунда/задачи
@@ -5894,10 +5894,10 @@
 						o_client.question[global.myid] = global.question;
 						o_client.task[global.myid]     = global.task;
 						o_client.hp[global.enid]       = e_hp;
-						if o_client.cl_stage != 14
-						{
-							o_client.cl_stage = 7;
-						}
+						//if o_client.cl_stage[1] != 14
+						//{
+							o_client.cl_stage[7] = 1; //o_client.cl_stage[1] = 7;
+						//}
 					}
 				#endregion
 				#region Квесты
@@ -7171,7 +7171,7 @@
 				}
 			#endregion
 			#region Конец раунда
-				if global.online && o_client.cl_stage = 0
+				if global.online// && o_client.cl_stage[1] = 0
 				{
 					if global.training < 1 && ((u_question >= 10 && (global.player_object).answer = -1 && global.sraka = 0 && ((global.player_object).diego_dynamit = 0 or (global.player_object).diego_dynamit = 1) && global.super_ability = 0) or floor(hp) < 1 or floor(e_hp) < 1)
 					&& theme_choose != 5  && theme_choose != 6 && theme_choose != 9
@@ -7183,7 +7183,7 @@
 							{
 								faster_id = global.myid;
 							}
-							//o_client.cl_stage = 8;
+							o_client.cl_stage[8] = 1;//o_client.cl_stage[1] = 8;
 						}
 					}
 				}
@@ -7214,7 +7214,7 @@
 									{
 										roundskul[global.rounds] = 2;
 									}  // Раунд окончен
-								o_client.cl_stage = 11;
+								o_client.cl_stage[11] = 1; //o_client.cl_stage[1] = 11;
 								}
 								else
 								{
@@ -7227,7 +7227,7 @@
 										roundskul[global.rounds] = 2;
 									}  // Раунд окончен
 								}
-							//o_client.cl_stage = 11;
+							//o_client.cl_stage[1] = 11;
 							}
 						#endregion
 						#region Обнуление переменных U
@@ -7340,7 +7340,7 @@
 							//}
 							if global.online && whowin != 0
 							{
-								o_client.cl_stage = 12;
+								o_client.cl_stage[12] = 1; //o_client.cl_stage[1] = 12;
 							}
 							theme_choose = 5;
 						#endregion
@@ -9580,7 +9580,7 @@
 									{
 										o_client.theme_r[global.rounds] = i;
 										o_client.go_theme = 1;
-										o_client.cl_stage = 4;
+										o_client.cl_stage[4] = 1; //o_client.cl_stage[1] = 4;
 									}
 								}
 							}
@@ -9893,7 +9893,7 @@
 							}
 							theme_round[global.rounds] = theme_t[numnum];
 							o_client.theme_r[global.rounds] = numnum;
-							o_client.cl_stage = 4;
+							o_client.cl_stage[4] = 1; //o_client.cl_stage[1] = 4;
 						}
 						else
 						{
@@ -9912,7 +9912,7 @@
 									global.idol[2]		= 0;
 									global.idol[3]		= 0;
 								}
-								o_client.cl_stage = 19;
+								o_client.cl_stage[19] = 1; //o_client.cl_stage[1] = 19;
 							}
 						}
 					}
@@ -10107,7 +10107,7 @@
 													{
 														if (first_player = 1 && global.rounds != 3) or (global.rounds = 3 && o_client.first_p = global.myid)
 														{
-															o_client.cl_stage = 9;
+															o_client.cl_stage[9] = 1; //o_client.cl_stage[1] = 9;
 														}
 													}
 												}
@@ -10261,7 +10261,7 @@
 				choose_y     = global.height + 300;
 				if global.online
 				{
-					o_client.cl_stage = 5;
+					o_client.cl_stage[5] = 1; //o_client.cl_stage[1] = 5;
 					theme_choose = -1;
 				}
 				else
@@ -10577,7 +10577,7 @@
 										theme_choose = 9;
 										if global.online
 										{
-											o_client.cl_stage = 12;
+											o_client.cl_stage[12] = 1; //o_client.cl_stage[1] = 12;
 										}
 									}
 									for(i = 0; i <= 2; i ++)
@@ -10711,7 +10711,7 @@
 		{
 			if global.online
 			{
-				if round_end = 1 && o_client.cl_stage = 0
+				if round_end = 1// && o_client.cl_stage[1] = 0
 				{
 					if round_end_dop = 1
 					{
@@ -10725,7 +10725,7 @@
 						round_end_dop = 2;
 					}
 				}
-				if round_end = 0 && o_client.cl_stage = 0
+				if round_end = 0// && o_client.cl_stage[1] = 0
 				{
 					global.idol[1] = 0;
 					global.idol[2] = 0;
@@ -10744,7 +10744,7 @@
 					{
 						depth -= 2;
 					}
-					o_client.cl_stage = 10;
+					o_client.cl_stage[10] = 1; //o_client.cl_stage[1] = 10;
 					round_end = 1;
 				}
 			}
@@ -13467,11 +13467,11 @@
 	}
 #endregion
 #region Онлайн, концовка раунда
-	if global.online && player_end[global.myid] = 2 && o_client.cl_stage = 0
-	{
-		player_end[global.myid] = 1;
-		o_client.cl_stage = 8;
-	}
+	//if global.online && player_end[global.myid] = 2 && o_client.cl_stage[1] = 0
+	//{
+	//	player_end[global.myid] = 1;
+	//	o_client.cl_stage[1] = 8;
+	//}
 #endregion
 #region Онлайн, имя врага
 	if o_client.nameg = 2 && nameg_need = 1 //global.enemy_name = "-" && o_client.nameg = 2
@@ -13499,10 +13499,10 @@
 	{
 		//super_ii += "4-";
 	}
-	if go_super = 1 && o_client.cl_stage = 0
+	if go_super = 1// && o_client.cl_stage[1] = 0
 	{
 		//super_ii += "5-";
-		o_client.cl_stage = 18;
+		o_client.cl_stage[18] = 1; //o_client.cl_stage[1] = 18;
 		go_super = 0;
 	}
 #endregion
@@ -13511,8 +13511,14 @@
 	var popec;
 	popec = "";
 	
-	popec += "\n" + string(o_client.cl_stage);
-	popec += "\n" + string(test_zhepa);
+	//popec += "\n" + string(o_client.cl_stage[1]);
+	//popec += "\nTHEMECHOOSE " + string(theme_choose);
+	//popec += "\nWHOWIN " + string(whowin);
+	//popec += "\nLIST_Y " + string(list_y);
+	//popec += "\nAUTOLOSE " + string(autolose);
+	//popec += "\nAUTOWIN " + string(autowin);
+	//popec += "\nFINPLAS " + string(finplas);
+	//popec += "\nWINNER " + string(o_client.winner);
 	//popec += "\n\n" + super_ii;
 	
 	//popec += "NAMEG = " + string(o_client.nameg);
@@ -13549,7 +13555,7 @@
 	//popec += "\n ТЕМА: " + string(theme_choose) + "\n СРАКА:" + string(global.sraka) + "\n ЭНД:" + string(round_end);
 	//popec += "\n ТАСК-ВОП:" + string(global.task) + "~" + string(global.question) + "~" + string(u_question);
 	//popec += "\n ГОТОВ:" + string(o_client.ready[global.myid]) + "~" + string(o_client.ready[global.enid]);
-	//popec += "\n СЛ_СТДЖ:" + string(o_client.cl_stage) + "\n" + string(round_end_dop) + "\n ФЁРСТ_ПЛ:" + string(first_player);
+	//popec += "\n СЛ_СТДЖ:" + string(o_client.cl_stage[1]) + "\n" + string(round_end_dop) + "\n ФЁРСТ_ПЛ:" + string(first_player);
 	//popec += "\n РЕАР:" + string(o_client.rearr) + "\n ДОСУЛ:" + string(o_client.dosul);
 	
 	//popec += "idol_1 = " + string(global.idol[1]);

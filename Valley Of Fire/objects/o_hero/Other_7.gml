@@ -206,7 +206,7 @@
 					}
 					if global.online
 					{
-						o_client.cl_stage = 15;
+						o_client.cl_stage[15] = 1; //o_client.cl_stage[1] = 15;
 					}
 				}
 			}

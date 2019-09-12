@@ -140,33 +140,20 @@ if type = network_type_data
 							#endregion
 							#region autoWin
 								case "autoWin":
-									winner = global.myid;
-									stage  = 3;
-									if instance_exists(o_list)
+									if winner = -1
 									{
-										global.game_stage   = 5;
-										o_list.autowin      = 1;
-										o_list.whowin       = 1;
-										o_list.theme_choose = 9;
-										global.idol[1]		= 0;
-										global.idol[2]		= 0;
-										global.idol[3]		= 0;
-									}
-								break;
-							#endregion
-							#region autoLose
-								case "autoLose":
-									winner = global.enid;
-									stage  = 3;
-									if instance_exists(o_list)
-									{
-										global.game_stage   = 5;
-										o_list.autolose     = 1;
-										o_list.whowin       = 2; //1;
-										o_list.theme_choose = 9;
-										global.idol[1]		= 0;
-										global.idol[2]		= 0;
-										global.idol[3]		= 0;
+										winner = global.myid;
+										stage  = 3;
+										if instance_exists(o_list)
+										{
+											global.game_stage   = 5;
+											o_list.autowin      = 1;
+											o_list.whowin       = 1;
+											o_list.theme_choose = 9;
+											global.idol[1]		= 0;
+											global.idol[2]		= 0;
+											global.idol[3]		= 0;
+										}
 									}
 								break;
 							#endregion
@@ -506,6 +493,22 @@ if type = network_type_data
 										break;
 									#endregion
 								}
+							}
+						break;
+					#endregion
+					#region Автолуз
+						case 19:
+							winner = global.enid;
+							stage  = 3;
+							if instance_exists(o_list)
+							{
+								global.game_stage   = 5;
+								o_list.autolose     = 1;
+								o_list.whowin       = 2; //1;
+								o_list.theme_choose = 9;
+								global.idol[1]		= 0;
+								global.idol[2]		= 0;
+								global.idol[3]		= 0;
 							}
 						break;
 					#endregion

@@ -1,6 +1,9 @@
 global.online = true;
 
-cl_stage = 0;
+for(i = 1; i <= 20; i++)
+{
+	cl_stage[i] = 0;
+}
 ls_stage = 0;
 
 zhopanegra  = 0;

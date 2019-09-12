@@ -106,7 +106,7 @@
 		
 		q_col  = c_white;
 		h_pos  = 0;
-		list_y = -300;
+		list_y = 20;//list_y = -300;
 		
 		button_xc = 0;
 		button_x  = 0;
@@ -288,7 +288,7 @@
 			theme_t[3]  = theme_new(theme_t[1], theme_t[2]);
 			theme_nn[3] = global.theme_name[theme_t[3]];
 			
-			o_client.cl_stage = 3;
+			o_client.cl_stage[3] = 1; //o_client.cl_stage[1] = 3;
 		}
 		else
 		{
@@ -1516,7 +1516,7 @@
 				global.game_stage = 5;
 				theme_choose = 4;
 				list_go      = 1;
-				list_y       = -300;			
+				list_y = 20;//list_y       = -300;			
 				list_scale   = 0;
 				plas_scale   = 0;
 				global.question = 1;
@@ -1725,7 +1725,8 @@
 		{
 			totem_first = 0;
 		}
-		o_client.nameg = 1;
+		o_client.nameg  = 1;
+		o_client.winner = -1;
 	}
 	#region Онлайн, рандом у тотемов и идолов
 		var totr;

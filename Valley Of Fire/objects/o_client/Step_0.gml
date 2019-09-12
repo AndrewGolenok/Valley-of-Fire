@@ -1,39 +1,39 @@
 #region Последний стейдж
-	if ls_stage != 0
-	{
-		if ls_stage = cl_stage
-		{
-			if cl_stage != 5
-			{
-				cl_stage = 0;
-			}
-		}
-		else
-		{
-			ls_stage = 0;
-		}
-	}
-	else
-	{
-		ls_stage = cl_stage;
-	}
+	//if ls_stage != 0
+	//{
+	//	if ls_stage = cl_stage[1]
+	//	{
+	//		if cl_stage[1] != 5
+	//		{
+	//			cl_stage[1] = 0;
+	//		}
+	//	}
+	//	else
+	//	{
+	//		ls_stage = 0;
+	//	}
+	//}
+	//else
+	//{
+	//	ls_stage = cl_stage[1];
+	//}
 #endregion
 #region Игрок начинает поиск
-	if cl_stage = 1
+	if cl_stage[1] = 1
 	{
 		buffer_seek(buffer_c, buffer_seek_start, 0);
 		buffer_write(buffer_c, buffer_text, "{\"module\": \"authorization\", \"act\": \"search\", \"param\": {\"version\": " + string(global.vers) + ", \"level\": " + string(o_menu.hero_lvl[global.hero]) + ", \"rank\": " + string(global.player_rank) + ", \"hero\": " + string(global.hero) + ", \"totem\": [" + string(global.p_totem[1]) + "," + string(global.p_totem[2]) + "," + string(global.p_totem[3]) + "]}}");
 		network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-		cl_stage = 0;
+		cl_stage[1] = 0;
 	}
 #endregion
 #region Игрок отменяет поиск
-	if cl_stage = 2
+	if cl_stage[2] = 1//cl_stage[1] = 2
 	{
 		buffer_seek(buffer_c, buffer_seek_start, 0);
 		buffer_write(buffer_c, buffer_text, "{\"module\": \"authorization\", \"act\": \"stopSearch\", \"param\": {\"version\": " + string(global.vers) + "}}");
 		network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-		cl_stage = 0;
+		cl_stage[2] = 0;
 	}
 #endregion
 if global.fight
@@ -47,7 +47,7 @@ if global.fight
 			}
 			else
 			{
-				if cl_stage = 0
+				if 1//cl_stage[1] = 0
 				{
 					buffer_seek(buffer_c, buffer_seek_start, 0);
 					buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 17, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
@@ -60,7 +60,7 @@ if global.fight
 	#region Передача имени 2 (передача имени и тотемов)
 		if instance_exists(o_list)
 		{
-			if nameg = 1 && cl_stage = 0 && o_list.nameg_need = 1
+			if nameg = 1 && o_list.nameg_need = 1// && cl_stage[1] = 0
 			{
 				buffer_seek(buffer_c, buffer_seek_start, 0);
 				buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 13, \"enemy_name\": \"" + global.player_name + "\", \"bull\": \"" + string(o_list.totem_ran_bull[global.myid]) + "\", \"evasive\": \"" + string(o_list.totem_ran_evasive[global.myid]) + "\", \"pig\": \"" + string(o_list.totem_ran_pig[global.myid]) + "\", \"pig_num\": \"" + string(o_list.totem_ran_pig_num[global.myid]) + "\", \"frog\": \"" + string(o_list.totem_ran_frog[global.myid]) + "\", \"frog_num\": \"" + string(o_list.totem_ran_frog_num[global.myid]) + "\", \"rat\": \"" + string(o_list.totem_ran_rat[global.myid]) + "\", \"panther\": \"" + string(o_list.totem_ran_panther[global.myid]) + "\", \"idols\": \"" + string(o_list.idols_random) + "\", \"idol_wind\": \"" + string(o_list.idol_wind[global.myid]) + "\", \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
@@ -70,7 +70,7 @@ if global.fight
 		}
 	#endregion
 	#region Досылка темы
-		if dosul = 1 && cl_stage = 0
+		if dosul = 1// && cl_stage[1] = 0
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 5" + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
@@ -79,14 +79,14 @@ if global.fight
 		}
 	#endregion
 	#region Рандом темы у первого игрока - отправка второму игроку
-		if cl_stage = 3 && instance_exists(o_list)
+		if  instance_exists(o_list) && cl_stage[3] = 1//cl_stage[1] = 3
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 1, \"theme1\": " + string(o_list.theme_t[1]) + ",\"theme2\": " + string(o_list.theme_t[2]) + ",\"theme3\": " + string(o_list.theme_t[3]) + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			rearr_t  = room_speed;
-			rearr    = 0;
-			cl_stage = 0;
+			rearr_t     = room_speed;
+			rearr       = 0;
+			cl_stage[3] = 0;
 		}
 		if rearr = 0 && global.myid = first_p
 		{
@@ -104,22 +104,22 @@ if global.fight
 		}
 	#endregion
 	#region Выбор темы игроком
-		if cl_stage = 4 or go_theme = 1
+		if go_theme = 1 or cl_stage[4] = 1 //cl_stage[1] = 4// or go_theme = 1
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 3, \"theme_r1\": " + string(theme_r[1]) + ",\"theme_r2\": " + string(theme_r[2]) + ",\"theme_r3\": " + string(theme_r[3]) + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[4] = 0;
 			go_theme = 0;
 		}
 	#endregion
 	#region Готовность
-		if cl_stage = 5
+		if cl_stage[5] = 1//cl_stage[1] = 5
 		{
 			if ready[global.myid] = 1 && ready[global.enid] = 1
 			{
 				o_list.theme_choose = 3;
-				cl_stage = 0;
+				cl_stage[5] = 0;
 			}
 			if ready[global.myid] = 0 && rearr = 1
 			{
@@ -131,123 +131,123 @@ if global.fight
 		}
 	#endregion
 	#region Синхронизация хп
-		if cl_stage = 6
+		if cl_stage[6] = 1 //cl_stage[1] = 6
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 6, \"hp\": " + string(o_list.e_hp) + ", \"maxhp\": " + string(o_list.e_maxhp) + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[6] = 0;
 		}
 	#endregion
 	#region Передача ответа
-		if cl_stage = 7
+		if cl_stage[7] = 1 //cl_stage[1] = 7
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 4, \"answer\": " + string(answer[global.myid]) + ",\"question\": " + string(question[global.myid]) + ",\"task\": " + string(task[global.myid]) + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[7] = 0;
 		}
 	#endregion
 	#region Синхронизация окончания раунда
-		if cl_stage = 8
+		if cl_stage[8] = 1 //cl_stage[1] = 8
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 8, \"player_end\": 1,\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[8] = 0;
 		}
 	#endregion
 	#region Синхронизация задач
-		if cl_stage = 9
+		if cl_stage[9] = 1 //cl_stage[1] = 9
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 9, \"task1\": " + string(o_list.round_task[global.rounds,1]) + ", \"task2\": " + string(o_list.round_task[global.rounds,2]) + ", \"task3\": " + string(o_list.round_task[global.rounds,3]) + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[9] = 0;
 		}
 	#endregion
 	#region Синхронизация окончания раунда 2
-		if cl_stage = 10
+		if cl_stage[10] = 1 //cl_stage[1] = 10
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 10, \"hp\": " + string(o_list.e_hp) + ", \"maxhp\": " + string(o_list.e_maxhp) + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[10] = 0;
 		}
 	#endregion
 	#region Синхронизация итогов раунда
-		if cl_stage = 11
+		if cl_stage[11] = 1 //cl_stage[1] = 11
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 11, \"roundskul\": " + string(o_list.roundskul[global.rounds]) + ", \"rounds\": " + string(global.rounds) + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[11] = 0;
 		}
 	#endregion
 	#region Конец дуэли
-		if cl_stage = 12
+		if cl_stage[12] = 1 //cl_stage[1] = 12
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 12, \"whowin\": " + string(o_list.whowin) + ", \"rskul1\": \"" + string(o_list.roundskul[1]) + ", \"rskul2\": \"" + string(o_list.roundskul[2]) + ", \"rskul3\": \"" + string(o_list.roundskul[3]) + ", \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[12] = 0;
 		}
 	#endregion
 	#region Передача стана: есть стан (с передачей ответа)
-		if cl_stage = 14
+		if cl_stage[14] = 1 //cl_stage[1] = 14
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 14, \"answer\": " + string(answer[global.myid]) + ",\"question\": " + string(question[global.myid]) + ",\"task\": " + string(task[global.myid]) + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[14] = 0;
 			//buffer_seek(buffer_c, buffer_seek_start, 0);
 			//buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 14, \"stun\": 1, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			//network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			//cl_stage = 0;
+			//cl_stage[1] = 0;
 		}
 	#endregion
 	#region Передача стана: стана нет
-		if cl_stage = 15
+		if cl_stage[15] = 1 //cl_stage[1] = 15
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 15, \"stun\": 0, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[15] = 0;
 		}
 	#endregion
 	#region Тотем: стан
-		if cl_stage = 16
+		if cl_stage[16] = 1 //cl_stage[1] = 16
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 16, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[16] = 0;
 		}
 	#endregion
 	#region Супер
-		if cl_stage = 18
+		if cl_stage[18] = 1 //cl_stage[1] = 18
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 18, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[18] = 0;
 			//o_list.super_ii += "6\n";
 		}
 	#endregion
 	#region Автолуз
-		if cl_stage = 19
+		if cl_stage[19] = 1 //cl_stage[1] = 19
 		{
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"autoLose\", \"param\": {}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 19, \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
-			cl_stage = 0;
+			cl_stage[19] = 0;
 		}
 	#endregion
 	#region А
-		if cl_stage = 1000
+		if cl_stage[1] = 1000
 		{
 		
-			cl_stage = 0;
+			cl_stage[1] = 0;
 		}
 	#endregion
 }

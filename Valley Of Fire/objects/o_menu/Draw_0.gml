@@ -944,12 +944,12 @@
 								{
 									if searching = 0
 									{
-										o_client.cl_stage = 1;
+										o_client.cl_stage[1] = 1;
 										searching = 1;
 									}
 									else
 									{
-										o_client.cl_stage = 2;
+										o_client.cl_stage[2] = 1; //o_client.cl_stage[1] = 2;
 										searching = 0;
 									}
 									if global.fight

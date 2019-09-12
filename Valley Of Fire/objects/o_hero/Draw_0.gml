@@ -500,7 +500,7 @@
 						answer       = -1;
 						//if global.online
 						//{
-						//	o_client.cl_stage = 6;
+						//	o_client.cl_stage[1] = 6;
 						//}
 					 }
 				}
@@ -815,7 +815,7 @@
 					o_list.totem_show_n[1] = 8;
 					if global.online
 					{
-						o_client.cl_stage = 16;
+						o_client.cl_stage[16] = 1; //o_client.cl_stage[1] = 16;
 					}
 				#endregion
 			}
@@ -839,7 +839,7 @@
 		{
 			if cancel_stun = 1 && stuun != 0
 			{
-				o_client.cl_stage = 15;
+				o_client.cl_stage[15] = 1; //o_client.cl_stage[1] = 15;
 			}
 		}
 	#endregion

@@ -178,5 +178,5 @@ with(o_hero)
 #endregion
 //if global.online
 //{
-//	o_client.cl_stage = 6;
+//	o_client.cl_stage[1] = 6;
 //}

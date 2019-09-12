@@ -115,7 +115,7 @@ with(o_hero)
 			change = 1;
 			if global.online
 			{
-				o_client.cl_stage = 15;
+				o_client.cl_stage[15] = 1; //o_client.cl_stage[1] = 15;
 			}
 		}
 	}
@@ -143,5 +143,5 @@ with(o_hero)
 #endregion
 //if global.online
 //{
-//	o_client.cl_stage = 6;
+//	o_client.cl_stage[1] = 6;
 //}
