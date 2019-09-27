@@ -147,11 +147,16 @@
 					}
 				#endregion
 				#region Задник
-					draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.height + back_y - pry, back_s, back_s, 0, c_white, 1);
-					draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.height + back_y - pry, back_s, back_s, 0, c_white, back_alpha[1]);
-					draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x - prx, global.height + back_y - pry, back_s, back_s, 0, c_white, back_alpha[2]);
+				//if 0
+				//{
+				draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.height + back_y - pry, back_s, back_s, 0, c_white, 1);
+				draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.height + back_y - pry, back_s, back_s, 0, c_white, back_alpha[1]);
+				draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x - prx, global.height + back_y - pry, back_s, back_s, 0, c_white, back_alpha[2]);
+				//}
 				#endregion
 			}
+			//if 0
+			//{
 			if global.background = "train"
 			{
 				#region Рисование гор
@@ -281,7 +286,10 @@
 					draw_sprite_ext(s_train_wagon, 0, 640 + back_x + prx, global.height + back_y + back_train_y2 + pry, -back_s, back_s, 0, c_white, 1);
 				#endregion
 			}
+			//}
 		#endregion
+		//if 0
+		//{
 		#region Фон Водопада
 			if global.background = "waterfall"
 			{
@@ -426,5 +434,6 @@
 				draw_set_alpha(1);
 			}
 		#endregion
+		//}
 	}
 #endregion

@@ -16,7 +16,7 @@ if type = network_type_data
 		json_str     = string_pos(module_str, json_txt) - 1;
 		json_need[i] = module_str + string_copy(json_txt, 1, json_str);
 		json_txt     = string_delete(json_txt, 1, json_str);
-		#region Синхронизация 
+		#region Синхронизация
 			json   = json_decode(json_need[i]);
 			module = json[? "module"];
 			act    = json[? "act"];
@@ -146,13 +146,19 @@ if type = network_type_data
 										stage  = 3;
 										if instance_exists(o_list)
 										{
-											global.game_stage   = 5;
-											o_list.autowin      = 1;
-											o_list.whowin       = 1;
-											o_list.theme_choose = 9;
-											global.idol[1]		= 0;
-											global.idol[2]		= 0;
-											global.idol[3]		= 0;
+											if o_list.whowin = 0
+											{
+												global.game_stage   = 5;
+												o_list.autowin      = 1;
+												o_list.whowin       = 1;
+												o_list.theme_choose = 9;
+												global.idol[1]		= 0;
+												global.idol[2]		= 0;
+												global.idol[3]		= 0;
+												global.idol_h[1]	= -1;
+												global.idol_h[2]	= -1;
+												global.idol_h[3]	= -1;
+											}
 										}
 									}
 								break;
@@ -246,9 +252,27 @@ if type = network_type_data
 						case 8:
 							if instance_exists(o_list)
 							{
+								o_list.pepa += "E1 "; //o_list.pepa += "4 ";
 								if o_list.player_end[global.myid] != 1
 								{
+									o_list.pepa += "E2 "; //o_list.pepa += "5 ";
 									o_list.faster_id = global.enid;
+								}
+								o_list.en_faster = param[? "faster_id"];
+								o_list.pepa += string(o_list.en_faster) + "~" + string(o_list.faster_id) + " "; //o_list.pepa += "4 ";
+								if o_list.en_faster != o_list.faster_id
+								{
+									o_list.pepa += "E3 ";
+									if global.myid = 1
+									{
+										o_list.pepa += "E3.1 ";
+										o_list.faster_id = global.myid;
+									}
+									else
+									{
+										o_list.pepa += "E3.2 ";
+										o_list.faster_id = global.enid;
+									}
 								}
 								o_list.player_end[global.enid] = 1; //param[? "player_end"];
 							}
@@ -261,7 +285,33 @@ if type = network_type_data
 								o_list.round_task[global.rounds,1] = param[? "task1"];
 								o_list.round_task[global.rounds,2] = param[? "task2"];
 								o_list.round_task[global.rounds,3] = param[? "task3"];
-								o_list.pepa = "PRINIAL";
+								with(o_list)
+								{
+									if theme_round[global.rounds] = 6
+									{
+										script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task])));
+									}
+									if theme_round[global.rounds] = 2
+									{
+										script_execute(asset_get_index("bottles_" + string(round_task[global.rounds,global.task])));
+									}
+									if theme_round[global.rounds] = 3
+									{
+										script_execute(asset_get_index("move_" + string(round_task[global.rounds,global.task])));
+									}
+									if theme_round[global.rounds] = 4
+									{
+										script_execute(asset_get_index("attention_" + string(round_task[global.rounds,global.task])));
+									}
+									if theme_round[global.rounds] = 1
+									{
+										script_execute(asset_get_index("cards_" + string(round_task[global.rounds,global.task])));
+									}
+									if theme_round[global.rounds] = 5
+									{
+										script_execute(asset_get_index("shooting_" + string(round_task[global.rounds,global.task])));
+									}
+								}
 							}
 						break;
 					#endregion
@@ -269,10 +319,43 @@ if type = network_type_data
 						case 10:
 							if instance_exists(o_list)
 							{
+								o_list.pepa += "E4 "; //o_list.pepa += "6 ";
 								o_list.hp		 = param[? "hp"];
 								o_list.maxhp	 = param[? "maxhp"];
 								//o_list.round_end = 2;
 								o_list.round_end_dop = 1;
+								
+								//PEPA
+								with(o_list)
+								{
+									o_list.pepa += "E4.1 " + string(roundskul[1]) + " ";
+									if round(100 * hp / maxhp) > round(100 * e_hp / e_maxhp)
+									{
+										roundskul[global.rounds] = 1;
+									}
+									else
+									{
+										roundskul[global.rounds] = 2;
+									}
+									o_list.pepa += "E4.2 " + string(roundskul[1]) + " ";
+									if abs((100 * hp / maxhp) - (100 * e_hp / e_maxhp)) < 1
+									{
+										if global.online
+										{
+											if faster_id = global.myid
+											{
+												roundskul[global.rounds] = 1;
+											}
+											else
+											{
+												roundskul[global.rounds] = 2;
+											}
+											o_list.pepa += "E4.3 " + string(roundskul[1]) + " ";
+										}
+									}
+									o_client.cl_stage[11] = 1; 
+								}
+								//PEPA
 							}
 							//global.player_name = "PIDORAS_" + string(global.myid);
 						break;
@@ -281,11 +364,18 @@ if type = network_type_data
 						case 11:
 							if instance_exists(o_list)
 							{
+								o_list.pepa += "E5 "; //o_list.pepa += "(" + string(param[? "rounds"]) + ":" + string(param[? "roundskul"]) +") ";
 								if o_list.roundskul[param[? "rounds"]] = param[? "roundskul"]
 								{
-									if global.enid = first_p
+									o_list.pepa += "E5.1 ";
+									//o_list.pepa += "9 ";
+									//if (o_list.faster_id = global.enid && o_list.en_faster = o_list.faster_id)
+									//or (global.enid = 1 && o_list.en_faster != o_list.faster_id) //o_list.faster_id = global.enid //global.enid = first_p
+									if o_list.faster_id = global.enid
 									{
+										o_list.pepa += "E5.2 "; //o_list.pepa += "10 ";
 										o_list.roundskul[param[? "rounds"]] = 3 - param[? "roundskul"];
+										o_list.faster_id = global.enid;
 									}
 								}
 							}
@@ -498,22 +588,32 @@ if type = network_type_data
 					#endregion
 					#region Автолуз
 						case 19:
-							winner = global.enid;
-							stage  = 3;
-							if instance_exists(o_list)
+							if winner = -1
 							{
-								global.game_stage   = 5;
-								o_list.autolose     = 1;
-								o_list.whowin       = 2; //1;
-								o_list.theme_choose = 9;
-								global.idol[1]		= 0;
-								global.idol[2]		= 0;
-								global.idol[3]		= 0;
+								winner = global.enid;
+								stage  = 3;
+								if instance_exists(o_list)
+								{
+									global.game_stage   = 5;
+									o_list.autolose     = 1;
+									o_list.whowin       = 2; //1;
+									o_list.theme_choose = 9;
+									global.idol[1]		= 0;
+									global.idol[2]		= 0;
+									global.idol[3]		= 0;
+									global.idol_h[1]	= -1;
+									global.idol_h[2]	= -1;
+									global.idol_h[3]	= -1;
+								}
 							}
 						break;
 					#endregion
 				}
 				index = -1;
+				if o_list.player_end[global.myid] != 0
+				{
+					autolose_time = 0;
+				}
 			}
 		#endregion
 		json_need[i] = "";

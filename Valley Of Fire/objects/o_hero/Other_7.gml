@@ -68,11 +68,8 @@
 				}
 				if global.online
 				{
-					if global.online
-					{
-						idol_n = real(string_copy(o_list.idols_random, 1, 1));
-						o_list.idols_random = string_delete(o_list.idols_random, 1, 1);
-					}
+					idol_n = real(string_copy(o_list.idols_random, 1, 1));
+					o_list.idols_random = string_delete(o_list.idols_random, 1, 1);
 				}
 				if idol_n != -1
 				{
@@ -84,7 +81,7 @@
 					{
 						global.idol_h[idol_n] = 1;
 					}
-					global.idol[idol_n] = 1;
+					global.idol[idol_n] = 0; //1;
 				}
 			}
 			super = 0;

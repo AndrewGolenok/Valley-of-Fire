@@ -868,7 +868,7 @@
 			{
 				bill_boom = -1;
 			}
-			if bill_boom = 3
+			if bill_boom = 3 && global.super_ability = 0
 			{
 				hero_sprite  = s_sbill;
 				sprite_index = hero_sprite;

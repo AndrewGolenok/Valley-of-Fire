@@ -151,8 +151,9 @@ if global.fight
 	#region Синхронизация окончания раунда
 		if cl_stage[8] = 1 //cl_stage[1] = 8
 		{
+			o_list.pepa += "OT8 "; //o_list.pepa += "3 ";
 			buffer_seek(buffer_c, buffer_seek_start, 0);
-			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 8, \"player_end\": 1,\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
+			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 8, \"player_end\": 1, \"faster_id\": " + string(o_list.faster_id) + ", \"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
 			cl_stage[8] = 0;
 		}
@@ -169,6 +170,7 @@ if global.fight
 	#region Синхронизация окончания раунда 2
 		if cl_stage[10] = 1 //cl_stage[1] = 10
 		{
+			o_list.pepa += "OT9 "; //o_list.pepa += "13 ";
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 10, \"hp\": " + string(o_list.e_hp) + ", \"maxhp\": " + string(o_list.e_maxhp) + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
@@ -178,6 +180,7 @@ if global.fight
 	#region Синхронизация итогов раунда
 		if cl_stage[11] = 1 //cl_stage[1] = 11
 		{
+			//o_list.pepa += "7 ";
 			buffer_seek(buffer_c, buffer_seek_start, 0);
 			buffer_write(buffer_c, buffer_text, "{\"module\": \"fight\", \"act\": \"makeMove\", \"param\": {\"index\": 11, \"roundskul\": " + string(o_list.roundskul[global.rounds]) + ", \"rounds\": " + string(global.rounds) + ",\"fightId\": \"" + string(global.f_id) + "\", \"id\": " + string(global.myid) + "}}");
 			network_send_raw(socket_c, buffer_c, buffer_tell(buffer_c));
@@ -248,6 +251,35 @@ if global.fight
 		{
 		
 			cl_stage[1] = 0;
+		}
+	#endregion
+	
+	#region Проверка
+		if instance_exists(o_list)
+		{
+			if o_list.player_end[global.myid] != 0 && o_list.whowin = 0
+			{
+				autolose_time += 1;
+				if autolose_time = room_speed * 15
+				{
+					o_client.winner = global.myid;
+					o_client.stage  = 3;
+					if instance_exists(o_list)
+					{
+						global.game_stage   = 5;
+						o_list.autowin      = 1;
+						o_list.whowin       = 1;
+						o_list.theme_choose = 9;
+						global.idol[1]		= 0;
+						global.idol[2]		= 0;
+						global.idol[3]		= 0;
+						global.idol_h[1]	= -1;
+						global.idol_h[2]	= -1;
+						global.idol_h[3]	= -1;
+					}
+					o_client.cl_stage[19] = 1; //o_client.cl_stage[1] = 19;
+				}
+			}
 		}
 	#endregion
 }

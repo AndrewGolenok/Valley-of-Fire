@@ -146,7 +146,7 @@
 			{
 				day_star_s[i] = s_train_star_1;
 			}
-			day_star_y[i] = irandom_range(0, 800 * back_s);
+			day_star_y[i] = irandom_range(0, 800 * back_s); //day_star_y[i] = irandom_range(0, global.height); //irandom_range(0, 800 * back_s);
 			day_star_n[i] = irandom(100);
 		}
 		sun_light  = 0;

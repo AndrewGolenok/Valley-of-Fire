@@ -1446,7 +1446,7 @@
 			#endregion
 			#region Выполнение темы
 				theme_round[global.rounds]  = global.training;
-				round_task[global.rounds,1] = 1;
+				round_task[global.rounds, 1] = 1;
 				if theme_round[global.rounds] = 6
 				{
 					script_execute(asset_get_index("math_" + string(round_task[global.rounds,global.task])));
@@ -1714,6 +1714,7 @@
 	autolose      = 0;
 	autolose_time = 0;
 	test_zhepa    = 0; // Тест
+	en_faster	  = 0;
 	//super_ii      = ""; // Тест
 	if global.online
 	{
@@ -1774,7 +1775,7 @@
 					totem_ran_rat[pl]     += string(irandom_range(1, 3));
 					totem_ran_panther[pl] += string(irandom(1));
 				}
-				if i <= 4
+				if i <= 8
 				{
 					idols_random += string(irandom_range(1, 3));
 				}

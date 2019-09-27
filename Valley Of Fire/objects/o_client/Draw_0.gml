@@ -1,3 +1,5 @@
+//if 0
+//{
 #region Общая информация
 	var fps_txt = "ОНЛАЙН: " + string(global.online)+ " | ПИНГ: " + string(ping_time) + " | МАКС. ПИНГ:" + string(ping_max) + " | FPS: " + string(round(fps_real)) + " ";
 	var myid_t  = "";
@@ -62,6 +64,7 @@
 	//draw_text(mouse_x, mouse_y, test_txt + "\n\n" + string(string_length(module_str)));
 	//draw_text(mouse_x, mouse_y, json_need[1] + "\n" + json_need[2] + "\n" + json_need[3] + "\n" + json_need[4] + "\n" + json_need[5]); //test_txt);
 #endregion
+//}
 if 0
 {
 	#region Этап 0: Поиск, Выбор темы

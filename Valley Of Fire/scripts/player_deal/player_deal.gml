@@ -142,7 +142,7 @@ with(o_hero)
 		{
 			o_list.dop_text[8] = "BLOCK";
 		}
-		if !(skeleton_animation_get() = "super") && !(image_index <= hero_shoot && skeleton_animation_get() = "shoot")
+		if global.super_ability = 0 && !(skeleton_animation_get() = "greetings") && !(skeleton_animation_get() = "super") && !(image_index <= hero_shoot && skeleton_animation_get() = "shoot")
 		{
 			if stun != 0
 			{

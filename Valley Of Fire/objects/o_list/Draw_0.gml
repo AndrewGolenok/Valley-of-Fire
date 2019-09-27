@@ -2,7 +2,7 @@
 	for(i = 1; i <= 3; i ++)
 	{
 		#region Координата X идола
-			global.idol_x[i] = 640 - 250 * (global.idol_h[i]==1) + 250 * (global.idol_h[i]==0);
+			//global.idol_x[i] = 640 - 250 * (global.idol_h[i] == 1) + 250 * (global.idol_h[i] == 0);
 		#endregion
 		#region Координаты Y идолов
 			switch(global.idol[i])
@@ -14,11 +14,16 @@
 					}
 					else
 					{
-						global.idol[i] = 0;
+						if global.idol_h[i] != -1
+						{
+							global.idol[i] = 1//0;
+							//global.idol_x[i] = 640 - 250 * (global.idol_h[i] == 1) + 250 * (global.idol_h[i] == 0);
+							global.idol_x[i] = 640 - (250 - 110 + 110 * (i - 1)) * (global.idol_h[i] == 1) + (250 - 110 + 110 * (i - 1)) * (global.idol_h[i] == 0);
+						}
 					}
 				break;
 				case 1:
-					if global.idol_y[i] < o_hero.y
+					if global.idol_y[i] < o_hero.y // + 120 - 120 * i
 					{
 						global.idol_y[i] += 50;
 					}
@@ -49,7 +54,7 @@
 					}
 				break;
 				case 4:
-					global.idol_y[i] = o_hero.y;
+					global.idol_y[i] = o_hero.y; // + 120 - 120 * i;
 				break;
 			}
 		#endregion
@@ -204,17 +209,32 @@
 			{
 				if plas_scale < 1
 				{
-					plas_scale += 0.1;
+					plas_scale += 0.11;
 				}
 				else
 				{
-					if list_scale < 1
+					if plas_scale > 1
 					{
-						list_scale += 0.1;
+						plas_scale -= 0.01;
 					}
 					else
 					{
-						bot_go = 1;
+						plas_scale = 1;
+						if list_scale < 1
+						{
+							list_scale += 0.11;
+						}
+						else
+						{
+							if list_scale > 1
+							{
+								list_scale -= 0.01;
+							}
+							//if global.online = 0
+							//{
+								bot_go = 1;
+							//}
+						}
 					}
 				}
 			}
@@ -1628,6 +1648,7 @@
 													{
 														global.training_hand_s = 0;
 														bottle_y[i] += 100;
+														pre_wait = 1;
 													}
 													else
 													{
@@ -1635,6 +1656,7 @@
 														if bottle_stage < bottle_all
 														{
 															bottle_stage += 1;
+															pre_wait = 1;
 														}
 														else
 														{
@@ -1855,6 +1877,7 @@
 												{
 													global.training_hand_s = 0;
 													bottle_y[i] += 100;
+													pre_wait = 1;
 												}
 												else
 												{
@@ -1862,6 +1885,7 @@
 													if bottle_stage < bottle_all
 													{
 														bottle_stage += 1;
+														pre_wait = 1;
 													}
 													else
 													{
@@ -2274,6 +2298,7 @@
 												if bottle_y[i] < 0
 												{
 													bottle_y[i] += 100;
+													pre_wait = 1;
 												}
 												else
 												{
@@ -2281,6 +2306,7 @@
 													if bottle_stage < bottle_all
 													{
 														bottle_stage += 1;
+														pre_wait = 1;
 													}
 													else
 													{
@@ -3084,6 +3110,7 @@
 								{
 									if global.training < 1 or global.training_stage[4] >= 8
 									{
+										pre_wait = 1;
 										if hat_timer > 0
 										{
 											hat_timer -=1;
@@ -3106,6 +3133,7 @@
 								#region Стадия 1
 									if hat_stage = 1
 									{
+										pre_wait = 1;
 										hat_sha  = choose(1, 2, 3);
 										if hat_sha = 1
 										{
@@ -3127,6 +3155,7 @@
 								#region Стадия 2
 									if hat_stage = 2
 									{
+										pre_wait = 1;
 										if hat_x[hat_sha] < hat_xn[hat_sha]
 										{
 											hat_x[hat_sha] += hat_spd;
@@ -3613,7 +3642,7 @@
 								#region Отрисовка руки и задника
 									if global.training_stage[4] > 11 or global.training < 1
 									{
-										for(i = hand_sign_count;i>=1;i--)
+										for(i = hand_sign_count; i >= 1; i--)
 										{
 											hand_sign_xx[i] = 640 - (hand_sign_now - i) * 170;
 											hand_sign_ss[i] = 0;
@@ -4006,6 +4035,7 @@
 													card_time = -1;
 												#endregion
 											}
+										pre_wait = 1;
 										}
 										else
 										{
@@ -4292,6 +4322,7 @@
 										#region Показ одной карты, переменные
 											if card_time > -1 && list_scale = 1
 											{
+												pre_wait = 1;
 												if card_time > 0
 												{
 													if global.training < 1 or (global.training_stage[1] = 12 or global.training_stage[1] = 13)
@@ -4324,6 +4355,7 @@
 										#region Пока одной карты, угл
 											if card_time = -3
 											{
+												pre_wait = 1;
 												if card_find_s < 1
 												{
 													card_find_s += 0.1;
@@ -4357,6 +4389,7 @@
 														card_find_s -= 0.1;
 														card_find_a += 1;
 														global.training_hand_s = 0;
+														pre_wait = 1;
 													}
 													else
 													{
@@ -4651,6 +4684,7 @@
 											#region Показ карт и присвоение номера
 												if cards_s[i] = 0
 												{
+													pre_wait = 1;
 													if cards_i[i] = 0
 													{
 														if cards_ss[i] > 0
@@ -4681,6 +4715,7 @@
 												{
 													if cards_time > 0 
 													{
+														pre_wait = 1;
 														if global.training < 1 or global.training_stage[1] = 15 or global.training_stage[1] = 16
 														{
 															cards_time -= 1;
@@ -4700,6 +4735,7 @@
 															if cards_y[i] < 200
 															{
 																cards_y[i] += 30;
+																pre_wait = 1;
 															}
 															else
 															{
@@ -5813,7 +5849,7 @@
 				if timer > 0
 				{
 					#region Снижение времени таймера
-						if global.super_ability = 0
+						if theme_round[global.rounds] != -1 && theme_choose = 4 && global.super_ability = 0
 						{
 							timer -= 1; 
 							global.bistra_time -= 1;
@@ -5937,7 +5973,7 @@
 				#endregion
 				#region Сворачивание вопроса при ответе
 					list_scale = 0;
-					pre_wait = 1;
+					pre_wait   = 1;
 				#endregion
 				#region Зависимость вопроса и времени врага (и времени ответа бота)
 					u_answer[u_question] = global.answer;
@@ -6416,12 +6452,12 @@
 								{
 									if global.answer = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 										{
-										image_speed = spd_nor + 0.5;
-										if !stun
+											image_speed = spd_nor + 0.5;
+											if !stun && global.super_ability = 0
 											{
 												skeleton_animation_set("miss");
 											}
-										change = 1;
+											change = 1;
 										}
 								}
 							}
@@ -7140,7 +7176,7 @@
 									if global.bot_answer = 0 && !(skeleton_animation_get() = "super") && !(image_index <= 20 && skeleton_animation_get() = "shoot")
 									{
 										image_speed = spd_nor + 0.5;
-										if !stun
+										if !stun && global.super_ability = 0
 										{
 											skeleton_animation_set("miss");
 										}
@@ -7171,19 +7207,21 @@
 				}
 			#endregion
 			#region Конец раунда
-				if global.online// && o_client.cl_stage[1] = 0
+				if global.online // && o_client.cl_stage[1] = 0
 				{
 					if global.training < 1 && ((u_question >= 10 && (global.player_object).answer = -1 && global.sraka = 0 && ((global.player_object).diego_dynamit = 0 or (global.player_object).diego_dynamit = 1) && global.super_ability = 0) or floor(hp) < 1 or floor(e_hp) < 1)
 					&& theme_choose != 5  && theme_choose != 6 && theme_choose != 9
 					{
 						if player_end[global.myid] = 0
 						{
-							player_end[global.myid] = 2; //player_end[global.myid] = 1;
+							o_list.pepa += "P1 "; //pepa += "1 ";
+							player_end[global.myid] = 1; //player_end[global.myid] = 2; //player_end[global.myid] = 1;
 							if player_end[global.enid] = 0
 							{
+								o_list.pepa += "P1.1 "; //pepa += "2 ";
 								faster_id = global.myid;
 							}
-							o_client.cl_stage[8] = 1;//o_client.cl_stage[1] = 8;
+							o_client.cl_stage[8] = 1; //o_client.cl_stage[1] = 8;
 						}
 					}
 				}
@@ -7193,6 +7231,7 @@
 				{
 					if (global.online = 0 or (global.online = 1 && ((player_end[1] = 1 && player_end[2] = 1) or floor(hp) < 1 or floor(e_hp) < 1)))
 					{
+						o_list.pepa += "P2 "; //o_list.pepa += "6 ";
 						#region Результат раунда в зависимости от хп игроков
 							if round(100 * hp / maxhp) > round(100 * e_hp / e_maxhp)
 							{
@@ -7202,7 +7241,7 @@
 							{
 								roundskul[global.rounds] = 2;
 							}
-							if abs(100 * hp / maxhp - 100 * e_hp / e_maxhp) < 1
+							if abs((100 * hp / maxhp) - (100 * e_hp / e_maxhp)) < 1
 							{
 								if global.online
 								{
@@ -7214,7 +7253,7 @@
 									{
 										roundskul[global.rounds] = 2;
 									}  // Раунд окончен
-								o_client.cl_stage[11] = 1; //o_client.cl_stage[1] = 11;
+								//o_client.cl_stage[11] = 1; //o_client.cl_stage[1] = 11;
 								}
 								else
 								{
@@ -7250,12 +7289,12 @@
 							plas_scale = 0;
 						#endregion		
 						#region Обнуление переменных бота и шторм
-							bot_go = 0; // 1
+							bot_go       = 1; //0; //1
 							bot_question = 1;
 							bot_task     = 1;
-							bot_time   = -1;
-							bot_time2  =  (5 + 3 * global.e_totem_a[4]) * e_time[1];
-							global.task = 1;
+							bot_time     = -1;
+							bot_time2    = (5 + 3 * global.e_totem_a[4]) * e_time[1];
+							global.task  = 1;
 						#endregion
 						#region Скрипт темы/раунда/задачи
 							if global.storm = 1
@@ -7329,10 +7368,12 @@
 								theme_choose = 9;
 								whowin = 2;
 							}
-							if global.rounds < 3
-							{
-								global.rounds += 1;
-							}
+							//if global.rounds < 3
+							//{
+							//	global.rounds += 1;
+							//}
+							//PEPA
+							
 							//if global.online
 							//{
 							//	player_end[1] = 0;
@@ -7340,6 +7381,7 @@
 							//}
 							if global.online && whowin != 0
 							{
+								o_list.pepa += "P2.1 ";
 								o_client.cl_stage[12] = 1; //o_client.cl_stage[1] = 12;
 							}
 							theme_choose = 5;
@@ -7461,8 +7503,8 @@
 							#endregion
 							if super_now = super_need
 							&& global.super_ability = 0
-							&& (global.player_object).answer = -1 && (global.enemy_object).answer = -1
-							&& (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
+							&& (global.player_object).answer = -1// && (global.enemy_object).answer = -1
+							//&& (global.player_object).shoot = 0 && (global.enemy_object).shoot = 0
 							&& !(global.hero = 1 && global.enemy_hero = 1)
 							{
 								//super_ii += "1-";
@@ -9484,7 +9526,10 @@
 			if theme_g = 0
 			{
 				if theme_s[1] < 1
-					{ theme_timer = room_speed * 14; theme_s[1] += 0.1; }
+					{
+						theme_timer = room_speed * 14;
+						theme_s[1] += 0.1;
+					}
 					else
 					{
 					if theme_s[2] < 1
@@ -9900,8 +9945,8 @@
 							autolose_time += 1;
 							if autolose_time = room_speed * 10
 							{
-								winner = global.myid;
-								stage  = 3;
+								o_client.winner = global.myid;
+								o_client.stage  = 3;
 								if instance_exists(o_list)
 								{
 									global.game_stage   = 5;
@@ -10279,17 +10324,17 @@
 			#region Билл
 				with(o_hero)
 				{
-					if global.hero = 5
-					{
-						if os_get_language() = "ru"
-						{
-							global.player_name = "БИЛЛ СТ.";
-						}
-						else
-						{
-							global.player_name = "BILL SR.";
-						}
-					}
+					//if global.hero = 5
+					//{
+					//	if os_get_language() = "ru"
+					//	{
+					//		global.player_name = "БИЛЛ СТ.";
+					//	}
+					//	else
+					//	{
+					//		global.player_name = "BILL SR.";
+					//	}
+					//}
 					global.jr_e = 0;
 					if hero = 5
 					{
@@ -10369,6 +10414,14 @@
 							hprld = 1;
 							if global.online
 							{
+								//if roundskul[global.rounds] = 1
+								//{
+								//	hpold = 1;
+								//}
+								//else
+								//{
+								//	hpold = 0;
+								//}
 								if faster_id = global.myid
 								{
 									hpold = 1;
@@ -10384,7 +10437,7 @@
 							hprld = 0;
 						}
 						
-						if hpold
+						if roundskul[global.rounds] = 1 //hpold
 						{
 							#region Победа
 								whowin_c1 = c_orange;
@@ -10526,6 +10579,10 @@
 							{
 								whowin_s2 = 0;
 								#region Обновление
+									if global.rounds < 3
+									{
+										global.rounds += 1;
+									}
 									whowin_stage = 0;
 									whowin_x1 = 200 + 280;
 									whowin_y1 = global.height / 2;
@@ -10548,7 +10605,7 @@
 									go_hp = 1;
 									with(o_hero)
 									{
-										depth += 2;
+										depth = 2; //depth += 2;
 									}
 									round_text1_x = 1450;
 									if whowin = 0
@@ -10709,43 +10766,53 @@
 	#region Обнуление переменных перед раундом
 		if theme_choose = 5
 		{
+			//o_list.pepa += "11 ";
 			if global.online
 			{
 				if round_end = 1// && o_client.cl_stage[1] = 0
 				{
+					//o_list.pepa += "14 ";
 					if round_end_dop = 1
 					{
+						o_list.pepa += "F1 "; //o_list.pepa += "15 ";
 						theme_choose = 6;
 						
 						player_end[1] = 0; //
 						player_end[2] = 0; // Игроки закончили отвечать на вопросы
 						faster_id     = -1; // Самый быстрый игрок
-						pepa		  = ""; // Отладка
+						//pepa		  = ""; // Отладка
 						round_end     = 0; // Враг закончил раунд
 						round_end_dop = 2;
 					}
 				}
-				if round_end = 0// && o_client.cl_stage[1] = 0
+				else
 				{
-					global.idol[1] = 0;
-					global.idol[2] = 0;
-					global.idol[3] = 0;
-					if global.hero = 2
+					if round_end = 0 // && o_client.cl_stage[1] = 0
 					{
-						atk     = global.atk[global.hero];
-						atk    *= (1 + 0.1 * (global.hero_level - 1));
+						global.idol[1] = 0;
+						global.idol[2] = 0;
+						global.idol[3] = 0;
+						global.idol_h[1]	= -1;
+						global.idol_h[2]	= -1;
+						global.idol_h[3]	= -1;
+						if global.hero = 2
+						{
+							atk     = global.atk[global.hero];
+							atk    *= (1 + 0.1 * (global.hero_level - 1));
+						}
+						if global.enemy_hero = 2
+						{
+							e_atk   = global.atk[global.enemy_hero];
+							e_atk  *= (1 + 0.1 * (global.enemy_level - 1));
+						}
+						with(o_hero)
+						{
+							depth = -2; //depth -= 2;
+						}
+						o_client.cl_stage[10] = 1; //o_client.cl_stage[1] = 10;
+						o_list.pepa += "P6 "; //o_list.pepa += "12 ";
+						round_end = 1;
 					}
-					if global.enemy_hero = 2
-					{
-						e_atk   = global.atk[global.enemy_hero];
-						e_atk  *= (1 + 0.1 * (global.enemy_level - 1));
-					}
-					with(o_hero)
-					{
-						depth -= 2;
-					}
-					o_client.cl_stage[10] = 1; //o_client.cl_stage[1] = 10;
-					round_end = 1;
 				}
 			}
 			else
@@ -10753,6 +10820,9 @@
 				global.idol[1] = 0;
 				global.idol[2] = 0;
 				global.idol[3] = 0;
+				global.idol_h[1]	= -1;
+				global.idol_h[2]	= -1;
+				global.idol_h[3]	= -1;
 				if global.hero = 2
 				{
 					atk     = global.atk[global.hero];
@@ -10775,7 +10845,7 @@
 				//e_maxhp = global.hp[global.enemy_hero] * (1 + 0.1 * (global.enemy_level - 1));
 				with(o_hero)
 				{
-					depth -= 2;
+					depth = -2; //depth -= 2;
 				}
 				theme_choose = 6;
 			}
@@ -13511,6 +13581,33 @@
 	var popec;
 	popec = "";
 	
+	//popec += "IDOLS-RANDOM: " + string(idols_random);
+	//popec += "\nIDOL 1: " + string(global.idol[1]) + "~" + string(global.idol_h[1]) + "~" + string(global.idol_x[1]) + "~" + string(global.idol_y[2]) + "~" + string(global.idol_s[1]);
+	//popec += "\nIDOL 2: " + string(global.idol[2]) + "~" + string(global.idol_h[2]) + "~" + string(global.idol_x[2]) + "~" + string(global.idol_y[2]) + "~" + string(global.idol_s[2]);
+	//popec += "\nIDOL 3: " + string(global.idol[3]) + "~" + string(global.idol_h[3]) + "~" + string(global.idol_x[3]) + "~" + string(global.idol_y[3]) + "~" + string(global.idol_s[3]);
+	
+	//popec += "PLAYER-END: " + string(player_end[1]) + "~" + string(player_end[2]);
+	//popec += "\nFASTER-ID : " + string(faster_id);
+	//popec += "\nTHEME-CHOOSE : " + string(theme_choose);
+	//popec += "\nU-E-QUESTION : " + string(u_question) + "~" + string(e_question);
+	//popec += "\nPL-EN-ANSWER : " + string((global.player_object).answer) + "~" + string((global.enemy_object).answer);
+	//popec += "\nROUND-END-DOP : " + string(round_end_dop);
+	//popec += "\nROUND-END : " + string(round_end);
+	
+	//popec += "\nFASTER-ID: " + string(faster_id);
+	//popec += "\nEN-FASTER: " + string(en_faster);
+	//popec += "\nROUNDSKUL: " + string(roundskul[1]) + "~" + string(roundskul[2]) + "~" + string(roundskul[3]);
+	//popec += "\nPLAYER-END: " + string(player_end[global.myid]) + "~" + string(player_end[global.enid]);
+	//popec += "\nWHOWIN: " + string(whowin);
+	//popec += "\nWINNER" + string(o_client.winner);
+	
+	//popec += "\n\nTHEME-ROUND: " + string(theme_round[global.rounds]);
+	//popec += "\nTHEME-CHOOSE : " + string(theme_choose);
+	//popec += "\nSUPER_ABILITY: " + string(global.super_ability);
+	//popec += "\nTRAINING: "  + string(global.training);
+	//popec += "\nSCALE: " + string(list_scale);
+	//popec += "\nWAIT: " + string(pre_wait);
+	
 	//popec += "\n" + string(o_client.cl_stage[1]);
 	//popec += "\nTHEMECHOOSE " + string(theme_choose);
 	//popec += "\nWHOWIN " + string(whowin);
@@ -13582,5 +13679,8 @@
 	//&& !(global.hero = 1 && global.enemy_hero = 1)
 	
 	draw_set_font(global.game_font);
-	draw_text_transformed_t(global.width / 2, global.height / 2, string_upper(popec), 0.13, 0.13, 0, c_orange, c_black);
+	draw_text_transformed_t(global.width / 2, global.height / 2, string_upper(popec), 0.1, 0.1, 0, c_lime, c_black);
+	//draw_text_transformed_t(mouse_x, mouse_y, "ROUNDS: " + string(global.rounds) + "\nPEPA(" + string(global.myid) + ") " + string(pepa), 0.06, 0.06, 0, c_white, c_black);
+	//"\nPEPA : " + string(pepa)
+	// 1.1.1
 #endregion

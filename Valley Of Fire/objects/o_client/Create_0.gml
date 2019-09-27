@@ -139,3 +139,5 @@ for(i = 1; i <= 50; i++)
 {
 	json_need[i] = "";
 }
+
+autolose_time = 0;
