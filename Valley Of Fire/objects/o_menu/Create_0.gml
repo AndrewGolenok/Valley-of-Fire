@@ -48,7 +48,7 @@
 	global.lug_time = 0;
 	global.duel = 0;
 	global.menu_now   = "main";
-	global.back_scale = global.width / 2092;
+	global.back_scale = global.width / 2092; // 1
 	global.menu_next = "main";
 	time_h = "";
 	time_m = "";

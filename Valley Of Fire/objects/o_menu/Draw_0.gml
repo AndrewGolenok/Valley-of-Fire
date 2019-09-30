@@ -2343,7 +2343,7 @@
 			{
 				yh = 30;
 			}
-			draw_sprite_ext(s_training_back, 2, 640 + 10, global.height + training_back_y + yh + 5, global.back_scale, global.back_scale, 0,  c_black, 0.5);
+			//draw_sprite_ext(s_training_back, 2, 640 + 10, global.height + training_back_y + yh + 5, global.back_scale, global.back_scale, 0,  c_black, 0.5);
 			draw_sprite_ext_t(s_training_back, 2, 640, global.height + training_back_y + yh, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 			draw_sprite_ext(s_training_back, 4, 640 + 10, global.height + training_back_y + yh + 5, global.back_scale, global.back_scale, 0,  c_black, 0.5);
 			draw_sprite_ext_t(s_training_back, 4, 640, global.height + training_back_y + yh, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
