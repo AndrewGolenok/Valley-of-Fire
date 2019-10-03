@@ -1,5 +1,5 @@
 #region Типа Шейдер
-	draw_sprite(s_tipasheder, 0, 640, global.height / 2);
+	//draw_sprite(s_tipasheder, 0, 640, global.height / 2);
 #endregion
 #region Параллакс
 	var prx, pry, xxxx, player_num;
@@ -479,15 +479,18 @@
 		#endregion
 		#region Время  
 			var time;
-			time_h = string(o_control.day_hour);
-			time_m = string(o_control.day_minute);
-			if o_control.day_hour < 10
+			if instance_exists(o_control)
 			{
-				time_h = "0" + string(o_control.day_hour);
-			}
-			if o_control.day_minute < 10
-			{
-				time_m = "0" + string(o_control.day_minute);
+				time_h = string(o_control.day_hour);
+				time_m = string(o_control.day_minute);
+				if o_control.day_hour < 10
+				{
+					time_h = "0" + string(o_control.day_hour);
+				}
+				if o_control.day_minute < 10
+				{
+					time_m = "0" + string(o_control.day_minute);
+				}
 			}
 			if time_s = -1
 			{
@@ -2506,7 +2509,7 @@
 		#endregion
 	}
 #endregion
-#region Магазин / Банк Кэша и Золота
+#region Магазин / банк Кэша и Золота
 	if global.menu_now = "store" or global.menu_next = "store"
 	{
 		#region ПОЯВЛЕНИЕ МЕНЮ

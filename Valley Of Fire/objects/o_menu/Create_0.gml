@@ -48,7 +48,7 @@
 	global.lug_time = 0;
 	global.duel = 0;
 	global.menu_now   = "main";
-	global.back_scale = global.width / 2092; // 1
+	global.back_scale = 1 // global.width / 2092; // 1
 	global.menu_next = "main";
 	time_h = "";
 	time_m = "";
@@ -1792,6 +1792,6 @@
 		global.menu_next = "quests";
 	}
 #endregion
-#region ОНЛАЙН
+#region ОНЛАИН
 	searching = 0;
 #endregion
