@@ -13682,5 +13682,5 @@
 	draw_text_transformed_t(global.width / 2, global.height / 2, string_upper(popec), 0.1, 0.1, 0, c_lime, c_black);
 	//draw_text_transformed_t(mouse_x, mouse_y, "ROUNDS: " + string(global.rounds) + "\nPEPA(" + string(global.myid) + ") " + string(pepa), 0.06, 0.06, 0, c_white, c_black);
 	//"\nPEPA : " + string(pepa)
-	// 1.1.1
+	// 1.1.2
 #endregion

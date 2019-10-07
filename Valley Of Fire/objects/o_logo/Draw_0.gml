@@ -204,15 +204,8 @@
 #endregion
 #region Отрисовка песка, заднего фона
 	draw_sprite_ext(s_logo1_sand, 0, 640, global.height + all_y, back_scale, back_scale, 0, c_white, 1);
-	
 	draw_sprite_ext(s_logo1_sherif_chief, 0, 640 - sherif_x * 2 - 30, global.height - 610 * back_scale + sherif_y + iphonex_y, back_scale * iphonex_s, back_scale * iphonex_s, 0, c_white, 1);
 	draw_sprite_ext(s_logo1_sherif_chief, 1, 640 + chief_x * 2, global.height - 610 * back_scale + chief_y + iphonex_y, back_scale * iphonex_s, back_scale * iphonex_s, 0, c_white, 1);
-	
-	draw_sprite_ext(s_logo1_rock, 0, 640, global.height - 610 * back_scale + all_y, back_scale1, back_scale1, 0, c_white, 1);
-	
-	draw_sprite_ext(s_logo1_things, 0, 640 - 10, global.height - 610 * back_scale1 + all_y, back_scale1, back_scale1, 0, c_black, 0.5);
-	draw_sprite_ext(s_logo1_river , 0, 640 - 50, global.height + all_y, back_scale, back_scale, 0, c_white, 1);
-	draw_sprite_ext(s_logo1_things, 1, 640 - 10, global.height - 610 * back_scale1 + all_y, back_scale1, back_scale1, 0, c_white, 1);
 #endregion
 #region Стадия 5
 	if stage = 5
@@ -456,10 +449,11 @@ if stage = 12
 	}
 #endregion
 #region Отрисовка персонажей
-	draw_sprite_ext(s_logo1_stuff , 0, 640, global.height + all_y, back_scale, back_scale, 0, c_white, 1);
+	//draw_sprite_ext(s_logo1_stuff , 0, 640, global.height + all_y, back_scale, back_scale, 0, c_white, 1);
 	draw_sprite_ext(s_logo1_heroes, 0, 640 - heroes1_x, global.height + 30 + all_y, back_scale, back_scale, 0, c_white, 1);
 	draw_sprite_ext(s_logo1_heroes, 1, 640 + heroes2_x, global.height + 30 + all_y, back_scale, back_scale, 0, c_white, 1);
-	draw_sprite_ext(s_train_back1, 0, 640, global.height, 0.512, 0.512, 0, c_white, dark_1);
+	//draw_sprite_ext(s_logo1_stuff , 0, 640, global.height + all_y, back_scale, back_scale, 0, c_white, 1);
+	//draw_sprite_ext(s_train_back1,  0, 640, global.height, 0.512, 0.512, 0, c_white, dark_1);
 #endregion
 #region Переход в меню
 	if stage >= 14
