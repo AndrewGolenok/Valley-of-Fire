@@ -218,11 +218,11 @@
 		#region Лого Valley of Fire
 			var sc_scale;
 			sc_scale = 0.4 + 0.6 * (global.height / 960); 
-			draw_sprite_ext(s_logo1_smartcowboys, 0, 640, 80, 0.35 * sc_scale, 0.35 * sc_scale, 0, c_white, 1);
-			draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 80 + 120 * sc_scale, 0.35 * sc_scale, 0.35 * sc_scale, 0, c_white, 1);
-			draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 80 + 120 * sc_scale, 0.35 * sc_scale, 0.35 * sc_scale, 0, c_red, 0.75);
-			draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 80 + 50 * sc_scale, 0.35 * sc_scale, 0.35 * sc_scale, 10, c_white, 1);
-			draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 80 + 50 * sc_scale, 0.35 * sc_scale, 0.35 * sc_scale, 10, c_red, 0.75);
+			draw_sprite_ext(s_logo1_smartcowboys, 0, 640, 80, sc_scale, sc_scale, 0, c_white, 1);
+			draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 80 + 120 * sc_scale, sc_scale, sc_scale, 0,  c_white, 1);
+			draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 80 + 120 * sc_scale, sc_scale, sc_scale, 0,  c_red, 0.75);
+			draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 80 + 60  * sc_scale, sc_scale, sc_scale, 10, c_white, 1);
+			draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 80 + 60  * sc_scale, sc_scale, sc_scale, 10, c_red, 0.75);
 		#endregion
 		#region Быстрая игра
 			if global.menu_next = "main" or global.menu_now = "main"
@@ -650,7 +650,7 @@
 			ptotem3 = global.p_totem[3];
 		#endregion
 		#region ОТРИСОВКА ЗАДНЕГО ФОНА
-			draw_sprite_part_ext(s_totem_back, 1, 0, top, sprite_get_width(s_totem_back), sprite_get_height(s_totem_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
+			draw_sprite_part_ext(s_totem_back, 0, 0, top, sprite_get_width(s_totem_back), sprite_get_height(s_totem_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 		#endregion
 		#region САМИ ТОТЕМЫ
 			#region Отрисовка тотемов, главз, подсветки
@@ -874,7 +874,7 @@
 			#endregion
 		#endregion
 		#region Задник поверх 1: Каменная плита
-			draw_sprite_part_ext(s_totem_back, 0, 0, top, sprite_get_width(s_totem_back), sprite_get_height(s_totem_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
+			//draw_sprite_part_ext(s_totem_back, 0, 0, top, sprite_get_width(s_totem_back), sprite_get_height(s_totem_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 		#endregion
 		#region ОПИСАНИЕ ТОТЕМА / Переход к дуэли
 			if global.duel = 0
@@ -1256,8 +1256,8 @@
 			{
 				yh = 30;
 			}
-			draw_sprite_ext(s_totem_back, 2, 640 - 50 + 20, global.height + training_back_y + yh + 20 * (960 / global.height), global.back_scale, global.back_scale, 0, c_black, 0.5);
-			draw_sprite_ext_t(s_totem_back, 2, 640 - 50, global.height + training_back_y + yh + 20 * (960 / global.height), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
+			draw_sprite_ext(s_totem_rock, 0, -50 + 20, global.height + training_back_y + yh + 20 * (960 / global.height), global.back_scale, global.back_scale, 0, c_black, 0.5);
+			draw_sprite_ext_t(s_totem_rock, 0, -50, global.height + training_back_y + yh + 20 * (960 / global.height), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 		#endregion
 		#region Отрисовка, если выбран бой
 			if global.duel = 1
@@ -1301,8 +1301,10 @@
 			{
 				sc_dist -= 0.025;
 			}
-			draw_sprite_ext(s_totem_back, 3, 640 + 140 - 5, global.height - 150 + top - training_back_y + pry * 0.5 + sc_angle * 2 - 50 + 10, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_black, 0.5);
-			draw_sprite_ext_t(s_totem_back, 3, 640 + prx + 140, global.height - 150 + top - training_back_y + pry * 0.5 + sc_angle * 2 - 50, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_white, 1, c_white, c_black);
+			draw_sprite_ext(s_totem_tree, 0, 1280 + 20, -20 - training_back_y + pry * 0.5 + sc_angle * 2 + 10, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_black, 0.5);
+			draw_sprite_ext_t(s_totem_tree, 0, 1280 + prx + 20, -20 - training_back_y + pry * 0.5 + sc_angle * 2, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_white, 1, c_white, c_black);
+			//draw_sprite_ext(s_totem_back, 2, 640 + 140 - 5, global.height - 150 + top - training_back_y + pry * 0.5 + sc_angle * 2 - 50 + 10, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_black, 0.5);
+			//draw_sprite_ext_t(s_totem_back, 2, 640 + prx + 140, global.height - 150 + top - training_back_y + pry * 0.5 + sc_angle * 2 - 50, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_white, 1, c_white, c_black);
 		#endregion
 		#region КЛИКАБЕЛЬНЫЙ ФОН: Лиана
 			if point_in_rectangle(mouse_x, mouse_y, 1020, 0, global.width, 250)
@@ -1404,7 +1406,7 @@
 			colb = make_color_rgb(123, 0, 28);
 			var top, top;
 			top = ((sprite_get_height(s_heroes_back) * global.back_scale - global.height) / 2) * (sprite_get_width(s_heroes_back) / global.width); //sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.height / global.width)) / 2;
-			draw_sprite_part_ext(s_heroes_back, 1, 0, top, sprite_get_width(s_heroes_back), sprite_get_height(s_heroes_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
+			draw_sprite_part_ext(s_heroes_back, 0, 0, top, sprite_get_width(s_heroes_back), sprite_get_height(s_heroes_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 		#endregion
 		#region ЛИСТОВКИ
 			for(i = 1; i <= 7; i ++)
@@ -1589,7 +1591,7 @@
 			#endregion
 		#endregion
 		#region Задник поверх 1: Каменная плита
-			draw_sprite_part_ext(s_heroes_back, 0, 0, top, sprite_get_width(s_heroes_back), sprite_get_height(s_heroes_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
+			//draw_sprite_part_ext(s_heroes_back, 0, 0, top, sprite_get_width(s_heroes_back), sprite_get_height(s_heroes_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 		#endregion
 		#region ПОКАЗ ПЕРСОНАЖА
 			hero_i += 1;
@@ -1702,10 +1704,10 @@
 			{
 				yh = 30;
 			}
-			draw_sprite_ext(s_heroes_back, 2, 640, global.height + training_back_y + yh + 40 * (960 / global.height) + 10, global.back_scale, global.back_scale, 0, c_black, 0.5);
-			draw_sprite_ext_t(s_heroes_back, 2, 640, global.height + training_back_y + yh + 40 * (960 / global.height), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
-			draw_sprite_ext(s_heroes_back, 4, 640, global.height + training_back_y + yh + 40 * (960 / global.height) + 10, global.back_scale, global.back_scale, 0, c_black, 0.5);
-			draw_sprite_ext_t(s_heroes_back, 4, 640, global.height + training_back_y + yh + 40 * (960 / global.height), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
+			//draw_sprite_ext(s_heroes_back, 1, 640, global.height + training_back_y + yh + 40 * (960 / global.height) + 10, global.back_scale, global.back_scale, 0, c_black, 0.5);
+			//draw_sprite_ext_t(s_heroes_back, 1, 640, global.height + training_back_y + yh + 40 * (960 / global.height), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
+			//draw_sprite_ext(s_heroes_back, 3, 640, global.height + training_back_y + yh + 40 * (960 / global.height) + 10, global.back_scale, global.back_scale, 0, c_black, 0.5);
+			//draw_sprite_ext_t(s_heroes_back, 3, 640, global.height + training_back_y + yh + 40 * (960 / global.height), global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 		#endregion
 		#region Переменные текста героев
 			var text_hero;
@@ -1767,8 +1769,8 @@
 			}
 		#endregion
 		#region Отрисовка верёвки
-			draw_sprite_ext(s_heroes_back, 3, 640 + 140 + 6, global.height - 150 + top - training_back_y + pry * 0.5 - sc_angle * 2 - 50 + 20, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_black, 0.5);
-			draw_sprite_ext_t(s_heroes_back, 3, 640 + prx + 140, global.height - 150 + top - training_back_y + pry * 0.5 - sc_angle * 2 - 50, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_white, 1, c_white, c_black);
+			draw_sprite_ext(s_heroes_rope, 0, 1050 + 140 + 6, -90 + top - training_back_y + pry * 0.5 - sc_angle * 2 - 50 + 20, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_black, 0.5);
+			draw_sprite_ext_t(s_heroes_rope, 0, 1050 + prx + 140, -90 + top - training_back_y + pry * 0.5 - sc_angle * 2 - 50, global.back_scale * 0.8, global.back_scale * 0.8, 0, c_white, 1, c_white, c_black);
 		#endregion
 		#region Нажатие на верёвку
 			if point_in_rectangle(mouse_x, mouse_y, 1160, 0, global.width, 380)
@@ -1888,7 +1890,7 @@
 			var colb, top;
 			colb = make_color_rgb(123, 0, 28);
 			top = ((sprite_get_height(s_training_back) * global.back_scale - global.height) / 2) * (sprite_get_width(s_training_back) / global.width) //sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.height / global.width)) / 2;
-			draw_sprite_part_ext(s_training_back, 1, 0, top, sprite_get_width(s_training_back), sprite_get_height(s_training_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
+			draw_sprite_part_ext(s_training_back, 0, 0, top, sprite_get_width(s_training_back), sprite_get_height(s_training_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 		#endregion
 		#region Ранги
 			var star_now, star_need, shield_i, skul_i, go5, skul_i_pvp;
@@ -2336,7 +2338,7 @@
 			}
 		#endregion
 		#region Зданик поверх 1: Красный фон
-			draw_sprite_part_ext(s_training_back, 0, 0, top, sprite_get_width(s_training_back), sprite_get_height(s_training_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
+			//draw_sprite_part_ext(s_training_back, 1, 0, top, sprite_get_width(s_training_back), sprite_get_height(s_training_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 		#endregion
 		#region Задник поверх 2: Доп фон хз
 			var yh, col;
@@ -2346,10 +2348,11 @@
 			{
 				yh = 30;
 			}
-			//draw_sprite_ext(s_training_back, 2, 640 + 10, global.height + training_back_y + yh + 5, global.back_scale, global.back_scale, 0,  c_black, 0.5);
-			draw_sprite_ext_t(s_training_back, 2, 640, global.height + training_back_y + yh, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
-			draw_sprite_ext(s_training_back, 4, 640 + 10, global.height + training_back_y + yh + 5, global.back_scale, global.back_scale, 0,  c_black, 0.5);
-			draw_sprite_ext_t(s_training_back, 4, 640, global.height + training_back_y + yh, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
+			//draw_sprite_ext(s_training_back, 1, 640 + 10, global.height + training_back_y + yh + 5, global.back_scale, global.back_scale, 0,  c_black, 0.5);
+			//draw_sprite_ext_t(s_training_back, 1, 640, global.height + training_back_y + yh, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
+			
+			//draw_sprite_ext(s_training_back, 1, 640 + 10, global.height + training_back_y + yh + 5, global.back_scale, global.back_scale, 0,  c_black, 0.5);
+			//draw_sprite_ext_t(s_training_back, 1, 640, global.height + training_back_y + yh, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 		#endregion
 		#region Название слева сбоку
 			draw_set_font(global.game_font);
@@ -2546,7 +2549,7 @@
 			colb = make_color_rgb(123, 0, 28);
 			var top;
 			top = sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.height / global.width)) / 2;
-			draw_sprite_part_ext(s_store_back, 1, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0 + prx, training_back_y + pry, global.back_scale, global.back_scale, c_white, 1);
+			draw_sprite_part_ext(s_store_back, 0, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 			draw_set_alpha(0.35);
 				draw_rectangle_color(0, -90 + daily_y + training_back_y + pry + store_yy1 + 10, global.width, 20 + cash_y + training_back_y + store_yy1 + pry - 120 - 40, c_black, c_black, c_black, c_black, 0);
 				draw_rectangle_color(0, 300 + 157 + cash_y + training_back_y + pry + store_yy1 - 135 - 40, global.width, 40 + gold_y + training_back_y + store_yy1 + pry - 135, c_black, c_black, c_black, c_black, 0);
@@ -2566,12 +2569,12 @@
 					draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 70 + lootbox_y + training_back_y + store_yy1 + pry, 0.4, 0.4, 0, c_white, 1);
 					draw_text_transformed_t(640 + prx, top + 50 + lootbox_y + training_back_y + store_yy1 + pry, store_text[1], 0.2, 0.2, 0, global.color_white, c_black);
 					// Ящики
-					draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.24, 0.24, 0, c_black, 0.5);
+					draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 1, 1, 0, c_black, 0.5);
 					if lootbox_buy[1] = 0
-						{ draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 0.24 * lbs1, 0.24 * lbs1, 0, c_white, 1); }
-					draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 0.24, 0.24, 0, c_black, 0.5);
+						{ draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 1 * lbs1, 1 * lbs1, 0, c_white, 1); }
+					draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 1, 1, 0, c_black, 0.5);
 					if lootbox_buy[2] = 0
-						{ draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 0.24 * lbs2, 0.24 * lbs2, 0, c_white, 1); }
+						{ draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 1 * lbs2, 1 * lbs2, 0, c_white, 1); }
 					// Название
 					draw_text_transformed_t(640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 45, store_text[2], 0.13 * lbs1, 0.13 * lbs1, 5, global.color_white, c_black);
 					draw_text_transformed_t(640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 45, store_text[3], 0.13 * lbs2, 0.13 * lbs2, 5, global.gold_color, c_black);
@@ -3430,7 +3433,7 @@
 		#region Задник поверх 1: Дерево
 			var top;
 			top = sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.height / global.width)) / 2;
-			draw_sprite_part_ext(s_store_back, 0, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
+			//draw_sprite_part_ext(s_store_back, 0, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
 		#endregion
 		#region Дополнительные переменные Y
 			var yh, col;
@@ -3481,8 +3484,8 @@
 				draw_set_font(global.game_font);
 				draw_text_ext_transformed_t(1024, global.height / 2 + training_back_y, store_text[12], -1, 250, 0.25, 0.25, 0, col, c_black);
 				draw_text_ext_transformed_t( 256, global.height / 2 + training_back_y, store_text[12], -1, 250, 0.25, 0.25, 0, col, c_black);
-				draw_sprite_ext(s_store_weel, 2, 15, global.height + training_back_y - 10 + yh / 3 + pry + 10, global.back_scale, global.back_scale, wl_ang, c_black, 0.5);
-				draw_sprite_ext_t(s_store_weel, 2, 0 + prx, global.height + training_back_y - 10 + yh / 3 + pry, global.back_scale, global.back_scale, wl_ang, c_white, 1, c_white, c_black);
+				draw_sprite_ext(s_store_weel, 2, 15 + 100, global.height + training_back_y - 10 + yh / 3 + 10, global.back_scale, global.back_scale, wl_ang, c_black, 0.5);
+				draw_sprite_ext_t(s_store_weel, 2, 100, global.height + training_back_y - 10 + yh / 3, global.back_scale, global.back_scale, wl_ang, c_white, 1, c_white, c_black);
 			#endregion
 			#region Изменение угла
 				if (sc_angle < sc_dist && sc_dir = 1) or (sc_angle > -sc_dist && sc_dir = -1)
@@ -3509,8 +3512,8 @@
 			#endregion
 		#endregion
 		#region Задник поверх 3: Крыша, нажатие
-			draw_sprite_ext(s_store_back, 3, 640, global.height / 2 + 1300 * global.back_scale / 1.5 - training_back_y + pry * 0.5 + sc_angle + 10, global.back_scale, global.back_scale, 0, c_black, 0.5);
-			draw_sprite_ext_t(s_store_back, 3, 640 + prx, global.height / 2 + 1300 * global.back_scale / 1.5 - training_back_y + pry * 0.5 + sc_angle/* global.height + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27*/, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
+			//draw_sprite_ext(s_store_back, 3, 640, global.height / 2 + 1300 * global.back_scale / 1.5 - training_back_y + pry * 0.5 + sc_angle + 10, global.back_scale, global.back_scale, 0, c_black, 0.5);
+			//draw_sprite_ext_t(s_store_back, 3, 640 + prx, global.height / 2 + 1300 * global.back_scale / 1.5 - training_back_y + pry * 0.5 + sc_angle/* global.height + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27*/, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
 			if point_in_rectangle(mouse_x, mouse_y, 280, global.height + top - 100 - 1200 * global.back_scale - 27, 1000, global.height + top + 500 - 1200 * global.back_scale - 27)
 			&& (gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0 && lootbox_buy[1] = 0 && lootbox_buy[2] = 0 && daily_buy[1] = 0 && daily_buy[2] = 0 && daily_buy[3] = 0)
 			{
@@ -3698,7 +3701,7 @@
 										draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.height / 2 - nizco - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 7, text_tot[1] + " - 50%", 0.12, 0.12, 5, c_white, c_black);
 										// Вещи
 										draw_text_transformed_t(640, global.height / 2 - nizco + 140 + 60 - 80 + 70 - 210 - 100 + 80, "*2 " + store_text[19], 0.2, 0.2, 5, global.gold_color, c_black);
-										draw_sprite_ext_t(s_lootbox1, 0, 640 - 10, global.height / 2 - nizco - 120 + 65 + 70, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, 0, c_white, 1, c_white, c_black);
+										draw_sprite_ext_t(s_lootbox1, 0, 640 - 10, global.height / 2 - nizco - 120 + 65 + 70, lbs1, lbs1, 0, c_white, 1, c_white, c_black);
 										// Название ящика
 										draw_text_transformed_t(640, global.height / 2 - nizco + 140 + 60 - 80 + 70 - 210 - 100, store_text[2], 0.2 * lbs1 * upsc, 0.2 * lbs1 * upsc, 5, global.color_white, c_black);
 									#endregion
@@ -4205,7 +4208,7 @@
 										}
 									#endregion
 									#region Отрисовка задника и света
-										draw_sprite_ext_t(s_lootbox1, lootbox_i, 640 - 10, global.height / 2 - 120 + 65 + 70, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, 0, c_white, 1, c_white, c_black);
+										draw_sprite_ext_t(s_lootbox1, lootbox_i, 640 - 10, global.height / 2 - 120 + 65 + 70, lbs1, lbs1, 0, c_white, 1, c_white, c_black);
 										draw_sprite_ext(s_light, 0, 640, global.height / 2 - 120 + 65 + 70, lootbox_aa, 0.5 * lootbox_aa, 0, c_white, lootbox_aa);
 									#endregion
 									#region Хаотичное движение вещи
@@ -4403,7 +4406,7 @@
 										draw_text_transformed_t(640 - 10 + 180 * 2 + 60, global.height / 2 - nizco - 120 + 65 + 70 - 70 + 35 + 40 + 20 * 7, text_tot[1] + " - 5%", 0.12, 0.12, 5, c_white, c_black);
 										// Множитель
 										draw_text_transformed_t(640, global.height / 2 - nizco + 140 + 60 - 80 + 70 - 210 - 100 + 80, "*3 " + store_text[19], 0.2, 0.2, 5, global.cash_color, c_black);
-										draw_sprite_ext_t(s_lootbox2, 0, 640 - 10, global.height / 2 - nizco - 120 + 65 + 70, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, 0, c_white, 1, c_white, c_black);
+										draw_sprite_ext_t(s_lootbox2, 0, 640 - 10, global.height / 2 - nizco - 120 + 65 + 70, lbs1, lbs1, 0, c_white, 1, c_white, c_black);
 										// Название
 										draw_text_transformed_t(640, global.height / 2 - nizco + 140 + 60 - 80 + 70 - 210 - 100, store_text[3], 0.2 * lbs1 * upsc, 0.2 * lbs1 * upsc, 5, global.gold_color, c_black);
 									#endregion
@@ -4888,7 +4891,7 @@
 										}
 									#endregion
 									#region Отрисовка задника и света
-										draw_sprite_ext_t(s_lootbox2, lootbox_i, 640 - 10, global.height / 2 - 120 + 65 + 70, 0.25 * lbs1 * upsc, 0.25 * lbs1 * upsc, 0, c_white, 1, c_white, c_black);
+										draw_sprite_ext_t(s_lootbox2, lootbox_i, 640 - 10, global.height / 2 - 120 + 65 + 70, lbs1, lbs1, 0, c_white, 1, c_white, c_black);
 										draw_sprite_ext(s_light, 0, 640, global.height / 2 - 120 + 65 + 70, lootbox_aa, 0.5 * lootbox_aa, 0, c_white, lootbox_aa);
 									#endregion
 									#region Хаотичное движение вещи

@@ -67,7 +67,7 @@
 	cowboys_angle = 0;
 	cowboys_scale = 0;
 	word_y        = 0;
-	back_scale    = 0.3658;
+	back_scale    = 1 //0.3658;
 	back_scale1   = 0.3716 + 0.01;
 	dark_1        = 0.2;
 	dark_2        = 1;

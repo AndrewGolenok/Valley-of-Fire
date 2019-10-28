@@ -123,10 +123,10 @@
 #endregion
 #region Отрисовка фона и луны/солнца
 	draw_sprite_ext(s_logo1_back, 0, 640, global.height, back_scale, back_scale, 0, c_white, 1);
-	draw_sprite_ext(s_train_back1, 0, 640, global.height, 0.512, 0.512, 0, c_white, dark_2);
+	draw_sprite_ext(s_train_back1, 0, 640, global.height, 0.90, 0.90, 0, c_white, dark_2); //draw_sprite_ext(s_train_back1, 0, 640, global.height, 0.512, 0.512, 0, c_white, dark_2);
 	if stage > 0
 	{
-		draw_sprite_ext(s_sunmoon, 0, 640, global.height - 610 * back_scale + all_y + sun_y, sun_scale, sun_scale, sun_angle, c_white, 1);
+		draw_sprite_ext(s_sunmoon, 0, 640, global.height - 220 * back_scale + all_y + sun_y, sun_scale, sun_scale, sun_angle, c_white, 1);
 	}
 #endregion
 #region Движение шерифа и вождя вверх/вниз
@@ -153,7 +153,7 @@
 #region Стадия 4: Отрисовка лого
 	if stage = 4
 	{
-		if cowboys_y > - 1040
+		if cowboys_y > -1040
 		{
 			cowboys_scale += 0.014;
 			cowboys_y -= 52;
@@ -170,9 +170,9 @@
 			}
 			cowboys_angle += 30;
 		}
-		if cowboys_y < - 100
+		if cowboys_y < -100
 		{
-			if smart_y > - 1040
+			if smart_y > -1040
 			{
 				smart_scale += 0.014;
 				smart_y -= 50;
@@ -202,15 +202,15 @@
 		draw_sprite_ext(s_logo1_smartcowboys, 1, 640, global.height - 610 * back_scale + all_y + 50 + cowboys_y, back_scale * cowboys_scale, back_scale * cowboys_scale, cowboys_angle, c_white, 1);
 	}
 #endregion
-#region Отрисовка песка, заднего фона
+#region Отрисовка заднего фона, Шерифа и Вождя
 	draw_sprite_ext(s_logo1_sand, 0, 640, global.height + all_y, back_scale, back_scale, 0, c_white, 1);
-	draw_sprite_ext(s_logo1_sherif_chief, 0, 640 - sherif_x * 2 - 30, global.height - 610 * back_scale + sherif_y + iphonex_y, back_scale * iphonex_s, back_scale * iphonex_s, 0, c_white, 1);
-	draw_sprite_ext(s_logo1_sherif_chief, 1, 640 + chief_x * 2, global.height - 610 * back_scale + chief_y + iphonex_y, back_scale * iphonex_s, back_scale * iphonex_s, 0, c_white, 1);
+	draw_sprite_ext(s_logo1_sherif_chief, 0, 640 - sherif_x * 2 - 30, global.height - 220/*610 * back_scale*/ + sherif_y + iphonex_y, back_scale * iphonex_s, back_scale * iphonex_s, 0, c_white, 1);
+	draw_sprite_ext(s_logo1_sherif_chief, 1, 640 + chief_x * 2, global.height - 220/*610 * back_scale*/ + chief_y + iphonex_y, back_scale * iphonex_s, back_scale * iphonex_s, 0, c_white, 1);
 #endregion
 #region Стадия 5
 	if stage = 5
 	{
-		if cowboys_y < 610 * back_scale - all_y - 150
+		if cowboys_y < 610 * back_scale - all_y - 150 /**/ - 80
 		{
 			if cowboys_angle < 0
 			{
@@ -220,7 +220,7 @@
 		}
 		else
 		{
-			cowboys_y = 610 * back_scale - all_y - 150 ;
+			cowboys_y = 610 * back_scale - all_y - 150 /**/ - 80;
 			if view_yport < 20
 			{
 				view_yport += 10;
@@ -248,7 +248,7 @@
 #region Стадия 7
 	if stage = 7
 	{
-		if smart_y < - 700
+		if smart_y < -700
 		{
 			smart_y += 40;
 		}
@@ -261,14 +261,14 @@
 #region Стадия 8
 	if stage = 8
 	{
-		if smart_y < 610 * back_scale - all_y - 150 - 270 * back_scale
+		if smart_y < 610 * back_scale - all_y - 150 - 270 * back_scale /**/ + 80
 		{
 			smart_y += 80;
 		}
 		else
 		{
 			stage = 9;
-			smart_y = 610 * back_scale - all_y - 150 - 270 * back_scale;
+			smart_y = 610 * back_scale - all_y - 150 - 270 * back_scale /**/ + 80;
 		}
 	}
 #endregion
@@ -379,7 +379,7 @@ if stage = 12
 			stage = 16;
 			of_scale = 1;
 		}
-		of_y = cowboys_y - 270 * back_scale / 2;
+		of_y = cowboys_y - 270 * back_scale / 2 /**/ + 80;
 		fire_alpha = 0;
 		fire_angle = 0;
 	}
@@ -436,9 +436,9 @@ if stage = 12
 #region Отрисовка названия 1
 	if stage >= 5
 	{
-		draw_sprite_ext(s_logo1_smartcowboys, 0, 640, global.height - fire_dist - 610 * back_scale + all_y + 50 + smart_y + word_y,   back_scale * smart_scale,   back_scale * smart_scale,   smart_angle + fire_angle1,   c_white, 1);
-		draw_sprite_ext(s_logo1_smartcowboys, 1, 640, global.height + fire_dist - 610 * back_scale + all_y + 50 + cowboys_y + word_y, back_scale * cowboys_scale, back_scale * cowboys_scale, cowboys_angle + fire_angle, c_white, 1);
-		draw_sprite_ext(s_logo1_smartcowboys, 1, 640, global.height + fire_dist - 610 * back_scale + all_y + 50 + cowboys_y + word_y, back_scale * cowboys_scale, back_scale * cowboys_scale, cowboys_angle + fire_angle, c_red, fire_alpha);
+		draw_sprite_ext(s_logo1_smartcowboys, 0, 640, global.height - fire_dist - 610 * back_scale + all_y + 50 + smart_y	+ word_y, back_scale * smart_scale,   back_scale * smart_scale,   smart_angle	+ fire_angle1, c_white, 1);
+		draw_sprite_ext(s_logo1_smartcowboys, 1, 640, global.height + fire_dist - 610 * back_scale + all_y + 50 + cowboys_y + word_y, back_scale * cowboys_scale, back_scale * cowboys_scale, cowboys_angle + fire_angle,  c_white, 1);
+		draw_sprite_ext(s_logo1_smartcowboys, 1, 640, global.height + fire_dist - 610 * back_scale + all_y + 50 + cowboys_y + word_y, back_scale * cowboys_scale, back_scale * cowboys_scale, cowboys_angle + fire_angle,  c_red, fire_alpha);
 	}
 #endregion
 #region Отрисовка названия 2

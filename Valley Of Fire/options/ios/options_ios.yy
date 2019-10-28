@@ -55,7 +55,7 @@
     "option_ios_splashscreen_iphone_x_landscape": "${base_options_dir}\/ios\/splash\/iphone_x_landscape.png",
     "option_ios_splashscreen_iphone_x_portrait": "${base_options_dir}\/ios\/splash\/iphone_x_portrait.png",
     "option_ios_team_id": "8YZF2ZZDSD",
-    "option_ios_texture_page": "2048x2048",
+    "option_ios_texture_page": "1024x1024",
     "option_ios_use_facebook": false,
     "option_ios_version": {
         "build": 40,

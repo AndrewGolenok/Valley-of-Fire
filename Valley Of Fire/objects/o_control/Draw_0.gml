@@ -73,8 +73,8 @@
 				day_hour   = date_get_hour(date);
 				day_minute = date_get_minute(date);
 				day_second = date_get_second(date);
-				draw_sprite_ext(s_train_back, back_time[1], 640 + back_x, global.height + back_y, back_s, back_s, 0, c_white, back_alpha[1]);
-				draw_sprite_ext(s_train_back, back_time[2], 640 + back_x, global.height + back_y, back_s, back_s, 0, c_white, back_alpha[2]);
+				draw_sprite_ext(s_train_back, back_time[1], 640 + back_x, global.height + back_y, 1, 1, 0, c_white, back_alpha[1]);
+				draw_sprite_ext(s_train_back, back_time[2], 640 + back_x, global.height + back_y, 1, 1, 0, c_white, back_alpha[2]);
 			#endregion
 			#region Звёзды
 				if day_hour < 20 && day_hour > 3
@@ -149,9 +149,9 @@
 				#region Задник
 				//if 0
 				//{
-				draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.height + back_y - pry, back_s, back_s, 0, c_white, 1);
-				draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.height + back_y - pry, back_s, back_s, 0, c_white, back_alpha[1]);
-				draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x - prx, global.height + back_y - pry, back_s, back_s, 0, c_white, back_alpha[2]);
+				draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.height + back_y, 1, 1, 0, c_white, 1);
+				draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.height + back_y, 1, 1, 0, c_white, back_alpha[1]);
+				draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x - prx, global.height + back_y, 1, 1, 0, c_white, back_alpha[2]);
 				//}
 				#endregion
 			}
@@ -233,7 +233,7 @@
 							{
 								back_sand_x[i] = global.width + sprite_get_width(s_train_sand) / 2 * back_s;
 							}
-						draw_sprite_ext(s_train_sand, 0, back_sand_x[i] - prx, back_sand_y - pry, back_s, back_s, 0, c_white, 0.9);
+						draw_sprite_ext(s_train_sand, 0, back_sand_x[i] - prx, back_sand_y - pry, 1, 1, 0, c_white, 0.9);
 					}
 				#endregion
 				#region Рисование кактусов, утесов, черепков
@@ -278,12 +278,12 @@
 					{
 						back_anim_2 = 0;
 					}
-					draw_sprite_ext(s_train_decks, back_anim_1, 640 + back_x - sprite_get_width(s_train_back) * back_s / 2 + prx, global.height + back_y + pry, -back_s, back_s, 0, c_white, 1);
-					draw_sprite_ext(s_train_decks, back_anim_2, 640 + back_x + sprite_get_width(s_train_back) * back_s / 2 + prx, global.height + back_y + pry, back_s, back_s, 0, c_white, 1);
-					draw_sprite_ext(s_train_rails, 0, 640 + back_x + prx, global.height + back_y + pry, back_s, back_s, 0, c_white, 1);
-					draw_sprite_ext(s_train_rails, 0, 640 + back_x + prx, global.height + back_y + pry, -back_s, back_s, 0, c_white, 1);
-					draw_sprite_ext(s_train_wagon, 0, 640 + back_x + prx, global.height + back_y + back_train_y1 + pry, back_s, back_s, 0, c_white, 1);
-					draw_sprite_ext(s_train_wagon, 0, 640 + back_x + prx, global.height + back_y + back_train_y2 + pry, -back_s, back_s, 0, c_white, 1);
+					draw_sprite_ext(s_train_decks, back_anim_1, 640 + back_x - sprite_get_width(s_train_back) * 1 / 2 + prx, global.height + back_y + pry, -1, 1, 0, c_white, 1);
+					draw_sprite_ext(s_train_decks, back_anim_2, 640 + back_x + sprite_get_width(s_train_back) * 1 / 2 + prx, global.height + back_y + pry, 1, 1, 0, c_white, 1);
+					draw_sprite_ext(s_train_rails, 0, 640 + back_x + prx, global.height + back_y + pry, 1, 1, 0, c_white, 1);
+					draw_sprite_ext(s_train_rails, 0, 640 + back_x + prx, global.height + back_y + pry, -1, 1, 0, c_white, 1);
+					draw_sprite_ext(s_train_wagon, 0, 640 + back_x + prx, global.height + back_y + back_train_y1 + pry, 1, 1, 0, c_white, 1);
+					draw_sprite_ext(s_train_wagon, 0, 640 + back_x + prx, global.height + back_y + back_train_y2 + pry, -1, 1, 0, c_white, 1);
 				#endregion
 			}
 			//}
@@ -371,8 +371,8 @@
 			}
 		#endregion
 		#region Поверх
-			draw_sprite_ext(s_train_back1, o_control.back_time[1], 640 + o_control.back_x, global.height + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[1]] * o_control.back_alpha[1]);
-			draw_sprite_ext(s_train_back1, o_control.back_time[2], 640 + o_control.back_x, global.height + o_control.back_y, o_control.back_s, o_control.back_s, 0, c_white, o_control.back_alpha2[o_control.back_time[2]] * o_control.back_alpha[2]);
+			draw_sprite_ext(s_train_back1, o_control.back_time[1], 640 + o_control.back_x, global.height + o_control.back_y, 1, 1, 0, c_white, o_control.back_alpha2[o_control.back_time[1]] * o_control.back_alpha[1]);
+			draw_sprite_ext(s_train_back1, o_control.back_time[2], 640 + o_control.back_x, global.height + o_control.back_y, 1, 1, 0, c_white, o_control.back_alpha2[o_control.back_time[2]] * o_control.back_alpha[2]);
 		#endregion
 		#region Фон Шахт
 			if global.background = "mine"

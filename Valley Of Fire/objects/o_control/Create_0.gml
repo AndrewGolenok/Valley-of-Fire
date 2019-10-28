@@ -136,6 +136,7 @@
 		day_minute = 0;
 		day_second = 0;
 		day_star   = 0;
+		//global.background = "train";
 		for(i = 0; i <= 128; i ++)
 		{
 			if i mod 2 = 0
