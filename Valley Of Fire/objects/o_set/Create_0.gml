@@ -15,7 +15,7 @@
 	device_mouse_dbclick_enable(true);
 	//device_mouse_dbclick_enable(false);
 	global.width  = 1280;
-	global.height = 720;
+	global.height = 590;
 	if os_type != os_macosx
 	{
 		global.height = (display_get_height() * global.width) / display_get_width();
@@ -503,6 +503,7 @@
 	{
 		achievement_login();
 	}
+	room_speed = 30;
 	alarm[2] = room_speed * 1.5;
 	global.text_color = make_color_rgb(255, 228, 181);
 	global.name = choose("Andrew", "Artem", "Nikolay", "Yaroslav");

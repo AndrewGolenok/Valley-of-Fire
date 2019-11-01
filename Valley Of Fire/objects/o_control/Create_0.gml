@@ -1,4 +1,5 @@
 #region Камера
+	randomize();
 	application_surface_enable(1);
 	surface_resize(application_surface, global.width, global.height);
 	display_set_gui_size(global.width, global.height);
@@ -193,19 +194,19 @@
 			if i = back_n
 			{
 				back_m_img[back_n] = irandom(9);
-				back_m_x[back_n]   = back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s;
-				back_m_s[back_n]   = (1 - 0.5 * abs(back_m_x[back_n] - 640) / 640) * back_s;
+				back_m_x[back_n]   = back_x + 640 - sprite_get_width(s_train_back) / 2;
+				back_m_s[back_n]   = (1 - 0.5 * abs(back_m_x[back_n] - 640) / 640);
 			}
 			else
 			{
 				back_m_img[i] = irandom(9);
 				back_m_x[i]   = back_m_x[i-1] + sprite_get_width(s_train_mountain) * back_m_s[i-1];
-				back_m_s[i]   = (1 - 0.5 * abs(back_m_x[i] - 640) / 640) * back_s;
+				back_m_s[i]   = (1 - 0.5 * abs(back_m_x[i] - 640) / 640);
 			}
 		}
 		for(i = 0; i <= 5; i ++)
 			{
-				back_sand_x[i]  = (sprite_get_width(s_train_sand) / 4 + sprite_get_width(s_train_sand) * i / 4) * back_s;
+				back_sand_x[i]  = sprite_get_width(s_train_sand) * i; //(sprite_get_width(s_train_sand) / 4 + sprite_get_width(s_train_sand) * i / 4);
 			}
 		for(i = 0; i <= 10; i ++)
 		{

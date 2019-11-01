@@ -36,8 +36,13 @@
 	or global.menu_next = "quests" or global.menu_now = "quests"
 	{
 		#region Кнопки
-			#region Переменные скейла по нажатию
-				var ms1, ms2, ms3, ms4, ms5, ms6, ms7, ms8;
+			#region Переменные скейла и координат
+				var ms1, ms2, ms3, ms4, ms5, ms6, ms7, ms8,
+				mi1, mi2, mi3, mi4, mi5, mi6, mi7, mi8,
+				mx1, my1, mx2, my2, mx3, my3, mx4, my4,
+				mx5, my5, mx6, my6, mx7, my7, mx8, my8,
+				mt;
+				
 				ms1 = 1;
 				ms2 = 1;
 				ms3 = 1;
@@ -46,12 +51,40 @@
 				ms5 = 1;
 				ms6 = 1;
 				ms8 = 1;
+				
+				mx1 = 120;
+				my1 = global.height - 100;
+				mx2 = 640 - 260;
+				my2 = global.height - 100;
+				mx3 = 640;
+				my3 = global.height - 100;
+				mx4 = 640 + 260;
+				my4 = global.height - 100;
+				mx5 = -1;
+				my5 = -1;
+				mx6 = -1;
+				my6 = -1;
+				mx7 = 1150;
+				my7 = global.height - 100;
+				mx8 = -1;
+				my8 = -1;
+				
+				mi1 = 0;
+				mi2 = 4;
+				mi3 = 3;
+				mi4 = 1;
+				mi5 = -1;
+				mi6 = -1;
+				mi7 = 2;
+				mi8 = -1;
+				
+				mt = 75;
 			#endregion
 			#region Переход в другие меню
 				if global.menu_now = "main"
 				{
 					#region Меню Тотемов
-						if point_in_rectangle(mouse_x, mouse_y, 1150 - 125,  global.height - 30 - 125, 1150 + 125, global.height - 30 + 125)
+						if point_in_rectangle(mouse_x, mouse_y, mx7 - 125, my7 - 125, mx7 + 125, my7 + 125)
 						{
 							if mouse_check_button_pressed(mb_left)
 							{
@@ -78,7 +111,7 @@
 						}
 					#endregion
 					#region Меню Магазина
-						if point_in_rectangle(mouse_x, mouse_y, 640 - 125, global.height - 30 - 150, 640 + 125, global.height - 30 + 125)
+						if point_in_rectangle(mouse_x, mouse_y, mx3 - 125, my3 - 150, mx3 + 125, my3 + 125)
 						{
 							if mouse_check_button(mb_left)
 							{
@@ -97,7 +130,7 @@
 						}
 					#endregion
 					#region Меню Обучения (тренировки)
-						if point_in_rectangle(mouse_x, mouse_y, 640 - 260 - 125,  global.height - 30 - 150, 640 - 260 + 125, global.height - 30 + 125)
+						if point_in_rectangle(mouse_x, mouse_y, mx2 - 125, my2 - 150, mx2 + 125, my2 + 125)
 						{
 							if mouse_check_button_pressed(mb_left)
 							{
@@ -119,7 +152,7 @@
 						}
 					#endregion
 					#region Меню Персонажей
-						if point_in_rectangle(mouse_x, mouse_y, 640 + 260 - 125,  global.height - 30 - 150, 640 + 260 + 125, global.height - 30 + 125)
+						if point_in_rectangle(mouse_x, mouse_y, mx4 - 125, my4 - 150, mx4 + 125, my4 + 125)
 						{
 							if mouse_check_button_pressed(mb_left)
 							{
@@ -143,7 +176,7 @@
 						}
 					#endregion
 					#region Меню Квестов
-						if point_in_rectangle(mouse_x, mouse_y, 120 - 125,  global.height - 30 - 150, 120 + 125, global.height - 30 + 125)
+						if point_in_rectangle(mouse_x, mouse_y, mx1 - 125,  my7 - 150, mx1 + 125, my7 + 125)
 						{
 							if mouse_check_button_pressed(mb_left)
 							{
@@ -182,20 +215,20 @@
 				draw_set_alpha(0.4)
 					draw_rectangle_color(0, global.height - 70, global.width, global.height, c_white, c_white, c_white, c_white, 0);
 				draw_set_alpha(1);
-				draw_sprite_ext_t(s_menu_buttons, 0, 120,  global.height - 100, ms1, ms1, 0, c_white, 1, c_white, c_black);
-				draw_sprite_ext_t(s_menu_buttons, 4, 640 - 260,  global.height - 100, ms2, ms2, 0, c_white, 1, c_white, c_black);
-				draw_sprite_ext_t(s_menu_buttons, 3, 640, global.height - 100, ms3, ms3, 0, c_white, 1, c_white, c_black);
-				draw_sprite_ext_t(s_menu_buttons, 1, 640 + 260, global.height - 100, ms4, ms4, 0, c_white, 1, c_white, c_black);
-				draw_sprite_ext_t(s_menu_buttons, 2, 1150, global.height - 100, ms7, ms7, 0, c_white, 1, c_white, c_black);
+				draw_sprite_ext_t(s_menu_buttons, 0, mx1, my1, ms1, ms1, 0, c_white, 1, c_white, c_black);
+				draw_sprite_ext_t(s_menu_buttons, 4, mx2, my2, ms2, ms2, 0, c_white, 1, c_white, c_black);
+				draw_sprite_ext_t(s_menu_buttons, 3, mx3, my3, ms3, ms3, 0, c_white, 1, c_white, c_black);
+				draw_sprite_ext_t(s_menu_buttons, 1, mx4, my4, ms4, ms4, 0, c_white, 1, c_white, c_black);
+				draw_sprite_ext_t(s_menu_buttons, 2, mx7, my7, ms7, ms7, 0, c_white, 1, c_white, c_black);
 				draw_set_alpha(1)
 					draw_set_font(global.game_font);
 					draw_set_halign(fa_center);
 					draw_set_valign(fa_bottom);
-					draw_text_transformed_t(120,  global.height - 25, main_text[2], 0.15, 0.15, 5, global.color_white, c_black);
-					draw_text_transformed_t(640 - 260,  global.height - 25, main_text[3], 0.15, 0.15, 5, global.color_white, c_black);
-					draw_text_transformed_t(640,  global.height - 25, main_text[4], 0.15, 0.15, 5, global.color_white, c_black);
-					draw_text_transformed_t(640 + 260,  global.height - 25, main_text[5], 0.15, 0.15, 5, global.color_white, c_black);
-					draw_text_transformed_t(1150, global.height - 25, main_text[6], 0.15, 0.15, 5, global.color_white, c_black);	
+					draw_text_transformed_t(mx1, my1 + mt, main_text[2], 0.15, 0.15, 5, global.color_white, c_black);
+					draw_text_transformed_t(mx2, my2 + mt, main_text[3], 0.15, 0.15, 5, global.color_white, c_black);
+					draw_text_transformed_t(mx3, my3 + mt, main_text[4], 0.15, 0.15, 5, global.color_white, c_black);
+					draw_text_transformed_t(mx4, my4 + mt, main_text[5], 0.15, 0.15, 5, global.color_white, c_black);
+					draw_text_transformed_t(mx7, my7 + mt, main_text[6], 0.15, 0.15, 5, global.color_white, c_black);	
 				draw_set_alpha(1);
 			#endregion
 		#endregion

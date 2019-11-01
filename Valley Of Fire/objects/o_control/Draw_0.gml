@@ -147,12 +147,12 @@
 					}
 				#endregion
 				#region Задник
-				//if 0
-				//{
-				draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.height + back_y, 1, 1, 0, c_white, 1);
-				draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.height + back_y, 1, 1, 0, c_white, back_alpha[1]);
-				draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x - prx, global.height + back_y, 1, 1, 0, c_white, back_alpha[2]);
-				//}
+				if global.background = "train"
+				{
+					draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.height + back_y - 46, 1, 1, 0, c_white, 1);
+					draw_sprite_ext(s_train_back2, back_time[1], 640 + back_x - prx, global.height + back_y - 46, 1, 1, 0, c_white, back_alpha[1]);
+					draw_sprite_ext(s_train_back2, back_time[2], 640 + back_x - prx, global.height + back_y - 46, 1, 1, 0, c_white, back_alpha[2]);
+				}
 				#endregion
 			}
 			//if 0
@@ -171,10 +171,10 @@
 							}
 							else
 							{
-								back_m_x[back_n] = back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s;
+								back_m_x[back_n] = back_x + 640 - 2036 / 2 * back_s;
 							}
 							back_m_s[back_n] = (1 - 0.5 * abs(back_m_x[back_n] - 640) / 640) * back_s;
-							if back_m_x[back_n] < back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - sprite_get_width(s_train_mountain) * back_m_s[back_n]
+							if back_m_x[back_n] < back_x + 640 - 2036 / 2 * back_s - sprite_get_width(s_train_mountain) * back_m_s[back_n] - 200
 							{
 								back_m_x[back_n] = back_m_x[back_p] + sprite_get_width(s_train_mountain) * back_m_s[back_p];
 								back_p = back_n;
@@ -195,7 +195,7 @@
 							back_m_x[i] = back_m_x[i-1] + sprite_get_width(s_train_mountain) * back_m_s[i-1];
 							back_m_s[i] = (1 - 0.5 * abs(back_m_x[i] - 640) / 640) * back_s;
 						}
-						draw_sprite_ext(s_train_mountain, back_m_img[i], back_m_x[i] - prx, back_m_y - pry, back_m_s[i], back_m_s[i], 0, c_white, 1);
+						draw_sprite_ext(s_train_mountain, back_m_img[i], back_m_x[i] - prx, back_m_y - pry + 5, back_m_s[i], back_m_s[i], 0, c_white, 1);
 					}
 					if back_n > 0 or back_gt = 1
 					{
@@ -219,21 +219,21 @@
 									back_gt = 0;
 								}
 							}
-							draw_sprite_ext(s_train_mountain, back_m_img[i], back_m_x[i] - prx, back_m_y - pry, back_m_s[i], back_m_s[i], 0, c_white, 1);
+							draw_sprite_ext(s_train_mountain, back_m_img[i], back_m_x[i] - prx, back_m_y - pry + 5, back_m_s[i], back_m_s[i], 0, c_white, 1);
 						}
 					}
 				#endregion		
 				#region Рисование песка
 					back_sand_y   = back_y + global.height - 1050 * back_s;
 					back_sand_spd = back_spd / 1.5 * 6;
-					for(i = 0; i <= 5; i ++)
+					for(i = 0; i <= 2; i ++)
 					{
 						back_sand_x[i] -= back_sand_spd;
-						if back_sand_x[i] <= back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - sprite_get_width(s_train_sand) / 2 * back_s
-							{
-								back_sand_x[i] = global.width + sprite_get_width(s_train_sand) / 2 * back_s;
-							}
-						draw_sprite_ext(s_train_sand, 0, back_sand_x[i] - prx, back_sand_y - pry, 1, 1, 0, c_white, 0.9);
+						if back_sand_x[i] <= -640 //back_x + 640 - sprite_get_width(s_train_back) / 2 - sprite_get_width(s_train_sand) / 2 - 200
+						{
+							back_sand_x[i] = global.width + sprite_get_width(s_train_sand) / 2;
+						}
+						draw_sprite_ext(s_train_sand, 0, back_sand_x[i] - prx, back_sand_y - pry + 5, 1, 1, 0, c_white, 0.9);
 					}
 				#endregion
 				#region Рисование кактусов, утесов, черепков
@@ -241,7 +241,7 @@
 					{
 						if back_other_x[i] != 2280
 						{
-							if back_other_x[i] > back_x + 640 - sprite_get_width(s_train_back) / 2 * back_s - 268 * back_s
+							if back_other_x[i] > back_x + 640 - 2036 / 2 * back_s - 268 * back_s
 							{
 								back_other_spd[i] = back_spd / 1.5 * (8 + 8 * back_other_sk[i]);
 								back_other_y[i] += (back_spd * (back_other_x[i] - 640) / 640) / 2;
@@ -437,3 +437,5 @@
 		//}
 	}
 #endregion
+
+draw_text(mouse_x, mouse_y, string(global.background));
