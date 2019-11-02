@@ -41,31 +41,31 @@
 				mi1, mi2, mi3, mi4, mi5, mi6, mi7, mi8,
 				mx1, my1, mx2, my2, mx3, my3, mx4, my4,
 				mx5, my5, mx6, my6, mx7, my7, mx8, my8,
-				mt;
+				mt, mw;
 				
 				ms1 = 1;
 				ms2 = 1;
 				ms3 = 1;
 				ms4 = 1;
-				ms7 = 1;
+				ms7 = 0.9;
 				ms5 = 1;
 				ms6 = 1;
 				ms8 = 1;
 				
-				mx1 = 120;
-				my1 = global.height - 100;
-				mx2 = 640 - 260;
-				my2 = global.height - 100;
-				mx3 = 640;
-				my3 = global.height - 100;
-				mx4 = 640 + 260;
-				my4 = global.height - 100;
-				mx5 = -1;
-				my5 = -1;
+				mx1 = 1140; //120;
+				my1 = global.height * 1.7 / 4; //global.height - 100 - 220; //global.height - 100;
+				mx2 = -1000; //640 - 260;
+				my2 = -1000; //global.height - 100; //global.height - 100;
+				mx3 = 1280 - 200;//640;
+				my3 = global.height * 4 / 5; //global.height - 100;
+				mx4 = 140; //640 + 260;
+				my4 = global.height * 1.7 / 4; //global.height - 100 - 220; //global.height - 100;
+				mx5 = 200; //1150;
+				my5 = global.height * 4 / 5; //global.height - 100; //global.height - 100;
 				mx6 = -1;
 				my6 = -1;
-				mx7 = 1150;
-				my7 = global.height - 100;
+				mx7 = -1;
+				my7 = -1;
 				mx8 = -1;
 				my8 = -1;
 				
@@ -73,18 +73,19 @@
 				mi2 = 4;
 				mi3 = 3;
 				mi4 = 1;
-				mi5 = -1;
+				mi5 = 2;
 				mi6 = -1;
-				mi7 = 2;
+				mi7 = -1;
 				mi8 = -1;
 				
 				mt = 75;
+				mw = 60;
 			#endregion
 			#region Переход в другие меню
 				if global.menu_now = "main"
 				{
 					#region Меню Тотемов
-						if point_in_rectangle(mouse_x, mouse_y, mx7 - 125, my7 - 125, mx7 + 125, my7 + 125)
+						if point_in_rectangle(mouse_x, mouse_y, mx5 - 125, my5 - 125, mx5 + 125, my5 + 125)
 						{
 							if mouse_check_button_pressed(mb_left)
 							{
@@ -95,7 +96,7 @@
 							}
 							if mouse_check_button(mb_left)
 							{
-								ms7 = 1.1;
+								ms5 = 1.1;
 							}
 							if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now = "main"
 							{
@@ -104,7 +105,7 @@
 								global.p_totem[1] = -1;
 								global.p_totem[2] = -1;
 								global.p_totem[3] = -1;
-								global.menu_next = "totem";
+								global.menu_next  = "totem";
 								GoogleAnalytics_SendEvent("MENU","Игрок зашёл в TOTEMS");
 								io_clear();
 							}
@@ -176,7 +177,7 @@
 						}
 					#endregion
 					#region Меню Квестов
-						if point_in_rectangle(mouse_x, mouse_y, mx1 - 125,  my7 - 150, mx1 + 125, my7 + 125)
+						if point_in_rectangle(mouse_x, mouse_y, mx1 - 125,  my1 - 150, mx1 + 125, my1 + 125)
 						{
 							if mouse_check_button_pressed(mb_left)
 							{
@@ -212,14 +213,22 @@
 				}
 			#endregion
 			#region Отрисовка кнопок меню
-				draw_set_alpha(0.4)
-					draw_rectangle_color(0, global.height - 70, global.width, global.height, c_white, c_white, c_white, c_white, 0);
+				//draw_set_alpha(0.4)
+				//	draw_rectangle_color(0, global.height - 70, global.width, global.height, c_white, c_white, c_white, c_white, 0);
+				//draw_set_alpha(1);
+				var but_c;
+				but_c = c_black;
+				draw_set_alpha(0.6);
+					draw_rectangle_color(global.width, my1 - mw, mx1, my1 + mw, but_c, but_c, but_c, but_c, 0);
+					draw_rectangle_color(global.width, my3 - mw, mx3, my3 + mw, but_c, but_c, but_c, but_c, 0);
+					draw_rectangle_color(0, my4 - mw, mx4, my4 + mw, but_c, but_c, but_c, but_c, 0);
+					draw_rectangle_color(0, my5 - mw, mx5, my5 + mw, but_c, but_c, but_c, but_c, 0);
 				draw_set_alpha(1);
-				draw_sprite_ext_t(s_menu_buttons, 0, mx1, my1, ms1, ms1, 0, c_white, 1, c_white, c_black);
-				draw_sprite_ext_t(s_menu_buttons, 4, mx2, my2, ms2, ms2, 0, c_white, 1, c_white, c_black);
-				draw_sprite_ext_t(s_menu_buttons, 3, mx3, my3, ms3, ms3, 0, c_white, 1, c_white, c_black);
-				draw_sprite_ext_t(s_menu_buttons, 1, mx4, my4, ms4, ms4, 0, c_white, 1, c_white, c_black);
-				draw_sprite_ext_t(s_menu_buttons, 2, mx7, my7, ms7, ms7, 0, c_white, 1, c_white, c_black);
+					draw_sprite_ext_t(s_menu_buttons, mi1, mx1, my1, ms1, ms1, 0, c_white, 1, c_white, c_black);
+					draw_sprite_ext_t(s_menu_buttons, mi2, mx2, my2, ms2, ms2, 0, c_white, 1, c_white, c_black);
+					draw_sprite_ext_t(s_menu_buttons, mi3, mx3, my3, ms3, ms3, 0, c_white, 1, c_white, c_black);
+					draw_sprite_ext_t(s_menu_buttons, mi4, mx4, my4, ms4, ms4, 0, c_white, 1, c_white, c_black);
+					draw_sprite_ext_t(s_menu_buttons, mi5, mx5, my5, ms5, ms5, 0, c_white, 1, c_white, c_black);
 				draw_set_alpha(1)
 					draw_set_font(global.game_font);
 					draw_set_halign(fa_center);
@@ -228,7 +237,7 @@
 					draw_text_transformed_t(mx2, my2 + mt, main_text[3], 0.15, 0.15, 5, global.color_white, c_black);
 					draw_text_transformed_t(mx3, my3 + mt, main_text[4], 0.15, 0.15, 5, global.color_white, c_black);
 					draw_text_transformed_t(mx4, my4 + mt, main_text[5], 0.15, 0.15, 5, global.color_white, c_black);
-					draw_text_transformed_t(mx7, my7 + mt, main_text[6], 0.15, 0.15, 5, global.color_white, c_black);	
+					draw_text_transformed_t(mx5, my5 + mt, main_text[6], 0.15, 0.15, 5, global.color_white, c_black);	
 				draw_set_alpha(1);
 			#endregion
 		#endregion
@@ -250,12 +259,12 @@
 		#endregion
 		#region Лого Valley of Fire
 			var sc_scale;
-			sc_scale = 0.4 + 0.6 * (global.height / 960); 
-			draw_sprite_ext(s_logo1_smartcowboys, 0, 640, 80, sc_scale, sc_scale, 0, c_white, 1);
-			draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 80 + 120 * sc_scale, sc_scale, sc_scale, 0,  c_white, 1);
-			draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 80 + 120 * sc_scale, sc_scale, sc_scale, 0,  c_red, 0.75);
-			draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 80 + 60  * sc_scale, sc_scale, sc_scale, 10, c_white, 1);
-			draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 80 + 60  * sc_scale, sc_scale, sc_scale, 10, c_red, 0.75);
+			sc_scale = 0.2 + 0.6 * (global.height / 960); 
+			draw_sprite_ext(s_logo1_smartcowboys, 0, 640, 50, sc_scale, sc_scale, 0, c_white, 1);
+			draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 50 + 120 * sc_scale, sc_scale, sc_scale, 0,  c_white, 1);
+			draw_sprite_ext(s_logo1_smartcowboys, 1, 640, 50 + 120 * sc_scale, sc_scale, sc_scale, 0,  c_red, 0.75);
+			draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 50 + 60  * sc_scale, sc_scale, sc_scale, 10, c_white, 1);
+			draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 50 + 60  * sc_scale, sc_scale, sc_scale, 10, c_red, 0.75);
 		#endregion
 		#region Быстрая игра
 			if global.menu_next = "main" or global.menu_now = "main"
@@ -293,7 +302,7 @@
 						}
 						if mouse_check_button(mb_left)
 						{
-							ms5 = 1.1;
+							ms6 = 1.1;
 						}
 						if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now= "main"
 						{
@@ -431,7 +440,7 @@
 					}
 				#endregion
 			}
-			draw_text_transformed_t(string_width(main_text[7]) * 0.22 / 2 + 20, global.height / 2 - 10 - 0.2 * (global.height - 590), "" + main_text[7] + "", 0.22 * ms5, 0.22 * ms5, 5, global.color_white, c_black);
+			//draw_text_transformed_t(string_width(main_text[7]) * 0.22 / 2 + 20, global.height / 2 - 10 - 0.2 * (global.height - 590), "" + main_text[7] + "", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black);
 		#endregion
 		#region Ранкед дуэль
 			if global.menu_now = "main"
@@ -448,43 +457,51 @@
 					}
 					if mouse_check_button(mb_left)
 					{
-						ms6 = 1.1;
+						ms7 = 1;
 					}
 					if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now = "main"
 					{
-						global.pvp_now = 0;
-						global.pvp_set = 0;
-						global.duel = 1;
+						global.pvp_now   = 0;
+						global.pvp_set   = 0;
+						global.duel      = 1;
 						global.menu_next = "training";
 					}
 				}
 			}
-			draw_text_transformed_t(640, global.height / 2 + string_height("®" + main_text[8] + "®") * 0.22 / 2 + 25 + 0.2 * (global.height - 590), "" + main_text[8] + "", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black);
+			//s_rank_skul_11
+			draw_sprite_ext_t(s_rank_skul_11, 0, global.width / 2, global.height / 2, 0.9, 0.9, 0, c_white, 1, c_white, c_black);
+			draw_sprite_ext_t(s_rank_skul, 4, global.width / 2 - 30, global.height / 2 + 30, 0.7 * ms7, 0.7 * ms7, 20, c_black, 1, c_white, c_black);
+			draw_sprite_ext_t(s_rank_skul, 10, global.width / 2 + 30, global.height / 2 + 30, 0.7 * ms7, 0.7 * ms7, -25, c_black, 1, c_white, c_black);
+			draw_sprite_ext_t(s_rank_skul, 5, global.width / 2, global.height / 2, ms7, ms7, 0, c_white, 1, c_white, c_black);
+			draw_text_transformed_t(640, global.height / 2 + 120, "" + main_text[8] + "", 0.15, 0.15, 5, global.color_white, c_black);
 		#endregion
-		#region Режим против друга
-			if point_in_rectangle(mouse_x, mouse_y, global.width - string_width("œ" + main_text[9] + "œ") * 0.22 / 2 - 20 - string_width("œ" + main_text[9] + "œ") * 0.22 / 2, global.height / 2 - string_height("œ" + main_text[9] + "œ") * 0.22 - 60 - 0.2 * (global.height - 590), global.width - string_width("œ" + main_text[9] + "œ") * 0.22 / 2 - 20 + string_width("œ" + main_text[9] + "œ") * 0.22 / 2, global.height / 2 + string_height("œ" + main_text[9] + "œ") * 0.22 - 60 - 0.2 * (global.height - 590))
-			&& global.menu_now = "main"
+		#region Режим против друга (0)
+			if 0
 			{
-				GoogleAnalytics_SendEvent("PLAY","Игрок выбрал QUICK PLAY");
-				if mouse_check_button_pressed(mb_left)
+				if point_in_rectangle(mouse_x, mouse_y, global.width - string_width("œ" + main_text[9] + "œ") * 0.22 / 2 - 20 - string_width("œ" + main_text[9] + "œ") * 0.22 / 2, global.height / 2 - string_height("œ" + main_text[9] + "œ") * 0.22 - 60 - 0.2 * (global.height - 590), global.width - string_width("œ" + main_text[9] + "œ") * 0.22 / 2 - 20 + string_width("œ" + main_text[9] + "œ") * 0.22 / 2, global.height / 2 + string_height("œ" + main_text[9] + "œ") * 0.22 - 60 - 0.2 * (global.height - 590))
+				&& global.menu_now = "main"
 				{
-					if global.sound
+					GoogleAnalytics_SendEvent("PLAY","Игрок выбрал QUICK PLAY");
+					if mouse_check_button_pressed(mb_left)
 					{
-						audio_play_sound(sd_text, 2, 0);
+						if global.sound
+						{
+							audio_play_sound(sd_text, 2, 0);
+						}
+					}
+					if mouse_check_button(mb_left)
+					{
+						ms8 = 1.1;
+					}
+					if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now= "main"
+					{
+						global.pvp_set = 1;
+						global.duel = 1;
+						global.menu_next = "training";
 					}
 				}
-				if mouse_check_button(mb_left)
-				{
-					ms8 = 1.1;
-				}
-				if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now= "main"
-				{
-					global.pvp_set = 1;
-					global.duel = 1;
-					global.menu_next = "training";
-				}
+				//draw_text_transformed_t(global.width - string_width("œ" + main_text[9] + "œ") * 0.22 / 2 - 20, global.height / 2 - 60 - 0.2 * (global.height - 590), "" + main_text[9] + "", 0.22 * ms8, 0.22 * ms8, 5, global.color_white, c_black);
 			}
-			draw_text_transformed_t(global.width - string_width("œ" + main_text[9] + "œ") * 0.22 / 2 - 20, global.height / 2 - 60 - 0.2 * (global.height - 590), "" + main_text[9] + "", 0.22 * ms8, 0.22 * ms8, 5, global.color_white, c_black);
 		#endregion
 		#region Показ голды и баксов
 			if global.menu_now = "main"
@@ -507,99 +524,115 @@
 					}
 				}
 			}
-			draw_text_transformed_t(global.width - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") / 2 * 0.2 - 10, string_height(string(global.gold) + "©") * 0.2 + 10, string(global.gold) + "©", 0.2, 0.2, 0, global.gold_color, c_black);
-			draw_text_transformed_t(global.width - string_width(string(global.cash) + "ç") / 2 * 0.2 - 10, string_height(string(global.gold) + "©") * 0.2 + 10, string(global.cash) + "ç", 0.2, 0.2, 0, global.cash_color, c_black);
+			draw_text_transformed_t(global.width - string_width(string(global.cash) + "ç") * 0.2 - 10 - string_width(string(global.gold) + "©") / 2 * 0.2 + 5, string_height(string(global.gold) + "©") * 0.2 - 15, string(global.gold) + "©", 0.17, 0.17, 0, global.gold_color, c_black);
+			draw_text_transformed_t(global.width - string_width(string(global.cash) + "ç") / 2 * 0.2 + 5, string_height(string(global.gold) + "©") * 0.2 - 15, string(global.cash) + "ç", 0.17, 0.17, 0, global.cash_color, c_black);
 		#endregion
 		#region Время  
-			var time;
-			if instance_exists(o_control)
-			{
-				time_h = string(o_control.day_hour);
-				time_m = string(o_control.day_minute);
-				if o_control.day_hour < 10
+			#region Проверка времени
+				var time;
+				if instance_exists(o_control)
 				{
-					time_h = "0" + string(o_control.day_hour);
-				}
-				if o_control.day_minute < 10
-				{
-					time_m = "0" + string(o_control.day_minute);
-				}
-			}
-			if time_s = -1
-			{
-				time = time_h + ":" + time_m;
-			}
-			else
-			{
-				time = time_h + "µ" + time_m;
-			}
-			if (time_t > 0 && time_s = -1) or (time_t < room_speed && time_s = 1)
-			{
-				time_t += time_s;
-			}
-			else
-			{
-				time_s = -time_s;
-			}
-			draw_text_transformed_t(125 + 72 * 1.6 + string_width(time) / 2 * 0.2 + 10, string_height(string(global.gold) + "©") * 0.2 + 10, time, 0.2, 0.2, 0, global.color_white, c_black);
-		#endregion
-		#region Музыка
-			draw_sprite_ext_t(s_music, music, 72, 60 + 8, 0.4, 0.4, 10, global.color_white, 0.5, global.color_white, c_black);
-			draw_sprite_ext_t(s_music, music, 72, 60, 0.4, 0.4, 10, global.color_white, 1, global.color_white, c_black);
-			if global.menu_now = "main"
-			{
-				if mouse_check_button_pressed(mb_left)
-				{
-					if point_in_rectangle(mouse_x, mouse_y, 0, 0, 120, 120)
+					time_h = string(o_control.day_hour);
+					time_m = string(o_control.day_minute);
+					if o_control.day_hour < 10
 					{
-						if mouse_check_button_pressed(mb_left)
-						{
-							if global.sound
-							{
-								audio_play_sound(sd_text, 2, 0);
-							}
-						}
-						global.music = !global.music;
-						ini_open("Music.ini");
-							ini_write_string("Music", "music", string(global.music));
-						ini_close();
+						time_h = "0" + string(o_control.day_hour);
+					}
+					if o_control.day_minute < 10
+					{
+						time_m = "0" + string(o_control.day_minute);
 					}
 				}
-			}
-			if global.music = 1
-			{
-				if music > 0
+				if time_s = -1
 				{
-					music -= 1;
+					time = time_h + ":" + time_m;
 				}
 				else
 				{
-					music = 0;
+					time = time_h + "µ" + time_m;
 				}
-			}
-			else
-			{
-				if music < 16
+				if (time_t > 0 && time_s = -1) or (time_t < room_speed && time_s = 1)
 				{
-					music += 1;
+					time_t += time_s;
 				}
 				else
 				{
-					music = 16;
+					time_s = -time_s;
 				}
-			}
+			#endregion
+			#region Отрисовка времени
+				draw_text_transformed_t(180 + string_width(time) / 2 * 0.17, string_height(string(global.gold) + "©") * 0.2 - 15, time, 0.17, 0.17, 0, global.color_white, c_black);
+			#endregion
+		#endregion
+		#region Музыка
+			#region Отрисовка кнопки
+				var music_x, music_y, music_w;
+				music_x = 45;
+				music_y = 35;
+				music_w = 30;
+				draw_sprite_ext_t(s_music, music, music_x, music_y, 0.4, 0.4, 10, global.color_white, 1, global.color_white, c_black);
+			#endregion
+			#region Нажатие на кнопку
+				if global.menu_now = "main"
+				{
+					if mouse_check_button_pressed(mb_left)
+					{
+						if point_in_rectangle(mouse_x, mouse_y, music_x - music_w, music_y - music_w, music_x + music_w, music_y + music_w)
+						{
+							if mouse_check_button_pressed(mb_left)
+							{
+								if global.sound
+								{
+									audio_play_sound(sd_text, 2, 0);
+								}
+							}
+							global.music = !global.music;
+							ini_open("Music.ini");
+								ini_write_string("Music", "music", string(global.music));
+							ini_close();
+						}
+					}
+				}
+			#endregion
+			#region Изменение кнопки
+				if global.music = 1
+				{
+					if music > 0
+					{
+						music -= 1;
+					}
+					else
+					{
+						music = 0;
+					}
+				}
+				else
+				{
+					if music < 16
+					{
+						music += 1;
+					}
+					else
+					{
+						music = 16;
+					}
+				}
+			#endregion
 		#endregion
 		#region Звуки
 			#region Отрисовка кнопок
-				draw_sprite_ext_t(s_sound, sound, 72 + 72 * 1.6, 60 + 8, 0.4, 0.4, 10, global.color_white, 0.5, global.color_white, c_black);
-				draw_sprite_ext_t(s_sound, sound, 72 + 72 * 1.6, 60, 0.4, 0.4, 10, global.color_white, 1, global.color_white, c_black);
+				var sound_x, sound_y, sound_w;
+				sound_x = 130;
+				sound_y = 35;
+				sound_w = 30;
+				draw_sprite_ext_t(s_sound, sound, sound_x, sound_y, 0.4, 0.4, 10, global.color_white, 1, global.color_white, c_black);
 			#endregion
 			#region Нажатие на кнопку звука
 				if global.menu_now = "main"
 				{
 					if mouse_check_button_pressed(mb_left)
 					{
-						if point_in_rectangle(mouse_x, mouse_y, 72 * 1.6 + 15, 0, 120 + 72 * 1.6, 125)
+						if point_in_rectangle(mouse_x, mouse_y, sound_x - sound_w, sound_y - sound_w, sound_x + sound_w, sound_y + sound_w)
 						{
 							ini_open("Music.ini");
 								ini_write_string("Ranks", "ranks", string(0/*irandom(70)*/));

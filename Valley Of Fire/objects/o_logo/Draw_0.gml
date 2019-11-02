@@ -123,7 +123,7 @@
 #endregion
 #region Отрисовка фона и луны/солнца
 	draw_sprite_ext(s_logo1_back, 0, 640, global.height, back_scale, back_scale, 0, c_white, 1);
-	draw_sprite_ext(s_train_back1, 0, 640, global.height, 0.90, 0.90, 0, c_white, dark_2); //draw_sprite_ext(s_train_back1, 0, 640, global.height, 0.512, 0.512, 0, c_white, dark_2);
+	draw_sprite_ext(s_train_back1, 0, 640, global.height, 1, 1, 0, c_white, dark_2); //draw_sprite_ext(s_train_back1, 0, 640, global.height, 0.512, 0.512, 0, c_white, dark_2);
 	if stage > 0
 	{
 		draw_sprite_ext(s_sunmoon, 0, 640, global.height - 220 * back_scale + all_y + sun_y, sun_scale, sun_scale, sun_angle, c_white, 1);

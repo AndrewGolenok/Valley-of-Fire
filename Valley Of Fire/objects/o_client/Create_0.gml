@@ -141,3 +141,5 @@ for(i = 1; i <= 50; i++)
 }
 
 autolose_time = 0;
+
+zhepka = 0;

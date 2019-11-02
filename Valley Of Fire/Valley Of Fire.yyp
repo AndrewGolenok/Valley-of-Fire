@@ -5245,25 +5245,6 @@
             }
         },
         {
-            "Key": "bba50808-e498-48b7-a578-aa8d71554ec4",
-            "Value": {
-                "id": "6cdef53e-d3de-491f-be00-ba2565960dee",
-                "modelName": "GMResourceInfo",
-                "mvc": "1.0",
-                "configDeltaFiles": [
-                    
-                ],
-                "configDeltas": [
-                    
-                ],
-                "resourceCreationConfigs": [
-                    "default"
-                ],
-                "resourcePath": "sprites\/s_sound1\/s_sound1.yy",
-                "resourceType": "GMSprite"
-            }
-        },
-        {
             "Key": "bccc65d2-a136-4861-8361-066efb3ff05c",
             "Value": {
                 "id": "701104e4-49ea-4ef8-84f7-ccce29425753",
@@ -5469,6 +5450,25 @@
                     "default"
                 ],
                 "resourcePath": "sprites\/s_question_fig\/s_question_fig.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "c48bf744-1a02-4802-8d45-e6111e560ad1",
+            "Value": {
+                "id": "55fdf59f-f2ea-4e80-861e-d9af484e8c1f",
+                "modelName": "GMResourceInfo",
+                "mvc": "1.0",
+                "configDeltaFiles": [
+                    
+                ],
+                "configDeltas": [
+                    
+                ],
+                "resourceCreationConfigs": [
+                    "default"
+                ],
+                "resourcePath": "sprites\/s_lootbox21\/s_lootbox21.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -6515,25 +6515,6 @@
                 ],
                 "resourcePath": "views\/e30d304c-52f0-42a4-a368-5150761edd1f.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "e40b0b08-c437-46ab-8fab-1924d8f3801c",
-            "Value": {
-                "id": "18bd191b-9449-44fe-b2ff-cb3f5421adca",
-                "modelName": "GMResourceInfo",
-                "mvc": "1.0",
-                "configDeltaFiles": [
-                    
-                ],
-                "configDeltas": [
-                    
-                ],
-                "resourceCreationConfigs": [
-                    "default"
-                ],
-                "resourcePath": "sprites\/s_music1\/s_music1.yy",
-                "resourceType": "GMSprite"
             }
         },
         {

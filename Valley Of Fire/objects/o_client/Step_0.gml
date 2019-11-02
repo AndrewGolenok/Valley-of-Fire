@@ -283,6 +283,12 @@ if global.fight
 		}
 	#endregion
 }
+#region Отладка
+	if keyboard_check_pressed(ord("J"))
+	{
+		zhepka = !zhepka;
+	}
+#endregion
 if 0
 {
 	///////////
