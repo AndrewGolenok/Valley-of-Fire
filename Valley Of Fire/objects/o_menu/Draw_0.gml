@@ -36,6 +36,42 @@
 	or global.menu_next = "quests" or global.menu_now = "quests"
 	{
 		#region Кнопки
+			#region Анимация
+				if anim_x[2] > 0
+				{
+					anim_x[2] -= 34;
+				}
+				else
+				{
+					anim_x[2] = 0;
+				}
+				if anim_x[2] < 300
+				{
+					if anim_x[1] > 0
+					{
+						anim_x[1] -= 34;
+					}
+					else
+					{
+						anim_x[1] = 0;
+						if anim_x[3] < 1
+						{
+							anim_x[3] += 0.1;
+						}
+						else
+						{
+							if anim_x[4] < 3
+							{
+								anim_x[4] += 0.3;
+							}
+							else
+							{
+								anim_x[4] = 0;
+							}
+						}
+					}
+				}
+			#endregion
 			#region Переменные скейла и координат
 				var ms1, ms2, ms3, ms4, ms5, ms6, ms7, ms8,
 				mi1, mi2, mi3, mi4, mi5, mi6, mi7, mi8,
@@ -52,15 +88,15 @@
 				ms6 = 1;
 				ms8 = 1;
 				
-				mx1 = 1140; //120;
+				mx1 = 1140 + anim_x[1]; //120;
 				my1 = global.height * 1.7 / 4; //global.height - 100 - 220; //global.height - 100;
 				mx2 = -1000; //640 - 260;
 				my2 = -1000; //global.height - 100; //global.height - 100;
-				mx3 = 1280 - 200;//640;
+				mx3 = 1280 - 200 + anim_x[2];//640;
 				my3 = global.height * 4 / 5; //global.height - 100;
-				mx4 = 140; //640 + 260;
+				mx4 = 140 - anim_x[1]; //640 + 260;
 				my4 = global.height * 1.7 / 4; //global.height - 100 - 220; //global.height - 100;
-				mx5 = 200; //1150;
+				mx5 = 200 - anim_x[2]; //1150;
 				my5 = global.height * 4 / 5; //global.height - 100; //global.height - 100;
 				mx6 = -1;
 				my6 = -1;
@@ -266,186 +302,189 @@
 			draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 50 + 60  * sc_scale, sc_scale, sc_scale, 10, c_white, 1);
 			draw_sprite_ext(s_logo1_smartcowboys, 2, 640, 50 + 60  * sc_scale, sc_scale, sc_scale, 10, c_red, 0.75);
 		#endregion
-		#region Быстрая игра
-			if global.menu_next = "main" or global.menu_now = "main"
+		#region Быстрая игра (0)
+			if 0
 			{
-				#region Нажатие на titles
-					if mouse_check_button_released(mb_left)
-					{
-						if point_in_rectangle(mouse_x, mouse_y, 640 - 100, 0, 640 + 100, y + 200)
+				if global.menu_next = "main" or global.menu_now = "main"
+				{
+					#region Нажатие на titles
+						if mouse_check_button_released(mb_left)
 						{
-							if global.sound
+							if point_in_rectangle(mouse_x, mouse_y, 640 - 100, 0, 640 + 100, y + 200)
 							{
-								audio_play_sound(sd_text, 2, 0);
-							}
-							if global.titles = 0
-							{
-								///ТЕСТ ЖОПА ТИТРЫ
-								global.online = !global.online;
-								global.titles = 1;
-								io_clear();
-							}
-						}
-					}
-				#endregion
-				#region БЫСТРАЯ ИГРА
-					if point_in_rectangle(mouse_x, mouse_y, string_width("∂БЫСТРАЯ ИГРА∂") * 0.22 / 2 + 20 - string_width("œQUICK PLAYœ") * 0.22 / 2, global.height / 2 - string_height("œQUICK PLAYœ") * 0.22 - 10 - 0.2 * (global.height - 590), string_width("∂БЫСТРАЯ ИГРА∂") * 0.22 / 2 + 20 + string_width("œQUICK PLAYœ") * 0.22 / 2, global.height / 2 + string_height("œQUICK PLAYœ") * 0.22 / 2.5 - 10 - 0.2 * (global.height - 590))
-					&& global.menu_now = "main"
-					{
-						GoogleAnalytics_SendEvent("PLAY","Игрок выбрал QUICK PLAY");
-						if mouse_check_button_pressed(mb_left)
-						{
-							if global.sound
-							{
-								audio_play_sound(sd_text, 2, 0);
-							}
-						}
-						if mouse_check_button(mb_left)
-						{
-							ms6 = 1.1;
-						}
-						if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now= "main"
-						{
-							#region Рандом тотемов
-								var heroes, r_heroes;
-								heroes = "";
-								for(i = 1; i <= 7; i ++)
+								if global.sound
 								{
-									if global.heroes_have[i] > 0
-									{
-										heroes += string(i);
-									}
+									audio_play_sound(sd_text, 2, 0);
 								}
-								r_heroes = real(string_copy(heroes, irandom_range(1, string_length(heroes)), 1));
-								#region РАНДОМ
-									var totems, r_t1, r_t2, r_t3, n_totem, ti;
-									totems = "";
-									n_totem = irandom(1);
-									r_t1 = -1;
-									r_t2 = -1;
-									r_t3 = -1;
-									if n_totem = 1
+								if global.titles = 0
+								{
+									///ТЕСТ ЖОПА ТИТРЫ
+									global.online = !global.online;
+									global.titles = 1;
+									io_clear();
+								}
+							}
+						}
+					#endregion
+					#region БЫСТРАЯ ИГРА
+						if point_in_rectangle(mouse_x, mouse_y, string_width("∂БЫСТРАЯ ИГРА∂") * 0.22 / 2 + 20 - string_width("œQUICK PLAYœ") * 0.22 / 2, global.height / 2 - string_height("œQUICK PLAYœ") * 0.22 - 10 - 0.2 * (global.height - 590), string_width("∂БЫСТРАЯ ИГРА∂") * 0.22 / 2 + 20 + string_width("œQUICK PLAYœ") * 0.22 / 2, global.height / 2 + string_height("œQUICK PLAYœ") * 0.22 / 2.5 - 10 - 0.2 * (global.height - 590))
+						&& global.menu_now = "main"
+						{
+							GoogleAnalytics_SendEvent("PLAY","Игрок выбрал QUICK PLAY");
+							if mouse_check_button_pressed(mb_left)
+							{
+								if global.sound
+								{
+									audio_play_sound(sd_text, 2, 0);
+								}
+							}
+							if mouse_check_button(mb_left)
+							{
+								ms6 = 1.1;
+							}
+							if mouse_check_button_released(mb_left) && global.menu_next = "main" && global.menu_now= "main"
+							{
+								#region Рандом тотемов
+									var heroes, r_heroes;
+									heroes = "";
+									for(i = 1; i <= 7; i ++)
 									{
-										for(i = 1; i <= 9; i ++)
+										if global.heroes_have[i] > 0
 										{
-											if global.totem_have[i] > 0
-											{
-												totems += string(i);
-											}
-										}
-										if string_length(totems) >= 3
-										{
-											ti = irandom_range(1, string_length(totems));
-											r_t3 = real(string_copy(totems, ti, 1));
-											totems = string_delete(totems, ti, 1);
-											ti = irandom_range(1, string_length(totems));
-											r_t2 = real(string_copy(totems, ti, 1));
-											totems = string_delete(totems, ti, 1);
-											ti = irandom_range(1, string_length(totems));
-											r_t1 = real(string_copy(totems, ti, 1));
-											totems = string_delete(totems, ti, 1);
-										}
-										if string_length(totems) = 2
-										{
-											ti = irandom_range(1, string_length(totems));
-											r_t3 = real(string_copy(totems, ti, 1));
-											totems = string_delete(totems, ti, 1);
-											ti = irandom_range(1, string_length(totems));
-											r_t2 = real(string_copy(totems, ti, 1));
-											totems = string_delete(totems, ti, 1);
-											n_totem = 0;
-										}
-										if string_length(totems) = 1
-										{
-											ti = irandom_range(1, string_length(totems));
-											r_t3 = real(string_copy(totems, ti, 1));
-											totems = string_delete(totems, ti, 1);
-											n_totem = 0;
-										}
-										if totems = ""
-										{
-											n_totem = 0;
+											heroes += string(i);
 										}
 									}
-									if n_totem = 0
-									{
-										for(i = 1; i <= 9; i ++)
+									r_heroes = real(string_copy(heroes, irandom_range(1, string_length(heroes)), 1));
+									#region РАНДОМ
+										var totems, r_t1, r_t2, r_t3, n_totem, ti;
+										totems = "";
+										n_totem = irandom(1);
+										r_t1 = -1;
+										r_t2 = -1;
+										r_t3 = -1;
+										if n_totem = 1
 										{
-											if global.totem_have[i + 9] > 0
+											for(i = 1; i <= 9; i ++)
 											{
-												totems += string(i + 9);
+												if global.totem_have[i] > 0
+												{
+													totems += string(i);
+												}
 											}
-										}
-										if string_length(totems) >= 3
-										{
-											if r_t3 = -1
+											if string_length(totems) >= 3
 											{
 												ti = irandom_range(1, string_length(totems));
 												r_t3 = real(string_copy(totems, ti, 1));
 												totems = string_delete(totems, ti, 1);
-											}
-											if r_t2 = -1
-											{
 												ti = irandom_range(1, string_length(totems));
 												r_t2 = real(string_copy(totems, ti, 1));
 												totems = string_delete(totems, ti, 1);
-											}
-											if r_t1 = -1
-											{
 												ti = irandom_range(1, string_length(totems));
 												r_t1 = real(string_copy(totems, ti, 1));
 												totems = string_delete(totems, ti, 1);
 											}
-										}
-										if string_length(totems) = 2
-										{
-											if r_t3 = -1
+											if string_length(totems) = 2
 											{
 												ti = irandom_range(1, string_length(totems));
 												r_t3 = real(string_copy(totems, ti, 1));
 												totems = string_delete(totems, ti, 1);
-											}
-											if r_t2 = -1
-											{
 												ti = irandom_range(1, string_length(totems));
 												r_t2 = real(string_copy(totems, ti, 1));
 												totems = string_delete(totems, ti, 1);
+												n_totem = 0;
 											}
-										}
-										if string_length(totems) = 1
-										{
-											if r_t3 = -1
+											if string_length(totems) = 1
 											{
 												ti = irandom_range(1, string_length(totems));
 												r_t3 = real(string_copy(totems, ti, 1));
 												totems = string_delete(totems, ti, 1);
+												n_totem = 0;
+											}
+											if totems = ""
+											{
+												n_totem = 0;
 											}
 										}
-									}
+										if n_totem = 0
+										{
+											for(i = 1; i <= 9; i ++)
+											{
+												if global.totem_have[i + 9] > 0
+												{
+													totems += string(i + 9);
+												}
+											}
+											if string_length(totems) >= 3
+											{
+												if r_t3 = -1
+												{
+													ti = irandom_range(1, string_length(totems));
+													r_t3 = real(string_copy(totems, ti, 1));
+													totems = string_delete(totems, ti, 1);
+												}
+												if r_t2 = -1
+												{
+													ti = irandom_range(1, string_length(totems));
+													r_t2 = real(string_copy(totems, ti, 1));
+													totems = string_delete(totems, ti, 1);
+												}
+												if r_t1 = -1
+												{
+													ti = irandom_range(1, string_length(totems));
+													r_t1 = real(string_copy(totems, ti, 1));
+													totems = string_delete(totems, ti, 1);
+												}
+											}
+											if string_length(totems) = 2
+											{
+												if r_t3 = -1
+												{
+													ti = irandom_range(1, string_length(totems));
+													r_t3 = real(string_copy(totems, ti, 1));
+													totems = string_delete(totems, ti, 1);
+												}
+												if r_t2 = -1
+												{
+													ti = irandom_range(1, string_length(totems));
+													r_t2 = real(string_copy(totems, ti, 1));
+													totems = string_delete(totems, ti, 1);
+												}
+											}
+											if string_length(totems) = 1
+											{
+												if r_t3 = -1
+												{
+													ti = irandom_range(1, string_length(totems));
+													r_t3 = real(string_copy(totems, ti, 1));
+													totems = string_delete(totems, ti, 1);
+												}
+											}
+										}
+									#endregion
 								#endregion
-							#endregion
-							global.hero = r_heroes;
-							global.p_totem[1] = r_t1;
-							global.p_totem[2] = r_t2;
-							global.p_totem[3] = r_t3;
-							if global.player_rank != 15
-							{
-								global.player_rank = irandom_range(global.player_rank - 1, 15);
+								global.hero = r_heroes;
+								global.p_totem[1] = r_t1;
+								global.p_totem[2] = r_t2;
+								global.p_totem[3] = r_t3;
+								if global.player_rank != 15
+								{
+									global.player_rank = irandom_range(global.player_rank - 1, 15);
+								}
+								global.pvp_now = 0;
+								global.pvp_set = 0;
+								global.quick = 1;
+								room_goto_t("duel");
 							}
-							global.pvp_now = 0;
-							global.pvp_set = 0;
-							global.quick = 1;
-							room_goto_t("duel");
 						}
-					}
-				#endregion
+					#endregion
+				}
+				draw_text_transformed_t(string_width(main_text[7]) * 0.22 / 2 + 20, global.height / 2 - 10 - 0.2 * (global.height - 590), "" + main_text[7] + "", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black);
 			}
-			//draw_text_transformed_t(string_width(main_text[7]) * 0.22 / 2 + 20, global.height / 2 - 10 - 0.2 * (global.height - 590), "" + main_text[7] + "", 0.22 * ms6, 0.22 * ms6, 5, global.color_white, c_black);
 		#endregion
 		#region Ранкед дуэль
 			if global.menu_now = "main"
 			{
-				if point_in_rectangle(mouse_x, mouse_y, 640 - string_width(main_text[8]) * 0.22 / 2, global.height / 2 - string_height("®" + main_text[8] + "®") * 0.22 / 2 + 25 + 0.2 * (global.height - 590), 640 + string_width("®" + main_text[8] + "®") * 0.22 / 2, global.height / 2 + string_height("®" + main_text[8] + "®") * 0.22 + 25 + 0.2 * (global.height - 590))
+				if point_in_rectangle(mouse_x, mouse_y, global.width / 2 - 150, global.height / 2 - 100, global.width / 2 + 150, global.height / 2 + 200)
 				{
 					GoogleAnalytics_SendEvent("PLAY","Игрок выбрал RANKED");
 					if mouse_check_button_pressed(mb_left)
@@ -468,12 +507,11 @@
 					}
 				}
 			}
-			//s_rank_skul_11
-			draw_sprite_ext_t(s_rank_skul_11, 0, global.width / 2, global.height / 2, 0.9, 0.9, 0, c_white, 1, c_white, c_black);
-			draw_sprite_ext_t(s_rank_skul, 4, global.width / 2 - 30, global.height / 2 + 30, 0.7 * ms7, 0.7 * ms7, 20, c_black, 1, c_white, c_black);
-			draw_sprite_ext_t(s_rank_skul, 10, global.width / 2 + 30, global.height / 2 + 30, 0.7 * ms7, 0.7 * ms7, -25, c_black, 1, c_white, c_black);
-			draw_sprite_ext_t(s_rank_skul, 5, global.width / 2, global.height / 2, ms7, ms7, 0, c_white, 1, c_white, c_black);
-			draw_text_transformed_t(640, global.height / 2 + 120, "" + main_text[8] + "", 0.15, 0.15, 5, global.color_white, c_black);
+			draw_sprite_ext_t(s_rank_skul_11, anim_x[4], global.width / 2, global.height / 2 + 50 + anim_x[1], 0.9 * anim_x[3], 0.9 * anim_x[3], 0, c_white, 1, c_white, c_black);
+			draw_sprite_ext_t(s_rank_skul, 4, global.width / 2 - 30, global.height / 2 + 50 + anim_x[1] + 30, 0.7 * ms7 * anim_x[3], 0.7 * ms7, 20, c_black, 1, c_white, c_black);
+			draw_sprite_ext_t(s_rank_skul, 4, global.width / 2 + 30, global.height / 2 + 50 + anim_x[1] + 30, 0.7 * ms7 * anim_x[3], 0.7 * ms7, -25, c_black, 1, c_white, c_black);
+			draw_sprite_ext_t(s_rank_skul, 5, global.width / 2, global.height / 2 + anim_x[1] + 50, ms7, ms7, 0, c_white, 1, c_white, c_black);
+			draw_text_transformed_t(640, global.height / 2 + 50 + anim_x[1] + 120, "" + main_text[8] + "", 0.15, 0.15, 5, global.color_white, c_black);
 		#endregion
 		#region Режим против друга (0)
 			if 0
@@ -2624,29 +2662,37 @@
 		#region КНОПКИ МАГАЗИНА
 			#region Переменная верхней координаты top
 				var lbs1, lbs2;
-					lbs1 = 1;
-					lbs2 = 1;
-					top = 0;
+				lbs1 = 1;
+				lbs2 = 1;
+				top  = 0;
 			#endregion
 			#region МЕНЮ 1: Лутбоксы
 				#region Отрисовка
+					var m_x1, m_y1, m_x1_w1;
+					m_x1	= global.width / 2 + prx - 300;
+					m_y1	= top + 150 + lootbox_y + training_back_y + store_yy1 + pry + 10;
+					m_x1_w1 = 150;
 					//  Плашка
-					draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 70 + lootbox_y + training_back_y + store_yy1 + pry + 10, 0.4, 0.4, 0, c_black, 0.5);
-					draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 70 + lootbox_y + training_back_y + store_yy1 + pry, 0.4, 0.4, 0, c_white, 1);
-					draw_text_transformed_t(640 + prx, top + 50 + lootbox_y + training_back_y + store_yy1 + pry, store_text[1], 0.2, 0.2, 0, global.color_white, c_black);
+					draw_sprite_ext(s_store_plash, 0, m_x1, m_y1 - 70 - 75, 0.4, 0.4, 0, c_black, 0.5);
+					draw_sprite_ext(s_store_plash, 0, m_x1, m_y1 - 80 - 75, 0.4, 0.4, 0, c_white, 1);
+					draw_text_transformed_t(m_x1, m_y1 - 100 - 75, store_text[1], 0.2, 0.2, 0, global.color_white, c_black);
 					// Ящики
-					draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 1, 1, 0, c_black, 0.5);
+					draw_sprite_ext(s_lootbox1, 0, m_x1 - m_x1_w1, m_y1, 1, 1, 0, c_black, 0.5);
 					if lootbox_buy[1] = 0
-						{ draw_sprite_ext(s_lootbox1, 0, 640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 1 * lbs1, 1 * lbs1, 0, c_white, 1); }
-					draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1, 1, 1, 0, c_black, 0.5);
+					{
+						draw_sprite_ext(s_lootbox1, 0, m_x1 - m_x1_w1, m_y1, 1 * lbs1, 1 * lbs1, 0, c_white, 1);
+					}
+					draw_sprite_ext(s_lootbox2, 0, m_x1 + m_x1_w1, m_y1, 1, 1, 0, c_black, 0.5);
 					if lootbox_buy[2] = 0
-						{ draw_sprite_ext(s_lootbox2, 0, 640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + store_yy1     , 1 * lbs2, 1 * lbs2, 0, c_white, 1); }
+					{
+						draw_sprite_ext(s_lootbox2, 0, m_x1 + m_x1_w1, m_y1, 1 * lbs2, 1 * lbs2, 0, c_white, 1);
+					}
 					// Название
-					draw_text_transformed_t(640 + prx - 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 45, store_text[2], 0.13 * lbs1, 0.13 * lbs1, 5, global.color_white, c_black);
-					draw_text_transformed_t(640 + prx + 150, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 45, store_text[3], 0.13 * lbs2, 0.13 * lbs2, 5, global.gold_color, c_black);
+					draw_text_transformed_t(m_x1 - m_x1_w1, m_y1 - 45, store_text[2], 0.13 * lbs1, 0.13 * lbs1, 5, global.color_white, c_black);
+					draw_text_transformed_t(m_x1 + m_x1_w1, m_y1 - 45, store_text[3], 0.13 * lbs2, 0.13 * lbs2, 5, global.gold_color, c_black);
 					// Цена
-					draw_text_transformed_t(640 + prx - 150 + 22, top + 155 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 140, "100©", 0.25 * lbs1, 0.25 * lbs1, 0, global.gold_color, c_black);
-					draw_text_transformed_t(640 + prx + 150 + 22, top + 155 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 140, "50ç", 0.25 * lbs2, 0.25 * lbs2, 0, global.cash_color, c_black);
+					draw_text_transformed_t(m_x1 - m_x1_w1 + 22, m_y1 + 140, "100©", 0.25 * lbs1, 0.25 * lbs1, 0, global.gold_color, c_black);
+					draw_text_transformed_t(m_x1 + m_x1_w1 + 22, m_y1 + 140, "50ç", 0.25 * lbs2, 0.25 * lbs2, 0, global.cash_color, c_black);
 				#endregion
 				#region Нажатие на ящик
 					var lbs1, lbs2;
@@ -2681,64 +2727,66 @@
 								}
 							}
 						#endregion
-						if lootbox_buy_s[1] = 0 && lootbox_buy_s[2] = 0
-						&& lootbox_buy[1] = 0 && lootbox_buy[2] = 0 && daily_buy[1] = 0 && daily_buy[2] = 0 && daily_buy[3] = 0
-						{
-							#region Покупка 1
-								if point_in_rectangle(mouse_x, mouse_y, 640 - 150 - 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 75, 640 - 150 + 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 190)
-								{
-									if mouse_check_button_pressed(mb_left)
+						#region Покупка (нажатие)
+							if lootbox_buy_s[1] = 0 && lootbox_buy_s[2] = 0
+							&& lootbox_buy[1] = 0 && lootbox_buy[2] = 0 && daily_buy[1] = 0 && daily_buy[2] = 0 && daily_buy[3] = 0
+							{
+								#region Покупка 1
+									if point_in_rectangle(mouse_x, mouse_y, (m_x1 - 150) - 125, m_y1 - 60, (m_x1 - 150) + 150, m_y1 + 160)
 									{
-										if global.sound
+										if mouse_check_button_pressed(mb_left)
 										{
-											audio_play_sound(sd_text, 2, 0);
-										}
-									}
-									if mouse_check_button_released(mb_left)
-									{
-										if lootbox_buy[1] = 0
-										{
-											GoogleAnalytics_SendEvent("LOOTBOXES","Игрок купил WOOD BOX");
-											if lootbox_buy_s[1] = 0
+											if global.sound
 											{
-												lootbox_buy[1] = 1;
+												audio_play_sound(sd_text, 2, 0);
 											}
 										}
-									}
-									if mouse_check_button(mb_left)
-									{
-										lbs1 = 1.1;
-									}
-								}
-							#endregion
-							#region Покупка 2
-								if point_in_rectangle(mouse_x, mouse_y, 640 + 150 - 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 - 75, 640 + 150 + 105, top + 150 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 190)
-								{
-									if mouse_check_button_pressed(mb_left)
-									{
-										if global.sound
+										if mouse_check_button_released(mb_left)
 										{
-											audio_play_sound(sd_text, 2, 0);
-										}
-									}
-									if mouse_check_button_released(mb_left)
-									{
-										if lootbox_buy[2] = 0
-										{
-											if lootbox_buy_s[2] = 0
+											if lootbox_buy[1] = 0
 											{
-												lootbox_buy[2] = 1;
+												GoogleAnalytics_SendEvent("LOOTBOXES","Игрок купил WOOD BOX");
+												if lootbox_buy_s[1] = 0
+												{
+													lootbox_buy[1] = 1;
+												}
 											}
-											GoogleAnalytics_SendEvent("LOOTBOXES", "Игрок купил ELITE BOX");
+										}
+										if mouse_check_button(mb_left)
+										{
+											lbs1 = 1.1;
 										}
 									}
-									if mouse_check_button(mb_left)
+								#endregion
+								#region Покупка 2
+									if point_in_rectangle(mouse_x, mouse_y, (m_x1 + 150) - 125, m_y1 - 60, (m_x1 + 150) + 150, m_y1 + 160)
 									{
-										lbs2 = 1.1;
+										if mouse_check_button_pressed(mb_left)
+										{
+											if global.sound
+											{
+												audio_play_sound(sd_text, 2, 0);
+											}
+										}
+										if mouse_check_button_released(mb_left)
+										{
+											if lootbox_buy[2] = 0
+											{
+												if lootbox_buy_s[2] = 0
+												{
+													lootbox_buy[2] = 1;
+												}
+												GoogleAnalytics_SendEvent("LOOTBOXES", "Игрок купил ELITE BOX");
+											}
+										}
+										if mouse_check_button(mb_left)
+										{
+											lbs2 = 1.1;
+										}
 									}
-								}
-							#endregion
-						}
+								#endregion
+							}
+						#endregion
 					}
 				#endregion
 				#region ОБУЧЕНИЕ: Рука
@@ -2752,8 +2800,8 @@
 						{
 							hand_i = 0;
 						}
-						draw_sprite_ext(s_training_hand, hand_i, 640 + prx - 150 + 22, top + 155 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 80, 1, 1, 0, c_black, 0.5);
-						draw_sprite_ext_t(s_training_hand, hand_i, 640 + prx - 150 + 22, top + 155 + lootbox_y + training_back_y + pry + 10 + store_yy1 + 80, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
+						draw_sprite_ext(s_training_hand, hand_i, m_x1 + 22, m_y1 + 85, 1, 1, 0, c_black, 0.5);
+						draw_sprite_ext_t(s_training_hand, hand_i, m_x1 + 22, m_y1 + 85, 1, 1, 0, global.color_white, 1, global.color_white, c_black);
 					}
 					if (global.hand_cash && global.cash >= 50)
 					{
@@ -2774,148 +2822,165 @@
 				#endregion
 			#endregion
 			#region МЕНЮ 2: Ежедневыне покупки
-				// Плашка
-				draw_sprite_ext(s_store_plash, 0, 640 + prx, top - 90 + daily_y + training_back_y + pry + store_yy1 + 10, 0.4, 0.4, 0, c_black, 0.5);
-				draw_sprite_ext(s_store_plash, 0, 640 + prx, top - 90 + daily_y + training_back_y + pry + store_yy1, 0.4, 0.4, 0, c_white, 1);
-				// Название
-				draw_text_transformed_t(640 + prx, top - 110 + daily_y + training_back_y + pry + store_yy1, store_text[4], 0.17, 0.17, 0, global.color_white, c_black);
-				// Время
-				draw_text_transformed_t(640 + prx - string_width("24H59M)") * 0.1 / 2, top - 110 + daily_y + training_back_y + pry + store_yy1 + 45, "(" + store_text[5] + " ", 0.1, 0.1, 0, global.color_white, c_black);
-				draw_text_transformed_t(640 + prx - string_width("24H59M)") * 0.12 / 2 + string_width("(" + store_text[5] + " ") * 0.1 / 2 + string_width(string(23 - current_hour)) * 0.17 / 2, top - 110 + daily_y + training_back_y + pry + store_yy1 + 45 - 10, string(23 - current_hour), 0.17, 0.17, 0, global.color_white, c_black);
-				draw_text_transformed_t(640 + prx - string_width("24H59M)") * 0.12 / 2 + string_width("(" + store_text[5] + " ") * 0.1 / 2 + string_width(string(23 - current_hour)) * 0.17 + string_width(store_text[6]) * 0.1 / 2, top - 110 + daily_y + training_back_y + pry + store_yy1 + 45, store_text[6], 0.1, 0.1, 0, global.color_white, c_black);
-				draw_text_transformed_t(640 + prx - string_width("24H59M)") * 0.12 / 2 + string_width("(" + store_text[5] + " ") * 0.1 / 2 + string_width(string(23 - current_hour)) * 0.17 + string_width(store_text[6]) * 0.1 + string_width(string(59 - current_minute)) * 0.17 / 2, top - 110 + daily_y + training_back_y + pry + store_yy1 + 45 - 10, string(59 - current_minute), 0.17, 0.17, 0, global.color_white, c_black);
-				draw_text_transformed_t(640 + prx - string_width("24H59M)") * 0.12 / 2 + string_width("(" + store_text[5] + " ") * 0.1 / 2 + string_width(string(23 - current_hour)) * 0.17 + string_width(store_text[6]) * 0.1 + string_width(string(59 - current_minute)) * 0.17 + string_width(store_text[7]+")") * 0.1 / 2, top - 110 + daily_y + training_back_y + pry + store_yy1 + 45, store_text[7] + ")", 0.1, 0.1, 0, global.color_white, c_black);
-				// Отрисовка дейли-вещи
-				for(dall = 1; dall <= 3; dall ++)
-				{
-					#region Коордианта по X
-						var dall_x;
-						if dall = 1	
-						{
-							dall_x = 640 + prx - 200;
-						}
-						if dall = 2	
-						{
-							dall_x = 640 + prx;
-						}
-						if dall = 3	
-						{
-							dall_x = 640 + prx + 200;
-						}
-						var d_h;
-						d_h = 1;
-					#endregion
-					if store_tap = 1
+				#region Общая отрисовка
+					var m_x2, m_y2;
+					m_x2 = global.width / 2 + prx + 300;
+					m_y1 = top + lootbox_y + training_back_y + store_yy1 + pry + 10; //top - 90 + daily_y + training_back_y + pry + store_yy1;
+					// Плашка
+					draw_sprite_ext(s_store_plash, 0, m_x2, m_y1 + 10, 0.4, 0.4, 0, c_black, 0.5);
+					draw_sprite_ext(s_store_plash, 0, m_x2, m_y1, 0.4, 0.4, 0, c_white, 1);
+					// Название
+					draw_text_transformed_t(m_x2, m_y1 - 20, store_text[4], 0.17, 0.17, 0, global.color_white, c_black);
+					// Время
+					draw_text_transformed_t(m_x2 - string_width("24H59M)") * 0.1 / 2, m_y1 + 25, "(" + store_text[5] + " ", 0.1, 0.1, 0, global.color_white, c_black);
+					draw_text_transformed_t(m_x2 - string_width("24H59M)") * 0.12 / 2 + string_width("(" + store_text[5] + " ") * 0.1 / 2 + string_width(string(23 - current_hour)) * 0.17 / 2, m_y1 + 15, string(23 - current_hour), 0.17, 0.17, 0, global.color_white, c_black);
+					draw_text_transformed_t(m_x2 - string_width("24H59M)") * 0.12 / 2 + string_width("(" + store_text[5] + " ") * 0.1 / 2 + string_width(string(23 - current_hour)) * 0.17 + string_width(store_text[6]) * 0.1 / 2, m_y1 + 25, store_text[6], 0.1, 0.1, 0, global.color_white, c_black);
+					draw_text_transformed_t(m_x2 - string_width("24H59M)") * 0.12 / 2 + string_width("(" + store_text[5] + " ") * 0.1 / 2 + string_width(string(23 - current_hour)) * 0.17 + string_width(store_text[6]) * 0.1 + string_width(string(59 - current_minute)) * 0.17 / 2, m_y1 + 15, string(59 - current_minute), 0.17, 0.17, 0, global.color_white, c_black);
+					draw_text_transformed_t(m_x2 - string_width("24H59M)") * 0.12 / 2 + string_width("(" + store_text[5] + " ") * 0.1 / 2 + string_width(string(23 - current_hour)) * 0.17 + string_width(store_text[6]) * 0.1 + string_width(string(59 - current_minute)) * 0.17 + string_width(store_text[7]+")") * 0.1 / 2, m_y1 + 25, store_text[7] + ")", 0.1, 0.1, 0, global.color_white, c_black);
+				#endregion
+				#region Отрисовка дейли-вещи и нажатие
+					for(dall = 1; dall <= 3; dall ++)
 					{
-						#region Нажатие на дейли
-							#region Появление
-								if daily_buy[dall] = 1
-								{
-									if daily_buy_s[dall] < 1
+						#region Коордианта по X
+							var dall_x;
+							if dall = 1	
+							{
+								dall_x = m_x2 - 200;
+							}
+							if dall = 2	
+							{
+								dall_x = m_x2;
+							}
+							if dall = 3	
+							{
+								dall_x = m_x2 + 200;
+							}
+							var d_h;
+							d_h = 1;
+						#endregion
+						if store_tap = 1
+						{
+							#region Нажатие на дейли
+								#region Появление
+									if daily_buy[dall] = 1
 									{
-										daily_buy_s[dall] += 0.1;
-									}
-									else
-									{
-										daily_buy_s[dall] = 1;
-									}
-								}
-								else
-								{
-									if daily_buy_s[dall] > 0
-									{
-										daily_buy_s[dall] -= 0.1;
-									}
-									else
-									{
-										daily_buy_s[dall] = 0;
-									}
-								}
-							#endregion
-							#region Нажатие
-								if daily_buy[1] = 0 && daily_buy[2] = 0 && daily_buy[3] = 0
-								&& lootbox_buy_s[1] = 0 && lootbox_buy_s[2] = 0
-								&& lootbox_buy[1] = 0 && lootbox_buy[2] = 0 && daily_buy[1] = 0 && daily_buy[2] = 0 && daily_buy[3] = 0
-								{
-									if point_in_rectangle(mouse_x, mouse_y, dall_x - 87, top + 80 + daily_y + training_back_y + pry + store_yy1 - 200, dall_x + 87, top + 80 + daily_y + training_back_y + pry + store_yy1 + 200)
-									{
-										if (daily_t[dall] = 1 && daily_b[dall] = 0) or (daily_t[dall] = 0 && global.totem_have[daily_n[dall]] = 0)
+										if daily_buy_s[dall] < 1
 										{
-											if mouse_check_button(mb_left)
+											daily_buy_s[dall] += 0.1;
+										}
+										else
+										{
+											daily_buy_s[dall] = 1;
+										}
+									}
+									else
+									{
+										if daily_buy_s[dall] > 0
+										{
+											daily_buy_s[dall] -= 0.1;
+										}
+										else
+										{
+											daily_buy_s[dall] = 0;
+										}
+									}
+								#endregion
+								#region Нажатие
+									if daily_buy[1] = 0 && daily_buy[2] = 0 && daily_buy[3] = 0
+									&& lootbox_buy_s[1] = 0 && lootbox_buy_s[2] = 0
+									&& lootbox_buy[1] = 0 && lootbox_buy[2] = 0 && daily_buy[1] = 0 && daily_buy[2] = 0 && daily_buy[3] = 0
+									{
+										if point_in_rectangle(mouse_x, mouse_y, dall_x - 87, m_y1 + 170 - 200, dall_x + 87, m_y1 + 170 + 200)
+										{
+											if (daily_t[dall] = 1 && daily_b[dall] = 0) or (daily_t[dall] = 0 && global.totem_have[daily_n[dall]] = 0)
 											{
-												d_h = 1.1;
-											}
-											if mouse_check_button_pressed(mb_left)
-											{
-												if global.sound
+												if mouse_check_button(mb_left)
 												{
-													audio_play_sound(sd_text, 2, 0);
+													d_h = 1.1;
 												}
-											}
-											if mouse_check_button_released(mb_left)
-											{
-												GoogleAnalytics_SendEvent("DAILY","Игрок купил DAILY " + string(dall));
-												daily_buy[dall] = 1;
-												io_clear();
+												if mouse_check_button_pressed(mb_left)
+												{
+													if global.sound
+													{
+														audio_play_sound(sd_text, 2, 0);
+													}
+												}
+												if mouse_check_button_released(mb_left)
+												{
+													GoogleAnalytics_SendEvent("DAILY","Игрок купил DAILY " + string(dall));
+													daily_buy[dall] = 1;
+													io_clear();
+												}
 											}
 										}
 									}
+								#endregion
+							#endregion
+						}
+						if daily_t[dall] = 1
+						{
+							#region Отрисовка дейли-листовки
+								var name;
+								name = heroes_name[daily_n[dall]];
+								draw_sprite_ext(s_wanted, daily_n[dall], dall_x + 5, m_y1 + 170 + 10, 0.5, 0.5, 0, c_black, 0.5);
+								if daily_buy[dall] = 0 && daily_b[dall] = 0
+								{
+									draw_sprite_ext_t(s_wanted, daily_n[dall], dall_x, m_y1 + 170, 0.5 * d_h, 0.5 * d_h, 0, c_white, 1, c_white, c_black);
+									draw_text_transformed_t(dall_x, m_y1 + 170 + 80, name, 0.12 * d_h, 0.12 * d_h, 0, global.color_hero[daily_n[dall]], c_black);
+									draw_text_transformed_t(dall_x + 70, m_y1 + 170 - 100, "*" + string(daily_r[dall]), 0.18 * d_h, 0.18 * d_h, 0, global.color_white, c_black);
+									if daily_pr[dall] = 1
+									{
+										draw_text_transformed_t(dall_x, m_y1 + 170 + 140, string(daily_p[dall]) + "ç", 0.25 * d_h, 0.25 * d_h, 0, global.cash_color, c_black);
+									}
+									else
+									{
+										draw_text_transformed_t(dall_x, m_y1 + 170 + 140, string(daily_p[dall]) + "©", 0.25 * d_h, 0.25 * d_h, 0, global.gold_color, c_black);
+									}
 								}
 							#endregion
-						#endregion
+						}
+						else
+						{
+							#region Отрисовка дейли-тотема
+								draw_sprite_ext(s_totems, daily_n[dall], dall_x + 5, m_y1 + 10, 0.35, 0.35, 0, c_black, 0.5);
+								if daily_buy[dall] = 0 && daily_b[dall] = 0 && global.totem_have[daily_n[dall]] = 0
+								{
+									draw_sprite_ext_t(s_totems, daily_n[dall], dall_x, m_y1, 0.35 * d_h, 0.35 * d_h, 0, c_white, 1, c_white, c_black);
+									draw_sprite_ext(s_totems_eyes, daily_n[dall], dall_x, m_y1, 0.35 * d_h, 0.35 * d_h, 0, daily_c[dall], 0.5);
+									draw_text_ext_transformed_t(dall_x, m_y1 + 80, global.totem_name[daily_n[dall]], -1, 1000, 0.12 * d_h, 0.12 * d_h, 0, daily_c[dall], c_black);
+									if daily_pr[dall] = 1
+									{
+										draw_text_transformed_t(dall_x, m_y1 + 170 + 140, string(daily_p[dall]) + "ç", 0.25 * d_h, 0.25 * d_h, 0, global.cash_color, c_black);
+									}
+									else
+									{
+										draw_text_transformed_t(dall_x, m_y1 + 140, string(daily_p[dall]) + "©", 0.25 * d_h, 0.25 * d_h, 0, global.gold_color, c_black);
+									}
+								}
+							#endregion
+						}
 					}
-					if daily_t[dall] = 1
-					{
-						#region Отрисовка дейли-листовки
-							var name;
-							name = heroes_name[daily_n[dall]];
-							draw_sprite_ext(s_wanted, daily_n[dall], dall_x + 5, top + 80 + daily_y + training_back_y + pry + store_yy1 + 10, 0.5, 0.5, 0, c_black, 0.5);
-							if daily_buy[dall] = 0 && daily_b[dall] = 0
-							{
-								draw_sprite_ext_t(s_wanted, daily_n[dall], dall_x, top + 80 + daily_y + training_back_y + pry + store_yy1, 0.5 * d_h, 0.5 * d_h, 0, c_white, 1, c_white, c_black);
-								draw_text_transformed_t(dall_x, top + 80 + daily_y + training_back_y + pry + store_yy1 + 80, name, 0.12 * d_h, 0.12 * d_h, 0, global.color_hero[daily_n[dall]], c_black);
-								draw_text_transformed_t(dall_x + 70, top + 80 + daily_y + training_back_y + pry + store_yy1 - 100, "*" + string(daily_r[dall]), 0.18 * d_h, 0.18 * d_h, 0, global.color_white, c_black);
-								if daily_pr[dall] = 1
-								{
-									draw_text_transformed_t(dall_x, top + 80 + daily_y + training_back_y + pry + store_yy1 + 140, string(daily_p[dall]) + "ç", 0.25 * d_h, 0.25 * d_h, 0, global.cash_color, c_black);
-								}
-								else
-								{
-									draw_text_transformed_t(dall_x, top + 80 + daily_y + training_back_y + pry + store_yy1 + 140, string(daily_p[dall]) + "©", 0.25 * d_h, 0.25 * d_h, 0, global.gold_color, c_black);
-								}
-							}
-						#endregion
-					}
-					else
-					{
-						#region Отрисовка дейли-тотема
-							draw_sprite_ext(s_totems, daily_n[dall], dall_x + 5, top + 80 + daily_y + training_back_y + pry + store_yy1 + 10, 0.35, 0.35, 0, c_black, 0.5);
-							if daily_buy[dall] = 0 && daily_b[dall] = 0 && global.totem_have[daily_n[dall]] = 0
-							{
-								draw_sprite_ext_t(s_totems, daily_n[dall], dall_x, top + 80 + daily_y + training_back_y + pry + store_yy1, 0.35 * d_h, 0.35 * d_h, 0, c_white, 1, c_white, c_black);
-								draw_sprite_ext(s_totems_eyes, daily_n[dall], dall_x, top + 80 + daily_y + training_back_y + pry + store_yy1, 0.35 * d_h, 0.35 * d_h, 0, daily_c[dall], 0.5);
-								draw_text_ext_transformed_t(dall_x, top + 80 + daily_y + training_back_y + pry + store_yy1 + 80, global.totem_name[daily_n[dall]], -1, 1000, 0.12 * d_h, 0.12 * d_h, 0, daily_c[dall], c_black);
-								if daily_pr[dall] = 1
-								{
-									draw_text_transformed_t(dall_x, top + 80 + daily_y + training_back_y + pry + store_yy1 + 140, string(daily_p[dall]) + "ç", 0.25 * d_h, 0.25 * d_h, 0, global.cash_color, c_black);
-								}
-								else
-								{
-									draw_text_transformed_t(dall_x, top + 80 + daily_y + training_back_y + pry + store_yy1 + 140, string(daily_p[dall]) + "©", 0.25 * d_h, 0.25 * d_h, 0, global.gold_color, c_black);
-								}
-							}
-						#endregion
-					}
-				}
+				#endregion
 			#endregion
 			#region МЕНЮ 3: Покупка кэша
 				#region Нажатие на покупку КЭША
-					var cx1, cx2, cx3, cy1, cy2, sc1, sc2, sc3, sc4, sc5, sc6;
-					cx1 = 640 - 200;
-					cx2 = 640;
-					cx3 = 640 + 200;
-					cy1 = top + 127 + cash_y + training_back_y + pry + store_yy1;
-					cy2 = 300 + cy1;
+					var m_x3, m_y3, m_x3_h1, m_x3_h2, m_x3_h3, m_x3_h4, m_s3;
+					m_x3	= global.width / 2 + prx;
+					m_y3	= top + 127 + cash_y + training_back_y + store_yy1 + pry - 380;
+					m_x3_h1 = 330;
+					m_x3_h2 = -135;
+					m_x3_h3 = -57;
+					m_x3_h4 = 100;
+					m_s3	= s_currency_buy;
+					var cx1, cx2, cx3, cx4, cx5, cx6, cy1, cy2, sc1, sc2, sc3, sc4, sc5, sc6;
+					cx1 = global.width / 2 - 500; // - 200;
+					cx2 = global.width / 2 - 300; //
+					cx3 = global.width / 2 - 100; // + 200;
+					cx4 = global.width / 2 + 100; // - 200;
+					cx5 = global.width / 2 + 300; //
+					cx6 = global.width / 2 + 500; // + 200;
+					cy1 = m_y3; //top + 127 + cash_y + training_back_y + pry + store_yy1;
+					cy2 = cy1 //+ m_x3_h1; //m_x3_h1 + m_y3//300 + cy1;
 					sc1 = 1;
 					sc2 = 1;
 					sc3 = 1;
@@ -3048,7 +3113,7 @@
 								}
 							#endregion
 							#region Покупка 4
-								if point_in_rectangle(mouse_x, mouse_y, cx1 - 75, cy2 - 105, cx1 + 75, cy2 + 105)
+								if point_in_rectangle(mouse_x, mouse_y, cx4 - 75, cy2 - 105, cx4 + 75, cy2 + 105)
 								{
 									if mouse_check_button_released(mb_left) && store_yy <= 0 && gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0
 									{
@@ -3085,7 +3150,7 @@
 								}
 							#endregion
 							#region Покупка 5
-								if point_in_rectangle(mouse_x, mouse_y, cx2 - 75, cy2 - 105, cx2 + 75, cy2 + 105)
+								if point_in_rectangle(mouse_x, mouse_y, cx5 - 75, cy2 - 105, cx5 + 75, cy2 + 105)
 									{
 									if mouse_check_button_released(mb_left) && store_yy <= 0 && gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0
 									{
@@ -3122,7 +3187,7 @@
 								}
 							#endregion
 							#region Покупка 6
-								if point_in_rectangle(mouse_x, mouse_y, cx3 - 75, cy2 - 105, cx3 + 75, cy2 + 105)
+								if point_in_rectangle(mouse_x, mouse_y, cx6 - 75, cy2 - 105, cx6 + 75, cy2 + 105)
 								{
 									if mouse_check_button_released(mb_left) && store_yy <= 0 && gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0
 									{
@@ -3162,63 +3227,75 @@
 					}
 				#endregion
 				#region Отрисовка
-					// Плашка
-					draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 100 + 10, 0.4, 0.4, 0, c_black, 0.5);
-					draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_white, 1);
-					// Название
-					draw_text_transformed_t(640 + prx, top + 20 + cash_y + training_back_y + store_yy1 + pry - 120, store_text[8], 0.17, 0.17, 0, global.color_white, c_black);
-					
-					draw_sprite_ext(s_currency_buy, 0, 640 + prx - 200 + 5, top + 127 + cash_y + training_back_y + pry + store_yy1 + 10, 0.5 * sc1, 0.5 * sc1, 0, c_black, 0.5);
-					draw_sprite_ext_t(s_currency_buy, 0, 640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1, 0.5 * sc1, 0.5 * sc1, 0, c_white, 1, c_white, c_black);
-					draw_text_ext_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[1], -1, 1600, 0.11 * sc1, 0.11 * sc1, 0, global.color_white, c_black);
-					draw_text_ext_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[1]), -1, 250, 0.18 * sc1, 0.18 * sc1, 0, global.cash_color, c_black);
-					draw_text_ext_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[1], -1, 250, 0.2 * sc1, 0.2 * sc1, 0, global.color_white, c_black);
-					if os_get_region() = "RU"
-					{
-						draw_text_ext_transformed_t(640 + prx - 200, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100 - string_height(cash_pri[1]) * 0.2 * sc1 - 5, store_text[9], -1, 250, 0.08 * sc1, 0.08 * sc1, 0, global.color_white, c_black);
-					}
-					draw_sprite_ext(s_currency_buy, 1, 640 + prx + 5, top + 127 + cash_y + training_back_y + pry + store_yy1 + 10, 0.5 * sc2, 0.5 * sc2, 0, c_black, 0.5);
-					draw_sprite_ext_t(s_currency_buy, 1, 640 + prx, top + 127 + cash_y + training_back_y + pry + store_yy1, 0.5 * sc2, 0.5 * sc2, 0, c_white, 1, c_white, c_black);
-					draw_text_ext_transformed_t(640 + prx, top + 127 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[2], -1, 1600, 0.11 * sc2, 0.11 * sc2, 0, global.color_white, c_black);
-					draw_text_transformed_t(640 + prx, top + 127 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[2]), 0.18 * sc2, 0.18 * sc2, 0, global.cash_color, c_black);
-					draw_text_transformed_t(640 + prx, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[2], 0.2 * sc2, 0.2 * sc2, 0, global.color_white, c_black);
-					
-					draw_sprite_ext(s_currency_buy, 2, 640 + prx + 200 + 5, top + 127 + cash_y + training_back_y + pry + store_yy1 + 10, 0.5 * sc3, 0.5 * sc3, 0, c_black, 0.5);
-					draw_sprite_ext_t(s_currency_buy, 2, 640 + prx + 200, top + 127 + cash_y + training_back_y + pry + store_yy1, 0.5 * sc3, 0.5 * sc3, 0, c_white, 1, c_white, c_black);
-					draw_text_ext_transformed_t(640 + prx + 200, top + 127 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[3], -1, 1600, 0.11 * sc3, 0.11 * sc3, 0, global.color_white, c_black);
-					draw_text_transformed_t(640 + prx + 200, top + 127 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[3]), 0.18 * sc3, 0.18 * sc3, 0, global.cash_color, c_black);
-					draw_text_transformed_t(640 + prx + 200, top + 127 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[3], 0.2 * sc3, 0.2 * sc3, 0, global.color_white, c_black);
-		
-					////
-		
-					draw_sprite_ext(s_currency_buy, 3, 640 + prx - 200 + 5, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 10, 0.5 * sc4, 0.5 * sc4, 0, c_black, 0.5);
-					draw_sprite_ext_t(s_currency_buy, 3, 640 + prx - 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1, 0.5 * sc4, 0.5 * sc4, 0, c_white, 1, c_white, c_black);
-					draw_text_ext_transformed_t(640 + prx - 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[4], -1, 1600, 0.11 * sc4, 0.11 * sc4, 0, global.color_white, c_black);
-					draw_text_transformed_t(640 + prx - 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[4]), 0.18 * sc4, 0.18 * sc4, 0, global.cash_color, c_black);
-					draw_text_transformed_t(640 + prx - 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[4], 0.2 * sc4, 0.2 * sc4, 0, global.color_white, c_black);
-		
-					draw_sprite_ext(s_currency_buy, 4, 640 + prx + 5, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 10, 0.5 * sc5, 0.5 * sc5, 0, c_black, 0.5);
-					draw_sprite_ext_t(s_currency_buy, 4, 640 + prx, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1, 0.5 * sc5, 0.5 * sc5, 0, c_white, 1, c_white, c_black);
-					draw_text_ext_transformed_t(640 + prx, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[5], -1, 1600, 0.11 * sc5, 0.11 * sc5, 0, global.color_white, c_black);
-					draw_text_transformed_t(640 + prx, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[5]), 0.18 * sc5, 0.18 * sc5, 0, global.cash_color, c_black);
-					draw_text_transformed_t(640 + prx, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[5], 0.2 * sc5, 0.2 * sc5, 0, global.color_white, c_black);
-		
-					draw_sprite_ext(s_currency_buy, 5, 640 + prx + 200 + 5, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 10, 0.5 * sc6, 0.5 * sc6, 0, c_black, 0.5);
-					draw_sprite_ext_t(s_currency_buy, 5, 640 + prx + 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1, 0.5 * sc6, 0.5 * sc6, 0, c_white, 1, c_white, c_black);
-					draw_text_ext_transformed_t(640 + prx + 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 135, cash_txt[6], -1, 1600, 0.11 * sc6, 0.11 * sc6, 0, global.color_white, c_black);
-					draw_text_transformed_t(640 + prx + 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 - 57, string(cash_val[6]), 0.18 * sc6, 0.18 * sc6, 0, global.cash_color, c_black);
-					draw_text_transformed_t(640 + prx + 200, 300 + top + 157 + cash_y + training_back_y + pry + store_yy1 + 100, cash_pri[6], 0.2 * sc6, 0.2 * sc6, 0, global.color_white, c_black);
-					////////
+					#region Плашка с названием
+						// Плашка
+						draw_sprite_ext(s_store_plash, 0, m_x3, m_y3 - 207 + 10, 0.4, 0.4, 0, c_black, 0.5);
+						draw_sprite_ext(s_store_plash, 0, m_x3, m_y3 - 207, 0.4, 0.4, 0, c_white, 1);
+						// Название
+						draw_text_transformed_t(m_x3, m_y3 - 227, store_text[8], 0.17, 0.17, 0, global.color_white, c_black);
+					#endregion
+					#region Покупка 1
+						draw_sprite_ext(m_s3, 0, cx1 + 5, cy1 + 10, 0.5 * sc1, 0.5 * sc1, 0, c_black, 0.5);
+						draw_sprite_ext_t(m_s3, 0, cx1, cy1, 0.5 * sc1, 0.5 * sc1, 0, c_white, 1, c_white, c_black);
+						draw_text_ext_transformed_t(cx1, cy1 + m_x3_h2, cash_txt[1], -1, 1600, 0.11 * sc1, 0.11 * sc1, 0, global.color_white, c_black);
+						draw_text_ext_transformed_t(cx1, cy1 + m_x3_h3, string(cash_val[1]), -1, 250, 0.18 * sc1, 0.18 * sc1, 0, global.cash_color, c_black);
+						draw_text_ext_transformed_t(cx1, cy1 + m_x3_h4, cash_pri[1], -1, 250, 0.2 * sc1, 0.2 * sc1, 0, global.color_white, c_black);
+						if os_get_region() = "RU"
+						{
+							draw_text_ext_transformed_t(cx1, cy1 + 100 - string_height(cash_pri[1]) * 0.2 * sc1 - 5, store_text[9], -1, 250, 0.08 * sc1, 0.08 * sc1, 0, global.color_white, c_black);
+						}
+					#endregion
+					#region Покупка 2
+						draw_sprite_ext(m_s3, 1, cx2 + 5, cy1 + 10, 0.5 * sc2, 0.5 * sc2, 0, c_black, 0.5);
+						draw_sprite_ext_t(m_s3, 1, cx2, cy1, 0.5 * sc2, 0.5 * sc2, 0, c_white, 1, c_white, c_black);
+						draw_text_ext_transformed_t(cx2, cy1 + m_x3_h2, cash_txt[2], -1, 1600, 0.11 * sc2, 0.11 * sc2, 0, global.color_white, c_black);
+						draw_text_transformed_t(cx2, cy1 + m_x3_h3, string(cash_val[2]), 0.18 * sc2, 0.18 * sc2, 0, global.cash_color, c_black);
+						draw_text_transformed_t(cx2, cy1 + m_x3_h4, cash_pri[2], 0.2 * sc2, 0.2 * sc2, 0, global.color_white, c_black);
+					#endregion
+					#region Покупка 3
+						draw_sprite_ext(m_s3, 2, cx3 + 5, cy1 + 10, 0.5 * sc3, 0.5 * sc3, 0, c_black, 0.5);
+						draw_sprite_ext_t(m_s3, 2, cx3, cy1, 0.5 * sc3, 0.5 * sc3, 0, c_white, 1, c_white, c_black);
+						draw_text_ext_transformed_t(cx3, cy1 + m_x3_h2, cash_txt[3], -1, 1600, 0.11 * sc3, 0.11 * sc3, 0, global.color_white, c_black);
+						draw_text_transformed_t(cx3, cy1 + m_x3_h3, string(cash_val[3]), 0.18 * sc3, 0.18 * sc3, 0, global.cash_color, c_black);
+						draw_text_transformed_t(cx3, cy1 + m_x3_h4, cash_pri[3], 0.2 * sc3, 0.2 * sc3, 0, global.color_white, c_black);
+					#endregion
+					#region Покупка 4
+						draw_sprite_ext(m_s3, 3, cx4 + 5, cy2 + 10, 0.5 * sc4, 0.5 * sc4, 0, c_black, 0.5);
+						draw_sprite_ext_t(m_s3, 3, cx4, cy2, 0.5 * sc4, 0.5 * sc4, 0, c_white, 1, c_white, c_black);
+						draw_text_ext_transformed_t(cx4, cy2 + m_x3_h2, cash_txt[4], -1, 1600, 0.11 * sc4, 0.11 * sc4, 0, global.color_white, c_black);
+						draw_text_transformed_t(cx4, cy2 + m_x3_h3, string(cash_val[4]), 0.18 * sc4, 0.18 * sc4, 0, global.cash_color, c_black);
+						draw_text_transformed_t(cx4, cy2 + m_x3_h4, cash_pri[4], 0.2 * sc4, 0.2 * sc4, 0, global.color_white, c_black);
+					#endregion
+					#region Покупка 5
+						draw_sprite_ext(m_s3, 4, cx5 + 5, cy2 + 10, 0.5 * sc5, 0.5 * sc5, 0, c_black, 0.5);
+						draw_sprite_ext_t(m_s3, 4, cx5, cy2, 0.5 * sc5, 0.5 * sc5, 0, c_white, 1, c_white, c_black);
+						draw_text_ext_transformed_t(cx5, cy2 + m_x3_h2, cash_txt[5], -1, 1600, 0.11 * sc5, 0.11 * sc5, 0, global.color_white, c_black);
+						draw_text_transformed_t(cx5, cy2 + m_x3_h3, string(cash_val[5]), 0.18 * sc5, 0.18 * sc5, 0, global.cash_color, c_black);
+						draw_text_transformed_t(cx5, cy2 + m_x3_h4, cash_pri[5], 0.2 * sc5, 0.2 * sc5, 0, global.color_white, c_black);
+					#endregion
+					#region Покупка 6
+						draw_sprite_ext(m_s3, 5, cx6 + 5, cy2 + 10, 0.5 * sc6, 0.5 * sc6, 0, c_black, 0.5);
+						draw_sprite_ext_t(m_s3, 5, cx6, cy2, 0.5 * sc6, 0.5 * sc6, 0, c_white, 1, c_white, c_black);
+						draw_text_ext_transformed_t(cx6, cy2 + m_x3_h2, cash_txt[6], -1, 1600, 0.11 * sc6, 0.11 * sc6, 0, global.color_white, c_black);
+						draw_text_transformed_t(cx6, cy2 + m_x3_h3, string(cash_val[6]), 0.18 * sc6, 0.18 * sc6, 0, global.cash_color, c_black);
+						draw_text_transformed_t(cx6, cy2 + m_x3_h4, cash_pri[6], 0.2 * sc6, 0.2 * sc6, 0, global.color_white, c_black);
+					#endregion
 				#endregion
 			#endregion
 			#region МЕНЮ 4: Покупка голды
-				// Нажатие
 				#region Нажатие на покупку ГОЛД
+					var m_x4, m_y4, m_x4_h2, m_x4_h3, m_x4_h4, m_s4;
+					m_x4	= global.width / 2 + prx;
+					m_y4	= top + 157 + gold_y + training_back_y + pry + store_yy1;
+					m_x4_h2 = -57;
+					m_x4_h3 = -135;
+					m_x4_h4 = 100;
+					m_s4	= s_currency_buy;
 					var gx1, gx2, gx3, gy, sg1, sg2, sg3;
-					gx1 = 640 - 200;
-					gx2 = 640;
-					gx3 = 640 + 200;
-					gy  = top + 157 + gold_y + training_back_y + pry + store_yy1;
+					gx1 = 300 + global.width / 2 - 200;
+					gx2 = 300 + global.width / 2;
+					gx3 = 300 + global.width / 2 + 200;
+					gy  = m_y4;
 					sg1 = 1;
 					sg2 = 1;
 					sg3 = 1;
@@ -3349,56 +3426,56 @@
 						#endregion
 					}
 				#endregion
-				// Плашка
-				draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 100 + 10, 0.4, 0.4, 0, c_black, 0.5);
-				draw_sprite_ext(s_store_plash, 0, 640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 100, 0.4, 0.4, 0, c_white, 1);
-				// Название
-				draw_text_transformed_t(640 + prx, top + 40 + gold_y + training_back_y + store_yy1 + pry - 120, store_text[10], 0.17, 0.17, 0, global.color_white, c_black);
-				// Кнопка покупки
-				draw_sprite_ext(s_currency_buy, 6, 640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 10, 0.5 * sg1, 0.5 * sg1, 0, c_black, 0.5);
-				// Конкретные названия
+				#region Плашка с названием
+					// Плашка
+					draw_sprite_ext(s_store_plash, 0, gx2, m_y4 + 17 + 10 - 220, 0.4, 0.4, 0, c_black, 0.5);
+					draw_sprite_ext(s_store_plash, 0, gx2, m_y4 + 17 - 220, 0.4, 0.4, 0, c_white, 1);
+					// Название
+					draw_text_transformed_t(gx2, m_y4 - 3 - 220, store_text[10], 0.17, 0.17, 0, global.color_white, c_black);
+				#endregion
 				#region Первая: 100 голды
+					draw_sprite_ext(s_currency_buy, 6, gx1, m_y4 + 10, 0.5 * sg1, 0.5 * sg1, 0, c_black, 0.5);
 					if gold_buy[1] = 0
 					{
-						draw_sprite_ext_t(s_currency_buy, 6, 640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg1, 0.5 * sg1, 0, c_white, 1, c_white, c_black);
-						draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 57, string(gold_val[1]), 0.18 * sg1, 0.18 * sg1, 0, global.gold_color, c_black);
+						draw_sprite_ext_t(s_currency_buy, 6, gx1, m_y4, 0.5 * sg1, 0.5 * sg1, 0, c_white, 1, c_white, c_black);
+						draw_text_transformed_t(gx1, m_y4 + m_x4_h2, string(gold_val[1]), 0.18 * sg1, 0.18 * sg1, 0, global.gold_color, c_black);
 						if global.cash < gold_pri[1]
 						{
-							draw_sprite_ext(s_currency_buy, 6, 640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg1, 0.5 * sg1, 0, c_black, 0.5);
-							draw_text_ext_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1, store_text[11], -1, 250, 0.12, 0.12, 0, global.color_white, c_black);
+							draw_sprite_ext(s_currency_buy, 6, gx1, m_y4, 0.5 * sg1, 0.5 * sg1, 0, c_black, 0.5);
+							draw_text_ext_transformed_t(gx1, m_y4, store_text[11], -1, 250, 0.12, 0.12, 0, global.color_white, c_black);
 						}
-						draw_text_ext_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[1], -1, 1600, 0.11 * sg1, 0.11 * sg1, 0, global.color_white, c_black);
-						draw_text_transformed_t(640 + prx - 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[1]) + "ç", 0.2 * sg1, 0.2 * sg1, 0, global.cash_color, c_black);
+						draw_text_ext_transformed_t(gx1, m_y4 + m_x4_h3, gold_txt[1], -1, 1600, 0.11 * sg1, 0.11 * sg1, 0, global.color_white, c_black);
+						draw_text_transformed_t(gx1, m_y4 + m_x4_h4, string(gold_pri[1]) + "ç", 0.2 * sg1, 0.2 * sg1, 0, global.cash_color, c_black);
 					}
-					draw_sprite_ext(s_currency_buy, 7, 640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 + 10, 0.5 * sg2, 0.5 * sg2, 0, c_black, 0.5);
 				#endregion
 				#region Вторая: 800 голды
+					draw_sprite_ext(s_currency_buy, 7, gx2, m_y4 + 10, 0.5 * sg2, 0.5 * sg2, 0, c_black, 0.5);
 					if gold_buy[2] = 0
 					{
-						draw_sprite_ext_t(s_currency_buy, 7, 640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg2, 0.5 * sg2, 0, c_white, 1, c_white, c_black);
-						draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 - 57, string(gold_val[2]), 0.18 * sg2, 0.18 * sg2, 0, global.gold_color, c_black);
+						draw_sprite_ext_t(s_currency_buy, 7, gx2, m_y4, 0.5 * sg2, 0.5 * sg2, 0, c_white, 1, c_white, c_black);
+						draw_text_transformed_t(gx2, m_y4 + m_x4_h2, string(gold_val[2]), 0.18 * sg2, 0.18 * sg2, 0, global.gold_color, c_black);
 						if global.cash < gold_pri[2]
 						{
-							draw_sprite_ext(s_currency_buy, 7, 640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg2, 0.5 * sg2, 0, c_black, 0.5);
-							draw_text_ext_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1, store_text[11], -1, 250, 0.12, 0.12, 0, global.color_white, c_black);
+							draw_sprite_ext(s_currency_buy, 7, gx2, m_y4, 0.5 * sg2, 0.5 * sg2, 0, c_black, 0.5);
+							draw_text_ext_transformed_t(gx2, m_y4, store_text[11], -1, 250, 0.12, 0.12, 0, global.color_white, c_black);
 						}
-						draw_text_ext_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[2], -1, 1600, 0.11 * sg2, 0.11 * sg2, 0, global.color_white, c_black);
-						draw_text_transformed_t(640 + prx, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[2]) + "ç", 0.2 * sg2, 0.2 * sg2, 0, global.cash_color, c_black);
+						draw_text_ext_transformed_t(gx2, m_y4 + m_x4_h3, gold_txt[2], -1, 1600, 0.11 * sg2, 0.11 * sg2, 0, global.color_white, c_black);
+						draw_text_transformed_t(gx2, m_y4 + m_x4_h4, string(gold_pri[2]) + "ç", 0.2 * sg2, 0.2 * sg2, 0, global.cash_color, c_black);
 					}
-					draw_sprite_ext(s_currency_buy, 8, 640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 10, 0.5 * sg3, 0.5 * sg3, 0, c_black, 0.5);
 				#endregion
 				#region Третья: 5500 голды
+					draw_sprite_ext(s_currency_buy, 8, gx3, m_y4 + 10, 0.5 * sg3, 0.5 * sg3, 0, c_black, 0.5);
 					if gold_buy[3] = 0
 					{
-						draw_sprite_ext_t(s_currency_buy, 8, 640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg3, 0.5 * sg3, 0, c_white, 1, c_white, c_black);
-						draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 57, string(gold_val[3]), 0.18 * sg3, 0.18 * sg3, 0, global.gold_color, c_black);
+						draw_sprite_ext_t(s_currency_buy, 8, gx3, m_y4, 0.5 * sg3, 0.5 * sg3, 0, c_white, 1, c_white, c_black);
+						draw_text_transformed_t(gx3, m_y4 + m_x4_h2, string(gold_val[3]), 0.18 * sg3, 0.18 * sg3, 0, global.gold_color, c_black);
 						if global.cash < gold_pri[3]
 						{
-							draw_sprite_ext(s_currency_buy, 8, 640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, 0.5 * sg3, 0.5 * sg3, 0, c_black, 0.5);
-							draw_text_ext_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1, store_text[11], -1, 250, 0.12, 0.12, 0, global.color_white, c_black);
+							draw_sprite_ext(s_currency_buy, 8, gx3, m_y4, 0.5 * sg3, 0.5 * sg3, 0, c_black, 0.5);
+							draw_text_ext_transformed_t(gx3, m_y4, store_text[11], -1, 250, 0.12, 0.12, 0, global.color_white, c_black);
 						}
-						draw_text_ext_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 - 135, gold_txt[3], -1, 1600, 0.11 * sg3, 0.11 * sg3, 0, global.color_white, c_black);
-						draw_text_transformed_t(640 + prx + 200, top + 157 + gold_y + training_back_y + pry + store_yy1 + 100, string(gold_pri[3]) + "ç", 0.2 * sg3, 0.2 * sg3, 0, global.cash_color, c_black);
+						draw_text_ext_transformed_t(gx3, m_y4 + m_x4_h3, gold_txt[3], -1, 1600, 0.11 * sg3, 0.11 * sg3, 0, global.color_white, c_black);
+						draw_text_transformed_t(gx3, m_y4 + m_x4_h4, string(gold_pri[3]) + "ç", 0.2 * sg3, 0.2 * sg3, 0, global.cash_color, c_black);
 					}
 				#endregion
 			#endregion	
@@ -3496,11 +3573,6 @@
 				}
 			#endregion
 		#endregion
-		#region Задник поверх 1: Дерево
-			var top;
-			top = sprite_get_height(s_training_back) * ((sprite_get_height(s_training_back) / sprite_get_width(s_training_back)) - (global.height / global.width)) / 2;
-			//draw_sprite_part_ext(s_store_back, 0, 0, top, sprite_get_width(s_store_back), sprite_get_height(s_store_back) - top, 0, training_back_y, global.back_scale, global.back_scale, c_white, 1);
-		#endregion
 		#region Дополнительные переменные Y
 			var yh, col;
 			yh = 0;
@@ -3510,27 +3582,27 @@
 				yh = 30;
 			}
 		#endregion
-		#region Нажатие на колесо
-			if point_in_rectangle(mouse_x, mouse_y, 0, global.height - 250, 250, global.height)
-			&& (gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0 && lootbox_buy[1] = 0 && lootbox_buy[2] = 0 && daily_buy[1] = 0 && daily_buy[2] = 0 && daily_buy[3] = 0)
-			{
-				if mouse_check_button_pressed(mb_left)
-				{
-					if global.sound
-					{
-						audio_play_sound(sd_text, 2, 0);
-					}
-				}
-				if mouse_check_button_pressed(mb_left)
-				{
-					if wl_spd < 15
-					{
-						wl_spd += 2.5;
-					}
-				}
-			}
-		#endregion
 		#region Задник поверх 2: Колесо
+			#region Нажатие на колесо
+				if point_in_rectangle(mouse_x, mouse_y, 0, global.height - 250, 250, global.height)
+				&& (gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0 && lootbox_buy[1] = 0 && lootbox_buy[2] = 0 && daily_buy[1] = 0 && daily_buy[2] = 0 && daily_buy[3] = 0)
+				{
+					if mouse_check_button_pressed(mb_left)
+					{
+						if global.sound
+						{
+							audio_play_sound(sd_text, 2, 0);
+						}
+					}
+					if mouse_check_button_pressed(mb_left)
+					{
+						if wl_spd < 15
+						{
+							wl_spd += 2.5;
+						}
+					}
+				}
+			#endregion
 			#region Движение
 				wl_ang -= wl_spd;
 				if wl_spd > 0
@@ -3547,9 +3619,9 @@
 				}
 			#endregion
 			#region Отрисовка
-				draw_set_font(global.game_font);
-				draw_text_ext_transformed_t(1024, global.height / 2 + training_back_y, store_text[12], -1, 250, 0.25, 0.25, 0, col, c_black);
-				draw_text_ext_transformed_t( 256, global.height / 2 + training_back_y, store_text[12], -1, 250, 0.25, 0.25, 0, col, c_black);
+				//draw_set_font(global.game_font);
+				//draw_text_ext_transformed_t(1024, global.height / 2 + training_back_y, store_text[12], -1, 250, 0.25, 0.25, 0, col, c_black);
+				//draw_text_ext_transformed_t( 256, global.height / 2 + training_back_y, store_text[12], -1, 250, 0.25, 0.25, 0, col, c_black);
 				draw_sprite_ext(s_store_weel, 2, 15 + 100, global.height + training_back_y - 10 + yh / 3 + 10, global.back_scale, global.back_scale, wl_ang, c_black, 0.5);
 				draw_sprite_ext_t(s_store_weel, 2, 100, global.height + training_back_y - 10 + yh / 3, global.back_scale, global.back_scale, wl_ang, c_white, 1, c_white, c_black);
 			#endregion
@@ -3576,19 +3648,6 @@
 					sc_dist -= 0.025;
 				}
 			#endregion
-		#endregion
-		#region Задник поверх 3: Крыша, нажатие
-			//draw_sprite_ext(s_store_back, 3, 640, global.height / 2 + 1300 * global.back_scale / 1.5 - training_back_y + pry * 0.5 + sc_angle + 10, global.back_scale, global.back_scale, 0, c_black, 0.5);
-			//draw_sprite_ext_t(s_store_back, 3, 640 + prx, global.height / 2 + 1300 * global.back_scale / 1.5 - training_back_y + pry * 0.5 + sc_angle/* global.height + top - training_back_y + pry * 0.5 + sc_angle * 2 - 27*/, global.back_scale, global.back_scale, 0, c_white, 1, c_white, c_black);
-			if point_in_rectangle(mouse_x, mouse_y, 280, global.height + top - 100 - 1200 * global.back_scale - 27, 1000, global.height + top + 500 - 1200 * global.back_scale - 27)
-			&& (gold_buy[1] = 0 && gold_buy[2] = 0 && gold_buy[3] = 0 && lootbox_buy[1] = 0 && lootbox_buy[2] = 0 && daily_buy[1] = 0 && daily_buy[2] = 0 && daily_buy[3] = 0)
-			{
-				if mouse_check_button_pressed(mb_left)
-				{
-					sc_spd   = 2;
-					sc_dist  = 10;
-				}
-			}
 		#endregion
 		#region ЗАКРЫТИЕ
 			if point_in_rectangle(mouse_x, mouse_y, 0, 0, 100, 100)

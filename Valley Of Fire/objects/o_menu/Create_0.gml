@@ -77,6 +77,10 @@
 		topp = -((720 - global.height) + 30 * sign((720 - global.height)));
 	}
 	topp = -(720 - global.height) / 2;
+	anim_x[1] = 400;
+	anim_x[2] = 400;
+	anim_x[3] = 0;
+	anim_x[4] = 0;
 #endregion
 #region Обучение (тренировка)
 	#region Угл, направление, расстояние
