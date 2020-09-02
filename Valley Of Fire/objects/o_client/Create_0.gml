@@ -1,4 +1,4 @@
-global.online = true;
+global.online = false;
 
 for(i = 1; i <= 20; i++)
 {

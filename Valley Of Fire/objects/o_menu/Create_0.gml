@@ -45,11 +45,11 @@
 	tr_timm = 0;
 	//global.fps_mental = 0;
 	//global.fps_col = 0;
-	global.lug_time = 0;
+	//global.lug_time = 0;
 	global.duel = 0;
 	global.menu_now   = "main";
-	global.back_scale = 1 // global.width / 2092; // 1
-	global.menu_next = "main";
+	global.back_scale = 1; // global.width / 2092; // 1
+	global.menu_next  = "main";
 	time_h = "";
 	time_m = "";
 	time_t = room_speed;
@@ -1796,6 +1796,6 @@
 		global.menu_next = "quests";
 	}
 #endregion
-#region ОНЛАИН
+#region ОНЛАЙН
 	searching = 0;
 #endregion

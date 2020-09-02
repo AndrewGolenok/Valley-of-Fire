@@ -151,7 +151,7 @@
 	spd_min = 0;
 	spd_med = 0.5;
 	spd_nor = 1;
-	spd_max = 2;
+	spd_max = 1.5;
 #endregion
 #region Переменные онлайна
 	bolshaya_zhopa = 0;

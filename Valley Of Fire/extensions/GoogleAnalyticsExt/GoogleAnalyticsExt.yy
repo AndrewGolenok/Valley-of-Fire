@@ -1,7 +1,7 @@
 {
     "id": "e431a8e6-f0c5-4643-830c-2127c2b1b31d",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "GoogleAnalyticsExt",
     "IncludedResources": [
         
@@ -21,6 +21,7 @@
     "copyToTargets": 834777342120174,
     "date": "2018-56-31 04:08:39",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -125,13 +126,29 @@
     "iosThirdPartyFrameworkEntries": [
         
     ],
+    "iosdelegatename": null,
     "iosplistinject": "",
     "license": "Free to use, also for commercial games.",
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "com.yoyogames.googleanalytics",
     "productID": "613CB732594A20D7D84D3DE524B4DD6D",
     "sourcedir": "",
+    "supportedTargets": 834777342120174,
+    "tvosProps": false,
+    "tvosSystemFrameworkEntries": [
+        
+    ],
+    "tvosThirdPartyFrameworkEntries": [
+        
+    ],
+    "tvosclassname": null,
+    "tvosdelegatename": null,
+    "tvosmaccompilerflags": null,
+    "tvosmaclinkerflags": null,
+    "tvosplistinject": null,
     "version": "1.2.2"
 }

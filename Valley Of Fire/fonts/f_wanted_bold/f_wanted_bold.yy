@@ -1,14 +1,16 @@
 {
     "id": "94b03939-acde-4072-9bcf-c0770429281d",
     "modelName": "GMFont",
-    "mvc": "1.0",
+    "mvc": "1.1",
     "name": "f_wanted_bold",
     "AntiAlias": 1,
     "TTFName": "",
+    "ascenderOffset": 0,
     "bold": true,
     "charset": 0,
     "first": 0,
     "fontName": "American Typewriter",
+    "glyphOperations": 0,
     "glyphs": [
         {
             "Key": 32,
@@ -2441,13 +2443,16 @@
             }
         }
     ],
-    "image": null,
+    "hinting": 0,
     "includeTTF": false,
+    "interpreter": 0,
     "italic": false,
     "kerningPairs": [
         
     ],
     "last": 0,
+    "maintainGms1Font": false,
+    "pointRounding": 0,
     "ranges": [
         {
             "x": 32,
@@ -2466,7 +2471,7 @@
             "y": 1105
         }
     ],
-    "sampleText": "WANTED\\u000aРОЗЫСК\\u000aabcdef ABCDEF\\u000a0123456789 .,<>\"'&!?\\u000athe quick brown fox jumps over the lazy dog\\u000aTHE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
+    "sampleText": "WANTED\\nРОЗЫСК\\nabcdef ABCDEF\\n0123456789 .,<>\"'&!?\\nthe quick brown fox jumps over the lazy dog\\nTHE QUICK BROWN FOX JUMPS OVER THE LAZY DOG",
     "size": 56,
     "styleName": "Bold",
     "textureGroupId": "1225f6b0-ac20-43bd-a82e-be73fa0b6f4f"
